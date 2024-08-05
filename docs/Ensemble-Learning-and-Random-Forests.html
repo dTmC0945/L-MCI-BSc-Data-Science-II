@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-08-05 Mon 15:02 -->
+<!-- 2024-08-05 Mon 15:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Code for Machine Learning and Data Science II Ensemble Learning and Random Forests</title>
@@ -193,9 +193,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" href="/Users/danielmcguiness/GitHub/MCI-Source-Files/Configuration/ScriptsHTML/style.css">
+<link rel="stylesheet" href="config/style.css">
 <script type="text/javascript"  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/Users/danielmcguiness/GitHub/MCI-Source-Files/Configuration/ScriptsHTML/test.js">
+<script src="config/test.js">
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 // @license-end
 </script>
@@ -204,7 +204,7 @@
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 org_html_manager.set("TOC_DEPTH", "3");
 org_html_manager.set("LINK_HOME", "");
-org_html_manager.set("LINK_UP", "");
+org_html_manager.set("LINK_UP", "index.html");
 org_html_manager.set("LOCAL_TOC", "1");
 org_html_manager.set("VIEW_BUTTONS", "0");
 org_html_manager.set("MOUSE_HINT", "underline");
@@ -216,7 +216,11 @@ org_html_manager.setup();  // activate after the parameters are set
 </script>
 </head>
 <body>
-<div id="content" class="content">
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
+ <a accesskey="H" href=""> HOME </a>
+</div><div id="content" class="content">
 <h1 class="title">Code for Machine Learning and Data Science II Ensemble Learning and Random Forests</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
@@ -282,7 +286,7 @@ np.random.seed<span class="org-rainbow-delimiters-depth-1">(</span>42<span class
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org95ac33f">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>8, 4<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org917c7b8">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>8, 4<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
 plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>cumulative_heads_ratio<span class="org-rainbow-delimiters-depth-1">)</span>
 plt.plot<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>0, 10000<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[</span>0.51, 0.51<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"k--"</span>, linewidth<span class="org-operator">=</span>2, label<span class="org-operator">=</span><span class="org-string">"51%"</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -301,7 +305,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org917c7b8" class="figure">
+<div id="org63212c8" class="figure">
 <p><img src="images/Ensemble-Learning-and-Random-Forests/law-of-large-numbers-plot.png" alt="law-of-large-numbers-plot.png" />
 </p>
 </div>
@@ -311,7 +315,7 @@ Time to build a voting classifier
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgcbda6af"><span class="org-keyword">from</span> sklearn.datasets <span class="org-keyword">import</span> make_moons
+<pre class="src src-python" id="org0bc5c07"><span class="org-keyword">from</span> sklearn.datasets <span class="org-keyword">import</span> make_moons
 <span class="org-keyword">from</span> sklearn.ensemble <span class="org-keyword">import</span> RandomForestClassifier, VotingClassifier
 <span class="org-keyword">from</span> sklearn.linear_model <span class="org-keyword">import</span> LogisticRegression
 <span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> train_test_split
@@ -331,19 +335,19 @@ Time to build a voting classifier
 </pre>
 </div>
 
-<pre class="example" id="org0bc5c07">
+<pre class="example" id="orge0784b3">
 VotingClassifier(estimators=[('lr', LogisticRegression(random_state=42)),
                              ('rf', RandomForestClassifier(random_state=42)),
                              ('svc', SVC(random_state=42))])
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orga3f1232"><span class="org-keyword">for</span> name, clf <span class="org-keyword">in</span> voting_clf.named_estimators_.items<span class="org-rainbow-delimiters-depth-1">()</span>:
+<pre class="src src-python" id="org80252eb"><span class="org-keyword">for</span> name, clf <span class="org-keyword">in</span> voting_clf.named_estimators_.items<span class="org-rainbow-delimiters-depth-1">()</span>:
     <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>name, <span class="org-string">"="</span>, clf.score<span class="org-rainbow-delimiters-depth-2">(</span>X_test, y_test<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org80252eb">
+<pre class="example" id="org81c011c">
 lr = 0.864rf = 0.896svc = 0.896
 </pre>
 
@@ -358,11 +362,11 @@ lr = 0.864rf = 0.896svc = 0.896
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org1348c83">voting_clf.score<span class="org-rainbow-delimiters-depth-1">(</span>X_test, y_test<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgc253de0">voting_clf.score<span class="org-rainbow-delimiters-depth-1">(</span>X_test, y_test<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgc253de0">
+<pre class="example" id="org302d178">
 0.912
 </pre>
 
@@ -371,14 +375,14 @@ Time to use soft voting:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org70b51e2">voting_clf.<span class="org-variable-name">voting</span> <span class="org-operator">=</span> <span class="org-string">"soft"</span>
+<pre class="src src-python" id="org01d94e2">voting_clf.<span class="org-variable-name">voting</span> <span class="org-operator">=</span> <span class="org-string">"soft"</span>
 voting_clf.named_estimators<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"svc"</span><span class="org-rainbow-delimiters-depth-1">]</span>.probability <span class="org-operator">=</span> <span class="org-constant">True</span>
 voting_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train<span class="org-rainbow-delimiters-depth-1">)</span>
 voting_clf.score<span class="org-rainbow-delimiters-depth-1">(</span>X_test, y_test<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org01d94e2">
+<pre class="example" id="org0216e81">
 0.92
 </pre>
 </div>
@@ -387,7 +391,7 @@ voting_clf.score<span class="org-rainbow-delimiters-depth-1">(</span>X_test, y_t
 <h3 id="org8e939bb">Bagging and Pasting</h3>
 <div class="outline-text-3" id="text-org8e939bb">
 <div class="org-src-container">
-<pre class="src src-python" id="org46b8661"><span class="org-keyword">from</span> sklearn.ensemble <span class="org-keyword">import</span> BaggingClassifier
+<pre class="src src-python" id="org1ca7e2d"><span class="org-keyword">from</span> sklearn.ensemble <span class="org-keyword">import</span> BaggingClassifier
 <span class="org-keyword">from</span> sklearn.tree <span class="org-keyword">import</span> DecisionTreeClassifier
 
 <span class="org-variable-name">bag_clf</span> <span class="org-operator">=</span> BaggingClassifier<span class="org-rainbow-delimiters-depth-1">(</span>DecisionTreeClassifier<span class="org-rainbow-delimiters-depth-2">()</span>, n_estimators<span class="org-operator">=</span>500,
@@ -396,7 +400,7 @@ bag_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train
 </pre>
 </div>
 
-<pre class="example" id="org1ca7e2d">
+<pre class="example" id="org153f732">
 BaggingClassifier(estimator=DecisionTreeClassifier(), max_samples=100,
                   n_estimators=500, n_jobs=-1, random_state=42)
 </pre>
@@ -426,7 +430,7 @@ tree_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_trai
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orga549b40"><span class="org-variable-name">fig</span>, <span class="org-variable-name">axes</span> <span class="org-operator">=</span> plt.subplots<span class="org-rainbow-delimiters-depth-1">(</span>ncols<span class="org-operator">=</span>2, figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 4<span class="org-rainbow-delimiters-depth-2">)</span>, sharey<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org851e221"><span class="org-variable-name">fig</span>, <span class="org-variable-name">axes</span> <span class="org-operator">=</span> plt.subplots<span class="org-rainbow-delimiters-depth-1">(</span>ncols<span class="org-operator">=</span>2, figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 4<span class="org-rainbow-delimiters-depth-2">)</span>, sharey<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.sca<span class="org-rainbow-delimiters-depth-1">(</span>axes<span class="org-rainbow-delimiters-depth-2">[</span>0<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plot_decision_boundary<span class="org-rainbow-delimiters-depth-1">(</span>tree_clf, X_train, y_train<span class="org-rainbow-delimiters-depth-1">)</span>
 plt.title<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"Decision Tree"</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -443,7 +447,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org851e221" class="figure">
+<div id="org9ddf562" class="figure">
 <p><img src="images/Ensemble-Learning-and-Random-Forests/decision-tree-without-and-with-bagging-plot.png" alt="decision-tree-without-and-with-bagging-plot.png" />
 </p>
 </div>
@@ -454,14 +458,14 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 <h3 id="orgbe80d50">Out-of-Bag Evaluation</h3>
 <div class="outline-text-3" id="text-orgbe80d50">
 <div class="org-src-container">
-<pre class="src src-python" id="orga3604f1"><span class="org-variable-name">bag_clf</span> <span class="org-operator">=</span> BaggingClassifier<span class="org-rainbow-delimiters-depth-1">(</span>DecisionTreeClassifier<span class="org-rainbow-delimiters-depth-2">()</span>, n_estimators<span class="org-operator">=</span>500,
+<pre class="src src-python" id="orgd881fea"><span class="org-variable-name">bag_clf</span> <span class="org-operator">=</span> BaggingClassifier<span class="org-rainbow-delimiters-depth-1">(</span>DecisionTreeClassifier<span class="org-rainbow-delimiters-depth-2">()</span>, n_estimators<span class="org-operator">=</span>500,
                             oob_score<span class="org-operator">=</span><span class="org-constant">True</span>, n_jobs<span class="org-operator">=-</span>1, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 bag_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train<span class="org-rainbow-delimiters-depth-1">)</span>
 bag_clf.oob_score_
 </pre>
 </div>
 
-<pre class="example" id="orgd881fea">
+<pre class="example" id="org45065a5">
 0.896
 </pre>
 
@@ -497,25 +501,25 @@ bag_clf.oob_score_
 </table>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org51ec94d"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> accuracy_score
+<pre class="src src-python" id="orgb127f23"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> accuracy_score
 
 <span class="org-variable-name">y_pred</span> <span class="org-operator">=</span> bag_clf.predict<span class="org-rainbow-delimiters-depth-1">(</span>X_test<span class="org-rainbow-delimiters-depth-1">)</span>
 accuracy_score<span class="org-rainbow-delimiters-depth-1">(</span>y_test, y_pred<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgb127f23">
+<pre class="example" id="org7b5a548">
 0.912
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org6795e63"><span class="org-comment-delimiter"># </span><span class="org-comment">extra code &#8211; shows how to compute the 63% proba</span>
+<pre class="src src-python" id="orga706a32"><span class="org-comment-delimiter"># </span><span class="org-comment">extra code &#8211; shows how to compute the 63% proba</span>
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>1 <span class="org-operator">-</span> <span class="org-rainbow-delimiters-depth-2">(</span>1 <span class="org-operator">-</span> 1 <span class="org-operator">/</span> 1000<span class="org-rainbow-delimiters-depth-2">)</span> <span class="org-operator">**</span> 1000<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>1 <span class="org-operator">-</span> np.exp<span class="org-rainbow-delimiters-depth-2">(</span><span class="org-operator">-</span>1<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orga706a32">
+<pre class="example" id="orgad2d904">
 0.6323045752290363
 0.6321205588285577
 </pre>
@@ -548,13 +552,13 @@ A Random Forest is equivalent to a bag of decision trees:
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgf7ce895">bag_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org4bd93a2">bag_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-variable-name">y_pred_bag</span> <span class="org-operator">=</span> bag_clf.predict<span class="org-rainbow-delimiters-depth-1">(</span>X_test<span class="org-rainbow-delimiters-depth-1">)</span>
 np.<span class="org-builtin">all</span><span class="org-rainbow-delimiters-depth-1">(</span>y_pred_bag <span class="org-operator">==</span> y_pred_rf<span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">same predictions</span>
 </pre>
 </div>
 
-<pre class="example" id="org4bd93a2">
+<pre class="example" id="orgde17828">
 True
 </pre>
 </div>
@@ -563,7 +567,7 @@ True
 <h3 id="org66f44c5">Feature Importance</h3>
 <div class="outline-text-3" id="text-org66f44c5">
 <div class="org-src-container">
-<pre class="src src-python" id="orgda3ea1f"><span class="org-keyword">from</span> sklearn.datasets <span class="org-keyword">import</span> load_iris
+<pre class="src src-python" id="org0bc097a"><span class="org-keyword">from</span> sklearn.datasets <span class="org-keyword">import</span> load_iris
 
 <span class="org-variable-name">iris</span> <span class="org-operator">=</span> load_iris<span class="org-rainbow-delimiters-depth-1">(</span>as_frame<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-variable-name">rnd_clf</span> <span class="org-operator">=</span> RandomForestClassifier<span class="org-rainbow-delimiters-depth-1">(</span>n_estimators<span class="org-operator">=</span>500, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -573,7 +577,7 @@ rnd_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>iris.data, iris.
 </pre>
 </div>
 
-<pre class="example" id="org0bc097a">
+<pre class="example" id="org3053803">
 0.11 sepal length (cm)
 0.02 sepal width (cm)
 0.44 petal length (cm)
@@ -581,7 +585,7 @@ rnd_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>iris.data, iris.
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org07dc1ec"><span class="org-keyword">from</span> sklearn.datasets <span class="org-keyword">import</span> fetch_openml
+<pre class="src src-python" id="orgac0ce95"><span class="org-keyword">from</span> sklearn.datasets <span class="org-keyword">import</span> fetch_openml
 
 <span class="org-variable-name">X_mnist</span>, <span class="org-variable-name">y_mnist</span> <span class="org-operator">=</span> fetch_openml<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'mnist_784'</span>, return_X_y<span class="org-operator">=</span><span class="org-constant">True</span>, as_frame<span class="org-operator">=</span><span class="org-constant">False</span>,
                                 parser<span class="org-operator">=</span><span class="org-string">'auto'</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -603,7 +607,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="orgac0ce95" class="figure">
+<div id="orgfeffc6a" class="figure">
 <p><img src="images/Ensemble-Learning-and-Random-Forests/mnist-feature-importance-plot.png" alt="mnist-feature-importance-plot.png" />
 </p>
 </div>
@@ -619,7 +623,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 <h3 id="orgbd1f5cc">AdaBoost</h3>
 <div class="outline-text-3" id="text-orgbd1f5cc">
 <div class="org-src-container">
-<pre class="src src-python" id="orgb75acab"><span class="org-variable-name">m</span> <span class="org-operator">=</span> <span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-1">(</span>X_train<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org458ee97"><span class="org-variable-name">m</span> <span class="org-operator">=</span> <span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-1">(</span>X_train<span class="org-rainbow-delimiters-depth-1">)</span>
 
 <span class="org-variable-name">fig</span>, <span class="org-variable-name">axes</span> <span class="org-operator">=</span> plt.subplots<span class="org-rainbow-delimiters-depth-1">(</span>ncols<span class="org-operator">=</span>2, figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 4<span class="org-rainbow-delimiters-depth-2">)</span>, sharey<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-keyword">for</span> subplot, learning_rate <span class="org-keyword">in</span> <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">(</span>0, 1<span class="org-rainbow-delimiters-depth-2">)</span>, <span class="org-rainbow-delimiters-depth-2">(</span>1, 0.5<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>:
@@ -655,13 +659,13 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org458ee97" class="figure">
+<div id="org51db970" class="figure">
 <p><img src="images/Ensemble-Learning-and-Random-Forests/boosting-plot.png" alt="boosting-plot.png" />
 </p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orge106ecd"><span class="org-keyword">from</span> sklearn.ensemble <span class="org-keyword">import</span> AdaBoostClassifier
+<pre class="src src-python" id="org78c1081"><span class="org-keyword">from</span> sklearn.ensemble <span class="org-keyword">import</span> AdaBoostClassifier
 
 <span class="org-variable-name">ada_clf</span> <span class="org-operator">=</span> AdaBoostClassifier<span class="org-rainbow-delimiters-depth-1">(</span>
     DecisionTreeClassifier<span class="org-rainbow-delimiters-depth-2">(</span>max_depth<span class="org-operator">=</span>1<span class="org-rainbow-delimiters-depth-2">)</span>, n_estimators<span class="org-operator">=</span>30,
@@ -670,14 +674,14 @@ ada_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train
 </pre>
 </div>
 
-<pre class="example" id="org78c1081">
+<pre class="example" id="orgbca8221">
 AdaBoostClassifier(algorithm='SAMME',
                    estimator=DecisionTreeClassifier(max_depth=1),
                    learning_rate=0.5, n_estimators=30, random_state=42)
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgaa876aa">plot_decision_boundary<span class="org-rainbow-delimiters-depth-1">(</span>ada_clf, X_train, y_train<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgef08d4e">plot_decision_boundary<span class="org-rainbow-delimiters-depth-1">(</span>ada_clf, X_train, y_train<span class="org-rainbow-delimiters-depth-1">)</span>
 
 cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"boosting-with-desicion-plot"</span>,
              filepath <span class="org-operator">=</span> SAVE_PATH,
@@ -687,7 +691,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="orgef08d4e" class="figure">
+<div id="orgeb506d7" class="figure">
 <p><img src="images/Ensemble-Learning-and-Random-Forests/boosting-with-desicion-plot.png" alt="boosting-with-desicion-plot.png" />
 </p>
 </div>
@@ -698,7 +702,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 <h3 id="org49ce586">Gradient Boosting</h3>
 <div class="outline-text-3" id="text-org49ce586">
 <div class="org-src-container">
-<pre class="src src-python" id="orgb99fcec"><span class="org-keyword">import</span> numpy <span class="org-keyword">as</span> np
+<pre class="src src-python" id="orge630afd"><span class="org-keyword">import</span> numpy <span class="org-keyword">as</span> np
 <span class="org-keyword">from</span> sklearn.tree <span class="org-keyword">import</span> DecisionTreeRegressor
 
 np.random.seed<span class="org-rainbow-delimiters-depth-1">(</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -710,30 +714,30 @@ tree_reg1.fit<span class="org-rainbow-delimiters-depth-1">(</span>X, y<span clas
 </pre>
 </div>
 
-<pre class="example" id="orge630afd">
+<pre class="example" id="org9c182ef">
 DecisionTreeRegressor(max_depth=2, random_state=42)
 </pre>
 
 
 <div class="org-src-container">
-<pre class="src src-python" id="org4ab8785"><span class="org-variable-name">y2</span> <span class="org-operator">=</span> y <span class="org-operator">-</span> tree_reg1.predict<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org40710bb"><span class="org-variable-name">y2</span> <span class="org-operator">=</span> y <span class="org-operator">-</span> tree_reg1.predict<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-variable-name">tree_reg2</span> <span class="org-operator">=</span> DecisionTreeRegressor<span class="org-rainbow-delimiters-depth-1">(</span>max_depth<span class="org-operator">=</span>2, random_state<span class="org-operator">=</span>43<span class="org-rainbow-delimiters-depth-1">)</span>
 tree_reg2.fit<span class="org-rainbow-delimiters-depth-1">(</span>X, y2<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org40710bb">
+<pre class="example" id="org098977b">
 DecisionTreeRegressor(max_depth=2, random_state=43)
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org9b026af"><span class="org-variable-name">y3</span> <span class="org-operator">=</span> y2 <span class="org-operator">-</span> tree_reg2.predict<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org43aab3a"><span class="org-variable-name">y3</span> <span class="org-operator">=</span> y2 <span class="org-operator">-</span> tree_reg2.predict<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-variable-name">tree_reg3</span> <span class="org-operator">=</span> DecisionTreeRegressor<span class="org-rainbow-delimiters-depth-1">(</span>max_depth<span class="org-operator">=</span>2, random_state<span class="org-operator">=</span>44<span class="org-rainbow-delimiters-depth-1">)</span>
 tree_reg3.fit<span class="org-rainbow-delimiters-depth-1">(</span>X, y3<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org43aab3a">
+<pre class="example" id="org0ebe6ba">
 DecisionTreeRegressor(max_depth=2, random_state=44)
 </pre>
 
@@ -763,7 +767,7 @@ DecisionTreeRegressor(max_depth=2, random_state=44)
 </table>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org66f9782"><span class="org-keyword">def</span> <span class="org-function-name">plot_predictions</span><span class="org-rainbow-delimiters-depth-1">(</span>regressors, X, y, axes, style,
+<pre class="src src-python" id="org32f4f50"><span class="org-keyword">def</span> <span class="org-function-name">plot_predictions</span><span class="org-rainbow-delimiters-depth-1">(</span>regressors, X, y, axes, style,
                      label<span class="org-operator">=</span><span class="org-constant">None</span>, data_style<span class="org-operator">=</span><span class="org-string">"b."</span>, data_label<span class="org-operator">=</span><span class="org-constant">None</span><span class="org-rainbow-delimiters-depth-1">)</span>:
     <span class="org-variable-name">x1</span> <span class="org-operator">=</span> np.linspace<span class="org-rainbow-delimiters-depth-1">(</span>axes<span class="org-rainbow-delimiters-depth-2">[</span>0<span class="org-rainbow-delimiters-depth-2">]</span>, axes<span class="org-rainbow-delimiters-depth-2">[</span>1<span class="org-rainbow-delimiters-depth-2">]</span>, 500<span class="org-rainbow-delimiters-depth-1">)</span>
     <span class="org-variable-name">y_pred</span> <span class="org-operator">=</span> <span class="org-builtin">sum</span><span class="org-rainbow-delimiters-depth-1">(</span>regressor.predict<span class="org-rainbow-delimiters-depth-2">(</span>x1.reshape<span class="org-rainbow-delimiters-depth-3">(</span><span class="org-operator">-</span>1, 1<span class="org-rainbow-delimiters-depth-3">)</span><span class="org-rainbow-delimiters-depth-2">)</span>
@@ -818,7 +822,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org32f4f50" class="figure">
+<div id="orgd5e9e51" class="figure">
 <p><img src="images/Ensemble-Learning-and-Random-Forests/gradient-boosting-plot.png" alt="gradient-boosting-plot.png" />
 </p>
 </div>
@@ -828,7 +832,7 @@ Let's try a gradient boosting regressor:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgb7c7865"><span class="org-keyword">from</span> sklearn.ensemble <span class="org-keyword">import</span> GradientBoostingRegressor
+<pre class="src src-python" id="orgc0fc0f7"><span class="org-keyword">from</span> sklearn.ensemble <span class="org-keyword">import</span> GradientBoostingRegressor
 
 <span class="org-variable-name">gbrt</span> <span class="org-operator">=</span> GradientBoostingRegressor<span class="org-rainbow-delimiters-depth-1">(</span>max_depth<span class="org-operator">=</span>2, n_estimators<span class="org-operator">=</span>3,
                                  learning_rate<span class="org-operator">=</span>1.0, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -836,35 +840,35 @@ gbrt.fit<span class="org-rainbow-delimiters-depth-1">(</span>X, y<span class="or
 </pre>
 </div>
 
-<pre class="example" id="orgc0fc0f7">
+<pre class="example" id="orge5312ca">
 GradientBoostingRegressor(learning_rate=1.0, max_depth=2, n_estimators=3,
                           random_state=42)
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org6dd41b6"><span class="org-variable-name">gbrt_best</span> <span class="org-operator">=</span> GradientBoostingRegressor<span class="org-rainbow-delimiters-depth-1">(</span>
+<pre class="src src-python" id="org208bd20"><span class="org-variable-name">gbrt_best</span> <span class="org-operator">=</span> GradientBoostingRegressor<span class="org-rainbow-delimiters-depth-1">(</span>
     max_depth<span class="org-operator">=</span>2, learning_rate<span class="org-operator">=</span>0.05, n_estimators<span class="org-operator">=</span>500,
     n_iter_no_change<span class="org-operator">=</span>10, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 gbrt_best.fit<span class="org-rainbow-delimiters-depth-1">(</span>X, y<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org208bd20">
+<pre class="example" id="orga96843a">
 GradientBoostingRegressor(learning_rate=0.05, max_depth=2, n_estimators=500,
                           n_iter_no_change=10, random_state=42)
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org370728b">gbrt_best.n_estimators_
+<pre class="src src-python" id="org43ef9e9">gbrt_best.n_estimators_
 </pre>
 </div>
 
-<pre class="example" id="org43ef9e9">
+<pre class="example" id="org51cc187">
 92
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org1e4020b"><span class="org-variable-name">fig</span>, <span class="org-variable-name">axes</span> <span class="org-operator">=</span> plt.subplots<span class="org-rainbow-delimiters-depth-1">(</span>ncols<span class="org-operator">=</span>2, figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 4<span class="org-rainbow-delimiters-depth-2">)</span>, sharey<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org27095dd"><span class="org-variable-name">fig</span>, <span class="org-variable-name">axes</span> <span class="org-operator">=</span> plt.subplots<span class="org-rainbow-delimiters-depth-1">(</span>ncols<span class="org-operator">=</span>2, figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 4<span class="org-rainbow-delimiters-depth-2">)</span>, sharey<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
 plt.sca<span class="org-rainbow-delimiters-depth-1">(</span>axes<span class="org-rainbow-delimiters-depth-2">[</span>0<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plot_predictions<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>gbrt<span class="org-rainbow-delimiters-depth-2">]</span>, X, y, axes<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-operator">-</span>0.5, 0.5, <span class="org-operator">-</span>0.1, 0.8<span class="org-rainbow-delimiters-depth-2">]</span>, style<span class="org-operator">=</span><span class="org-string">"r-"</span>,
@@ -888,7 +892,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org27095dd" class="figure">
+<div id="org9f0ba66" class="figure">
 <p><img src="images/Ensemble-Learning-and-Random-Forests/gbrt-learning-rate-plot.png" alt="gbrt-learning-rate-plot.png" />
 </p>
 </div>
@@ -920,7 +924,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org20f14a3"><span class="org-keyword">from</span> sklearn.pipeline <span class="org-keyword">import</span> make_pipeline
+<pre class="src src-python" id="org32d8367"><span class="org-keyword">from</span> sklearn.pipeline <span class="org-keyword">import</span> make_pipeline
 <span class="org-keyword">from</span> sklearn.compose <span class="org-keyword">import</span> make_column_transformer
 <span class="org-keyword">from</span> sklearn.ensemble <span class="org-keyword">import</span> HistGradientBoostingRegressor
 <span class="org-keyword">from</span> sklearn.preprocessing <span class="org-keyword">import</span> OrdinalEncoder 
@@ -937,7 +941,7 @@ hgb_reg.fit<span class="org-rainbow-delimiters-depth-1">(</span>housing, housing
 
 
 <div class="org-src-container">
-<pre class="src src-python" id="org559121b"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> cross_val_score
+<pre class="src src-python" id="org87b3b1d"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> cross_val_score
 
 <span class="org-variable-name">hgb_rmses</span> <span class="org-operator">=</span> <span class="org-operator">-</span>cross_val_score<span class="org-rainbow-delimiters-depth-1">(</span>hgb_reg, housing, housing_labels,
                              scoring<span class="org-operator">=</span><span class="org-string">"neg_root_mean_squared_error"</span>, cv<span class="org-operator">=</span>10<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -951,7 +955,7 @@ pd.Series<span class="org-rainbow-delimiters-depth-1">(</span>hgb_rmses<span cla
 <h3 id="orgb721f81">Stacking</h3>
 <div class="outline-text-3" id="text-orgb721f81">
 <div class="org-src-container">
-<pre class="src src-python" id="org59e6336"><span class="org-keyword">from</span> sklearn.ensemble <span class="org-keyword">import</span> StackingClassifier
+<pre class="src src-python" id="orgc954d1b"><span class="org-keyword">from</span> sklearn.ensemble <span class="org-keyword">import</span> StackingClassifier
 
 <span class="org-variable-name">stacking_clf</span> <span class="org-operator">=</span> StackingClassifier<span class="org-rainbow-delimiters-depth-1">(</span>
     estimators<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">[</span>
@@ -969,7 +973,7 @@ stacking_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_
 
 
 <div class="org-src-container">
-<pre class="src src-python" id="org32d8367">stacking_clf.score<span class="org-rainbow-delimiters-depth-1">(</span>X_test, y_test<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org9ad602a">stacking_clf.score<span class="org-rainbow-delimiters-depth-1">(</span>X_test, y_test<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 </div>
@@ -978,7 +982,7 @@ stacking_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Daniel McGuiness</p>
-<p class="date">Created: 2024-08-05 Mon 15:02</p>
+<p class="date">Created: 2024-08-05 Mon 15:26</p>
 </div>
 </body>
 </html>

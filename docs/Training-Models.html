@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-08-05 Mon 15:02 -->
+<!-- 2024-08-05 Mon 15:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Code for Machine Learning and Data Science II Training Models</title>
@@ -193,10 +193,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="./config/style.css" />
-<link rel="stylesheet" href="/Users/danielmcguiness/GitHub/MCI-Source-Files/Configuration/ScriptsHTML/style.css">
+<link rel="stylesheet" href="config/style.css">
 <script type="text/javascript"  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/Users/danielmcguiness/GitHub/MCI-Source-Files/Configuration/ScriptsHTML/test.js">
+<script src="config/test.js">
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 // @license-end
 </script>
@@ -354,7 +353,7 @@ The following code plots the data
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org58e0d45"><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
+<pre class="src src-python" id="org38a4f16"><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
 
 plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X, y, <span class="org-string">"."</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.xlabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"$x_1$"</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -368,13 +367,13 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org38a4f16" class="figure">
+<div id="orgbdf0480" class="figure">
 <p><img src="images/Training-Models/generated-data-plot.png" alt="generated-data-plot.png" />
 </p>
 </div>
 
 
-<pre class="example" id="org79e1b59">
+<pre class="example" id="org57c982a">
 The @ operator performs matrix multiplication. If A and B are NumPy arrays,
 then A @ B is equivalent to np.matmul(A, B). Many other libraries, like
 TensorFlow, PyTorch, and JAX, support the @ operator as well. However,
@@ -411,13 +410,13 @@ Now time to calculate \(\hat{\theta}\) using the normal equation:
 </tr>
 
 <tr>
-<td class="org-left"><span class="Code">linalg.inv(...)</span></td>
-<td class="org-left">Given a square matrix a, return the matrix ainv satisfying <span class="Code">a @ ainv = ainv @ a = eye(a.shape[0])</span></td>
+<td class="org-left"><span class="Code"></span></td>
+<td class="org-left">Given a square matrix a, return the matrix ainv satisfying <span class="Code"></span></td>
 <td class="org-left"><a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.inv.html">Link</a></td>
 </tr>
 
 <tr>
-<td class="org-left"><span class="Code">sklearn.preprocessing.add_dummy_feature(...)</span></td>
+<td class="org-left"><span class="Code"></span></td>
 <td class="org-left">Augment dataset with an additional dummy feature.</td>
 <td class="org-left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.add_dummy_feature.html">Link</a></td>
 </tr>
@@ -429,11 +428,11 @@ Let’s see what the theta values are:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org6172291"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>theta_best<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgf446c51"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>theta_best<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgf446c51">
+<pre class="example" id="orgdf9c456">
 [[4.21509616]
  [2.77011339]]
 </pre>
@@ -443,14 +442,14 @@ Not the best but not the worst either. Now we can make predictions using \(\hat{
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgc89b5cf"><span class="org-variable-name">X_new</span> <span class="org-operator">=</span> np.array<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-rainbow-delimiters-depth-3">[</span>0<span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span>2<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgf22cdf5"><span class="org-variable-name">X_new</span> <span class="org-operator">=</span> np.array<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-rainbow-delimiters-depth-3">[</span>0<span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span>2<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-variable-name">X_new_b</span> <span class="org-operator">=</span> add_dummy_feature<span class="org-rainbow-delimiters-depth-1">(</span>X_new<span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">add x0 = 1 to each instance</span>
 <span class="org-variable-name">y_predict</span> <span class="org-operator">=</span> X_new_b @ theta_best
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>y_predict<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgf22cdf5">
+<pre class="example" id="org2209846">
 [[4.21509616]
  [9.75532293]]
 </pre>
@@ -460,7 +459,7 @@ Let’s plot this model’s predictions:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org5996a0c">plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X_new, y_predict, <span class="org-string">"-"</span>, label<span class="org-operator">=</span><span class="org-string">"Predictions"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgd154fe5">plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X_new, y_predict, <span class="org-string">"-"</span>, label<span class="org-operator">=</span><span class="org-string">"Predictions"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X, y, <span class="org-string">"."</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
 plt.xlabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"$x_1$"</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -477,7 +476,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="orgd154fe5" class="figure">
+<div id="org03fb7c8" class="figure">
 <p><img src="images/Training-Models/linear-model-predictions-plot.png" alt="linear-model-predictions-plot.png" />
 </p>
 </div>
@@ -487,7 +486,7 @@ Performing linear regression using Scikit-Learn is relatively straightforward:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orge2293e7"><span class="org-keyword">from</span> sklearn.linear_model <span class="org-keyword">import</span> LinearRegression
+<pre class="src src-python" id="org1862b23"><span class="org-keyword">from</span> sklearn.linear_model <span class="org-keyword">import</span> LinearRegression
 
 <span class="org-variable-name">lin_reg</span> <span class="org-operator">=</span> LinearRegression<span class="org-rainbow-delimiters-depth-1">()</span>
 lin_reg.fit<span class="org-rainbow-delimiters-depth-1">(</span>X, y<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -497,7 +496,7 @@ lin_reg.fit<span class="org-rainbow-delimiters-depth-1">(</span>X, y<span class=
 </pre>
 </div>
 
-<pre class="example" id="org1862b23">
+<pre class="example" id="org89f0887">
 Estimated coefficients:  [[2.77011339]]
 The b0 value is:  [4.21509616]
 </pre>
@@ -520,13 +519,13 @@ The b0 value is:  [4.21509616]
 </tr>
 
 <tr>
-<td class="org-left"><span class="Code">sklearn.linear_model.LinearRegression(...)</span></td>
+<td class="org-left"><span class="Code"></span></td>
 <td class="org-left">Ordinary least squares Linear Regression. LinearRegression fits a linear model with coefficients w = (w1, …, wp) to minimize the residual sum of squares between the observed targets in the dataset, and the targets predicted by the linear approximation.</td>
 <td class="org-left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html">Link</a></td>
 </tr>
 
 <tr>
-<td class="org-left"><span class="Code">.fit(...)</span></td>
+<td class="org-left"><span class="Code"></span></td>
 <td class="org-left">Fit linear model.</td>
 <td class="org-left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression.fit">Link</a></td>
 </tr>
@@ -534,7 +533,7 @@ The b0 value is:  [4.21509616]
 </table>
 
 <p>
-Same information can be retrieved from <span class="Code">np.linalg.lstsq()</span>:
+Same information can be retrieved from <span class="Code"></span>:
 </p>
 
 <div class="org-src-container">
@@ -560,7 +559,7 @@ Same information can be retrieved from <span class="Code">np.linalg.lstsq()</spa
 </tr>
 
 <tr>
-<td class="org-left"><span class="Code">np.linalg.lstsq(...)</span></td>
+<td class="org-left"><span class="Code"></span></td>
 <td class="org-left">Return the least-squares solution to a linear matrix equation.</td>
 <td class="org-left"><a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.lstsq.html">Link</a></td>
 </tr>
@@ -568,7 +567,7 @@ Same information can be retrieved from <span class="Code">np.linalg.lstsq()</spa
 </table>
 
 <p>
-You can use <span class="Code">np.linalg.pinv()</span> to compute the pseudoinverse directly:
+You can use <span class="Code"></span> to compute the pseudoinverse directly:
 </p>
 
 <div class="org-src-container">
@@ -594,7 +593,7 @@ You can use <span class="Code">np.linalg.pinv()</span> to compute the pseudoinve
 </tr>
 
 <tr>
-<td class="org-left"><span class="Code">np.linalg.pinv(...)</span></td>
+<td class="org-left"><span class="Code"></span></td>
 <td class="org-left">Compute the (Moore-Penrose) pseudo-inverse of a matrix.</td>
 <td class="org-left"><a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.pinv.html#numpy-linalg-pinv">Link</a></td>
 </tr>
@@ -622,7 +621,7 @@ Let’s look at a quick implementation of Batch Gradient Descent algorithm:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org52829eb"><span class="org-variable-name">eta</span> <span class="org-operator">=</span> 0.1  <span class="org-comment-delimiter"># </span><span class="org-comment">learning rate</span>
+<pre class="src src-python" id="org5c7bf3e"><span class="org-variable-name">eta</span> <span class="org-operator">=</span> 0.1  <span class="org-comment-delimiter"># </span><span class="org-comment">learning rate</span>
 <span class="org-variable-name">n_epochs</span> <span class="org-operator">=</span> 1000
 <span class="org-variable-name">m</span> <span class="org-operator">=</span> <span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-1">(</span>X_b<span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">number of instances</span>
 
@@ -637,7 +636,7 @@ np.random.seed<span class="org-rainbow-delimiters-depth-1">(</span>42<span class
 </pre>
 </div>
 
-<pre class="example" id="org5c7bf3e">
+<pre class="example" id="org86d765e">
 [[4.21509616]
  [2.77011339]]
 </pre>
@@ -675,7 +674,7 @@ three different learning rates.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgc8ee89d">np.random.seed<span class="org-rainbow-delimiters-depth-1">(</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orga4d042e">np.random.seed<span class="org-rainbow-delimiters-depth-1">(</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-variable-name">theta</span> <span class="org-operator">=</span> np.random.randn<span class="org-rainbow-delimiters-depth-1">(</span>2, 1<span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">random initialization</span>
 plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>style <span class="org-operator">=</span> style<span class="org-rainbow-delimiters-depth-1">)</span>
 plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 4<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -695,7 +694,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="orga4d042e" class="figure">
+<div id="org2bff47c" class="figure">
 <p><img src="images/Training-Models/gradient-descent-plot.png" alt="gradient-descent-plot.png" />
 </p>
 </div>
@@ -720,7 +719,7 @@ This code implements stochastic gradient descent using a simple learning schedul
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org0d94f5c"><span class="org-variable-name">n_epochs</span> <span class="org-operator">=</span> 50
+<pre class="src src-python" id="org7e148ea"><span class="org-variable-name">n_epochs</span> <span class="org-operator">=</span> 50
 <span class="org-variable-name">t0</span>, <span class="org-variable-name">t1</span> <span class="org-operator">=</span> 5, 50  <span class="org-comment-delimiter"># </span><span class="org-comment">learning schedule hyperparameters</span>
 
 <span class="org-keyword">def</span> <span class="org-function-name">learning_schedule</span><span class="org-rainbow-delimiters-depth-1">(</span>t<span class="org-rainbow-delimiters-depth-1">)</span>:
@@ -761,7 +760,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="org7e148ea" class="figure">
+<div id="orga4147e7" class="figure">
 <p><img src="images/Training-Models/stochastic-gradient-plot.png" alt="stochastic-gradient-plot.png" />
 </p>
 </div>
@@ -771,11 +770,11 @@ Let's see the solution to our algorithm.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org1195dd4"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>theta<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org30a5e95"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>theta<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org30a5e95">
+<pre class="example" id="orgbb3b468">
 [[ 0.49671415]
  [-0.1382643 ]]
 </pre>
@@ -813,7 +812,7 @@ sgd_reg.fit<span class="org-rainbow-delimiters-depth-1">(</span>X, y.ravel<span 
 </tr>
 
 <tr>
-<td class="org-left"><span class="Code">sklearn.linear_model.SGDRegressor(...)</span></td>
+<td class="org-left"><span class="Code"></span></td>
 <td class="org-left">Linear model fitted by minimizing a regularized empirical loss with SGD.</td>
 <td class="org-left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html">Link</a></td>
 </tr>
@@ -945,7 +944,7 @@ And now we plot this data.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgdf9fe77">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>6, 4<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgb436f5e">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>6, 4<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
 plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X, y, <span class="org-string">"."</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.xlabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"$x_1$"</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -959,13 +958,13 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="orgb436f5e" class="figure">
+<div id="org9fa02ba" class="figure">
 <p><img src="images/Training-Models/quadratic-data-plot.png" alt="quadratic-data-plot.png" />
 </p>
 </div>
 
 <p>
-A single line wont fit. We need to use <span class="Code">sklearn.preprocessing.PolynomialFeatures()</span>
+A single line wont fit. We need to use <span class="Code"></span>
 for this:
 </p>
 
@@ -998,7 +997,7 @@ X_poly<span class="org-rainbow-delimiters-depth-1">[</span>0<span class="org-rai
 </tr>
 
 <tr>
-<td class="org-left"><span class="Code">sklearn.preprocessing.PolynomialFeatures(...)</span></td>
+<td class="org-left"><span class="Code"></span></td>
 <td class="org-left">Generate polynomial and interaction features.</td>
 <td class="org-left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html">Link</a></td>
 </tr>
@@ -1025,7 +1024,7 @@ And plot our comparisons.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org7d0f102">plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X, y, <span class="org-string">"."</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org7ddb529">plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X, y, <span class="org-string">"."</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X_new, y_new, <span class="org-string">"-"</span>, label<span class="org-operator">=</span><span class="org-string">"Predictions"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.xlabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"$x_1$"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.ylabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"$y$"</span>, rotation<span class="org-operator">=</span>0<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1039,7 +1038,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org7ddb529" class="figure">
+<div id="org5cf211c" class="figure">
 <p><img src="images/Training-Models/quadratic-prediction-plot.png" alt="quadratic-prediction-plot.png" />
 </p>
 </div>
@@ -1049,7 +1048,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 <h3 id="org09378af">Learning Curves</h3>
 <div class="outline-text-3" id="text-org09378af">
 <p>
-Let's see if increasing the <span class="Code">degree</span> number improves
+Let's see if increasing the <span class="Code"></span> number improves
 our model.
 </p>
 
@@ -1088,7 +1087,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org9d16a3c"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> learning_curve
+<pre class="src src-python" id="org093f7e7"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> learning_curve
 
 <span class="org-variable-name">train_sizes</span>, <span class="org-variable-name">train_scores</span>, <span class="org-variable-name">valid_scores</span> <span class="org-operator">=</span> learning_curve<span class="org-rainbow-delimiters-depth-1">(</span>
     LinearRegression<span class="org-rainbow-delimiters-depth-2">()</span>, X, y, train_sizes<span class="org-operator">=</span>np.linspace<span class="org-rainbow-delimiters-depth-2">(</span>0.01, 1.0, 40<span class="org-rainbow-delimiters-depth-2">)</span>, cv<span class="org-operator">=</span>5,
@@ -1112,7 +1111,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="org093f7e7" class="figure">
+<div id="org9cc0e69" class="figure">
 <p><img src="images/Training-Models/underfitting-learning-curves-plot.png" alt="underfitting-learning-curves-plot.png" />
 </p>
 </div>
@@ -1137,7 +1136,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org5a79fdc">plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>train_sizes, train_errors, <span class="org-string">"-+"</span>, label<span class="org-operator">=</span><span class="org-string">"train"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org631a070">plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>train_sizes, train_errors, <span class="org-string">"-+"</span>, label<span class="org-operator">=</span><span class="org-string">"train"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>train_sizes, valid_errors, <span class="org-string">"-"</span>, label<span class="org-operator">=</span><span class="org-string">"valid"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.legend<span class="org-rainbow-delimiters-depth-1">(</span>loc<span class="org-operator">=</span><span class="org-string">"upper right"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.xlabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"Training set size"</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1151,7 +1150,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="org631a070" class="figure">
+<div id="org9e917ce" class="figure">
 <p><img src="images/Training-Models/learning-curves-plot.png" alt="learning-curves-plot.png" />
 </p>
 </div>
@@ -1176,7 +1175,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org093dc4d">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>size <span class="org-operator">=</span> 1, style <span class="org-operator">=</span> <span class="org-string">"web"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org914dff5">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>size <span class="org-operator">=</span> 1, style <span class="org-operator">=</span> <span class="org-string">"web"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
 plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X, y, <span class="org-string">"."</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.xlabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"$x_1$"</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1190,7 +1189,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="org914dff5" class="figure">
+<div id="orgb7e5ecd" class="figure">
 <p><img src="images/Training-Models/ridge-regression-plot-init.png" alt="ridge-regression-plot-init.png" />
 </p>
 </div>
@@ -1205,7 +1204,7 @@ ridge_reg.predict<span class="org-rainbow-delimiters-depth-1">(</span><span clas
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgb0c5951"><span class="org-keyword">def</span> <span class="org-function-name">plot_model</span><span class="org-rainbow-delimiters-depth-1">(</span>model_class, polynomial, alphas, <span class="org-operator">**</span>model_kwargs<span class="org-rainbow-delimiters-depth-1">)</span>:
+<pre class="src src-python" id="orgd32832e"><span class="org-keyword">def</span> <span class="org-function-name">plot_model</span><span class="org-rainbow-delimiters-depth-1">(</span>model_class, polynomial, alphas, <span class="org-operator">**</span>model_kwargs<span class="org-rainbow-delimiters-depth-1">)</span>:
     plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X, y, <span class="org-string">"."</span><span class="org-rainbow-delimiters-depth-1">)</span>
     <span class="org-keyword">for</span> alpha, style <span class="org-keyword">in</span> <span class="org-builtin">zip</span><span class="org-rainbow-delimiters-depth-1">(</span>alphas, <span class="org-rainbow-delimiters-depth-2">(</span><span class="org-string">":"</span>, <span class="org-string">"--"</span>, <span class="org-string">"-"</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>:
         <span class="org-keyword">if</span> alpha <span class="org-operator">&gt;</span> 0:
@@ -1240,36 +1239,36 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="orgd32832e" class="figure">
+<div id="org18af927" class="figure">
 <p><img src="images/Training-Models/ridge-regression-plot-result.png" alt="ridge-regression-plot-result.png" />
 </p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org8bb1315"><span class="org-variable-name">sgd_reg</span> <span class="org-operator">=</span> SGDRegressor<span class="org-rainbow-delimiters-depth-1">(</span>penalty<span class="org-operator">=</span><span class="org-string">"l2"</span>, alpha<span class="org-operator">=</span>0.1 <span class="org-operator">/</span> m, tol<span class="org-operator">=</span><span class="org-constant">None</span>,
+<pre class="src src-python" id="orge94e1ea"><span class="org-variable-name">sgd_reg</span> <span class="org-operator">=</span> SGDRegressor<span class="org-rainbow-delimiters-depth-1">(</span>penalty<span class="org-operator">=</span><span class="org-string">"l2"</span>, alpha<span class="org-operator">=</span>0.1 <span class="org-operator">/</span> m, tol<span class="org-operator">=</span><span class="org-constant">None</span>,
                        max_iter<span class="org-operator">=</span>1000, eta0<span class="org-operator">=</span>0.01, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 sgd_reg.fit<span class="org-rainbow-delimiters-depth-1">(</span>X, y.ravel<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">y.ravel() because fit() expects 1D targets</span>
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>sgd_reg.predict<span class="org-rainbow-delimiters-depth-2">(</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-rainbow-delimiters-depth-4">[</span>1.5<span class="org-rainbow-delimiters-depth-4">]</span><span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orge94e1ea">
+<pre class="example" id="orgde6fdcb">
 [1.55302613]
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org3c1e644"><span class="org-variable-name">ridge_reg</span> <span class="org-operator">=</span> Ridge<span class="org-rainbow-delimiters-depth-1">(</span>alpha<span class="org-operator">=</span>0.1, solver<span class="org-operator">=</span><span class="org-string">"sag"</span>, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org751a048"><span class="org-variable-name">ridge_reg</span> <span class="org-operator">=</span> Ridge<span class="org-rainbow-delimiters-depth-1">(</span>alpha<span class="org-operator">=</span>0.1, solver<span class="org-operator">=</span><span class="org-string">"sag"</span>, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 ridge_reg.fit<span class="org-rainbow-delimiters-depth-1">(</span>X, y<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>ridge_reg.predict<span class="org-rainbow-delimiters-depth-2">(</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-rainbow-delimiters-depth-4">[</span>1.5<span class="org-rainbow-delimiters-depth-4">]</span><span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org751a048">
+<pre class="example" id="org8aafac9">
 [[1.55326019]]
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgafe2e7d"><span class="org-variable-name">alpha</span> <span class="org-operator">=</span> 0.1
+<pre class="src src-python" id="orgf30f212"><span class="org-variable-name">alpha</span> <span class="org-operator">=</span> 0.1
 <span class="org-variable-name">A</span> <span class="org-operator">=</span> np.array<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-rainbow-delimiters-depth-3">[</span>0., 0.<span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span>0., 1.<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-variable-name">X_b</span> <span class="org-operator">=</span> np.c_<span class="org-rainbow-delimiters-depth-1">[</span>np.ones<span class="org-rainbow-delimiters-depth-2">(</span>m<span class="org-rainbow-delimiters-depth-2">)</span>, X<span class="org-rainbow-delimiters-depth-1">]</span>
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>np.linalg.inv<span class="org-rainbow-delimiters-depth-2">(</span>X_b.T @ X_b <span class="org-operator">+</span> alpha <span class="org-operator">*</span> A<span class="org-rainbow-delimiters-depth-2">)</span> @ X_b.T @ y<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1278,7 +1277,7 @@ ridge_reg.fit<span class="org-rainbow-delimiters-depth-1">(</span>X, y<span clas
 </pre>
 </div>
 
-<pre class="example" id="orgf30f212">
+<pre class="example" id="org1c03ca7">
 [[0.97898394]
  [0.3828496 ]]
 [0.97896386] [[0.38286422]]
@@ -1299,7 +1298,7 @@ lasso_reg.predict<span class="org-rainbow-delimiters-depth-1">(</span><span clas
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgea3daa3">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>size <span class="org-operator">=</span> 2, style <span class="org-operator">=</span> <span class="org-string">"web"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org43fd912">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>size <span class="org-operator">=</span> 2, style <span class="org-operator">=</span> <span class="org-string">"web"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
 plt.subplot<span class="org-rainbow-delimiters-depth-1">(</span>121<span class="org-rainbow-delimiters-depth-1">)</span>
 
@@ -1315,13 +1314,13 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="org43fd912" class="figure">
+<div id="org670e184" class="figure">
 <p><img src="images/Training-Models/lasso-regression-plot-init.png" alt="lasso-regression-plot-init.png" />
 </p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgc10d60b"><span class="org-variable-name">t1a</span>, <span class="org-variable-name">t1b</span>, <span class="org-variable-name">t2a</span>, <span class="org-variable-name">t2b</span> <span class="org-operator">=</span> <span class="org-operator">-</span>1, 3, <span class="org-operator">-</span>1.5, 1.5
+<pre class="src src-python" id="orgc923cac"><span class="org-variable-name">t1a</span>, <span class="org-variable-name">t1b</span>, <span class="org-variable-name">t2a</span>, <span class="org-variable-name">t2b</span> <span class="org-operator">=</span> <span class="org-operator">-</span>1, 3, <span class="org-operator">-</span>1.5, 1.5
 
 <span class="org-variable-name">t1s</span> <span class="org-operator">=</span> np.linspace<span class="org-rainbow-delimiters-depth-1">(</span>t1a, t1b, 500<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-variable-name">t2s</span> <span class="org-operator">=</span> np.linspace<span class="org-rainbow-delimiters-depth-1">(</span>t2a, t2b, 500<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1402,7 +1401,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="orgc923cac" class="figure">
+<div id="orgdf1d2c9" class="figure">
 <p><img src="images/Training-Models/lasso-regression-plot-lasso-vs-ridge.png" alt="lasso-regression-plot-lasso-vs-ridge.png" />
 </p>
 </div>
@@ -1427,7 +1426,7 @@ elastic_net.predict<span class="org-rainbow-delimiters-depth-1">(</span><span cl
 <h3 id="orga9fc173">Early Stopping</h3>
 <div class="outline-text-3" id="text-orga9fc173">
 <div class="org-src-container">
-<pre class="src src-python" id="orgbc0fae8"><span class="org-keyword">from</span> copy <span class="org-keyword">import</span> deepcopy
+<pre class="src src-python" id="orgf6ef635"><span class="org-keyword">from</span> copy <span class="org-keyword">import</span> deepcopy
 <span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> mean_squared_error
 <span class="org-keyword">from</span> sklearn.preprocessing <span class="org-keyword">import</span> StandardScaler
 
@@ -1485,7 +1484,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="orgf6ef635" class="figure">
+<div id="orgc69065c" class="figure">
 <p><img src="images/Training-Models/early-stopping-plot-quadratic-data.png" alt="early-stopping-plot-quadratic-data.png" />
 </p>
 </div>
@@ -1508,7 +1507,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org69c0cf1">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>style <span class="org-operator">=</span> <span class="org-string">"web"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org69a9725">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>style <span class="org-operator">=</span> <span class="org-string">"web"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
 plt.plot<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-operator">-</span>lim, lim<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[</span>0, 0<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"k-"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.plot<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-operator">-</span>lim, lim<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[</span>0.5, 0.5<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"k:"</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1527,7 +1526,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="org69a9725" class="figure">
+<div id="org01d9721" class="figure">
 <p><img src="images/Training-Models/logistic-function.png" alt="logistic-function.png" />
 </p>
 </div>
@@ -1538,23 +1537,23 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 <h3 id="org83182a3">Desicion Boundaries</h3>
 <div class="outline-text-3" id="text-org83182a3">
 <div class="org-src-container">
-<pre class="src src-python" id="orgbf89f64"><span class="org-keyword">from</span> sklearn.datasets <span class="org-keyword">import</span> load_iris
+<pre class="src src-python" id="org9415271"><span class="org-keyword">from</span> sklearn.datasets <span class="org-keyword">import</span> load_iris
 
 <span class="org-variable-name">iris</span> <span class="org-operator">=</span> load_iris<span class="org-rainbow-delimiters-depth-1">(</span>as_frame<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-builtin">list</span><span class="org-rainbow-delimiters-depth-2">(</span>iris<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org9415271">
+<pre class="example" id="org1437c3c">
 ['data', 'target', 'frame', 'target_names', 'DESCR', 'feature_names', 'filename', 'data_module']
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org7852dec"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>iris.DESCR<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org9f66795"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>iris.DESCR<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org9f66795">
+<pre class="example" id="orgb230eaa">
 .. _iris_dataset:
 Iris plants dataset
 --------------------
@@ -1614,11 +1613,11 @@ latter are NOT linearly separable from each other.
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org34580b8">iris.data.head<span class="org-rainbow-delimiters-depth-1">(</span>3<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgb7b58f1">iris.data.head<span class="org-rainbow-delimiters-depth-1">(</span>3<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgb7b58f1">
+<pre class="example" id="org5e5f8ec">
    sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm)
 0                5.1               3.5                1.4               0.2
 1                4.9               3.0                1.4               0.2
@@ -1690,7 +1689,7 @@ plt.show<span class="org-rainbow-delimiters-depth-1">()</span>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org548ea1f"><span class="org-variable-name">X</span> <span class="org-operator">=</span> iris.data<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"petal length (cm)"</span>, <span class="org-string">"petal width (cm)"</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">]</span>.values
+<pre class="src src-python" id="org4ffde67"><span class="org-variable-name">X</span> <span class="org-operator">=</span> iris.data<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"petal length (cm)"</span>, <span class="org-string">"petal width (cm)"</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">]</span>.values
 <span class="org-variable-name">y</span> <span class="org-operator">=</span> iris.target_names<span class="org-rainbow-delimiters-depth-1">[</span>iris.target<span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">==</span> <span class="org-string">'virginica'</span>
 <span class="org-variable-name">X_train</span>, <span class="org-variable-name">X_test</span>, <span class="org-variable-name">y_train</span>, <span class="org-variable-name">y_test</span> <span class="org-operator">=</span> train_test_split<span class="org-rainbow-delimiters-depth-1">(</span>X, y, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 
@@ -1727,7 +1726,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="org4ffde67" class="figure">
+<div id="orgf558d15" class="figure">
 <p><img src="images/Training-Models/logistic-regression-contour-plot.png" alt="logistic-regression-contour-plot.png" />
 </p>
 </div>
@@ -1803,7 +1802,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Daniel McGuiness</p>
-<p class="date">Created: 2024-08-05 Mon 15:02</p>
+<p class="date">Created: 2024-08-05 Mon 15:26</p>
 </div>
 </body>
 </html>

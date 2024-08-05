@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-08-05 Mon 15:02 -->
+<!-- 2024-08-05 Mon 15:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Code for Machine Learning and Data Science II Classification</title>
@@ -193,9 +193,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" href="/Users/danielmcguiness/GitHub/MCI-Source-Files/Configuration/ScriptsHTML/style.css">
+<link rel="stylesheet" href="config/style.css">
 <script type="text/javascript"  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/Users/danielmcguiness/GitHub/MCI-Source-Files/Configuration/ScriptsHTML/test.js">
+<script src="config/test.js">
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 // @license-end
 </script>
@@ -204,7 +204,7 @@
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 org_html_manager.set("TOC_DEPTH", "3");
 org_html_manager.set("LINK_HOME", "");
-org_html_manager.set("LINK_UP", "");
+org_html_manager.set("LINK_UP", "index.html");
 org_html_manager.set("LOCAL_TOC", "1");
 org_html_manager.set("VIEW_BUTTONS", "0");
 org_html_manager.set("MOUSE_HINT", "underline");
@@ -216,7 +216,11 @@ org_html_manager.setup();  // activate after the parameters are set
 </script>
 </head>
 <body>
-<div id="content" class="content">
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
+ <a accesskey="H" href=""> HOME </a>
+</div><div id="content" class="content">
 <h1 class="title">Code for Machine Learning and Data Science II Classification</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
@@ -456,7 +460,7 @@ IMAGES_PATH.mkdir<span class="org-rainbow-delimiters-depth-1">(</span>parents<sp
 </div>
 
 <p>
-For more info on the <font color=#e5c890>sklearn.datasets.fetch_openml</font> click <a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_openml.html">here</a>.
+For more info on the <span class="Code"></span> click <a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_openml.html">here</a>.
 However for our application two parameters are used.
 </p>
 
@@ -476,55 +480,55 @@ However for our application two parameters are used.
 </thead>
 <tbody>
 <tr>
-<td class="org-left"><font color=#e5c890>name</font></td>
+<td class="org-left"><span class="Code"></span></td>
 <td class="org-left">String identifier of the dataset. Note that OpenML can have multiple datasets with the same name.</td>
 </tr>
 
 <tr>
-<td class="org-left"><font color=#e5c890>as_frame</font></td>
+<td class="org-left"><span class="Code"></span></td>
 <td class="org-left">If True, the data is a pandas DataFrame including columns with appropriate dtypes, if false e data and target will be NumPy arrays and the data will only contain numerical values</td>
 </tr>
 </tbody>
 </table>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgb5b829d"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>mnist.keys<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org742ce64"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>mnist.keys<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org742ce64">
+<pre class="example" id="orgf1a8546">
 dict_keys(['data', 'target', 'frame', 'categories', 'feature_names', 'target_names', 'DESCR', 'details', 'url'])
 </pre>
 
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgdc7ca7f"><span class="org-variable-name">X</span>, <span class="org-variable-name">y</span> <span class="org-operator">=</span> mnist.data, mnist.target
+<pre class="src src-python" id="org5910b37"><span class="org-variable-name">X</span>, <span class="org-variable-name">y</span> <span class="org-operator">=</span> mnist.data, mnist.target
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org5910b37">
+<pre class="example" id="org1a9eb2c">
 None
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgabb99e7"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>X.shape<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgbda8193"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>X.shape<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgb8b863a">
+<pre class="example" id="orgee0553f">
 0.950350.960350.9604
 </pre>
 
 
 <div class="org-src-container">
-<pre class="src src-python" id="orga95c3cc">X<span class="org-rainbow-delimiters-depth-1">[</span>0<span class="org-rainbow-delimiters-depth-1">]</span>
+<pre class="src src-python" id="orgfd6f5c3">X<span class="org-rainbow-delimiters-depth-1">[</span>0<span class="org-rainbow-delimiters-depth-1">]</span>
 </pre>
 </div>
 
 
 <div class="org-src-container">
-<pre class="src src-python" id="org570f74e"><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
+<pre class="src src-python" id="orged8b75e"><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
 
 <span class="org-keyword">def</span> <span class="org-function-name">plot_digit</span><span class="org-rainbow-delimiters-depth-1">(</span>image_data<span class="org-rainbow-delimiters-depth-1">)</span>:
     <span class="org-variable-name">image</span> <span class="org-operator">=</span> image_data.reshape<span class="org-rainbow-delimiters-depth-1">(</span>28, 28<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -539,7 +543,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="orged8b75e" class="figure">
+<div id="org444eded" class="figure">
 <p><img src="images/Classification/some-digits-plot.png" alt="some-digits-plot.png" />
 </p>
 </div>
@@ -547,7 +551,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 
 
 <div class="org-src-container">
-<pre class="src src-python" id="org567c049">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>9, 9<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org864ac9c">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>9, 9<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-keyword">for</span> idx, image_data <span class="org-keyword">in</span> <span class="org-builtin">enumerate</span><span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-2">[</span>:100<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>:
     plt.subplot<span class="org-rainbow-delimiters-depth-1">(</span>10, 10, idx <span class="org-operator">+</span> 1<span class="org-rainbow-delimiters-depth-1">)</span>
     plot_digit<span class="org-rainbow-delimiters-depth-1">(</span>image_data<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -559,13 +563,13 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="org864ac9c" class="figure">
+<div id="orgee875b7" class="figure">
 <p><img src="images/Classification/more-digits-plot.png" alt="more-digits-plot.png" />
 </p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgf55e994"><span class="org-variable-name">X_train</span>, <span class="org-variable-name">X_test</span>, <span class="org-variable-name">y_train</span>, <span class="org-variable-name">y_test</span> <span class="org-operator">=</span> X<span class="org-rainbow-delimiters-depth-1">[</span>:60000<span class="org-rainbow-delimiters-depth-1">]</span>, X<span class="org-rainbow-delimiters-depth-1">[</span>60000:<span class="org-rainbow-delimiters-depth-1">]</span>, y<span class="org-rainbow-delimiters-depth-1">[</span>:60000<span class="org-rainbow-delimiters-depth-1">]</span>, y<span class="org-rainbow-delimiters-depth-1">[</span>60000:<span class="org-rainbow-delimiters-depth-1">]</span>
+<pre class="src src-python" id="orgbbdceb3"><span class="org-variable-name">X_train</span>, <span class="org-variable-name">X_test</span>, <span class="org-variable-name">y_train</span>, <span class="org-variable-name">y_test</span> <span class="org-operator">=</span> X<span class="org-rainbow-delimiters-depth-1">[</span>:60000<span class="org-rainbow-delimiters-depth-1">]</span>, X<span class="org-rainbow-delimiters-depth-1">[</span>60000:<span class="org-rainbow-delimiters-depth-1">]</span>, y<span class="org-rainbow-delimiters-depth-1">[</span>:60000<span class="org-rainbow-delimiters-depth-1">]</span>, y<span class="org-rainbow-delimiters-depth-1">[</span>60000:<span class="org-rainbow-delimiters-depth-1">]</span>
 </pre>
 </div>
 </div>
@@ -575,13 +579,13 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 <h3 id="org1868b0d">Training a Binary Classifier</h3>
 <div class="outline-text-3" id="text-org1868b0d">
 <div class="org-src-container">
-<pre class="src src-python" id="orgceccf86"><span class="org-variable-name">y_train_5</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span>y_train <span class="org-operator">==</span> <span class="org-string">'5'</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">True for all 5s, False for all other digits</span>
+<pre class="src src-python" id="orge7560ca"><span class="org-variable-name">y_train_5</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span>y_train <span class="org-operator">==</span> <span class="org-string">'5'</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">True for all 5s, False for all other digits</span>
 <span class="org-variable-name">y_test_5</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span>y_test <span class="org-operator">==</span> <span class="org-string">'5'</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgd6bd6bc"><span class="org-keyword">from</span> sklearn.linear_model <span class="org-keyword">import</span> SGDClassifier
+<pre class="src src-python" id="orgae778dd"><span class="org-keyword">from</span> sklearn.linear_model <span class="org-keyword">import</span> SGDClassifier
 
 <span class="org-variable-name">sgd_clf</span> <span class="org-operator">=</span> SGDClassifier<span class="org-rainbow-delimiters-depth-1">(</span>random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 sgd_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train_5<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -589,7 +593,7 @@ sgd_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org4291bcd">sgd_clf.predict<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>some_digit<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org30f9845">sgd_clf.predict<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>some_digit<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 </div>
@@ -604,7 +608,7 @@ sgd_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train
 <h3 id="org0b3b3e1">Measuring Accuracy Using Cross-Validation</h3>
 <div class="outline-text-3" id="text-org0b3b3e1">
 <div class="org-src-container">
-<pre class="src src-python" id="orgccc852d"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> cross_val_score
+<pre class="src src-python" id="orgc927429"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> cross_val_score
 
 cross_val_score<span class="org-rainbow-delimiters-depth-1">(</span>sgd_clf, X <span class="org-operator">=</span> X_train,y <span class="org-operator">=</span>  y_train_5, cv<span class="org-operator">=</span>3, scoring<span class="org-operator">=</span><span class="org-string">"accuracy"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
@@ -626,34 +630,34 @@ cross_val_score<span class="org-rainbow-delimiters-depth-1">(</span>sgd_clf, X <
 </thead>
 <tbody>
 <tr>
-<td class="org-left"><font color=#e5c890>estimator</font></td>
+<td class="org-left"><span class="Code"></span></td>
 <td class="org-left">The object to use to fit the data.</td>
 </tr>
 
 <tr>
-<td class="org-left"><font color=#e5c890>X</font></td>
+<td class="org-left"><span class="Code"></span></td>
 <td class="org-left">The data to fit. Can be for example a list, or an array.</td>
 </tr>
 
 <tr>
-<td class="org-left"><font color=#e5c890>y</font></td>
+<td class="org-left"><span class="Code"></span></td>
 <td class="org-left">The target variable to try to predict in the case of supervised learning.</td>
 </tr>
 
 <tr>
-<td class="org-left"><font color=#e5c890>cv</font></td>
+<td class="org-left"><span class="Code"></span></td>
 <td class="org-left">Determines the cross-validation splitting strategy.</td>
 </tr>
 
 <tr>
-<td class="org-left"><font color=#e5c890>scoring</font></td>
+<td class="org-left"><span class="Code"></span></td>
 <td class="org-left">A str (see model evaluation documentation) or a scorer callable object / function with signature scorer(estimator, X, y) which should return only a single value.</td>
 </tr>
 </tbody>
 </table>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgcce5465"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> StratifiedKFold
+<pre class="src src-python" id="orgf54fc3c"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> StratifiedKFold
 <span class="org-keyword">from</span> sklearn.base <span class="org-keyword">import</span> clone
 
 <span class="org-variable-name">skfolds</span> <span class="org-operator">=</span> StratifiedKFold<span class="org-rainbow-delimiters-depth-1">(</span>n_splits<span class="org-operator">=</span>3<span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">add shuffle=True if the dataset is not</span>
@@ -673,7 +677,7 @@ cross_val_score<span class="org-rainbow-delimiters-depth-1">(</span>sgd_clf, X <
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org75dc35e"><span class="org-keyword">from</span> sklearn.dummy <span class="org-keyword">import</span> DummyClassifier
+<pre class="src src-python" id="org69bb3d9"><span class="org-keyword">from</span> sklearn.dummy <span class="org-keyword">import</span> DummyClassifier
 
 <span class="org-variable-name">dummy_clf</span> <span class="org-operator">=</span> DummyClassifier<span class="org-rainbow-delimiters-depth-1">()</span>
 dummy_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train_5<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -682,7 +686,7 @@ dummy_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_tra
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org2d9d16e">cross_val_score<span class="org-rainbow-delimiters-depth-1">(</span>dummy_clf, X_train, y_train_5, cv<span class="org-operator">=</span>3, scoring<span class="org-operator">=</span><span class="org-string">"accuracy"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org43b76d2">cross_val_score<span class="org-rainbow-delimiters-depth-1">(</span>dummy_clf, X_train, y_train_5, cv<span class="org-operator">=</span>3, scoring<span class="org-operator">=</span><span class="org-string">"accuracy"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 </div>
@@ -692,14 +696,14 @@ dummy_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_tra
 <h3 id="orgd873ef2">Confusion Matrix</h3>
 <div class="outline-text-3" id="text-orgd873ef2">
 <div class="org-src-container">
-<pre class="src src-python" id="org0ca04d3"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> cross_val_predict
+<pre class="src src-python" id="orga07dcdc"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> cross_val_predict
 
 <span class="org-variable-name">y_train_pred</span> <span class="org-operator">=</span> cross_val_predict<span class="org-rainbow-delimiters-depth-1">(</span>sgd_clf, X_train, y_train_5, cv<span class="org-operator">=</span>3<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org55de35c"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> confusion_matrix
+<pre class="src src-python" id="org6ea3949"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> confusion_matrix
 
 <span class="org-variable-name">cm</span> <span class="org-operator">=</span> confusion_matrix<span class="org-rainbow-delimiters-depth-1">(</span>y_train_5, y_train_pred<span class="org-rainbow-delimiters-depth-1">)</span>
 cm
@@ -707,7 +711,7 @@ cm
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org6529ff8"><span class="org-variable-name">y_train_perfect_predictions</span> <span class="org-operator">=</span> y_train_5  <span class="org-comment-delimiter"># </span><span class="org-comment">pretend we reached perfection</span>
+<pre class="src src-python" id="orgaf6e65c"><span class="org-variable-name">y_train_perfect_predictions</span> <span class="org-operator">=</span> y_train_5  <span class="org-comment-delimiter"># </span><span class="org-comment">pretend we reached perfection</span>
 confusion_matrix<span class="org-rainbow-delimiters-depth-1">(</span>y_train_5, y_train_perfect_predictions<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
@@ -718,7 +722,7 @@ confusion_matrix<span class="org-rainbow-delimiters-depth-1">(</span>y_train_5, 
 <h3 id="orgcb84179">Presicion and Recall</h3>
 <div class="outline-text-3" id="text-orgcb84179">
 <div class="org-src-container">
-<pre class="src src-python" id="orgbda8193"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> precision_score, recall_score
+<pre class="src src-python" id="org2b46096"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> precision_score, recall_score
 
 precision_score<span class="org-rainbow-delimiters-depth-1">(</span>y_train_5, y_train_pred<span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">== 3530 / (687 + 3530)</span>
 </pre>
@@ -729,7 +733,7 @@ precision_score<span class="org-rainbow-delimiters-depth-1">(</span>y_train_5, y
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Daniel McGuiness</p>
-<p class="date">Created: 2024-08-05 Mon 15:02</p>
+<p class="date">Created: 2024-08-05 Mon 15:28</p>
 </div>
 </body>
 </html>

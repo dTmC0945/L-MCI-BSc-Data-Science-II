@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-08-05 Mon 15:02 -->
+<!-- 2024-08-05 Mon 15:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Code for Machine Learning and Data Science II End to End ML Project</title>
@@ -193,9 +193,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" href="/Users/danielmcguiness/GitHub/MCI-Source-Files/Configuration/ScriptsHTML/style.css">
+<link rel="stylesheet" href="config/style.css">
 <script type="text/javascript"  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/Users/danielmcguiness/GitHub/MCI-Source-Files/Configuration/ScriptsHTML/test.js">
+<script src="config/test.js">
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 // @license-end
 </script>
@@ -466,7 +466,7 @@ can work on it.
 </div>
 
 <p>
-Define a function called <font color=#e5c890>load_housing_data()</font> to access and
+Define a function called <span class="Code"></span> to access and
 download the data, finally returning a read of it using pandas.
 </p>
 
@@ -486,7 +486,7 @@ download the data, finally returning a read of it using pandas.
 </div>
 
 <p>
-Now read the data and assign it to the value <font color=#e5c890>housing</font>.
+Now read the data and assign it to the value <span class="Code"></span>.
 </p>
 
 <div class="org-src-container">
@@ -499,11 +499,11 @@ Let's have a look at the data
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org465d247"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>housing.head<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org871a9ad"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>housing.head<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org871a9ad">
+<pre class="example" id="org4320257">
    longitude  latitude  housing_median_age  total_rooms  total_bedrooms  population  households  median_income  median_house_value ocean_proximity
 0    -122.23     37.88                41.0        880.0           129.0       322.0       126.0         8.3252            452600.0        NEAR BAY
 1    -122.22     37.86                21.0       7099.0          1106.0      2401.0      1138.0         8.3014            358500.0        NEAR BAY
@@ -534,15 +534,15 @@ There are 10 attributes
 </ul>
 
 <p>
-To get more information about the data use the <font color=#e5c890>info()</font> method.
+To get more information about the data use the <span class="Code"></span> method.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org747475d"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>housing.info<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org216b339"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>housing.info<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org216b339">
+<pre class="example" id="org6316737">
 &lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 20640 entries, 0 to 20639
 Data columns (total 10 columns):
@@ -564,20 +564,20 @@ None
 </pre>
 
 <p>
-There seems to be some repetition on the <font color=#e5c890>ocean_proximity</font> parameters.
+There seems to be some repetition on the <span class="Code"></span> parameters.
 Let's have a bit more look into the data.
 </p>
 
 <p>
-To get more information on it use the <font color=#e5c890>value_counts()</font> method.
+To get more information on it use the <span class="Code"></span> method.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org821b758"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>housing<span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"ocean_proximity"</span><span class="org-rainbow-delimiters-depth-2">]</span>.value_counts<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org9d423be"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>housing<span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"ocean_proximity"</span><span class="org-rainbow-delimiters-depth-2">]</span>.value_counts<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org9d423be">
+<pre class="example" id="orgcb82821">
 ocean_proximity
 &lt;1H OCEAN     9136
 INLAND        6551
@@ -588,18 +588,18 @@ Name: count, dtype: int64
 </pre>
 
 <p>
-Time to look athe the other fields using the <font color=#e5c890>describe()</font> method which
+Time to look athe the other fields using the <span class="Code"></span> method which
 shows their numerical attributes.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org87f58da"><span class="org-variable-name">val</span> <span class="org-operator">=</span> housing.describe<span class="org-rainbow-delimiters-depth-1">()</span>
+<pre class="src src-python" id="orgb4db52d"><span class="org-variable-name">val</span> <span class="org-operator">=</span> housing.describe<span class="org-rainbow-delimiters-depth-1">()</span>
 <span class="org-variable-name">table</span> <span class="org-operator">=</span> tabulate<span class="org-rainbow-delimiters-depth-1">(</span>val, headers<span class="org-operator">=</span>val.columns, tablefmt<span class="org-operator">=</span><span class="org-string">'orgtbl'</span><span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>table<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgb4db52d">
+<pre class="example" id="orge8a8820">
 |       |   longitude |    latitude |   housing_median_age |   total_rooms |   total_bedrooms |   population |   households |   median_income |   median_house_value |
 |-------+-------------+-------------+----------------------+---------------+------------------+--------------+--------------+-----------------+----------------------|
 | count | 20640       | 20640       |           20640      |      20640    |        20433     |     20640    |     20640    |     20640       |                20640 |
@@ -617,7 +617,7 @@ Allows the pretty print of the results.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgecf3b74"><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
+<pre class="src src-python" id="org4c116b6"><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
 <span class="org-variable-name">style</span><span class="org-operator">=</span><span class="org-string">"web"</span>
 plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>size <span class="org-operator">=</span> 3,
               style <span class="org-operator">=</span> style<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -632,7 +632,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="org4c116b6" class="figure">
+<div id="orgc85a025" class="figure">
 <p><img src="images/End-to-End-ML-Project/attribute-histogram-plots.png" alt="attribute-histogram-plots.png" />
 </p>
 </div>
@@ -669,12 +669,12 @@ Lets see the sizes of the datasets
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgde2852b"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-2">(</span>train_set<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org756d000"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-2">(</span>train_set<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-2">(</span>test_set<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org756d000">
+<pre class="example" id="orge446698">
 16512
 4128
 </pre>
@@ -718,7 +718,7 @@ The simplest solution is to use the row index as the ID:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org19ce58a"><span class="org-variable-name">housing_with_id</span> <span class="org-operator">=</span> housing.reset_index<span class="org-rainbow-delimiters-depth-1">()</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">adds an `index` column</span>
+<pre class="src src-python" id="org61408e4"><span class="org-variable-name">housing_with_id</span> <span class="org-operator">=</span> housing.reset_index<span class="org-rainbow-delimiters-depth-1">()</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">adds an `index` column</span>
 <span class="org-variable-name">train_set</span>, <span class="org-variable-name">test_set</span> <span class="org-operator">=</span> split_data_with_id_hash<span class="org-rainbow-delimiters-depth-1">(</span>housing_with_id, 0.2, <span class="org-string">"index"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
@@ -729,18 +729,18 @@ sure that new data gets appended to the end of the dataset and that no row ever 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org08d01f6"><span class="org-variable-name">housing_with_id</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"id"</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> housing<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"longitude"</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">*</span> 1000 <span class="org-operator">+</span> housing<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"latitude"</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<pre class="src src-python" id="org07a1955"><span class="org-variable-name">housing_with_id</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"id"</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> housing<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"longitude"</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">*</span> 1000 <span class="org-operator">+</span> housing<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"latitude"</span><span class="org-rainbow-delimiters-depth-1">]</span>
 <span class="org-variable-name">train_set</span>, <span class="org-variable-name">test_set</span> <span class="org-operator">=</span> split_data_with_id_hash<span class="org-rainbow-delimiters-depth-1">(</span>housing_with_id, 0.2, <span class="org-string">"id"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
 <p>
 Scikit-Learn provides a few functions to split datasets into multiple subsets in various ways.
-An easy function is <font color=#e5c890>train_test_split()</font>
+An easy function is <span class="Code"></span>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org95828e1"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> train_test_split
+<pre class="src src-python" id="org0759da7"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> train_test_split
 
 <span class="org-variable-name">train_set</span>, <span class="org-variable-name">test_set</span> <span class="org-operator">=</span> train_test_split<span class="org-rainbow-delimiters-depth-1">(</span>housing, test_size<span class="org-operator">=</span>0.2, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
@@ -773,14 +773,14 @@ there is also the below method to achieve a similar result.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org2326d35">np.random.seed<span class="org-rainbow-delimiters-depth-1">(</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgda446dd">np.random.seed<span class="org-rainbow-delimiters-depth-1">(</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 
 <span class="org-variable-name">samples</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span>np.random.rand<span class="org-rainbow-delimiters-depth-2">(</span>100_000, sample_size<span class="org-rainbow-delimiters-depth-2">)</span> <span class="org-operator">&lt;</span> ratio_female<span class="org-rainbow-delimiters-depth-1">)</span>.<span class="org-builtin">sum</span><span class="org-rainbow-delimiters-depth-1">(</span>axis<span class="org-operator">=</span>1<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">(</span>samples <span class="org-operator">&lt;</span> 485<span class="org-rainbow-delimiters-depth-2">)</span> <span class="org-operator">|</span> <span class="org-rainbow-delimiters-depth-2">(</span>samples <span class="org-operator">&gt;</span> 535<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>.mean<span class="org-rainbow-delimiters-depth-1">()</span>
 </pre>
 </div>
 
-<pre class="example" id="orgda446dd">
+<pre class="example" id="org1bf6aab">
 0.1071
 </pre>
 
@@ -793,7 +793,7 @@ there is also the below method to achieve a similar result.
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgc726a89">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>size <span class="org-operator">=</span> 1,
+<pre class="src src-python" id="orgdc5e35a">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>size <span class="org-operator">=</span> 1,
               style <span class="org-operator">=</span> <span class="org-string">"web"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
 plt.xlabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"Income category"</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -808,7 +808,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="orgdc5e35a" class="figure">
+<div id="orgcd4d516" class="figure">
 <p><img src="images/End-to-End-ML-Project/housing-income-cat-bar-plot.png" alt="housing-income-cat-bar-plot.png" />
 </p>
 </div>
@@ -844,7 +844,7 @@ Now you are ready to do stratified sampling based on the income category. For th
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org929656d">strat_test_set<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"income_cat"</span><span class="org-rainbow-delimiters-depth-1">]</span>.value_counts<span class="org-rainbow-delimiters-depth-1">()</span> <span class="org-operator">/</span> <span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-1">(</span>strat_test_set<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org3f3d4ab">strat_test_set<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"income_cat"</span><span class="org-rainbow-delimiters-depth-1">]</span>.value_counts<span class="org-rainbow-delimiters-depth-1">()</span> <span class="org-operator">/</span> <span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-1">(</span>strat_test_set<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
@@ -869,7 +869,7 @@ compare_props.index.<span class="org-variable-name">name</span> <span class="org
 </div>
 
 <p>
-Time to drop <font color=#e5c890>income_cat()</font> attribute to go back to the
+Time to drop <span class="Code"></span> attribute to go back to the
 original state.
 </p>
 
@@ -905,7 +905,7 @@ plot it in a scatter plot.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgdefde39">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>size <span class="org-operator">=</span> 1,
+<pre class="src src-python" id="org06a357d">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>size <span class="org-operator">=</span> 1,
               style <span class="org-operator">=</span> <span class="org-string">"web"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
 housing.plot<span class="org-rainbow-delimiters-depth-1">(</span>kind <span class="org-operator">=</span> <span class="org-string">"scatter"</span>,
@@ -920,7 +920,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="org06a357d" class="figure">
+<div id="org2871f56" class="figure">
 <p><img src="images/End-to-End-ML-Project/initial-visualisation-plot.png" alt="initial-visualisation-plot.png" />
 </p>
 </div>
@@ -932,11 +932,11 @@ possible to see a pattern.
 </p>
 
 <p>
-Let's set the <font color=#e5c890>alpha</font> to 0.2 to see if it helps better.
+Let's set the <span class="Code"></span> to 0.2 to see if it helps better.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgc5be8dd">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>size <span class="org-operator">=</span> 1,
+<pre class="src src-python" id="org8014568">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>size <span class="org-operator">=</span> 1,
               style <span class="org-operator">=</span> <span class="org-string">"web"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
 housing.plot<span class="org-rainbow-delimiters-depth-1">(</span>kind <span class="org-operator">=</span> <span class="org-string">"scatter"</span>,
@@ -952,7 +952,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="org8014568" class="figure">
+<div id="orgc99d754" class="figure">
 <p><img src="images/End-to-End-ML-Project/initial-visualisation-plot-with-alpha.png" alt="initial-visualisation-plot-with-alpha.png" />
 </p>
 </div>
@@ -964,7 +964,7 @@ the land is less.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org87f8b92">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>style <span class="org-operator">=</span> <span class="org-string">"web"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org4ccaa2a">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>style <span class="org-operator">=</span> <span class="org-string">"web"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
 housing.plot<span class="org-rainbow-delimiters-depth-1">(</span>kind<span class="org-operator">=</span><span class="org-string">"scatter"</span>, x<span class="org-operator">=</span><span class="org-string">"longitude"</span>, y<span class="org-operator">=</span><span class="org-string">"latitude"</span>,
              s<span class="org-operator">=</span>housing<span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"population"</span><span class="org-rainbow-delimiters-depth-2">]</span> <span class="org-operator">/</span> 100, label<span class="org-operator">=</span><span class="org-string">"population"</span>,
@@ -978,7 +978,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="org4ccaa2a" class="figure">
+<div id="orgff1efd3" class="figure">
 <p><img src="images/End-to-End-ML-Project/housing-prices-scatterplot.png" alt="housing-prices-scatterplot.png" />
 </p>
 </div>
@@ -990,7 +990,7 @@ the state map over it.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org7e398c1"><span class="org-variable-name">filename</span> <span class="org-operator">=</span> <span class="org-string">"california.png"</span>
+<pre class="src src-python" id="org22387aa"><span class="org-variable-name">filename</span> <span class="org-operator">=</span> <span class="org-string">"california.png"</span>
 
 <span class="org-keyword">if</span> <span class="org-keyword">not</span> <span class="org-rainbow-delimiters-depth-1">(</span>IMAGES_PATH <span class="org-operator">/</span> filename<span class="org-rainbow-delimiters-depth-1">)</span>.is_file<span class="org-rainbow-delimiters-depth-1">()</span>:
     <span class="org-variable-name">homl3_root</span> <span class="org-operator">=</span> <span class="org-string">"https://github.com/ageron/handson-ml3/raw/main/"</span>
@@ -1022,7 +1022,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="org22387aa" class="figure">
+<div id="org6789b3e" class="figure">
 <p><img src="images/End-to-End-ML-Project/california-housing-prices-plot.png" alt="california-housing-prices-plot.png" />
 </p>
 </div>
@@ -1062,7 +1062,7 @@ use the pandas scatter<sub>matrix</sub>() function,
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgbcd9480"><span class="org-keyword">from</span> pandas.plotting <span class="org-keyword">import</span> scatter_matrix
+<pre class="src src-python" id="orgc43bd41"><span class="org-keyword">from</span> pandas.plotting <span class="org-keyword">import</span> scatter_matrix
 
 <span class="org-variable-name">attributes</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"median_house_value"</span>, <span class="org-string">"median_income"</span>, <span class="org-string">"total_rooms"</span>,
               <span class="org-string">"housing_median_age"</span><span class="org-rainbow-delimiters-depth-1">]</span>
@@ -1075,7 +1075,7 @@ plt.close<span class="org-rainbow-delimiters-depth-1">()</span>
 </div>
 
 
-<div id="orgc43bd41" class="figure">
+<div id="org2074945" class="figure">
 <p><img src="images/End-to-End-ML-Project/scatter-matrix-plot.png" alt="scatter-matrix-plot.png" />
 </p>
 </div>
@@ -1086,7 +1086,7 @@ is the median income,
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org251256b">plot_settings_web<span class="org-rainbow-delimiters-depth-1">(</span>size<span class="org-operator">=</span>1<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org3d0f582">plot_settings_web<span class="org-rainbow-delimiters-depth-1">(</span>size<span class="org-operator">=</span>1<span class="org-rainbow-delimiters-depth-1">)</span>
 housing.plot<span class="org-rainbow-delimiters-depth-1">(</span>kind<span class="org-operator">=</span><span class="org-string">"scatter"</span>, x<span class="org-operator">=</span><span class="org-string">"median_income"</span>, y<span class="org-operator">=</span><span class="org-string">"median_house_value"</span>,
              alpha<span class="org-operator">=</span>0.1, grid<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
 grid_settings_web<span class="org-rainbow-delimiters-depth-1">()</span>
@@ -1096,7 +1096,7 @@ plt.close<span class="org-rainbow-delimiters-depth-1">()</span>
 </div>
 
 
-<div id="org3d0f582" class="figure">
+<div id="org10efc21" class="figure">
 <p><img src="images/End-to-End-ML-Project/income-vs-house-value-scatterplot.png" alt="income-vs-house-value-scatterplot.png" />
 </p>
 </div>
@@ -1114,12 +1114,12 @@ plt.close<span class="org-rainbow-delimiters-depth-1">()</span>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org0638403"><span class="org-variable-name">corr_matrix</span> <span class="org-operator">=</span> housing.corr<span class="org-rainbow-delimiters-depth-1">(</span>numeric_only<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgb3c42d1"><span class="org-variable-name">corr_matrix</span> <span class="org-operator">=</span> housing.corr<span class="org-rainbow-delimiters-depth-1">(</span>numeric_only<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
 corr_matrix<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"median_house_value"</span><span class="org-rainbow-delimiters-depth-1">]</span>.sort_values<span class="org-rainbow-delimiters-depth-1">(</span>ascending<span class="org-operator">=</span><span class="org-constant">False</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org61408e4">
+<pre class="example" id="org7bed308">
 median_house_value    1.000000
 median_income         0.688380
 rooms_per_house       0.143663
@@ -1287,7 +1287,7 @@ Let's look at three (3) options
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org07a1955"><span class="org-variable-name">housing_option1</span> <span class="org-operator">=</span> housing.copy<span class="org-rainbow-delimiters-depth-1">()</span>
+<pre class="src src-python" id="org65f7992"><span class="org-variable-name">housing_option1</span> <span class="org-operator">=</span> housing.copy<span class="org-rainbow-delimiters-depth-1">()</span>
 housing_option1.dropna<span class="org-rainbow-delimiters-depth-1">(</span>subset<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"total_bedrooms"</span><span class="org-rainbow-delimiters-depth-2">]</span>, inplace<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">option 1</span>
 housing_option1.loc<span class="org-rainbow-delimiters-depth-1">[</span>null_rows_idx<span class="org-rainbow-delimiters-depth-1">]</span>.head<span class="org-rainbow-delimiters-depth-1">()</span>
 </pre>
@@ -1586,7 +1586,7 @@ can fit the imputer instance to the training data using the fit() method:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org3f3d4ab">imputer.fit<span class="org-rainbow-delimiters-depth-1">(</span>housing_num<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org67330ed">imputer.fit<span class="org-rainbow-delimiters-depth-1">(</span>housing_num<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
@@ -1703,7 +1703,7 @@ housing_cat.head<span class="org-rainbow-delimiters-depth-1">(</span>8<span clas
 
 <p>
 As ML likes numbers instead of text, convert these values to numbers
-using <font color=#e5c890>OrdinalEncoder</font> class from Scikit-learn
+using <span class="Code"></span> class from Scikit-learn
 </p>
 
 <div class="org-src-container">
@@ -1802,11 +1802,11 @@ To stop from ML algorithm from treating the numbers too literally
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org502530f"><span class="org-builtin">type</span><span class="org-rainbow-delimiters-depth-1">(</span>housing_cat_1hot<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org98a8b99"><span class="org-builtin">type</span><span class="org-rainbow-delimiters-depth-1">(</span>housing_cat_1hot<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org98a8b99">
+<pre class="example" id="org0eaccba">
 &lt;class 'scipy.sparse._csr.csr_matrix'&gt;
 </pre>
 
@@ -1819,11 +1819,11 @@ onvert it to a dense array if needed by calling the toarray() method:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org29c89a3"><span class="org-builtin">type</span><span class="org-rainbow-delimiters-depth-1">(</span>housing_cat_1hot.toarray<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgac58487"><span class="org-builtin">type</span><span class="org-rainbow-delimiters-depth-1">(</span>housing_cat_1hot.toarray<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgac58487">
+<pre class="example" id="orgf2406fa">
 &lt;class 'numpy.ndarray'&gt;
 </pre>
 
@@ -1897,7 +1897,7 @@ num_pipeline = make_pipeline(SimpleImputer(strategy="median"), StandardScaler())
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Daniel McGuiness</p>
-<p class="date">Created: 2024-08-05 Mon 15:02</p>
+<p class="date">Created: 2024-08-05 Mon 15:28</p>
 </div>
 </body>
 </html>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-08-05 Mon 15:02 -->
+<!-- 2024-08-05 Mon 15:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Code for Machine Learning and Data Science II Introduction to Artifical Neural Networks</title>
@@ -193,9 +193,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" href="/Users/danielmcguiness/GitHub/MCI-Source-Files/Configuration/ScriptsHTML/style.css">
+<link rel="stylesheet" href="config/style.css">
 <script type="text/javascript"  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/Users/danielmcguiness/GitHub/MCI-Source-Files/Configuration/ScriptsHTML/test.js">
+<script src="config/test.js">
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 // @license-end
 </script>
@@ -204,7 +204,7 @@
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 org_html_manager.set("TOC_DEPTH", "3");
 org_html_manager.set("LINK_HOME", "");
-org_html_manager.set("LINK_UP", "");
+org_html_manager.set("LINK_UP", "index.html");
 org_html_manager.set("LOCAL_TOC", "1");
 org_html_manager.set("VIEW_BUTTONS", "0");
 org_html_manager.set("MOUSE_HINT", "underline");
@@ -216,7 +216,11 @@ org_html_manager.setup();  // activate after the parameters are set
 </script>
 </head>
 <body>
-<div id="content" class="content">
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
+ <a accesskey="H" href=""> HOME </a>
+</div><div id="content" class="content">
 <h1 class="title">Code for Machine Learning and Data Science II Introduction to Artifical Neural Networks</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
@@ -282,7 +286,7 @@ We first must check the version you have installed on your computer.
 </pre>
 </div>
 
-<pre class="example" id="orgf965adb">
+<pre class="example" id="orga8a43dd">
 The assert keyword is used when debugging code.
 The assert keyword lets you test if a condition in your code returns
 True, if not, the program will raise an AssertionError.
@@ -535,11 +539,11 @@ Let's check the prediction of the model
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org138dc7a"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>y_pred<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org4c89547"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>y_pred<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org4c89547">
+<pre class="example" id="org5397475">
 [ True False]
 </pre>
 
@@ -572,7 +576,7 @@ This means that the decision boundary is often quite close to one class:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orge8c82c8"><span class="org-comment-delimiter"># </span><span class="org-comment">extra code &#8211; plots the decision boundary of a Perceptron on the iris dataset</span>
+<pre class="src src-python" id="org719782b"><span class="org-comment-delimiter"># </span><span class="org-comment">extra code &#8211; plots the decision boundary of a Perceptron on the iris dataset</span>
 
 <span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
 <span class="org-keyword">from</span> matplotlib.colors <span class="org-keyword">import</span> ListedColormap
@@ -607,7 +611,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 </div>
 
 
-<div id="org719782b" class="figure">
+<div id="org99a279c" class="figure">
 <p><img src="images/Introduction-to-Artificial-Neural-Networks/perceptron-decision.png" alt="perceptron-decision.png" />
 </p>
 </div>
@@ -619,7 +623,7 @@ store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-s
 <h2 id="orgd6af4e4">Types of Activation Functions</h2>
 <div class="outline-text-2" id="text-orgd6af4e4">
 <div class="org-src-container">
-<pre class="src src-python" id="org57d784f"><span class="org-keyword">from</span> scipy.special <span class="org-keyword">import</span> expit <span class="org-keyword">as</span> sigmoid
+<pre class="src src-python" id="org371a6ea"><span class="org-keyword">from</span> scipy.special <span class="org-keyword">import</span> expit <span class="org-keyword">as</span> sigmoid
 
 <span class="org-keyword">def</span> <span class="org-function-name">relu</span><span class="org-rainbow-delimiters-depth-1">(</span>z<span class="org-rainbow-delimiters-depth-1">)</span>:
     <span class="org-keyword">return</span> np.maximum<span class="org-rainbow-delimiters-depth-1">(</span>0, z<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -663,7 +667,7 @@ plt.savefig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org
 </div>
 
 
-<div id="org371a6ea" class="figure">
+<div id="orgfe25d71" class="figure">
 <p><img src="images/ANNs/activation-functions-plot.png" alt="activation-functions-plot.png" />
 </p>
 </div>
@@ -696,11 +700,11 @@ pipeline.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_trai
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgff22e94"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>rmse<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org4a60d0f"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>rmse<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org4a60d0f">
+<pre class="example" id="org6afec78">
 0.5053326657968588
 </pre>
 </div>
@@ -729,11 +733,11 @@ pipeline.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_trai
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orge436b12"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>accuracy<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org1c22b11"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>accuracy<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org1c22b11">
+<pre class="example" id="org6281292">
 1.0
 </pre>
 </div>
@@ -765,12 +769,12 @@ Let's start by loading the fashion MNIST dataset. Keras has a number of function
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org8e45f44"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>X_train.shape<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org1294861"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>X_train.shape<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>X_train.dtype<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org1294861">
+<pre class="example" id="org7bf34fe">
 (55000, 28, 28)
 uint8
 </pre>
@@ -785,30 +789,30 @@ You can plot an image using Matplotlib's <code>imshow()</code> function, with a 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org65ad7d1">plt.imshow<span class="org-rainbow-delimiters-depth-1">(</span>X_train<span class="org-rainbow-delimiters-depth-2">[</span>0<span class="org-rainbow-delimiters-depth-2">]</span>, cmap<span class="org-operator">=</span><span class="org-string">"binary"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org76f0d7e">plt.imshow<span class="org-rainbow-delimiters-depth-1">(</span>X_train<span class="org-rainbow-delimiters-depth-2">[</span>0<span class="org-rainbow-delimiters-depth-2">]</span>, cmap<span class="org-operator">=</span><span class="org-string">"binary"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.axis<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'off'</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.show<span class="org-rainbow-delimiters-depth-1">()</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgbc9fffa">y_train
+<pre class="src src-python" id="org42c2d04">y_train
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org7792f53"><span class="org-variable-name">class_names</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"T-shirt/top"</span>, <span class="org-string">"Trouser"</span>, <span class="org-string">"Pullover"</span>, <span class="org-string">"Dress"</span>, <span class="org-string">"Coat"</span>,
+<pre class="src src-python" id="org9810586"><span class="org-variable-name">class_names</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"T-shirt/top"</span>, <span class="org-string">"Trouser"</span>, <span class="org-string">"Pullover"</span>, <span class="org-string">"Dress"</span>, <span class="org-string">"Coat"</span>,
                <span class="org-string">"Sandal"</span>, <span class="org-string">"Shirt"</span>, <span class="org-string">"Sneaker"</span>, <span class="org-string">"Bag"</span>, <span class="org-string">"Ankle boot"</span><span class="org-rainbow-delimiters-depth-1">]</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgad636bd">class_names<span class="org-rainbow-delimiters-depth-1">[</span>y_train<span class="org-rainbow-delimiters-depth-2">[</span>0<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<pre class="src src-python" id="org00ebbc8">class_names<span class="org-rainbow-delimiters-depth-1">[</span>y_train<span class="org-rainbow-delimiters-depth-2">[</span>0<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">]</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgca0b2af"><span class="org-variable-name">n_rows</span> <span class="org-operator">=</span> 4
+<pre class="src src-python" id="org794f955"><span class="org-variable-name">n_rows</span> <span class="org-operator">=</span> 4
 <span class="org-variable-name">n_cols</span> <span class="org-operator">=</span> 10
 plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>n_cols <span class="org-operator">*</span> 1.2, n_rows <span class="org-operator">*</span> 1.2<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-keyword">for</span> row <span class="org-keyword">in</span> <span class="org-builtin">range</span><span class="org-rainbow-delimiters-depth-1">(</span>n_rows<span class="org-rainbow-delimiters-depth-1">)</span>:
@@ -828,7 +832,7 @@ plt.show<span class="org-rainbow-delimiters-depth-1">()</span>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgfc01f21">tf.random.set_seed<span class="org-rainbow-delimiters-depth-1">(</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgdb67537">tf.random.set_seed<span class="org-rainbow-delimiters-depth-1">(</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-variable-name">model</span> <span class="org-operator">=</span> tf.keras.Sequential<span class="org-rainbow-delimiters-depth-1">()</span>
 model.add<span class="org-rainbow-delimiters-depth-1">(</span>tf.keras.layers.InputLayer<span class="org-rainbow-delimiters-depth-2">(</span>input_shape<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-3">[</span>28, 28<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 model.add<span class="org-rainbow-delimiters-depth-1">(</span>tf.keras.layers.Flatten<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -839,7 +843,7 @@ model.add<span class="org-rainbow-delimiters-depth-1">(</span>tf.keras.layers.De
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgc628ac5">tf.keras.backend.clear_session<span class="org-rainbow-delimiters-depth-1">()</span>
+<pre class="src src-python" id="orgaaf5164">tf.keras.backend.clear_session<span class="org-rainbow-delimiters-depth-1">()</span>
 tf.random.set_seed<span class="org-rainbow-delimiters-depth-1">(</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 
 <span class="org-variable-name">model</span> <span class="org-operator">=</span> tf.keras.Sequential<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>
@@ -852,11 +856,11 @@ tf.random.set_seed<span class="org-rainbow-delimiters-depth-1">(</span>42<span c
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org1065647">model.summary<span class="org-rainbow-delimiters-depth-1">()</span>
+<pre class="src src-python" id="org9ff53a0">model.summary<span class="org-rainbow-delimiters-depth-1">()</span>
 </pre>
 </div>
 
-<pre class="example" id="org9ff53a0">
+<pre class="example" id="org629003a">
 Model: "sequential"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
 ┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
@@ -874,44 +878,44 @@ Model: "sequential"┏━━━━━━━━━━━━━━━━━━━
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org3e1034b">tf.keras.utils.plot_model<span class="org-rainbow-delimiters-depth-1">(</span>model, <span class="org-string">"my_fashion_mnist_model.png"</span>, show_shapes<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org7084189">tf.keras.utils.plot_model<span class="org-rainbow-delimiters-depth-1">(</span>model, <span class="org-string">"my_fashion_mnist_model.png"</span>, show_shapes<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org988da38">model.layers
+<pre class="src src-python" id="org8157425">model.layers
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgd26d164"><span class="org-variable-name">hidden1</span> <span class="org-operator">=</span> model.layers<span class="org-rainbow-delimiters-depth-1">[</span>1<span class="org-rainbow-delimiters-depth-1">]</span>
+<pre class="src src-python" id="org3824713"><span class="org-variable-name">hidden1</span> <span class="org-operator">=</span> model.layers<span class="org-rainbow-delimiters-depth-1">[</span>1<span class="org-rainbow-delimiters-depth-1">]</span>
 hidden1.name
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgf37153f">model.get_layer<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'dense'</span><span class="org-rainbow-delimiters-depth-1">)</span> <span class="org-keyword">is</span> hidden1
+<pre class="src src-python" id="org067bfe4">model.get_layer<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'dense'</span><span class="org-rainbow-delimiters-depth-1">)</span> <span class="org-keyword">is</span> hidden1
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgc550415"><span class="org-variable-name">weights</span>, <span class="org-variable-name">biases</span> <span class="org-operator">=</span> hidden1.get_weights<span class="org-rainbow-delimiters-depth-1">()</span>
+<pre class="src src-python" id="org267a127"><span class="org-variable-name">weights</span>, <span class="org-variable-name">biases</span> <span class="org-operator">=</span> hidden1.get_weights<span class="org-rainbow-delimiters-depth-1">()</span>
 weights
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org14d8d58">weights.shape
+<pre class="src src-python" id="orgc34b7d9">weights.shape
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgdea0ff9"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>biases<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org3b73527"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>biases<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org46a2c1e">biases.shape
+<pre class="src src-python" id="org29910c5">biases.shape
 </pre>
 </div>
 </div>
@@ -922,14 +926,14 @@ weights
 <h3 id="orga82401e">Compiling the Model</h3>
 <div class="outline-text-3" id="text-orga82401e">
 <div class="org-src-container">
-<pre class="src src-python" id="org6be88c2">model.<span class="org-builtin">compile</span><span class="org-rainbow-delimiters-depth-1">(</span>loss<span class="org-operator">=</span><span class="org-string">"sparse_categorical_crossentropy"</span>,
+<pre class="src src-python" id="org32abb85">model.<span class="org-builtin">compile</span><span class="org-rainbow-delimiters-depth-1">(</span>loss<span class="org-operator">=</span><span class="org-string">"sparse_categorical_crossentropy"</span>,
               optimizer<span class="org-operator">=</span><span class="org-string">"sgd"</span>,
               metrics<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"accuracy"</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orga7a2c73">model.<span class="org-builtin">compile</span><span class="org-rainbow-delimiters-depth-1">(</span>loss<span class="org-operator">=</span>tf.keras.losses.sparse_categorical_crossentropy,
+<pre class="src src-python" id="org578497d">model.<span class="org-builtin">compile</span><span class="org-rainbow-delimiters-depth-1">(</span>loss<span class="org-operator">=</span>tf.keras.losses.sparse_categorical_crossentropy,
               optimizer<span class="org-operator">=</span>tf.keras.optimizers.SGD<span class="org-rainbow-delimiters-depth-2">()</span>,
               metrics<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">[</span>tf.keras.metrics.sparse_categorical_accuracy<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
@@ -937,12 +941,12 @@ weights
 
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgfcd9f6a">tf.keras.utils.to_categorical<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>0, 5, 1, 0<span class="org-rainbow-delimiters-depth-2">]</span>, num_classes<span class="org-operator">=</span>10<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org5652b60">tf.keras.utils.to_categorical<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>0, 5, 1, 0<span class="org-rainbow-delimiters-depth-2">]</span>, num_classes<span class="org-operator">=</span>10<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orga65468c">np.argmax<span class="org-rainbow-delimiters-depth-1">(</span>
+<pre class="src src-python" id="org88b0a9b">np.argmax<span class="org-rainbow-delimiters-depth-1">(</span>
     <span class="org-rainbow-delimiters-depth-2">[</span><span class="org-rainbow-delimiters-depth-3">[</span>1., 0., 0., 0., 0., 0., 0., 0., 0., 0.<span class="org-rainbow-delimiters-depth-3">]</span>,
      <span class="org-rainbow-delimiters-depth-3">[</span>0., 0., 0., 0., 0., 1., 0., 0., 0., 0.<span class="org-rainbow-delimiters-depth-3">]</span>,
      <span class="org-rainbow-delimiters-depth-3">[</span>0., 1., 0., 0., 0., 0., 0., 0., 0., 0.<span class="org-rainbow-delimiters-depth-3">]</span>,
@@ -958,23 +962,23 @@ weights
 <h3 id="orga18f809">Training and Evaluation</h3>
 <div class="outline-text-3" id="text-orga18f809">
 <div class="org-src-container">
-<pre class="src src-python" id="org778b372"><span class="org-variable-name">history</span> <span class="org-operator">=</span> model.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train, epochs<span class="org-operator">=</span>30,
+<pre class="src src-python" id="org016231b"><span class="org-variable-name">history</span> <span class="org-operator">=</span> model.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train, epochs<span class="org-operator">=</span>30,
                     validation_data<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>X_valid, y_valid<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org7fe37f9">history.params
+<pre class="src src-python" id="org3d3f0e8">history.params
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org0e3b983"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>history.epoch<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgb49105e"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>history.epoch<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org08ed76f"><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
+<pre class="src src-python" id="orgdd95c0b"><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
 <span class="org-keyword">import</span> pandas <span class="org-keyword">as</span> pd
 
 pd.DataFrame<span class="org-rainbow-delimiters-depth-1">(</span>history.history<span class="org-rainbow-delimiters-depth-1">)</span>.plot<span class="org-rainbow-delimiters-depth-1">(</span>
@@ -989,7 +993,7 @@ plt.show<span class="org-rainbow-delimiters-depth-1">()</span>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgd1096ae">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>8, 5<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org2d923d4">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>8, 5<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-keyword">for</span> key, style <span class="org-keyword">in</span> <span class="org-builtin">zip</span><span class="org-rainbow-delimiters-depth-1">(</span>history.history, <span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"r--"</span>, <span class="org-string">"r--."</span>, <span class="org-string">"b-"</span>, <span class="org-string">"b-*"</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>:
     <span class="org-variable-name">epochs</span> <span class="org-operator">=</span> np.array<span class="org-rainbow-delimiters-depth-1">(</span>history.epoch<span class="org-rainbow-delimiters-depth-1">)</span> <span class="org-operator">+</span> <span class="org-rainbow-delimiters-depth-1">(</span>0 <span class="org-keyword">if</span> key.startswith<span class="org-rainbow-delimiters-depth-2">(</span><span class="org-string">"val_"</span><span class="org-rainbow-delimiters-depth-2">)</span> <span class="org-keyword">else</span> <span class="org-operator">-</span>0.5<span class="org-rainbow-delimiters-depth-1">)</span>
     plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>epochs, history.history<span class="org-rainbow-delimiters-depth-2">[</span>key<span class="org-rainbow-delimiters-depth-2">]</span>, style, label<span class="org-operator">=</span>key<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1003,7 +1007,7 @@ plt.show<span class="org-rainbow-delimiters-depth-1">()</span>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org76f0d7e">model.evaluate<span class="org-rainbow-delimiters-depth-1">(</span>X_test, y_test<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org461b868">model.evaluate<span class="org-rainbow-delimiters-depth-1">(</span>X_test, y_test<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 </div>
@@ -1012,7 +1016,7 @@ plt.show<span class="org-rainbow-delimiters-depth-1">()</span>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Daniel McGuiness</p>
-<p class="date">Created: 2024-08-05 Mon 15:02</p>
+<p class="date">Created: 2024-08-05 Mon 15:28</p>
 </div>
 </body>
 </html>
