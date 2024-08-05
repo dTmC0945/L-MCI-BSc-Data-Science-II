@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-08-05 Mon 15:02 -->
+<!-- 2024-08-05 Mon 15:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Code for Machine Learning and Data Science II Unsupervised Learning</title>
@@ -193,9 +193,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" href="/Users/danielmcguiness/GitHub/MCI-Source-Files/Configuration/ScriptsHTML/style.css">
+<link rel="stylesheet" href="config/style.css">
 <script type="text/javascript"  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/Users/danielmcguiness/GitHub/MCI-Source-Files/Configuration/ScriptsHTML/test.js">
+<script src="config/test.js">
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 // @license-end
 </script>
@@ -204,7 +204,7 @@
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 org_html_manager.set("TOC_DEPTH", "3");
 org_html_manager.set("LINK_HOME", "");
-org_html_manager.set("LINK_UP", "index.html");
+org_html_manager.set("LINK_UP", "");
 org_html_manager.set("LOCAL_TOC", "1");
 org_html_manager.set("VIEW_BUTTONS", "0");
 org_html_manager.set("MOUSE_HINT", "underline");
@@ -248,11 +248,7 @@ org_html_manager.setup();  // activate after the parameters are set
 </script>
 </head>
 <body>
-<div id="org-div-home-and-up">
- <a accesskey="h" href="index.html"> UP </a>
- |
- <a accesskey="H" href=""> HOME </a>
-</div><div id="content" class="content">
+<div id="content" class="content">
 <h1 class="title">Code for Machine Learning and Data Science II Unsupervised Learning</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
@@ -294,7 +290,7 @@ org_html_manager.setup();  // activate after the parameters are set
 </div>
 </div>
 <p>
-These are the code snippets used in :<span class="Hlight">Unsupervised Learning</span>
+These are the code snippets used in <span class="Hlight">Unsupervised Learning</span>
 part of <code>Machine Learning and Data Science II</code>.
 </p>
 
@@ -370,7 +366,7 @@ The following code plots the aforementioned data.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org2d7a699">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>9, 3.5<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgb3b3995">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>9, 3.5<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
 plt.subplot<span class="org-rainbow-delimiters-depth-1">(</span>121<span class="org-rainbow-delimiters-depth-1">)</span>
 plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-2">[</span>y<span class="org-operator">==</span>0, 2<span class="org-rainbow-delimiters-depth-2">]</span>, X<span class="org-rainbow-delimiters-depth-2">[</span>y<span class="org-operator">==</span>0, 3<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"o"</span>, label<span class="org-operator">=</span><span class="org-string">"Iris setosa"</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -394,7 +390,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="orgb3b3995" class="figure">
+<div id="orgc352c99" class="figure">
 <p><img src="images/Unsupervised-Learning/Classification-vs-Clustering-plot.png" alt="Classification-vs-Clustering-plot.png" />
 </p>
 </div>
@@ -422,7 +418,7 @@ using the <span class="Code">scipy.stats.mode()</span> function:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org1e968a6"><span class="org-keyword">import</span> numpy <span class="org-keyword">as</span> np
+<pre class="src src-python" id="org6550e2b"><span class="org-keyword">import</span> numpy <span class="org-keyword">as</span> np
 <span class="org-keyword">from</span> scipy <span class="org-keyword">import</span> stats
 <span class="org-keyword">from</span> sklearn.mixture <span class="org-keyword">import</span> GaussianMixture
 
@@ -463,7 +459,7 @@ using the <span class="Code">scipy.stats.mode()</span> function:
 </table>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org07e290b">plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-2">[</span>y_pred<span class="org-operator">==</span>0, 2<span class="org-rainbow-delimiters-depth-2">]</span>, X<span class="org-rainbow-delimiters-depth-2">[</span>y_pred<span class="org-operator">==</span>0, 3<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"o"</span>, label<span class="org-operator">=</span><span class="org-string">"Cluster 1"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org48e86cf">plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-2">[</span>y_pred<span class="org-operator">==</span>0, 2<span class="org-rainbow-delimiters-depth-2">]</span>, X<span class="org-rainbow-delimiters-depth-2">[</span>y_pred<span class="org-operator">==</span>0, 3<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"o"</span>, label<span class="org-operator">=</span><span class="org-string">"Cluster 1"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-2">[</span>y_pred<span class="org-operator">==</span>1, 2<span class="org-rainbow-delimiters-depth-2">]</span>, X<span class="org-rainbow-delimiters-depth-2">[</span>y_pred<span class="org-operator">==</span>1, 3<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"s"</span>, label<span class="org-operator">=</span><span class="org-string">"Cluster 2"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-2">[</span>y_pred<span class="org-operator">==</span>2, 2<span class="org-rainbow-delimiters-depth-2">]</span>, X<span class="org-rainbow-delimiters-depth-2">[</span>y_pred<span class="org-operator">==</span>2, 3<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"^"</span>, label<span class="org-operator">=</span><span class="org-string">"Cluster 3"</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
@@ -479,7 +475,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org6550e2b" class="figure">
+<div id="orgb0f4cfd" class="figure">
 <p><img src="images/Unsupervised-Learning/Classification-vs-Clustering-2-plot.png" alt="Classification-vs-Clustering-2-plot.png" />
 </p>
 </div>
@@ -489,11 +485,11 @@ And the ratio of iris plants assigned to right cluster ?
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org74f0398"><span class="org-rainbow-delimiters-depth-1">(</span>y_pred<span class="org-operator">==</span>y<span class="org-rainbow-delimiters-depth-1">)</span>.<span class="org-builtin">sum</span><span class="org-rainbow-delimiters-depth-1">()</span> <span class="org-operator">/</span> <span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-1">(</span>y_pred<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org3793d5e"><span class="org-rainbow-delimiters-depth-1">(</span>y_pred<span class="org-operator">==</span>y<span class="org-rainbow-delimiters-depth-1">)</span>.<span class="org-builtin">sum</span><span class="org-rainbow-delimiters-depth-1">()</span> <span class="org-operator">/</span> <span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-1">(</span>y_pred<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org3793d5e">
+<pre class="example" id="org8019b7f">
 0.9666666666666667
 </pre>
 
@@ -575,7 +571,7 @@ and plot it.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org2478edb"><span class="org-keyword">def</span> <span class="org-function-name">plot_clusters</span><span class="org-rainbow-delimiters-depth-1">(</span>X, y<span class="org-operator">=</span><span class="org-constant">None</span><span class="org-rainbow-delimiters-depth-1">)</span>:
+<pre class="src src-python" id="org49a5509"><span class="org-keyword">def</span> <span class="org-function-name">plot_clusters</span><span class="org-rainbow-delimiters-depth-1">(</span>X, y<span class="org-operator">=</span><span class="org-constant">None</span><span class="org-rainbow-delimiters-depth-1">)</span>:
     plt.scatter<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-2">[</span>:, 0<span class="org-rainbow-delimiters-depth-2">]</span>, X<span class="org-rainbow-delimiters-depth-2">[</span>:, 1<span class="org-rainbow-delimiters-depth-2">]</span>, c<span class="org-operator">=</span>y, s<span class="org-operator">=</span>1<span class="org-rainbow-delimiters-depth-1">)</span>
     plt.xlabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"$x_1$"</span><span class="org-rainbow-delimiters-depth-1">)</span>
     plt.ylabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"$x_2$"</span>, rotation<span class="org-operator">=</span>0<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -592,7 +588,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org49a5509" class="figure">
+<div id="org9879f2e" class="figure">
 <p><img src="images/Unsupervised-Learning/blobs-plot.png" alt="blobs-plot.png" />
 </p>
 </div>
@@ -602,20 +598,20 @@ Each instance of the data is assigned to one of 5 <span class="Code">k</span> va
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orge987134"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>y_pred<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org2201b1e"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>y_pred<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org2201b1e">
+<pre class="example" id="org41bc580">
 [0 0 4 ... 3 1 0]
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org02fe5b8">y_pred <span class="org-keyword">is</span> kmeans.labels_
+<pre class="src src-python" id="org89456ba">y_pred <span class="org-keyword">is</span> kmeans.labels_
 </pre>
 </div>
 
-<pre class="example" id="org89456ba">
+<pre class="example" id="org3c7768d">
 True
 </pre>
 
@@ -624,11 +620,11 @@ Let's look at the coordinates of the 5 centroids (i.e., cluster centres).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgc7aca34"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>kmeans.cluster_centers_<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org403848e"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>kmeans.cluster_centers_<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org403848e">
+<pre class="example" id="org2d5b3f7">
 [[-2.80214068  1.55162671]
  [ 0.08703534  2.58438091]
  [-1.46869323  2.28214236]
@@ -637,11 +633,11 @@ Let's look at the coordinates of the 5 centroids (i.e., cluster centres).
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgb6d887e"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>kmeans.labels_<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orge0b5a02"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>kmeans.labels_<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orge0b5a02">
+<pre class="example" id="org5d5adc7">
 [0 0 4 ... 3 1 0]
 </pre>
 
@@ -650,14 +646,14 @@ Of course, we can predict the labels of new instances:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orge5c1fad"><span class="org-keyword">import</span> numpy <span class="org-keyword">as</span> np
+<pre class="src src-python" id="orgc88a812"><span class="org-keyword">import</span> numpy <span class="org-keyword">as</span> np
 
 <span class="org-variable-name">X_new</span> <span class="org-operator">=</span> np.array<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-rainbow-delimiters-depth-3">[</span>0, 2<span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span>3, 2<span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-operator">-</span>3, 3<span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-operator">-</span>3, 2.5<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>kmeans.predict<span class="org-rainbow-delimiters-depth-2">(</span>X_new<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgc88a812">
+<pre class="example" id="orgab55bb3">
 [4 4 3 3]
 </pre>
 </div>
@@ -671,7 +667,7 @@ Let's plot the model's decision boundaries. This gives us a <a href="https://en.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgfe51dcb"><span class="org-keyword">def</span> <span class="org-function-name">plot_data</span><span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>:
+<pre class="src src-python" id="org19e0fb5"><span class="org-keyword">def</span> <span class="org-function-name">plot_data</span><span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>:
     plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-2">[</span>:, 0<span class="org-rainbow-delimiters-depth-2">]</span>, X<span class="org-rainbow-delimiters-depth-2">[</span>:, 1<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">'k.'</span>, markersize<span class="org-operator">=</span>2<span class="org-rainbow-delimiters-depth-1">)</span>
 
 <span class="org-keyword">def</span> <span class="org-function-name">plot_centroids</span><span class="org-rainbow-delimiters-depth-1">(</span>centroids, weights<span class="org-operator">=</span><span class="org-constant">None</span>, circle_color<span class="org-operator">=</span><span class="org-string">'w'</span>, cross_color<span class="org-operator">=</span><span class="org-string">'k'</span><span class="org-rainbow-delimiters-depth-1">)</span>:
@@ -720,7 +716,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org19e0fb5" class="figure">
+<div id="org771578e" class="figure">
 <p><img src="images/Unsupervised-Learning/voronoi-plot.png" alt="voronoi-plot.png" />
 </p>
 </div>
@@ -746,11 +742,11 @@ The transform() allows the distance measure from each instance to every centroid
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org0550bb9"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>kmeans.transform<span class="org-rainbow-delimiters-depth-2">(</span>X_new<span class="org-rainbow-delimiters-depth-2">)</span>.<span class="org-builtin">round</span><span class="org-rainbow-delimiters-depth-2">(</span>2<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org7ac103b"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>kmeans.transform<span class="org-rainbow-delimiters-depth-2">(</span>X_new<span class="org-rainbow-delimiters-depth-2">)</span>.<span class="org-builtin">round</span><span class="org-rainbow-delimiters-depth-2">(</span>2<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org7ac103b">
+<pre class="example" id="org2f79bfe">
 [[2.84 0.59 1.5  2.9  0.31]
  [5.82 2.97 4.48 5.85 2.69]
  [1.46 3.11 1.69 0.29 3.47]
@@ -758,7 +754,7 @@ The transform() allows the distance measure from each instance to every centroid
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orga506376"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>np.linalg.norm<span class="org-rainbow-delimiters-depth-2">(</span>np.tile<span class="org-rainbow-delimiters-depth-3">(</span>X_new, <span class="org-rainbow-delimiters-depth-4">(</span>1, k<span class="org-rainbow-delimiters-depth-4">)</span><span class="org-rainbow-delimiters-depth-3">)</span>.reshape<span class="org-rainbow-delimiters-depth-3">(</span><span class="org-operator">-</span>1, k, 2<span class="org-rainbow-delimiters-depth-3">)</span>
+<pre class="src src-python" id="orgad3c0c6"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>np.linalg.norm<span class="org-rainbow-delimiters-depth-2">(</span>np.tile<span class="org-rainbow-delimiters-depth-3">(</span>X_new, <span class="org-rainbow-delimiters-depth-4">(</span>1, k<span class="org-rainbow-delimiters-depth-4">)</span><span class="org-rainbow-delimiters-depth-3">)</span>.reshape<span class="org-rainbow-delimiters-depth-3">(</span><span class="org-operator">-</span>1, k, 2<span class="org-rainbow-delimiters-depth-3">)</span>
                <span class="org-operator">-</span> kmeans.cluster_centers_, axis<span class="org-operator">=</span>2<span class="org-rainbow-delimiters-depth-2">)</span>.<span class="org-builtin">round</span><span class="org-rainbow-delimiters-depth-2">(</span>2<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
@@ -788,7 +784,7 @@ The transform() allows the distance measure from each instance to every centroid
 </tbody>
 </table>
 
-<pre class="example" id="orgad3c0c6">
+<pre class="example" id="org28cf094">
 [[2.84 0.59 1.5  2.9  0.31]
  [5.82 2.97 4.48 5.85 2.69]
  [1.46 3.11 1.69 0.29 3.47]
@@ -838,7 +834,7 @@ kmeans_iter3.fit<span class="org-rainbow-delimiters-depth-1">(</span>X<span clas
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgfde367f">
+<pre class="src src-python" id="org935c6d7">
 plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 8<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
 plt.subplot<span class="org-rainbow-delimiters-depth-1">(</span>321<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -877,7 +873,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org935c6d7" class="figure">
+<div id="org7e6116f" class="figure">
 <p><img src="images/Unsupervised-Learning/kmeans-algorithm-plot.png" alt="kmeans-algorithm-plot.png" />
 </p>
 </div>
@@ -888,7 +884,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 <h3 id="org8d65504">K-Means Variability</h3>
 <div class="outline-text-3" id="text-org8d65504">
 <div class="org-src-container">
-<pre class="src src-python" id="org3f37fd6"><span class="org-keyword">def</span> <span class="org-function-name">plot_clusterer_comparison</span><span class="org-rainbow-delimiters-depth-1">(</span>clusterer1, clusterer2, X, title1<span class="org-operator">=</span><span class="org-constant">None</span>,
+<pre class="src src-python" id="org42d6f50"><span class="org-keyword">def</span> <span class="org-function-name">plot_clusterer_comparison</span><span class="org-rainbow-delimiters-depth-1">(</span>clusterer1, clusterer2, X, title1<span class="org-operator">=</span><span class="org-constant">None</span>,
                               title2<span class="org-operator">=</span><span class="org-constant">None</span><span class="org-rainbow-delimiters-depth-1">)</span>:
     clusterer1.fit<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
     clusterer2.fit<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -920,7 +916,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org42d6f50" class="figure">
+<div id="orgde8b894" class="figure">
 <p><img src="images/Unsupervised-Learning/kmeans-algorithm-2-plot.png" alt="kmeans-algorithm-2-plot.png" />
 </p>
 </div>
@@ -940,20 +936,20 @@ We use inertia for figuring out which iteration is the best.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org85ebaeb">kmeans.inertia_
+<pre class="src src-python" id="orge200e6b">kmeans.inertia_
 </pre>
 </div>
 
-<pre class="example" id="orge200e6b">
+<pre class="example" id="org38c667d">
 211.59853725816836
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org3ad91ad">kmeans.score<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org95e8198">kmeans.score<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org95e8198">
+<pre class="example" id="org734f34e">
 -211.5985372581684
 </pre>
 </div>
@@ -968,14 +964,14 @@ mini-batches.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org00c99ee"><span class="org-keyword">from</span> sklearn.cluster <span class="org-keyword">import</span> MiniBatchKMeans
+<pre class="src src-python" id="org37db41c"><span class="org-keyword">from</span> sklearn.cluster <span class="org-keyword">import</span> MiniBatchKMeans
 
 <span class="org-variable-name">minibatch_kmeans</span> <span class="org-operator">=</span> MiniBatchKMeans<span class="org-rainbow-delimiters-depth-1">(</span>n_clusters<span class="org-operator">=</span>5, n_init<span class="org-operator">=</span>3, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 minibatch_kmeans.fit<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org37db41c">
+<pre class="example" id="orgc0d93dd">
 MiniBatchKMeans(n_clusters=5, n_init=3, random_state=42)
 </pre>
 
@@ -986,11 +982,11 @@ value for this hyperparameter will change from 3 to "auto" in Scikit-Learn 1.4.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orge0336bd"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>minibatch_kmeans.inertia_<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org9197330"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>minibatch_kmeans.inertia_<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org9197330">
+<pre class="example" id="org4a109b9">
 211.65899374574312
 </pre>
 
@@ -1035,7 +1031,7 @@ X_memmap.flush<span class="org-rainbow-delimiters-depth-1">()</span>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org51157cb"><span class="org-keyword">from</span> sklearn.cluster <span class="org-keyword">import</span> MiniBatchKMeans
+<pre class="src src-python" id="org51985c8"><span class="org-keyword">from</span> sklearn.cluster <span class="org-keyword">import</span> MiniBatchKMeans
 
 <span class="org-variable-name">minibatch_kmeans</span> <span class="org-operator">=</span> MiniBatchKMeans<span class="org-rainbow-delimiters-depth-1">(</span>n_clusters<span class="org-operator">=</span>10, batch_size<span class="org-operator">=</span>10,
                                    n_init<span class="org-operator">=</span>3, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1043,12 +1039,12 @@ minibatch_kmeans.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_memma
 </pre>
 </div>
 
-<pre class="example" id="org51985c8">
+<pre class="example" id="orgbe76a46">
 MiniBatchKMeans(batch_size=10, n_clusters=10, n_init=3, random_state=42)
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org6008afd"><span class="org-keyword">from</span> timeit <span class="org-keyword">import</span> timeit
+<pre class="src src-python" id="org430e755"><span class="org-keyword">from</span> timeit <span class="org-keyword">import</span> timeit
 
 <span class="org-variable-name">max_k</span> <span class="org-operator">=</span> 100
 <span class="org-variable-name">times</span> <span class="org-operator">=</span> np.empty<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">(</span>max_k, 2<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1089,7 +1085,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org430e755" class="figure">
+<div id="org8587fcd" class="figure">
 <p><img src="images/Unsupervised-Learning/minibatch-kmeans-vs-kmeans-plot.png" alt="minibatch-kmeans-vs-kmeans-plot.png" />
 </p>
 </div>
@@ -1106,7 +1102,7 @@ lower (3) and one being higher (8).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org1d4abf7"><span class="org-variable-name">kmeans_k3</span> <span class="org-operator">=</span> KMeans<span class="org-rainbow-delimiters-depth-1">(</span>n_clusters<span class="org-operator">=</span>3, n_init<span class="org-operator">=</span>10, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org4632f9d"><span class="org-variable-name">kmeans_k3</span> <span class="org-operator">=</span> KMeans<span class="org-rainbow-delimiters-depth-1">(</span>n_clusters<span class="org-operator">=</span>3, n_init<span class="org-operator">=</span>10, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-variable-name">kmeans_k8</span> <span class="org-operator">=</span> KMeans<span class="org-rainbow-delimiters-depth-1">(</span>n_clusters<span class="org-operator">=</span>8, n_init<span class="org-operator">=</span>10, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 
 plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 4<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1119,7 +1115,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org4632f9d" class="figure">
+<div id="org69047e0" class="figure">
 <p><img src="images/Unsupervised-Learning/bad-cluster-plot.png" alt="bad-cluster-plot.png" />
 </p>
 </div>
@@ -1130,20 +1126,20 @@ estimated. But what about their inertia values. Let's have a look at them.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org3389d04">kmeans_k3.inertia_
+<pre class="src src-python" id="orge26f85e">kmeans_k3.inertia_
 </pre>
 </div>
 
-<pre class="example" id="orge26f85e">
+<pre class="example" id="org07e318a">
 653.2167190021553
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org3f84c20">kmeans_k8.inertia_
+<pre class="src src-python" id="org0b4888f">kmeans_k8.inertia_
 </pre>
 </div>
 
-<pre class="example" id="org0b4888f">
+<pre class="example" id="orge18c2cd">
 119.22484592677122
 </pre>
 
@@ -1185,7 +1181,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="orgbd3e6b8" class="figure">
+<div id="org0b2c966" class="figure">
 <p><img src="images/Unsupervised-Learning/moons-vs-bgm-plot.png" alt="moons-vs-bgm-plot.png" />
 </p>
 </div>
@@ -1202,7 +1198,7 @@ luster, but it's a pretty good clustering nonetheless.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org6591f62">plot_decision_boundaries<span class="org-rainbow-delimiters-depth-1">(</span>kmeans_per_k<span class="org-rainbow-delimiters-depth-2">[</span>4 <span class="org-operator">-</span> 1<span class="org-rainbow-delimiters-depth-2">]</span>, X<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orged4c9b2">plot_decision_boundaries<span class="org-rainbow-delimiters-depth-1">(</span>kmeans_per_k<span class="org-rainbow-delimiters-depth-2">[</span>4 <span class="org-operator">-</span> 1<span class="org-rainbow-delimiters-depth-2">]</span>, X<span class="org-rainbow-delimiters-depth-1">)</span>
 cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"inertia-vs-k-2-plot"</span>,
              filepath <span class="org-operator">=</span> SAVE_PATH,
              style <span class="org-operator">=</span> style,
@@ -1211,7 +1207,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="orged4c9b2" class="figure">
+<div id="org9e57209" class="figure">
 <p><img src="images/Unsupervised-Learning/inertia-vs-k-2-plot.png" alt="inertia-vs-k-2-plot.png" />
 </p>
 </div>
@@ -1249,13 +1245,13 @@ Let's plot the silhouette score as a function of \(k\):
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgdeac46f"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> silhouette_score
+<pre class="src src-python" id="orge730ee6"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> silhouette_score
 
 silhouette_score<span class="org-rainbow-delimiters-depth-1">(</span>X, kmeans.labels_<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orge730ee6">
+<pre class="example" id="org89b0573">
 0.6353422668284152
 </pre>
 
@@ -1265,7 +1261,7 @@ what about the other values ?
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgf4b8d45"><span class="org-variable-name">silhouette_scores</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span>silhouette_score<span class="org-rainbow-delimiters-depth-2">(</span>X, model.labels_<span class="org-rainbow-delimiters-depth-2">)</span>
+<pre class="src src-python" id="orga5b3521"><span class="org-variable-name">silhouette_scores</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span>silhouette_score<span class="org-rainbow-delimiters-depth-2">(</span>X, model.labels_<span class="org-rainbow-delimiters-depth-2">)</span>
                      <span class="org-keyword">for</span> model <span class="org-keyword">in</span> kmeans_per_k<span class="org-rainbow-delimiters-depth-2">[</span>1:<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">]</span>
 
 plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>8, 3<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1282,7 +1278,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="orga5b3521" class="figure">
+<div id="orgb81ed99" class="figure">
 <p><img src="images/Unsupervised-Learning/silhouette-score-vs-k-plot.png" alt="silhouette-score-vs-k-plot.png" />
 </p>
 </div>
@@ -1295,7 +1291,7 @@ is to points in the neighboring clusters and thus provides a way to assess param
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orge48e3d0"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> silhouette_samples
+<pre class="src src-python" id="orgd6e001a"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> silhouette_samples
 <span class="org-keyword">from</span> matplotlib.ticker <span class="org-keyword">import</span> FixedLocator, FixedFormatter
 
 plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>11, 9<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1341,7 +1337,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="orgd6e001a" class="figure">
+<div id="org47bc56a" class="figure">
 <p><img src="images/Unsupervised-Learning/silhouette-analysis-plot.png" alt="silhouette-analysis-plot.png" />
 </p>
 </div>
@@ -1388,7 +1384,7 @@ And plot this data.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgcdc6236">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 3.2<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org753b5f1">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 3.2<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
 plt.subplot<span class="org-rainbow-delimiters-depth-1">(</span>121<span class="org-rainbow-delimiters-depth-1">)</span>
 plot_decision_boundaries<span class="org-rainbow-delimiters-depth-1">(</span>kmeans_good, X<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1407,7 +1403,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org753b5f1" class="figure">
+<div id="org141f74a" class="figure">
 <p><img src="images/Unsupervised-Learning/bad-kmeans-plot.png" alt="bad-kmeans-plot.png" />
 </p>
 </div>
@@ -1445,14 +1441,14 @@ Start by loading the PIL and the image.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org837d0a1"><span class="org-keyword">import</span> PIL
+<pre class="src src-python" id="org3f03fe0"><span class="org-keyword">import</span> PIL
 
 <span class="org-variable-name">image</span> <span class="org-operator">=</span> np.asarray<span class="org-rainbow-delimiters-depth-1">(</span>PIL.Image.<span class="org-builtin">open</span><span class="org-rainbow-delimiters-depth-2">(</span>filepath<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>image.shape<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org3f03fe0">
+<pre class="example" id="orgb221a4d">
 (533, 800, 3)
 </pre>
 
@@ -1486,7 +1482,7 @@ Let's see how the images look.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orga031863">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 5<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org4b7d495">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 5<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.subplots_adjust<span class="org-rainbow-delimiters-depth-1">(</span>wspace<span class="org-operator">=</span>0.05, hspace<span class="org-operator">=</span>0.1<span class="org-rainbow-delimiters-depth-1">)</span>
 
 plt.subplot<span class="org-rainbow-delimiters-depth-1">(</span>2, 3, 1<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1509,7 +1505,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org4b7d495" class="figure">
+<div id="orgd259b2e" class="figure">
 <p><img src="images/Unsupervised-Learning/image-segmentation-plot.png" alt="image-segmentation-plot.png" />
 </p>
 </div>
@@ -1546,7 +1542,7 @@ Let's look at the performance of a logistic regression model when we only have 5
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgfb77347"><span class="org-keyword">from</span> sklearn.linear_model <span class="org-keyword">import</span> LogisticRegression
+<pre class="src src-python" id="orgb2cda1e"><span class="org-keyword">from</span> sklearn.linear_model <span class="org-keyword">import</span> LogisticRegression
 
 <span class="org-variable-name">n_labeled</span> <span class="org-operator">=</span> 50
 <span class="org-variable-name">log_reg</span> <span class="org-operator">=</span> LogisticRegression<span class="org-rainbow-delimiters-depth-1">(</span>max_iter<span class="org-operator">=</span>10_000<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1554,7 +1550,7 @@ log_reg.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train<span cla
 </pre>
 </div>
 
-<pre class="example" id="orgb2cda1e">
+<pre class="example" id="org3104662">
 LogisticRegression(max_iter=10000)
 </pre>
 
@@ -1567,11 +1563,11 @@ We can see the performance (i.e., accuracy of the model on the test set)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org9c2aa74">log_reg.score<span class="org-rainbow-delimiters-depth-1">(</span>X_test, y_test<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org5084567">log_reg.score<span class="org-rainbow-delimiters-depth-1">(</span>X_test, y_test<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org5084567">
+<pre class="example" id="org3e9f793">
 0.7581863979848866
 </pre>
 
@@ -1580,13 +1576,13 @@ Not good. What is we had the model train on the full data set?
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgfb1053d"><span class="org-variable-name">log_reg_full</span> <span class="org-operator">=</span> LogisticRegression<span class="org-rainbow-delimiters-depth-1">(</span>max_iter<span class="org-operator">=</span>10_000<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org06af7e5"><span class="org-variable-name">log_reg_full</span> <span class="org-operator">=</span> LogisticRegression<span class="org-rainbow-delimiters-depth-1">(</span>max_iter<span class="org-operator">=</span>10_000<span class="org-rainbow-delimiters-depth-1">)</span>
 log_reg_full.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train<span class="org-rainbow-delimiters-depth-1">)</span>
 log_reg_full.score<span class="org-rainbow-delimiters-depth-1">(</span>X_test, y_test<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org06af7e5">
+<pre class="example" id="orgd8893b4">
 0.9093198992443325
 </pre>
 
@@ -1605,7 +1601,7 @@ Then for each cluster, find an image closest to the centroid. We’ll call these
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org32e0498">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>8, 2<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org8ae2d0c">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>8, 2<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-keyword">for</span> index, X_representative_digit <span class="org-keyword">in</span> <span class="org-builtin">enumerate</span><span class="org-rainbow-delimiters-depth-1">(</span>X_representative_digits<span class="org-rainbow-delimiters-depth-1">)</span>:
     plt.subplot<span class="org-rainbow-delimiters-depth-1">(</span>k <span class="org-operator">//</span> 10, 10, index <span class="org-operator">+</span> 1<span class="org-rainbow-delimiters-depth-1">)</span>
     plt.imshow<span class="org-rainbow-delimiters-depth-1">(</span>X_representative_digit.reshape<span class="org-rainbow-delimiters-depth-2">(</span>8, 8<span class="org-rainbow-delimiters-depth-2">)</span>, cmap<span class="org-operator">=</span><span class="org-string">"binary"</span>,
@@ -1620,7 +1616,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org8ae2d0c" class="figure">
+<div id="orge6a6fea" class="figure">
 <p><img src="images/Unsupervised-Learning/representative-images-plot.png" alt="representative-images-plot.png" />
 </p>
 </div>
@@ -1642,13 +1638,13 @@ each of them is a representative image of its cluster. Let's see if the performa
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org2330d3b"><span class="org-variable-name">log_reg</span> <span class="org-operator">=</span> LogisticRegression<span class="org-rainbow-delimiters-depth-1">(</span>max_iter<span class="org-operator">=</span>10_000<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org3d22fa6"><span class="org-variable-name">log_reg</span> <span class="org-operator">=</span> LogisticRegression<span class="org-rainbow-delimiters-depth-1">(</span>max_iter<span class="org-operator">=</span>10_000<span class="org-rainbow-delimiters-depth-1">)</span>
 log_reg.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_representative_digits, y_representative_digits<span class="org-rainbow-delimiters-depth-1">)</span>
 log_reg.score<span class="org-rainbow-delimiters-depth-1">(</span>X_test, y_test<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org3d22fa6">
+<pre class="example" id="orga8647a6">
 0.8387909319899244
 </pre>
 
@@ -1670,12 +1666,12 @@ Let's see if we can improve this further. Let's try to propagate the labels to a
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org87e1a76"><span class="org-variable-name">log_reg</span> <span class="org-operator">=</span> LogisticRegression<span class="org-rainbow-delimiters-depth-1">(</span>max_iter<span class="org-operator">=</span>10_000<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org0536ff6"><span class="org-variable-name">log_reg</span> <span class="org-operator">=</span> LogisticRegression<span class="org-rainbow-delimiters-depth-1">(</span>max_iter<span class="org-operator">=</span>10_000<span class="org-rainbow-delimiters-depth-1">)</span>
 log_reg.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train_propagated<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org0536ff6">
+<pre class="example" id="org8215d23">
 LogisticRegression(max_iter=10000)
 </pre>
 
@@ -1684,11 +1680,11 @@ Let's see our score.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org7d5c6f5">log_reg.score<span class="org-rainbow-delimiters-depth-1">(</span>X_test, y_test<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org477a66f">log_reg.score<span class="org-rainbow-delimiters-depth-1">(</span>X_test, y_test<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org477a66f">
+<pre class="example" id="orga8627f7">
 0.8589420654911839
 </pre>
 
@@ -1709,7 +1705,7 @@ simple to use as you might expect. Let’s test it on the moons dataset:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgcce6ac0"><span class="org-keyword">from</span> sklearn.cluster <span class="org-keyword">import</span> DBSCAN
+<pre class="src src-python" id="orgd6be0dd"><span class="org-keyword">from</span> sklearn.cluster <span class="org-keyword">import</span> DBSCAN
 <span class="org-keyword">from</span> sklearn.datasets <span class="org-keyword">import</span> make_moons
 
 <span class="org-variable-name">X</span>, <span class="org-variable-name">y</span> <span class="org-operator">=</span> make_moons<span class="org-rainbow-delimiters-depth-1">(</span>n_samples<span class="org-operator">=</span>1000, noise<span class="org-operator">=</span>0.05, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -1718,7 +1714,7 @@ dbscan.fit<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org
 </pre>
 </div>
 
-<pre class="example" id="orgd6be0dd">
+<pre class="example" id="orgb50726c">
 DBSCAN(eps=0.05)
 </pre>
 
@@ -1727,11 +1723,11 @@ The labels of all the instances are now available in the labels_ instance variab
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orga56f001"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>dbscan.labels_<span class="org-rainbow-delimiters-depth-2">[</span>:10<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgc0034cb"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>dbscan.labels_<span class="org-rainbow-delimiters-depth-2">[</span>:10<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgc0034cb">
+<pre class="example" id="org7d18d2a">
 [ 0  2 -1 -1  1  0  0  0  2  5]
 </pre>
 
@@ -1742,20 +1738,20 @@ and the core instances themselves are available in the <span class="Code">compon
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgd5fb02a"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>dbscan.core_sample_indices_<span class="org-rainbow-delimiters-depth-2">[</span>:10<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org4d6ea69"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>dbscan.core_sample_indices_<span class="org-rainbow-delimiters-depth-2">[</span>:10<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org4d6ea69">
+<pre class="example" id="orga2611fb">
 [ 0  4  5  6  7  8 10 11 12 13]
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org5bda8cc"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>dbscan.components_<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org5ae8322"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>dbscan.components_<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org5ae8322">
+<pre class="example" id="orgd8eea1c">
 [[-0.02137124  0.40618608]
  [-0.84192557  0.53058695]
  [ 0.58930337 -0.32137599]
@@ -1770,7 +1766,7 @@ Let's see how this clustering looks.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgaf61081"><span class="org-keyword">def</span> <span class="org-function-name">plot_dbscan</span><span class="org-rainbow-delimiters-depth-1">(</span>dbscan, X, size, show_xlabels<span class="org-operator">=</span><span class="org-constant">True</span>, show_ylabels<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>:
+<pre class="src src-python" id="org653da3a"><span class="org-keyword">def</span> <span class="org-function-name">plot_dbscan</span><span class="org-rainbow-delimiters-depth-1">(</span>dbscan, X, size, show_xlabels<span class="org-operator">=</span><span class="org-constant">True</span>, show_ylabels<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>:
     <span class="org-variable-name">core_mask</span> <span class="org-operator">=</span> np.zeros_like<span class="org-rainbow-delimiters-depth-1">(</span>dbscan.labels_, dtype<span class="org-operator">=</span><span class="org-builtin">bool</span><span class="org-rainbow-delimiters-depth-1">)</span>
     <span class="org-variable-name">core_mask</span><span class="org-rainbow-delimiters-depth-1">[</span>dbscan.core_sample_indices_<span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> <span class="org-constant">True</span>
     <span class="org-variable-name">anomalies_mask</span> <span class="org-operator">=</span> dbscan.labels_ <span class="org-operator">==</span> <span class="org-operator">-</span>1
@@ -1819,7 +1815,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org653da3a" class="figure">
+<div id="org195afa5" class="figure">
 <p><img src="images/Unsupervised-Learning/dbscan-plot.png" alt="dbscan-plot.png" />
 </p>
 </div>
@@ -1844,14 +1840,14 @@ To allow this feature new insertion of instances lets train a KNeighborsClassifi
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org52f0ded"><span class="org-keyword">from</span> sklearn.neighbors <span class="org-keyword">import</span> KNeighborsClassifier
+<pre class="src src-python" id="orge041fe8"><span class="org-keyword">from</span> sklearn.neighbors <span class="org-keyword">import</span> KNeighborsClassifier
 
 <span class="org-variable-name">knn</span> <span class="org-operator">=</span> KNeighborsClassifier<span class="org-rainbow-delimiters-depth-1">(</span>n_neighbors<span class="org-operator">=</span>50<span class="org-rainbow-delimiters-depth-1">)</span>
 knn.fit<span class="org-rainbow-delimiters-depth-1">(</span>dbscan.components_, dbscan.labels_<span class="org-rainbow-delimiters-depth-2">[</span>dbscan.core_sample_indices_<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orge041fe8">
+<pre class="example" id="orgaa95ce2">
 KNeighborsClassifier(n_neighbors=50)
 </pre>
 
@@ -1860,12 +1856,12 @@ Let's give it some instances and see which instances they belong to.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orge3554eb"><span class="org-variable-name">X_new</span> <span class="org-operator">=</span> np.array<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-operator">-</span>0.5, 0<span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span>0, 0.5<span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span>1, <span class="org-operator">-</span>0.1<span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span>2, 1<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org58e72f1"><span class="org-variable-name">X_new</span> <span class="org-operator">=</span> np.array<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-operator">-</span>0.5, 0<span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span>0, 0.5<span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span>1, <span class="org-operator">-</span>0.1<span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span>2, 1<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>knn.predict<span class="org-rainbow-delimiters-depth-2">(</span>X_new<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org58e72f1">
+<pre class="example" id="orge68bf3c">
 [6 0 3 2]
 </pre>
 
@@ -1874,11 +1870,11 @@ We can see the probability estimation for each cluster.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgfb607f0"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>knn.predict_proba<span class="org-rainbow-delimiters-depth-2">(</span>X_new<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgffa9817"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>knn.predict_proba<span class="org-rainbow-delimiters-depth-2">(</span>X_new<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgffa9817">
+<pre class="example" id="orgf4531b9">
 [[0.24 0.   0.   0.   0.   0.   0.76]
  [1.   0.   0.   0.   0.   0.   0.  ]
  [0.   0.   0.3  0.7  0.   0.   0.  ]
@@ -1886,7 +1882,7 @@ We can see the probability estimation for each cluster.
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org4906142">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 6<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org8ae0641">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 6<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plot_decision_boundaries<span class="org-rainbow-delimiters-depth-1">(</span>knn, X, show_centroids<span class="org-operator">=</span><span class="org-constant">False</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plt.scatter<span class="org-rainbow-delimiters-depth-1">(</span>X_new<span class="org-rainbow-delimiters-depth-2">[</span>:, 0<span class="org-rainbow-delimiters-depth-2">]</span>, X_new<span class="org-rainbow-delimiters-depth-2">[</span>:, 1<span class="org-rainbow-delimiters-depth-2">]</span>, c<span class="org-operator">=</span><span class="org-string">"b"</span>, marker<span class="org-operator">=</span><span class="org-string">"+"</span>, s<span class="org-operator">=</span>200, zorder<span class="org-operator">=</span>10<span class="org-rainbow-delimiters-depth-1">)</span>
 cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"cluster-classification-plot"</span>,
@@ -1897,20 +1893,20 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org8ae0641" class="figure">
+<div id="org8354bd2" class="figure">
 <p><img src="images/Unsupervised-Learning/cluster-classification-plot.png" alt="cluster-classification-plot.png" />
 </p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org26332ea"><span class="org-variable-name">y_dist</span>, <span class="org-variable-name">y_pred_idx</span> <span class="org-operator">=</span> knn.kneighbors<span class="org-rainbow-delimiters-depth-1">(</span>X_new, n_neighbors<span class="org-operator">=</span>1<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgdab10c6"><span class="org-variable-name">y_dist</span>, <span class="org-variable-name">y_pred_idx</span> <span class="org-operator">=</span> knn.kneighbors<span class="org-rainbow-delimiters-depth-1">(</span>X_new, n_neighbors<span class="org-operator">=</span>1<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-variable-name">y_pred</span> <span class="org-operator">=</span> dbscan.labels_<span class="org-rainbow-delimiters-depth-1">[</span>dbscan.core_sample_indices_<span class="org-rainbow-delimiters-depth-1">][</span>y_pred_idx<span class="org-rainbow-delimiters-depth-1">]</span>
 <span class="org-variable-name">y_pred</span><span class="org-rainbow-delimiters-depth-1">[</span>y_dist <span class="org-operator">&gt;</span> 0.2<span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> <span class="org-operator">-</span>1
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>y_pred.ravel<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgdab10c6">
+<pre class="example" id="org08ee32a">
 [-1  0  1 -1]
 </pre>
 </div>
@@ -1942,21 +1938,21 @@ the data points are represented by an edge.
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgc38f221"><span class="org-variable-name">sc1</span> <span class="org-operator">=</span> SpectralClustering<span class="org-rainbow-delimiters-depth-1">(</span>n_clusters<span class="org-operator">=</span>2, gamma<span class="org-operator">=</span>100, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org889fac1"><span class="org-variable-name">sc1</span> <span class="org-operator">=</span> SpectralClustering<span class="org-rainbow-delimiters-depth-1">(</span>n_clusters<span class="org-operator">=</span>2, gamma<span class="org-operator">=</span>100, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 sc1.fit<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org889fac1">
+<pre class="example" id="org2d3574a">
 SpectralClustering(gamma=100, n_clusters=2, random_state=42)
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org2531d4a"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>sc1.affinity_matrix_.<span class="org-builtin">round</span><span class="org-rainbow-delimiters-depth-2">(</span>2<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgcb772ee"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>sc1.affinity_matrix_.<span class="org-builtin">round</span><span class="org-rainbow-delimiters-depth-2">(</span>2<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgcb772ee">
+<pre class="example" id="orge3af8c3">
 [[1.  0.  0.  ... 0.  0.  0. ]
  [0.  1.  0.3 ... 0.  0.  0. ]
  [0.  0.3 1.  ... 0.  0.  0. ]
@@ -1967,12 +1963,12 @@ SpectralClustering(gamma=100, n_clusters=2, random_state=42)
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgeea4dde"><span class="org-variable-name">sc2</span> <span class="org-operator">=</span> SpectralClustering<span class="org-rainbow-delimiters-depth-1">(</span>n_clusters<span class="org-operator">=</span>2, gamma<span class="org-operator">=</span>1, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org89a18b2"><span class="org-variable-name">sc2</span> <span class="org-operator">=</span> SpectralClustering<span class="org-rainbow-delimiters-depth-1">(</span>n_clusters<span class="org-operator">=</span>2, gamma<span class="org-operator">=</span>1, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 sc2.fit<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org89a18b2">
+<pre class="example" id="org2244344">
 SpectralClustering(gamma=1, n_clusters=2, random_state=42)
 </pre>
 
@@ -2085,12 +2081,12 @@ the distribution parameters μ(1) to μ(k) and Σ(1) to Σ(k). For this we use G
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org10a7a46"><span class="org-variable-name">gm</span> <span class="org-operator">=</span> GaussianMixture<span class="org-rainbow-delimiters-depth-1">(</span>n_components<span class="org-operator">=</span>3, n_init<span class="org-operator">=</span>10, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org515bf0b"><span class="org-variable-name">gm</span> <span class="org-operator">=</span> GaussianMixture<span class="org-rainbow-delimiters-depth-1">(</span>n_components<span class="org-operator">=</span>3, n_init<span class="org-operator">=</span>10, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 gm.fit<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org515bf0b">
+<pre class="example" id="org88806c7">
 GaussianMixture(n_components=3, n_init=10, random_state=42)
 </pre>
 
@@ -2099,31 +2095,31 @@ Let's look at the parameters the algorithm estimated:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org48e37a4"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.weights_<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org866a406"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.weights_<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org866a406">
+<pre class="example" id="org90dec20">
 [0.40005972 0.20961444 0.39032584]
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgf70e122"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.means_<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org4fe6fa9"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.means_<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org4fe6fa9">
+<pre class="example" id="org65a88b7">
 [[-1.40764129  1.42712848]
  [ 3.39947665  1.05931088]
  [ 0.05145113  0.07534576]]
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org5912682"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.covariances_<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgdf00e09"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.covariances_<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgdf00e09">
+<pre class="example" id="org75c9857">
 [[[ 0.63478217  0.72970097]
   [ 0.72970097  1.16094925]]
  [[ 1.14740131 -0.03271106]
@@ -2137,11 +2133,11 @@ Let's check if the algorithm has converged.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org5fa1d96"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.converged_<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgf9c7160"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.converged_<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgf9c7160">
+<pre class="example" id="org233a4e3">
 True
 </pre>
 
@@ -2150,11 +2146,11 @@ But how many iterations did it take ?
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgdf7459b"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.n_iter_<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org5c8a3d5"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.n_iter_<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org5c8a3d5">
+<pre class="example" id="org36bed54">
 4
 </pre>
 
@@ -2168,20 +2164,20 @@ For this, just use predict() method or the predict<sub>proba</sub>() method:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgf2da528"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.predict<span class="org-rainbow-delimiters-depth-2">(</span>X<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgad62ccf"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.predict<span class="org-rainbow-delimiters-depth-2">(</span>X<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgad62ccf">
+<pre class="example" id="orgf5b286a">
 [2 2 0 ... 1 1 1]
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org1c194f7"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.predict_proba<span class="org-rainbow-delimiters-depth-2">(</span>X<span class="org-rainbow-delimiters-depth-2">)</span>.<span class="org-builtin">round</span><span class="org-rainbow-delimiters-depth-2">(</span>3<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgf340702"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.predict_proba<span class="org-rainbow-delimiters-depth-2">(</span>X<span class="org-rainbow-delimiters-depth-2">)</span>.<span class="org-builtin">round</span><span class="org-rainbow-delimiters-depth-2">(</span>3<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="orgf340702">
+<pre class="example" id="org8e01cf4">
 [[0.    0.023 0.977]
  [0.001 0.016 0.983]
  [1.    0.    0.   ]
@@ -2196,12 +2192,12 @@ This is a generative model, so you can sample new instances from it (and get the
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgda61980"><span class="org-variable-name">X_new</span>, <span class="org-variable-name">y_new</span> <span class="org-operator">=</span> gm.sample<span class="org-rainbow-delimiters-depth-1">(</span>6<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org54a30b2"><span class="org-variable-name">X_new</span>, <span class="org-variable-name">y_new</span> <span class="org-operator">=</span> gm.sample<span class="org-rainbow-delimiters-depth-1">(</span>6<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>X_new<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org54a30b2">
+<pre class="example" id="orgd1194f8">
 [[-2.32491052  1.04752548]
  [-1.16654983  1.62795173]
  [ 1.84860618  2.07374016]
@@ -2211,11 +2207,11 @@ This is a generative model, so you can sample new instances from it (and get the
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org79bfab0"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>y_new<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org4c19f58"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>y_new<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org4c19f58">
+<pre class="example" id="orgf242476">
 [0 0 1 1 1 2]
 </pre>
 
@@ -2228,11 +2224,11 @@ You can also estimate the log of the probability density function (PDF) at any l
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgc439a7b"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.score_samples<span class="org-rainbow-delimiters-depth-2">(</span>X<span class="org-rainbow-delimiters-depth-2">)</span>.<span class="org-builtin">round</span><span class="org-rainbow-delimiters-depth-2">(</span>2<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org96802f0"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.score_samples<span class="org-rainbow-delimiters-depth-2">(</span>X<span class="org-rainbow-delimiters-depth-2">)</span>.<span class="org-builtin">round</span><span class="org-rainbow-delimiters-depth-2">(</span>2<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org96802f0">
+<pre class="example" id="orgb942c98">
 [-2.61 -3.57 -3.33 ... -3.51 -4.4  -3.81]
 </pre>
 
@@ -2250,7 +2246,7 @@ The result is very close to 1:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org9f0c8e2"><span class="org-variable-name">resolution</span> <span class="org-operator">=</span> 100
+<pre class="src src-python" id="org50f5d5a"><span class="org-variable-name">resolution</span> <span class="org-operator">=</span> 100
 <span class="org-variable-name">grid</span> <span class="org-operator">=</span> np.arange<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-operator">-</span>10, 10, 1 <span class="org-operator">/</span> resolution<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-variable-name">xx</span>, <span class="org-variable-name">yy</span> <span class="org-operator">=</span> np.meshgrid<span class="org-rainbow-delimiters-depth-1">(</span>grid, grid<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-variable-name">X_full</span> <span class="org-operator">=</span> np.vstack<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>xx.ravel<span class="org-rainbow-delimiters-depth-3">()</span>, yy.ravel<span class="org-rainbow-delimiters-depth-3">()</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>.T
@@ -2261,7 +2257,7 @@ The result is very close to 1:
 </pre>
 </div>
 
-<pre class="example" id="org50f5d5a">
+<pre class="example" id="orge892dc4">
 0.9999999999225088
 </pre>
 
@@ -2270,7 +2266,7 @@ Now let's plot the resulting decision boundaries (dashed lines) and density cont
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org28d66a9"><span class="org-keyword">from</span> matplotlib.colors <span class="org-keyword">import</span> LogNorm
+<pre class="src src-python" id="orgc56fb45"><span class="org-keyword">from</span> matplotlib.colors <span class="org-keyword">import</span> LogNorm
 
 <span class="org-keyword">def</span> <span class="org-function-name">plot_gaussian_mixture</span><span class="org-rainbow-delimiters-depth-1">(</span>clusterer, X, resolution<span class="org-operator">=</span>1000, show_ylabels<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>:
     <span class="org-variable-name">mins</span> <span class="org-operator">=</span> X.<span class="org-builtin">min</span><span class="org-rainbow-delimiters-depth-1">(</span>axis<span class="org-operator">=</span>0<span class="org-rainbow-delimiters-depth-1">)</span> <span class="org-operator">-</span> 0.1
@@ -2315,7 +2311,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="orgc56fb45" class="figure">
+<div id="orgc2573da" class="figure">
 <p><img src="images/Unsupervised-Learning/gaussian-mixture-plot.png" alt="gaussian-mixture-plot.png" />
 </p>
 </div>
@@ -2369,7 +2365,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgb7997fb">compare_gaussian_mixtures<span class="org-rainbow-delimiters-depth-1">(</span>gm_full, gm_diag, X<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org30c6c1e">compare_gaussian_mixtures<span class="org-rainbow-delimiters-depth-1">(</span>gm_full, gm_diag, X<span class="org-rainbow-delimiters-depth-1">)</span>
 
 cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"covariance-type-2-plot"</span>,
              filepath <span class="org-operator">=</span> SAVE_PATH,
@@ -2380,7 +2376,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org30c6c1e" class="figure">
+<div id="org2e5cac7" class="figure">
 <p><img src="images/Unsupervised-Learning/covariance-type-2-plot.png" alt="covariance-type-2-plot.png" />
 </p>
 </div>
@@ -2402,14 +2398,14 @@ located in areas below that threshold density:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org83a8aff"><span class="org-variable-name">densities</span> <span class="org-operator">=</span> gm.score_samples<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgbdde7ad"><span class="org-variable-name">densities</span> <span class="org-operator">=</span> gm.score_samples<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-variable-name">density_threshold</span> <span class="org-operator">=</span> np.percentile<span class="org-rainbow-delimiters-depth-1">(</span>densities, 2<span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-variable-name">anomalies</span> <span class="org-operator">=</span> X<span class="org-rainbow-delimiters-depth-1">[</span>densities <span class="org-operator">&lt;</span> density_threshold<span class="org-rainbow-delimiters-depth-1">]</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgba5641b">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>8, 4<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org8cb7814">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>8, 4<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 
 plot_gaussian_mixture<span class="org-rainbow-delimiters-depth-1">(</span>gm, X<span class="org-rainbow-delimiters-depth-1">)</span>
 plt.scatter<span class="org-rainbow-delimiters-depth-1">(</span>anomalies<span class="org-rainbow-delimiters-depth-2">[</span>:, 0<span class="org-rainbow-delimiters-depth-2">]</span>, anomalies<span class="org-rainbow-delimiters-depth-2">[</span>:, 1<span class="org-rainbow-delimiters-depth-2">]</span>, color<span class="org-operator">=</span><span class="org-string">'r'</span>, marker<span class="org-operator">=</span><span class="org-string">'*'</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -2423,13 +2419,13 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="orgb60961d" class="figure">
+<div id="orgb3960e4" class="figure">
 <p><img src="images/Unsupervised-Learning/moons-vs-bgm-plot.png" alt="moons-vs-bgm-plot.png" />
 </p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgd5fef7e"><span class="org-keyword">from</span> scipy.stats <span class="org-keyword">import</span> norm
+<pre class="src src-python" id="orgc30de6b"><span class="org-keyword">from</span> scipy.stats <span class="org-keyword">import</span> norm
 
 <span class="org-variable-name">x_val</span> <span class="org-operator">=</span> 2.5
 <span class="org-variable-name">std_val</span> <span class="org-operator">=</span> 1.3
@@ -2506,23 +2502,23 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="orgc30de6b" class="figure">
+<div id="org0446579" class="figure">
 <p><img src="images/Unsupervised-Learning/likelihood-function-plot.png" alt="likelihood-function-plot.png" />
 </p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org5fb3473"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.bic<span class="org-rainbow-delimiters-depth-2">(</span>X<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orga022eaa"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.bic<span class="org-rainbow-delimiters-depth-2">(</span>X<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org65dc167"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.aic<span class="org-rainbow-delimiters-depth-2">(</span>X<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="orgea29cb1"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>gm.aic<span class="org-rainbow-delimiters-depth-2">(</span>X<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgbddcc56"><span class="org-variable-name">n_clusters</span> <span class="org-operator">=</span> 3
+<pre class="src src-python" id="org7778982"><span class="org-variable-name">n_clusters</span> <span class="org-operator">=</span> 3
 <span class="org-variable-name">n_dims</span> <span class="org-operator">=</span> 2
 <span class="org-variable-name">n_params_for_weights</span> <span class="org-operator">=</span> n_clusters <span class="org-operator">-</span> 1
 <span class="org-variable-name">n_params_for_means</span> <span class="org-operator">=</span> n_clusters <span class="org-operator">*</span> n_dims
@@ -2538,7 +2534,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org0e0aa14"><span class="org-variable-name">gms_per_k</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span>GaussianMixture<span class="org-rainbow-delimiters-depth-2">(</span>n_components<span class="org-operator">=</span>k, n_init<span class="org-operator">=</span>10, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-2">)</span>.fit<span class="org-rainbow-delimiters-depth-2">(</span>X<span class="org-rainbow-delimiters-depth-2">)</span>
+<pre class="src src-python" id="org88135a8"><span class="org-variable-name">gms_per_k</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span>GaussianMixture<span class="org-rainbow-delimiters-depth-2">(</span>n_components<span class="org-operator">=</span>k, n_init<span class="org-operator">=</span>10, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-2">)</span>.fit<span class="org-rainbow-delimiters-depth-2">(</span>X<span class="org-rainbow-delimiters-depth-2">)</span>
              <span class="org-keyword">for</span> k <span class="org-keyword">in</span> <span class="org-builtin">range</span><span class="org-rainbow-delimiters-depth-2">(</span>1, 11<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">]</span>
 <span class="org-variable-name">bics</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span>model.bic<span class="org-rainbow-delimiters-depth-2">(</span>X<span class="org-rainbow-delimiters-depth-2">)</span> <span class="org-keyword">for</span> model <span class="org-keyword">in</span> gms_per_k<span class="org-rainbow-delimiters-depth-1">]</span>
 <span class="org-variable-name">aics</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span>model.aic<span class="org-rainbow-delimiters-depth-2">(</span>X<span class="org-rainbow-delimiters-depth-2">)</span> <span class="org-keyword">for</span> model <span class="org-keyword">in</span> gms_per_k<span class="org-rainbow-delimiters-depth-1">]</span>
@@ -2561,7 +2557,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org88135a8" class="figure">
+<div id="org2e17af2" class="figure">
 <p><img src="images/Unsupervised-Learning/aic-bic-vs-k-plot.png" alt="aic-bic-vs-k-plot.png" />
 </p>
 </div>
@@ -2584,7 +2580,7 @@ unnecessary clusters automatically.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org0b2c966"><span class="org-keyword">from</span> sklearn.mixture <span class="org-keyword">import</span> BayesianGaussianMixture
+<pre class="src src-python" id="orgbdff178"><span class="org-keyword">from</span> sklearn.mixture <span class="org-keyword">import</span> BayesianGaussianMixture
 
 <span class="org-variable-name">bgm</span> <span class="org-operator">=</span> BayesianGaussianMixture<span class="org-rainbow-delimiters-depth-1">(</span>n_components<span class="org-operator">=</span>10, n_init<span class="org-operator">=</span>10, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 bgm.fit<span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -2597,7 +2593,7 @@ The algorithm automatically detected that only 3 components are needed!
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgd886ce1">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>8, 5<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org0a20d09">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>8, 5<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 plot_gaussian_mixture<span class="org-rainbow-delimiters-depth-1">(</span>bgm, X<span class="org-rainbow-delimiters-depth-1">)</span>
 
 cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"aic-bic-vs-k-2-plot"</span>,
@@ -2609,13 +2605,13 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org0a20d09" class="figure">
+<div id="org6f50a1b" class="figure">
 <p><img src="images/Unsupervised-Learning/aic-bic-vs-k-2-plot.png" alt="aic-bic-vs-k-2-plot.png" />
 </p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org8cb7814"><span class="org-variable-name">X_moons</span>, <span class="org-variable-name">y_moons</span> <span class="org-operator">=</span> make_moons<span class="org-rainbow-delimiters-depth-1">(</span>n_samples<span class="org-operator">=</span>1000, noise<span class="org-operator">=</span>0.05, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-python" id="org9888bcd"><span class="org-variable-name">X_moons</span>, <span class="org-variable-name">y_moons</span> <span class="org-operator">=</span> make_moons<span class="org-rainbow-delimiters-depth-1">(</span>n_samples<span class="org-operator">=</span>1000, noise<span class="org-operator">=</span>0.05, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 
 <span class="org-variable-name">bgm</span> <span class="org-operator">=</span> BayesianGaussianMixture<span class="org-rainbow-delimiters-depth-1">(</span>n_components<span class="org-operator">=</span>10, n_init<span class="org-operator">=</span>10, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
 bgm.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_moons<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -2649,7 +2645,7 @@ does not look too bad, so it might be usable for anomaly detection.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Daniel McGuiness</p>
-<p class="date">Created: 2024-08-05 Mon 15:02</p>
+<p class="date">Created: 2024-08-05 Mon 15:19</p>
 </div>
 </body>
 </html>
