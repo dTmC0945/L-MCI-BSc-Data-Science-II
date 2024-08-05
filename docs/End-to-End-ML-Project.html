@@ -1,0 +1,1903 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-08-05 Mon 15:02 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Code for Machine Learning and Data Science II End to End ML Project</title>
+<meta name="author" content="Daniel McGuiness" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" href="/Users/danielmcguiness/GitHub/MCI-Source-Files/Configuration/ScriptsHTML/style.css">
+<script type="text/javascript"  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/Users/danielmcguiness/GitHub/MCI-Source-Files/Configuration/ScriptsHTML/test.js">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license-end
+</script>
+
+<script>
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+org_html_manager.set("TOC_DEPTH", "3");
+org_html_manager.set("LINK_HOME", "");
+org_html_manager.set("LINK_UP", "index.html");
+org_html_manager.set("LOCAL_TOC", "1");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "underline");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "info");
+org_html_manager.setup();  // activate after the parameters are set
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
+ <a accesskey="H" href=""> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">Code for Machine Learning and Data Science II End to End ML Project</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8d0b4d0">Introduction</a>
+<ul>
+<li><a href="#org6e86db4">Preamble</a></li>
+<li><a href="#org79dad5e">Download Initial Data</a></li>
+<li><a href="#org3c7ef96">Create a Set for Testing</a></li>
+</ul>
+</li>
+<li><a href="#orgc43b192">Discover and Visualize the Data to Gain Insights</a>
+<ul>
+<li><a href="#org1d977a4">Visualising Geographical Data</a></li>
+<li><a href="#orgac5f090">Looking for Correlations</a></li>
+<li><a href="#org4dd8b8b">Experimenting with Attribute Combinations</a></li>
+</ul>
+</li>
+<li><a href="#org34926db">Prepare the Data for Machine Learning Algorithms</a>
+<ul>
+<li><a href="#org34697a5">Data Cleaning</a></li>
+<li><a href="#org377adf0">Handling Text and Categorical Attributes</a></li>
+<li><a href="#orgddc6504">Feature Scaling</a></li>
+<li><a href="#org719c9ae">Transformation Pipelines</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+These are the code snippets used in <code>End to End ML Project</code>
+part of <code>Machine Learning and Data Science II</code>.
+</p>
+
+
+
+<div id="outline-container-org8d0b4d0" class="outline-2">
+<h2 id="org8d0b4d0">Introduction</h2>
+<div class="outline-text-2" id="text-org8d0b4d0">
+</div>
+<div id="outline-container-org6e86db4" class="outline-3">
+<h3 id="org6e86db4">Preamble</h3>
+<div class="outline-text-3" id="text-org6e86db4">
+<div class="org-src-container">
+<pre class="src src-python" id="orgc219dcc"><span class="org-comment-delimiter"># </span><span class="org-comment">import for custom color cycling</span>
+<span class="org-keyword">from</span> cycler <span class="org-keyword">import</span> cycler 
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">define custom default colors for generating image with</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">consisten color cycling</span>
+<span class="org-variable-name">new_colors</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">'</span><span class="custom-11"><span class="custom-12">#326199</span></span><span class="org-string">'</span>,
+              <span class="org-string">'</span><span class="custom-9"><span class="custom-10">#4fb1a1</span></span><span class="org-string">'</span>,
+              <span class="org-string">'</span><span class="custom-8"><span class="custom-10">#fcc055</span></span><span class="org-string">'</span>,
+              <span class="org-string">'</span><span class="custom-7"><span class="custom-10">#eb8d50</span></span><span class="org-string">'</span>,
+              <span class="org-string">'</span><span class="custom-6"><span class="custom-10">#df6e5b</span></span><span class="org-string">'</span>,
+              <span class="org-string">'</span><span class="custom-5"><span class="custom-12">#9a031e</span></span><span class="org-string">'</span>,
+              <span class="org-string">'</span><span class="custom-4"><span class="custom-12">#984ea3</span></span><span class="org-string">'</span><span class="org-rainbow-delimiters-depth-1">]</span>
+
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">define a function to store matplotlib style information</span>
+<span class="org-keyword">def</span> <span class="org-function-name">plot_settings</span><span class="org-rainbow-delimiters-depth-1">(</span>style, size<span class="org-operator">=</span><span class="org-constant">None</span><span class="org-rainbow-delimiters-depth-1">)</span>:
+
+   <span class="org-comment-delimiter"># </span><span class="org-comment">define the styles for generating web compatible images.</span>
+   <span class="org-keyword">if</span> style <span class="org-operator">==</span> <span class="org-string">"web"</span>:
+      <span class="org-variable-name">style</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">{</span>
+         <span class="org-string">'axes.edgecolor'</span>: <span class="org-string">'1e1e2e'</span>,
+         <span class="org-string">'axes.facecolor'</span>: <span class="org-string">'363a4f'</span>,
+         <span class="org-string">'axes.axisbelow'</span> : <span class="org-constant">True</span>,
+         <span class="org-string">'axes.labelcolor'</span> : <span class="org-string">'cad3f5'</span>,
+         <span class="org-string">'axes.grid'</span>: <span class="org-constant">True</span>,
+         <span class="org-string">'axes.grid.which'</span>: <span class="org-string">'both'</span>,
+         <span class="org-string">'axes.spines.left'</span>: <span class="org-constant">False</span>,
+         <span class="org-string">'axes.spines.right'</span>: <span class="org-constant">False</span>,
+         <span class="org-string">'axes.spines.top'</span>: <span class="org-constant">False</span>,
+         <span class="org-string">'axes.spines.bottom'</span>: <span class="org-constant">False</span>,
+         <span class="org-string">'axes.prop_cycle'</span>: cycler<span class="org-rainbow-delimiters-depth-2">(</span>color<span class="org-operator">=</span>new_colors<span class="org-rainbow-delimiters-depth-2">)</span>,
+
+         <span class="org-string">'grid.color'</span>: <span class="org-string">'5b6078'</span>,
+         <span class="org-string">'grid.linewidth'</span>: <span class="org-string">'1.2'</span>,
+
+         <span class="org-string">'xtick.color'</span>: <span class="org-string">'cad3f5'</span>,
+         <span class="org-string">'xtick.major.bottom'</span>: <span class="org-constant">True</span>,
+         <span class="org-string">'xtick.labelsize'</span>: 10,
+         <span class="org-string">'xtick.minor.bottom'</span>: <span class="org-constant">True</span>,
+         <span class="org-string">'xtick.minor.bottom'</span>: <span class="org-constant">True</span>,
+         <span class="org-string">'xtick.minor.visible'</span>: <span class="org-constant">True</span>,
+         <span class="org-string">'xtick.minor.width'</span>: 0.5,
+
+         <span class="org-string">'ytick.color'</span>: <span class="org-string">'cad3f5'</span>,
+         <span class="org-string">'ytick.major.left'</span>: <span class="org-constant">True</span>,
+         <span class="org-string">'ytick.minor.left'</span>: <span class="org-constant">False</span>,
+         <span class="org-string">'ytick.minor.visible'</span>: <span class="org-constant">True</span>,
+         <span class="org-string">'ytick.labelsize'</span>: 10,
+
+         <span class="org-string">'savefig.facecolor'</span>: <span class="org-string">'363a4f'</span>,
+
+         <span class="org-string">'text.color'</span>: <span class="org-string">'cad3f5'</span>,
+
+         <span class="org-string">'lines.linewidth'</span>: 4,
+
+         <span class="org-string">'font.size'</span>: 16,
+
+         <span class="org-string">'legend.fancybox'</span> : <span class="org-constant">False</span>,
+         <span class="org-string">'legend.facecolor'</span> : <span class="org-string">'6c7086'</span>,
+
+         <span class="org-string">'figure.facecolor'</span>: <span class="org-string">'838ba7'</span>,
+      <span class="org-rainbow-delimiters-depth-1">}</span>
+
+      <span class="org-comment-delimiter"># </span><span class="org-comment">Define the font dictionary to store label formatting</span>
+      <span class="org-variable-name">font</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">{</span><span class="org-string">'color'</span>:  <span class="org-string">'</span><span class="custom-3"><span class="custom-10">#cad3f5</span></span><span class="org-string">'</span>,
+              <span class="org-string">'weight'</span>: <span class="org-string">'normal'</span>,
+              <span class="org-string">'size'</span>: 16,
+              <span class="org-rainbow-delimiters-depth-1">}</span>   
+
+   <span class="org-keyword">elif</span> style <span class="org-operator">==</span> <span class="org-string">"slide"</span>:
+      <span class="org-variable-name">style</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">{</span>
+         <span class="org-string">'axes.edgecolor'</span>: <span class="org-string">'f0f0f0'</span>,
+         <span class="org-string">'axes.facecolor'</span>: <span class="org-string">'fafafa'</span>,
+         <span class="org-string">'axes.axisbelow'</span> : <span class="org-constant">True</span>,
+         <span class="org-string">'axes.labelcolor'</span> : <span class="org-string">'1e1e1e'</span>,
+         <span class="org-string">'axes.grid'</span>: <span class="org-constant">True</span>,
+         <span class="org-string">'axes.grid.which'</span>: <span class="org-string">'both'</span>,
+         <span class="org-string">'axes.spines.left'</span>: <span class="org-constant">False</span>,
+         <span class="org-string">'axes.spines.right'</span>: <span class="org-constant">False</span>,
+         <span class="org-string">'axes.spines.top'</span>: <span class="org-constant">False</span>,
+         <span class="org-string">'axes.spines.bottom'</span>: <span class="org-constant">False</span>,
+         <span class="org-string">'axes.prop_cycle'</span>: cycler<span class="org-rainbow-delimiters-depth-2">(</span>color<span class="org-operator">=</span>new_colors<span class="org-rainbow-delimiters-depth-2">)</span>,
+
+         <span class="org-string">'grid.color'</span>: <span class="org-string">'f0f0f0'</span>,
+         <span class="org-string">'grid.linewidth'</span>: <span class="org-string">'1.2'</span>,
+
+         <span class="org-string">'xtick.color'</span>: <span class="org-string">'1e1e1e'</span>,
+         <span class="org-string">'xtick.major.bottom'</span>: <span class="org-constant">True</span>,
+         <span class="org-string">'xtick.labelsize'</span>: 10,
+         <span class="org-string">'xtick.minor.bottom'</span>: <span class="org-constant">True</span>,
+         <span class="org-string">'xtick.minor.bottom'</span>: <span class="org-constant">True</span>,
+         <span class="org-string">'xtick.minor.visible'</span>: <span class="org-constant">True</span>,
+         <span class="org-string">'xtick.minor.width'</span>: 0.5,
+
+         <span class="org-string">'ytick.color'</span>: <span class="org-string">'1e1e1e'</span>,
+         <span class="org-string">'ytick.major.left'</span>: <span class="org-constant">True</span>,
+         <span class="org-string">'ytick.minor.left'</span>: <span class="org-constant">False</span>,
+         <span class="org-string">'ytick.labelsize'</span>: 10,
+
+         <span class="org-string">'savefig.facecolor'</span>: <span class="org-string">'fafafa'</span>,
+
+         <span class="org-string">'text.color'</span>: <span class="org-string">'1e1e1e'</span>,
+
+         <span class="org-string">'lines.linewidth'</span>: 4,
+
+         <span class="org-string">'font.size'</span>: 16,
+
+         <span class="org-string">'legend.fancybox'</span> : <span class="org-constant">False</span>,
+         <span class="org-string">'legend.facecolor'</span> : <span class="org-string">'6c7086'</span>,
+
+         <span class="org-string">'figure.facecolor'</span>: <span class="org-string">'fafafa'</span>,
+      <span class="org-rainbow-delimiters-depth-1">}</span>
+
+      <span class="org-comment-delimiter"># </span><span class="org-comment">Define the font dictionary to store label formatting</span>
+      <span class="org-variable-name">font</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">{</span><span class="org-string">'color'</span>:  <span class="org-string">'</span><span class="custom-2"><span class="custom-12">#1e1e1e</span></span><span class="org-string">'</span>,
+              <span class="org-string">'weight'</span>: <span class="org-string">'normal'</span>,
+              <span class="org-string">'size'</span>: 16,
+              <span class="org-rainbow-delimiters-depth-1">}</span>   
+
+   <span class="org-comment-delimiter"># </span><span class="org-comment">Apply style sheet for use in matplotlib</span>
+   plt.rcParams.update<span class="org-rainbow-delimiters-depth-1">(</span>style<span class="org-rainbow-delimiters-depth-1">)</span>
+
+   <span class="org-comment-delimiter"># </span><span class="org-comment">Define figure size based on the number of figures</span>
+   <span class="org-keyword">if</span> size <span class="org-operator">==</span> 1:
+      plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-2">(</span>10, 6<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+   <span class="org-keyword">elif</span> size <span class="org-operator">==</span> 2:
+      plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-2">(</span>12, 5<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+   <span class="org-keyword">elif</span> size <span class="org-operator">==</span> 3:
+      plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-2">(</span>12, 8<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+   <span class="org-keyword">elif</span> size <span class="org-operator">==</span> <span class="org-constant">None</span>:
+      <span class="org-keyword">return</span> 0
+
+<span class="org-keyword">def</span> <span class="org-function-name">grid_settings</span><span class="org-rainbow-delimiters-depth-1">(</span>style<span class="org-rainbow-delimiters-depth-1">)</span>:
+
+   <span class="org-keyword">if</span> style <span class="org-operator">==</span> <span class="org-string">"web"</span>:
+      plt.grid<span class="org-rainbow-delimiters-depth-1">(</span>which<span class="org-operator">=</span><span class="org-string">'minor'</span>, color<span class="org-operator">=</span><span class="org-string">'</span><span class="custom-1"><span class="custom-12">#5b6078</span></span><span class="org-string">'</span>, linestyle<span class="org-operator">=</span><span class="org-string">':'</span>, linewidth<span class="org-operator">=</span>0.5<span class="org-rainbow-delimiters-depth-1">)</span>
+      plt.grid<span class="org-rainbow-delimiters-depth-1">(</span>which<span class="org-operator">=</span><span class="org-string">'major'</span>, color<span class="org-operator">=</span><span class="org-string">'</span><span class="custom-1"><span class="custom-12">#5b6078</span></span><span class="org-string">'</span>, linestyle<span class="org-operator">=</span><span class="org-string">':'</span>, linewidth<span class="org-operator">=</span>0.8<span class="org-rainbow-delimiters-depth-1">)</span>
+
+   <span class="org-keyword">elif</span> style <span class="org-operator">==</span> <span class="org-string">"slide"</span>: 
+      plt.grid<span class="org-rainbow-delimiters-depth-1">(</span>which<span class="org-operator">=</span><span class="org-string">'minor'</span>, color<span class="org-operator">=</span><span class="org-string">'</span><span class="custom"><span class="custom-10">#c8c8c8</span></span><span class="org-string">'</span>, linestyle<span class="org-operator">=</span><span class="org-string">':'</span>, linewidth<span class="org-operator">=</span>0.5<span class="org-rainbow-delimiters-depth-1">)</span>
+      plt.grid<span class="org-rainbow-delimiters-depth-1">(</span>which<span class="org-operator">=</span><span class="org-string">'major'</span>, color<span class="org-operator">=</span><span class="org-string">'</span><span class="custom"><span class="custom-10">#c8c8c8</span></span><span class="org-string">'</span>, linestyle<span class="org-operator">=</span><span class="org-string">':'</span>, linewidth<span class="org-operator">=</span>0.8<span class="org-rainbow-delimiters-depth-1">)</span>
+
+   plt.minorticks_on<span class="org-rainbow-delimiters-depth-1">()</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org0e5ce0b"><span class="org-comment-delimiter"># </span><span class="org-comment">Define paths to store images</span>
+<span class="org-variable-name">IMAGES_PATH</span> <span class="org-operator">=</span> Path<span class="org-rainbow-delimiters-depth-1">()</span> <span class="org-operator">/</span> <span class="org-string">"images"</span> <span class="org-operator">/</span> <span class="org-string">"End-to-End-ML-Project"</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">Check if path exists</span>
+IMAGES_PATH.mkdir<span class="org-rainbow-delimiters-depth-1">(</span>parents<span class="org-operator">=</span><span class="org-constant">True</span>, exist_ok<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+<span class="org-keyword">def</span> <span class="org-function-name">store_fig</span><span class="org-rainbow-delimiters-depth-1">(</span>fig_id,
+              tight_layout<span class="org-operator">=</span><span class="org-constant">True</span>,
+              fig_extension<span class="org-operator">=</span><span class="org-string">"png"</span>,
+              resolution<span class="org-operator">=</span>300,
+              style<span class="org-operator">=</span><span class="org-constant">None</span>,
+              close<span class="org-operator">=</span><span class="org-constant">None</span><span class="org-rainbow-delimiters-depth-1">)</span>:
+
+    <span class="org-keyword">if</span> tight_layout:
+        plt.tight_layout<span class="org-rainbow-delimiters-depth-1">()</span>
+
+    <span class="org-keyword">if</span> style <span class="org-operator">==</span> <span class="org-string">"web"</span>:
+        plt.grid<span class="org-rainbow-delimiters-depth-1">(</span>which<span class="org-operator">=</span><span class="org-string">'minor'</span>, color<span class="org-operator">=</span><span class="org-string">'</span><span class="custom"><span class="custom-1">#5b6078</span></span><span class="org-string">'</span>, linestyle<span class="org-operator">=</span><span class="org-string">':'</span>, linewidth<span class="org-operator">=</span>0.5<span class="org-rainbow-delimiters-depth-1">)</span>
+        plt.grid<span class="org-rainbow-delimiters-depth-1">(</span>which<span class="org-operator">=</span><span class="org-string">'major'</span>, color<span class="org-operator">=</span><span class="org-string">'</span><span class="custom"><span class="custom-1">#5b6078</span></span><span class="org-string">'</span>, linestyle<span class="org-operator">=</span><span class="org-string">':'</span>, linewidth<span class="org-operator">=</span>0.8<span class="org-rainbow-delimiters-depth-1">)</span>
+        <span class="org-variable-name">fig_extension</span> <span class="org-operator">=</span> <span class="org-string">"png"</span>
+
+    <span class="org-keyword">elif</span> style <span class="org-operator">==</span> <span class="org-string">'slide'</span>:
+        grid_settings<span class="org-rainbow-delimiters-depth-1">(</span>style <span class="org-operator">=</span> <span class="org-string">"slide"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+        <span class="org-variable-name">fig_extension</span> <span class="org-operator">=</span> <span class="org-string">"pdf"</span>
+
+    <span class="org-variable-name">path</span> <span class="org-operator">=</span> IMAGES_PATH <span class="org-operator">/</span> f<span class="org-string">"</span>{fig_id}<span class="org-string">.</span>{fig_extension}<span class="org-string">"</span>
+    plt.savefig<span class="org-rainbow-delimiters-depth-1">(</span>path, <span class="org-builtin">format</span><span class="org-operator">=</span>fig_extension, dpi<span class="org-operator">=</span>resolution<span class="org-rainbow-delimiters-depth-1">)</span>
+
+    <span class="org-keyword">if</span> close:
+        plt.close<span class="org-rainbow-delimiters-depth-1">()</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org79dad5e" class="outline-3">
+<h3 id="org79dad5e">Download Initial Data</h3>
+<div class="outline-text-3" id="text-org79dad5e">
+<p>
+First lets load the necessary modules for downloading the data so we
+can work on it.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org8664fa4"><span class="org-keyword">from</span> pathlib <span class="org-keyword">import</span> Path
+<span class="org-keyword">import</span> pandas <span class="org-keyword">as</span> pd <span class="org-comment-delimiter"># </span><span class="org-comment">for dataframes</span>
+<span class="org-keyword">import</span> tarfile <span class="org-comment-delimiter"># </span><span class="org-comment">read/write tar files</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">to access and download data from web</span>
+<span class="org-keyword">import</span> urllib.request
+<span class="org-keyword">from</span> tabulate <span class="org-keyword">import</span> tabulate <span class="org-comment-delimiter"># </span><span class="org-comment">for table printing</span>
+</pre>
+</div>
+
+<p>
+Define a function called <font color=#e5c890>load_housing_data()</font> to access and
+download the data, finally returning a read of it using pandas.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org88d7625"><span class="org-keyword">def</span> <span class="org-function-name">load_housing_data</span><span class="org-rainbow-delimiters-depth-1">()</span>:
+    <span class="org-comment-delimiter"># </span><span class="org-comment">path to save the file</span>
+    <span class="org-variable-name">tarball_path</span> <span class="org-operator">=</span> Path<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"datasets/housing.tgz"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+    <span class="org-comment-delimiter"># </span><span class="org-comment">check if the path exists, if not create one</span>
+    <span class="org-keyword">if</span> <span class="org-keyword">not</span> tarball_path.is_file<span class="org-rainbow-delimiters-depth-1">()</span>:
+        Path<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"datasets"</span><span class="org-rainbow-delimiters-depth-1">)</span>.mkdir<span class="org-rainbow-delimiters-depth-1">(</span>parents<span class="org-operator">=</span><span class="org-constant">True</span>, exist_ok<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+        <span class="org-variable-name">url</span> <span class="org-operator">=</span> <span class="org-string">"https://github.com/ageron/data/raw/main/housing.tgz"</span>
+        urllib.request.urlretrieve<span class="org-rainbow-delimiters-depth-1">(</span>url, tarball_path<span class="org-rainbow-delimiters-depth-1">)</span>
+        <span class="org-keyword">with</span> tarfile.<span class="org-builtin">open</span><span class="org-rainbow-delimiters-depth-1">(</span>tarball_path<span class="org-rainbow-delimiters-depth-1">)</span> <span class="org-keyword">as</span> housing_tarball:
+            housing_tarball.extractall<span class="org-rainbow-delimiters-depth-1">(</span>path<span class="org-operator">=</span><span class="org-string">"datasets"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+    <span class="org-keyword">return</span> pd.read_csv<span class="org-rainbow-delimiters-depth-1">(</span>Path<span class="org-rainbow-delimiters-depth-2">(</span><span class="org-string">"datasets/housing/housing.csv"</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+Now read the data and assign it to the value <font color=#e5c890>housing</font>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgcfbbf72"><span class="org-variable-name">housing</span> <span class="org-operator">=</span> load_housing_data<span class="org-rainbow-delimiters-depth-1">()</span>
+</pre>
+</div>
+
+<p>
+Let's have a look at the data
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org465d247"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>housing.head<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org871a9ad">
+   longitude  latitude  housing_median_age  total_rooms  total_bedrooms  population  households  median_income  median_house_value ocean_proximity
+0    -122.23     37.88                41.0        880.0           129.0       322.0       126.0         8.3252            452600.0        NEAR BAY
+1    -122.22     37.86                21.0       7099.0          1106.0      2401.0      1138.0         8.3014            358500.0        NEAR BAY
+2    -122.24     37.85                52.0       1467.0           190.0       496.0       177.0         7.2574            352100.0        NEAR BAY
+3    -122.25     37.85                52.0       1274.0           235.0       558.0       219.0         5.6431            341300.0        NEAR BAY
+4    -122.25     37.85                52.0       1627.0           280.0       565.0       259.0         3.8462            342200.0        NEAR BAY
+</pre>
+
+<p>
+Each row represents one district.
+</p>
+
+<p>
+There are 10 attributes
+</p>
+
+<ul class="org-ul">
+<li>longitude,</li>
+<li>latitude,</li>
+<li>housing<sub>median</sub><sub>age</sub>,</li>
+<li>total<sub>rooms</sub>,</li>
+<li>total<sub>bed</sub> rooms,</li>
+<li>population,</li>
+<li>households,</li>
+<li>median<sub>income</sub>,</li>
+<li>median<sub>house</sub><sub>value</sub>,</li>
+<li>and ocean<sub>proximity</sub>.</li>
+</ul>
+
+<p>
+To get more information about the data use the <font color=#e5c890>info()</font> method.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org747475d"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>housing.info<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org216b339">
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 20640 entries, 0 to 20639
+Data columns (total 10 columns):
+ #   Column              Non-Null Count  Dtype  
+---  ------              --------------  -----  
+ 0   longitude           20640 non-null  float64
+ 1   latitude            20640 non-null  float64
+ 2   housing_median_age  20640 non-null  float64
+ 3   total_rooms         20640 non-null  float64
+ 4   total_bedrooms      20433 non-null  float64
+ 5   population          20640 non-null  float64
+ 6   households          20640 non-null  float64
+ 7   median_income       20640 non-null  float64
+ 8   median_house_value  20640 non-null  float64
+ 9   ocean_proximity     20640 non-null  object 
+dtypes: float64(9), object(1)
+memory usage: 1.6+ MB
+None
+</pre>
+
+<p>
+There seems to be some repetition on the <font color=#e5c890>ocean_proximity</font> parameters.
+Let's have a bit more look into the data.
+</p>
+
+<p>
+To get more information on it use the <font color=#e5c890>value_counts()</font> method.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org821b758"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>housing<span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"ocean_proximity"</span><span class="org-rainbow-delimiters-depth-2">]</span>.value_counts<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org9d423be">
+ocean_proximity
+&lt;1H OCEAN     9136
+INLAND        6551
+NEAR OCEAN    2658
+NEAR BAY      2290
+ISLAND           5
+Name: count, dtype: int64
+</pre>
+
+<p>
+Time to look athe the other fields using the <font color=#e5c890>describe()</font> method which
+shows their numerical attributes.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org87f58da"><span class="org-variable-name">val</span> <span class="org-operator">=</span> housing.describe<span class="org-rainbow-delimiters-depth-1">()</span>
+<span class="org-variable-name">table</span> <span class="org-operator">=</span> tabulate<span class="org-rainbow-delimiters-depth-1">(</span>val, headers<span class="org-operator">=</span>val.columns, tablefmt<span class="org-operator">=</span><span class="org-string">'orgtbl'</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>table<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orgb4db52d">
+|       |   longitude |    latitude |   housing_median_age |   total_rooms |   total_bedrooms |   population |   households |   median_income |   median_house_value |
+|-------+-------------+-------------+----------------------+---------------+------------------+--------------+--------------+-----------------+----------------------|
+| count | 20640       | 20640       |           20640      |      20640    |        20433     |     20640    |     20640    |     20640       |                20640 |
+| mean  |  -119.57    |    35.6319  |              28.6395 |       2635.76 |          537.871 |      1425.48 |       499.54 |         3.87067 |               206856 |
+| std   |     2.00353 |     2.13595 |              12.5856 |       2181.62 |          421.385 |      1132.46 |       382.33 |         1.89982 |               115396 |
+| min   |  -124.35    |    32.54    |               1      |          2    |            1     |         3    |         1    |         0.4999  |                14999 |
+| 25%   |  -121.8     |    33.93    |              18      |       1447.75 |          296     |       787    |       280    |         2.5634  |               119600 |
+| 50%   |  -118.49    |    34.26    |              29      |       2127    |          435     |      1166    |       409    |         3.5348  |               179700 |
+| 75%   |  -118.01    |    37.71    |              37      |       3148    |          647     |      1725    |       605    |         4.74325 |               264725 |
+| max   |  -114.31    |    41.95    |              52      |      39320    |         6445     |     35682    |      6082    |        15.0001  |               500001 |
+</pre>
+
+<p>
+Allows the pretty print of the results.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgecf3b74"><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
+<span class="org-variable-name">style</span><span class="org-operator">=</span><span class="org-string">"web"</span>
+plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>size <span class="org-operator">=</span> 3,
+              style <span class="org-operator">=</span> style<span class="org-rainbow-delimiters-depth-1">)</span>
+
+housing.hist<span class="org-rainbow-delimiters-depth-1">(</span>bins<span class="org-operator">=</span>50,  figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>12, 8<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"attribute-histogram-plots"</span>,
+          style <span class="org-operator">=</span> style,
+          close <span class="org-operator">=</span> <span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">extra code</span>
+
+</pre>
+</div>
+
+
+<div id="org4c116b6" class="figure">
+<p><img src="images/End-to-End-ML-Project/attribute-histogram-plots.png" alt="attribute-histogram-plots.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3c7ef96" class="outline-3">
+<h3 id="org3c7ef96">Create a Set for Testing</h3>
+<div class="outline-text-3" id="text-org3c7ef96">
+<div class="org-src-container">
+<pre class="src src-python" id="org0e86465"><span class="org-keyword">import</span> numpy <span class="org-keyword">as</span> np
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">Define a function to shuffle and split data</span>
+<span class="org-keyword">def</span> <span class="org-function-name">shuffle_and_split_data</span><span class="org-rainbow-delimiters-depth-1">(</span>data, test_ratio<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-variable-name">shuffled_indices</span> <span class="org-operator">=</span> np.random.permutation<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-2">(</span>data<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+    <span class="org-variable-name">test_set_size</span> <span class="org-operator">=</span> <span class="org-builtin">int</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-2">(</span>data<span class="org-rainbow-delimiters-depth-2">)</span> <span class="org-operator">*</span> test_ratio<span class="org-rainbow-delimiters-depth-1">)</span>
+    <span class="org-variable-name">test_indices</span> <span class="org-operator">=</span> shuffled_indices<span class="org-rainbow-delimiters-depth-1">[</span>:test_set_size<span class="org-rainbow-delimiters-depth-1">]</span>
+    <span class="org-variable-name">train_indices</span> <span class="org-operator">=</span> shuffled_indices<span class="org-rainbow-delimiters-depth-1">[</span>test_set_size:<span class="org-rainbow-delimiters-depth-1">]</span>
+    <span class="org-keyword">return</span> data.iloc<span class="org-rainbow-delimiters-depth-1">[</span>train_indices<span class="org-rainbow-delimiters-depth-1">]</span>, data.iloc<span class="org-rainbow-delimiters-depth-1">[</span>test_indices<span class="org-rainbow-delimiters-depth-1">]</span>
+</pre>
+</div>
+
+<p>
+To use the data we can do the following
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org4a475cc"><span class="org-variable-name">train_set</span>, <span class="org-variable-name">test_set</span> <span class="org-operator">=</span> shuffle_and_split_data<span class="org-rainbow-delimiters-depth-1">(</span>housing, 0.2<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+Lets see the sizes of the datasets
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgde2852b"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-2">(</span>train_set<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-2">(</span>test_set<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org756d000">
+16512
+4128
+</pre>
+
+<p>
+This will shuffle but because of shuffling the program will see
+all the data eventually which is not something good.
+</p>
+
+<p>
+To avoid it we set a RNG seed to keep the shuffled indices constant.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orge95283a">np.random.seed<span class="org-rainbow-delimiters-depth-1">(</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+Here is another method in which we can keep the split constant even if
+the dataset is refreshed.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org65a4b10"><span class="org-keyword">from</span> zlib <span class="org-keyword">import</span> crc32
+
+<span class="org-keyword">def</span> <span class="org-function-name">is_id_in_test_set</span><span class="org-rainbow-delimiters-depth-1">(</span>identifier, test_ratio<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">return</span> crc32<span class="org-rainbow-delimiters-depth-1">(</span>np.int64<span class="org-rainbow-delimiters-depth-2">(</span>identifier<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span> <span class="org-operator">&lt;</span> test_ratio <span class="org-operator">*</span> 2<span class="org-operator">**</span>32
+
+<span class="org-keyword">def</span> <span class="org-function-name">split_data_with_id_hash</span><span class="org-rainbow-delimiters-depth-1">(</span>data, test_ratio, id_column<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-variable-name">ids</span> <span class="org-operator">=</span> data<span class="org-rainbow-delimiters-depth-1">[</span>id_column<span class="org-rainbow-delimiters-depth-1">]</span>
+    <span class="org-variable-name">in_test_set</span> <span class="org-operator">=</span> ids.<span class="org-builtin">apply</span><span class="org-rainbow-delimiters-depth-1">(</span>
+        <span class="org-keyword">lambda</span> id_: is_id_in_test_set<span class="org-rainbow-delimiters-depth-2">(</span>id_, test_ratio<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+    <span class="org-keyword">return</span> data.loc<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-operator">~</span>in_test_set<span class="org-rainbow-delimiters-depth-1">]</span>, data.loc<span class="org-rainbow-delimiters-depth-1">[</span>in_test_set<span class="org-rainbow-delimiters-depth-1">]</span>
+</pre>
+</div>
+
+<p>
+Unfortunately, the housing dataset does not have an identifier column.
+The simplest solution is to use the row index as the ID:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org19ce58a"><span class="org-variable-name">housing_with_id</span> <span class="org-operator">=</span> housing.reset_index<span class="org-rainbow-delimiters-depth-1">()</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">adds an `index` column</span>
+<span class="org-variable-name">train_set</span>, <span class="org-variable-name">test_set</span> <span class="org-operator">=</span> split_data_with_id_hash<span class="org-rainbow-delimiters-depth-1">(</span>housing_with_id, 0.2, <span class="org-string">"index"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+If you use the row index as a unique identifier, you need to make
+sure that new data gets appended to the end of the dataset and that no row ever gets deleted.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org08d01f6"><span class="org-variable-name">housing_with_id</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"id"</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> housing<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"longitude"</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">*</span> 1000 <span class="org-operator">+</span> housing<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"latitude"</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<span class="org-variable-name">train_set</span>, <span class="org-variable-name">test_set</span> <span class="org-operator">=</span> split_data_with_id_hash<span class="org-rainbow-delimiters-depth-1">(</span>housing_with_id, 0.2, <span class="org-string">"id"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+Scikit-Learn provides a few functions to split datasets into multiple subsets in various ways.
+An easy function is <font color=#e5c890>train_test_split()</font>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org95828e1"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> train_test_split
+
+<span class="org-variable-name">train_set</span>, <span class="org-variable-name">test_set</span> <span class="org-operator">=</span> train_test_split<span class="org-rainbow-delimiters-depth-1">(</span>housing, test_size<span class="org-operator">=</span>0.2, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+To find the probability that a random sample of 1,000 people contains less than 48.5% female or
+more than 53.5% female when the population's female ratio is 51.1%, we use the binomial distribution.
+</p>
+
+<p>
+The cdf() method of the binomial distribution gives us the probability that the
+number of females will be equal or less than the given value.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgffe88ed"><span class="org-keyword">from</span> scipy.stats <span class="org-keyword">import</span> binom
+
+<span class="org-variable-name">sample_size</span> <span class="org-operator">=</span> 1000
+<span class="org-variable-name">ratio_female</span> <span class="org-operator">=</span> 0.511
+<span class="org-variable-name">proba_too_small</span> <span class="org-operator">=</span> binom<span class="org-rainbow-delimiters-depth-1">(</span>sample_size, ratio_female<span class="org-rainbow-delimiters-depth-1">)</span>.cdf<span class="org-rainbow-delimiters-depth-1">(</span>485 <span class="org-operator">-</span> 1<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-variable-name">proba_too_large</span> <span class="org-operator">=</span> 1 <span class="org-operator">-</span> binom<span class="org-rainbow-delimiters-depth-1">(</span>sample_size, ratio_female<span class="org-rainbow-delimiters-depth-1">)</span>.cdf<span class="org-rainbow-delimiters-depth-1">(</span>535<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>proba_too_small <span class="org-operator">+</span> proba_too_large<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+However, for the ones who prefer numerical results over explicit solutions,
+there is also the below method to achieve a similar result.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org2326d35">np.random.seed<span class="org-rainbow-delimiters-depth-1">(</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+
+<span class="org-variable-name">samples</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span>np.random.rand<span class="org-rainbow-delimiters-depth-2">(</span>100_000, sample_size<span class="org-rainbow-delimiters-depth-2">)</span> <span class="org-operator">&lt;</span> ratio_female<span class="org-rainbow-delimiters-depth-1">)</span>.<span class="org-builtin">sum</span><span class="org-rainbow-delimiters-depth-1">(</span>axis<span class="org-operator">=</span>1<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">(</span>samples <span class="org-operator">&lt;</span> 485<span class="org-rainbow-delimiters-depth-2">)</span> <span class="org-operator">|</span> <span class="org-rainbow-delimiters-depth-2">(</span>samples <span class="org-operator">&gt;</span> 535<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>.mean<span class="org-rainbow-delimiters-depth-1">()</span>
+</pre>
+</div>
+
+<pre class="example" id="orgda446dd">
+0.1071
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-python" id="org6b90f1c"><span class="org-variable-name">housing</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"income_cat"</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> pd.cut<span class="org-rainbow-delimiters-depth-1">(</span>housing<span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"median_income"</span><span class="org-rainbow-delimiters-depth-2">]</span>,
+                               bins<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">[</span>0., 1.5, 3.0, 4.5, 6., np.inf<span class="org-rainbow-delimiters-depth-2">]</span>,
+                               labels<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">[</span>1, 2, 3, 4, 5<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgc726a89">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>size <span class="org-operator">=</span> 1,
+              style <span class="org-operator">=</span> <span class="org-string">"web"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+plt.xlabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"Income category"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.ylabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"Number of districts"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+housing<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"income_cat"</span><span class="org-rainbow-delimiters-depth-1">]</span>.value_counts<span class="org-rainbow-delimiters-depth-1">()</span>.sort_index<span class="org-rainbow-delimiters-depth-1">()</span>.plot.bar<span class="org-rainbow-delimiters-depth-1">(</span>rot<span class="org-operator">=</span>0, grid<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"housing-income-cat-bar-plot"</span>,
+          style <span class="org-operator">=</span> <span class="org-string">"web"</span>,
+          close <span class="org-operator">=</span> <span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">extra code</span>
+
+</pre>
+</div>
+
+
+<div id="orgdc5e35a" class="figure">
+<p><img src="images/End-to-End-ML-Project/housing-income-cat-bar-plot.png" alt="housing-income-cat-bar-plot.png" />
+</p>
+</div>
+
+<p>
+Now you are ready to do stratified sampling based on the income category. For this you can use Scikit-Learn’s StratifiedShuffleSplit class:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org8a6a169"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> StratifiedShuffleSplit
+
+<span class="org-variable-name">splitter</span> <span class="org-operator">=</span> StratifiedShuffleSplit<span class="org-rainbow-delimiters-depth-1">(</span>n_splits<span class="org-operator">=</span>10, test_size<span class="org-operator">=</span>0.2, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-variable-name">strat_splits</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[]</span>
+<span class="org-keyword">for</span> train_index, test_index <span class="org-keyword">in</span> splitter.split<span class="org-rainbow-delimiters-depth-1">(</span>housing, housing<span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"income_cat"</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-variable-name">strat_train_set_n</span> <span class="org-operator">=</span> housing.iloc<span class="org-rainbow-delimiters-depth-1">[</span>train_index<span class="org-rainbow-delimiters-depth-1">]</span>
+    <span class="org-variable-name">strat_test_set_n</span> <span class="org-operator">=</span> housing.iloc<span class="org-rainbow-delimiters-depth-1">[</span>test_index<span class="org-rainbow-delimiters-depth-1">]</span>
+    strat_splits.append<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>strat_train_set_n, strat_test_set_n<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgd6f925d"><span class="org-variable-name">strat_train_set</span>, <span class="org-variable-name">strat_test_set</span> <span class="org-operator">=</span> strat_splits<span class="org-rainbow-delimiters-depth-1">[</span>0<span class="org-rainbow-delimiters-depth-1">]</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org192b5af"><span class="org-variable-name">strat_train_set</span>, <span class="org-variable-name">strat_test_set</span> <span class="org-operator">=</span> train_test_split<span class="org-rainbow-delimiters-depth-1">(</span>
+    housing,
+    test_size<span class="org-operator">=</span>0.2,
+    stratify<span class="org-operator">=</span>housing<span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"income_cat"</span><span class="org-rainbow-delimiters-depth-2">]</span>,
+    random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org929656d">strat_test_set<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"income_cat"</span><span class="org-rainbow-delimiters-depth-1">]</span>.value_counts<span class="org-rainbow-delimiters-depth-1">()</span> <span class="org-operator">/</span> <span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-1">(</span>strat_test_set<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org85e7671"><span class="org-keyword">def</span> <span class="org-function-name">income_cat_proportions</span><span class="org-rainbow-delimiters-depth-1">(</span>data<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">return</span> data<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"income_cat"</span><span class="org-rainbow-delimiters-depth-1">]</span>.value_counts<span class="org-rainbow-delimiters-depth-1">()</span> <span class="org-operator">/</span> <span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-1">(</span>data<span class="org-rainbow-delimiters-depth-1">)</span>
+
+<span class="org-variable-name">train_set</span>, <span class="org-variable-name">test_set</span> <span class="org-operator">=</span> train_test_split<span class="org-rainbow-delimiters-depth-1">(</span>housing, test_size<span class="org-operator">=</span>0.2, random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+
+<span class="org-variable-name">compare_props</span> <span class="org-operator">=</span> pd.DataFrame<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">{</span>
+    <span class="org-string">"Overall %"</span>: income_cat_proportions<span class="org-rainbow-delimiters-depth-3">(</span>housing<span class="org-rainbow-delimiters-depth-3">)</span>,
+    <span class="org-string">"Stratified %"</span>: income_cat_proportions<span class="org-rainbow-delimiters-depth-3">(</span>strat_test_set<span class="org-rainbow-delimiters-depth-3">)</span>,
+    <span class="org-string">"Random %"</span>: income_cat_proportions<span class="org-rainbow-delimiters-depth-3">(</span>test_set<span class="org-rainbow-delimiters-depth-3">)</span>,
+<span class="org-rainbow-delimiters-depth-2">}</span><span class="org-rainbow-delimiters-depth-1">)</span>.sort_index<span class="org-rainbow-delimiters-depth-1">()</span>
+compare_props.index.<span class="org-variable-name">name</span> <span class="org-operator">=</span> <span class="org-string">"Income Category"</span>
+<span class="org-variable-name">compare_props</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"Strat. Error %"</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span>compare_props<span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"Stratified %"</span><span class="org-rainbow-delimiters-depth-2">]</span> <span class="org-operator">/</span>
+                                   compare_props<span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"Overall %"</span><span class="org-rainbow-delimiters-depth-2">]</span> <span class="org-operator">-</span> 1<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-variable-name">compare_props</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"Rand. Error %"</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span>compare_props<span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"Random %"</span><span class="org-rainbow-delimiters-depth-2">]</span> <span class="org-operator">/</span>
+                                  compare_props<span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"Overall %"</span><span class="org-rainbow-delimiters-depth-2">]</span> <span class="org-operator">-</span> 1<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-rainbow-delimiters-depth-1">(</span>compare_props <span class="org-operator">*</span> 100<span class="org-rainbow-delimiters-depth-1">)</span>.<span class="org-builtin">round</span><span class="org-rainbow-delimiters-depth-1">(</span>2<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+Time to drop <font color=#e5c890>income_cat()</font> attribute to go back to the
+original state.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org60235bd"><span class="org-keyword">for</span> set_ <span class="org-keyword">in</span> <span class="org-rainbow-delimiters-depth-1">(</span>strat_train_set, strat_test_set<span class="org-rainbow-delimiters-depth-1">)</span>:
+    set_.drop<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"income_cat"</span>, axis<span class="org-operator">=</span>1, inplace<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc43b192" class="outline-2">
+<h2 id="orgc43b192">Discover and Visualize the Data to Gain Insights</h2>
+<div class="outline-text-2" id="text-orgc43b192">
+<p>
+Before we start playing with the data it is a good habit to
+create a copy so as to not tamper with the training set.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgfc6516b"><span class="org-variable-name">housing</span> <span class="org-operator">=</span> strat_train_set.copy<span class="org-rainbow-delimiters-depth-1">()</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org1d977a4" class="outline-3">
+<h3 id="org1d977a4">Visualising Geographical Data</h3>
+<div class="outline-text-3" id="text-org1d977a4">
+<p>
+As data is a bunch of points in 2D space, it is benefical to
+plot it in a scatter plot.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgdefde39">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>size <span class="org-operator">=</span> 1,
+              style <span class="org-operator">=</span> <span class="org-string">"web"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+housing.plot<span class="org-rainbow-delimiters-depth-1">(</span>kind <span class="org-operator">=</span> <span class="org-string">"scatter"</span>,
+             x <span class="org-operator">=</span> <span class="org-string">"longitude"</span>,
+             y <span class="org-operator">=</span> <span class="org-string">"latitude"</span>,
+             title <span class="org-operator">=</span> <span class="org-string">"Housing Market in California"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"initial-visualisation-plot"</span>,
+          style <span class="org-operator">=</span> <span class="org-string">"web"</span>,
+          close <span class="org-operator">=</span> <span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+
+<div id="org06a357d" class="figure">
+<p><img src="images/End-to-End-ML-Project/initial-visualisation-plot.png" alt="initial-visualisation-plot.png" />
+</p>
+</div>
+
+
+<p>
+This might remind you a state in a country but it is currently not
+possible to see a pattern.
+</p>
+
+<p>
+Let's set the <font color=#e5c890>alpha</font> to 0.2 to see if it helps better.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgc5be8dd">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>size <span class="org-operator">=</span> 1,
+              style <span class="org-operator">=</span> <span class="org-string">"web"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+housing.plot<span class="org-rainbow-delimiters-depth-1">(</span>kind <span class="org-operator">=</span> <span class="org-string">"scatter"</span>,
+             x <span class="org-operator">=</span> <span class="org-string">"longitude"</span>,
+             y <span class="org-operator">=</span> <span class="org-string">"latitude"</span>,
+             title <span class="org-operator">=</span> r<span class="org-string">"Housing Market in California ($\alpha = 0.2$)"</span>,
+             alpha <span class="org-operator">=</span> 0.2<span class="org-rainbow-delimiters-depth-1">)</span>
+
+store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"initial-visualisation-plot-with-alpha"</span>,
+          style <span class="org-operator">=</span> <span class="org-string">"web"</span>,
+          close <span class="org-operator">=</span> <span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+
+<div id="org8014568" class="figure">
+<p><img src="images/End-to-End-ML-Project/initial-visualisation-plot-with-alpha.png" alt="initial-visualisation-plot-with-alpha.png" />
+</p>
+</div>
+
+<p>
+Let's make it a bit more interesting and create a plot where the higher cluster areas
+would be coloured red and sparser places will be coloured colder as the value of
+the land is less.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org87f8b92">plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>style <span class="org-operator">=</span> <span class="org-string">"web"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+housing.plot<span class="org-rainbow-delimiters-depth-1">(</span>kind<span class="org-operator">=</span><span class="org-string">"scatter"</span>, x<span class="org-operator">=</span><span class="org-string">"longitude"</span>, y<span class="org-operator">=</span><span class="org-string">"latitude"</span>,
+             s<span class="org-operator">=</span>housing<span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"population"</span><span class="org-rainbow-delimiters-depth-2">]</span> <span class="org-operator">/</span> 100, label<span class="org-operator">=</span><span class="org-string">"population"</span>,
+             c<span class="org-operator">=</span><span class="org-string">"median_house_value"</span>, cmap<span class="org-operator">=</span><span class="org-string">"jet"</span>, colorbar<span class="org-operator">=</span><span class="org-constant">True</span>,
+             legend<span class="org-operator">=</span><span class="org-constant">True</span>, sharex<span class="org-operator">=</span><span class="org-constant">False</span>, figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 7<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"housing-prices-scatterplot"</span>,
+          style <span class="org-operator">=</span> <span class="org-string">"web"</span>,
+          close <span class="org-operator">=</span> <span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+
+<div id="org4ccaa2a" class="figure">
+<p><img src="images/End-to-End-ML-Project/housing-prices-scatterplot.png" alt="housing-prices-scatterplot.png" />
+</p>
+</div>
+
+<p>
+Now we can see the housing prices are very much related to the location
+in this case closer to the ocean. To add a final addition let's superimpose
+the state map over it.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org7e398c1"><span class="org-variable-name">filename</span> <span class="org-operator">=</span> <span class="org-string">"california.png"</span>
+
+<span class="org-keyword">if</span> <span class="org-keyword">not</span> <span class="org-rainbow-delimiters-depth-1">(</span>IMAGES_PATH <span class="org-operator">/</span> filename<span class="org-rainbow-delimiters-depth-1">)</span>.is_file<span class="org-rainbow-delimiters-depth-1">()</span>:
+    <span class="org-variable-name">homl3_root</span> <span class="org-operator">=</span> <span class="org-string">"https://github.com/ageron/handson-ml3/raw/main/"</span>
+    <span class="org-variable-name">url</span> <span class="org-operator">=</span> homl3_root <span class="org-operator">+</span> <span class="org-string">"images/end_to_end_project/"</span> <span class="org-operator">+</span> filename
+    <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"Downloading"</span>, filename<span class="org-rainbow-delimiters-depth-1">)</span>
+    urllib.request.urlretrieve<span class="org-rainbow-delimiters-depth-1">(</span>url, IMAGES_PATH <span class="org-operator">/</span> filename<span class="org-rainbow-delimiters-depth-1">)</span>
+
+<span class="org-variable-name">housing_renamed</span> <span class="org-operator">=</span> housing.rename<span class="org-rainbow-delimiters-depth-1">(</span>columns<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">{</span>
+    <span class="org-string">"latitude"</span>: <span class="org-string">"Latitude"</span>, <span class="org-string">"longitude"</span>: <span class="org-string">"Longitude"</span>,
+    <span class="org-string">"population"</span>: <span class="org-string">"Population"</span>,
+    <span class="org-string">"median_house_value"</span>: <span class="org-string">"Median house value (&#7452;s&#7429;)"</span><span class="org-rainbow-delimiters-depth-2">}</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+plot_settings<span class="org-rainbow-delimiters-depth-1">(</span>style <span class="org-operator">=</span> <span class="org-string">"slide"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+housing_renamed.plot<span class="org-rainbow-delimiters-depth-1">(</span>
+             kind<span class="org-operator">=</span><span class="org-string">"scatter"</span>, x<span class="org-operator">=</span><span class="org-string">"Longitude"</span>, y<span class="org-operator">=</span><span class="org-string">"Latitude"</span>,
+             s<span class="org-operator">=</span>housing_renamed<span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"Population"</span><span class="org-rainbow-delimiters-depth-2">]</span> <span class="org-operator">/</span> 100, label<span class="org-operator">=</span><span class="org-string">"Population"</span>,
+             c<span class="org-operator">=</span><span class="org-string">"Median house value (&#7452;s&#7429;)"</span>, cmap<span class="org-operator">=</span><span class="org-string">"jet"</span>, colorbar<span class="org-operator">=</span><span class="org-constant">True</span>,
+             legend<span class="org-operator">=</span><span class="org-constant">True</span>, sharex<span class="org-operator">=</span><span class="org-constant">False</span>, figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>10, 7<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+<span class="org-variable-name">california_img</span> <span class="org-operator">=</span> plt.imread<span class="org-rainbow-delimiters-depth-1">(</span>IMAGES_PATH <span class="org-operator">/</span> filename<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-variable-name">axis</span> <span class="org-operator">=</span> <span class="org-operator">-</span>124.55, <span class="org-operator">-</span>113.95, 32.45, 42.05
+plt.axis<span class="org-rainbow-delimiters-depth-1">(</span>axis<span class="org-rainbow-delimiters-depth-1">)</span>
+plt.imshow<span class="org-rainbow-delimiters-depth-1">(</span>california_img, extent<span class="org-operator">=</span>axis<span class="org-rainbow-delimiters-depth-1">)</span>
+
+store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"california-housing-prices-plot"</span>,
+          style <span class="org-operator">=</span> <span class="org-string">"slide"</span>,
+          close <span class="org-operator">=</span> <span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+
+<div id="org22387aa" class="figure">
+<p><img src="images/End-to-End-ML-Project/california-housing-prices-plot.png" alt="california-housing-prices-plot.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgac5f090" class="outline-3">
+<h3 id="orgac5f090">Looking for Correlations</h3>
+<div class="outline-text-3" id="text-orgac5f090">
+<p>
+Time to see if there is any correlation between the value of the houses
+and other parameters using pearsons correlation
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org1ce3660"><span class="org-variable-name">corr_matrix</span> <span class="org-operator">=</span> housing.corr<span class="org-rainbow-delimiters-depth-1">(</span>numeric_only<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+corr_matrix<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"median_house_value"</span><span class="org-rainbow-delimiters-depth-1">]</span>.sort_values<span class="org-rainbow-delimiters-depth-1">(</span>ascending<span class="org-operator">=</span><span class="org-constant">False</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orgd02fb67">
+median_house_value    1.000000
+median_income         0.688380
+total_rooms           0.137455
+housing_median_age    0.102175
+households            0.071426
+total_bedrooms        0.054635
+population           -0.020153
+longitude            -0.050859
+latitude             -0.139584
+Name: median_house_value, dtype: float64
+</pre>
+
+<p>
+Another way to check for correlation between attributes is to
+use the pandas scatter<sub>matrix</sub>() function, 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgbcd9480"><span class="org-keyword">from</span> pandas.plotting <span class="org-keyword">import</span> scatter_matrix
+
+<span class="org-variable-name">attributes</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"median_house_value"</span>, <span class="org-string">"median_income"</span>, <span class="org-string">"total_rooms"</span>,
+              <span class="org-string">"housing_median_age"</span><span class="org-rainbow-delimiters-depth-1">]</span>
+plot_settings_web<span class="org-rainbow-delimiters-depth-1">(</span>size<span class="org-operator">=</span><span class="org-constant">None</span><span class="org-rainbow-delimiters-depth-1">)</span>
+scatter_matrix<span class="org-rainbow-delimiters-depth-1">(</span>housing<span class="org-rainbow-delimiters-depth-2">[</span>attributes<span class="org-rainbow-delimiters-depth-2">]</span>, figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>12, 8<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+grid_settings_web<span class="org-rainbow-delimiters-depth-1">()</span>
+save_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"scatter-matrix-plot"</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">extra code</span>
+plt.close<span class="org-rainbow-delimiters-depth-1">()</span>
+</pre>
+</div>
+
+
+<div id="orgc43bd41" class="figure">
+<p><img src="images/End-to-End-ML-Project/scatter-matrix-plot.png" alt="scatter-matrix-plot.png" />
+</p>
+</div>
+
+<p>
+The most promising attribute to predict the median house value
+is the median income, 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org251256b">plot_settings_web<span class="org-rainbow-delimiters-depth-1">(</span>size<span class="org-operator">=</span>1<span class="org-rainbow-delimiters-depth-1">)</span>
+housing.plot<span class="org-rainbow-delimiters-depth-1">(</span>kind<span class="org-operator">=</span><span class="org-string">"scatter"</span>, x<span class="org-operator">=</span><span class="org-string">"median_income"</span>, y<span class="org-operator">=</span><span class="org-string">"median_house_value"</span>,
+             alpha<span class="org-operator">=</span>0.1, grid<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+grid_settings_web<span class="org-rainbow-delimiters-depth-1">()</span>
+save_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"income-vs-house-value-scatterplot"</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">extra code</span>
+plt.close<span class="org-rainbow-delimiters-depth-1">()</span>
+</pre>
+</div>
+
+
+<div id="org3d0f582" class="figure">
+<p><img src="images/End-to-End-ML-Project/income-vs-house-value-scatterplot.png" alt="income-vs-house-value-scatterplot.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4dd8b8b" class="outline-3">
+<h3 id="org4dd8b8b">Experimenting with Attribute Combinations</h3>
+<div class="outline-text-3" id="text-org4dd8b8b">
+<div class="org-src-container">
+<pre class="src src-python" id="org17d3813"><span class="org-variable-name">housing</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"rooms_per_house"</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> housing<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"total_rooms"</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">/</span> housing<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"households"</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<span class="org-variable-name">housing</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"bedrooms_ratio"</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> housing<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"total_bedrooms"</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">/</span> housing<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"total_rooms"</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<span class="org-variable-name">housing</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"people_per_house"</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> housing<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"population"</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">/</span> housing<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"households"</span><span class="org-rainbow-delimiters-depth-1">]</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org0638403"><span class="org-variable-name">corr_matrix</span> <span class="org-operator">=</span> housing.corr<span class="org-rainbow-delimiters-depth-1">(</span>numeric_only<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+corr_matrix<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"median_house_value"</span><span class="org-rainbow-delimiters-depth-1">]</span>.sort_values<span class="org-rainbow-delimiters-depth-1">(</span>ascending<span class="org-operator">=</span><span class="org-constant">False</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org61408e4">
+median_house_value    1.000000
+median_income         0.688380
+rooms_per_house       0.143663
+total_rooms           0.137455
+housing_median_age    0.102175
+households            0.071426
+total_bedrooms        0.054635
+population           -0.020153
+people_per_house     -0.038224
+longitude            -0.050859
+latitude             -0.139584
+bedrooms_ratio       -0.256397
+Name: median_house_value, dtype: float64
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org34926db" class="outline-2">
+<h2 id="org34926db">Prepare the Data for Machine Learning Algorithms</h2>
+<div class="outline-text-2" id="text-org34926db">
+<p>
+It’s time to prepare the data for your Machine Learning algorithms.
+Instead of doing this manually, you should write functions for this
+purpose, 
+</p>
+
+<p>
+First revert to a clean training set and separate predictors and labels.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org605a11f"><span class="org-variable-name">housing</span> <span class="org-operator">=</span> strat_train_set.drop<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"median_house_value"</span>, axis<span class="org-operator">=</span>1<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-variable-name">housing_labels</span> <span class="org-operator">=</span> strat_train_set<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"median_house_value"</span><span class="org-rainbow-delimiters-depth-1">]</span>.copy<span class="org-rainbow-delimiters-depth-1">()</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org34697a5" class="outline-3">
+<h3 id="org34697a5">Data Cleaning</h3>
+<div class="outline-text-3" id="text-org34697a5">
+<p>
+Not all data comes perfect for ML as some of them may contain NaN or 0 or
+some other value which you don't want ML algorithm to process.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org19a86b1"><span class="org-variable-name">null_rows_idx</span> <span class="org-operator">=</span> housing.isnull<span class="org-rainbow-delimiters-depth-1">()</span>.<span class="org-builtin">any</span><span class="org-rainbow-delimiters-depth-1">(</span>axis<span class="org-operator">=</span>1<span class="org-rainbow-delimiters-depth-1">)</span>
+housing.loc<span class="org-rainbow-delimiters-depth-1">[</span>null_rows_idx<span class="org-rainbow-delimiters-depth-1">]</span>.head<span class="org-rainbow-delimiters-depth-1">()</span>
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">longitude</th>
+<th scope="col" class="org-right">latitude</th>
+<th scope="col" class="org-right">housing<sub>median</sub><sub>age</sub></th>
+<th scope="col" class="org-right">total<sub>rooms</sub></th>
+<th scope="col" class="org-right">total<sub>bedrooms</sub></th>
+<th scope="col" class="org-right">population</th>
+<th scope="col" class="org-right">households</th>
+<th scope="col" class="org-right">median<sub>income</sub></th>
+<th scope="col" class="org-left">ocean<sub>proximity</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">14452</td>
+<td class="org-right">-120.67</td>
+<td class="org-right">40.5</td>
+<td class="org-right">15</td>
+<td class="org-right">5343</td>
+<td class="org-right">nan</td>
+<td class="org-right">2503</td>
+<td class="org-right">902</td>
+<td class="org-right">3.5962</td>
+<td class="org-left">INLAND</td>
+</tr>
+
+<tr>
+<td class="org-right">18217</td>
+<td class="org-right">-117.96</td>
+<td class="org-right">34.03</td>
+<td class="org-right">35</td>
+<td class="org-right">2093</td>
+<td class="org-right">nan</td>
+<td class="org-right">1755</td>
+<td class="org-right">403</td>
+<td class="org-right">3.4115</td>
+<td class="org-left">&lt;1H OCEAN</td>
+</tr>
+
+<tr>
+<td class="org-right">11889</td>
+<td class="org-right">-118.05</td>
+<td class="org-right">34.04</td>
+<td class="org-right">33</td>
+<td class="org-right">1348</td>
+<td class="org-right">nan</td>
+<td class="org-right">1098</td>
+<td class="org-right">257</td>
+<td class="org-right">4.2917</td>
+<td class="org-left">&lt;1H OCEAN</td>
+</tr>
+
+<tr>
+<td class="org-right">20325</td>
+<td class="org-right">-118.88</td>
+<td class="org-right">34.17</td>
+<td class="org-right">15</td>
+<td class="org-right">4260</td>
+<td class="org-right">nan</td>
+<td class="org-right">1701</td>
+<td class="org-right">669</td>
+<td class="org-right">5.1033</td>
+<td class="org-left">&lt;1H OCEAN</td>
+</tr>
+
+<tr>
+<td class="org-right">14360</td>
+<td class="org-right">-117.87</td>
+<td class="org-right">33.62</td>
+<td class="org-right">8</td>
+<td class="org-right">1266</td>
+<td class="org-right">nan</td>
+<td class="org-right">375</td>
+<td class="org-right">183</td>
+<td class="org-right">9.802</td>
+<td class="org-left">&lt;1H OCEAN</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Let's look at three (3) options
+</p>
+
+<p>
+1 - Get rid of the corresponding districts
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org07a1955"><span class="org-variable-name">housing_option1</span> <span class="org-operator">=</span> housing.copy<span class="org-rainbow-delimiters-depth-1">()</span>
+housing_option1.dropna<span class="org-rainbow-delimiters-depth-1">(</span>subset<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"total_bedrooms"</span><span class="org-rainbow-delimiters-depth-2">]</span>, inplace<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">option 1</span>
+housing_option1.loc<span class="org-rainbow-delimiters-depth-1">[</span>null_rows_idx<span class="org-rainbow-delimiters-depth-1">]</span>.head<span class="org-rainbow-delimiters-depth-1">()</span>
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">longitude</td>
+<td class="org-left">latitude</td>
+<td class="org-left">housing<sub>median</sub><sub>age</sub></td>
+<td class="org-left">total<sub>rooms</sub></td>
+<td class="org-left">total<sub>bedrooms</sub></td>
+<td class="org-left">population</td>
+<td class="org-left">households</td>
+<td class="org-left">median<sub>income</sub></td>
+<td class="org-left">ocean<sub>proximity</sub></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+2 - Get rid of the whole attribute
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org9e6147c"><span class="org-variable-name">housing_option2</span> <span class="org-operator">=</span> housing.copy<span class="org-rainbow-delimiters-depth-1">()</span>
+housing_option2.drop<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"total_bedrooms"</span>, axis<span class="org-operator">=</span>1, inplace<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">option 2</span>
+housing_option2.loc<span class="org-rainbow-delimiters-depth-1">[</span>null_rows_idx<span class="org-rainbow-delimiters-depth-1">]</span>.head<span class="org-rainbow-delimiters-depth-1">()</span>
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">longitude</th>
+<th scope="col" class="org-right">latitude</th>
+<th scope="col" class="org-right">housing<sub>median</sub><sub>age</sub></th>
+<th scope="col" class="org-right">total<sub>rooms</sub></th>
+<th scope="col" class="org-right">total<sub>bedrooms</sub></th>
+<th scope="col" class="org-right">population</th>
+<th scope="col" class="org-right">households</th>
+<th scope="col" class="org-right">median<sub>income</sub></th>
+<th scope="col" class="org-left">ocean<sub>proximity</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">14452</td>
+<td class="org-right">-120.67</td>
+<td class="org-right">40.5</td>
+<td class="org-right">15</td>
+<td class="org-right">5343</td>
+<td class="org-right">2503</td>
+<td class="org-right">902</td>
+<td class="org-right">3.5962</td>
+<td class="org-left">INLAND</td>
+</tr>
+
+<tr>
+<td class="org-right">18217</td>
+<td class="org-right">-117.96</td>
+<td class="org-right">34.03</td>
+<td class="org-right">35</td>
+<td class="org-right">2093</td>
+<td class="org-right">1755</td>
+<td class="org-right">403</td>
+<td class="org-right">3.4115</td>
+<td class="org-left">&lt;1H OCEAN</td>
+</tr>
+
+<tr>
+<td class="org-right">11889</td>
+<td class="org-right">-118.05</td>
+<td class="org-right">34.04</td>
+<td class="org-right">33</td>
+<td class="org-right">1348</td>
+<td class="org-right">1098</td>
+<td class="org-right">257</td>
+<td class="org-right">4.2917</td>
+<td class="org-left">&lt;1H OCEAN</td>
+</tr>
+
+<tr>
+<td class="org-right">20325</td>
+<td class="org-right">-118.88</td>
+<td class="org-right">34.17</td>
+<td class="org-right">15</td>
+<td class="org-right">4260</td>
+<td class="org-right">1701</td>
+<td class="org-right">669</td>
+<td class="org-right">5.1033</td>
+<td class="org-left">&lt;1H OCEAN</td>
+</tr>
+
+<tr>
+<td class="org-right">14360</td>
+<td class="org-right">-117.87</td>
+<td class="org-right">33.62</td>
+<td class="org-right">8</td>
+<td class="org-right">1266</td>
+<td class="org-right">375</td>
+<td class="org-right">183</td>
+<td class="org-right">9.802</td>
+<td class="org-left">&lt;1H OCEAN</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+3 - Set the values to some value (zero, the mean, the median, etc.).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org0c7bec3"><span class="org-variable-name">housing_option3</span> <span class="org-operator">=</span> housing.copy<span class="org-rainbow-delimiters-depth-1">()</span>
+<span class="org-variable-name">median</span> <span class="org-operator">=</span> housing<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"total_bedrooms"</span><span class="org-rainbow-delimiters-depth-1">]</span>.median<span class="org-rainbow-delimiters-depth-1">()</span>
+housing_option3<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"total_bedrooms"</span><span class="org-rainbow-delimiters-depth-1">]</span>.fillna<span class="org-rainbow-delimiters-depth-1">(</span>median, inplace<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">option 3</span>
+housing_option3.loc<span class="org-rainbow-delimiters-depth-1">[</span>null_rows_idx<span class="org-rainbow-delimiters-depth-1">]</span>.head<span class="org-rainbow-delimiters-depth-1">()</span>
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">longitude</th>
+<th scope="col" class="org-right">latitude</th>
+<th scope="col" class="org-right">housing<sub>median</sub><sub>age</sub></th>
+<th scope="col" class="org-right">total<sub>rooms</sub></th>
+<th scope="col" class="org-right">total<sub>bedrooms</sub></th>
+<th scope="col" class="org-right">population</th>
+<th scope="col" class="org-right">households</th>
+<th scope="col" class="org-right">median<sub>income</sub></th>
+<th scope="col" class="org-left">ocean<sub>proximity</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">14452</td>
+<td class="org-right">-120.67</td>
+<td class="org-right">40.5</td>
+<td class="org-right">15</td>
+<td class="org-right">5343</td>
+<td class="org-right">434</td>
+<td class="org-right">2503</td>
+<td class="org-right">902</td>
+<td class="org-right">3.5962</td>
+<td class="org-left">INLAND</td>
+</tr>
+
+<tr>
+<td class="org-right">18217</td>
+<td class="org-right">-117.96</td>
+<td class="org-right">34.03</td>
+<td class="org-right">35</td>
+<td class="org-right">2093</td>
+<td class="org-right">434</td>
+<td class="org-right">1755</td>
+<td class="org-right">403</td>
+<td class="org-right">3.4115</td>
+<td class="org-left">&lt;1H OCEAN</td>
+</tr>
+
+<tr>
+<td class="org-right">11889</td>
+<td class="org-right">-118.05</td>
+<td class="org-right">34.04</td>
+<td class="org-right">33</td>
+<td class="org-right">1348</td>
+<td class="org-right">434</td>
+<td class="org-right">1098</td>
+<td class="org-right">257</td>
+<td class="org-right">4.2917</td>
+<td class="org-left">&lt;1H OCEAN</td>
+</tr>
+
+<tr>
+<td class="org-right">20325</td>
+<td class="org-right">-118.88</td>
+<td class="org-right">34.17</td>
+<td class="org-right">15</td>
+<td class="org-right">4260</td>
+<td class="org-right">434</td>
+<td class="org-right">1701</td>
+<td class="org-right">669</td>
+<td class="org-right">5.1033</td>
+<td class="org-left">&lt;1H OCEAN</td>
+</tr>
+
+<tr>
+<td class="org-right">14360</td>
+<td class="org-right">-117.87</td>
+<td class="org-right">33.62</td>
+<td class="org-right">8</td>
+<td class="org-right">1266</td>
+<td class="org-right">434</td>
+<td class="org-right">375</td>
+<td class="org-right">183</td>
+<td class="org-right">9.802</td>
+<td class="org-left">&lt;1H OCEAN</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Scikit-Learn provides a handy class to take care of missing values: SimpleImputer.
+</p>
+
+<p>
+Separating out the numerical attributes to use the "median" strategy 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org77719f9"><span class="org-keyword">from</span> sklearn.impute <span class="org-keyword">import</span> SimpleImputer
+
+<span class="org-variable-name">imputer</span> <span class="org-operator">=</span> SimpleImputer<span class="org-rainbow-delimiters-depth-1">(</span>strategy<span class="org-operator">=</span><span class="org-string">"median"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+create a copy of the data without the text attribute ocean<sub>proximity</sub>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgda5245a"><span class="org-variable-name">housing_num</span> <span class="org-operator">=</span> housing.select_dtypes<span class="org-rainbow-delimiters-depth-1">(</span>include<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">[</span>np.number<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+can fit the imputer instance to the training data using the fit() method:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org3f3d4ab">imputer.fit<span class="org-rainbow-delimiters-depth-1">(</span>housing_num<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+we cannot be sure that there won’t be any missing values in new
+data after the system goes live, so it is safer to apply the
+imputer to all the numerical attributes:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org8eefd5a">imputer.statistics_
+housing_num.median<span class="org-rainbow-delimiters-depth-1">()</span>.values
+</pre>
+</div>
+
+<p>
+use this “trained” imputer to transform the training set by
+replacing missing values with the learned medians:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgebecf9d"><span class="org-variable-name">X</span> <span class="org-operator">=</span> imputer.transform<span class="org-rainbow-delimiters-depth-1">(</span>housing_num<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">to see the name of the columns</span>
+imputer.feature_names_in_
+</pre>
+</div>
+
+<p>
+To convert this to pd dataframe:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgf118c7a"><span class="org-variable-name">housing_tr</span> <span class="org-operator">=</span> pd.DataFrame<span class="org-rainbow-delimiters-depth-1">(</span>X, columns<span class="org-operator">=</span>housing_num.columns,
+                          index<span class="org-operator">=</span>housing_num.index<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org377adf0" class="outline-3">
+<h3 id="org377adf0">Handling Text and Categorical Attributes</h3>
+<div class="outline-text-3" id="text-org377adf0">
+<p>
+Time to process text instead of numbers.
+</p>
+
+<p>
+In this dataset, there is just one: the ocean<sub>proximity</sub> attribute.
+Let’s look at its value for the first 10 instances:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgc6a102b"><span class="org-variable-name">housing_cat</span> <span class="org-operator">=</span> housing<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">"ocean_proximity"</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">]</span>
+housing_cat.head<span class="org-rainbow-delimiters-depth-1">(</span>8<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">longitude</th>
+<th scope="col" class="org-left">latitude</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">13096</td>
+<td class="org-left">NEAR BAY</td>
+</tr>
+
+<tr>
+<td class="org-right">14973</td>
+<td class="org-left">&lt;1H OCEAN</td>
+</tr>
+
+<tr>
+<td class="org-right">3785</td>
+<td class="org-left">INLAND</td>
+</tr>
+
+<tr>
+<td class="org-right">14689</td>
+<td class="org-left">INLAND</td>
+</tr>
+
+<tr>
+<td class="org-right">20507</td>
+<td class="org-left">NEAR OCEAN</td>
+</tr>
+
+<tr>
+<td class="org-right">1286</td>
+<td class="org-left">INLAND</td>
+</tr>
+
+<tr>
+<td class="org-right">18078</td>
+<td class="org-left">&lt;1H OCEAN</td>
+</tr>
+
+<tr>
+<td class="org-right">4396</td>
+<td class="org-left">NEAR BAY</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+As ML likes numbers instead of text, convert these values to numbers
+using <font color=#e5c890>OrdinalEncoder</font> class from Scikit-learn
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org5878a81"><span class="org-keyword">from</span> sklearn.preprocessing <span class="org-keyword">import</span> OrdinalEncoder
+
+<span class="org-variable-name">ordinal_encoder</span> <span class="org-operator">=</span> OrdinalEncoder<span class="org-rainbow-delimiters-depth-1">()</span>
+<span class="org-variable-name">housing_cat_encoded</span> <span class="org-operator">=</span> ordinal_encoder.fit_transform<span class="org-rainbow-delimiters-depth-1">(</span>housing_cat<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+Let's see the results
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgd1e5915">housing_cat_encoded<span class="org-rainbow-delimiters-depth-1">[</span>:8<span class="org-rainbow-delimiters-depth-1">]</span>
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+And if we were to see the categories:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org9bc3022">ordinal_encoder.categories_
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">array</td>
+<td class="org-left">((&lt;1H OCEAN INLAND ISLAND NEAR BAY NEAR OCEAN) dtype=object)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+To stop from ML algorithm from treating the numbers too literally
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org357a65c"><span class="org-keyword">from</span> sklearn.preprocessing <span class="org-keyword">import</span> OneHotEncoder
+
+<span class="org-variable-name">cat_encoder</span> <span class="org-operator">=</span> OneHotEncoder<span class="org-rainbow-delimiters-depth-1">()</span>
+<span class="org-variable-name">housing_cat_1hot</span> <span class="org-operator">=</span> cat_encoder.fit_transform<span class="org-rainbow-delimiters-depth-1">(</span>housing_cat<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org502530f"><span class="org-builtin">type</span><span class="org-rainbow-delimiters-depth-1">(</span>housing_cat_1hot<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org98a8b99">
+&lt;class 'scipy.sparse._csr.csr_matrix'&gt;
+</pre>
+
+<p>
+the output is a SciPy sparse matrix, instead of a NumPy array.
+</p>
+
+<p>
+onvert it to a dense array if needed by calling the toarray() method:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org29c89a3"><span class="org-builtin">type</span><span class="org-rainbow-delimiters-depth-1">(</span>housing_cat_1hot.toarray<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orgac58487">
+&lt;class 'numpy.ndarray'&gt;
+</pre>
+
+<p>
+It is also possible to list categories using categoreis_ instance
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org89cc4ee">cat_encoder.categories_
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">array</td>
+<td class="org-left">((&lt;1H OCEAN INLAND ISLAND NEAR BAY NEAR OCEAN) dtype=object)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgddc6504" class="outline-3">
+<h3 id="orgddc6504">Feature Scaling</h3>
+<div class="outline-text-3" id="text-orgddc6504">
+<div class="org-src-container">
+<pre class="src src-python" id="org9bcc5f2"><span class="org-keyword">from</span> sklearn.preprocessing <span class="org-keyword">import</span> MinMaxScaler
+
+<span class="org-variable-name">min_max_scaler</span> <span class="org-operator">=</span> MinMaxScaler<span class="org-rainbow-delimiters-depth-1">(</span>feature_range<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span><span class="org-operator">-</span>1, 1<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-variable-name">housing_num_min_max_scaled</span> <span class="org-operator">=</span> min_max_scaler.fit_transform<span class="org-rainbow-delimiters-depth-1">(</span>housing_num<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org719c9ae" class="outline-3">
+<h3 id="org719c9ae">Transformation Pipelines</h3>
+<div class="outline-text-3" id="text-org719c9ae">
+<p>
+Now let's build a pipeline to preprocess the numerical attributes:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org4a7da03"><span class="org-keyword">from</span> sklearn.pipeline <span class="org-keyword">import</span> Pipeline
+
+<span class="org-variable-name">num_pipeline</span> <span class="org-operator">=</span> Pipeline<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>
+    <span class="org-rainbow-delimiters-depth-3">(</span><span class="org-string">"impute"</span>, SimpleImputer<span class="org-rainbow-delimiters-depth-4">(</span>strategy<span class="org-operator">=</span><span class="org-string">"median"</span><span class="org-rainbow-delimiters-depth-4">)</span><span class="org-rainbow-delimiters-depth-3">)</span>,
+    <span class="org-rainbow-delimiters-depth-3">(</span><span class="org-string">"standardize"</span>, StandardScaler<span class="org-rainbow-delimiters-depth-4">()</span><span class="org-rainbow-delimiters-depth-3">)</span>,
+<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-\" id="orge9dd7ea">python :session :results output
+from sklearn.pipeline import make_pipeline
+
+num_pipeline = make_pipeline(SimpleImputer(strategy="median"), StandardScaler())
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Daniel McGuiness</p>
+<p class="date">Created: 2024-08-05 Mon 15:02</p>
+</div>
+</body>
+</html>
