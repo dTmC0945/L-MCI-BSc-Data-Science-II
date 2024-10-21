@@ -213,6 +213,38 @@ org_html_manager.set("VIEW", "info");
 org_html_manager.setup();  // activate after the parameters are set
 // @license-end
 </script>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
@@ -382,7 +414,7 @@ Plot these values as scatter plot.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgc81c693">country_stats.plot<span class="org-rainbow-delimiters-depth-1">(</span>kind<span class="org-operator">=</span><span class="org-string">'scatter'</span>, figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>5, 3<span class="org-rainbow-delimiters-depth-2">)</span>, grid<span class="org-operator">=</span><span class="org-constant">True</span>,
+<pre class="src src-python" id="org239df36">country_stats.plot<span class="org-rainbow-delimiters-depth-1">(</span>kind<span class="org-operator">=</span><span class="org-string">'scatter'</span>, figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>5, 3<span class="org-rainbow-delimiters-depth-2">)</span>, grid<span class="org-operator">=</span><span class="org-constant">True</span>,
                    x<span class="org-operator">=</span>gdppc_col, y<span class="org-operator">=</span>lifesat_col<span class="org-rainbow-delimiters-depth-1">)</span>
 
 <span class="org-variable-name">min_life_sat</span> <span class="org-operator">=</span> 4
@@ -415,7 +447,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="orga416261" class="figure">
+<div id="org59cce4c" class="figure">
 <p><img src="images/Machine-Learning-Landscape/happy-money.png" alt="happy-money.png" />
 </p>
 </div>
@@ -426,12 +458,12 @@ life satisfaction.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org0df03b0"><span class="org-variable-name">highlighted_countries</span> <span class="org-operator">=</span> country_stats.loc<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-builtin">list</span><span class="org-rainbow-delimiters-depth-2">(</span>position_text.keys<span class="org-rainbow-delimiters-depth-3">()</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<pre class="src src-python" id="org66d4a60"><span class="org-variable-name">highlighted_countries</span> <span class="org-operator">=</span> country_stats.loc<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-builtin">list</span><span class="org-rainbow-delimiters-depth-2">(</span>position_text.keys<span class="org-rainbow-delimiters-depth-3">()</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">]</span>
 highlighted_countries<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-rainbow-delimiters-depth-2">[</span>gdppc_col, lifesat_col<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">]</span>.sort_values<span class="org-rainbow-delimiters-depth-1">(</span>by<span class="org-operator">=</span>gdppc_col<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 
-<pre class="example" id="org94e1240">
+<pre class="example" id="org4631fb3">
                GDP per capita (USD)  Life satisfaction
 Country                                               
 Turkey                 28384.987785                5.5
@@ -453,7 +485,7 @@ Time to try to fit linear models to our limited data.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org01dd8d0">country_stats.plot<span class="org-rainbow-delimiters-depth-1">(</span>kind<span class="org-operator">=</span><span class="org-string">'scatter'</span>, figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>5, 3<span class="org-rainbow-delimiters-depth-2">)</span>, grid<span class="org-operator">=</span><span class="org-constant">True</span>,
+<pre class="src src-python" id="org42f5301">country_stats.plot<span class="org-rainbow-delimiters-depth-1">(</span>kind<span class="org-operator">=</span><span class="org-string">'scatter'</span>, figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>5, 3<span class="org-rainbow-delimiters-depth-2">)</span>, grid<span class="org-operator">=</span><span class="org-constant">True</span>,
                    x<span class="org-operator">=</span>gdppc_col, y<span class="org-operator">=</span>lifesat_col<span class="org-rainbow-delimiters-depth-1">)</span>
 
 <span class="org-variable-name">X</span> <span class="org-operator">=</span> np.linspace<span class="org-rainbow-delimiters-depth-1">(</span>min_gdp, max_gdp, 1000<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -480,18 +512,18 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="orgf433802" class="figure">
+<div id="org28ca21e" class="figure">
 <p><img src="images/Machine-Learning-Landscape/model-tweak.png" alt="model-tweak.png" />
 </p>
 </div>
 
 <p>
-Now, generate our model, get the best <img src="ltximg/Machine-Learning-Landscape_aec6d36ceec039233f22213be384bd5af5ec8e5c.png" alt="$\theta_0$" /> and <img src="ltximg/Machine-Learning-Landscape_aec6d36ceec039233f22213be384bd5af5ec8e5c.png" alt="$\theta_0$" /> and
+Now, generate our model, get the best \(\theta_0\) and \(\theta_0\) and
 plot the best fit.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org13f52d2"><span class="org-keyword">from</span> sklearn <span class="org-keyword">import</span> linear_model
+<pre class="src src-python" id="org25abdb3"><span class="org-keyword">from</span> sklearn <span class="org-keyword">import</span> linear_model
 
 <span class="org-variable-name">X_sample</span> <span class="org-operator">=</span> country_stats<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-rainbow-delimiters-depth-2">[</span>gdppc_col<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">]</span>.values
 <span class="org-variable-name">y_sample</span> <span class="org-operator">=</span> country_stats<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-rainbow-delimiters-depth-2">[</span>lifesat_col<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">]</span>.values
@@ -520,7 +552,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org0c92438" class="figure">
+<div id="org253ab8f" class="figure">
 <p><img src="images/Machine-Learning-Landscape/best-plot.png" alt="best-plot.png" />
 </p>
 </div>
@@ -530,7 +562,7 @@ Let's do a prediction with the Cyprus data.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="org4b9ad64"><span class="org-variable-name">cyprus_gdp_per_capita</span> <span class="org-operator">=</span> gdp_per_capita<span class="org-rainbow-delimiters-depth-1">[</span>gdppc_col<span class="org-rainbow-delimiters-depth-1">]</span>.loc<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"Cyprus"</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<pre class="src src-python" id="org8fd2d69"><span class="org-variable-name">cyprus_gdp_per_capita</span> <span class="org-operator">=</span> gdp_per_capita<span class="org-rainbow-delimiters-depth-1">[</span>gdppc_col<span class="org-rainbow-delimiters-depth-1">]</span>.loc<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">"Cyprus"</span><span class="org-rainbow-delimiters-depth-1">]</span>
 <span class="org-variable-name">cyprus_predicted_life_satisfaction</span> <span class="org-operator">=</span> lin1.predict<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-rainbow-delimiters-depth-3">[</span>cyprus_gdp_per_capita<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)[</span>0, 0<span class="org-rainbow-delimiters-depth-1">]</span>
 
 country_stats.plot<span class="org-rainbow-delimiters-depth-1">(</span>kind<span class="org-operator">=</span><span class="org-string">'scatter'</span>, figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>5, 3<span class="org-rainbow-delimiters-depth-2">)</span>, grid<span class="org-operator">=</span><span class="org-constant">True</span>,
@@ -557,7 +589,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="orgd1a9989" class="figure">
+<div id="org7865ee7" class="figure">
 <p><img src="images/Machine-Learning-Landscape/prediction.png" alt="prediction.png" />
 </p>
 </div>
@@ -572,7 +604,7 @@ Time to add the missing data and see if our model still works.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgd795f53"><span class="org-variable-name">missing_data</span> <span class="org-operator">=</span> full_country_stats<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-rainbow-delimiters-depth-2">(</span>full_country_stats<span class="org-rainbow-delimiters-depth-3">[</span>gdppc_col<span class="org-rainbow-delimiters-depth-3">]</span> <span class="org-operator">&lt;</span> min_gdp<span class="org-rainbow-delimiters-depth-2">)</span> <span class="org-operator">|</span>
+<pre class="src src-python" id="org6177e2f"><span class="org-variable-name">missing_data</span> <span class="org-operator">=</span> full_country_stats<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-rainbow-delimiters-depth-2">(</span>full_country_stats<span class="org-rainbow-delimiters-depth-3">[</span>gdppc_col<span class="org-rainbow-delimiters-depth-3">]</span> <span class="org-operator">&lt;</span> min_gdp<span class="org-rainbow-delimiters-depth-2">)</span> <span class="org-operator">|</span>
                                   <span class="org-rainbow-delimiters-depth-2">(</span>full_country_stats<span class="org-rainbow-delimiters-depth-3">[</span>gdppc_col<span class="org-rainbow-delimiters-depth-3">]</span> <span class="org-operator">&gt;</span> max_gdp<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">]</span>
 
 <span class="org-variable-name">position_text_missing_countries</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">{</span>
@@ -616,7 +648,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org02d4f43" class="figure">
+<div id="orgf475db8" class="figure">
 <p><img src="images/Machine-Learning-Landscape/missing-data.png" alt="missing-data.png" />
 </p>
 </div>
@@ -636,7 +668,7 @@ Below is an over-fitted data which cannot be used to a product.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orga515651"><span class="org-keyword">from</span> sklearn <span class="org-keyword">import</span> preprocessing
+<pre class="src src-python" id="org9548bd7"><span class="org-keyword">from</span> sklearn <span class="org-keyword">import</span> preprocessing
 <span class="org-keyword">from</span> sklearn <span class="org-keyword">import</span> pipeline
 
 full_country_stats.plot<span class="org-rainbow-delimiters-depth-1">(</span>kind<span class="org-operator">=</span><span class="org-string">'scatter'</span>,
@@ -664,7 +696,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org008c074" class="figure">
+<div id="orge75a0ef" class="figure">
 <p><img src="images/Machine-Learning-Landscape/overfitting-data.png" alt="overfitting-data.png" />
 </p>
 </div>
@@ -679,7 +711,7 @@ Final example is to showcase how regularised data works on predicting model.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgb6a80bf"><span class="org-variable-name">w_countries</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span>c <span class="org-keyword">for</span> c <span class="org-keyword">in</span> full_country_stats.index <span class="org-keyword">if</span> <span class="org-string">"W"</span> <span class="org-keyword">in</span> c.upper<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<pre class="src src-python" id="org4d126e3"><span class="org-variable-name">w_countries</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span>c <span class="org-keyword">for</span> c <span class="org-keyword">in</span> full_country_stats.index <span class="org-keyword">if</span> <span class="org-string">"W"</span> <span class="org-keyword">in</span> c.upper<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">]</span>
 <span class="org-variable-name">all_w_countries</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span>c <span class="org-keyword">for</span> c <span class="org-keyword">in</span> gdp_per_capita.index <span class="org-keyword">if</span> <span class="org-string">"W"</span> <span class="org-keyword">in</span> c.upper<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">]</span>
 
 country_stats.plot<span class="org-rainbow-delimiters-depth-1">(</span>kind<span class="org-operator">=</span><span class="org-string">'scatter'</span>, x<span class="org-operator">=</span>gdppc_col, y<span class="org-operator">=</span>lifesat_col, figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>8, 3<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -705,7 +737,7 @@ cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="or
 </div>
 
 
-<div id="org55e18df" class="figure">
+<div id="orgf5beb67" class="figure">
 <p><img src="images/Machine-Learning-Landscape/ridge-data.png" alt="ridge-data.png" />
 </p>
 </div>

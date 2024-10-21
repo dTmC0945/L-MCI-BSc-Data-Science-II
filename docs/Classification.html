@@ -1,0 +1,957 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Code for Machine Learning and Data Science II Classification</title>
+<meta name="author" content="Daniel McGuiness" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" href="config/style.css">
+<script type="text/javascript"  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="config/test.js">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license-end
+</script>
+
+<script>
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+org_html_manager.set("TOC_DEPTH", "3");
+org_html_manager.set("LINK_HOME", "");
+org_html_manager.set("LINK_UP", "index.html");
+org_html_manager.set("LOCAL_TOC", "1");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "underline");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "info");
+org_html_manager.setup();  // activate after the parameters are set
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
+ <a accesskey="H" href=""> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">Code for Machine Learning and Data Science II Classification</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgdcb7b05">Introduction</a></li>
+<li><a href="#orgbe846ed">MNIST</a>
+<ul>
+<li><a href="#org2c2d6e9">Download Initial Data</a></li>
+<li><a href="#org054ba16">Training a Binary Classifier</a></li>
+</ul>
+</li>
+<li><a href="#orga49059c">Performance Measures</a>
+<ul>
+<li><a href="#orgca0d13d">Measuring Accuracy Using Cross-Validation</a></li>
+<li><a href="#orgaa0bf63">Confusion Matrix</a></li>
+<li><a href="#orgf36119f">Presicion and Recall</a></li>
+<li><a href="#org4fa8579">Precision-Recall Trade-off</a></li>
+<li><a href="#org704cce7">The ROC Curve</a></li>
+<li><a href="#org8b66548">Multi-Class Classification</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+These are the code snippets used in <span class="Hlight">Classification</span>
+part of <span class="Hlight">Machine Learning and Data Science II</span>.
+</p>
+
+<div id="outline-container-orgdcb7b05" class="outline-2">
+<h2 id="orgdcb7b05">Introduction</h2>
+<div class="outline-text-2" id="text-orgdcb7b05">
+<p>
+The following code uses the standard matplotlib along with the
+custom ChalcedonPy which is detailed in its source code here.
+</p>
+
+<p>
+The code is used primarily in the following code as a means to
+save figures for use in slides.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgb33933c"><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
+<span class="org-keyword">import</span> ChalcedonPy <span class="org-keyword">as</span> cp
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">Initialise ChalcedonPy</span>
+cp.init<span class="org-rainbow-delimiters-depth-1">(</span>save_path<span class="org-operator">=</span><span class="org-string">"Classification"</span>,
+        display_mode<span class="org-operator">=</span><span class="org-string">"slide"</span><span class="org-rainbow-delimiters-depth-1">)</span> 
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbe846ed" class="outline-2">
+<h2 id="orgbe846ed">MNIST</h2>
+<div class="outline-text-2" id="text-orgbe846ed">
+</div>
+<div id="outline-container-org2c2d6e9" class="outline-3">
+<h3 id="org2c2d6e9">Download Initial Data</h3>
+<div class="outline-text-3" id="text-org2c2d6e9">
+<div class="org-src-container">
+<pre class="src src-python" id="orgd57d327"><span class="org-keyword">from</span> sklearn.datasets <span class="org-keyword">import</span> fetch_openml
+
+<span class="org-variable-name">mnist</span> <span class="org-operator">=</span> fetch_openml<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'mnist_784'</span>, as_frame<span class="org-operator">=</span><span class="org-constant">False</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+For more info on the <span class="Code">sklearn.datasets.fetch_openml</span> click <a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_openml.html">here</a>.
+However for our application two parameters are used.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="all" frame="border" align="center">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">PARAMETER</th>
+<th scope="col" class="org-left">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><span class="Code">name</span></td>
+<td class="org-left">String identifier of the dataset. Note that OpenML can have multiple datasets with the same name.</td>
+</tr>
+
+<tr>
+<td class="org-left"><span class="Code">as_frame</span></td>
+<td class="org-left">If True, the data is a pandas DataFrame including columns with appropriate dtypes, if false e data and target will be NumPy arrays and the data will only contain numerical values</td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgb056c15">mnist.keys<span class="org-rainbow-delimiters-depth-1">()</span>
+</pre>
+</div>
+
+<pre class="example" id="orgbc1510a">
+dict_keys(['data', 'target', 'frame', 'categories', 'feature_names', 'target_names', 'DESCR', 'details', 'url'])
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org39be513"><span class="org-variable-name">X</span>, <span class="org-variable-name">y</span> <span class="org-operator">=</span> mnist.data, mnist.target
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org891ff01">
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org9a7c72e"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>X.shape<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org94699bb">
+(70000, 784)
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org9682b13"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>y.shape<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org711951e">
+(70000,)
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org8bde3ba"><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
+
+<span class="org-keyword">def</span> <span class="org-function-name">plot_digit</span><span class="org-rainbow-delimiters-depth-1">(</span>image_data<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-variable-name">image</span> <span class="org-operator">=</span> image_data.reshape<span class="org-rainbow-delimiters-depth-1">(</span>28, 28<span class="org-rainbow-delimiters-depth-1">)</span>
+    plt.imshow<span class="org-rainbow-delimiters-depth-1">(</span>image, cmap<span class="org-operator">=</span><span class="org-string">"binary"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+    plt.axis<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"off"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+<span class="org-variable-name">some_digit</span> <span class="org-operator">=</span> X<span class="org-rainbow-delimiters-depth-1">[</span>0<span class="org-rainbow-delimiters-depth-1">]</span>
+plot_digit<span class="org-rainbow-delimiters-depth-1">(</span>some_digit<span class="org-rainbow-delimiters-depth-1">)</span>
+cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"some-digits-plot"</span>, close <span class="org-operator">=</span> <span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+
+<div id="orgb9c3da0" class="figure">
+<p><img src="images/Classification/some-digits-plot.png" alt="some-digits-plot.png" />
+</p>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgd3697ed"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>y<span class="org-rainbow-delimiters-depth-2">[</span>0<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orgc6357f4">
+5
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org1c891f2">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>9, 9<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-keyword">for</span> idx, image_data <span class="org-keyword">in</span> <span class="org-builtin">enumerate</span><span class="org-rainbow-delimiters-depth-1">(</span>X<span class="org-rainbow-delimiters-depth-2">[</span>:100<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>:
+    plt.subplot<span class="org-rainbow-delimiters-depth-1">(</span>10, 10, idx <span class="org-operator">+</span> 1<span class="org-rainbow-delimiters-depth-1">)</span>
+    plot_digit<span class="org-rainbow-delimiters-depth-1">(</span>image_data<span class="org-rainbow-delimiters-depth-1">)</span>
+plt.subplots_adjust<span class="org-rainbow-delimiters-depth-1">(</span>wspace<span class="org-operator">=</span>0, hspace<span class="org-operator">=</span>0<span class="org-rainbow-delimiters-depth-1">)</span>
+
+cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"more-digits-plot"</span>,
+          close <span class="org-operator">=</span> <span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+
+<div id="org85f93dc" class="figure">
+<p><img src="images/Classification/more-digits-plot.png" alt="more-digits-plot.png" />
+</p>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org79fe19f"><span class="org-variable-name">X_train</span>, <span class="org-variable-name">X_test</span>, <span class="org-variable-name">y_train</span>, <span class="org-variable-name">y_test</span> <span class="org-operator">=</span> X<span class="org-rainbow-delimiters-depth-1">[</span>:60000<span class="org-rainbow-delimiters-depth-1">]</span>, X<span class="org-rainbow-delimiters-depth-1">[</span>60000:<span class="org-rainbow-delimiters-depth-1">]</span>, y<span class="org-rainbow-delimiters-depth-1">[</span>:60000<span class="org-rainbow-delimiters-depth-1">]</span>, y<span class="org-rainbow-delimiters-depth-1">[</span>60000:<span class="org-rainbow-delimiters-depth-1">]</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org054ba16" class="outline-3">
+<h3 id="org054ba16">Training a Binary Classifier</h3>
+<div class="outline-text-3" id="text-org054ba16">
+<div class="org-src-container">
+<pre class="src src-python" id="org3f61f7a"><span class="org-variable-name">y_train_5</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span>y_train <span class="org-operator">==</span> <span class="org-string">'5'</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">True for all 5s, False for all other digits</span>
+<span class="org-variable-name">y_test_5</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span>y_test <span class="org-operator">==</span> <span class="org-string">'5'</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org4e2ba23"><span class="org-keyword">from</span> sklearn.linear_model <span class="org-keyword">import</span> SGDClassifier
+
+<span class="org-variable-name">sgd_clf</span> <span class="org-operator">=</span> SGDClassifier<span class="org-rainbow-delimiters-depth-1">(</span>random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+sgd_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train_5<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org1eb00d1">
+SGDClassifier(random_state=42)
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org9cc3bfe">sgd_clf.predict<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>some_digit<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org91d3406">
+[ True]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga49059c" class="outline-2">
+<h2 id="orga49059c">Performance Measures</h2>
+<div class="outline-text-2" id="text-orga49059c">
+</div>
+<div id="outline-container-orgca0d13d" class="outline-3">
+<h3 id="orgca0d13d">Measuring Accuracy Using Cross-Validation</h3>
+<div class="outline-text-3" id="text-orgca0d13d">
+<div class="org-src-container">
+<pre class="src src-python" id="org7dab7d7"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> cross_val_score
+
+cross_val_score<span class="org-rainbow-delimiters-depth-1">(</span>sgd_clf, X <span class="org-operator">=</span> X_train,y <span class="org-operator">=</span>  y_train_5, cv<span class="org-operator">=</span>3, scoring<span class="org-operator">=</span><span class="org-string">"accuracy"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orga336aa7">
+[0.95035 0.96035 0.9604 ]
+</pre>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="all" frame="border" align="center">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">PARAMETER</th>
+<th scope="col" class="org-left">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><span class="Code">estimator</span></td>
+<td class="org-left">The object to use to fit the data.</td>
+</tr>
+
+<tr>
+<td class="org-left"><span class="Code">X</span></td>
+<td class="org-left">The data to fit. Can be for example a list, or an array.</td>
+</tr>
+
+<tr>
+<td class="org-left"><span class="Code">y</span></td>
+<td class="org-left">The target variable to try to predict in the case of supervised learning.</td>
+</tr>
+
+<tr>
+<td class="org-left"><span class="Code">cv</span></td>
+<td class="org-left">Determines the cross-validation splitting strategy.</td>
+</tr>
+
+<tr>
+<td class="org-left"><span class="Code">scoring</span></td>
+<td class="org-left">A str (see model evaluation documentation) or a scorer callable object / function with signature scorer(estimator, X, y) which should return only a single value.</td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org5d2e789"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> StratifiedKFold
+<span class="org-keyword">from</span> sklearn.base <span class="org-keyword">import</span> clone
+
+<span class="org-variable-name">skfolds</span> <span class="org-operator">=</span> StratifiedKFold<span class="org-rainbow-delimiters-depth-1">(</span>n_splits<span class="org-operator">=</span>3<span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">add shuffle=True if the dataset is not</span>
+                                       <span class="org-comment-delimiter"># </span><span class="org-comment">already shuffled</span>
+<span class="org-keyword">for</span> train_index, test_index <span class="org-keyword">in</span> skfolds.split<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train_5<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-variable-name">clone_clf</span> <span class="org-operator">=</span> clone<span class="org-rainbow-delimiters-depth-1">(</span>sgd_clf<span class="org-rainbow-delimiters-depth-1">)</span>
+    <span class="org-variable-name">X_train_folds</span> <span class="org-operator">=</span> X_train<span class="org-rainbow-delimiters-depth-1">[</span>train_index<span class="org-rainbow-delimiters-depth-1">]</span>
+    <span class="org-variable-name">y_train_folds</span> <span class="org-operator">=</span> y_train_5<span class="org-rainbow-delimiters-depth-1">[</span>train_index<span class="org-rainbow-delimiters-depth-1">]</span>
+    <span class="org-variable-name">X_test_fold</span> <span class="org-operator">=</span> X_train<span class="org-rainbow-delimiters-depth-1">[</span>test_index<span class="org-rainbow-delimiters-depth-1">]</span>
+    <span class="org-variable-name">y_test_fold</span> <span class="org-operator">=</span> y_train_5<span class="org-rainbow-delimiters-depth-1">[</span>test_index<span class="org-rainbow-delimiters-depth-1">]</span>
+
+    clone_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train_folds, y_train_folds<span class="org-rainbow-delimiters-depth-1">)</span>
+    <span class="org-variable-name">y_pred</span> <span class="org-operator">=</span> clone_clf.predict<span class="org-rainbow-delimiters-depth-1">(</span>X_test_fold<span class="org-rainbow-delimiters-depth-1">)</span>
+    <span class="org-variable-name">n_correct</span> <span class="org-operator">=</span> <span class="org-builtin">sum</span><span class="org-rainbow-delimiters-depth-1">(</span>y_pred <span class="org-operator">==</span> y_test_fold<span class="org-rainbow-delimiters-depth-1">)</span>
+    <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>n_correct <span class="org-operator">/</span> <span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-2">(</span>y_pred<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org5dabbc7">
+0.95035
+0.96035
+0.9604
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org33474b4"><span class="org-keyword">from</span> sklearn.dummy <span class="org-keyword">import</span> DummyClassifier
+
+<span class="org-variable-name">dummy_clf</span> <span class="org-operator">=</span> DummyClassifier<span class="org-rainbow-delimiters-depth-1">()</span>
+dummy_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train_5<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-builtin">any</span><span class="org-rainbow-delimiters-depth-2">(</span>dummy_clf.predict<span class="org-rainbow-delimiters-depth-3">(</span>X_train<span class="org-rainbow-delimiters-depth-3">)</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orgd011da3">
+False
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orga91d59c">cross_val_score<span class="org-rainbow-delimiters-depth-1">(</span>dummy_clf, X_train, y_train_5, cv<span class="org-operator">=</span>3, scoring<span class="org-operator">=</span><span class="org-string">"accuracy"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org57de47a">
+[0.90965 0.90965 0.90965]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgaa0bf63" class="outline-3">
+<h3 id="orgaa0bf63">Confusion Matrix</h3>
+<div class="outline-text-3" id="text-orgaa0bf63">
+<div class="org-src-container">
+<pre class="src src-python" id="orgf3c8c44"><span class="org-keyword">from</span> sklearn.model_selection <span class="org-keyword">import</span> cross_val_predict
+
+<span class="org-variable-name">y_train_pred</span> <span class="org-operator">=</span> cross_val_predict<span class="org-rainbow-delimiters-depth-1">(</span>sgd_clf, X_train, y_train_5, cv<span class="org-operator">=</span>3<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org4d78181"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> confusion_matrix
+
+<span class="org-variable-name">cm</span> <span class="org-operator">=</span> confusion_matrix<span class="org-rainbow-delimiters-depth-1">(</span>y_train_5, y_train_pred<span class="org-rainbow-delimiters-depth-1">)</span>
+cm
+</pre>
+</div>
+
+<pre class="example" id="orgfa4b3c3">
+[[53892   687]
+ [ 1891  3530]]
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgb553099"><span class="org-variable-name">y_train_perfect_predictions</span> <span class="org-operator">=</span> y_train_5  <span class="org-comment-delimiter"># </span><span class="org-comment">pretend we reached perfection</span>
+confusion_matrix<span class="org-rainbow-delimiters-depth-1">(</span>y_train_5, y_train_perfect_predictions<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orga5849d6">
+[[54579     0]
+ [    0  5421]]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgf36119f" class="outline-3">
+<h3 id="orgf36119f">Presicion and Recall</h3>
+<div class="outline-text-3" id="text-orgf36119f">
+<div class="org-src-container">
+<pre class="src src-python" id="orgb7a2667"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> precision_score, recall_score
+
+precision_score<span class="org-rainbow-delimiters-depth-1">(</span>y_train_5, y_train_pred<span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">== 3530 / (687 + 3530)</span>
+</pre>
+</div>
+
+<pre class="example" id="org9b40613">
+0.8370879772350012
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org5770e1c"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>cm<span class="org-rainbow-delimiters-depth-2">[</span>1, 1<span class="org-rainbow-delimiters-depth-2">]</span> <span class="org-operator">/</span> <span class="org-rainbow-delimiters-depth-2">(</span>cm<span class="org-rainbow-delimiters-depth-3">[</span>0, 1<span class="org-rainbow-delimiters-depth-3">]</span> <span class="org-operator">+</span> cm<span class="org-rainbow-delimiters-depth-3">[</span>1, 1<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org082076b">
+0.8370879772350012
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org425796e"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>recall_score<span class="org-rainbow-delimiters-depth-2">(</span>y_train_5, y_train_pred<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orgd1f5f37">
+0.6511713705958311
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org211bfcd"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>cm<span class="org-rainbow-delimiters-depth-2">[</span>1, 1<span class="org-rainbow-delimiters-depth-2">]</span> <span class="org-operator">/</span> <span class="org-rainbow-delimiters-depth-2">(</span>cm<span class="org-rainbow-delimiters-depth-3">[</span>1, 0<span class="org-rainbow-delimiters-depth-3">]</span> <span class="org-operator">+</span> cm<span class="org-rainbow-delimiters-depth-3">[</span>1, 1<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org0fb4626">
+0.6511713705958311
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org995396a"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> f1_score
+
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>f1_score<span class="org-rainbow-delimiters-depth-2">(</span>y_train_5, y_train_pred<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orgee05026">
+0.7325171197343847
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org50e6fa9"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>cm<span class="org-rainbow-delimiters-depth-2">[</span>1, 1<span class="org-rainbow-delimiters-depth-2">]</span> <span class="org-operator">/</span> <span class="org-rainbow-delimiters-depth-2">(</span>cm<span class="org-rainbow-delimiters-depth-3">[</span>1, 1<span class="org-rainbow-delimiters-depth-3">]</span> <span class="org-operator">+</span> <span class="org-rainbow-delimiters-depth-3">(</span>cm<span class="org-rainbow-delimiters-depth-4">[</span>1, 0<span class="org-rainbow-delimiters-depth-4">]</span> <span class="org-operator">+</span> cm<span class="org-rainbow-delimiters-depth-4">[</span>0, 1<span class="org-rainbow-delimiters-depth-4">]</span><span class="org-rainbow-delimiters-depth-3">)</span> <span class="org-operator">/</span> 2<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orgc57d0e0">
+0.7325171197343847
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4fa8579" class="outline-3">
+<h3 id="org4fa8579">Precision-Recall Trade-off</h3>
+<div class="outline-text-3" id="text-org4fa8579">
+<div class="org-src-container">
+<pre class="src src-python" id="org6f74e7e"><span class="org-variable-name">y_scores</span> <span class="org-operator">=</span> sgd_clf.decision_function<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>some_digit<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>y_scores<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orgc431509">
+[2164.22030239]
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org883f4a7"><span class="org-variable-name">threshold</span> <span class="org-operator">=</span> 0
+<span class="org-variable-name">y_some_digit_pred</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span>y_scores <span class="org-operator">&gt;</span> threshold<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>y_some_digit_pred<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org842a64e">
+[ True]
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgb2ae895"><span class="org-variable-name">threshold</span> <span class="org-operator">=</span> 3000
+<span class="org-variable-name">y_some_digit_pred</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span>y_scores <span class="org-operator">&gt;</span> threshold<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>y_some_digit_pred<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orgc0fb55a">
+[False]
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org1ede461"><span class="org-variable-name">y_scores</span> <span class="org-operator">=</span> cross_val_predict<span class="org-rainbow-delimiters-depth-1">(</span>sgd_clf, X_train, y_train_5, cv<span class="org-operator">=</span>3,
+                             method<span class="org-operator">=</span><span class="org-string">"decision_function"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgcf3280a"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> precision_recall_curve
+
+<span class="org-variable-name">precisions</span>, <span class="org-variable-name">recalls</span>, <span class="org-variable-name">thresholds</span> <span class="org-operator">=</span> precision_recall_curve<span class="org-rainbow-delimiters-depth-1">(</span>y_train_5, y_scores<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgae03993">plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>8, 4<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">extra code &#8211; it's not needed, just formatting</span>
+plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>thresholds, precisions<span class="org-rainbow-delimiters-depth-2">[</span>:<span class="org-operator">-</span>1<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"b--"</span>, label<span class="org-operator">=</span><span class="org-string">"Precision"</span>, linewidth<span class="org-operator">=</span>2<span class="org-rainbow-delimiters-depth-1">)</span>
+plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>thresholds, recalls<span class="org-rainbow-delimiters-depth-2">[</span>:<span class="org-operator">-</span>1<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"g-"</span>, label<span class="org-operator">=</span><span class="org-string">"Recall"</span>, linewidth<span class="org-operator">=</span>2<span class="org-rainbow-delimiters-depth-1">)</span>
+plt.vlines<span class="org-rainbow-delimiters-depth-1">(</span>threshold, 0, 1.0, <span class="org-string">"k"</span>, <span class="org-string">"dotted"</span>, label<span class="org-operator">=</span><span class="org-string">"threshold"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">extra code &#8211; this section just beautifies and saves Figure 3&#8211;5</span>
+<span class="org-variable-name">idx</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span>thresholds <span class="org-operator">&gt;=</span> threshold<span class="org-rainbow-delimiters-depth-1">)</span>.argmax<span class="org-rainbow-delimiters-depth-1">()</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">first index &#8805; threshold</span>
+plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>thresholds<span class="org-rainbow-delimiters-depth-2">[</span>idx<span class="org-rainbow-delimiters-depth-2">]</span>, precisions<span class="org-rainbow-delimiters-depth-2">[</span>idx<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"bo"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>thresholds<span class="org-rainbow-delimiters-depth-2">[</span>idx<span class="org-rainbow-delimiters-depth-2">]</span>, recalls<span class="org-rainbow-delimiters-depth-2">[</span>idx<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"go"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.axis<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-operator">-</span>50000, 50000, 0, 1<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.xlabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"Threshold"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.legend<span class="org-rainbow-delimiters-depth-1">(</span>loc<span class="org-operator">=</span><span class="org-string">"center right"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"precision-recall-comparison"</span>, close<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+
+<div id="orgaab377d" class="figure">
+<p><img src="images/Classification/precision-recall-comparison.png" alt="precision-recall-comparison.png" />
+</p>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgb3cc5a0"><span class="org-keyword">import</span> matplotlib.patches <span class="org-keyword">as</span> patches  <span class="org-comment-delimiter"># </span><span class="org-comment">extra code &#8211; for the curved arrow</span>
+
+plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>6, 5<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">extra code &#8211; not needed, just formatting</span>
+
+plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>recalls, precisions, linewidth<span class="org-operator">=</span>2, label<span class="org-operator">=</span><span class="org-string">"Precision/Recall curve"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">extra code &#8211; just beautifies and saves Figure 3&#8211;6</span>
+plt.plot<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>recalls<span class="org-rainbow-delimiters-depth-3">[</span>idx<span class="org-rainbow-delimiters-depth-3">]</span>, recalls<span class="org-rainbow-delimiters-depth-3">[</span>idx<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[</span>0., precisions<span class="org-rainbow-delimiters-depth-3">[</span>idx<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"k:"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.plot<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>0.0, recalls<span class="org-rainbow-delimiters-depth-3">[</span>idx<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[</span>precisions<span class="org-rainbow-delimiters-depth-3">[</span>idx<span class="org-rainbow-delimiters-depth-3">]</span>, precisions<span class="org-rainbow-delimiters-depth-3">[</span>idx<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"k:"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.plot<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>recalls<span class="org-rainbow-delimiters-depth-3">[</span>idx<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[</span>precisions<span class="org-rainbow-delimiters-depth-3">[</span>idx<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"ko"</span>,
+         label<span class="org-operator">=</span><span class="org-string">"Point at threshold 3,000"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.gca<span class="org-rainbow-delimiters-depth-1">()</span>.add_patch<span class="org-rainbow-delimiters-depth-1">(</span>patches.FancyArrowPatch<span class="org-rainbow-delimiters-depth-2">(</span>
+    <span class="org-rainbow-delimiters-depth-3">(</span>0.79, 0.60<span class="org-rainbow-delimiters-depth-3">)</span>, <span class="org-rainbow-delimiters-depth-3">(</span>0.61, 0.78<span class="org-rainbow-delimiters-depth-3">)</span>,
+    connectionstyle<span class="org-operator">=</span><span class="org-string">"arc3,rad=.2"</span>,
+    arrowstyle<span class="org-operator">=</span><span class="org-string">"Simple, tail_width=1.5, head_width=8, head_length=10"</span>,
+    color<span class="org-operator">=</span><span class="org-string">"</span><span class="custom-1"><span class="custom-2">#444444</span></span><span class="org-string">"</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.text<span class="org-rainbow-delimiters-depth-1">(</span>0.56, 0.62, <span class="org-string">"Higher</span><span class="org-constant">\n</span><span class="org-string">threshold"</span>, color<span class="org-operator">=</span><span class="org-string">"</span><span class="custom"><span class="custom-2">#333333</span></span><span class="org-string">"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.xlabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"Recall"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.ylabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"Precision"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.axis<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>0, 1, 0, 1<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+plt.legend<span class="org-rainbow-delimiters-depth-1">(</span>loc<span class="org-operator">=</span><span class="org-string">"lower left"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"precision-recall-comparison-2"</span>, close<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+
+<div id="orgcffe79c" class="figure">
+<p><img src="images/Classification/precision-recall-comparison-2.png" alt="precision-recall-comparison-2.png" />
+</p>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgb4b1755"><span class="org-variable-name">idx_for_90_precision</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span>precisions <span class="org-operator">&gt;=</span> 0.90<span class="org-rainbow-delimiters-depth-1">)</span>.argmax<span class="org-rainbow-delimiters-depth-1">()</span>
+<span class="org-variable-name">threshold_for_90_precision</span> <span class="org-operator">=</span> thresholds<span class="org-rainbow-delimiters-depth-1">[</span>idx_for_90_precision<span class="org-rainbow-delimiters-depth-1">]</span>
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>threshold_for_90_precision<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org967163e">
+3370.019499144183
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgbb5ed93"><span class="org-variable-name">y_train_pred_90</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span>y_scores <span class="org-operator">&gt;=</span> threshold_for_90_precision<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>precision_score<span class="org-rainbow-delimiters-depth-2">(</span>y_train_5, y_train_pred_90<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orgffd6ddc">
+0.9000345901072293
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org64aaddb"><span class="org-variable-name">recall_at_90_precision</span> <span class="org-operator">=</span> recall_score<span class="org-rainbow-delimiters-depth-1">(</span>y_train_5, y_train_pred_90<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>recall_at_90_precision<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orgd07cfbe">
+0.4799852425751706
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org704cce7" class="outline-3">
+<h3 id="org704cce7">The ROC Curve</h3>
+<div class="outline-text-3" id="text-org704cce7">
+<div class="org-src-container">
+<pre class="src src-python" id="orgfa59345"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> roc_curve
+
+<span class="org-variable-name">fpr</span>, <span class="org-variable-name">tpr</span>, <span class="org-variable-name">thresholds</span> <span class="org-operator">=</span> roc_curve<span class="org-rainbow-delimiters-depth-1">(</span>y_train_5, y_scores<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgfd0897e"><span class="org-variable-name">idx_for_threshold_at_90</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span>thresholds <span class="org-operator">&lt;=</span> threshold_for_90_precision<span class="org-rainbow-delimiters-depth-1">)</span>.argmax<span class="org-rainbow-delimiters-depth-1">()</span>
+<span class="org-variable-name">tpr_90</span>, <span class="org-variable-name">fpr_90</span> <span class="org-operator">=</span> tpr<span class="org-rainbow-delimiters-depth-1">[</span>idx_for_threshold_at_90<span class="org-rainbow-delimiters-depth-1">]</span>, fpr<span class="org-rainbow-delimiters-depth-1">[</span>idx_for_threshold_at_90<span class="org-rainbow-delimiters-depth-1">]</span>
+
+plt.figure<span class="org-rainbow-delimiters-depth-1">(</span>figsize<span class="org-operator">=</span><span class="org-rainbow-delimiters-depth-2">(</span>6, 5<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">extra code &#8211; not needed, just formatting</span>
+plt.plot<span class="org-rainbow-delimiters-depth-1">(</span>fpr, tpr, linewidth<span class="org-operator">=</span>2, label<span class="org-operator">=</span><span class="org-string">"ROC curve"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.plot<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>0, 1<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[</span>0, 1<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">'k:'</span>, label<span class="org-operator">=</span><span class="org-string">"Random classifier's ROC curve"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.plot<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>fpr_90<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[</span>tpr_90<span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-string">"ko"</span>, label<span class="org-operator">=</span><span class="org-string">"Threshold for 90% precision"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">extra code &#8211; just beautifies and saves Figure 3&#8211;7</span>
+plt.gca<span class="org-rainbow-delimiters-depth-1">()</span>.add_patch<span class="org-rainbow-delimiters-depth-1">(</span>patches.FancyArrowPatch<span class="org-rainbow-delimiters-depth-2">(</span>
+    <span class="org-rainbow-delimiters-depth-3">(</span>0.20, 0.89<span class="org-rainbow-delimiters-depth-3">)</span>, <span class="org-rainbow-delimiters-depth-3">(</span>0.07, 0.70<span class="org-rainbow-delimiters-depth-3">)</span>,
+    connectionstyle<span class="org-operator">=</span><span class="org-string">"arc3,rad=.4"</span>,
+    arrowstyle<span class="org-operator">=</span><span class="org-string">"Simple, tail_width=1.5, head_width=8, head_length=10"</span>,
+    color<span class="org-operator">=</span><span class="org-string">"</span><span class="custom-1"><span class="custom-2">#444444</span></span><span class="org-string">"</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.text<span class="org-rainbow-delimiters-depth-1">(</span>0.12, 0.71, <span class="org-string">"Higher</span><span class="org-constant">\n</span><span class="org-string">threshold"</span>, color<span class="org-operator">=</span><span class="org-string">"</span><span class="custom"><span class="custom-2">#333333</span></span><span class="org-string">"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.xlabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'False Positive Rate (Fall-Out)'</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.ylabel<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'True Positive Rate (Recall)'</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.axis<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>0, 1, 0, 1<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+plt.legend<span class="org-rainbow-delimiters-depth-1">(</span>loc<span class="org-operator">=</span><span class="org-string">"lower right"</span>, fontsize<span class="org-operator">=</span>13<span class="org-rainbow-delimiters-depth-1">)</span>
+cp.store_fig<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"roc-curve-plot"</span>, close<span class="org-operator">=</span><span class="org-constant">True</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+
+<div id="orga5e59be" class="figure">
+<p><img src="images/Classification/roc-curve-plot.png" alt="roc-curve-plot.png" />
+</p>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org5f62cf5"><span class="org-keyword">from</span> sklearn.metrics <span class="org-keyword">import</span> roc_auc_score
+
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>roc_auc_score<span class="org-rainbow-delimiters-depth-2">(</span>y_train_5, y_scores<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org8363d96">
+0.9604938554008616
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org87ed24a"><span class="org-keyword">from</span> sklearn.ensemble <span class="org-keyword">import</span> RandomForestClassifier
+
+<span class="org-variable-name">forest_clf</span> <span class="org-operator">=</span> RandomForestClassifier<span class="org-rainbow-delimiters-depth-1">(</span>random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8b66548" class="outline-3">
+<h3 id="org8b66548">Multi-Class Classification</h3>
+<div class="outline-text-3" id="text-org8b66548">
+<div class="org-src-container">
+<pre class="src src-python" id="org37c86f4"><span class="org-keyword">from</span> sklearn.svm <span class="org-keyword">import</span> SVC
+
+<span class="org-variable-name">svm_clf</span> <span class="org-operator">=</span> SVC<span class="org-rainbow-delimiters-depth-1">(</span>random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+svm_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train<span class="org-rainbow-delimiters-depth-2">[</span>:2000<span class="org-rainbow-delimiters-depth-2">]</span>, y_train<span class="org-rainbow-delimiters-depth-2">[</span>:2000<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>  
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgba312fc"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>svm_clf.predict<span class="org-rainbow-delimiters-depth-2">(</span><span class="org-rainbow-delimiters-depth-3">[</span>some_digit<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org4a6b54a">
+['5']
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org9d94eb2"><span class="org-variable-name">some_digit_scores</span> <span class="org-operator">=</span> svm_clf.decision_function<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>some_digit<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>some_digit_scores.<span class="org-builtin">round</span><span class="org-rainbow-delimiters-depth-2">(</span>2<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org9c98fcf">
+[[ 3.79  0.73  6.06  8.3  -0.29  9.3   1.75  2.77  7.21  4.82]]
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgc09c9a9"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>svm_clf.classes_<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orgc24c3f5">
+['0' '1' '2' '3' '4' '5' '6' '7' '8' '9']
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-python" id="orga1fad9a"><span class="org-keyword">from</span> sklearn.multiclass <span class="org-keyword">import</span> OneVsRestClassifier
+
+<span class="org-variable-name">ovr_clf</span> <span class="org-operator">=</span> OneVsRestClassifier<span class="org-rainbow-delimiters-depth-1">(</span>SVC<span class="org-rainbow-delimiters-depth-2">(</span>random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+ovr_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train<span class="org-rainbow-delimiters-depth-2">[</span>:2000<span class="org-rainbow-delimiters-depth-2">]</span>, y_train<span class="org-rainbow-delimiters-depth-2">[</span>:2000<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org8d07f57"><span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>ovr_clf.predict<span class="org-rainbow-delimiters-depth-2">(</span><span class="org-rainbow-delimiters-depth-3">[</span>some_digit<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-builtin">len</span><span class="org-rainbow-delimiters-depth-2">(</span>ovr_clf.estimators_<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org0f3b18f">
+['5']
+10
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org385a6ad"><span class="org-variable-name">sgd_clf</span> <span class="org-operator">=</span> SGDClassifier<span class="org-rainbow-delimiters-depth-1">(</span>random_state<span class="org-operator">=</span>42<span class="org-rainbow-delimiters-depth-1">)</span>
+sgd_clf.fit<span class="org-rainbow-delimiters-depth-1">(</span>X_train, y_train<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>sgd_clf.predict<span class="org-rainbow-delimiters-depth-2">(</span><span class="org-rainbow-delimiters-depth-3">[</span>some_digit<span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="org1bbc3bb">
+['3']
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="org199ff91">sgd_clf.decision_function<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>some_digit<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>.<span class="org-builtin">round</span><span class="org-rainbow-delimiters-depth-1">()</span>
+</pre>
+</div>
+
+<pre class="example" id="org9147c80">
+[[-31893. -34420.  -9531.   1824. -22320.  -1386. -26189. -16148.  -4604. -12051.]]
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python" id="orgd3edcc4">cross_val_score<span class="org-rainbow-delimiters-depth-1">(</span>sgd_clf, X_train, y_train, cv<span class="org-operator">=</span>3, scoring<span class="org-operator">=</span><span class="org-string">"accuracy"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<pre class="example" id="orgcae56d0">
+[0.87365 0.85835 0.8689 ]
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Daniel McGuiness</p>
+</div>
+</body>
+</html>
