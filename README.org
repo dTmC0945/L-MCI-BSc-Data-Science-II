@@ -1,0 +1,228 @@
+#+title: BSc Data Science II
+
+** Table of Contents :TOC_2:
+  - [[#lecture-information][Lecture Information]]
+  - [[#requirements-and-the-learning-outcomes][Requirements and the Learning Outcomes]]
+  - [[#grading-of-the-lecture][Grading of the Lecture]]
+  - [[#lecture-sources][Lecture Sources]]
+  - [[#structure-per-session][Structure per Session]]
+  - [[#documentation][Documentation]]
+  - [[#related-links][Related Links]]
+
+** Lecture Information
+
+- *WARNING:* This is the content only covered by me as this lecture is shared by
+  Peter Kandolf in Tutorials.
+- The goal of this lecture is to give you a much deeper understanding of how
+  machine learning algorithms work and work through practical examples.  
+- In this lecture we will focus on Neural Networks (NN) a type of machine
+  learning algorithm with uncountable amount of applications in industry.
+
+| DESCRIPTION        | VALUE                             |
+| Official Name      | Machine Learning & Data Science 2 |
+| Lecture Code       | MLDS                              |
+| Module Code        | MECH-B-5-MLDS-MLDS2-ILV           |
+| Degree             | B.Sc                              |
+| Program Name       | Mechatronik Design Innovation     |
+| Lecture Name       | Drive Systems                     |
+| Semester           | 5                                 |
+| Season             | WS                                |
+| Room Type          | Lecture Room                      |
+| Assignments        |                                   |
+| Lecturer           | Daniel T. McGuiness, Ph.D         |
+| Module Responsible | BnM                               |
+| Software           | Python                            |
+| Hardware           | -                                 |
+| SWS Total          | 4                                 |
+| SWS Teaching       | 2                                 |
+| UE Total           | 60                                |
+| ECTS               | 5                                 |
+| Lecture Type       | ILV                               |
+| Working Language   | English                           |
+
+** Requirements and the Learning Outcomes
+
+- The student should be comfortable with working with either Python and should
+  have gained a working knowledge of statistics.
+
+| REQUIREMENTS       | TAUGHT LECTURE     | CODE | DEGREE | OUTCOME             |
+| Python Programming | Software Design    | SWD  | B.Sc   | Programming         |
+| Working with IoT   | Internet of Things | IOT  | B.Sc   | Understanding AI/ML |
+| -                  | -                  | -    | -      | -                   |
+| -                  | -                  | -    | -      | -                   |
+| -                  | -                  | -    | -      | -                   |
+
+** Grading of the Lecture
+
+- The lecture will have one personal assignment, (along with tutorial work), which will be based
+  on applying machine learning principles with programming.
+- For the written exam you are allowed to write your own equation reference paper, as
+  long as it is a single sheet of A4, double sided and contains no exercise or solutions.
+        
+| ASSIGNMENT TYPE     | VALUE | QUANTITY |
+| Personal Assignment |    40 |        1 |
+| Final Exam          |    60 |        1 |
+| SUM                 |   100 |        2 |
+
+** Lecture Sources
+
+The following are a table of documentation which are useful resources which
+goes well with the lecture.
+
+| AUTHOR                        | TITLE                                                                          | PUBLISHER |
+| Gérard Dreyfus                | Neural Networks: Methodology and Applications                                  | Springer  |
+| Wes McKinney                  | Python for Data Analysis: Data Wrangling with Pandas, Numpy, and iPython       | Springer  |
+| Aurélien Géron                | Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow             | O'Reilly  |
+| B. Ramsundar, and R. B. Zadeh | TensorFlow for Deep Learning: From Linear Regression To Reinforcement Learning | O'Reilly  |
+| Moroney L.                    | AI and Machine Learning for Coders                                             | O' Reilly |
+| Aggarwal S.                   | Neural Networks and Deep Learning                                              | Springer  |
+| Raschka., et. al.             | Python Machine Learning                                                        | Packt     |
+| Albon C.                      | Machine Learning with Python Cookbook                                          | O' Reilly |
+| Ng A., et.al                  | CS229 Lecture Notes                                                            | -         |
+| Migel A., et. al              | Lecture Notes on Machine Learning                                              | -         |
+
+    
+- The content and unit distribution of the lecture is as follows where a unit
+  is defined as 45 min lecture.
+
+| TOPIC                                               | UNITS | SELF STUDY |
+| Support Vector Machines                             |     4 |          8 |
+| Decision Trees                                      |     4 |          8 |
+| Ensemble Learning and Random Forests                |     4 |          8 |
+| Dimensionality Reduction                            |     4 |          8 |
+| Unsupervised Learning                               |     4 |          8 |
+| Introduction to Artificial Neural Networks          |     4 |          8 |
+| Computer Vision using Convolutional Neural Networks |     4 |          8 |
+| SUM                                                 |    28 |         56 |
+
+** Structure per Session
+
+- Support Vector Machines
+  - Introduction
+  - Linear svm Classification
+    - Soft Margin Classification
+  - Nonlinear svm Classification
+    - Polynomial Kernel
+    - Similarity Features
+    - Gaussian RBF Kernel
+  - svm Regression
+  - Understanding Linear svm Classifiers
+- Decision Trees
+  - Introduction
+    - Advantages and Disadvantages
+  - Training and Visualising Decision Trees
+  - Making Predictions
+    - Gini Impurity
+  - Estimating Class Probabilities
+  - The CART Training Algorithm
+  - Gini Impurity or Entropy?
+  - Regularization Hyperparameters
+  - Regression
+  - Sensitivity to Axis Orientation
+  - DTs Have a High Variance
+- Ensemble Learning and Random Forests
+  - Introduction
+    - Voting Classifiers
+  - Bagging and Pasting
+    - Implementation
+    - Out-of-Bag Evaluation
+    - Random Patches and Random Subspaces
+  - Random Forests
+    - Extra-Trees
+    - Feature Importance
+  - Boosting
+    - AdaBoost
+    - Gradient Boosting
+    - Histogram-Based Gradient Boosting
+  - Bagging v. Boosting
+      - Similarities
+      - Differences
+  - Stacking
+- Dimensionality Reduction
+  - Introduction
+    - The Problems of Dimensions
+  - Main Approaches to Dimensionality Reduction
+    - Projection
+    - Manifold Learning
+  - Principal Component Analysis (PCA)
+    - Preserving the Variance
+    - Principal Components
+    - Downgrading Dimensions
+      - Explained Variance Ratio
+    - The Right Number of Dimensions
+    - PCA for Compression
+    - Randomized PCA
+    - Incremental PCA
+  - Random Projection
+  - Locally Linear Embedding
+      - Operation Principle
+    - Speed of Dimensionality Reduction
+- Unsupervised Learning
+  - Introduction
+  - Clustering Algorithms
+    - k-means
+      - The Operation Principle
+      - Centroid initialisation methods
+      - Accelerated and mini-batch 
+      - Finding the optimal number of clusters
+    - Limits of K-Means
+    - Using Clustering for Image Segmentation
+    - Using Clustering for Semi-Supervised Learning
+    - DBSCAN
+      - Other Clustering Algorithms
+  - Gaussian Mixtures
+    - Using Gaussian Mixtures for Anomaly Detection
+    - Selecting the Number of Clusters
+    - Bayesian Gaussian Mixture Models
+    - Other Algorithms for Anomaly and Novelty Detection
+- Introduction to Artificial Neural Networks
+  - Introduction
+  - From Biology to Silicon: Artificial Neurons
+    - Biological Neurons
+    - Logical Computations with Neurons
+    - The Perceptron
+    - Multilayer Perceptron and Backpropagation
+    - Regression MLPs
+    - Classification MLPs
+  - Implementing mlps with Keras
+    - Building an Image Classifier Using Sequential API
+      - Using Keras to load the dataset
+    - Creating the model using the sequential API
+      - Model Compiling
+      - Training and Evaluating Models
+      - Using Model to Make Predictions
+    - Building a Regression MLP Using the Sequential API
+    - Building Complex Models Using the Functional API
+    - Saving and Restoring a Model
+- Computer Vision using Convolutional Neural Networks
+  - Introduction
+  - Visual Cortex Architecture
+  - Convolutional Layers
+    - Filters
+    - Stacking Multiple Feature Maps
+    - Implementing Convolutional Layers with Keras
+    - Memory Requirements
+  - Pooling Layer
+  - Implementing Pooling Layers with Keras
+  - CNN Architectures
+    - LeNet-5
+    - AlexNet
+    - GoogLeNet
+    - VGGNet
+    - ResNet
+  - Implementing a ResNet-34 CNN using Keras
+  - Using Pre-Trained Models from
+  - Pre-Trained Models for Transfer Learning
+  - Classification and Localisation
+  - Object Detection
+    - Fully Convolutional Networks
+  - Object Tracking
+  - Semantic Segmentation
+
+** Documentation
+
+For any student in need of a LaTeX class designed from the ground-up for
+assignment/lab/thesis/slide for MCI needs please have a look at ~mcidoc~ class
+hosted at [[https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc][GitHub]].
+
+(-DTMc 2025)
