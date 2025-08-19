@@ -5,6 +5,7 @@
   - [[#requirements-and-the-learning-outcomes][Requirements and the Learning Outcomes]]
   - [[#grading-of-the-lecture][Grading of the Lecture]]
   - [[#lecture-sources][Lecture Sources]]
+  - [[#content-and-unit-distribution][Content and Unit Distribution]]
   - [[#structure-per-session][Structure per Session]]
   - [[#documentation][Documentation]]
   - [[#related-links][Related Links]]
@@ -80,6 +81,8 @@ goes well with the lecture.
 | Albon C.                      | Machine Learning with Python Cookbook                                          | O' Reilly |
 | Ng A., et.al                  | CS229 Lecture Notes                                                            | -         |
 | Migel A., et. al              | Lecture Notes on Machine Learning                                              | -         |
+
+** Content and Unit Distribution
 
     
 - The content and unit distribution of the lecture is as follows where a unit
