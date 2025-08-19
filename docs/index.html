@@ -1,351 +1,827 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Code Supplement for Machine Learning and Data Science II</title>
-<meta name="author" content="Daniel McGuiness" />
-<meta name="generator" content="Org Mode" />
-<style>
-  #content { max-width: 60em; margin: auto; }
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
-  .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
-  .tag    { background-color: #eee; font-family: monospace;
-            padding: 2px; font-size: 80%; font-weight: normal; }
-  .timestamp { color: #bebebe; }
-  .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
-  .underline { text-decoration: underline; }
-  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
-  p.verse { margin-left: 3%; }
-  pre {
-    border: 1px solid #e6e6e6;
-    border-radius: 3px;
-    background-color: #f2f2f2;
-    padding: 8pt;
-    font-family: monospace;
-    overflow: auto;
-    margin: 1.2em;
-  }
-  pre.src {
-    position: relative;
-    overflow: auto;
-  }
-  pre.src:before {
-    display: none;
-    position: absolute;
-    top: -8px;
-    right: 12px;
-    padding: 3px;
-    color: #555;
-    background-color: #f2f2f299;
-  }
-  pre.src:hover:before { display: inline; margin-top: 14px;}
-  /* Languages per Org manual */
-  pre.src-asymptote:before { content: 'Asymptote'; }
-  pre.src-awk:before { content: 'Awk'; }
-  pre.src-authinfo::before { content: 'Authinfo'; }
-  pre.src-C:before { content: 'C'; }
-  /* pre.src-C++ doesn't work in CSS */
-  pre.src-clojure:before { content: 'Clojure'; }
-  pre.src-css:before { content: 'CSS'; }
-  pre.src-D:before { content: 'D'; }
-  pre.src-ditaa:before { content: 'ditaa'; }
-  pre.src-dot:before { content: 'Graphviz'; }
-  pre.src-calc:before { content: 'Emacs Calc'; }
-  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-fortran:before { content: 'Fortran'; }
-  pre.src-gnuplot:before { content: 'gnuplot'; }
-  pre.src-haskell:before { content: 'Haskell'; }
-  pre.src-hledger:before { content: 'hledger'; }
-  pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
-  pre.src-latex:before { content: 'LaTeX'; }
-  pre.src-ledger:before { content: 'Ledger'; }
-  pre.src-lisp:before { content: 'Lisp'; }
-  pre.src-lilypond:before { content: 'Lilypond'; }
-  pre.src-lua:before { content: 'Lua'; }
-  pre.src-matlab:before { content: 'MATLAB'; }
-  pre.src-mscgen:before { content: 'Mscgen'; }
-  pre.src-ocaml:before { content: 'Objective Caml'; }
-  pre.src-octave:before { content: 'Octave'; }
-  pre.src-org:before { content: 'Org mode'; }
-  pre.src-oz:before { content: 'OZ'; }
-  pre.src-plantuml:before { content: 'Plantuml'; }
-  pre.src-processing:before { content: 'Processing.js'; }
-  pre.src-python:before { content: 'Python'; }
-  pre.src-R:before { content: 'R'; }
-  pre.src-ruby:before { content: 'Ruby'; }
-  pre.src-sass:before { content: 'Sass'; }
-  pre.src-scheme:before { content: 'Scheme'; }
-  pre.src-screen:before { content: 'Gnu Screen'; }
-  pre.src-sed:before { content: 'Sed'; }
-  pre.src-sh:before { content: 'shell'; }
-  pre.src-sql:before { content: 'SQL'; }
-  pre.src-sqlite:before { content: 'SQLite'; }
-  /* additional languages in org.el's org-babel-load-languages alist */
-  pre.src-forth:before { content: 'Forth'; }
-  pre.src-io:before { content: 'IO'; }
-  pre.src-J:before { content: 'J'; }
-  pre.src-makefile:before { content: 'Makefile'; }
-  pre.src-maxima:before { content: 'Maxima'; }
-  pre.src-perl:before { content: 'Perl'; }
-  pre.src-picolisp:before { content: 'Pico Lisp'; }
-  pre.src-scala:before { content: 'Scala'; }
-  pre.src-shell:before { content: 'Shell Script'; }
-  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
-  /* additional language identifiers per "defun org-babel-execute"
-       in ob-*.el */
-  pre.src-cpp:before  { content: 'C++'; }
-  pre.src-abc:before  { content: 'ABC'; }
-  pre.src-coq:before  { content: 'Coq'; }
-  pre.src-groovy:before  { content: 'Groovy'; }
-  /* additional language identifiers from org-babel-shell-names in
-     ob-shell.el: ob-shell is the only babel language using a lambda to put
-     the execution function name together. */
-  pre.src-bash:before  { content: 'bash'; }
-  pre.src-csh:before  { content: 'csh'; }
-  pre.src-ash:before  { content: 'ash'; }
-  pre.src-dash:before  { content: 'dash'; }
-  pre.src-ksh:before  { content: 'ksh'; }
-  pre.src-mksh:before  { content: 'mksh'; }
-  pre.src-posh:before  { content: 'posh'; }
-  /* Additional Emacs modes also supported by the LaTeX listings package */
-  pre.src-ada:before { content: 'Ada'; }
-  pre.src-asm:before { content: 'Assembler'; }
-  pre.src-caml:before { content: 'Caml'; }
-  pre.src-delphi:before { content: 'Delphi'; }
-  pre.src-html:before { content: 'HTML'; }
-  pre.src-idl:before { content: 'IDL'; }
-  pre.src-mercury:before { content: 'Mercury'; }
-  pre.src-metapost:before { content: 'MetaPost'; }
-  pre.src-modula-2:before { content: 'Modula-2'; }
-  pre.src-pascal:before { content: 'Pascal'; }
-  pre.src-ps:before { content: 'PostScript'; }
-  pre.src-prolog:before { content: 'Prolog'; }
-  pre.src-simula:before { content: 'Simula'; }
-  pre.src-tcl:before { content: 'tcl'; }
-  pre.src-tex:before { content: 'TeX'; }
-  pre.src-plain-tex:before { content: 'Plain TeX'; }
-  pre.src-verilog:before { content: 'Verilog'; }
-  pre.src-vhdl:before { content: 'VHDL'; }
-  pre.src-xml:before { content: 'XML'; }
-  pre.src-nxml:before { content: 'XML'; }
-  /* add a generic configuration mode; LaTeX export needs an additional
-     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
-  pre.src-conf:before { content: 'Configuration File'; }
-
-  table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
-  td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
-  dt { font-weight: bold; }
-  .footpara { display: inline; }
-  .footdef  { margin-bottom: 1em; }
-  .figure { padding: 1em; }
-  .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
-  .inlinetask {
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 10px;
-    background: #ffffcc;
-  }
-  #org-div-home-and-up
-   { text-align: right; font-size: 70%; white-space: nowrap; }
-  textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
-  .code-highlighted { background-color: #ffff00; }
-  .org-info-js_info-navigation { border-style: none; }
-  #org-info-js_console-label
-    { font-size: 10px; font-weight: bold; white-space: nowrap; }
-  .org-info-js_search-highlight
-    { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { }
-</style>
-<link rel="stylesheet" href="config/style.css">
-<script type="text/javascript"  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="config/test.js">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
-// @license-end
-</script>
-
-<script>
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
-org_html_manager.set("TOC_DEPTH", "3");
-org_html_manager.set("LINK_HOME", "");
-org_html_manager.set("LINK_UP", "");
-org_html_manager.set("LOCAL_TOC", "1");
-org_html_manager.set("VIEW_BUTTONS", "0");
-org_html_manager.set("MOUSE_HINT", "underline");
-org_html_manager.set("FIXED_TOC", "0");
-org_html_manager.set("TOC", "1");
-org_html_manager.set("VIEW", "info");
-org_html_manager.setup();  // activate after the parameters are set
-// @license-end
-</script>
-</head>
-<body>
-<div id="content" class="content">
-<h1 class="title">Code Supplement for Machine Learning and Data Science II</h1>
-<p>
-Welcome to the code resource and practice materials for the
-lecture <span class="Hlight">Machine Learning and Data Science II</span> where our focus
-will be on the topic of <span class="Hlight">Machine Learning and Neural Networks</span>.
-</p>
-
-<p>
-All the code presented herein are written in Python and have
-been tested to be working using <span class="Hlight">python 3.12</span> using macOS Sonoma 14.5. The
-code should (while not promising) work on windows, however it is up to the
-reader to do the necessary debugging of the code for it to work on their
-respective systems.
-</p>
-
-<p>
-To check whether your system is supported you can run the following code.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-python" id="orga0acbf7"><span class="org-keyword">import</span> sys
-<span class="org-comment-delimiter"># </span><span class="org-comment">To test if you python version is above 3.7</span>
-<span class="org-keyword">assert</span> sys.version_info <span class="org-operator">&gt;=</span> <span class="org-rainbow-delimiters-depth-1">(</span>3, 7<span class="org-rainbow-delimiters-depth-1">)</span>
-
-<span class="org-keyword">from</span> packaging <span class="org-keyword">import</span> version
-<span class="org-keyword">import</span> sklearn
-<span class="org-comment-delimiter"># </span><span class="org-comment">To test if you have the minimum required Sklearn</span>
-<span class="org-keyword">assert</span> version.parse<span class="org-rainbow-delimiters-depth-1">(</span>sklearn.__version__<span class="org-rainbow-delimiters-depth-1">)</span> <span class="org-operator">&gt;=</span> version.parse<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"1.0.1"</span><span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
+<!DOCTYPE html>
+<html lang="en-US" xml:lang="en-US">
+ <head>
+  <title>
+   Contents
+  </title>
+    <link rel='icon' type='image/x-icon' href='figures/logo.svg'></link>
+  <meta charset="utf-8"/>
+  <meta content="ParSnip" name="generator"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <link href="DataScienceIILectureBook.css" rel="stylesheet" type="text/css"/>
+  <meta content="DataScienceIILectureBook.tex" name="src"/>
+  <script async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js" type="text/javascript">
+  </script>
+  <link href="flatweb.css" rel="stylesheet" type="text/css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+  </script>
+  <script src="flatjs.js">
+  </script>
+  <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"/>
+  <script type="module">
+   import pdfjsDist from 'https://cdn.jsdelivr.net/npm/pdfjs-dist@5.3.93/+esm'
+  </script>
+  <script>
+   function moveTOC() { 
+var htmlShow = document.getElementsByClassName("wide"); 
+if (htmlShow[0].style.display === "none") { 
+htmlShow[0].style.display = "block"; 
+} else { 
+htmlShow[0].style.display = "none"; 
+} 
+}
+  </script>
+  <link href="https://unpkg.com/nord-highlightjs@0.1.0/dist/nord.css" rel="stylesheet" type="text/css">
+   <script src="https://unpkg.com/@highlightjs/cdn-assets@11.3.1/highlight.min.js">
+   </script>
+   <script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js">
+   </script>
+   <link href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" rel="stylesheet">
+    <script src="flatjs.js">
+    </script>
+    <header>
+    </header>
+   </link>
+  </link>
+ </head>
+ <body>
+  <!--l. 61-->
+  <nav class="wide">
+   <div class="contents">
+    <h3 style="font-weight:lighter;padding: 20px 0 20px 0;">
+     WebBook
+    </h3>
+    <h2>
+     Table of Contents
+    </h2>
+    <div style="margin: 50px auto;">
+     <h3>
+      Lecture Sources
+     </h3>
+     <div style="align-content: center;">
+      <div class="lecbook-text" style="/*! float: right; *//*! width: 100px; *//*! position: absolute; *//*! right: 90px; *//*! top: 220px; */">
+       <span style='font: 400 12px/18px "Source Sans Pro", sans-serif;font-size: 12px;text-align: center;text-transform: uppercase;letter-spacing: 1px;'>
+        Lecture Book
+       </span>
+      </div>
+     </div>
+    </div>
+    <div id="author-info" style="padding-bottom: 10px;">
+     <div id="author-logo">
+      <img src="figures/logo.svg" style="margin: 10px 0; width: 100%;"/>
+     </div>
+     <h4 style="color:#7aa0b8; font-weight:lighter;">
+      WebBook | D. T. McGuiness, P.hD
+     </h4>
+     <div id="author-text" style="bottom: 0; padding-top: 50px;border-top: solid 1px #3b4b5e;font-size: 12px;text-align: right;">
+      <p>
+       <b>
+        Authors Note
+       </b>
+       The website you are viewing is auto-generated
+    using ParSnip and therefore subject to slight errors in
+    typography and formatting. When in doubt, please consult the
+    LectureBook.
+      </p>
+     </div>
+    </div>
+   </div>
+  </nav>
+  <div class="page">
+   <article class="chapter">
+    <h1 class="chapterHead">
+     Data Science II
+    </h1>
+<h2> Table of Contents </h2>
+<p>The contents of the lecture is as follows</p>
+    <div class="tableofcontents">
+     <span class="chapterToc">
+      1
+      <a href="DataScienceIILectureBookch1.html#x3-20001">
+       Support Vector Machines
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      1.1
+      <a href="DataScienceIILectureBookch1.html#x3-30001.1">
+       Introduction
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      1.2
+      <a href="DataScienceIILectureBookch1.html#x3-40001.2">
+       Linear SVM Classification
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      1.2.1
+      <a href="DataScienceIILectureBookch1.html#x3-50001.2.1" id="QQ2-3-7">
+       Soft Margin Classification
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      1.3
+      <a href="DataScienceIILectureBookch1.html#x3-60001.3">
+       Nonlinear SVM Classification
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      1.3.1
+      <a href="DataScienceIILectureBookch1.html#x3-70001.3.1" id="QQ2-3-13">
+       Polynomial Kernel
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      1.3.2
+      <a href="DataScienceIILectureBookch1.html#x3-80001.3.2" id="QQ2-3-15">
+       Similarity Features
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      1.3.3
+      <a href="DataScienceIILectureBookch1.html#x3-90001.3.3" id="QQ2-3-17">
+       Gaussian RBF Kernel
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      1.4
+      <a href="DataScienceIILectureBookch1.html#x3-100001.4">
+       SVM Regression
+      </a>
+     </span>
+     <br/>
+     <span class="chapterToc">
+      2
+      <a href="DataScienceIILectureBookch2.html#x4-110002">
+       Decision Trees
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      2.1
+      <a href="DataScienceIILectureBookch2.html#x4-120002.1">
+       Introduction
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      2.1.1
+      <a href="DataScienceIILectureBookch2.html#x4-130002.1.1" id="QQ2-4-24">
+       Advantages and Disadvantages
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      2.2
+      <a href="DataScienceIILectureBookch2.html#x4-140002.2">
+       Training and Visualising Decision Trees
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      2.3
+      <a href="DataScienceIILectureBookch2.html#x4-150002.3">
+       Making Predictions
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      2.3.1
+      <a href="DataScienceIILectureBookch2.html#x4-160002.3.1" id="QQ2-4-28">
+       Gini Impurity
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      2.4
+      <a href="DataScienceIILectureBookch2.html#x4-170002.4">
+       Estimating Class Probabilities
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      2.5
+      <a href="DataScienceIILectureBookch2.html#x4-180002.5">
+       The CART Training Algorithm
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      2.6
+      <a href="DataScienceIILectureBookch2.html#x4-190002.6">
+       Gini Impurity or Entropy?
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      2.7
+      <a href="DataScienceIILectureBookch2.html#x4-200002.7">
+       Regularization Hyperparameters
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      2.8
+      <a href="DataScienceIILectureBookch2.html#x4-210002.8">
+       Regression
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      2.9
+      <a href="DataScienceIILectureBookch2.html#x4-220002.9">
+       Sensitivity to Axis Orientation
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      2.10
+      <a href="DataScienceIILectureBookch2.html#x4-230002.10">
+       DTs Have a High Variance
+      </a>
+     </span>
+     <br/>
+     <span class="chapterToc">
+      3
+      <a href="DataScienceIILectureBookch3.html#x5-240003">
+       Ensemble Learning and Random Forests
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      3.1
+      <a href="DataScienceIILectureBookch3.html#x5-250003.1">
+       Introduction
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      3.1.1
+      <a href="DataScienceIILectureBookch3.html#x5-260003.1.1" id="QQ2-5-47">
+       Voting Classifiers
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      3.2
+      <a href="DataScienceIILectureBookch3.html#x5-270003.2">
+       Bagging and Pasting
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      3.2.1
+      <a href="DataScienceIILectureBookch3.html#x5-280003.2.1" id="QQ2-5-50">
+       Implementation
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      3.2.2
+      <a href="DataScienceIILectureBookch3.html#x5-290003.2.2" id="QQ2-5-52">
+       Out-of-Bag Evaluation
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      3.2.3
+      <a href="DataScienceIILectureBookch3.html#x5-300003.2.3" id="QQ2-5-53">
+       Random Patches and Random Subspaces
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      3.3
+      <a href="DataScienceIILectureBookch3.html#x5-310003.3">
+       Random Forests
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      3.3.1
+      <a href="DataScienceIILectureBookch3.html#x5-320003.3.1" id="QQ2-5-55">
+       Extra-Trees
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      3.3.2
+      <a href="DataScienceIILectureBookch3.html#x5-330003.3.2" id="QQ2-5-56">
+       Feature Importance
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      3.4
+      <a href="DataScienceIILectureBookch3.html#x5-340003.4">
+       Boosting
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      3.4.1
+      <a href="DataScienceIILectureBookch3.html#x5-350003.4.1" id="QQ2-5-59">
+       AdaBoost
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      3.4.2
+      <a href="DataScienceIILectureBookch3.html#x5-360003.4.2" id="QQ2-5-62">
+       Gradient Boosting
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      3.4.3
+      <a href="DataScienceIILectureBookch3.html#x5-370003.4.3" id="QQ2-5-65">
+       Histogram-Based Gradient Boosting
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      3.5
+      <a href="DataScienceIILectureBookch3.html#x5-380003.5">
+       Bagging v. Boosting
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      3.6
+      <a href="DataScienceIILectureBookch3.html#x5-410003.6">
+       Stacking
+      </a>
+     </span>
+     <br/>
+     <span class="chapterToc">
+      4
+      <a href="DataScienceIILectureBookch4.html#x6-420004">
+       Dimensionality Reduction
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      4.1
+      <a href="DataScienceIILectureBookch4.html#x6-430004.1">
+       Introduction
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      4.1.1
+      <a href="DataScienceIILectureBookch4.html#x6-440004.1.1" id="QQ2-6-73">
+       The Problems of Dimensions
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      4.2
+      <a href="DataScienceIILectureBookch4.html#x6-450004.2">
+       Main Approaches to Dimensionality Reduction
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      4.2.1
+      <a href="DataScienceIILectureBookch4.html#x6-460004.2.1" id="QQ2-6-75">
+       Projection
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      4.2.2
+      <a href="DataScienceIILectureBookch4.html#x6-470004.2.2" id="QQ2-6-77">
+       Manifold Learning
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      4.3
+      <a href="DataScienceIILectureBookch4.html#x6-480004.3">
+       Principal Component Analysis (PCA)
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      4.3.1
+      <a href="DataScienceIILectureBookch4.html#x6-490004.3.1" id="QQ2-6-82">
+       Preserving the Variance
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      4.3.2
+      <a href="DataScienceIILectureBookch4.html#x6-500004.3.2" id="QQ2-6-84">
+       Principal Components
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      4.3.3
+      <a href="DataScienceIILectureBookch4.html#x6-510004.3.3" id="QQ2-6-85">
+       Downgrading Dimensions
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      4.3.4
+      <a href="DataScienceIILectureBookch4.html#x6-540004.3.4" id="QQ2-6-88">
+       The Right Number of Dimensions
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      4.3.5
+      <a href="DataScienceIILectureBookch4.html#x6-550004.3.5" id="QQ2-6-90">
+       PCA for Compression
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      4.3.6
+      <a href="DataScienceIILectureBookch4.html#x6-560004.3.6" id="QQ2-6-92">
+       Randomized PCA
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      4.3.7
+      <a href="DataScienceIILectureBookch4.html#x6-570004.3.7" id="QQ2-6-93">
+       Incremental PCA
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      4.4
+      <a href="DataScienceIILectureBookch4.html#x6-580004.4">
+       Random Projection
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      4.5
+      <a href="DataScienceIILectureBookch4.html#x6-590004.5">
+       Locally Linear Embedding
+      </a>
+     </span>
+     <br/>
+     <span class="chapterToc">
+      5
+      <a href="DataScienceIILectureBookch5.html#x7-610005">
+       Unsupervised Learning
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      5.1
+      <a href="DataScienceIILectureBookch5.html#x7-620005.1">
+       Introduction
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      5.2
+      <a href="DataScienceIILectureBookch5.html#x7-630005.2">
+       Clustering Algorithms
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      5.2.1
+      <a href="DataScienceIILectureBookch5.html#x7-650005.2.1" id="QQ2-7-103">
+       k-means
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      5.2.2
+      <a href="DataScienceIILectureBookch5.html#x7-700005.2.2" id="QQ2-7-117">
+       Limits of K-Means
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      5.2.3
+      <a href="DataScienceIILectureBookch5.html#x7-710005.2.3" id="QQ2-7-119">
+       Using Clustering for Image Segmentation
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      5.2.4
+      <a href="DataScienceIILectureBookch5.html#x7-720005.2.4" id="QQ2-7-121">
+       Using Clustering for Semi-Supervised Learning
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      5.2.5
+      <a href="DataScienceIILectureBookch5.html#x7-730005.2.5" id="QQ2-7-123">
+       DBSCAN
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      5.3
+      <a href="DataScienceIILectureBookch5.html#x7-750005.3">
+       Gaussian Mixtures
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      5.3.1
+      <a href="DataScienceIILectureBookch5.html#x7-760005.3.1" id="QQ2-7-130">
+       Using Gaussian Mixtures for Anomaly Detection
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      5.3.2
+      <a href="DataScienceIILectureBookch5.html#x7-770005.3.2" id="QQ2-7-132">
+       Selecting the Number of Clusters
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      5.3.3
+      <a href="DataScienceIILectureBookch5.html#x7-780005.3.3" id="QQ2-7-134">
+       Bayesian Gaussian Mixture Models
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      5.3.4
+      <a href="DataScienceIILectureBookch5.html#x7-790005.3.4" id="QQ2-7-135">
+       Other Algorithms for Anomaly and Novelty Detection
+      </a>
+     </span>
+     <br/>
+     <span class="chapterToc">
+      6
+      <a href="DataScienceIILectureBookch6.html#x8-840006">
+       Introduction to Artificial Neural Networks
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      6.1
+      <a href="DataScienceIILectureBookch6.html#x8-850006.1">
+       Introduction
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      6.2
+      <a href="DataScienceIILectureBookch6.html#x8-860006.2">
+       From Biology to Silicon: Artificial Neurons
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      6.2.1
+      <a href="DataScienceIILectureBookch6.html#x8-870006.2.1" id="QQ2-8-145">
+       Biological Neurons
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      6.2.2
+      <a href="DataScienceIILectureBookch6.html#x8-880006.2.2" id="QQ2-8-148">
+       Logical Computations with Neurons
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      6.2.3
+      <a href="DataScienceIILectureBookch6.html#x8-890006.2.3" id="QQ2-8-149">
+       The Perceptron
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      6.2.4
+      <a href="DataScienceIILectureBookch6.html#x8-900006.2.4" id="QQ2-8-151">
+       Multilayer Perceptron and Backpropagation
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      6.2.5
+      <a href="DataScienceIILectureBookch6.html#x8-910006.2.5" id="QQ2-8-154">
+       Regression MLPs
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      6.2.6
+      <a href="DataScienceIILectureBookch6.html#x8-920006.2.6" id="QQ2-8-155">
+       Classification MLPs
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      6.3
+      <a href="DataScienceIILectureBookch6.html#x8-930006.3">
+       Implementing MLPs with Keras
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      6.3.1
+      <a href="DataScienceIILectureBookch6.html#x8-940006.3.1" id="QQ2-8-157">
+       Building an Image Classifier Using Sequential API
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      6.3.2
+      <a href="DataScienceIILectureBookch6.html#x8-960006.3.2" id="QQ2-8-161">
+       Creating the model using the sequential API
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      6.3.3
+      <a href="DataScienceIILectureBookch6.html#x8-1000006.3.3" id="QQ2-8-168">
+       Building a Regression MLP Using the Sequential API
+      </a>
+     </span>
+     <br/>
+     <span class="chapterToc">
+      7
+      <a href="DataScienceIILectureBookch7.html#x9-1010007">
+       Computer Vision using Convolutional Neural Networks
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      7.1
+      <a href="DataScienceIILectureBookch7.html#x9-1020007.1">
+       Introduction
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      7.2
+      <a href="DataScienceIILectureBookch7.html#x9-1030007.2">
+       Visual Cortex Architecture
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      7.3
+      <a href="DataScienceIILectureBookch7.html#x9-1040007.3">
+       Convolutional Layers
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      7.3.1
+      <a href="DataScienceIILectureBookch7.html#x9-1050007.3.1" id="QQ2-9-177">
+       Filters
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      7.3.2
+      <a href="DataScienceIILectureBookch7.html#x9-1060007.3.2" id="QQ2-9-179">
+       Stacking Multiple Feature Maps
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      7.3.3
+      <a href="DataScienceIILectureBookch7.html#x9-1070007.3.3" id="QQ2-9-181">
+       Implementing Convolutional Layers with Keras
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      7.3.4
+      <a href="DataScienceIILectureBookch7.html#x9-1080007.3.4" id="QQ2-9-184">
+       Memory Requirements
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      7.4
+      <a href="DataScienceIILectureBookch7.html#x9-1090007.4">
+       Pooling Layer
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      7.5
+      <a href="DataScienceIILectureBookch7.html#x9-1100007.5">
+       Implementing Pooling Layers with Keras
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      7.6
+      <a href="DataScienceIILectureBookch7.html#x9-1110007.6">
+       CNN Architectures
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      7.6.1
+      <a href="DataScienceIILectureBookch7.html#x9-1120007.6.1" id="QQ2-9-192">
+       LeNet-5
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      7.6.2
+      <a href="DataScienceIILectureBookch7.html#x9-1130007.6.2" id="QQ2-9-194">
+       AlexNet
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      7.6.3
+      <a href="DataScienceIILectureBookch7.html#x9-1140007.6.3" id="QQ2-9-196">
+       GoogLeNet
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      7.6.4
+      <a href="DataScienceIILectureBookch7.html#x9-1150007.6.4" id="QQ2-9-198">
+       VGGNet
+      </a>
+     </span>
+     <br/>
+     <span class="subsectionToc">
+      7.6.5
+      <a href="DataScienceIILectureBookch7.html#x9-1160007.6.5" id="QQ2-9-199">
+       ResNet
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      7.7
+      <a href="DataScienceIILectureBookch7.html#x9-1170007.7">
+       Implementing a ResNet-34 CNN using Keras
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      7.8
+      <a href="DataScienceIILectureBookch7.html#x9-1180007.8">
+       Using Pre-Trained Models from Keras
+      </a>
+     </span>
+     <br/>
+     <span class="sectionToc">
+      7.9
+      <a href="DataScienceIILectureBookch7.html#x9-1190007.9">
+       Pre-Trained Models for Transfer Learning
+      </a>
+     </span>
+     <br/>
+     <span class="addchapToc">
+      <a href="DataScienceIILectureBookad1.html#x11-121000" id="QQ2-11-210">
+       Bibliography
+      </a>
+     </span>
+    </div>
+<div class='copyright-info' style='font-size: 14px; border-top: solid 1px #dee9ed;'>
+<h2>Copyright Information</h2><br>
+<p>(2025, D. T. McGuines, Ph.D)<br /><br/>
+This document includes the contents of Drive Systems, official name
+being <em>Machine Learning and Data Science 2</em>, taught at MCI in the
+Mechatronik Design Innovation. This document is the part of the module
+MECH-B-5-MLDS-MLDS2-ILV taught in the B.Sc degree.<br/><br/>
+All relevant code of the document is done using <em>SageMath</em> where
+stated and Python v3.13.5.<br />
+This document was compiled with LuaTeX  v1.22.0, and all editing were
+done using GNU Emacs v30.1 using AUCTeX  and org-mode package.<br /><br/>
+This document is based on the following books and resources shown in no
+particular order:<br/><br/>
+<br/>
+<br />
+The document is designed with no intention of publication and has only
+been designed for education purposes.<br /><br/>
+The current maintainer of this work along with the primary
+lecturer<br />
+is D. T. McGuines, Ph.D.   (dtm@mci4me.at).</p>
 </div>
-
-<p>
-There are a wide variety of packages and dependencies required for all the
-code snippets to work so don't skip on a code within the section while working through the
-examples.
-</p>
-
-
-<table border="2" cellspacing="0" cellpadding="6" rules="all" frame="border" align="center">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">TOPIC</th>
-<th scope="col" class="org-left">DESCRIPTION</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">The Machine Learning Landscape</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="End-to-End-ML-Project.html">End to End ML Project</a></td>
-<td class="org-left">An example application of a ML project without getting drowned in detail.</td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="file:///Users/danielmcguiness/GitHub/MCI-Source-Files/(BSc - Lecture) Data Science II/Lecture Slides/Machine Learning Lecture/codes/Support-Vector-Machines.html">Support Vector Machines</a></td>
-<td class="org-left">supervised max-margin models with associated learning algorithms that analyze data for classification and regression analysis</td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="file:///Users/danielmcguiness/GitHub/MCI-Source-Files/(BSc - Lecture) Data Science II/Lecture Slides/Machine Learning Lecture/codes/Classification.html">Classification</a></td>
-<td class="org-left">An introduction into different types of classification used in ML</td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="file:///Users/danielmcguiness/GitHub/MCI-Source-Files/(BSc - Lecture) Data Science II/Lecture Slides/Machine Learning Lecture/codes/Training-Models.html">Training Models</a></td>
-<td class="org-left">An overview of different types of Regression modelling and Gradient descents methods.</td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="file:///Users/danielmcguiness/GitHub/MCI-Source-Files/(BSc - Lecture) Data Science II/Lecture Slides/Machine Learning Lecture/codes/Support-Vector-Machines.html">Support Vector Machines</a></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="file:///Users/danielmcguiness/GitHub/MCI-Source-Files/(BSc - Lecture) Data Science II/Lecture Slides/Machine Learning Lecture/codes/Desicion-Trees.html">Desicion Trees</a></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="file:///Users/danielmcguiness/GitHub/MCI-Source-Files/(BSc - Lecture) Data Science II/Lecture Slides/Machine Learning Lecture/codes/Ensemble-Learning-and-Random-Forests.html">Ensemble Learning and Random Forests</a></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="file:///Users/danielmcguiness/GitHub/MCI-Source-Files/(BSc - Lecture) Data Science II/Lecture Slides/Machine Learning Lecture/codes/Dimensionality-Reduction.html">Dimensionality Reduction</a></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="file:///Users/danielmcguiness/GitHub/MCI-Source-Files/(BSc - Lecture) Data Science II/Lecture Slides/Machine Learning Lecture/codes/Unsupervised-Learning.html">Unsupervised Learning Techniques</a></td>
-<td class="org-left">Focus on the methods used for clustering such as k-means, gaussian mixture and other methods</td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="file:///Users/danielmcguiness/GitHub/MCI-Source-Files/(BSc - Lecture) Data Science II/Lecture Slides/Machine Learning Lecture/codes/Introduction-to-Artifical-Neural-Networks.html">Intoruction to Artificial Neural Networks</a></td>
-<td class="org-left">An introduction to Artificial Neural Networks with examples and execises.</td>
-</tr>
-
-<tr>
-<td class="org-left"><a href="file:///Users/danielmcguiness/GitHub/MCI-Source-Files/(BSc - Lecture) Data Science II/Lecture Slides/Machine Learning Lecture/codes/Training-Models.html">Training Deep Neural Networks</a></td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">Custom Models and Training</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">Loading and Preprocessing Data</td>
-</tr>
-</tbody>
-</table>
-<p>
-<font color=#8caaee>NOTE: </font> Please read the code and their comments carefully as the wrong order of
-execution may cause problems
-</p>
-</div>
-<div id="postamble" class="status">
-<p class="author">Author: Daniel McGuiness</p>
-</div>
-</body>
+   </article>
+  </div>
+  <!--l. 8-->
+  <!--l. 8-->
+  <p class="noindent">
+   <a id="tailDataScienceIILectureBookli1.html">
+   </a>
+  </p>
+ </body>
 </html>
