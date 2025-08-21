@@ -298,6 +298,8 @@ answer.
        </span>
       </alert>
       <span class="marginnote">
+       <span style="color:#999999;">
+       </span>
        <alert style="color: #821131;">
         <span id="bold" style="font-weight:bold;">
          <sup class="textsuperscript">
@@ -306,12 +308,12 @@ answer.
         </span>
        </alert>
        <span style="color:#0063B2;">
-        also known as “wisdom of the majority”, which expresses the notion that the
-collective opinion of a diverse and independent group of individuals (rather than that of a single expert) produces the best
-judgement <a id="x5-25001"></a><a href="#X0-millard2011wisdom">[1]</a>.
+        also known as “wisdom of the majority”, which expresses the notion that the collective opinion of a diverse
+and independent group of individuals (rather than that of a single expert) produces the best judgement <a id="x5-25001"></a><a href="#X0-millard2011wisdom">[10]</a>.
        </span>
       </span>
      </p>
+     
     </div>
     <p class="noindent">
      In a similar fashion, aggregating the predictions of a group of predictors, such as classifiers or
@@ -340,13 +342,15 @@ method,
      <alert style="color: #821131;">
       decision tree classifiers
      </alert>
-     , each on a
-different random subset of the training set. We can then obtain the predictions of all the
-individual trees, and the class that gets the most votes is the ensemble’s prediction. Such
-an ensemble of decision trees is called a
+     ,
+each on a different random subset of the training set. We can then obtain the predictions
+of all the individual trees, and the class that gets the most votes is the ensemble’s
+prediction. Such an ensemble of decision trees is called a
      <a class="glossary" href="DataScienceIILectureBookli2.html#glo:rf">
-      Random Forest (RF)
+      RF
      </a>, and despite its simplicity,
+                                                                                
+                                                                                
 this is one of the most powerful
      <a class="glossary" href="DataScienceIILectureBookli2.html#glo:ml">
       ML
@@ -360,6 +364,8 @@ this is one of the most powerful
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -369,15 +375,13 @@ this is one of the most powerful
       </alert>
       <span style="color:#0063B2;">
        <span id="bold" style="font-weight:bold;">
-        A Historical Overview
+        A  Historical  Overview
        </span>
-       The general method of random decision forests was originally proposed by Salzberg and Heath in 1993 <a id="x5-25002"></a><a href="#X0-heath1993k">[2]</a>, with a method that used a
-                                                                                
-                                                                                
+       The general method of random decision forests was originally proposed by Salzberg and Heath in 1993 <a id="x5-25002"></a><a href="#X0-heath1993k">[11]</a>, with a method that used a
 randomized decision tree algorithm to create multiple trees and then combine them using majority voting. This idea was developed
-further by Ho in 1995 <a id="x5-25003"></a><a href="#X0-ho1995random">[3]</a>. Ho established that forests of trees splitting with oblique hyperplanes can gain accuracy as they grow
+further by Ho in 1995 <a id="x5-25003"></a><a href="#X0-ho1995random">[12]</a>. Ho established that forests of trees splitting with oblique hyperplanes can gain accuracy as they grow
 without suffering from overtraining, as long as the forests are randomly restricted to be sensitive to only selected feature dimensions.
-A subsequent work along the same lines <a id="x5-25004"></a><a href="#X0-ho1998random">[4]</a> concluded that other splitting methods behave similarly, as long as they are
+A subsequent work along the same lines <a id="x5-25004"></a><a href="#X0-ho1998random">[13]</a> concluded that other splitting methods behave similarly, as long as they are
 randomly forced to be insensitive to some feature dimensions. This observation that a more complex classifier (a larger forest)
 gets more accurate nearly monotonically is in sharp contrast to the common belief that the complexity of a classifier can only
 grow to a certain level of accuracy before being hurt by overfitting.
@@ -386,6 +390,7 @@ grow to a certain level of accuracy before being hurt by overfitting.
      In this chapter we will examine the most popular ensemble
 methods, including:
     </p>
+    
     <ul class="itemize1">
      <li class="itemize">
       <p class="noindent">
@@ -458,6 +463,9 @@ classifier
 an
       <italic>
        SVM
+                                                                                
+                                                                                
+     
 classifier
       </italic>
       ,
@@ -469,9 +477,6 @@ a
        classifier
       </italic>
       ,
-                                                                                
-                                                                                
-     
 a
       <italic>
        k-nearest
@@ -552,6 +557,8 @@ tails.
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <img alt="PIC" height="" src="figures/Ensemble-Learning-and-Random-Forests/figures-1.svg" width="100%"/>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
@@ -572,12 +579,12 @@ perhaps.
      </span>
      If
 you
+                                                                                
+                                                                                
 toss
 it
 1,000
 times,
-                                                                                
-                                                                                
 we
 will
 generally
@@ -600,6 +607,7 @@ majority
 of
 heads.
     </p>
+    
     <p class="noindent">
      If
 you
@@ -643,12 +651,12 @@ the
 probability
 climbs
 over
+                                                                                
+                                                                                
 97%).
 This
 is
 due
-                                                                                
-                                                                                
 to
 the
      <span id="bold" style="font-weight:bold;">
@@ -685,7 +693,7 @@ heads
 (51%).
      </p>
     </div>
-    <div class="informationblock" id="tcolobox-13">
+    <div class="informationblock" id="tcolobox-15">
      <div class="title">
       <p class="noindent">
        <span id="bold" style="font-weight:bold;">
@@ -770,6 +778,8 @@ time.
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -793,6 +803,7 @@ guessing.
       </span>
      </span>
     </p>
+    
     <p class="noindent">
      In
 this
@@ -874,7 +885,7 @@ accuracy.
      <p class="noindent">
       Ensemble methods work best when the predictors are as independent from one another as possible. One way to get diverse
 classifiers is to train them using very different algorithms. This increases the chance that they will make very different types of
-errors, improving the ensemble’s accuracy <a id="x5-26002"></a><a href="#X0-zhou2025ensemble">[5]</a>.
+errors, improving the ensemble’s accuracy <a id="x5-26002"></a><a href="#X0-zhou2025ensemble">[14]</a>.
      </p>
     </div>
     <p class="noindent">
@@ -927,7 +938,7 @@ then we’ll create and train a voting classifier composed of three <alert style
     </p>
     <pre><div id="fancyvrb21" style="padding:20px;border-radius: 3px;"><a id="x5-26034r71"></a><span style="color:#2B2BFF;">for</span> name, clf in voting_clf.named_estimators_.items(): 
 <a id="x5-26036r72"></a>   <span style="color:#2B2BFF;">print</span>(name, <span style="color:#800080;">"="</span>, clf.score(X_test, y_test))</div></pre>
-    <div class="tcolorbox tcolorbox" id="tcolobox-14">
+    <div class="tcolorbox tcolorbox" id="tcolobox-16">
      <div class="tcolorbox-content">
       <pre><div id="fancyvrb22" style="padding:20px;border-radius: 3px;"><a id="x5-26038r1"></a>lr = 0.864 
 <a id="x5-26040r2"></a>rf = 0.896 
@@ -952,7 +963,7 @@ then we’ll create and train a voting classifier composed of three <alert style
     <pre><div id="fancyvrb23" style="padding:20px;border-radius: 3px;"><a id="x5-26044r84"></a><span style="color:#2B2BFF;">print</span>(voting_clf.predict(X_test[:<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1</span></span>])) 
 <a id="x5-26046r85"></a><span style="color:#2B2BFF;">print</span>([clf.predict(X_test[:<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1</span></span>]) <span style="color:#2B2BFF;">for</span> clf in voting_clf.estimators_]) 
 <a id="x5-26048r86"></a><span style="color:#2B2BFF;">print</span>(voting_clf.score(X_test, y_test))</div></pre>
-    <div class="tcolorbox tcolorbox" id="tcolobox-15">
+    <div class="tcolorbox tcolorbox" id="tcolobox-17">
      <div class="tcolorbox-content">
       <pre><div id="fancyvrb24" style="padding:20px;border-radius: 3px;"><a id="x5-26050r1"></a>[1] 
 <a id="x5-26052r2"></a>[array([1]), array([1]), array([0])] 
@@ -981,6 +992,8 @@ probabilities,
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -1018,6 +1031,7 @@ the
 individual
 classifiers.
     </p>
+    
     <p class="noindent">
      This
 is
@@ -1106,7 +1120,7 @@ to <span style="color:#054C5C;"><code class="verb">True</code></span>
 <a id="x5-26058r99"></a>voting_clf.named_estimators[<span style="color:#800080;">"svc"</span>].probability = <span style="color:#2B2BFF;"><span id="bold" style="font-weight:bold;">True</span></span> 
 <a id="x5-26060r100"></a>voting_clf.fit(X_train, y_train) 
 <a id="x5-26062r101"></a><span style="color:#2B2BFF;">print</span>(voting_clf.score(X_test, y_test))</div></pre>
-    <div class="tcolorbox tcolorbox" id="tcolobox-16">
+    <div class="tcolorbox tcolorbox" id="tcolobox-18">
      <div class="tcolorbox-content">
       <pre><div id="fancyvrb26" style="padding:20px;border-radius: 3px;"><a id="x5-26064r1"></a>0.92</div></pre>
      </div>
@@ -1190,12 +1204,12 @@ mitigate
 the
 bias
 towards
-                                                                                
-                                                                                
-     
 the
 majority
 class
+                                                                                
+                                                                                
+     
 by
 taking
 into
@@ -1259,6 +1273,8 @@ called
         </span>
        </alert>
        <span class="marginnote">
+        <span style="color:#999999;">
+        </span>
         <alert style="color: #821131;">
          <span id="bold" style="font-weight:bold;">
           <sup class="textsuperscript">
@@ -1276,6 +1292,7 @@ aggregating.
         </span>
        </span>
       </p>
+      
      </li>
      <li class="itemize">
       <p class="noindent">
@@ -1345,6 +1362,8 @@ classification,
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -1397,6 +1416,7 @@ bias
 and
 variance.
     </p>
+    
     <p class="noindent">
      Generally,
 the
@@ -1508,6 +1528,8 @@ replacement.
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -1558,6 +1580,7 @@ all
 available
 cores:
     </p>
+    
     <p class="noindent">
     </p>
     <pre><div id="fancyvrb27" style="padding:20px;border-radius: 3px;"><a id="x5-28002r111"></a><span style="color:#2B2BFF;">from</span><span style="color:#BABABA;"> </span>sklearn.ensemble<span style="color:#BABABA;"> </span><span style="color:#2B2BFF;">import</span> BaggingClassifier 
@@ -1569,8 +1592,7 @@ cores:
     <div class="knowledge">
      <p class="noindent">
       A <span style="color:#054C5C;"><code class="verb">BaggingClassifier</code></span>
-      automatically performs soft voting instead of hard voting if the base classifier can estimate class
-probabilities,
+      automatically performs soft voting instead of hard voting if the base classifier can estimate class probabilities,
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -1579,6 +1601,8 @@ probabilities,
        </span>
       </alert>
       <span class="marginnote">
+       <span style="color:#999999;">
+       </span>
        <alert style="color: #821131;">
         <span id="bold" style="font-weight:bold;">
          <sup class="textsuperscript">
@@ -1593,6 +1617,7 @@ probabilities,
       </span>
       which is the case with decision tree classifiers.
      </p>
+     
     </div>
     <p class="noindent">
      Please have a look at
@@ -1688,7 +1713,7 @@ predictor, while others may not be sampled at all. By default a <span style="col
      is the size of the training set. With this process, it can be shown mathematically that only about 63% of the training instances
 are sampled on average for each predictor.
     </p>
-    <div class="informationblock" id="tcolobox-17">
+    <div class="informationblock" id="tcolobox-19">
      <div class="title">
       <p class="noindent">
        <span id="bold" style="font-weight:bold;">
@@ -2015,6 +2040,8 @@ accuracy
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -2049,6 +2076,7 @@ automatic
 after
 training.
     </p>
+    
     <p class="noindent">
      The
 following
@@ -2074,7 +2102,7 @@ in
 the <span style="color:#054C5C;"><code class="verb">oob_score_</code></span>
      attribute:
     </p>
-    <div class="tcolorbox tcolorbox" id="tcolobox-18">
+    <div class="tcolorbox tcolorbox" id="tcolobox-20">
      <div class="tcolorbox-content">
       <pre><div id="fancyvrb29" style="padding:20px;border-radius: 3px;"><a id="x5-29010r1"></a>0.896</div></pre>
      </div>
@@ -2111,7 +2139,7 @@ this:
 <a id="x5-29014r174"></a> 
 <a id="x5-29016r175"></a>y_pred = bag_clf.predict(X_test) 
 <a id="x5-29018r176"></a><span style="color:#2B2BFF;">print</span>(accuracy_score(y_test, y_pred))</div></pre>
-    <div class="tcolorbox tcolorbox" id="tcolobox-19">
+    <div class="tcolorbox tcolorbox" id="tcolobox-21">
      <div class="tcolorbox-content">
       <pre><div id="fancyvrb31" style="padding:20px;border-radius: 3px;"><a id="x5-29020r1"></a>0.912</div></pre>
      </div>
@@ -2214,7 +2242,7 @@ class:
     <p class="noindent">
     </p>
     <pre><div id="fancyvrb32" style="padding:20px;border-radius: 3px;"><a id="x5-29022r186"></a><span style="color:#2B2BFF;">print</span>(bag_clf.oob_decision_function_[:<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">3</span></span>])  <span style="color:#008700;"><italic># probas for the first 3 instances</italic></span></div></pre>
-    <div class="tcolorbox tcolorbox" id="tcolobox-20">
+    <div class="tcolorbox tcolorbox" id="tcolobox-22">
      <div class="tcolorbox-content">
       <pre><div id="fancyvrb33" style="padding:20px;border-radius: 3px;"><a id="x5-29024r1"></a>[[0.32352941 0.67647059] 
 <a id="x5-29026r2"></a> [0.3375     0.6625    ] 
@@ -2281,6 +2309,8 @@ inputs,
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -2302,6 +2332,7 @@ speed
 up
 training.
     </p>
+    
     <div class="knowledge">
      <p class="noindent">
       Sampling both training instances and features is called the random patches method.
@@ -2313,7 +2344,7 @@ training.
      ) but sampling features (by setting <span style="color:#054C5C;"><code class="verb">bootstrap_features</code></span>
      to <span style="color:#054C5C;"><code class="verb">True</code></span>
      and/or <span style="color:#054C5C;"><code class="verb">max_features</code></span>
-     to a value smaller than 1.0) is called the random subspaces method <a id="x5-30001"></a><a href="#X0-ho1998random">[4]</a>.
+     to a value smaller than 1.0) is called the random subspaces method <a id="x5-30001"></a><a href="#X0-ho1998random">[13]</a>.
     </p>
     <p class="noindent">
      Sampling features results in even more predictor diversity, trading a bit more bias for a lower variance.
@@ -2368,6 +2399,8 @@ method,
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -2424,25 +2457,6 @@ trees.
        </sup>
       </span>
      </alert>
-     <span class="marginnote">
-      <alert style="color: #821131;">
-       <span id="bold" style="font-weight:bold;">
-        <sup class="textsuperscript">
-         13
-        </sup>
-       </span>
-      </alert>
-      <span style="color:#0063B2;">
-       similarly,
-there
-is
-a <span style="color:#054C5C;"><code class="verb">RandomForestRegressor</code></span>
-       class
-for
-regression
-tasks
-      </span>
-     </span>
      The
 following
 code
@@ -2470,6 +2484,7 @@ available
      </a>
      cores:
     </p>
+    
     <p class="noindent">
     </p>
     <pre><div id="fancyvrb34" style="padding:20px;border-radius: 3px;"><a id="x5-31002r198"></a><span style="color:#2B2BFF;">from</span><span style="color:#BABABA;"> </span>sklearn.ensemble<span style="color:#BABABA;"> </span><span style="color:#2B2BFF;">import</span> RandomForestClassifier 
@@ -2669,6 +2684,8 @@ splitting.
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -2716,24 +2733,6 @@ thresholds.
        </sup>
       </span>
      </alert>
-     <span class="marginnote">
-      <alert style="color: #821131;">
-       <span id="bold" style="font-weight:bold;">
-        <sup class="textsuperscript">
-         15
-        </sup>
-       </span>
-      </alert>
-      <span style="color:#0063B2;">
-       Which
-is
-what
-regular
-decision
-trees
-implement.
-      </span>
-     </span>
      For
 this,
 we
@@ -2744,6 +2743,7 @@ set <span style="color:#054C5C;"><code class="verb">splitter="random"</code></sp
 creating
 a <span style="color:#054C5C;"><code class="verb">DecisionTreeClassifier</code></span>.
     </p>
+    
     <p class="noindent">
      A
 forest
@@ -2787,6 +2787,8 @@ range.
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -2821,8 +2823,9 @@ used
 to
 split
 the
-node <a id="x5-32001"></a><a href="#X0-geurts2006extremely">[6]</a>.
+node <a id="x5-32001"></a><a href="#X0-geurts2006extremely">[15]</a>.
     </p>
+    
     <div class="knowledge">
      <p class="noindent">
       As with previous methods, this technique trades more bias for a lower variance.
@@ -2834,7 +2837,7 @@ node <a id="x5-32001"></a><a href="#X0-geurts2006extremely">[6]</a>.
       RF
      </a>
      s, as finding the best possible threshold for each feature
-at every node is one of the most time-consuming tasks of growing a tree <a id="x5-32002"></a><a href="#X0-geurts2006extremely">[6]</a>.
+at every node is one of the most time-consuming tasks of growing a tree <a id="x5-32002"></a><a href="#X0-geurts2006extremely">[15]</a>.
     </p>
     <p class="noindent">
      We can create an extra-trees classifier using <span style="color:#054C5C;"><code class="verb">sklearn</code></span>
@@ -2906,7 +2909,7 @@ importances is equal to 1. You can access the result using the <span style="colo
 <a id="x5-33010r223"></a>rnd_clf.fit(iris.data, iris.target) 
 <a id="x5-33012r224"></a><span style="color:#2B2BFF;">for</span> score, name in <span style="color:#2B2BFF;">zip</span>(rnd_clf.feature_importances_, iris.data.columns): 
 <a id="x5-33014r225"></a>   <span style="color:#2B2BFF;">print</span>(<span style="color:#2B2BFF;">round</span>(score, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">2</span></span>), name)</div></pre>
-    <div class="tcolorbox tcolorbox" id="tcolobox-21">
+    <div class="tcolorbox tcolorbox" id="tcolobox-23">
      <div class="tcolorbox-content">
       <pre><div id="fancyvrb37" style="padding:20px;border-radius: 3px;"><a id="x5-33016r1"></a>0.11 sepal length (cm) 
 <a id="x5-33018r2"></a>0.02 sepal width (cm) 
@@ -3128,6 +3131,8 @@ AdaBoost.
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -3145,6 +3150,7 @@ boosting.
       </span>
      </span>
     </p>
+    
     <h3 class="subsectionHead">
      <a aria-label="Link to this section in PDF version" class="pdf-link" href="DataScienceIILectureBook.pdf#subsection.3.4.1" style="color: red;  position: absolute;  left: -30px;" target="_blank">
       <svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -3195,6 +3201,8 @@ classifier
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -3257,6 +3265,7 @@ and
 so
 on.
     </p>
+    
     <div class="figure">
      <p class="noindent">
       <img alt="PIC" height="" src="codes/images/Ensemble-Learning-and-Random-Forests/boosting_plot-.svg" width="150%"/>
@@ -3299,6 +3308,8 @@ dataset.
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -3337,6 +3348,7 @@ weights
 get
 boosted.
     </p>
+    
     <p class="noindent">
      The
 second
@@ -3387,6 +3399,8 @@ halved.
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -3447,6 +3461,7 @@ making
 it
 better.
     </p>
+    
     <p class="noindent">
      Once
 all
@@ -3838,6 +3853,8 @@ using Eq. (
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -3850,6 +3867,7 @@ using Eq. (
       </span>
      </span>
     </p>
+    
     <table class="equation">
      <tr>
       <td>
@@ -3969,6 +3987,8 @@ wrong,
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -3992,6 +4012,7 @@ will
 be
 negative.
     </p>
+    
     <p class="noindent">
      Next,
 the
@@ -4417,6 +4438,8 @@ probabilities,
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -4459,6 +4482,7 @@ generally
 performs
 better.
     </p>
+    
     <p class="noindent">
      The
 following
@@ -4486,6 +4510,8 @@ class.
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -4540,6 +4566,7 @@ for
 the <span style="color:#054C5C;"><code class="verb">AdaBoostClassifier</code></span>
      class:
     </p>
+    
     <pre><div id="fancyvrb38" style="padding:20px;border-radius: 3px;"><a id="x5-35006r293"></a><span style="color:#2B2BFF;">from</span><span style="color:#BABABA;"> </span>sklearn.ensemble<span style="color:#BABABA;"> </span><span style="color:#2B2BFF;">import</span> AdaBoostClassifier 
 <a id="x5-35008r294"></a> 
 <a id="x5-35010r295"></a>ada_clf = AdaBoostClassifier( 
@@ -4549,60 +4576,60 @@ the <span style="color:#054C5C;"><code class="verb">AdaBoostClassifier</code></s
     <p class="noindent">
     </p>
     <figure class="float">
-     <table class="tabularray tblr" id="tbl-3">
-      <tr id="row-3-1-">
-       <th id="cell3-1-1" style="text-align:justify;vertical-align:top;background-color:#F2F2F2;">
+     <table class="tabularray tblr" id="tbl-4">
+      <tr id="row-4-1-">
+       <th id="cell4-1-1" style="text-align:justify;vertical-align:top;background-color:#F2F2F2;">
         <span id="bold" style="font-weight:bold;">
          Advantages
         </span>
        </th>
 
-       <th id="cell3-1-2" style="text-align:justify;vertical-align:top;background-color:#F2F2F2;">
+       <th id="cell4-1-2" style="text-align:justify;vertical-align:top;background-color:#F2F2F2;">
         <span id="bold" style="font-weight:bold;">
          Disadvantages
         </span>
        </th>
       </tr>
-      <tr id="row-3-2-">
-       <td id="cell3-2-1" style="text-align:justify;vertical-align:top;">
+      <tr id="row-4-2-">
+       <td id="cell4-2-1" style="text-align:justify;vertical-align:top;">
         Can                                         effectively 
 combine multiple weak classifiers to create a 
 strong classifier with high accuracy
        </td>
-       <td id="cell3-2-2" style="text-align:justify;vertical-align:top;">
+       <td id="cell4-2-2" style="text-align:justify;vertical-align:top;">
         Can be sensitive to outliers and noisy data
        </td>
       </tr>
-      <tr id="row-3-3-">
-       <td id="cell3-3-1" style="text-align:justify;vertical-align:top;">
+      <tr id="row-4-3-">
+       <td id="cell4-3-1" style="text-align:justify;vertical-align:top;">
         Can  handle  complex  datasets  and  capture 
 intricate  patters  by  iteratively  adapting  to 
 difficult examples
        </td>
-       <td id="cell3-3-2" style="text-align:justify;vertical-align:top;">
+       <td id="cell4-3-2" style="text-align:justify;vertical-align:top;">
         Training  process  can  be  computationally 
 expensive,   especially   dealing   with   large 
 datasets.
        </td>
       </tr>
-      <tr id="row-3-4-">
-       <td id="cell3-4-1" style="text-align:justify;vertical-align:top;">
+      <tr id="row-4-4-">
+       <td id="cell4-4-1" style="text-align:justify;vertical-align:top;">
         By  focusing  on  misclassified  examples  and 
 adjusting     sample     weights,     AdaBoost 
 mitigates the risk of overfitting
        </td>
-       <td id="cell3-4-2" style="text-align:justify;vertical-align:top;">
+       <td id="cell4-4-2" style="text-align:justify;vertical-align:top;">
         Appropriate selection of weak classifiers and 
 the number of hyperparameters are crucial for 
 performance.
        </td>
       </tr>
-      <tr id="row-3-5-">
-       <td id="cell3-5-1" style="text-align:justify;vertical-align:top;">
+      <tr id="row-4-5-">
+       <td id="cell4-5-1" style="text-align:justify;vertical-align:top;">
         A  versatile  algorithm  which  can  work  with 
 different types of base classifiers
        </td>
-       <td id="cell3-5-2" style="text-align:justify;vertical-align:top;">
+       <td id="cell4-5-2" style="text-align:justify;vertical-align:top;">
         Can struggle with imbalanced datasets.
        </td>
       </tr>
@@ -4689,7 +4716,7 @@ predictions of all the trees:
     </p>
     <pre><div id="fancyvrb42" style="padding:20px;border-radius: 3px;"><a id="x5-36032r334"></a>X_new = np.array([[-<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.4</span></span>], [<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.</span></span>], [<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.5</span></span>]]) 
 <a id="x5-36034r335"></a><span style="color:#2B2BFF;">print</span>(<span style="color:#2B2BFF;">sum</span>(tree.predict(X_new) <span style="color:#2B2BFF;">for</span> tree in (tree_reg1, tree_reg2, tree_reg3)))</div></pre>
-    <div class="tcolorbox tcolorbox" id="tcolobox-22">
+    <div class="tcolorbox tcolorbox" id="tcolobox-24">
      <div class="tcolorbox-content">
       <pre><div id="fancyvrb43" style="padding:20px;border-radius: 3px;"><a id="x5-36036r1"></a>[0.49484029 0.04021166 0.75026781]</div></pre>
      </div>
@@ -4785,6 +4812,8 @@ trees.
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -4797,6 +4826,7 @@ trees.
       </span>
      </span>
     </p>
+    
     <p class="noindent">
      The
                                                                                 
@@ -4995,7 +5025,7 @@ overfit instead. We also set a fairly small learning rate and a high number of e
 the trained ensemble is much lower, thanks to early stopping:
     </p>
     <pre><div id="fancyvrb46" style="padding:20px;border-radius: 3px;"><a id="x5-36060r445"></a><span style="color:#2B2BFF;">print</span>(gbrt_best.n_estimators_)</div></pre>
-    <div class="tcolorbox tcolorbox" id="tcolobox-23">
+    <div class="tcolorbox tcolorbox" id="tcolobox-25">
      <div class="tcolorbox-content">
       <pre><div id="fancyvrb47" style="padding:20px;border-radius: 3px;"><a id="x5-36062r1"></a>92</div></pre>
      </div>
@@ -5270,7 +5300,7 @@ Note that <span style="color:#054C5C;"><code class="verb">categorical_features</
      must be set to the categorical column indices (or a Boolean array). Without any hyperparameter
 tuning, this model yields an RMSE of about 47,600, which is not too bad.
     </p>
-    <div class="informationblock" id="tcolobox-24">
+    <div class="informationblock" id="tcolobox-26">
      <div class="title">
       <p class="noindent">
        <span id="bold" style="font-weight:bold;">
@@ -5409,85 +5439,85 @@ stability.
     <p class="noindent">
     </p>
     <figure class="float">
-     <table class="tabularray tblr" id="tbl-4">
-      <tr id="row-4-1-">
-       <th id="cell4-1-1" style="text-align:justify;vertical-align:top;background-color:#F2F2F2;">
+     <table class="tabularray tblr" id="tbl-5">
+      <tr id="row-5-1-">
+       <th id="cell5-1-1" style="text-align:justify;vertical-align:top;background-color:#F2F2F2;">
         <span id="bold" style="font-weight:bold;">
          Bagging
         </span>
        </th>
 
-       <th id="cell4-1-2" style="text-align:justify;vertical-align:top;background-color:#F2F2F2;">
+       <th id="cell5-1-2" style="text-align:justify;vertical-align:top;background-color:#F2F2F2;">
         <span id="bold" style="font-weight:bold;">
          Boosting
         </span>
        </th>
       </tr>
-      <tr id="row-4-2-">
-       <td id="cell4-2-1" style="text-align:justify;vertical-align:top;">
+      <tr id="row-5-2-">
+       <td id="cell5-2-1" style="text-align:justify;vertical-align:top;">
         The  simplest  way  of  combining  predictions 
 that belong to the same type. classifiers to 
 create a strong classifier with high accuracy
        </td>
-       <td id="cell4-2-2" style="text-align:justify;vertical-align:top;">
+       <td id="cell5-2-2" style="text-align:justify;vertical-align:top;">
         A way of combining predictions that belong 
 to the different types.
        </td>
       </tr>
-      <tr id="row-4-3-">
-       <td id="cell4-3-1" style="text-align:justify;vertical-align:top;">
+      <tr id="row-5-3-">
+       <td id="cell5-3-1" style="text-align:justify;vertical-align:top;">
         Aim to decrease variance, not bias
        </td>
-       <td id="cell4-3-2" style="text-align:justify;vertical-align:top;">
+       <td id="cell5-3-2" style="text-align:justify;vertical-align:top;">
         Aim to decrease bias, not variance.
        </td>
       </tr>
-      <tr id="row-4-4-">
-       <td id="cell4-4-1" style="text-align:justify;vertical-align:top;">
+      <tr id="row-5-4-">
+       <td id="cell5-4-1" style="text-align:justify;vertical-align:top;">
         Each model receives equal weight.
        </td>
-       <td id="cell4-4-2" style="text-align:justify;vertical-align:top;">
+       <td id="cell5-4-2" style="text-align:justify;vertical-align:top;">
         Models   are   weighted   according   to   their 
 performance.
        </td>
       </tr>
-      <tr id="row-4-5-">
-       <td id="cell4-5-1" style="text-align:justify;vertical-align:top;">
+      <tr id="row-5-5-">
+       <td id="cell5-5-1" style="text-align:justify;vertical-align:top;">
         Each model is built independently.
        </td>
-       <td id="cell4-5-2" style="text-align:justify;vertical-align:top;">
+       <td id="cell5-5-2" style="text-align:justify;vertical-align:top;">
         New    models    are    influenced    by    the 
 performance of previously built models.
        </td>
       </tr>
-      <tr id="row-4-6-">
-       <td id="cell4-6-1" style="text-align:justify;vertical-align:top;">
+      <tr id="row-5-6-">
+       <td id="cell5-6-1" style="text-align:justify;vertical-align:top;">
         Different  training  data  subsets  are  selected 
 using  row  sampling  with  replacement  and 
 random  sampling  methods  from  the  entire 
 training dataset.
        </td>
-       <td id="cell4-6-2" style="text-align:justify;vertical-align:top;">
+       <td id="cell5-6-2" style="text-align:justify;vertical-align:top;">
         Iteratively   train   models,   with   each   new 
 model   focusing   on   correcting   the   errors 
 (misclassifications  or  high  residuals)  of  the 
 previous models
        </td>
       </tr>
-      <tr id="row-4-7-">
-       <td id="cell4-7-1" style="text-align:justify;vertical-align:top;">
+      <tr id="row-5-7-">
+       <td id="cell5-7-1" style="text-align:justify;vertical-align:top;">
         Bagging   tries   to   solve   the   over-fitting 
 problem.
        </td>
-       <td id="cell4-7-2" style="text-align:justify;vertical-align:top;">
+       <td id="cell5-7-2" style="text-align:justify;vertical-align:top;">
         Boosting tries to reduce bias.
        </td>
       </tr>
-      <tr id="row-4-8-">
-       <td id="cell4-8-1" style="text-align:justify;vertical-align:top;">
+      <tr id="row-5-8-">
+       <td id="cell5-8-1" style="text-align:justify;vertical-align:top;">
         In this base classifiers are trained in parallel.
        </td>
-       <td id="cell4-8-2" style="text-align:justify;vertical-align:top;">
+       <td id="cell5-8-2" style="text-align:justify;vertical-align:top;">
         In this base classifiers are trained sequentially.
        </td>
       </tr>
@@ -5499,7 +5529,7 @@ problem.
        Table 3.2:
       </span>
       <span class="content">
-       The advantages and disadvantages of AdaBoost.
+       A comparison between Bagging and Boosting.
       </span>
      </figcaption>
     </figure>
@@ -5541,6 +5571,8 @@ stacking.
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -5592,6 +5624,7 @@ perform
 this
 aggregation?
     </p>
+    
     <p class="noindent">
      To
 train

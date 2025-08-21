@@ -354,6 +354,8 @@ dimensionality.
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -391,10 +393,11 @@ physical
 space
 of
 everyday
-experience <a id="x6-43001"></a><a href="#X0-bellman1957dynamic">[7]</a>.
+experience <a id="x6-43001"></a><a href="#X0-bellman1957dynamic">[16]</a>.
       </span>
      </span>
     </p>
+    
     <p class="noindent">
      Fortunately,
 in
@@ -532,7 +535,7 @@ information
       .
      </p>
     </div>
-    <div class="informationblock" id="tcolobox-25">
+    <div class="informationblock" id="tcolobox-27">
      <div class="title">
       <p class="noindent">
        <span id="bold" style="font-weight:bold;">
@@ -634,6 +637,8 @@ clusters.
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -691,6 +696,7 @@ use
 your
 results.
     </p>
+    
     <p class="noindent">
      In this chapter, we will first discuss the curse of dimensionality and get a sense of what goes on in high-dimensional space.
 Following this, we will consider the two <alert style="color: #821131;">(2)</alert> main approaches to dimensionality reduction:
@@ -718,10 +724,7 @@ learning,
      </dt>
      <dd class="enumerate-enumitem">
       <a class="glossary" href="DataScienceIILectureBookli2.html#glo:pca">
-       Principal
-Component
-Analysis
-(PCA)
+       PCA
       </a>,
      </dd>
      <dt class="enumerate-enumitem">
@@ -776,7 +779,7 @@ unlikely that a random point will be “extreme” along any dimension). However
 unit hypercube, this probability is greater than 99.999999%. Most points in a high-dimensional hypercube are very close to the
 border which as can be seen is very counter-intuitive.
     </p>
-    <div class="theoryblock" id="tcolobox-26">
+    <div class="theoryblock" id="tcolobox-28">
      <div class="title">
       <a id="x6-44002r2">
       </a>
@@ -784,7 +787,7 @@ border which as can be seen is very counter-intuitive.
        <span id="bold" style="font-weight:bold;">
         Theory
        </span>
-       4.2: Distance Between Points in n-Dimensions
+       4.4: Distance Between Points in n-Dimensions
       </p>
      </div>
      <div class="box-content">
@@ -1166,7 +1169,7 @@ not inside the cube of side length
       </math>
      </div>
     </div>
-    <div class="informationblock" id="tcolobox-27">
+    <div class="informationblock" id="tcolobox-29">
      <div class="title">
       <p class="noindent">
        <span id="bold" style="font-weight:bold;">
@@ -1200,7 +1203,7 @@ roughly 0.52. If we were to pick two random points in a 3D unit cube instead, th
       Hypercube Line Picking
      </span>
     </p>
-    <div class="theoryblock" id="tcolobox-28">
+    <div class="theoryblock" id="tcolobox-30">
      <div class="title">
       <a id="x6-44004r4">
       </a>
@@ -1208,7 +1211,7 @@ roughly 0.52. If we were to pick two random points in a 3D unit cube instead, th
        <span id="bold" style="font-weight:bold;">
         Theory
        </span>
-       4.4: Hypercube Line Picking
+       4.6: Hypercube Line Picking
       </p>
      </div>
      <div class="box-content">
@@ -1605,19 +1608,19 @@ mean line segment length, is then:
       <div class="center">
        <p class="noindent">
        </p>
-       <table class="tabularray tblr" id="tbl-5">
-        <tr id="row-5-1-">
-         <td id="cell5-1-1" style="text-align:center;vertical-align:top;">
+       <table class="tabularray tblr" id="tbl-6">
+        <tr id="row-6-1-">
+         <td id="cell6-1-1" style="text-align:center;vertical-align:top;">
           <span id="bold" style="font-weight:bold;">
            n
           </span>
          </td>
-         <td id="cell5-1-2" style="vertical-align:top;">
+         <td id="cell6-1-2" style="vertical-align:top;">
           <span id="bold" style="font-weight:bold;">
            OEIS
           </span>
          </td>
-         <td id="cell5-1-3" style="vertical-align:top;">
+         <td id="cell6-1-3" style="vertical-align:top;">
           <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
            <mi mathvariant="normal">
             Δ
@@ -1643,17 +1646,17 @@ mean line segment length, is then:
            </msup>
           </math>
          </td>
-         <td id="cell5-1-4" style="text-align:justify;vertical-align:top;">
+         <td id="cell6-1-4" style="text-align:justify;vertical-align:top;">
           <span id="bold" style="font-weight:bold;">
            n
           </span>
          </td>
-         <td id="cell5-1-5" style="text-align:justify;vertical-align:top;">
+         <td id="cell6-1-5" style="text-align:justify;vertical-align:top;">
           <span id="bold" style="font-weight:bold;">
            OEIS
           </span>
          </td>
-         <td id="cell5-1-6" style="text-align:justify;vertical-align:top;">
+         <td id="cell6-1-6" style="text-align:justify;vertical-align:top;">
           <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
            <mi mathvariant="normal">
             Δ
@@ -1680,83 +1683,83 @@ mean line segment length, is then:
           </math>
          </td>
         </tr>
-        <tr id="row-5-2-">
-         <td id="cell5-2-1" style="text-align:center;vertical-align:top;">
+        <tr id="row-6-2-">
+         <td id="cell6-2-1" style="text-align:center;vertical-align:top;">
           1
          </td>
-         <td id="cell5-2-2" style="vertical-align:top;">
+         <td id="cell6-2-2" style="vertical-align:top;">
           –
          </td>
-         <td id="cell5-2-3" style="vertical-align:top;">
+         <td id="cell6-2-3" style="vertical-align:top;">
           0.3333333333…
          </td>
-         <td id="cell5-2-4" style="text-align:justify;vertical-align:top;">
+         <td id="cell6-2-4" style="text-align:justify;vertical-align:top;">
           5
          </td>
-         <td id="cell5-2-5" style="text-align:justify;vertical-align:top;">
+         <td id="cell6-2-5" style="text-align:justify;vertical-align:top;">
           A103984
          </td>
-         <td id="cell5-2-6" style="text-align:justify;vertical-align:top;">
+         <td id="cell6-2-6" style="text-align:justify;vertical-align:top;">
           0.8785309152…
          </td>
         </tr>
-        <tr id="row-5-3-">
-         <td id="cell5-3-1" style="text-align:center;vertical-align:top;">
+        <tr id="row-6-3-">
+         <td id="cell6-3-1" style="text-align:center;vertical-align:top;">
           2
          </td>
-         <td id="cell5-3-2" style="vertical-align:top;">
+         <td id="cell6-3-2" style="vertical-align:top;">
           A091505
          </td>
-         <td id="cell5-3-3" style="vertical-align:top;">
+         <td id="cell6-3-3" style="vertical-align:top;">
           0.5214054331…
          </td>
-         <td id="cell5-3-4" style="text-align:justify;vertical-align:top;">
+         <td id="cell6-3-4" style="text-align:justify;vertical-align:top;">
           6
          </td>
-         <td id="cell5-3-5" style="text-align:justify;vertical-align:top;">
+         <td id="cell6-3-5" style="text-align:justify;vertical-align:top;">
           A103985
          </td>
-         <td id="cell5-3-6" style="text-align:justify;vertical-align:top;">
+         <td id="cell6-3-6" style="text-align:justify;vertical-align:top;">
           0.9689420830…
          </td>
         </tr>
-        <tr id="row-5-4-">
-         <td id="cell5-4-1" style="text-align:center;vertical-align:top;">
+        <tr id="row-6-4-">
+         <td id="cell6-4-1" style="text-align:center;vertical-align:top;">
           3
          </td>
-         <td id="cell5-4-2" style="vertical-align:top;">
+         <td id="cell6-4-2" style="vertical-align:top;">
           A073012
          </td>
-         <td id="cell5-4-3" style="vertical-align:top;">
+         <td id="cell6-4-3" style="vertical-align:top;">
           0.6617071822…
          </td>
-         <td id="cell5-4-4" style="text-align:justify;vertical-align:top;">
+         <td id="cell6-4-4" style="text-align:justify;vertical-align:top;">
           7
          </td>
-         <td id="cell5-4-5" style="text-align:justify;vertical-align:top;">
+         <td id="cell6-4-5" style="text-align:justify;vertical-align:top;">
           A103986
          </td>
-         <td id="cell5-4-6" style="text-align:justify;vertical-align:top;">
+         <td id="cell6-4-6" style="text-align:justify;vertical-align:top;">
           1.0515838734…
          </td>
         </tr>
-        <tr id="row-5-5-">
-         <td id="cell5-5-1" style="text-align:center;vertical-align:top;">
+        <tr id="row-6-5-">
+         <td id="cell6-5-1" style="text-align:center;vertical-align:top;">
           4
          </td>
-         <td id="cell5-5-2" style="vertical-align:top;">
+         <td id="cell6-5-2" style="vertical-align:top;">
           A103983
          </td>
-         <td id="cell5-5-3" style="vertical-align:top;">
+         <td id="cell6-5-3" style="vertical-align:top;">
           0.7776656535…
          </td>
-         <td id="cell5-5-4" style="text-align:justify;vertical-align:top;">
+         <td id="cell6-5-4" style="text-align:justify;vertical-align:top;">
           8
          </td>
-         <td id="cell5-5-5" style="text-align:justify;vertical-align:top;">
+         <td id="cell6-5-5" style="text-align:justify;vertical-align:top;">
           A103987
          </td>
-         <td id="cell5-5-6" style="text-align:justify;vertical-align:top;">
+         <td id="cell6-5-6" style="text-align:justify;vertical-align:top;">
           1.1281653402…
          </td>
         </tr>
@@ -1970,6 +1973,8 @@ subspace,
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -2008,6 +2013,7 @@ in
       4.0b
      </a>.
     </p>
+    
     <p class="noindent">
      We
 have
@@ -2140,6 +2146,8 @@ dataset
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -2215,6 +2223,7 @@ in
       4.2
      </a>.
     </p>
+    
     <div class="figure">
      <p class="noindent">
       <img alt="PIC" height="" src="codes/images/Dimensionality-Reduction/swiss-roll-plot-.svg" width="150%"/>
@@ -2244,6 +2253,8 @@ plane
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -2327,6 +2338,7 @@ of
       4.3
      </a>.
     </p>
+    
     <p class="noindent">
      The
 Swiss
@@ -2368,6 +2380,8 @@ space.
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <img alt="PIC" height="" src="figures/Dimensionality-Reduction/figures-1.svg" width="100%"/>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
@@ -2446,6 +2460,7 @@ a
      -dimensional
 hyperplane.
     </p>
+    
     <p class="noindent">
      In
 the
@@ -2515,7 +2530,7 @@ and
      Many dimensionality reduction algorithms work by modelling the manifold on which the training instances lie. This is called
      <alert style="color: #821131;">
       manifold learning
-     </alert> <a id="x6-47003"></a><a href="#X0-izenman2012introduction">[8]</a>. It relies on the manifold assumption, also called the
+     </alert> <a id="x6-47003"></a><a href="#X0-izenman2012introduction">[17]</a>. It relies on the manifold assumption, also called the
      <italic>
       manifold hypothesis
      </italic>
@@ -2552,6 +2567,8 @@ empirically
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -2584,6 +2601,7 @@ logic
      </span>
      observed.
     </p>
+    
     <p class="noindent">
      Once
 again,
@@ -2894,6 +2912,8 @@ Pearson.
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <img alt="PIC" height="" src="figures/Dimensionality-Reduction/raster/portrait-karl.jpg" width="100%"/>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
@@ -2909,7 +2929,7 @@ Pearson
        </span>
        <italic>
         (1857
- 1936)
+- 1936)
        </italic>
        An
 English
@@ -2947,9 +2967,9 @@ significantly
 to
 the
 field
+                                                                                
+                                                                                
 of
-                                                                                
-                                                                                
 biometrics
 and
 meteorology.
@@ -2984,6 +3004,7 @@ in
       4.0a
      </a>.
     </p>
+    
     <h3 class="subsectionHead">
      <a aria-label="Link to this section in PDF version" class="pdf-link" href="DataScienceIILectureBook.pdf#subsection.4.3.1" style="color: red;  position: absolute;  left: -30px;" target="_blank">
       <svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -3001,73 +3022,20 @@ in
      Preserving the Variance
     </h3>
     <p class="noindent">
-     Before
-we
-can
-project
-the
-training
-set
-onto
-a
-lower-dimensional
-hyperplane,
-we
-first
-need
-to
-choose
-the
+     Before we can project the training set onto a lower-dimensional hyperplane, we first need to choose the
      <alert style="color: #821131;">
-      correct
-hyperplane
+      correct hyperplane
      </alert>
-     .
-As
-an
-example,
-a
-simple
-2D
-dataset
-is
-represented
-on
-the
-left
-in
+     . As
+an example, a simple 2D dataset is represented on the left in
      <span id="bold" style="font-weight:bold;">
       Fig.
      </span>
      <a href="#x6-49004r5">
       4.5
      </a>
-     along
-with
-three
-different
-axes.
-     <alert style="color: #821131;">
-      <span id="bold" style="font-weight:bold;">
-       <sup class="textsuperscript">
-        9
-       </sup>
-      </span>
-     </alert>
-     <span class="marginnote">
-      <alert style="color: #821131;">
-       <span id="bold" style="font-weight:bold;">
-        <sup class="textsuperscript">
-         9
-        </sup>
-       </span>
-      </alert>
-      <span style="color:#0063B2;">
-       i.e.,
-1D
+     along with three different axes, such as 1D
 hyperplanes.
-      </span>
-     </span>
     </p>
     <p class="noindent">
      On the right is the result of the projection of the dataset onto each of these axes. As we can see:
@@ -3108,6 +3076,9 @@ line
 preserves
 very
 little
+                                                                                
+                                                                                
+     
 variance
       </p>
      </dd>
@@ -3396,7 +3367,7 @@ orthogonal to that plane. After the projection, in
      </math>
      axis.
     </p>
-    <div class="informationblock" id="tcolobox-29">
+    <div class="informationblock" id="tcolobox-31">
      <div class="title">
       <p class="noindent">
        <span id="bold" style="font-weight:bold;">
@@ -3501,15 +3472,17 @@ swap,
        <alert style="color: #821131;">
         <span id="bold" style="font-weight:bold;">
          <sup class="textsuperscript">
-          10
+          9
          </sup>
         </span>
        </alert>
        <span class="marginnote">
+        <span style="color:#999999;">
+        </span>
         <alert style="color: #821131;">
          <span id="bold" style="font-weight:bold;">
           <sup class="textsuperscript">
-           10
+           9
           </sup>
          </span>
         </alert>
@@ -3537,6 +3510,7 @@ remain
 the
 same.
       </p>
+      
      </div>
     </div>
     <p class="noindent">
@@ -4097,7 +4071,7 @@ component.
     <p class="noindent">
     </p>
     <pre><div id="fancyvrb53" style="padding:20px;border-radius: 3px;"><a id="x6-53002r395"></a><span style="color:#2B2BFF;">print</span>(pca.explained_variance_ratio_)</div></pre>
-    <div class="tcolorbox tcolorbox" id="tcolobox-30">
+    <div class="tcolorbox tcolorbox" id="tcolobox-32">
      <div class="tcolorbox-content">
       <pre><div id="fancyvrb54" style="padding:20px;border-radius: 3px;"><a id="x6-53004r1"></a>[0.17974135 0.1177597 ]</div></pre>
      </div>
@@ -4175,7 +4149,7 @@ wish to preserve:
     <p class="noindent">
     </p>
     <pre><div id="fancyvrb57" style="padding:20px;border-radius: 3px;"><a id="x6-54026r432"></a><span style="color:#2B2BFF;">print</span>(pca.n_components_)</div></pre>
-    <div class="tcolorbox tcolorbox" id="tcolobox-31">
+    <div class="tcolorbox tcolorbox" id="tcolobox-33">
      <div class="tcolorbox-content">
       <pre><div id="fancyvrb58" style="padding:20px;border-radius: 3px;"><a id="x6-54028r1"></a>154</div></pre>
      </div>
@@ -4250,7 +4224,7 @@ iterations:
      Let’s look at the best hyperparameters found:
     </p>
     <pre><div id="fancyvrb60" style="padding:20px;border-radius: 3px;"><a id="x6-54061r478"></a><span style="color:#2B2BFF;">print</span>(rnd_search.best_params_)</div></pre>
-    <div class="tcolorbox tcolorbox" id="tcolobox-32">
+    <div class="tcolorbox tcolorbox" id="tcolobox-34">
      <div class="tcolorbox-content">
       <pre><div id="fancyvrb61" style="padding:20px;border-radius: 3px;"><a id="x6-54063r1"></a>{'randomforestclassifier__n_estimators': 475, 'pca__n_components': 57}</div></pre>
      </div>
@@ -4313,7 +4287,7 @@ the original data and the reconstructed data (compressed and then decompressed) 
      <span id="bold" style="font-weight:bold;">
       reconstruction
 error
-     </span> <a id="x6-55001"></a><a href="#X0-nayak2021comprehensive">[9]</a>.
+     </span> <a id="x6-55001"></a><a href="#X0-nayak2021comprehensive">[18]</a>.
     </p>
     <div class="figure">
      <p class="noindent">
@@ -4929,15 +4903,17 @@ applying
      <alert style="color: #821131;">
       <span id="bold" style="font-weight:bold;">
        <sup class="textsuperscript">
-        11
+        10
        </sup>
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
-         11
+         10
         </sup>
        </span>
       </alert>
@@ -4953,6 +4929,7 @@ arrive.
       </span>
      </span>
     </p>
+    
     <p class="noindent">
      The
 following
@@ -4967,15 +4944,17 @@ mini-batches
      <alert style="color: #821131;">
       <span id="bold" style="font-weight:bold;">
        <sup class="textsuperscript">
-        12
+        11
        </sup>
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
-         12
+         11
         </sup>
        </span>
       </alert>
@@ -5011,6 +4990,7 @@ just
 like
 before.
     </p>
+    
     <div class="warning">
      <p class="noindent">
       We must call the <span style="color:#054C5C;"><code class="verb">partial_fit()</code></span>
@@ -5038,15 +5018,17 @@ NumPy’s <span style="color:#054C5C;"><code class="verb">memmap</code></span>
      <alert style="color: #821131;">
       <span id="bold" style="font-weight:bold;">
        <sup class="textsuperscript">
-        13
+        12
        </sup>
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
-         13
+         12
         </sup>
        </span>
       </alert>
@@ -5099,6 +5081,7 @@ entirely
 in
 memory.
     </p>
+    
     <p class="noindent">
      To
 demonstrate
@@ -5388,15 +5371,17 @@ more,
      <alert style="color: #821131;">
       <span id="bold" style="font-weight:bold;">
        <sup class="textsuperscript">
-        14
+        13
        </sup>
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
-         14
+         13
         </sup>
        </span>
       </alert>
@@ -5424,6 +5409,7 @@ random
 projection
 instead.
     </p>
+    
     <p class="noindent">
     </p>
     <h2 class="sectionHead">
@@ -5446,9 +5432,9 @@ instead.
      As its name suggests, the random projection algorithm projects the data to a lower-dimensional space using a random linear
 projection. This may sound counter intuitive, but turns out such a random projection is actually very likely to preserve distances
 fairly well, as was demonstrated mathematically by William B. Johnson and Joram Lindenstrauss in a famous lemma shown in an
-abridged form below <a id="x6-58001"></a><a href="#X0-matouvsek2008variants">[10]</a>.
+abridged form below <a id="x6-58001"></a><a href="#X0-matouvsek2008variants">[19]</a>.
     </p>
-    <div class="theoryblock" id="tcolobox-33">
+    <div class="theoryblock" id="tcolobox-35">
      <div class="title">
       <a id="x6-58003r6">
       </a>
@@ -5456,7 +5442,7 @@ abridged form below <a id="x6-58001"></a><a href="#X0-matouvsek2008variants">[10
        <span id="bold" style="font-weight:bold;">
         Theory
        </span>
-       4.6: Johnson - Lindenstrauss Lemma
+       4.8: Johnson - Lindenstrauss Lemma
       </p>
      </div>
      <div class="box-content">
@@ -5811,7 +5797,7 @@ the number of dimensions of the original dataset. If we define a lower dimension
       </table>
       <p class="noindent">
        The Theorem states that after fixing an error level, one can map a collection of points from one Euclidean space, no matter how
-high its dimension
+high it’s dimension
        <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
         <mi>
          m
@@ -6270,15 +6256,17 @@ tweak
      <alert style="color: #821131;">
       <span id="bold" style="font-weight:bold;">
        <sup class="textsuperscript">
-        15
+        14
        </sup>
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
-         15
+         14
         </sup>
        </span>
       </alert>
@@ -6307,6 +6295,7 @@ dimensionality
      </math>
      .
     </p>
+    
     <p class="noindent">
      The
 following
@@ -6606,15 +6595,17 @@ non-zero.
      <alert style="color: #821131;">
       <span id="bold" style="font-weight:bold;">
        <sup class="textsuperscript">
-        16
+        15
        </sup>
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
-         16
+         15
         </sup>
        </span>
       </alert>
@@ -6647,6 +6638,7 @@ if
 we
 prefer.
     </p>
+    
     <p class="noindent">
      Each
 cell
@@ -6693,15 +6685,17 @@ either
      <alert style="color: #821131;">
       <span id="bold" style="font-weight:bold;">
        <sup class="textsuperscript">
-        17
+        16
        </sup>
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
-         17
+         16
         </sup>
        </span>
       </alert>
@@ -6760,6 +6754,7 @@ likely.
      </math>
      .
     </p>
+    
     <p class="noindent">
      If
 we

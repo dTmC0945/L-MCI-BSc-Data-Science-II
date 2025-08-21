@@ -32,9 +32,72 @@ htmlShow[0].style.display = "none";
 </head><body 
 >                                                                                
                                                                                 
+<!--l. 2--><p class="noindent" >
                                                                                 
                                                                                 
-<!--l. 61--><p class="noindent" ><a 
+</p><!--l. 4--><p class="noindent" ><span 
+class="ec-lmr-7">(2025, D. T. McGuines, Ph.D) </span><br 
+class="newline" />
+</p><!--l. 8--><p class="noindent" ><span 
+class="ec-lmr-7">Current version is 2025.WS. </span><br 
+class="newline" />
+</p><!--l. 10--><p class="noindent" ><span 
+class="ec-lmr-7">This document includes the contents of Drive Systems, official name being </span><italic>Machine Learning and Data Science 2</italic><span 
+class="ec-lmr-7">, taught at</span>
+<span 
+class="ec-lmr-7">MCI in the Mechatronik Design Innovation. This document is the part of the module MECH-B-5-MLDS-MLDS2-ILV taught in</span>
+<span 
+class="ec-lmr-7">the B.Sc degree. </span><br 
+class="newline" />
+</p><!--l. 16--><p class="noindent" ><span 
+class="ec-lmr-7">All relevant code of the document is done using </span><italic>SageMath</italic> <span 
+class="ec-lmr-7">where stated and Python v3.13.7. </span><br 
+class="newline" />
+</p><!--l. 19--><p class="noindent" ><span 
+class="ec-lmr-7">This document was compiled with LuaTeX v1.22.0, and all editing were done using GNU Emacs v30.1 using AUCTeX and</span>
+<span 
+class="ec-lmr-7">org-mode package. </span><br 
+class="newline" />
+</p><!--l. 23--><p class="noindent" ><span 
+class="ec-lmr-7">This document is based on the following books and resources shown in no particular order: </span><br 
+class="newline" />
+</p><!--l. 25--><p class="noindent" ><italic>Neural Networks: Methodology and Applications</italic> <span 
+class="ec-lmr-7">by Gérard Dreyfus , Springer </span><italic>Python for Data Analysis: Data Wrangling with
+Pandas, Numpy, and iPython</italic> <span 
+class="ec-lmr-7">by Wes McKinney , Springer </span><italic>Hands-On Machine Learning with Scikit-Learn, Keras, and
+TensorFlow</italic> <span 
+class="ec-lmr-7">by Aurélien Géron , O’Reilly </span><italic>TensorFlow for Deep Learning: From Linear Regression To Reinforcement Learning</italic>
+<span 
+class="ec-lmr-7">by B. Ramsundar, and R. B. Zadeh , O’Reilly </span><italic>AI and Machine Learning for Coders</italic> <span 
+class="ec-lmr-7">by Moroney L. , O’ Reilly </span><italic>Neural Networks
+and Deep Learning</italic> <span 
+class="ec-lmr-7">by Aggarwal S. , Springer </span><italic>Python Machine Learning</italic> <span 
+class="ec-lmr-7">by Raschka., et. al. , Packt </span><italic>Machine Learning with
+Python Cookbook</italic> <span 
+class="ec-lmr-7">by Albon C. , O’ Reilly </span><italic>CS229 Lecture Notes</italic> <span 
+class="ec-lmr-7">by Ng A., et.al , - </span><italic>Lecture Notes on Machine Learning</italic> <span 
+class="ec-lmr-7">by Migel</span>
+<span 
+class="ec-lmr-7">A., et. al , - </span><br 
+class="newline" /><br 
+class="newline" /><br 
+class="newline" /><span 
+class="ec-lmr-7">The document is designed with no intention of publication and has only been designed for education purposes.</span>
+<br 
+class="newline" />
+</p><!--l. 40--><p class="noindent" ><span 
+class="ec-lmr-7">The current maintainer of this work along with the primary lecturer </span><br 
+class="newline" /><span 
+class="ec-lmr-7">is D. T. McGuines, Ph.D.  (dtm@mci4me.at).</span>
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+</p><!--l. 61--><p class="noindent" ><a 
  id="chapter*.1"></a>
 </p>
 <div class="tableofcontents">
@@ -43,33 +106,25 @@ href="DataScienceIILectureBookch1.html#x3-20001" id="QQ2-3-2">Support Vector Mac
 <br /><span class="sectionToc" >1.1  <a 
 href="DataScienceIILectureBookch1.html#x3-30001.1" id="QQ2-3-3">Introduction</a></span>
 <br /><span class="sectionToc" >1.2  <a 
-href="DataScienceIILectureBookch1.html#x3-40001.2" id="QQ2-3-4">Linear Support Vector Machines (SVM) Classification</a></span>
+href="DataScienceIILectureBookch1.html#x3-40001.2" id="QQ2-3-4">Linear Support Vector Machine Classification</a></span>
 <br /><span class="sectionToc" >1.3  <a 
-href="DataScienceIILectureBookch1.html#x3-60001.3" id="QQ2-3-10">Nonlinear SVM Classification</a></span>
+href="DataScienceIILectureBookch1.html#x3-60001.3" id="QQ2-3-10">Nonlinear Support Vector Machine Classification</a></span>
 <br /><span class="sectionToc" >1.4  <a 
-href="DataScienceIILectureBookch1.html#x3-100001.4" id="QQ2-3-19">SVM Regression</a></span>
+href="DataScienceIILectureBookch1.html#x3-110001.4" id="QQ2-3-20">Regression</a></span>
 <br /><span class="chapterToc" >2 <a 
-href="DataScienceIILectureBookch2.html#x4-110002" id="QQ2-4-22">Decision Trees</a></span>
+href="DataScienceIILectureBookch2.html#x4-120002" id="QQ2-4-23">Decision Trees</a></span>
 <br /><span class="sectionToc" >2.1  <a 
-href="DataScienceIILectureBookch2.html#x4-120002.1" id="QQ2-4-23">Introduction</a></span>
+href="DataScienceIILectureBookch2.html#x4-130002.1" id="QQ2-4-24">Introduction</a></span>
 <br /><span class="sectionToc" >2.2  <a 
-href="DataScienceIILectureBookch2.html#x4-140002.2" id="QQ2-4-25">Training and Visualising Decision Trees</a></span>
+href="DataScienceIILectureBookch2.html#x4-150002.2" id="QQ2-4-26">Training and Visualising Decision Trees</a></span>
 <br /><span class="sectionToc" >2.3  <a 
-href="DataScienceIILectureBookch2.html#x4-150002.3" id="QQ2-4-26">Making Predictions</a></span>
+href="DataScienceIILectureBookch2.html#x4-160002.3" id="QQ2-4-27">Making Predictions</a></span>
 <br /><span class="sectionToc" >2.4  <a 
-href="DataScienceIILectureBookch2.html#x4-170002.4" id="QQ2-4-31">Estimating Class Probabilities</a></span>
+href="DataScienceIILectureBookch2.html#x4-190002.4" id="QQ2-4-33">The CART Training Algorithm</a></span>
 <br /><span class="sectionToc" >2.5  <a 
-href="DataScienceIILectureBookch2.html#x4-180002.5" id="QQ2-4-32">The CART Training Algorithm</a></span>
+href="DataScienceIILectureBookch2.html#x4-220002.5" id="QQ2-4-37">Regression</a></span>
 <br /><span class="sectionToc" >2.6  <a 
-href="DataScienceIILectureBookch2.html#x4-190002.6" id="QQ2-4-33">Gini Impurity or Entropy?</a></span>
-<br /><span class="sectionToc" >2.7  <a 
-href="DataScienceIILectureBookch2.html#x4-200002.7" id="QQ2-4-34">Regularization Hyperparameters</a></span>
-<br /><span class="sectionToc" >2.8  <a 
-href="DataScienceIILectureBookch2.html#x4-210002.8" id="QQ2-4-36">Regression</a></span>
-<br /><span class="sectionToc" >2.9  <a 
-href="DataScienceIILectureBookch2.html#x4-220002.9" id="QQ2-4-40">Sensitivity to Axis Orientation</a></span>
-<br /><span class="sectionToc" >2.10  <a 
-href="DataScienceIILectureBookch2.html#x4-230002.10" id="QQ2-4-43">DTs Have a High Variance</a></span>
+href="DataScienceIILectureBookch2.html#x4-230002.6" id="QQ2-4-41">Sensitivity to Axis Orientation</a></span>
 <br /><span class="chapterToc" >3 <a 
 href="DataScienceIILectureBookch3.html#x5-240003" id="QQ2-5-45">Ensemble Learning and Random Forests</a></span>
 <br /><span class="sectionToc" >3.1  <a 
@@ -114,8 +169,6 @@ href="DataScienceIILectureBookch6.html#x8-860006.2" id="QQ2-8-144">From Biology 
 href="DataScienceIILectureBookch6.html#x8-930006.3" id="QQ2-8-156">Implementing Multi-layer Perceptrons (MLP)s with Keras</a></span>
 <br /><span class="chapterToc" >7 <a 
 href="DataScienceIILectureBookch7.html#x9-1010007" id="QQ2-9-169">Computer Vision using Convolutional Neural Networks</a></span>
-                                                                                
-                                                                                
 <br /><span class="sectionToc" >7.1  <a 
 href="DataScienceIILectureBookch7.html#x9-1020007.1" id="QQ2-9-170">Introduction</a></span>
 <br /><span class="sectionToc" >7.2  <a 
@@ -124,6 +177,8 @@ href="DataScienceIILectureBookch7.html#x9-1030007.2" id="QQ2-9-172">Visual Corte
 href="DataScienceIILectureBookch7.html#x9-1040007.3" id="QQ2-9-174">Convolutional Layers</a></span>
 <br /><span class="sectionToc" >7.4  <a 
 href="DataScienceIILectureBookch7.html#x9-1090007.4" id="QQ2-9-185">Pooling Layer</a></span>
+                                                                                
+                                                                                
 <br /><span class="sectionToc" >7.5  <a 
 href="DataScienceIILectureBookch7.html#x9-1100007.5" id="QQ2-9-188">Implementing Pooling Layers with Keras</a></span>
 <br /><span class="sectionToc" >7.6  <a 
@@ -134,6 +189,8 @@ href="DataScienceIILectureBookch7.html#x9-1170007.7" id="QQ2-9-203">Implementing
 href="DataScienceIILectureBookch7.html#x9-1180007.8" id="QQ2-9-204">Using Pre-Trained Models from Keras</a></span>
 <br /><span class="sectionToc" >7.9  <a 
 href="DataScienceIILectureBookch7.html#x9-1190007.9" id="QQ2-9-206">Pre-Trained Models for Transfer Learning</a></span>
+<br /><span class="chapterToc" > <a 
+href="DataScienceIILectureBookch7.html#Q1-9-209">List of Acronyms</a></span>
 </div>
                                                                                 
                                                                                 
@@ -155,7 +212,10 @@ href="DataScienceIILectureBookch7.html#x9-1190007.9" id="QQ2-9-206">Pre-Trained 
                                                                                 
                                                                                 
                                                                                 
-
+</p><!--l. 8--><p class="noindent" >
+                                                                                
+                                                                                
+</p>
                                                                                 
                                                                                 
                                                                                 
@@ -179,6 +239,9 @@ href="DataScienceIILectureBookch7.html#x9-1190007.9" id="QQ2-9-206">Pre-Trained 
 </p>
                                                                                 
                                                                                 
+                                                                                
+                                                                                
+</p><!--l. 8--><p class="noindent" >
                                                                                 
                                                                                 
 </p>

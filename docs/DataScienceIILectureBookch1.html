@@ -74,7 +74,7 @@ htmlShow[0].style.display = "none";
          1.2
         </small>
         <a href="#x3-40001.2">
-         Linear SVM Classification
+         Linear Support Vector Machine Classification
         </a>
        </span>
       </li>
@@ -94,7 +94,7 @@ htmlShow[0].style.display = "none";
          1.3
         </small>
         <a href="#x3-60001.3">
-         Nonlinear SVM Classification
+         Nonlinear Support Vector Machine Classification
         </a>
        </span>
       </li>
@@ -114,7 +114,7 @@ htmlShow[0].style.display = "none";
          1.3.2
         </small>
         <a href="#x3-80001.3.2">
-         Similarity Features
+         The Kernel Trick
         </a>
        </span>
       </li>
@@ -124,6 +124,16 @@ htmlShow[0].style.display = "none";
          1.3.3
         </small>
         <a href="#x3-90001.3.3">
+         Similarity Features
+        </a>
+       </span>
+      </li>
+      <li>
+       <span class="subsectionToc" style="font-size:12px;margin:0px;">
+        <small>
+         1.3.4
+        </small>
+        <a href="#x3-100001.3.4">
          Gaussian RBF Kernel
         </a>
        </span>
@@ -133,8 +143,8 @@ htmlShow[0].style.display = "none";
         <small>
          1.4
         </small>
-        <a href="#x3-100001.4">
-         SVM Regression
+        <a href="#x3-110001.4">
+         Regression
         </a>
        </span>
       </li>
@@ -224,7 +234,7 @@ htmlShow[0].style.display = "none";
      . An a
 useful method for this task is called
      <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
-      SVM
+      Support Vector Machines (SVM)
      </a>.
     </p>
     <p class="noindent">
@@ -267,6 +277,8 @@ learning
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
@@ -275,7 +287,7 @@ learning
        </span>
       </alert>
       <span style="color:#0063B2;">
-       a
+       A
        framework
        for
        machine
@@ -288,7 +300,7 @@ learning
        statistics
        and
        functional
-       analysis.[1][2][3]
+       analysis.
        Statistical
        learning
        theory
@@ -323,7 +335,7 @@ learning
        speech
        recognition,
        and
-       bioinformatics.
+       bio-informatics.
       </span>
      </span>
      which
@@ -386,9 +398,15 @@ learning
     </p>
     <div class="knowledge">
      <p class="noindent">
-      It is even possible to implement
+      It
+      is
+      even
+      possible
+      to
+      implement
       <span id="bold" style="font-weight:bold;">
-       novelty detection
+       novelty
+detection
       </span>
       using
       <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
@@ -399,11 +417,48 @@ learning
     <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
      SVM
     </a>
-    s most suitable for small to medium sized
+    s
+    most
+    suitable
+    for
+    small
+    to
+    medium
+    sized
     <alert style="color: #821131;">
      non-linear
     </alert>
-    datasets (i.e., hundreds to thousands of instances), especially for classification tasks.
+    datasets,
+    <alert style="color: #821131;">
+     <span id="bold" style="font-weight:bold;">
+      <sup class="textsuperscript">
+       2
+      </sup>
+     </span>
+    </alert>
+    <span class="marginnote">
+     <span style="color:#999999;">
+     </span>
+     <alert style="color: #821131;">
+      <span id="bold" style="font-weight:bold;">
+       <sup class="textsuperscript">
+        2
+       </sup>
+      </span>
+     </alert>
+     <span style="color:#0063B2;">
+      i.e.,
+      hundreds
+      to
+      thousands
+      of
+      instances.
+     </span>
+    </span>
+    especially
+    for
+    classification
+    tasks.
     <p class="noindent">
     </p>
     <h2 class="sectionHead">
@@ -420,11 +475,7 @@ learning
      </small>
      <a id="x3-40001.2">
      </a>
-     Linear
-     <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
-      SVM
-     </a>
-     Classification
+     Linear Support Vector Machine Classification
     </h2>
     <p class="noindent">
      As
@@ -463,16 +514,18 @@ learning
      <alert style="color: #821131;">
       <span id="bold" style="font-weight:bold;">
        <sup class="textsuperscript">
-        2
+        3
        </sup>
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <img alt="PIC" height="" src="figures/Support-Vector-Machines/raster/portrait-iris-flower.jpg" width="100%"/>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
-         2
+         3
         </sup>
        </span>
       </alert>
@@ -522,7 +575,7 @@ learning
        of
        linear
        discriminant
-       analysis.[1]
+       analysis.
        It
        is
        sometimes
@@ -575,7 +628,7 @@ I
        1.1:
       </span>
       <span class="content">
-       Large Margin Classifier
+       Large margin classification of the iris dataset.
       </span>
      </figcaption>
     </div>
@@ -606,8 +659,9 @@ I
      ) is so bad it does not even separate the classes properly.
     </p>
     <p class="noindent">
-     The other two models work perfectly on this training set, but their decision boundaries come so close to the instances that these
-     models will probably
+     The other two <alert style="color: #821131;">(2)</alert>
+     models work perfectly on this training set, but their decision boundaries come so close to the instances that
+     these models will probably
      <span id="bold" style="font-weight:bold;">
       NOT
      </span>
@@ -684,15 +738,17 @@ I
      <alert style="color: #821131;">
       <span id="bold" style="font-weight:bold;">
        <sup class="textsuperscript">
-        3
+        4
        </sup>
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
-         3
+         4
         </sup>
        </span>
       </alert>
@@ -731,11 +787,14 @@ vectors
       <span id="bold" style="font-weight:bold;">
        sensitive to the feature scales
       </span>
-      , as you can see in Figure
+      , as you can see in
+      <span id="bold" style="font-weight:bold;">
+       Fig.
+      </span>
       <a href="#x3-4002r2">
        1.2
-      </a>. In the left plot, the vertical scale is much larger than
-      the horizontal scale, so the widest possible street is close to horizontal. After feature scaling (e.g., using <span style="color:#054C5C;"><code class="verb">sklearn</code></span>
+      </a>. In the left plot, the vertical scale is much larger than the
+      horizontal scale, so the widest possible street is close to horizontal. After feature scaling (e.g., using <span style="color:#054C5C;"><code class="verb">scikit-learn</code></span>
       ’s <span style="color:#054C5C;"><code class="verb">StandardScaler</code></span>
       ), the decision boundary in the right plot looks much better.
      </p>
@@ -786,14 +845,16 @@ vectors
       <a id="x3-5001x1.2.1">
       </a>
       <span class="ec-lmssbx-10x-x-70">
-       It is sensitive to outliers
+       Sensitivity to Outliers
       </span>
      </dt>
      <dd class="description">
       <p class="noindent">
        Hard
        margin
-       SVM
+       <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
+        SVM
+       </a>
        is
        highly
        sensitive
@@ -845,7 +906,9 @@ vectors
        separable,
        hard
        margin
-       SVM
+       <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
+        SVM
+       </a>
        fails
        to
        find
@@ -886,58 +949,17 @@ vectors
       1.3
      </a>
      shows the iris dataset with just one <alert style="color: #821131;">(1)</alert>
-     additional outlier:
+     additional outlier. On the left, it is impossible to find a hard margin whereas on
+     the right, the decision boundary ends up very different from the one we saw in
+     <span id="bold" style="font-weight:bold;">
+      Fig.
+     </span>
+     <a href="#x3-4001r1">
+      1.1
+     </a>
+     without the outlier, and the model will
+     probably not generalize as well.
     </p>
-    <div class="quoteblock">
-     <p class="noindent">
-      on
-      the
-      left,
-      it
-      is
-      impossible
-      to
-      find
-      a
-      hard
-      margin
-      whereas
-      on
-      the
-      right,
-      the
-      decision
-      boundary
-      ends
-      up
-      very
-      different
-      from
-      the
-      one
-      we
-      saw
-      in
-      <span id="bold" style="font-weight:bold;">
-       Fig.
-      </span>
-      <a href="#x3-4001r1">
-       1.1
-      </a>
-      without
-      the
-      outlier,
-      and
-      the
-      model
-      will
-      probably
-      not
-      generalize
-      as
-      well.
-     </p>
-    </div>
     <div class="figure">
      <p class="noindent">
       <img alt="PIC" height="" src="codes/images/Support-Vector-Machines/sensitivity_to_outliers_plot-.svg" width="150%"/>
@@ -992,15 +1014,17 @@ vectors
      <alert style="color: #821131;">
       <span id="bold" style="font-weight:bold;">
        <sup class="textsuperscript">
-        4
+        5
        </sup>
       </span>
      </alert>
      <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
       <alert style="color: #821131;">
        <span id="bold" style="font-weight:bold;">
         <sup class="textsuperscript">
-         4
+         5
         </sup>
        </span>
       </alert>
@@ -1021,9 +1045,11 @@ vectors
        on
        the
        wrong
-       side
+       side.
       </span>
      </span>
+    </p>
+    <p class="noindent">
      This
      is
      called
@@ -1091,7 +1117,7 @@ classification
      <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
       SVM
      </a>
-     model using <span style="color:#054C5C;"><code class="verb">sklearn</code></span>, you can specify several hyperparameters, including the regularisation
+     model using <span style="color:#054C5C;"><code class="verb">scikit-learn</code></span>, you can specify several hyperparameters, including the regularisation
      hyperparameter <span style="color:#054C5C;"><code class="verb">C</code></span>.
     </p>
     <div class="informationblock" id="tcolobox-3">
@@ -1126,31 +1152,31 @@ positive
          </mrow>
         </msub>
        </math>
-       penalty. <span style="color:#054C5C;"><code class="verb">float, default=1.0</code></span>
+       penalty.
       </p>
      </div>
     </div>
     <p class="noindent">
      Setting the <span style="color:#054C5C;"><code class="verb">C</code></span>
-     to a low value, then we end up with the model on the left of
+     to a low value, we end up with the model on the left of
      <span id="bold" style="font-weight:bold;">
       Fig.
      </span>
      <a href="#x3-5004r4">
       1.4
-     </a>. However, if we were to set a high value, we
-     get the model on the right. As can be seen, reducing <span style="color:#054C5C;"><code class="verb">C</code></span>
+     </a>. However, setting a high value, we get
+     the model on the right. As can be seen, reducing <span style="color:#054C5C;"><code class="verb">C</code></span>
      makes the street larger, but it also leads to more margin
      violations.
     </p>
     <p class="noindent">
      In other words, reducing <span style="color:#054C5C;"><code class="verb">C</code></span>
-     results in more instances supporting the street, so there’s less risk of overfitting. But if you reduce it
+     results in more instances supporting the street, so there’s less risk of over-fitting. But if you reduce it
      too much, then the model ends up underfitting, as seems to be the case here:
     </p>
     <div class="quoteblock">
      <p class="noindent">
-      the
+      The
       model
       with <span style="color:#054C5C;"><code class="verb">C=100</code></span>
       looks
@@ -1187,11 +1213,11 @@ positive
       <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
        SVM
       </a>
-      model is overfitting, you can try regularizing it by reducing <span style="color:#054C5C;"><code class="verb">C</code></span>.
+      model is overfitting, we can try regularizing it by reducing <span style="color:#054C5C;"><code class="verb">C</code></span>.
      </p>
     </div>
     <p class="noindent">
-     The following <span style="color:#054C5C;"><code class="verb">sklearn</code></span>
+     The following <span style="color:#054C5C;"><code class="verb">scikit-learn</code></span>
      code loads the iris dataset and trains a linear
      <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
       SVM
@@ -1200,8 +1226,8 @@ positive
      <italic>
       Iris virginica
      </italic>
-     flowers. The pipeline
-     first scales the features, then uses a <span style="color:#054C5C;"><code class="verb">LinearSVC</code></span>
+     flowers. The
+     pipeline first scales the features, then uses a <span style="color:#054C5C;"><code class="verb">LinearSVC</code></span>
      with <span style="color:#054C5C;"><code class="verb">C=1</code></span>
      :
     </p>
@@ -1216,13 +1242,13 @@ positive
 <a id="x3-5022r226"></a>LinearSVC(C=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1</span></span>, random_state=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">42</span></span>)) 
 <a id="x3-5024r227"></a>svm_clf.fit(X, y)</div></pre>
     <p class="noindent">
-     The resulting model is represented on the left in
+     The resulting model is given on the left in
      <span id="bold" style="font-weight:bold;">
       Fig.
      </span>
      <a href="#x3-5004r4">
       1.4
-     </a>. Then, as usual, we can use the model to make predictions:
+     </a>. Then, we can use the model to make predictions:
     </p>
     <pre><div id="fancyvrb2" style="padding:20px;border-radius: 3px;"><a id="x3-5026r234"></a>X_new = [[<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">5.5</span></span>, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1.7</span></span>], [<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">5.0</span></span>, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1.5</span></span>]] 
 <a id="x3-5028r235"></a><span style="color:#2B2BFF;">print</span>(svm_clf.predict(X_new))</div></pre>
@@ -1234,7 +1260,7 @@ positive
     <p class="noindent">
      The first plant is classified as an
      <italic>
-      Iris virginica
+      iris virginica
      </italic>
      , while the second is
      <span id="bold" style="font-weight:bold;">
@@ -1258,7 +1284,8 @@ boundary:
      class, <span style="color:#054C5C;"><code class="verb">LinearSVC</code></span>
      doesn’t have a <span style="color:#054C5C;"><code class="verb">predict_proba()</code></span>
      method to estimate the class probabilities. That
-said, if you use the SVC class instead of <span style="color:#054C5C;"><code class="verb">LinearSVC</code></span>, and if you set its probability hyperparameter to <span style="color:#054C5C;"><code class="verb">True</code></span>, then
+said, if you use the <span style="color:#054C5C;"><code class="verb">SVC</code></span>
+     class instead of <span style="color:#054C5C;"><code class="verb">LinearSVC</code></span>, and if you set its probability hyperparameter to <span style="color:#054C5C;"><code class="verb">True</code></span>, then
 the model will fit an extra model at the end of training to map the
      <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
       SVM
@@ -1267,9 +1294,9 @@ the model will fit an extra model at the end of training to map the
 probabilities.
     </p>
     <p class="noindent">
-     Under the hood, this requires using 5-fold cross-validation to generate out-of-sample predictions for every instance in the training
+     Under the hood, this requires using 5-fold cross-validation to create out-of-sample predictions for every instance in the training
 set, then training a <span style="color:#054C5C;"><code class="verb">LogisticRegression</code></span>
-     model, so it will slow down training considerably. After that, the <span style="color:#054C5C;"><code class="verb">predict_proba()</code></span>
+     model, which will slow down training. After that, the <span style="color:#054C5C;"><code class="verb">predict_proba()</code></span>
      and <span style="color:#054C5C;"><code class="verb">predict_log_proba()</code></span>
      methods will be available.
     </p>
@@ -1289,11 +1316,7 @@ set, then training a <span style="color:#054C5C;"><code class="verb">LogisticReg
      </small>
      <a id="x3-60001.3">
      </a>
-     Nonlinear
-     <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
-      SVM
-     </a>
-     Classification
+     Nonlinear Support Vector Machine Classification
     </h2>
     <p class="noindent">
      Although linear
@@ -1312,8 +1335,8 @@ features.
      <a href="#x3-6001r5">
       1.5
      </a>
-     : it represents a simple dataset with just
-one feature,
+     where it represents a simple dataset with
+just one feature;
      <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
       <msubsup>
        <mrow>
@@ -1331,7 +1354,13 @@ one feature,
       </msubsup>
      </math>
      .
-This dataset is not linearly separable, as you can see. But adding a second feature
+    </p>
+    <p class="noindent">
+     As we can see, this dataset is
+     <span id="bold" style="font-weight:bold;">
+      NOT
+     </span>
+     linearly separable. But adding a second feature
      <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
       <msubsup>
        <mrow>
@@ -1387,7 +1416,7 @@ resulting 2D dataset is perfectly linearly separable.
      </figcaption>
     </div>
     <p class="noindent">
-     To implement this idea using <span style="color:#054C5C;"><code class="verb">sklearn</code></span>, we can create a pipeline containing a <span style="color:#054C5C;"><code class="verb">PolynomialFeatures</code></span>
+     To implement this idea using <span style="color:#054C5C;"><code class="verb">scikit-learn</code></span>, we can create a pipeline containing a <span style="color:#054C5C;"><code class="verb">PolynomialFeatures</code></span>
      transformer, followed by a <span style="color:#054C5C;"><code class="verb">StandardScaler</code></span>
      and a <span style="color:#054C5C;"><code class="verb">LinearSVC</code></span>
      classifier.
@@ -1421,23 +1450,27 @@ interleaving crescent moons.
     </p>
     <p class="noindent">
      We can generate this dataset using the <span style="color:#054C5C;"><code class="verb">make_moons()</code></span>
-     function:
+     function, shown in
+     <span id="bold" style="font-weight:bold;">
+      Fig.
+     </span>
+     <a href="#x3-6020r6">
+      1.6
+     </a>.
     </p>
-    <pre><div id="fancyvrb6" style="padding:20px;border-radius: 3px;"><a id="x3-6003r315"></a>plt.figure(figsize=(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">10</span></span>, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">3</span></span>)) 
-<a id="x3-6005r316"></a> 
-<a id="x3-6007r317"></a>plt.subplot(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">121</span></span>) 
-<a id="x3-6009r318"></a>plt.grid(<span style="color:#2B2BFF;"><span id="bold" style="font-weight:bold;">True</span></span>) 
-<a id="x3-6011r319"></a>plt.axhline(y=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0</span></span>, color=<span style="color:#800080;">'k'</span>) 
-<a id="x3-6013r320"></a>plt.plot(X1D[:, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0</span></span>][y==<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0</span></span>], np.zeros(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">4</span></span>), <span style="color:#800080;">"bs"</span>) 
-<a id="x3-6015r321"></a>plt.plot(X1D[:, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0</span></span>][y==<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1</span></span>], np.zeros(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">5</span></span>), <span style="color:#800080;">"g^"</span>) 
-<a id="x3-6017r322"></a>plt.gca().get_yaxis().set_ticks([]) 
-<a id="x3-6019r323"></a>plt.xlabel(<span style="color:#800080;">"$x_1$"</span>) 
-<a id="x3-6021r324"></a>plt.axis([-<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">4.5</span></span>, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">4.5</span></span>, -<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.2</span></span>, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.2</span></span>]) 
-<a id="x3-6023r325"></a></div></pre>
+    <pre><div id="fancyvrb6" style="padding:20px;border-radius: 3px;"><a id="x3-6003r345"></a><span style="color:#2B2BFF;">from</span><span style="color:#BABABA;"> </span>sklearn.datasets<span style="color:#BABABA;"> </span><span style="color:#2B2BFF;">import</span> make_moons 
+<a id="x3-6005r346"></a><span style="color:#2B2BFF;">from</span><span style="color:#BABABA;"> </span>sklearn.preprocessing<span style="color:#BABABA;"> </span><span style="color:#2B2BFF;">import</span> PolynomialFeatures 
+<a id="x3-6007r347"></a> 
+<a id="x3-6009r348"></a>X, y = make_moons(n_samples=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">100</span></span>, noise=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.15</span></span>, random_state=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">42</span></span>) 
+<a id="x3-6011r349"></a>polynomial_svm_clf = make_pipeline( 
+<a id="x3-6013r350"></a>   PolynomialFeatures(degree=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">3</span></span>), 
+<a id="x3-6015r351"></a>   StandardScaler(), 
+<a id="x3-6017r352"></a>   LinearSVC(C=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">10</span></span>, max_iter=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">10_000</span></span>, random_state=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">42</span></span>)) 
+<a id="x3-6019r353"></a>polynomial_svm_clf.fit(X, y)</div></pre>
     <div class="figure">
      <p class="noindent">
       <img alt="PIC" height="" src="codes/images/Support-Vector-Machines/moons_polynomial_svc_plot-.svg" width="150%"/>
-      <a id="x3-6024r6">
+      <a id="x3-6020r6">
       </a>
      </p>
      <figcaption class="caption">
@@ -1445,11 +1478,7 @@ interleaving crescent moons.
        Figure 1.6:
       </span>
       <span class="content">
-       Linear
-       <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
-        SVM
-       </a>
-       Classifier using polynomial features.
+       Linear support vector machine classifier using polynomial features.
       </span>
      </figcaption>
     </div>
@@ -1491,51 +1520,52 @@ creates a huge number of features, making the model too slow.
 to get the same result as if you had added many polynomial features, even with a very high degree, without actually having to
 add them.
     </p>
-    <div class="informationblock" id="tcolobox-7">
-     <div class="title">
-      <p class="noindent">
-       <span id="bold" style="font-weight:bold;">
-        Information
-       </span>
-       : Kernel Trick
-      </p>
-     </div>
-     <div class="box-content">
-      <p class="noindent">
-       A method used in
-       <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
-        SVM
-       </a>
-       s to enable them to classify non-linear data using a linear classifier. By applying a
-kernel function, SVMs can implicitly map input data into a higher-dimensional space where a linear separator
-(hyperplane) can be used to divide the classes. This mapping is computationally efficient because it avoids the
-direct calculation of the coordinates in this higher space.
-      </p>
-     </div>
-    </div>
     <div class="warning">
      <p class="noindent">
       This means there’s no combinatorial explosion of the number of features.
      </p>
     </div>
     <p class="noindent">
-     This trick is implemented by the SVC class. Let’s test it on the moons dataset:
+     This trick is implemented by the <span style="color:#054C5C;"><code class="verb">SVC</code></span>
+     class. Let’s test it on the moons dataset:
     </p>
     <p class="noindent">
     </p>
-    <pre><div id="fancyvrb7" style="padding:20px;border-radius: 3px;"><a id="x3-7002r356"></a><span style="color:#008700;"><italic>#+end_src</italic></span> 
-<a id="x3-7004r357"></a> 
-<a id="x3-7006r358"></a><span style="color:#008700;"><italic>#+NAME: SVM-A4</italic></span> 
-<a id="x3-7008r359"></a><span style="color:#008700;"><italic>#+begin_src python :session svm :results none</italic></span> 
-<a id="x3-7010r360"></a><span style="color:#2B2BFF;">def</span><span style="color:#BABABA;"> </span><italic><span id="bold" style="font-weight:bold;">plot_dataset</span></italic>(X, y, axes): 
-<a id="x3-7012r361"></a>   plt.plot(X[:, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0</span></span>][y==<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0</span></span>], X[:, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1</span></span>][y==<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0</span></span>], <span style="color:#800080;">"bs"</span>) 
-<a id="x3-7014r362"></a>   plt.plot(X[:, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0</span></span>][y==<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1</span></span>], X[:, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1</span></span>][y==<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1</span></span>], <span style="color:#800080;">"g^"</span>)</div></pre>
+    <pre><div id="fancyvrb7" style="padding:20px;border-radius: 3px;"><a id="x3-7002r384"></a><span style="color:#2B2BFF;">from</span><span style="color:#BABABA;"> </span>sklearn.svm<span style="color:#BABABA;"> </span><span style="color:#2B2BFF;">import</span> SVC 
+<a id="x3-7004r385"></a> 
+<a id="x3-7006r386"></a>poly_kernel_svm_clf = make_pipeline( 
+<a id="x3-7008r387"></a>   StandardScaler(), 
+<a id="x3-7010r388"></a>   SVC(kernel=<span style="color:#800080;">"poly"</span>, degree=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">3</span></span>, coef0=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1</span></span>, C=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">5</span></span>) 
+<a id="x3-7012r389"></a>) 
+<a id="x3-7014r390"></a>poly_kernel_svm_clf.fit(X, y)</div></pre>
     <p class="noindent">
      This code trains an
      <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
       SVM
      </a>
-     classifier using a third-degree polynomial kernel, represented on the left in Figure
+     classifier using a
+     <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+      <msup>
+       <mrow>
+        <mstyle class="text">
+         <mtext>
+          3
+         </mtext>
+        </mstyle>
+       </mrow>
+       <mrow>
+        <mstyle class="text">
+         <mtext>
+          rd
+         </mtext>
+        </mstyle>
+       </mrow>
+      </msup>
+     </math>
+     degree polynomial kernel, represented on the left in
+     <span id="bold" style="font-weight:bold;">
+      Fig.
+     </span>
      <a href="#x3-7015r7">
       1.7
      </a>. On the right is another
@@ -1561,8 +1591,9 @@ direct calculation of the coordinates in this higher space.
        </mrow>
       </msup>
      </math>
-     degree polynomial kernel. Obviously, if your model is overfitting, you might want to reduce the polynomial degree. Conversely, if
-it is underfitting, you can try increasing it. The hyperparameter <span style="color:#054C5C;"><code class="verb">coef0</code></span>
+     degree
+polynomial kernel. Obviously, if your model is overfitting, you might want to reduce the polynomial degree. Conversely, if it is
+underfitting, you can try increasing it. The hyperparameter <span style="color:#054C5C;"><code class="verb">coef0</code></span>
      controls how much the model is influenced by high-degree
 terms versus low-degree terms.
     </p>
@@ -1605,6 +1636,655 @@ search to a much smaller space.
      </small>
      <a id="x3-80001.3.2">
      </a>
+     The Kernel Trick
+    </h3>
+    <p class="noindent">
+     We
+have
+seen
+how
+higher
+dimensional
+transformations
+     <alert style="color: #821131;">
+      <span id="bold" style="font-weight:bold;">
+       <sup class="textsuperscript">
+        6
+       </sup>
+      </span>
+     </alert>
+     <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
+      <alert style="color: #821131;">
+       <span id="bold" style="font-weight:bold;">
+        <sup class="textsuperscript">
+         6
+        </sup>
+       </span>
+      </alert>
+      <span style="color:#0063B2;">
+       i.e.,
+our
+previous
+example.
+      </span>
+     </span>
+     can
+allow
+us
+to
+separate
+data
+in
+order
+to
+make
+classification
+predictions.
+It
+seems
+that
+in
+order
+to
+train
+a
+support
+vector
+classifier
+and
+optimize
+our
+objective
+function,
+we
+would
+have
+to
+perform
+operations
+with
+the
+higher
+dimensional
+vectors
+in
+the
+transformed
+feature
+space.
+    </p>
+    
+    <p class="noindent">
+     In
+real
+applications,
+there
+might
+be
+many
+features
+in
+the
+data
+and
+applying
+transformations
+that
+involve
+many
+polynomial
+combinations
+of
+these
+features
+will
+lead
+to
+extremely
+high
+and
+impractical
+computational
+costs.
+    </p>
+    <p class="noindent">
+     The
+kernel
+trick
+provides
+a
+solution
+to
+this
+problem.
+The
+     <span id="bold" style="font-weight:bold;">
+      trick
+     </span>
+     is
+that
+kernel
+methods
+represent
+the
+data
+only
+through
+a
+set
+of
+pairwise
+similarity
+comparisons
+between
+the
+original
+data
+observations
+     <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+      <mi>
+       x
+      </mi>
+     </math>
+     ,
+     <alert style="color: #821131;">
+      <span id="bold" style="font-weight:bold;">
+       <sup class="textsuperscript">
+        7
+       </sup>
+      </span>
+     </alert>
+     <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
+      <alert style="color: #821131;">
+       <span id="bold" style="font-weight:bold;">
+        <sup class="textsuperscript">
+         7
+        </sup>
+       </span>
+      </alert>
+      <span style="color:#0063B2;">
+       with
+the
+original
+                                                                                
+                                                                                
+coordinates
+in
+the
+lower
+dimensional
+space.
+      </span>
+     </span>
+     instead
+of
+explicitly
+applying
+the
+transformations
+     <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+      <mi>
+       ϕ
+      </mi>
+      <msup>
+       <mrow>
+        <mrow>
+         <mo fence="true" form="prefix">
+          (
+         </mo>
+         <mrow>
+          <mi>
+           x
+          </mi>
+         </mrow>
+         <mo fence="true" form="postfix">
+          )
+         </mo>
+        </mrow>
+       </mrow>
+       <mrow>
+       </mrow>
+      </msup>
+     </math>
+     and
+representing
+the
+data
+by
+these
+transformed
+coordinates
+in
+the
+higher
+dimensional
+feature
+space.
+    </p>
+    
+    <p class="noindent">
+     In
+kernel
+methods,
+the
+data
+set
+     <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+      <mover accent="true">
+       <mrow>
+        <mi>
+         X
+        </mi>
+       </mrow>
+       <mo accent="true">
+        →
+       </mo>
+      </mover>
+     </math>
+     is
+represented
+by
+an
+     <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+      <mi>
+       n
+      </mi>
+      <mo class="MathClass-bin" stretchy="false">
+       ×
+      </mo>
+      <mi>
+       n
+      </mi>
+     </math>
+     kernel
+matrix
+of
+pairwise
+similarity
+comparisons
+where
+the
+entries
+     <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+      <msup>
+       <mrow>
+        <mrow>
+         <mo fence="true" form="prefix">
+          (
+         </mo>
+         <mrow>
+          <mi>
+           i
+          </mi>
+          <mo class="MathClass-punc" stretchy="false">
+           ,
+          </mo>
+          <mspace class="thinspace" width="0.17em">
+          </mspace>
+          <mi>
+           j
+          </mi>
+         </mrow>
+         <mo fence="true" form="postfix">
+          )
+         </mo>
+        </mrow>
+       </mrow>
+       <mrow>
+       </mrow>
+      </msup>
+     </math>
+     are
+defined
+by
+the
+kernel
+function:
+     <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+      <mi>
+       k
+      </mi>
+      <msup>
+       <mrow>
+        <mrow>
+         <mo fence="true" form="prefix">
+          (
+         </mo>
+         <mrow>
+          <msubsup>
+           <mrow>
+            <mi>
+             x
+            </mi>
+           </mrow>
+           <mrow>
+            <mi>
+             i
+            </mi>
+           </mrow>
+           <mrow>
+           </mrow>
+          </msubsup>
+          <mo class="MathClass-punc" stretchy="false">
+           ,
+          </mo>
+          <mspace class="thinspace" width="0.17em">
+          </mspace>
+          <msubsup>
+           <mrow>
+            <mi>
+             x
+            </mi>
+           </mrow>
+           <mrow>
+            <mi>
+             j
+            </mi>
+           </mrow>
+           <mrow>
+           </mrow>
+          </msubsup>
+         </mrow>
+         <mo fence="true" form="postfix">
+          )
+         </mo>
+        </mrow>
+       </mrow>
+       <mrow>
+       </mrow>
+      </msup>
+     </math>
+     .
+    </p>
+    <p class="noindent">
+     This
+kernel
+function
+has
+a
+special
+mathematical
+property.
+The
+kernel
+function
+                                                                                
+                                                                                
+acts
+as
+a
+modified
+dot
+product.
+    </p>
+    <div class="theoryblock" id="tcolobox-7">
+     <div class="title">
+      <a id="x3-8002r2">
+      </a>
+      <p class="noindent">
+       <span id="bold" style="font-weight:bold;">
+        Theory
+       </span>
+       1.2: The Kernel Function
+      </p>
+     </div>
+     <div class="box-content">
+      <p class="noindent">
+       Kernel is defined as the function which takes as its inputs vectors in the original space and returns the dot
+product of the vectors in the feature space called the
+       <span id="bold" style="font-weight:bold;">
+        kernel
+       </span>
+       function.
+      </p>
+      <p class="noindent">
+       Formally, if we have data
+       <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+        <mover accent="true">
+         <mrow>
+          <mi>
+           x
+          </mi>
+         </mrow>
+         <mo accent="true">
+          →
+         </mo>
+        </mover>
+        <mo class="MathClass-punc" stretchy="false">
+         ,
+        </mo>
+        <mspace class="thinspace" width="0.17em">
+        </mspace>
+        <mi>
+         v
+        </mi>
+        <mi>
+         z
+        </mi>
+        <mo class="MathClass-rel" stretchy="false">
+         ∈
+        </mo>
+        <mover accent="true">
+         <mrow>
+          <mi>
+           X
+          </mi>
+         </mrow>
+         <mo accent="true">
+          →
+         </mo>
+        </mover>
+       </math>
+       and a mapping of
+       <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+        <mi>
+         ϕ
+        </mi>
+        <mo class="MathClass-rel" stretchy="false">
+         :
+        </mo>
+        <mover accent="true">
+         <mrow>
+          <mi>
+           X
+          </mi>
+         </mrow>
+         <mo accent="true">
+          →
+         </mo>
+        </mover>
+        <mo class="MathClass-rel" stretchy="false">
+         →
+        </mo>
+        <msup>
+         <mrow>
+          <mi>
+           ℝ
+          </mi>
+         </mrow>
+         <mrow>
+          <mi>
+           N
+          </mi>
+         </mrow>
+        </msup>
+       </math>
+       ,
+then:
+      </p>
+      <table class="equation-star">
+       <tr>
+        <td>
+         <math class="equation" display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+          <mi>
+           k
+          </mi>
+          <msup>
+           <mrow>
+            <mrow>
+             <mo fence="true" form="prefix">
+              (
+             </mo>
+             <mrow>
+              <mover accent="true">
+               <mrow>
+                <mi>
+                 x
+                </mi>
+               </mrow>
+               <mo accent="true">
+                →
+               </mo>
+              </mover>
+              <mo class="MathClass-punc" stretchy="false">
+               ,
+              </mo>
+              <mspace class="thinspace" width="0.17em">
+              </mspace>
+              <mover accent="true">
+               <mrow>
+                <mi>
+                 z
+                </mi>
+               </mrow>
+               <mo accent="true">
+                →
+               </mo>
+              </mover>
+             </mrow>
+             <mo fence="true" form="postfix">
+              )
+             </mo>
+            </mrow>
+           </mrow>
+           <mrow>
+           </mrow>
+          </msup>
+          <mo class="MathClass-rel" stretchy="false">
+           =
+          </mo>
+          <mo class="MathClass-open" stretchy="false">
+           ⟨
+          </mo>
+          <mi>
+           ϕ
+          </mi>
+          <msup>
+           <mrow>
+            <mrow>
+             <mo fence="true" form="prefix">
+              (
+             </mo>
+             <mrow>
+              <mi>
+               x
+              </mi>
+             </mrow>
+             <mo fence="true" form="postfix">
+              )
+             </mo>
+            </mrow>
+           </mrow>
+           <mrow>
+           </mrow>
+          </msup>
+          <mo class="MathClass-punc" stretchy="false">
+           ,
+          </mo>
+          <mi>
+           ϕ
+          </mi>
+          <msup>
+           <mrow>
+            <mrow>
+             <mo fence="true" form="prefix">
+              (
+             </mo>
+             <mrow>
+              <mi>
+               z
+              </mi>
+             </mrow>
+             <mo fence="true" form="postfix">
+              )
+             </mo>
+            </mrow>
+           </mrow>
+           <mrow>
+           </mrow>
+          </msup>
+          <mo class="MathClass-close" stretchy="false">
+           ⟩
+          </mo>
+         </math>
+        </td>
+       </tr>
+      </table>
+      <p class="noindent">
+       is a kernel function
+       <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+        <mspace class="quad" width="1em">
+        </mspace>
+        <mo class="MathClass-ord">
+         ■
+        </mo>
+       </math>
+      </p>
+     </div>
+    </div>
+    <p class="noindent">
+     Our kernel function accepts inputs in the original lower dimensional space and returns the dot product of the transformed vectors
+in the higher dimensional space. There are also theorems which guarantee the existence of such kernel functions under certain
+conditions.
+    </p>
+    <p class="noindent">
+     The ultimate benefit of the kernel trick is that the objective function we are optimizing to fit the
+higher dimensional decision boundary only includes the dot product of the transformed feature vectors.
+Therefore, we can just substitute these dot product terms with the kernel function, and we don’t even use
+     <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+      <mi>
+       ϕ
+      </mi>
+      <msup>
+       <mrow>
+        <mrow>
+         <mo fence="true" form="prefix">
+          (
+         </mo>
+         <mrow>
+          <mi>
+           x
+          </mi>
+         </mrow>
+         <mo fence="true" form="postfix">
+          )
+         </mo>
+        </mrow>
+       </mrow>
+       <mrow>
+       </mrow>
+      </msup>
+     </math>
+     .
+    </p>
+    <h3 class="subsectionHead">
+     <a aria-label="Link to this section in PDF version" class="pdf-link" href="DataScienceIILectureBook.pdf#subsection.1.3.3" style="color: red;  position: absolute;  left: -30px;" target="_blank">
+      <svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg">
+       <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z">
+       </path>
+       <path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z">
+       </path>
+      </svg>
+     </a>
+     <small class="titlemark">
+      1.3.3
+     </small>
+     <a id="x3-90001.3.3">
+     </a>
      Similarity Features
     </h3>
     <p class="noindent">
@@ -1614,7 +2294,7 @@ much each instance resembles a particular landmark.
     <div class="figure">
      <p class="noindent">
       <img alt="PIC" height="" src="codes/images/Support-Vector-Machines/kernel_method_plot-.svg" width="150%"/>
-      <a id="x3-8001r8">
+      <a id="x3-9001r8">
       </a>
      </p>
      <figcaption class="caption">
@@ -1676,14 +2356,19 @@ much each instance resembles a particular landmark.
        1
       </mn>
      </math>
-     (see the left plot in
+     (see the
+left plot in
      <span id="bold" style="font-weight:bold;">
       Fig.
      </span>
-     <a href="#x3-8001r8">
+     <a href="#x3-9001r8">
       1.8
      </a>
-     ). Next, we’ll define the similarity function to be the Gaussian RBF with
+     ). Next, we’ll define the similarity function to be the Gaussian
+     <a class="glossary" href="DataScienceIILectureBookli2.html#glo:rbf">
+      Radial Basis Function (RBF)
+     </a>
+     with
      <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
       <mi>
        γ
@@ -1988,8 +2673,11 @@ located at a distance of 1 from the first landmark and 2 from the second landmar
      </tr>
     </table>
     <p class="noindent">
-     The plot on the right in Figure
-     <a href="#x3-8001r8">
+     The plot on the right in
+     <span id="bold" style="font-weight:bold;">
+      Fig.
+     </span>
+     <a href="#x3-9001r8">
       1.8
      </a>
      shows the transformed dataset (dropping the original features). As you can see, it is now
@@ -1997,44 +2685,88 @@ linearly separable.
     </p>
     <p class="noindent">
      You may wonder how to select the landmarks. The simplest approach is to create a landmark at the location of each and every
-instance in the dataset. Doing that creates many dimensions and thus increases the chances that the transformed training set will
-be linearly separable.
+instance in the dataset. Doing that creates many dimensions and which increases the chances that the transformed training set
+will be linearly separable.
     </p>
     <p class="noindent">
-     The downside is that a training set with
+     The
+downside
+is
+that
+a
+training
+set
+with
      <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
       <mi>
        m
       </mi>
      </math>
-     instances and
+     instances
+and
      <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
       <mi>
        n
       </mi>
      </math>
-     features gets
-transformed into a training set with
+     features
+gets
+transformed
+into
+a
+training
+set
+                                                                                
+                                                                                
+with
      <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
       <mi>
        m
       </mi>
      </math>
-     instances and
+     instances
+and
      <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
       <mi>
        m
       </mi>
      </math>
-     features (assuming you drop the original features).
+     features.
+     <alert style="color: #821131;">
+      <span id="bold" style="font-weight:bold;">
+       <sup class="textsuperscript">
+        8
+       </sup>
+      </span>
+     </alert>
+     <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
+      <alert style="color: #821131;">
+       <span id="bold" style="font-weight:bold;">
+        <sup class="textsuperscript">
+         8
+        </sup>
+       </span>
+      </alert>
+      <span style="color:#0063B2;">
+       assuming
+you
+drop
+the
+original
+features.
+      </span>
+     </span>
     </p>
+    
     <div class="warning">
      <p class="noindent">
       A very large training set, ends up with an equally large number of features.
      </p>
     </div>
     <h3 class="subsectionHead">
-     <a aria-label="Link to this section in PDF version" class="pdf-link" href="DataScienceIILectureBook.pdf#subsection.1.3.3" style="color: red;  position: absolute;  left: -30px;" target="_blank">
+     <a aria-label="Link to this section in PDF version" class="pdf-link" href="DataScienceIILectureBook.pdf#subsection.1.3.4" style="color: red;  position: absolute;  left: -30px;" target="_blank">
       <svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg">
        <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z">
        </path>
@@ -2043,35 +2775,150 @@ transformed into a training set with
       </svg>
      </a>
      <small class="titlemark">
-      1.3.3
+      1.3.4
      </small>
-     <a id="x3-90001.3.3">
+     <a id="x3-100001.3.4">
      </a>
      Gaussian RBF Kernel
     </h3>
     <p class="noindent">
-     Just like the polynomial features method, the similarity features method can be useful with any
+     Just
+like
+the
+polynomial
+features
+method,
+the
+similarity
+features
+method
+can
+be
+useful
+with
+any
      <a class="glossary" href="DataScienceIILectureBookli2.html#glo:ml">
       ML
      </a>
-     algorithm, but it may be
-computationally expensive to compute all the additional features (especially on large training sets). Once again the kernel trick
-can be used here, making it possible to obtain a similar result as if you had added many similarity features, but without actually
-doing so. Let’s try the SVC class with the Gaussian RBF kernel:
+     algorithm,
+but
+it
+may
+be
+computationally
+expensive
+to
+compute
+all
+the
+additional
+features.
+     <alert style="color: #821131;">
+      <span id="bold" style="font-weight:bold;">
+       <sup class="textsuperscript">
+        9
+       </sup>
+      </span>
+     </alert>
+     <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
+      <alert style="color: #821131;">
+       <span id="bold" style="font-weight:bold;">
+        <sup class="textsuperscript">
+         9
+        </sup>
+       </span>
+      </alert>
+      <span style="color:#0063B2;">
+       especially
+on
+large
+training
+sets
+      </span>
+     </span>
+     Once
+again
+the
+kernel
+trick
+can
+be
+used
+here,
+making
+                                                                                
+                                                                                
+it
+possible
+to
+obtain
+a
+similar
+result
+as
+if
+you
+had
+added
+many
+similarity
+features,
+but
+without
+actually
+doing
+so.
+Let’s
+try
+the <span style="color:#054C5C;"><code class="verb">SVC</code></span>
+     class
+with
+the
+Gaussian
+     <a class="glossary" href="DataScienceIILectureBookli2.html#glo:rbf">
+      RBF
+     </a>
+     kernel:
     </p>
+    
     <p class="noindent">
     </p>
-    <pre><div id="fancyvrb8" style="padding:20px;border-radius: 3px;"><a id="x3-9002r491"></a>rbf_kernel_svm_clf = make_pipeline( 
-<a id="x3-9004r492"></a>   StandardScaler(), 
-<a id="x3-9006r493"></a>   SVC(kernel=<span style="color:#800080;">"rbf"</span>, gamma=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">5</span></span>, C=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.001</span></span>) 
-<a id="x3-9008r494"></a>) 
-<a id="x3-9010r495"></a>rbf_kernel_svm_clf.fit(X, y)</div></pre>
+    <pre><div id="fancyvrb8" style="padding:20px;border-radius: 3px;"><a id="x3-10002r489"></a>rbf_kernel_svm_clf = make_pipeline( 
+<a id="x3-10004r490"></a>   StandardScaler(), 
+<a id="x3-10006r491"></a>   SVC(kernel=<span style="color:#800080;">"rbf"</span>, gamma=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">5</span></span>, C=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.001</span></span>) 
+<a id="x3-10008r492"></a>) 
+<a id="x3-10010r493"></a>rbf_kernel_svm_clf.fit(X, y)</div></pre>
     <p class="noindent">
-     This model is represented at the bottom left in Figure
-     <a href="#x3-9011r9">
+     This
+model
+is
+represented
+at
+the
+bottom
+left
+in
+     <span id="bold" style="font-weight:bold;">
+      Fig.
+     </span>
+     <a href="#x3-10011r9">
       1.9
-     </a>. The other plots show models trained with different values of hyperparameters
-gamma (
+     </a>.
+The
+other
+plots
+show
+models
+trained
+with
+different
+values
+of
+hyperparameters
+gamma
+(
      <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
       <mi>
        γ
@@ -2081,18 +2928,74 @@ gamma (
 and <span style="color:#054C5C;"><code class="verb">C</code></span>.
     </p>
     <p class="noindent">
-     Increasing gamma makes the bell-shaped curve narrower (see the LHS plots in Figure
-     <a href="#x3-9011r9">
+     Increasing
+gamma
+makes
+the
+bell-shaped
+curve
+narrower
+(see
+                                                                                
+                                                                                
+the
+LHS
+plots
+in
+Figure
+     <a href="#x3-10011r9">
       1.9
      </a>
-     ). As a result, each instance’s range of
-influence is
+     ).
+As
+a
+result,
+each
+instance’s
+range
+of
+influence
+is
      <span id="bold" style="font-weight:bold;">
       smaller
      </span>
-     . The decision boundary ends up being more irregular, wiggling around individual instances. Conversely, a
-small gamma value makes the bell-shaped curve wider: instances have a larger range of influence, and the decision boundary ends
-up smoother.
+     .
+The
+decision
+boundary
+ends
+up
+being
+more
+irregular,
+wiggling
+around
+individual
+instances.
+Conversely,
+a
+small
+gamma
+value
+makes
+the
+bell-shaped
+curve
+wider:
+instances
+have
+a
+larger
+range
+of
+influence,
+and
+the
+decision
+boundary
+ends
+up
+smoother.
     </p>
     <p class="noindent">
      Therefore
@@ -2101,30 +3004,49 @@ up smoother.
        γ
       </mi>
      </math>
-     acts like a
+     acts
+like
+a
      <span id="bold" style="font-weight:bold;">
-      regularisation hyperparameter
+      regularisation
+hyperparameter
      </span>
-     : if your model is overfitting, you should reduce
+     :
+if
+your
+model
+is
+overfitting,
+you
+should
+reduce
      <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
       <mi>
        γ
       </mi>
      </math>
-     ; if it is underfitting,
-you should increase
+     ;
+if
+it
+is
+underfitting,
+you
+should
+increase
      <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
       <mi>
        γ
       </mi>
      </math>
-     (similar to the <span style="color:#054C5C;"><code class="verb">C</code></span>
+     (similar
+to
+the <span style="color:#054C5C;"><code class="verb">C</code></span>
      hyperparameter).
     </p>
     <div class="figure">
      <p class="noindent">
       <img alt="PIC" height="" src="codes/images/Support-Vector-Machines/moons_rbf_svc_plot-.svg" width="150%"/>
-      <a id="x3-9011r9">
+      <a id="x3-10011r9">
       </a>
      </p>
      <figcaption class="caption">
@@ -2140,10 +3062,70 @@ you should increase
      </figcaption>
     </div>
     <p class="noindent">
-     Other kernels exist but are used much more rarely. Some kernels are specialized for specific data structures. String kernels are
-sometimes used when classifying text documents or DNA sequences (e.g., using the string subsequence kernel or kernels based on
-the Levenshtein distance).
+     Other
+kernels
+exist
+but
+are
+used
+much
+more
+rarely.
+Some
+kernels
+are
+specialized
+for
+specific
+data
+structures.
+String
+kernels
+are
+sometimes
+used
+when
+classifying
+text
+documents
+or
+DNA
+sequences.
+     <alert style="color: #821131;">
+      <span id="bold" style="font-weight:bold;">
+       <sup class="textsuperscript">
+        10
+       </sup>
+      </span>
+     </alert>
+     <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
+      <alert style="color: #821131;">
+       <span id="bold" style="font-weight:bold;">
+        <sup class="textsuperscript">
+         10
+        </sup>
+       </span>
+      </alert>
+      <span style="color:#0063B2;">
+       e.g.,
+using
+the
+string
+subsequence
+kernel
+or
+kernels
+based
+on
+the
+Levenshtein
+distance.
+      </span>
+     </span>
     </p>
+    
     <div class="knowledge">
      <p class="noindent">
       You need to choose the right kernel for the job. As a rule of thumb, you should always try the linear kernel first. The <span style="color:#054C5C;"><code class="verb">LinearSVC</code></span>
@@ -2172,60 +3154,164 @@ search.
      <small class="titlemark">
       1.4
      </small>
-     <a id="x3-100001.4">
-     </a>
-     <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
-      SVM
+     <a id="x3-110001.4">
      </a>
      Regression
     </h2>
     <p class="noindent">
-     To use
+     To
+use
      <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
       SVM
      </a>
-     s for regression instead of classification, the main idea is to tweak the objective: instead of trying to fit the largest
-possible street between two classes while limiting margin violations,
+     s
+for
+regression
+instead
+of
+classification,
+the
+main
+idea
+is
+to
+tweak
+the
+objective
+whereby
+instead
+of
+trying
+to
+fit
+the
+largest
+possible
+street
+between
+two
+<alert style="color: #821131;">(2)</alert> classes
+while
+limiting
+margin
+violations,
      <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
       SVM
      </a>
-     regression tries to fit as many instances as possible on
-the street while limiting margin violations (i.e., instances off the street).
-     The width of the street is controlled by a hyperparameter,
+     regression
+tries
+to
+fit
+as
+many
+instances
+as
+possible
+on
+the
+street
+while
+limiting
+margin
+violations.
+     <alert style="color: #821131;">
+      <span id="bold" style="font-weight:bold;">
+       <sup class="textsuperscript">
+        11
+       </sup>
+      </span>
+     </alert>
+     <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
+      <alert style="color: #821131;">
+       <span id="bold" style="font-weight:bold;">
+        <sup class="textsuperscript">
+         11
+        </sup>
+       </span>
+      </alert>
+      <span style="color:#0063B2;">
+       i.e.,
+instances
+off
+the
+street.
+      </span>
+     </span>
+    </p>
+    
+    <p class="noindent">
+     The
+width
+of
+                                                                                
+                                                                                
+the
+street
+is
+controlled
+by
+a
+hyperparameter,
      <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
       <mi>
        𝜖
       </mi>
      </math>
      .
-Figure
-     <a href="#x3-10001r10">
+     <span id="bold" style="font-weight:bold;">
+      Fig.
+     </span>
+     <a href="#x3-11001r10">
       1.10
      </a>
-     shows two <alert style="color: #821131;">(2)</alert> linear
+     shows
+two
+<alert style="color: #821131;">(2)</alert> linear
      <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
       SVM
      </a>
-     regression models trained on some linear data, one with a small margin
+     regression
+models
+trained
+on
+some
+linear
+data,
+one
+with
+a
+small
+margin
 (
      <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
       <mi>
        𝜖
       </mi>
      </math>
-     = 0.5) and the other
-with a larger margin (
+     =
+0.5)
+and
+the
+other
+with
+a
+larger
+margin
+(
      <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
       <mi>
        𝜖
       </mi>
      </math>
-     = 1.2).
+     =
+1.2).
     </p>
     <div class="figure">
      <p class="noindent">
       <img alt="PIC" height="" src="codes/images/Support-Vector-Machines/svm_regression_plot-.svg" width="150%"/>
-      <a id="x3-10001r10">
+      <a id="x3-11001r10">
       </a>
      </p>
      <figcaption class="caption">
@@ -2247,8 +3333,11 @@ with a larger margin (
        𝜖
       </mi>
      </math>
-     increases the number of support vectors, which regularises the model. Moreover, if you add more training
-instances within the margin, it will not affect the model’s predictions; therefore, the model is said to be
+     increases the number of support vectors, which regularises the model. Moreover, if we were to add more training instances within
+the margin, it will not affect the model’s predictions.
+    </p>
+    <p class="noindent">
+     Therefore, the model is said to be
      <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
       <mi>
        𝜖
@@ -2257,36 +3346,42 @@ instances within the margin, it will not affect the model’s predictions; there
      -insensitive.
     </p>
     <p class="noindent">
-     You can use <span style="color:#054C5C;"><code class="verb">sklearn</code></span>
+     You can use <span style="color:#054C5C;"><code class="verb">scikit-learn</code></span>
      ’s <span style="color:#054C5C;"><code class="verb">LinearSVR</code></span>
      class to perform linear
      <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
       SVM
      </a>
-     regression. The following code produces the model represented on
-the left in Figure
-     <a href="#x3-10001r10">
+     regression. The following code produces the model represented
+on the left in
+     <span id="bold" style="font-weight:bold;">
+      Fig.
+     </span>
+     <a href="#x3-11001r10">
       1.10
      </a>.
     </p>
-    <pre><div id="fancyvrb9" style="padding:20px;border-radius: 3px;"><a id="x3-10003r537"></a><span style="color:#2B2BFF;">from</span><span style="color:#BABABA;"> </span>sklearn.svm<span style="color:#BABABA;"> </span><span style="color:#2B2BFF;">import</span> LinearSVR 
-<a id="x3-10005r538"></a> 
-<a id="x3-10007r539"></a>np.random.seed(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">42</span></span>) 
-<a id="x3-10009r540"></a>X = <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">2</span></span> * np.random.rand(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">50</span></span>, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1</span></span>) 
-<a id="x3-10011r541"></a>y = <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">4</span></span> + <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">3</span></span> * X[:, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0</span></span>] + np.random.randn(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">50</span></span>) 
-<a id="x3-10013r542"></a> 
-<a id="x3-10015r543"></a>svm_reg = make_pipeline( 
-<a id="x3-10017r544"></a>   StandardScaler(), 
-<a id="x3-10019r545"></a>   LinearSVR(epsilon=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.5</span></span>, dual=<span style="color:#2B2BFF;"><span id="bold" style="font-weight:bold;">True</span></span>, random_state=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">42</span></span>) 
-<a id="x3-10021r546"></a>) 
-<a id="x3-10023r547"></a>svm_reg.fit(X, y)</div></pre>
+    <pre><div id="fancyvrb9" style="padding:20px;border-radius: 3px;"><a id="x3-11003r535"></a><span style="color:#2B2BFF;">from</span><span style="color:#BABABA;"> </span>sklearn.svm<span style="color:#BABABA;"> </span><span style="color:#2B2BFF;">import</span> LinearSVR 
+<a id="x3-11005r536"></a> 
+<a id="x3-11007r537"></a>np.random.seed(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">42</span></span>) 
+<a id="x3-11009r538"></a>X = <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">2</span></span> * np.random.rand(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">50</span></span>, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1</span></span>) 
+<a id="x3-11011r539"></a>y = <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">4</span></span> + <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">3</span></span> * X[:, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0</span></span>] + np.random.randn(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">50</span></span>) 
+<a id="x3-11013r540"></a> 
+<a id="x3-11015r541"></a>svm_reg = make_pipeline( 
+<a id="x3-11017r542"></a>   StandardScaler(), 
+<a id="x3-11019r543"></a>   LinearSVR(epsilon=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.5</span></span>, dual=<span style="color:#2B2BFF;"><span id="bold" style="font-weight:bold;">True</span></span>, random_state=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">42</span></span>) 
+<a id="x3-11021r544"></a>) 
+<a id="x3-11023r545"></a>svm_reg.fit(X, y)</div></pre>
     <p class="noindent">
      To tackle non-linear regression tasks, you can use a kernelized
      <a class="glossary" href="DataScienceIILectureBookli2.html#glo:svm">
       SVM
      </a>
-     model. Figure
-     <a href="#x3-10024r11">
+     model.
+     <span id="bold" style="font-weight:bold;">
+      Fig.
+     </span>
+     <a href="#x3-11024r11">
       1.11
      </a>
      shows
@@ -2301,7 +3396,7 @@ quadratic training set, using a second-degree polynomial kernel. There is some r
     <div class="figure">
      <p class="noindent">
       <img alt="PIC" height="" src="codes/images/Support-Vector-Machines/svm_with_polynomial_kernel_plot-.svg" width="150%"/>
-      <a id="x3-10024r11">
+      <a id="x3-11024r11">
       </a>
      </p>
      <figcaption class="caption">
@@ -2317,34 +3412,125 @@ quadratic training set, using a second-degree polynomial kernel. There is some r
      </figcaption>
     </div>
     <p class="noindent">
-     The following code uses <span style="color:#054C5C;"><code class="verb">sklearn</code></span>
-     ’s SVR class (which supports the kernel trick) to produce the model represented on the left in
-Figure
-     <a href="#x3-10024r11">
+     The
+following
+code
+uses <span style="color:#054C5C;"><code class="verb">scikit-learn</code></span>
+     ’s <span style="color:#054C5C;"><code class="verb">SVR</code></span>
+     class
+     <alert style="color: #821131;">
+      <span id="bold" style="font-weight:bold;">
+       <sup class="textsuperscript">
+        12
+       </sup>
+      </span>
+     </alert>
+     <span class="marginnote">
+      <span style="color:#999999;">
+      </span>
+      <alert style="color: #821131;">
+       <span id="bold" style="font-weight:bold;">
+        <sup class="textsuperscript">
+         12
+        </sup>
+       </span>
+      </alert>
+      <span style="color:#0063B2;">
+       which
+supports
+the
+kernel
+trick
+      </span>
+     </span>
+     to
+produce
+the
+model
+represented
+on
+the
+left
+in
+     <span id="bold" style="font-weight:bold;">
+      Fig.
+     </span>
+     <a href="#x3-11024r11">
       1.11
      </a>
      :
     </p>
-    <pre><div id="fancyvrb10" style="padding:20px;border-radius: 3px;"><a id="x3-10026r604"></a><span style="color:#2B2BFF;">from</span><span style="color:#BABABA;"> </span>sklearn.svm<span style="color:#BABABA;"> </span><span style="color:#2B2BFF;">import</span> SVR 
-<a id="x3-10028r605"></a> 
-<a id="x3-10030r606"></a><span style="color:#008700;"><italic># extra code  these 3 lines generate a simple quadratic dataset</italic></span> 
-<a id="x3-10032r607"></a>np.random.seed(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">42</span></span>) 
-<a id="x3-10034r608"></a>X = <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">2</span></span> * np.random.rand(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">50</span></span>, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1</span></span>) - <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1</span></span> 
-<a id="x3-10036r609"></a>y = <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.2</span></span> + <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.1</span></span> * X[:, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0</span></span>] + <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.5</span></span> * X[:, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0</span></span>] ** <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">2</span></span> + np.random.randn(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">50</span></span>) / <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">10</span></span> 
-<a id="x3-10038r610"></a> 
-<a id="x3-10040r611"></a>svm_poly_reg = make_pipeline( 
-<a id="x3-10042r612"></a>   StandardScaler(), 
-<a id="x3-10044r613"></a>   SVR(kernel=<span style="color:#800080;">"poly"</span>, degree=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">2</span></span>, C=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.01</span></span>, epsilon=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.1</span></span>) 
-<a id="x3-10046r614"></a>) 
-<a id="x3-10048r615"></a> 
-<a id="x3-10050r616"></a>svm_poly_reg.fit(X, y)</div></pre>
+    
+    <pre><div id="fancyvrb10" style="padding:20px;border-radius: 3px;"><a id="x3-11026r602"></a><span style="color:#2B2BFF;">from</span><span style="color:#BABABA;"> </span>sklearn.svm<span style="color:#BABABA;"> </span><span style="color:#2B2BFF;">import</span> SVR 
+<a id="x3-11028r603"></a> 
+<a id="x3-11030r604"></a><span style="color:#008700;"><italic># extra code  these 3 lines generate a simple quadratic dataset</italic></span> 
+<a id="x3-11032r605"></a>np.random.seed(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">42</span></span>) 
+<a id="x3-11034r606"></a>X = <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">2</span></span> * np.random.rand(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">50</span></span>, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1</span></span>) - <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">1</span></span> 
+<a id="x3-11036r607"></a>y = <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.2</span></span> + <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.1</span></span> * X[:, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0</span></span>] + <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.5</span></span> * X[:, <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0</span></span>] ** <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">2</span></span> + np.random.randn(<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">50</span></span>) / <span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">10</span></span> 
+<a id="x3-11038r608"></a> 
+<a id="x3-11040r609"></a>svm_poly_reg = make_pipeline( 
+<a id="x3-11042r610"></a>   StandardScaler(), 
+<a id="x3-11044r611"></a>   SVR(kernel=<span style="color:#800080;">"poly"</span>, degree=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">2</span></span>, C=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.01</span></span>, epsilon=<span style="color:#2B8554;"><span id="bold" style="font-weight:bold;">0.1</span></span>) 
+<a id="x3-11046r612"></a>) 
+<a id="x3-11048r613"></a> 
+<a id="x3-11050r614"></a>svm_poly_reg.fit(X, y)</div></pre>
     <p class="noindent">
-     The SVR class is the regression equivalent of the SVC class, and the <span style="color:#054C5C;"><code class="verb">LinearSVR</code></span>
-     class is the regression equivalent of the <span style="color:#054C5C;"><code class="verb">LinearSVC</code></span>
-     class. The <span style="color:#054C5C;"><code class="verb">LinearSVR</code></span>
-     class scales linearly with the size of the training set (just like the <span style="color:#054C5C;"><code class="verb">LinearSVC</code></span>
-     class), while the SVR class gets
-much too slow when the training set grows very large (just like the SVC class).
+     The
+SVR
+class
+is
+the
+regression
+equivalent
+of
+the
+SVC
+class,
+and
+the <span style="color:#054C5C;"><code class="verb">LinearSVR</code></span>
+     class
+is
+the
+regression
+equivalent
+of
+the <span style="color:#054C5C;"><code class="verb">LinearSVC</code></span>
+     class.
+The <span style="color:#054C5C;"><code class="verb">LinearSVR</code></span>
+     class
+scales
+linearly
+with
+the
+size
+of
+the
+training
+set
+(just
+like
+the <span style="color:#054C5C;"><code class="verb">LinearSVC</code></span>
+     class),
+while
+the
+SVR
+class
+gets
+much
+too
+slow
+when
+the
+training
+set
+grows
+very
+large
+(just
+like
+the
+SVC
+class).
     </p>
    </article>
    <footer>
