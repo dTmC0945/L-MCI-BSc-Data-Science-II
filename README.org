@@ -19,27 +19,28 @@
 - In this lecture we will focus on Neural Networks (NN) a type of machine
   learning algorithm with uncountable amount of applications in industry.
 
-| DESCRIPTION        | VALUE                             |
-| Official Name      | Machine Learning & Data Science 2 |
-| Lecture Code       | MLDS                              |
-| Module Code        | MECH-B-5-MLDS-MLDS2-ILV           |
-| Degree             | B.Sc                              |
-| Program Name       | Mechatronik Design Innovation     |
-| Lecture Name       | Drive Systems                     |
-| Semester           | 5                                 |
-| Season             | WS                                |
-| Room Type          | Lecture Room                      |
-| Assignments        |                                   |
-| Lecturer           | Daniel T. McGuiness, Ph.D         |
-| Module Responsible | BnM                               |
-| Software           | Python                            |
-| Hardware           | -                                 |
-| SWS Total          | 4                                 |
-| SWS Teaching       | 2                                 |
-| UE Total           | 60                                |
-| ECTS               | 5                                 |
-| Lecture Type       | ILV                               |
-| Working Language   | English                           |
+| DESCRIPTION        | VALUE                               |
+| Official Name      | Machine Learning & Data Science 2   |
+| Lecture Code       | MLDS2                               |
+| Module Code        | MECH-B-5-MLDS-MLDS2-ILV             |
+| Degree             | B.Sc                                |
+| Program Name       | Mechatronik Design Innovation       |
+| Lecture Name       | Data Science II                     |
+| Semester           | 5                                   |
+| Season             | WS                                  |
+| Room Type          | Lecture Room                        |
+| Assignments        | Quiz Personal Assignment Final Exam |
+| Lecturer           | Daniel T. McGuiness, Ph.D           |
+| Module Responsible | BnM                                 |
+| Software           | Python                              |
+| Hardware           | -                                   |
+| SWS Total          | 4                                   |
+| SWS Teaching       | 2                                   |
+| SWS Tutorial       | 2                                   |
+| UE Total           | 60                                  |
+| ECTS               | 5                                   |
+| Lecture Type       | ILV                                 |
+| Working Language   | English                             |
 
 ** Requirements and the Learning Outcomes
 
@@ -61,9 +62,10 @@
   long as it is a single sheet of A4, double sided and contains no exercise or solutions.
         
 | ASSIGNMENT TYPE     | VALUE | QUANTITY |
-| Personal Assignment |    40 |        1 |
+| Quiz                |     5 |        1 |
+| Personal Assignment |    35 |        1 |
 | Final Exam          |    60 |        1 |
-| SUM                 |   100 |        2 |
+| SUM                 |   100 |        3 |
 
 ** Lecture Sources
 
