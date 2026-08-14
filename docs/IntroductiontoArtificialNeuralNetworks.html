@@ -1,0 +1,299 @@
+<!DOCTYPE html> 
+<html lang="en">  
+<head><title>1 Introduction to Artificial Neural Networks</title> 
+<meta  charset="utf-8" /> 
+<meta name="generator" content="lms-WebBook" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="\" /> 
+<meta name="src" content="DataScienceIILectureBook.tex" /> 
+ <script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js"></script>  
+<title>Data Science II</title> 
+<link rel="icon" type="image/x-icon" href="logo/lms.ico"> 
+<link href="pagefind/pagefind-component-ui.css" rel="stylesheet"> 
+<script src ="pagefind/pagefind-component-ui.js"></script> 
+<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" /> 
+<link rel ="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@main/flatweb.css"> 
+<script src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@main/flatweb.js" async='true' crossorigin='anonymous'></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css"> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css"/> 
+<script src ="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script> 
+<link rel="stylesheet" href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css"/> 
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet'> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script> 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> <style> 
+ </style> 
+ <header> 
+ <pagefind-modal></pagefind-modal> 
+ </header> 
+</head><body 
+>
+<page> 
+<div class="keyboard-help-menu"><div style="overflow-x:auto"> <table> <thead> <tr> <th>Key</th> <th>Description</th> </tr> </thead> <tbody> <tr> <td><kbd>t</kbd></td> <td>Enable/Disable Table of Contents</td> </tr> <tr> <td><kbd>n</kbd></td> <td>Visit Next Chapter</td> </tr> <tr> <td><kbd>p</kbd></td> <td>Visit Previous Chapter</td> </tr> <tr> <td><kbd>u</kbd></td> <td>Go to Top of Page</td> </tr> <tr> <td><kbd>b</kbd></td> <td>Go to Bottom of Page</td> </tr> <tr> <td><kbd>i</kbd></td> <td>Visit the Introduction Page</td> </tr> </tbody> </table> </div> </div> <nav class="wide"><img class="webbook-logo" src="logo/webbook-logo.svg"></img> <div class="header"> <div class="header-left"><span class="header-lecture-grade">B.Sc</span> 
+<span class="header-lecture-name">Data Science II</span> 
+<span class="header-webBook">WebBook 2.1</span> </div> <div class="header-right"> <span class="header-version">2025.WS</span> 
+ <span class="header-chapter">index</span></div></div> <div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style='font-size:20px'></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&hl=en\&user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style='font-size:20px'></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style='font-size:20px'></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style='font-size:20px'></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style='font-size:20px'></i></a></div><hr><span class="chapterToc"><span class="number">0</span><span class="title"><a 
+href="index.html#x2-10000">index</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a 
+href="#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial
+Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Logical Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">The
+Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">Multilayer Perceptron and Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Regression
+MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-100001.2">Implementing MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-110001.2.1">Building
+an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-130001.2.2">Creating the model using the
+sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-170001.2.3">Building a Regression MLP Using the Sequential API</a></span></span>
+<!--l. 8--><p class="noindent" ><div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">D. T. McGuiness, PhD</span> 
+<span class="nav-footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 14.8.2026, at 7:52.</span></div></div><span class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span></div></div></nav> 
+
+</p>
+<article class="chapter"> 
+<nav class="crosslinks-top"> <a 
+href="FromBiologytoSiliconArtificialNeurons.html" ><span class="nav-next">NEXT</span></a><a 
+href="index.html" ><span class="nav-prev">PREV</span></a><a 
+href="index.html#tailindex.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
+href="#tailIntroductiontoArtificialNeuralNetworks.html"><span class="nav-tail">TAIL</span></a><a 
+href="DataScienceIILectureBook.html#IntroductiontoArtificialNeuralNetworks.html" ><span class="nav-up">UP</span></a></nav> 
+<h2 class="chapterHead"><div class="chapter-header">Chapter&#x00A0;<span class="titlemark">1</span>&#x00A0;&#x00A0;</div><br />  <a 
+ id="x3-20001"></a>Introduction to Artificial Neural Networks</h2>
+<figure class="figure"> 
+
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+<a 
+ id="x3-2001r1"></a>
+<figcaption class="caption" ><span class="id">Figure&#x00A0;1.1:&#x00A0;
+         </span><span  
+class="content">Nature is always a great source of inspiration for good and efficient design. For example, the beak of a bird
+         is aerodynamically efficient and was used in designing the Bullet train&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail">BBC. How a kingfisher helped
+         reshape Japan&#8217;s bullet train 2019</span></span>.The field is of emulating models, systems, and elements of nature for the
+         purpose of solving complex human problems is called bio mimetics&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail">Vincent, J.&#x00A0;F. et al. Biomimetics:
+         its practice and theory. Journal of the Royal Society Interface <span id="bold" style="font-weight:bold;">3</span><span id="bold" style="font-weight:bold;">,</span> 471 (2006)</span></span>.                  </span></figcaption><!--tex4ht:label?: x3-2001r1 -->
+<img 
+ 
+src="figures/Introduction-to-Artificial-Neural-Networks/raster/nature-robin.jpg" alt="PIC"  
+style="width:100%" />
+                                                                                
+                                                                                
+</figure>
+<!--l. 24--><p class="noindent" >It is quite apparent that life imitates life and engineers are inspired by nature.
+</p><!--l. 26--><p class="noindent" >It seems only logical, then, to look at the brain&#8217;s architecture for inspiration on how to build an
+intelligent machine as it is the only intelligence that we know of.
+</p><!--l. 29--><p class="noindent" >This is the logic that sparked <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s, which are
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:ml" class="glossary" >ML</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span><span class="acronym-desc"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span></span></span> models inspired by the networks of <span class="alert"><alert style="color: #821131;">biological neurons</alert></span>
+found in our brains. However, whereas planes were inspired by birds, they don&#8217;t have to flap their
+wings to fly. Similarly, <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s have
+gradually become quite different from their biological cousins. Some researchers even argue that
+we should drop the biological analogy altogether such as calling them <span class="alert"><alert style="color: #821131;">units</alert></span> rather than
+<span class="alert"><alert style="color: #821131;">neurons</alert></span>&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x3-2004"></a>Agatonovic-Kustrin, S &amp; Beresford, R. Basic concepts of artificial neural network (ANN)
+modeling and its application in pharmaceutical research. Journal of pharmaceutical and biomedical
+analysis <span id="bold" style="font-weight:bold;">22</span><span id="bold" style="font-weight:bold;">,</span> 717&#8211;727 (2000)</span></span>, as some consider this naming to decrease the amount of creativity we can
+give to the topic.
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s are at the very core of <span id="bold" style="font-weight:bold;">deep learning</span>.
+They are versatile, powerful, and scalable, making them ideal to tackle large and highly complex
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:ml" class="glossary" >ML</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span><span class="acronym-desc"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span></span></span> tasks such as classifying billions of <span class="margin-block">images, <span class="margin-comment"><span class="ellipsis">[1]</span> 
+<span class="sidenote">Such as google
+images.</span></span></span> powering speech recognition services, recommending the best videos to watch to hundreds of
+millions of users every day, or learning to beat the world champion at the game of <span class="margin-block">Go. <span class="margin-comment"><span class="ellipsis">[2]</span> 
+<span class="sidenote">Such as
+DeepMind&#8217;s AlphaGo&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x3-2005"></a>Holcomb, S.&#x00A0;D. et al. Overview on deepmind and its alphago zero
+ai in Proceedings of the 2018 international conference on big data and education (2018),
+67&#8211;71</span></span>.</span></span></span>
+</p><!--l. 44--><p class="noindent" >We will treat this chapter as a formal introduction to <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural
+Networks</a></span></span></span>, starting with a tour of the very first <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural
+Networks</a></span></span></span> architectures and leading up to <span class="alert"><alert style="color: #821131;">multilayer perceptrons</alert></span>, which are heavily used
+today.
+In the second part, we will look at how to implement <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural
+Networks</a></span></span></span>s using TensorFlow&#8217;s Keras <span class="acronym"><span class="acronym-short"><a 
+href="#glo:api" class="glossary" >API</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:api" class="glossary" >Application-Programming Interface</a></span><span class="acronym-desc"><a 
+href="#glo:api" class="glossary" >Application-Programming
+Interface</a></span></span></span>. This is a beautifully designed and simple high-level <span class="acronym"><span class="acronym-short"><a 
+href="#glo:api" class="glossary" >API</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:api" class="glossary" >Application-Programming
+Interface</a></span><span class="acronym-desc"><a 
+href="#glo:api" class="glossary" >Application-Programming Interface</a></span></span></span> for building, training, evaluating, and running
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>. While it may look simple at first
+glance, it is expressive and flexible enough to let you build a wide variety of neural network
+architectures.
+</p>
+<div class="knowledge">
+<!--l. 55--><p class="noindent" >For most of your use cases, using <code class="verb">keras</code> will be enough.
+</p>
+</div><p class="noindent">
+<figure class="figure"> 
+
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+<a 
+ id="x3-2006r2"></a>
+<figcaption class="caption" ><span class="id">Figure&#x00A0;1.2:&#x00A0;
+         </span><span  
+class="content">The prolific advancements of computers and neural networks have allowed us to tackle problems once
+         deemed impossible. A game of GO requires uncountable amount of moves, yet using ML it was possible to
+         create a software capable of beating the world champion.
+</span></figcaption><!--tex4ht:label?: x3-2006r2 -->
+<img 
+ 
+src="figures/Introduction-to-Artificial-Neural-Networks/raster/alpha-go.jpg" alt="PIC"  
+style="width:100%" />
+                                                                                
+                                                                                
+</figure>
+<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 1.<a 
+ id="x3-2007r1"></a>1: </span> </span> <span class="info-title"> Alpha Fold </span> </span> <div class="body"><p>
+<span class="alert"><alert style="color: #821131;">AlphaFold</alert></span> is an artificial intelligence (AI) program developed by DeepMind, which performs
+predictions of <span class="margin-block"><span class="margin"><span>protein <span class="ellipsis">[3]</span></span><span class="sidenote"><span class="sidenote-image"><img 
+ 
+src="figures/Introduction-to-Artificial-Neural-Networks/raster/protein-folding.jpg" alt="PIC"  
+style="" /></span><span class="sidenote-text"><span class="ellipsis">[3]</span>Protein folding is the physical process by which a protein, after synthesis by a
+ribosome as a linear chain of amino acids, changes from an unstable random coil into a more ordered
+three-dimensional structure. This structure permits the protein to become biologically functional or active.
+Understanding and simulating the protein folding process has been an important challenge for
+computational biology since the late 1960s.</span></span></span></span> structure. It is designed using deep learning
+techniques&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x3-2008"></a>Heaven, W.&#x00A0;D. DeepMind&#8217;s protein-folding AI has solved a 50-year-old grand challenge of
+biology. MIT Technol. Rev. <span id="bold" style="font-weight:bold;">30</span><span id="bold" style="font-weight:bold;">,</span> 1&#8211;2 (2020)</span></span>.
+<!--l. 79--><p class="noindent" >AlphaFold 1 (2018) placed <!--l. 79--><math 
+ 
+display="inline" ><msup><mrow 
+><mstyle 
+class="text"><mtext  >1</mtext></mstyle></mrow><mrow 
+><mstyle 
+class="text"><mtext  >st</mtext></mstyle></mrow></msup 
+></math>
+in the overall rankings of the <!--l. 79--><math 
+ 
+display="inline" ><msup><mrow 
+><mstyle 
+class="text"><mtext  >13</mtext></mstyle></mrow><mrow 
+><mstyle 
+class="text"><mtext  >th</mtext></mstyle></mrow></msup 
+></math>
+<span class="margin-block">CASP <span class="margin-comment"><span class="ellipsis">[4]</span> 
+<span class="sidenote">Critical Assessment of Structure Prediction.</span></span></span> in December 2018. It was particularly successful at
+predicting the most accurate structures for targets rated as most difficult by the competition
+organizers, where no existing template structures were available from proteins with partially similar
+sequences.
+</p><!--l. 85--><p class="noindent" >AlphaFold 2 (2020) repeated this placement in the CASP14 competition in November 2020. It achieved
+a level of accuracy much higher than any other entry&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x3-2009"></a>Stoddart, C. Structural biology: How proteins
+got their close-up. Knowable Mag. (2022)</span></span>. It scored above 90 on CASP&#8217;s global distance test (GDT) for
+approximately two-thirds of the proteins, a test measuring the similarity between a computationally
+predicted structure and the experimentally determined structure, where 100 represents a complete
+match&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail">Heaven, W.&#x00A0;D. DeepMind&#8217;s protein-folding AI has solved a 50-year-old grand challenge of
+biology. MIT Technol. Rev. <span id="bold" style="font-weight:bold;">30</span><span id="bold" style="font-weight:bold;">,</span> 1&#8211;2 (2020)</span></span>. The inclusion of <span class="alert"><alert style="color: #821131;">metagenomic</alert></span> data has improved the
+quality of the prediction of multiple sequence alignments. One of the biggest sources of the training
+data was the custom-built <span class="alert"><alert style="color: #821131;">Big Fantastic Database</alert></span> of 65,983,866 protein families, represented as
+multiple sequence alignments and <span class="alert"><alert style="color: #821131;">Hidden Markov</alert></span> models, covering 2,204,359,010 protein
+sequences from reference databases, metagenomes, and metatranscriptomes&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x3-2010"></a>Jumper, J.
+et al. Highly accurate protein structure prediction with AlphaFold. nature <span id="bold" style="font-weight:bold;">596</span><span id="bold" style="font-weight:bold;">,</span> 583&#8211;589
+(2021)</span></span>.
+</p></div></div><p class="noindent">
+
+</p>
+<div class="sectionTOCS">
+<span class="sectionToc" >1.1&#x00A0;&#x00A0;<a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial Neurons</a></span>
+<br /><span class="subsectionToc" >1.1.1&#x00A0;&#x00A0;<a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Biological Neurons</a></span>
+<br /><span class="subsectionToc" >1.1.2&#x00A0;&#x00A0;<a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Logical Computations with Neurons</a></span>
+<br /><span class="subsectionToc" >1.1.3&#x00A0;&#x00A0;<a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">The Perceptron</a></span>
+<br /><span class="subsectionToc" >1.1.4&#x00A0;&#x00A0;<a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">Multilayer Perceptron and Backpropagation</a></span>
+<br /><span class="subsectionToc" >1.1.5&#x00A0;&#x00A0;<a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Regression MLPs</a></span>
+<br /><span class="subsectionToc" >1.1.6&#x00A0;&#x00A0;<a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Classification MLPs</a></span>
+<br /><span class="sectionToc" >1.2&#x00A0;&#x00A0;<a 
+href="ImplementingMLPswithKeras.html#x5-100001.2">Implementing MLPs with Keras</a></span>
+                                                                                
+                                                                                
+<br /><span class="subsectionToc" >1.2.1&#x00A0;&#x00A0;<a 
+href="ImplementingMLPswithKeras.html#x5-110001.2.1">Building an Image Classifier Using Sequential API</a></span>
+<br /><span class="subsectionToc" >1.2.2&#x00A0;&#x00A0;<a 
+href="ImplementingMLPswithKeras.html#x5-130001.2.2">Creating the model using the sequential API</a></span>
+<br /><span class="subsectionToc" >1.2.3&#x00A0;&#x00A0;<a 
+href="ImplementingMLPswithKeras.html#x5-170001.2.3">Building a Regression MLP Using the Sequential API</a></span>
+</div>
+<!--l. 99--><p class="noindent" >
+                                                                                
+                                                                                
+</p><!--l. 820--><p class="noindent" >
+</p>
+                                                                                
+                                                                                
+<div class="crosslinks-bottom"><a 
+href="FromBiologytoSiliconArtificialNeurons.html" ><span class="nav-next">NEXT</span></a><a 
+href="index.html" ><span class="nav-prev">PREV</span></a><a 
+href="index.html#tailindex.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
+href="IntroductiontoArtificialNeuralNetworks.html" ><span class="nav-front">FRONT</span></a><a 
+href="DataScienceIILectureBook.html#IntroductiontoArtificialNeuralNetworks.html" ><span class="nav-up">UP</span></a></nav><a 
+ id="tailIntroductiontoArtificialNeuralNetworks.html"></a> </div> <div class="footer"> <div class="footer-left"><span class="footer-lecture">D. T. McGuiness, PhD</span> 
+<span class="footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 14.8.2026, at 7:52.</span> </div> </div> </div> <div class="author-notes"> 
+<span class="note">Authors Note </span> 
+<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span> 
+</div> 
+</article> 
+<div class="mode-line"> 
+<div class="core-line"> 
+<div class="button-group"> 
+</div> 
+</div> 
+<div class="supp-line"></div> 
+</div> 
+</page> 
+ 
+</body> 
+</html>

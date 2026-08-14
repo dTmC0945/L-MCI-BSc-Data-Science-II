@@ -1,0 +1,336 @@
+<!DOCTYPE html> 
+<html lang="en">  
+<head><title>References</title> 
+<meta  charset="utf-8" /> 
+<meta name="generator" content="lms-WebBook" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="\" /> 
+<meta name="src" content="DataScienceIILectureBook.tex" /> 
+ <script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js"></script>  
+<title>Data Science II</title> 
+<link rel="icon" type="image/x-icon" href="logo/lms.ico"> 
+<link href="pagefind/pagefind-component-ui.css" rel="stylesheet"> 
+<script src ="pagefind/pagefind-component-ui.js"></script> 
+<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" /> 
+<link rel ="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@main/flatweb.css"> 
+<script src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@main/flatweb.js" async='true' crossorigin='anonymous'></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css"> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css"/> 
+<script src ="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script> 
+<link rel="stylesheet" href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css"/> 
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet'> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script> 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> <style> 
+ </style> 
+ <header> 
+ <pagefind-modal></pagefind-modal> 
+ </header> 
+</head><body 
+>
+<page> 
+<div class="keyboard-help-menu"><div style="overflow-x:auto"> <table> <thead> <tr> <th>Key</th> <th>Description</th> </tr> </thead> <tbody> <tr> <td><kbd>t</kbd></td> <td>Enable/Disable Table of Contents</td> </tr> <tr> <td><kbd>n</kbd></td> <td>Visit Next Chapter</td> </tr> <tr> <td><kbd>p</kbd></td> <td>Visit Previous Chapter</td> </tr> <tr> <td><kbd>u</kbd></td> <td>Go to Top of Page</td> </tr> <tr> <td><kbd>b</kbd></td> <td>Go to Bottom of Page</td> </tr> <tr> <td><kbd>i</kbd></td> <td>Visit the Introduction Page</td> </tr> </tbody> </table> </div> </div> <nav class="wide"><img class="webbook-logo" src="logo/webbook-logo.svg"></img> <div class="header"> <div class="header-left"><span class="header-lecture-grade">B.Sc</span> 
+<span class="header-lecture-name">Data Science II</span> 
+<span class="header-webBook">WebBook 2.1</span> </div> <div class="header-right"> <span class="header-version">2025.WS</span> 
+ <span class="header-chapter">Introduction to Artificial Neural Networks</span></div></div> <div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style='font-size:20px'></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&hl=en\&user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style='font-size:20px'></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style='font-size:20px'></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style='font-size:20px'></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style='font-size:20px'></i></a></div><hr><span class="chapterToc"><span class="number">0</span><span class="title"><a 
+href="index.html#x2-10000">index</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a 
+href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial
+Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Logical Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">The
+Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">Multilayer Perceptron and Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Regression
+MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-100001.2">Implementing MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-110001.2.1">Building
+an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-130001.2.2">Creating the model using the
+sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-170001.2.3">Building a Regression MLP Using the Sequential API</a></span></span>
+<!--l. 116--><p class="noindent" ><div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">D. T. McGuiness, PhD</span> 
+<span class="nav-footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 14.8.2026, at 7:52.</span></div></div><span class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span></div></div></nav> 
+
+</p>
+<article class="chapter"> 
+<nav class="crosslinks-top"> <span class="nav-inactive"><span class="nav-next">NEXT</span></span> <a 
+href="ImplementingMLPswithKeras.html" ><span class="nav-prev">PREV</span></a><a 
+href="ImplementingMLPswithKeras.html#tailImplementingMLPswithKeras.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
+href="#tailReferences.html"><span class="nav-tail">TAIL</span></a><a 
+href="DataScienceIILectureBook.html# " ><span class="nav-up">UP</span></a></nav> 
+<h2 class="addchapHead">  <a 
+ id="x6-18000"></a>References</h2>
+<dl class="thebibliography"><dt id="X0-BBC2019" class="thebibliography"> 
+1.  
+</dt><dd 
+id="bib-1" class="thebibliography">
+<!--l. 116--><p class="noindent" ><a id="page.lxxvi"></a><a 
+ id="X0-"  ></a>BBC. How a kingfisher helped reshape Japan&#8217;s bullet train 2019.
+</p>    
+</dd>
+<dt id="X0-vincent2006biomimetics" class="thebibliography">
+2.  
+</dt><dd 
+id="bib-2" class="thebibliography">
+<!--l. 116--><p class="noindent" >Vincent,  J.&#x00A0;F.,  Bogatyreva,  O.&#x00A0;A.,  Bogatyrev,  N.&#x00A0;R.,  Bowyer,  A.  &amp;  Pahl,  A.-K.
+Biomimetics: its practice and theory. Journal of the Royal Society Interface <span id="bold" style="font-weight:bold;">3</span><span id="bold" style="font-weight:bold;">,</span> 471 (2006).
+</p>    
+</dd>
+<dt id="X0-agatonovic2000basic" class="thebibliography">
+3.  
+</dt><dd 
+id="bib-3" class="thebibliography">
+<!--l. 116--><p class="noindent" >Agatonovic-Kustrin, S &amp; Beresford, R. Basic concepts of artificial neural network (ANN)
+modeling and its application in pharmaceutical research. Journal of pharmaceutical and
+biomedical analysis <span id="bold" style="font-weight:bold;">22</span><span id="bold" style="font-weight:bold;">,</span> 717&#8211;727 (2000).
+</p>    
+</dd>
+<dt id="X0-holcomb2018overview" class="thebibliography">
+4.  
+</dt><dd 
+id="bib-4" class="thebibliography">
+<!--l. 116--><p class="noindent" >Holcomb, S.&#x00A0;D., Porter, W.&#x00A0;K., Ault, S.&#x00A0;V., Mao, G. &amp; Wang, J. Overview on deepmind
+and its alphago zero ai in Proceedings of the 2018 international conference on big data and
+education (2018), 67&#8211;71.
+</p>    
+</dd>
+<dt id="X0-heaven2020deepmind" class="thebibliography">
+5.  
+</dt><dd 
+id="bib-5" class="thebibliography">
+<!--l. 116--><p class="noindent" >Heaven, W.&#x00A0;D. DeepMind&#8217;s protein-folding AI has solved a 50-year-old grand challenge of
+biology. MIT Technol. Rev. <span id="bold" style="font-weight:bold;">30</span><span id="bold" style="font-weight:bold;">,</span> 1&#8211;2 (2020).
+</p>    
+</dd>
+<dt id="X0-stoddart2022structural" class="thebibliography">
+6.  
+</dt><dd 
+id="bib-6" class="thebibliography">
+<!--l. 116--><p class="noindent" >Stoddart, C. Structural biology: How proteins got their close-up. Knowable Mag. (2022).
+</p>    
+</dd>
+<dt id="X0-jumper2021highly" class="thebibliography">
+7.  
+</dt><dd 
+id="bib-7" class="thebibliography">
+<!--l. 116--><p class="noindent" >Jumper, J. et al. Highly accurate protein structure prediction with AlphaFold. nature <span id="bold" style="font-weight:bold;">596</span><span id="bold" style="font-weight:bold;">,</span>
+583&#8211;589 (2021).
+</p>    
+</dd>
+<dt id="X0-mcculloch1943logical" class="thebibliography">
+8.  
+</dt><dd 
+id="bib-8" class="thebibliography">
+                                                                                
+                                                                                
+    
+<!--l. 116--><p class="noindent" >McCulloch, W.&#x00A0;S. &amp; Pitts, W. A logical calculus of the ideas immanent in nervous activity.
+The bulletin of mathematical biophysics <span id="bold" style="font-weight:bold;">5</span><span id="bold" style="font-weight:bold;">,</span> 115&#8211;133 (1943).
+</p>    
+</dd>
+<dt id="X0-howe2007artificial" class="thebibliography">
+9.  
+</dt><dd 
+id="bib-9" class="thebibliography">
+<!--l. 116--><p class="noindent" >Howe, J. Artificial intelligence at edinburgh university: A perspective. Archived from the
+original on <span id="bold" style="font-weight:bold;">17</span> (2007).
+</p>    
+</dd>
+<dt id="X0-goodfellow2014qualitatively" class="thebibliography">
+10.  
+</dt><dd 
+id="bib-10" class="thebibliography">
+<!--l. 116--><p class="noindent" >Goodfellow, I.&#x00A0;J., Vinyals, O. &amp; Saxe, A.&#x00A0;M. Qualitatively characterizing neural network
+optimization problems. arXiv preprint arXiv:1412.6544 (2014).
+</p>    
+</dd>
+<dt id="X0-sebe2023stepwise" class="thebibliography">
+11.  
+</dt><dd 
+id="bib-11" class="thebibliography">
+<!--l. 116--><p class="noindent" >Sebé-Pedrós, A. Stepwise emergence of the neuronal gene expression program in early
+animal evolution (2023).
+</p>    
+</dd>
+<dt id="X0-barrett2019analyzing" class="thebibliography">
+12.  
+</dt><dd 
+id="bib-12" class="thebibliography">
+<!--l. 116--><p class="noindent" >Barrett, D.&#x00A0;G., Morcos, A.&#x00A0;S. &amp; Macke, J.&#x00A0;H. Analyzing biological and artificial neural
+networks: challenges with opportunities for synergy? Current opinion in neurobiology <span id="bold" style="font-weight:bold;">55</span><span id="bold" style="font-weight:bold;">,</span>
+55&#8211;64 (2019).
+</p>    
+</dd>
+<dt id="X0-block1962perceptron" class="thebibliography">
+13.  
+</dt><dd 
+id="bib-13" class="thebibliography">
+<!--l. 116--><p class="noindent" >Block, H.-D. The perceptron: A model for brain functioning. i. Reviews of Modern Physics
+<span id="bold" style="font-weight:bold;">34</span><span id="bold" style="font-weight:bold;">,</span> 123 (1962).
+</p>    
+</dd>
+<dt id="X0-sharma2017activation" class="thebibliography">
+14.  
+</dt><dd 
+id="bib-14" class="thebibliography">
+<!--l. 116--><p class="noindent" >Sharma, S., Sharma, S. &amp; Athaiya, A. Activation functions in neural networks. Towards
+Data Sci <span id="bold" style="font-weight:bold;">6</span><span id="bold" style="font-weight:bold;">,</span> 310&#8211;316 (2017).
+</p>    
+</dd>
+<dt id="X0-fisher1936use" class="thebibliography">
+15.  
+</dt><dd 
+id="bib-15" class="thebibliography">
+<!--l. 116--><p class="noindent" >Fisher, R.&#x00A0;A. The use of multiple measurements in taxonomic problems. Annals of eugenics
+<span id="bold" style="font-weight:bold;">7</span><span id="bold" style="font-weight:bold;">,</span> 179&#8211;188 (1936).
+</p>    
+</dd>
+<dt id="X0-sompolinsky2006theory" class="thebibliography">
+16.  
+</dt><dd 
+id="bib-16" class="thebibliography">
+<!--l. 116--><p class="noindent" >Sompolinsky,  H.  The  theory  of  neural  networks:  The  Hebb  rule  and  beyond  in
+Heidelberg Colloquium on Glassy Dynamics: Proceedings of a Colloquium on Spin Glasses,
+Optimization and Neural Networks Held at the University of Heidelberg June 9&#8211;13, 1986
+(2006), 485&#8211;527.
+</p>    
+</dd>
+<dt id="X0-hebb2005organization" class="thebibliography">
+17.  
+</dt><dd 
+id="bib-17" class="thebibliography">
+<!--l. 116--><p class="noindent" >Hebb, D.&#x00A0;O. The organization of behavior: A neuropsychological theory (Psychology press,
+2005).
+</p>    
+</dd>
+<dt id="X0-gerstner2002mathematical" class="thebibliography">
+18.  
+</dt><dd 
+id="bib-18" class="thebibliography">
+                                                                                
+                                                                                
+    
+<!--l. 116--><p class="noindent" >Gerstner, W. &amp; Kistler, W.&#x00A0;M. Mathematical formulations of Hebbian learning. Biological
+cybernetics <span id="bold" style="font-weight:bold;">87</span><span id="bold" style="font-weight:bold;">,</span> 404&#8211;415 (2002).
+</p>    
+</dd>
+<dt id="X0-popescu2009multilayer" class="thebibliography">
+19.  
+</dt><dd 
+id="bib-19" class="thebibliography">
+<!--l. 116--><p class="noindent" >Popescu, M.-C., Balas, V.&#x00A0;E., Perescu-Popescu, L. &amp; Mastorakis, N. Multilayer perceptron
+and neural networks. WSEAS Transactions on Circuits and Systems <span id="bold" style="font-weight:bold;">8</span><span id="bold" style="font-weight:bold;">,</span> 579&#8211;588 (2009).
+</p>    
+</dd>
+<dt id="X0-bebis1994feed" class="thebibliography">
+20.  
+</dt><dd 
+id="bib-20" class="thebibliography">
+<!--l. 116--><p class="noindent" >Bebis, G. &amp; Georgiopoulos, M. Feed-forward neural networks. Ieee Potentials <span id="bold" style="font-weight:bold;">13</span><span id="bold" style="font-weight:bold;">,</span> 27&#8211;31
+(1994).
+</p>    
+</dd>
+<dt id="X0-samek2021explaining" class="thebibliography">
+21.  
+</dt><dd 
+id="bib-21" class="thebibliography">
+<!--l. 116--><p class="noindent" >Samek, W., Montavon, G., Lapuschkin, S., Anders, C.&#x00A0;J. &amp; Müller, K.-R. Explaining deep
+neural networks and beyond: A review of methods and applications. Proceedings of the
+IEEE <span id="bold" style="font-weight:bold;">109</span><span id="bold" style="font-weight:bold;">,</span> 247&#8211;278 (2021).
+</p>    
+</dd>
+<dt id="X0-Seppo1970" class="thebibliography">
+22.  
+</dt><dd 
+id="bib-22" class="thebibliography">
+<!--l. 116--><p class="noindent" >Linnainmaa,                      S.                      Algoritmin                      kumulatiivinen
+pyöristysvirhe   yksittäisten   pyöristysvirheiden   Taylor-kehitelmänä   Available   in
+Finnish at <a 
+href="https://people.idsia.ch/~juergen/linnainmaa1970thesis.pdf" class="url" >https://people.idsia.ch/~juergen/linnainmaa1970thesis.pdf</a>. Master&#8217;s
+thesis (University of Helsinki, 1970).
+</p>    
+</dd>
+<dt id="X0-hecht1992theory" class="thebibliography">
+23.  
+</dt><dd 
+id="bib-23" class="thebibliography">
+<!--l. 116--><p class="noindent" >Hecht-Nielsen, R. Theory of the backpropagation neural network in Neural networks for
+perception 65&#8211;93 (Elsevier, 1992).
+</p>    
+</dd>
+<dt id="X0-rumelhart1986learning" class="thebibliography">
+24.  
+</dt><dd 
+id="bib-24" class="thebibliography">
+<!--l. 116--><p class="noindent" >Rumelhart,  D.&#x00A0;E.,  Hinton,  G.&#x00A0;E.  &amp;  Williams,  R.&#x00A0;J.  Learning  representations  by
+back-propagating errors. nature <span id="bold" style="font-weight:bold;">323</span><span id="bold" style="font-weight:bold;">,</span> 533&#8211;536 (1986).
+</p>    
+</dd>
+<dt id="X0-knut2018neural" class="thebibliography">
+25.  
+</dt><dd 
+id="bib-25" class="thebibliography">
+<!--l. 116--><p class="noindent" >Knut, H. Neural Networks p. 7. University of Applied Sciences Northwestern Switzerland
+(2018).
+</p>    
+</dd>
+<dt id="X0-hendrycks2016gaussian" class="thebibliography">
+26.  
+</dt><dd 
+id="bib-26" class="thebibliography">
+<!--l. 116--><p class="noindent" >Hendrycks,  D.  &amp;  Gimpel,  K.  Gaussian  error  linear  units  (gelus).  arXiv  preprint
+arXiv:1606.08415 (2016).
+</p>    
+</dd>
+<dt id="X0-hinton2012deep" class="thebibliography">
+27.  
+</dt><dd 
+id="bib-27" class="thebibliography">
+<!--l. 116--><p class="noindent" >Hinton, G. et al. Deep neural networks for acoustic modeling in speech recognition: The
+shared views of four research groups. IEEE Signal processing magazine <span id="bold" style="font-weight:bold;">29</span><span id="bold" style="font-weight:bold;">,</span> 82&#8211;97 (2012).
+</p>    
+</dd>
+<dt id="X0-krizhevsky2012imagenet" class="thebibliography">
+28.  
+</dt><dd 
+id="bib-28" class="thebibliography">
+                                                                                
+                                                                                
+    
+<!--l. 116--><p class="noindent" >Krizhevsky,  A.,  Sutskever,  I.  &amp;  Hinton,  G.&#x00A0;E.  Imagenet  classification  with  deep
+convolutional  neural  networks.  Advances  in  neural  information  processing  systems  <span id="bold" style="font-weight:bold;">25</span>
+(2012).</p></dd></dl>
+                                                                                
+                                                                                
+<div class="crosslinks-bottom"><span class="nav-inactive"><span class="nav-next">NEXT</span></span> <a 
+href="ImplementingMLPswithKeras.html" ><span class="nav-prev">PREV</span></a><a 
+href="ImplementingMLPswithKeras.html#tailImplementingMLPswithKeras.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
+href="References.html" ><span class="nav-front">FRONT</span></a><a 
+href="DataScienceIILectureBook.html# " ><span class="nav-up">UP</span></a></nav><a 
+ id="tailReferences.html"></a></div> <div class="footer"> <div class="footer-left"><span class="footer-lecture">D. T. McGuiness, PhD</span> 
+<span class="footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 14.8.2026, at 7:52.</span> </div> </div> </div> <div class="author-notes"> 
+<span class="note">Authors Note </span> 
+<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span> 
+</div> 
+</article> 
+<div class="mode-line"> 
+<div class="core-line"> 
+<div class="button-group"> 
+</div> 
+</div> 
+<div class="supp-line"></div> 
+</div> 
+</page> 
+ 
+</body> 
+</html>

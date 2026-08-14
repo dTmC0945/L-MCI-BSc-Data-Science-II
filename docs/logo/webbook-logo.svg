@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="575.164"
+   height="310.59732"
+   viewBox="0 0 575.164 310.59732"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="g1">
+    <path
+       id="path1"
+       d="m 0,0 v 0 h -311.8149 l 113.38724,85.04042 z"
+       style="fill:#326199;fill-opacity:1;fill-rule:nonzero;stroke:#326199;stroke-width:0.19925;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(1.3333333,0,0,-1.3333333,419.86533,306.48)" />
+    <path
+       id="path2"
+       d="M 0,0 V 0 L -198.42766,85.04042 V 198.42766 Z"
+       style="fill:#4fb1a1;fill-opacity:1;fill-rule:nonzero;stroke:#4fb1a1;stroke-width:0.19925;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(1.3333333,0,0,-1.3333333,419.86533,306.48)" />
+    <path
+       id="path3"
+       d="m -198.42766,85.04042 v 0 113.38724 l -85.04044,28.34682 z"
+       style="fill:#fcc055;fill-opacity:1;fill-rule:nonzero;stroke:#fcc055;stroke-width:0.19925;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(1.3333333,0,0,-1.3333333,419.86533,306.48)" />
+    <path
+       id="path4"
+       d="M 0,0 V 0 L 56.69362,113.38724 113.38724,0 Z"
+       style="fill:#df6e5b;fill-opacity:1;fill-rule:nonzero;stroke:#df6e5b;stroke-width:0.19925;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(1.3333333,0,0,-1.3333333,419.86533,306.48)" />
+    <path
+       id="path5"
+       d="m 0,0 v 0 l -113.38724,113.38724 226.77448,85.04042 z"
+       style="fill:#eb8d50;fill-opacity:1;fill-rule:nonzero;stroke:#eb8d50;stroke-width:0.19925;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(1.3333333,0,0,-1.3333333,419.86533,306.48)" />
+  </g>
+</svg>

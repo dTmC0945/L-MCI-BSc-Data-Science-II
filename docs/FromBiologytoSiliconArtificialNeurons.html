@@ -1,0 +1,1792 @@
+<!DOCTYPE html> 
+<html lang="en">  
+<head><title>From Biology to Silicon: Artificial Neurons</title> 
+<meta  charset="utf-8" /> 
+<meta name="generator" content="lms-WebBook" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="\" /> 
+<meta name="src" content="DataScienceIILectureBook.tex" /> 
+ <script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js"></script>  
+<title>Data Science II</title> 
+<link rel="icon" type="image/x-icon" href="logo/lms.ico"> 
+<link href="pagefind/pagefind-component-ui.css" rel="stylesheet"> 
+<script src ="pagefind/pagefind-component-ui.js"></script> 
+<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" /> 
+<link rel ="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@main/flatweb.css"> 
+<script src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@main/flatweb.js" async='true' crossorigin='anonymous'></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css"> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css"/> 
+<script src ="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script> 
+<link rel="stylesheet" href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css"/> 
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet'> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script> 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> <style> 
+ </style> 
+ <header> 
+ <pagefind-modal></pagefind-modal> 
+ </header> 
+</head><body 
+>
+<page> 
+<div class="keyboard-help-menu"><div style="overflow-x:auto"> <table> <thead> <tr> <th>Key</th> <th>Description</th> </tr> </thead> <tbody> <tr> <td><kbd>t</kbd></td> <td>Enable/Disable Table of Contents</td> </tr> <tr> <td><kbd>n</kbd></td> <td>Visit Next Chapter</td> </tr> <tr> <td><kbd>p</kbd></td> <td>Visit Previous Chapter</td> </tr> <tr> <td><kbd>u</kbd></td> <td>Go to Top of Page</td> </tr> <tr> <td><kbd>b</kbd></td> <td>Go to Bottom of Page</td> </tr> <tr> <td><kbd>i</kbd></td> <td>Visit the Introduction Page</td> </tr> </tbody> </table> </div> </div> <nav class="wide"><img class="webbook-logo" src="logo/webbook-logo.svg"></img> <div class="header"> <div class="header-left"><span class="header-lecture-grade">B.Sc</span> 
+<span class="header-lecture-name">Data Science II</span> 
+<span class="header-webBook">WebBook 2.1</span> </div> <div class="header-right"> <span class="header-version">2025.WS</span> 
+ <span class="header-chapter">Introduction to Artificial Neural Networks</span></div></div> <div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style='font-size:20px'></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&hl=en\&user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style='font-size:20px'></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style='font-size:20px'></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style='font-size:20px'></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style='font-size:20px'></i></a></div><hr><span class="chapterToc"><span class="number">0</span><span class="title"><a 
+href="index.html#x2-10000">index</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a 
+href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a 
+href="#x4-30001.1">From Biology to Silicon: Artificial
+Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a 
+href="#x4-40001.1.1">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a 
+href="#x4-50001.1.2">Logical Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a 
+href="#x4-60001.1.3">The
+Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a 
+href="#x4-70001.1.4">Multilayer Perceptron and Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a 
+href="#x4-80001.1.5">Regression
+MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a 
+href="#x4-90001.1.6">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-100001.2">Implementing MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-110001.2.1">Building
+an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-130001.2.2">Creating the model using the
+sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-170001.2.3">Building a Regression MLP Using the Sequential API</a></span></span>
+<!--l. 99--><p class="noindent" ><div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">D. T. McGuiness, PhD</span> 
+<span class="nav-footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 14.8.2026, at 7:52.</span></div></div><span class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span></div></div></nav> 
+
+</p>
+<article class="chapter"> 
+<nav class="crosslinks-top"> <a 
+href="ImplementingMLPswithKeras.html" ><span class="nav-next">NEXT</span></a><a 
+href="IntroductiontoArtificialNeuralNetworks.html" ><span class="nav-prev">PREV</span></a><a 
+href="IntroductiontoArtificialNeuralNetworks.html#tailIntroductiontoArtificialNeuralNetworks.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
+href="#tailFromBiologytoSiliconArtificialNeurons.html"><span class="nav-tail">TAIL</span></a><a 
+href="IntroductiontoArtificialNeuralNetworks.html#FromBiologytoSiliconArtificialNeurons.html" ><span class="nav-up">UP</span></a></nav> 
+<div class="section-header"> <h3 id="header-section-1.1"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.1.1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a> <span class="number">1.1</span> <span class="title">  <a 
+ id="x4-30001.1"></a>From Biology to Silicon: Artificial Neurons</span></h3></div><p>
+<div class="sidenote"> <span class="figure" 
+>
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+<!--l. 103--><p class="noindent" ><img 
+ 
+src="figures/Introduction-to-Artificial-Neural-Networks/raster/neural-paper-original.png" alt="PIC"  
+style="" /> <a 
+ id="x4-3001r3"></a>
+</p>
+<figcaption class="caption" ><span class="id">Figure&#x00A0;1.3:&#x00A0;</span><span  
+class="content">The original paper which defined how a network of neurons could be defined.&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail">McCulloch, W.&#x00A0;S. &amp; Pitts,
+W. A logical calculus of the ideas immanent in nervous activity. The bulletin of mathematical biophysics <span id="bold" style="font-weight:bold;">5</span><span id="bold" style="font-weight:bold;">,</span> 115&#8211;133
+(1943)</span></span>                                                                           </span></figcaption><!--tex4ht:label?: x4-3001r3 -->
+                                                                                
+                                                                                
+</div>
+<!--l. 107--><p class="noindent" ></div> </p><p>
+<!--l. 109--><p class="noindent" >While it may seem <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s are the cutting edge in
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:ml" class="glossary" >ML</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span><span class="acronym-desc"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span></span></span>, They have been around for quite a while: they were first
+introduced back in 1943 by the <italic>neurophysiologist</italic> Warren <span class="margin-block">McCulloch <span class="margin-comment"><span class="ellipsis">[5]</span> 
+<span class="sidenote"><span id="bold" style="font-weight:bold;">Warren Sturgis McCulloch</span>
+<italic>(1898  -  1969)</italic>
+was an American neurophysiologist and cybernetician known for his work on the foundation for certain
+brain theories and his contribution to the <span class="alert"><alert style="color: #821131;">cybernetics</alert></span> movement. Along with <italic>Walter
+Pitts</italic>, McCulloch created computational models based on mathematical algorithms called
+threshold logic which split the inquiry into two distinct approaches, one approach focused on
+biological processes in the brain and the other focused on the application of neural networks to
+artificial intelligence&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-3003"></a>McCulloch, W.&#x00A0;S. &amp; Pitts, W. A logical calculus of the ideas immanent
+in nervous activity. The bulletin of mathematical biophysics <span id="bold" style="font-weight:bold;">5</span><span id="bold" style="font-weight:bold;">,</span> 115&#8211;133 (1943)</span></span>.</span></span></span> and the
+mathematician Walter Pitts. In their landmark paper <italic>A Logical Calculus of Ideas Immanent in
+Nervous Activity</italic>, They presented a simplified computational model of how biological neurons
+might work together in animal brains to perform complex computations using propositional
+logic.
+</p>
+<div class="warning">
+<!--l. 125--><p class="noindent" >This was the first <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span> architecture&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail">McCulloch, W.&#x00A0;S.
+&amp; Pitts, W. A logical calculus of the ideas immanent in nervous activity. The bulletin of mathematical
+biophysics <span id="bold" style="font-weight:bold;">5</span><span id="bold" style="font-weight:bold;">,</span> 115&#8211;133 (1943)</span></span>.
+</p>
+</div>
+<!--l. 127--><p class="noindent" >Since then, many other architectures have been invented. The early successes of <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural
+Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s led to the widespread belief that we would soon be conversing
+with truly intelligent machines. When it became clear in the 1960s that this promise would go
+<span class="margin-block">unfulfilled, <span class="margin-comment"><span class="ellipsis">[6]</span> 
+<span class="sidenote">at least for quite a while.</span></span></span> funding was diverted elsewhere, and <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial
+Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s entered a long winter. This is also known as the
+<span class="alert"><alert style="color: #821131;"><!--l. 131--><math 
+ 
+display="inline" ><msup><mrow 
+><mstyle 
+class="text"><mtext  >1</mtext></mstyle></mrow><mrow 
+><mstyle 
+class="text"><mtext  >st</mtext></mstyle></mrow></msup 
+></math> AI
+winter</alert></span>&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-3004"></a>Howe, J. Artificial intelligence at edinburgh university: A perspective. Archived from the
+original on <span id="bold" style="font-weight:bold;">17</span> (2007)</span></span>. In the early 1980s, new architectures were invented and better training
+techniques were developed, sparking a revival of interest in connectionism, the study of <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial
+Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s. But progress was slow, and by the 1990s other powerful
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:ml" class="glossary" >ML</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span><span class="acronym-desc"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span></span></span> techniques had been invented, such as <span class="acronym"><span class="acronym-short"><a 
+href="#glo:svm" class="glossary" >SVM</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:svm" class="glossary" >Support Vector
+Machines</a></span><span class="acronym-desc"><a 
+href="#glo:svm" class="glossary" >Support Vector Machines</a></span></span></span>. These techniques seemed to offer better results and stronger theoretical
+foundations than <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s, so once again the study of
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s was put on hold and this is known as the
+<span class="alert"><alert style="color: #821131;"><!--l. 137--><math 
+ 
+display="inline" ><msup><mrow 
+><mstyle 
+class="text"><mtext  >2</mtext></mstyle></mrow><mrow 
+><mstyle 
+class="text"><mtext  >nd</mtext></mstyle></mrow></msup 
+></math> AI
+winter</alert></span>.
+<div class="quote"><p> <italic>We are now witnessing yet another strong wave of interest in <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial
+Neural Networks</a></span></span></span>s. Will this wave die out like the previous ones did?</italic>  </p></p></div><p>
+Well, here are a few good reasons to believe that this time is different and that the renewed interest in
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s will have a much more profound impact on
+                                                                                
+                                                                                
+our lives:
+There is now a <span id="bold" style="font-weight:bold;">huge quantity of data available</span> to train <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial
+Neural Networks</a></span></span></span>s, and <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s frequently
+outperform other <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ml" class="glossary" >ML</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span><span class="acronym-desc"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span></span></span> techniques on very large and complex
+problems. One of the major turning points of <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>
+was the fundamental question of:
+<div class="quote"><p> <italic>Is our understanding of the model at fault or is it merely the lack of data to train?</italic>  </p></div><p>
+The tremendous increase in computing power since the 1990s now makes it possible to train large
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s in a reasonable amount of time.
+This is in part due to <span id="bold" style="font-weight:bold;">Moore&#8217;s law</span><span class="margin-block">, <span class="margin-comment"><span class="ellipsis">[7]</span> 
+<span class="sidenote">The observation that the number of transistors in an
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:ic" class="glossary" >IC</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ic" class="glossary" >Integrated Circuit</a></span><span class="acronym-desc"><a 
+href="#glo:ic" class="glossary" >A small electronic device combining numerous interconnected components,
+like transistors, resistors, and capacitors, onto a single semiconductor chip, usually silicon</a></span></span></span>
+doubles about every two years. Moore&#8217;s law is an observation and projection of a historical
+trend. Rather than a law of physics, it is an empirical relationship.</span></span></span> but also thanks to the
+gaming industry, which has stimulated the production of powerful GPU cards by the millions
+which have become the norm to train <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ml" class="glossary" >ML</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span><span class="acronym-desc"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span></span></span> instead of
+CPUs.
+In addition to previous statements, cloud platforms have made this power accessible to everyone. The
+training algorithms have been improved. From a realistic standpoint, they are only slightly different
+from the ones used in the 1990s, but these relatively small tweaks have had a huge positive
+impact.
+<!--l. 169--><p class="noindent" >Some theoretical limitations of <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s have turned
+out to be benign in practice. For example, many people thought that <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural
+Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span> training algorithms were doomed because they were likely to get
+stuck in local optima&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-3005"></a>Goodfellow, I.&#x00A0;J., Vinyals, O. &amp; Saxe, A.&#x00A0;M. Qualitatively characterizing
+neural network optimization problems. arXiv preprint arXiv:1412.6544 (2014)</span></span>, but it turns out that
+this is <span id="bold" style="font-weight:bold;">NOT</span>&#x00A0;a big problem in practice, especially for larger <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial
+Neural Networks</a></span></span></span>s:
+</p>
+<div class="warning">
+<!--l. 176--><p class="noindent" >The local optima often perform almost as well as the global optimum.
+</p>
+</div>
+<!--l. 178--><p class="noindent" ><span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s seem to have entered a virtuous circle of
+funding and progress. Amazing products based on <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial
+Neural Networks</a></span></span></span>s regularly make the headline news, which pulls more and more attention
+and funding toward them, resulting in more and more progress and even more amazing
+products.
+
+</p>
+<!--l. 182--><p class="noindent" ><div class="subsection-header"> <h4 id="header-subsection-1.1.1"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.1.1.1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">1.1.1</span> <span class="title">  <a 
+ id="x4-40001.1.1"></a>Biological Neurons</span></h4></div><p>
+</p>
+<div class="sidenote"> <span class="figure" 
+>
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+<a 
+ id="x4-4001r4"></a>
+<figcaption class="caption" ><span class="id">Figure&#x00A0;1.4:&#x00A0;</span><span  
+class="content">A neuron or nerve cell is an excitable cell that fires electric signals called action potentials across a neural
+network in the nervous system. Neurons communicate with other cells via synapses, which are specialized connections
+that commonly use minute amounts of chemical neurotransmitters to pass the electric signal from the presynaptic neuron
+to the target cell through the synaptic gap&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail">Sebé-Pedrós, A. Stepwise emergence of the neuronal gene expression
+program in early animal evolution (2023)</span></span>.                                                    </span></figcaption><!--tex4ht:label?: x4-4001r4 -->
+<img 
+ 
+src="figures/Introduction-to-Artificial-Neural-Networks/raster/neuron.png" alt="PIC"  
+style="" />
+                                                                                
+                                                                                
+</div>
+<!--l. 194--><p class="noindent" ></div> </p><p>
+<!--l. 196--><p class="noindent" >Before we discuss artificial neurons, let&#8217;s take a quick look at a biological neuron. It is an
+unusual-looking cell mostly found in animal brains which we can see in <span id="bold" style="font-weight:bold;">Fig.</span>&#x00A0;<a 
+href="#x4-4001r4">1.4<!--tex4ht:ref: fig:neuron --></a>.
+</p><!--l. 199--><p class="noindent" >It&#8217;s composed of a cell body containing the nucleus and most of the cell&#8217;s complex components, many
+branching extensions called dendrites, plus one very long extension called the <span class="alert"><alert style="color: #821131;">axon</alert></span>.The axon&#8217;s length
+may be just a few times longer than the cell body, or up to tens of thousands of times
+longer.
+Near its extremity the axon splits off into many branches called <italic>telodendria</italic>, and at the tip of these
+branches are minuscule structures called synaptic <span class="margin-block">terminals, <span class="margin-comment"><span class="ellipsis">[8]</span> 
+<span class="sidenote">or simply synapses.</span></span></span> which are connected to
+the dendrites or cell bodies of other neurons. Biological neurons produce short electrical impulses called
+<span class="alert"><alert style="color: #821131;">action potentials</alert></span>, which travel along the axons and make the synapses release chemical signals
+called neurotransmitters. When a neuron receives a sufficient amount of these neurotransmitters within
+a few <!--l. 210--><math 
+ 
+display="inline" ><mstyle mathvariant="normal"><mi 
+>m</mi><mi 
+>s</mi></mstyle></math>,
+it fires its own electrical <span class="margin-block">impulses. <span class="margin-comment"><span class="ellipsis">[9]</span> 
+<span class="sidenote">Actually, it depends on the neurotransmitters, as some of them
+inhibit the neuron from firing.</span></span></span>
+</p><!--l. 213--><p class="noindent" >Therefore, individual biological neurons seem to behave in a simple way, but they&#8217;re organised
+in a vast network of billions, with each neuron typically connected to thousands of other
+neurons. Highly complex computations can be performed by a network of fairly simple
+neurons, much like a complex anthill can emerge from the combined efforts of simple ants. The
+architecture of biological neural networks (BNNs) is the subject of active research, but some
+parts of the brain have been mapped&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-4003"></a>Barrett, D.&#x00A0;G., Morcos, A.&#x00A0;S. &amp; Macke, J.&#x00A0;H.
+Analyzing biological and artificial neural networks: challenges with opportunities for synergy?
+Current opinion in neurobiology <span id="bold" style="font-weight:bold;">55</span><span id="bold" style="font-weight:bold;">,</span> 55&#8211;64 (2019)</span></span>. These efforts show that neurons are often
+organised in consecutive layers, especially in the cerebral <span class="margin-block">cortex. <span class="margin-comment"><span class="ellipsis">[10]</span> 
+<span class="sidenote">This is the outer layer of the
+brain.</span></span></span>
+</p>
+<div class="sidenote"> <span class="figure" 
+>
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+<a 
+ id="x4-4004r5"></a>
+<figcaption class="caption" ><span class="id">Figure&#x00A0;1.5:&#x00A0;</span><span  
+class="content">A cortical column is a group of neurons forming a cylindrical structure through the cerebral cortex of the
+brain perpendicular to the cortical surface. The structure was first identified by Vernon Benjamin Mountcastle in 1957.
+He later identified minicolumns as the basic units of the neocortex which were arranged into columns. Each contains the
+same types of neurons, connectivity, and firing properties. Columns are also called hypercolumn, macrocolumn, functional
+column or sometimes cortical module.                                                      </span></figcaption><!--tex4ht:label?: x4-4004r5 -->
+<img 
+ 
+src="figures/Introduction-to-Artificial-Neural-Networks/raster/neuron-layers.jpg" alt="PIC"  
+style="" />
+                                                                                
+                                                                                
+</div>
+<!--l. 233--><p class="noindent" ></div> </p><p>
+
+<!--l. 235--><p class="noindent" ><div class="subsection-header"> <h4 id="header-subsection-1.1.2"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.1.1.2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">1.1.2</span> <span class="title">  <a 
+ id="x4-50001.1.2"></a>Logical Computations with Neurons</span></h4></div><p>
+</p><!--l. 237--><p class="noindent" ><italic>McCulloch</italic> and <italic>Pitts</italic> proposed a very simple model of the biological neuron, which later became known
+as an <span id="bold" style="font-weight:bold;">artificial neuron</span> where it has one or more binary (on/off) inputs and one binary output.
+The artificial neuron activates its output when more than a certain number of its inputs
+are active. In their paper, <italic>McCulloch</italic> and <italic>Pitts</italic> showed that even with such a simplified
+model it is possible to build a network of artificial neurons that can compute any logical
+proposition you want. To see how such a network works, let&#8217;s build a few <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural
+Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s which perform various logical computations, assuming a neuron is
+activated when at least two (<span class="alert"><alert style="color: #821131;">2</alert></span>)&#x00A0;of its input connections are active which can be seen in
+<span id="bold" style="font-weight:bold;">Fig.</span>&#x00A0;<a 
+href="#x4-5001r6">1.6<!--tex4ht:ref: fig:ann-logic-comp --></a>.
+</p>
+<figure class="figure"> 
+
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+<a 
+ id="x4-5001r6"></a>
+<figcaption class="caption" ><span class="id">Figure&#x00A0;1.6:&#x00A0;</span><span  
+class="content">Different kinds of logical operations which can be done with ANNs.                         </span></figcaption><!--tex4ht:label?: x4-5001r6 -->
+ <img 
+ 
+src="figures/Introduction-to-Artificial-Neural-Networks/figures-3.png" alt="PIC"  
+style="width:100%" />
+                                                                                
+                                                                                
+</figure>
+<!--l. 254--><p class="noindent" >Let&#8217;s see what these networks do:
+</p>     
+<ul class="itemize1">
+<li class="itemize">     
+<!--l. 257--><p class="noindent" >The first network on the left is the <span class="alert"><alert style="color: #821131;">identity function</alert></span>: if neuron <!--l. 257--><math 
+ 
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>A</mi></mrow><mo accent="true">&#x2192;</mo></mover></math>
+is activated, then neuron <!--l. 258--><math 
+ 
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>C</mi></mrow><mo accent="true">&#x2192;</mo></mover></math>
+gets activated as <span class="margin-block">well; <span class="margin-comment"><span class="ellipsis">[11]</span> 
+<span class="sidenote">since it receives two input signals from neuron <!--l. 259--><math 
+ 
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>A</mi></mrow><mo accent="true">&#x2192;</mo></mover></math></span></span></span>
+but if neuron <!--l. 259--><math 
+ 
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>A</mi></mrow><mo accent="true">&#x2192;</mo></mover></math>
+is off, then neuron <!--l. 259--><math 
+ 
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>C</mi></mrow><mo accent="true">&#x2192;</mo></mover></math>
+is off as well.
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 260--><p class="noindent" >The second network performs a logical <span id="bold" style="font-weight:bold;">AND</span>: neuron <span id="bold" style="font-weight:bold;">C</span> is activated only when both neurons
+<span id="bold" style="font-weight:bold;">A</span> and <span id="bold" style="font-weight:bold;">B</span> are activated (a single input signal is not enough to activate neuron <span id="bold" style="font-weight:bold;">C</span>).
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 263--><p class="noindent" >The third network performs a logical <span id="bold" style="font-weight:bold;">OR</span>: neuron <span id="bold" style="font-weight:bold;">C</span> gets activated if either neuron <span id="bold" style="font-weight:bold;">A</span> or
+neuron <span id="bold" style="font-weight:bold;">B</span> is activated (or both).
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 265--><p class="noindent" >Finally, if we suppose that an input connection can inhibit the neuron&#8217;s activity (which
+is the case with biological neurons), then the fourth network computes a slightly more
+complex logical proposition: neuron
+</p>     
+<!--l. 269--><p class="noindent" >C is activated only if neuron A is active and neuron B is off. If neuron A is active all the
+time, then you get a logical NOT: neuron C is active when neuron B is off, and vice versa.</p></li></ul>
+<!--l. 274--><p class="noindent" >You can imagine how these networks can be combined to compute complex logical expressions.
+
+</p>
+<!--l. 276--><p class="noindent" ><div class="subsection-header"> <h4 id="header-subsection-1.1.3"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.1.1.3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">1.1.3</span> <span class="title">  <a 
+ id="x4-60001.1.3"></a>The Perceptron</span></h4></div><p>
+</p><!--l. 278--><p class="noindent" >The perceptron is one of the simplest <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural
+Networks</a></span></span></span> architectures, invented in 1957 by Frank <span class="margin-block"><span class="margin"><span>Rosenblatt <span class="ellipsis">[12]</span></span><span class="sidenote"><span class="sidenote-image"><img 
+ 
+src="figures/Introduction-to-Artificial-Neural-Networks/raster/portrait-rosenblatt.jpg" alt="PIC"  
+style="" /></span><span class="sidenote-text"><span class="ellipsis">[12]</span><span id="bold" style="font-weight:bold;">Frank Rosenblatt</span>
+<italic>(1928  -  1971)</italic>
+was an American psychologist notable in the field of artificial intelligence. He is sometimes called the
+father of deep learning for his pioneering work on artificial neural networks.</span></span></span></span>&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-6001"></a>Block, H.-D. The
+perceptron: A model for brain functioning. i. Reviews of Modern Physics <span id="bold" style="font-weight:bold;">34</span><span id="bold" style="font-weight:bold;">,</span> 123 (1962)</span></span>. It is based on
+a slightly different artificial neuron called a <span class="acronym"><span class="acronym-short"><a 
+href="#glo:tlu" class="glossary" >TLU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span><span class="acronym-desc"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span></span></span>, or
+                                                                                
+                                                                                
+sometimes a <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ltu" class="glossary" >LTU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ltu" class="glossary" >Linear Threshold Unit</a></span><span class="acronym-desc"><a 
+href="#glo:ltu" class="glossary" >Linear Threshold Unit</a></span></span></span> which can be seen in Fig. <a 
+href="#x4-6002r7">1.7<!--tex4ht:ref: fig:perceptron --></a>. The
+inputs and output are numbers (this is instead of binary on/off values), and each input connection is
+associated with a <span class="alert"><alert style="color: #821131;">weight</alert></span>.
+The first thing <span class="acronym"><span class="acronym-short"><a 
+href="#glo:tlu" class="glossary" >TLU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span><span class="acronym-desc"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span></span></span> does is to compute a linear function of
+its inputs: </p><table class="equation-star"><tr><td>
+<!--l. 290--><math 
+ 
+display="block" class="equation">
+                    <mstyle style="color:#FF0000;"><mi 
+>z</mi></mstyle>
+                     <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>w</mi></mrow><mrow 
+><mn>1</mn></mrow><mrow 
+></mrow></msubsup 
+></mstyle><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mn>1</mn></mrow><mrow 
+></mrow></msubsup 
+></mstyle> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>w</mi></mrow><mrow 
+><mn>2</mn></mrow><mrow 
+></mrow></msubsup 
+></mstyle><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mn>2</mn></mrow><mrow 
+></mrow></msubsup 
+></mstyle> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <mo 
+class="MathClass-rel" stretchy="false">&#x22EF;</mo> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>w</mi></mrow><mrow 
+><mi 
+>n</mi></mrow><mrow 
+></mrow></msubsup 
+></mstyle><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mi 
+>n</mi></mrow><mrow 
+></mrow></msubsup 
+></mstyle> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <mi 
+>b</mi> <mo 
+class="MathClass-rel" stretchy="false">=</mo><msubsup><mrow 
+> <mover 
+accent="true"><mrow 
+><mi 
+>x</mi></mrow><mo accent="true">&#x2192;</mo></mover></mrow><mrow 
+></mrow><mrow 
+><mi 
+>T</mi></mrow></msubsup 
+><mover 
+accent="true"><mrow 
+><mi 
+>w</mi></mrow><mo accent="true">&#x2192;</mo></mover> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <mi 
+>b</mi>
+</math></td></tr></table>
+<p>Then it applies a <span id="bold" style="font-weight:bold;">step function</span> to the result: <table class="equation-star"><tr><td>
+<!--l. 298--><math 
+ 
+display="block" class="equation">
+                         <mstyle style="color:#FF0000;"><mi 
+>h</mi></mstyle><msup><mrow 
+>
+                           <mrow><mo fence="true" form="prefix">(</mo><mrow><mstyle style="color:#FF0000;"><mi 
+>x</mi></mstyle>
+                            </mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mstyle 
+class="text"><mtext  >step</mtext></mstyle><msup><mrow 
+> <mrow><mo fence="true" form="prefix">(</mo><mrow><mstyle style="color:#FF0000;"><mi 
+>z</mi></mstyle></mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+><mspace width="2em" class="qquad"/><mstyle 
+class="text"><mtext  >where</mtext></mstyle><mspace width="2em" class="qquad"/><mstyle style="color:#FF0000;"><mi 
+>z</mi></mstyle> <mo 
+class="MathClass-rel" stretchy="false">=</mo><msubsup><mrow 
+> <mover 
+accent="true"><mrow 
+><mi 
+>x</mi></mrow><mo accent="true">&#x2192;</mo></mover></mrow><mrow 
+></mrow><mrow 
+><mi 
+>T</mi></mrow></msubsup 
+><mover 
+accent="true"><mrow 
+><mi 
+>w</mi></mrow><mo accent="true">&#x2192;</mo></mover> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <mi 
+>b</mi><mo 
+class="MathClass-punc" stretchy="false">.</mo>
+</math></td></tr></table>
+<!--l. 302--><p class="noindent" ><p>For those of you who are observant, this should look familiar as it is similar
+to <span class="alert"><alert style="color: #821131;">logistic regression</alert></span>, except it uses a step function instead of the logistic
+function. Similar to logistic regression, the model parameters are the input weights
+<!--l. 306--><math 
+ 
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>w</mi></mrow><mo accent="true">&#x2192;</mo></mover></math> and the
+bias term <!--l. 307--><math 
+ 
+display="inline" ><mi 
+>b</mi></math>.
+</p>
+<figure class="figure"> 
+
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+<a 
+ id="x4-6002r7"></a>
+<figcaption class="caption" ><span class="id">Figure&#x00A0;1.7:&#x00A0;
+         </span><span  
+class="content">Threshold logic unit: an artificial neuron which computes a weighted sum of its inputs then applies a
+         certain activation function.                                                    </span></figcaption><!--tex4ht:label?: x4-6002r7 -->
+ <img 
+ 
+src="figures/Introduction-to-Artificial-Neural-Networks/figures-1.png" alt="PIC"  
+style="" />
+                                                                                
+                                                                                
+</figure>
+<!--l. 315--><p class="noindent" >The most common step function used in perceptrons is the <span id="bold" style="font-weight:bold;">Heaviside step</span> and sometimes the <span id="bold" style="font-weight:bold;">sign
+function</span> is used instead <span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-6003"></a>Sharma, S., Sharma, S. &amp; Athaiya, A. Activation functions in neural
+networks. Towards Data Sci <span id="bold" style="font-weight:bold;">6</span><span id="bold" style="font-weight:bold;">,</span> 310&#8211;316 (2017)</span></span>. </p><table class="equation-star"><tr><td>
+<!--l. 318--><math 
+ 
+display="block" class="equation">
+<mstyle 
+class="text"><mtext  >heaviside</mtext></mstyle><msup><mrow 
+>
+        <mrow><mo fence="true" form="prefix">(</mo><mrow><mstyle style="color:#FF0000;"><mi 
+>z</mi></mstyle>
+         </mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mrow class="cases" > <mrow><mo fence="true" form="prefix">{</mo><mrow> <mtable  align="axis" style=""  
+equalrows="false" columnlines="none" equalcolumns="false" class="array" displaystyle="true"> <mtr class="array-row"><mtd 
+class="array-td"  columnalign="left"><mn>0</mn><mspace width="2em" class="qquad"/><mspace width="1em" class="quad"/></mtd><mtd 
+class="array-td"  columnalign="left"><mstyle 
+class="text"><mtext  >if</mtext></mstyle><mspace width="1em" class="quad"/><mstyle style="color:#FF0000;"><mi 
+>z</mi></mstyle> <mo 
+class="MathClass-rel" stretchy="false">&#x003c;</mo> <mn>0</mn><mo 
+class="MathClass-punc" stretchy="false">,</mo></mtd></mtr>  <mtr class="array-row"><mtd 
+class="array-td"  columnalign="left"><mn>1</mn><mspace width="2em" class="qquad"/><mspace width="1em" class="quad"/></mtd> <mtd 
+class="array-td"  columnalign="left"><mstyle 
+class="text"><mtext  >if</mtext></mstyle> <mspace width="1em" class="quad"/> <mstyle style="color:#FF0000;"><mi 
+>z</mi></mstyle> <mo 
+class="MathClass-rel" stretchy="false">&#x2a7e;</mo> <mn>0</mn><mo 
+class="MathClass-punc" stretchy="false">.</mo></mtd></mtr><!--@{}l@{\quad }l@{}--></mtable>                                                                                                </mrow><mo fence="true" form="postfix"></mo></mrow></mrow><mspace width="2em" class="qquad"/><mstyle 
+class="text"><mtext  >sgn</mtext></mstyle><msup><mrow 
+> <mrow><mo fence="true" form="prefix">(</mo><mrow><mstyle style="color:#FF0000;"><mi 
+>z</mi></mstyle></mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mrow class="cases" > <mrow><mo fence="true" form="prefix">{</mo><mrow> <mtable  align="axis" style=""  
+equalrows="false" columnlines="none" equalcolumns="false" class="array" displaystyle="true"> <mtr class="array-row"><mtd 
+class="array-td"  columnalign="left"><mo 
+class="MathClass-bin" stretchy="false">-</mo><mn>1</mn><mspace width="2em" class="qquad"/><mspace width="1em" class="quad"/></mtd>
+      <mtd 
+class="array-td"  columnalign="left"><mstyle 
+class="text"><mtext  >if</mtext></mstyle><mspace width="1em" class="quad"/><mstyle style="color:#FF0000;"><mi 
+>z</mi></mstyle> <mo 
+class="MathClass-rel" stretchy="false">&#x003c;</mo> <mn>0</mn><mo 
+class="MathClass-punc" stretchy="false">,</mo></mtd>
+</mtr>  <mtr class="array-row"><mtd 
+class="array-td"  columnalign="left"><mn>0</mn><mspace width="2em" class="qquad"/>  <mspace width="1em" class="quad"/></mtd><mtd 
+class="array-td"  columnalign="left"><mstyle 
+class="text"><mtext  >if</mtext></mstyle><mspace width="1em" class="quad"/><mstyle style="color:#FF0000;"><mi 
+>z</mi></mstyle> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mn>0</mn><mo 
+class="MathClass-punc" stretchy="false">,</mo></mtd>
+</mtr> 
+ <mtr class="array-row"><mtd 
+class="array-td"  columnalign="left"><mo 
+class="MathClass-bin" stretchy="false">+</mo><mn>1</mn><mspace width="2em" class="qquad"/><mspace width="1em" class="quad"/></mtd>
+<mtd 
+class="array-td"  columnalign="left"><mstyle 
+class="text"><mtext  >if</mtext></mstyle><mspace width="1em" class="quad"/><mstyle style="color:#FF0000;"><mi 
+>z</mi></mstyle> <mo 
+class="MathClass-rel" stretchy="false">&#x003e;</mo> <mn>0</mn><mo 
+class="MathClass-punc" stretchy="false">,</mo></mtd></mtr><!--@{}l@{\quad }l@{}--></mtable>                                                                                              </mrow><mo fence="true" form="postfix"></mo></mrow></mrow>
+</math></td></tr></table>
+<!--l. 333--><p class="noindent" ><p>A single <span class="acronym"><span class="acronym-short"><a 
+href="#glo:tlu" class="glossary" >TLU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span><span class="acronym-desc"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span></span></span> can be used for simple <span id="bold" style="font-weight:bold;">linear binary
+classification</span>: <div class="quote"><p>  It computes a linear function of its inputs, and if the result exceeds a threshold, it
+outputs the positive class. Otherwise, it outputs the negative class. They exhibit a similar behaviour to
+logistic regression or linear <span class="acronym"><span class="acronym-short"><a 
+href="#glo:svm" class="glossary" >SVM</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:svm" class="glossary" >Support Vector Machines</a></span><span class="acronym-desc"><a 
+href="#glo:svm" class="glossary" >Support Vector Machines</a></span></span></span> classification.  </p></p></div><p>  It is
+possible, for example, use a single <span class="acronym"><span class="acronym-short"><a 
+href="#glo:tlu" class="glossary" >TLU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span><span class="acronym-desc"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span></span></span> to classify <italic>iris
+flowers</italic><span class="margin-block"> <span class="margin-comment"><span class="ellipsis">[13]</span> 
+<span class="sidenote">a famous dataset used by statisticians and <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ml" class="glossary" >ML</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span><span class="acronym-desc"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span></span></span>
+researchers</span></span></span>&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-6004"></a>Fisher, R.&#x00A0;A. The use of multiple measurements in taxonomic problems.
+Annals of eugenics <span id="bold" style="font-weight:bold;">7</span><span id="bold" style="font-weight:bold;">,</span> 179&#8211;188 (1936)</span></span> based on <span class="alert"><alert style="color: #821131;">petal length</alert></span> and <span class="alert"><alert style="color: #821131;">width</alert></span>. Training such a
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:tlu" class="glossary" >TLU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span><span class="acronym-desc"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span></span></span> would require finding the right values for
+<!--l. 346--><math 
+ 
+display="inline" ><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>w</mi></mrow><mrow 
+><mn>1</mn></mrow><mrow 
+></mrow></msubsup 
+></mstyle><mo 
+class="MathClass-punc" stretchy="false">,</mo><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>w</mi></mrow><mrow 
+><mn>2</mn></mrow><mrow 
+></mrow></msubsup 
+></mstyle><mo 
+class="MathClass-punc" stretchy="false">,</mo><mspace width="0.17em" class="thinspace"/><mi 
+>b</mi></math>.
+A perceptron is composed of one or more <span class="acronym"><span class="acronym-short"><a 
+href="#glo:tlu" class="glossary" >TLU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span><span class="acronym-desc"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span></span></span>s organized in
+a single layer, where every <span class="acronym"><span class="acronym-short"><a 
+href="#glo:tlu" class="glossary" >TLU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span><span class="acronym-desc"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span></span></span> is connected to every input.
+Such a layer is called a <span id="bold" style="font-weight:bold;">fully connected layer</span>, or a dense layer. The inputs constitute the input layer
+and since the layer of <span class="acronym"><span class="acronym-short"><a 
+href="#glo:tlu" class="glossary" >TLU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span><span class="acronym-desc"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span></span></span>s produces the final outputs, it is
+called the output layer.
+This perceptron can classify instances simultaneously into three (<span class="alert"><alert style="color: #821131;">3</alert></span>)&#x00A0;different binary classes, which
+makes it a <span id="bold" style="font-weight:bold;">multilabel classifier</span>. It may also be used for multiclass classification.
+Using linear algebra, the following equation can be used to efficiently calculate the outputs of a layer of
+artificial neurons for several instances at once. <table class="equation-star"><tr><td>
+                                                                                
+                                                                                
+<!--l. 364--><math 
+ 
+display="block" class="equation">
+                            <mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>W</mi></mrow><mo accent="true">&#x2192;</mo></mover><mo 
+class="MathClass-punc" stretchy="false">,</mo><mspace width="0.17em" class="thinspace"/><mover 
+accent="true"><mrow 
+><mi 
+>b</mi></mrow><mo accent="true">&#x2192;</mo></mover></mrow><mrow 
+></mrow></msubsup 
+></mstyle><msup><mrow 
+>
+                                  <mrow><mo fence="true" form="prefix">(</mo><mrow><mover 
+accent="true"><mrow 
+><mi 
+>X</mi></mrow><mo accent="true">&#x2192;</mo></mover>
+                                     </mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mi 
+>&#x03D5;</mi><msup><mrow 
+><mrow><mo fence="true" form="prefix">(</mo><mrow><mover 
+accent="true"><mrow 
+><mi 
+>X</mi></mrow><mo accent="true">&#x2192;</mo></mover><mover 
+accent="true"><mrow 
+><mi 
+>W</mi></mrow><mo accent="true">&#x2192;</mo></mover> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <mover 
+accent="true"><mrow 
+><mi 
+>b</mi></mrow><mo accent="true">&#x2192;</mo></mover></mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+>
+</math></td></tr></table>
+<!--l. 366--><p class="noindent" ><p>where: </p>
+<ul class="itemize1">     
+<li class="itemize">
+<!--l. 371--><p class="noindent" ><!--l. 371--><math 
+ 
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>X</mi></mrow><mo accent="true">&#x2192;</mo></mover></math>
+is the matrix of input features. It has one row per instance and one column per feature.
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 373--><p class="noindent" ><!--l. 373--><math 
+ 
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>W</mi></mrow><mo accent="true">&#x2192;</mo></mover></math>
+is the weight matrix containing all the connection weights. It has one row per input and
+one column per neuron.
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 375--><p class="noindent" ><!--l. 375--><math 
+ 
+display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>b</mi></mrow><mo accent="true">&#x2192;</mo></mover></math>
+is the bias term containing all the bias terms: one per neuron.
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 376--><p class="noindent" ><!--l. 376--><math 
+ 
+display="inline" ><mi 
+>&#x03D5;</mi></math>
+is the activation function is called the activation function: when the artificial neurons are
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:tlu" class="glossary" >TLU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span><span class="acronym-desc"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span></span></span>s, it is a <span class="alert"><alert style="color: #821131;">step function</alert></span>.</p></li></ul>
+<!--l. 380--><p class="noindent" >Now the question is:
+</p><!--l. 382--><p class="noindent" ><div class="quote"><p> <italic>How is this perceptron trained?</italic>  </p></p></div><p>
+<!--l. 386--><p class="noindent" >The original perceptron training algorithm proposed by Rosenblatt was largely inspired by Hebb&#8217;s
+rule&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-6005"></a>Sompolinsky, H. The theory of neural networks: The Hebb rule and beyond in Heidelberg
+Colloquium on Glassy Dynamics: Proceedings of a Colloquium on Spin Glasses, Optimization and
+Neural Networks Held at the University of Heidelberg June 9&#8211;13, 1986 (2006), 485&#8211;527</span></span>. In his
+1949 book <italic>The Organization of Behaviour</italic>, Donald Hebb suggested that when a biological
+neuron triggers another neuron often, the connection between these two neurons grows
+stronger&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-6006"></a>Hebb, D.&#x00A0;O. The organization of behavior: A neuropsychological theory (Psychology press,
+2005)</span></span>.
+</p><!--l. 391--><p class="noindent" >Siegrid Löwel later summarized Hebb&#8217;s idea in the catchy phrase,
+</p><!--l. 393--><p class="noindent" ><div class="quote"><p> <italic>Cells that fire together, wire together</italic>  </p></p></div><p>
+<!--l. 397--><p class="noindent" >This means the connection weight between two (<span class="alert"><alert style="color: #821131;">2</alert></span>)&#x00A0;neurons <span class="alert"><alert style="color: #821131;">tends to increase</alert></span> when they fire
+simultaneously.
+</p>
+<div class="knowledge">
+                                                                                
+                                                                                
+<!--l. 408--><p class="noindent" >This rule later became known as <span class="margin-block">Hebb&#8217;s rule <span class="margin-comment"><span class="ellipsis">[14]</span> 
+<span class="sidenote">The following is an excerpt from primary author of the idea.
+<italic>Let us assume that the persistence or repetition of a reverberatory activity (or "trace") tends
+to induce lasting cellular changes that add to its stability. &#x2026;. When an axon of cell A is
+near enough to excite a cell B and repeatedly or persistently takes part in firing it, some
+growth process or metabolic change takes place in one or both cells such that A&#8217;s efficiency,
+as one of the cells firing B, is increased.&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail">Hebb, D.&#x00A0;O. The organization of behavior: A
+neuropsychological theory (Psychology press, 2005)</span></span></italic></span></span></span> (or Hebbian learning <span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-6007"></a>Gerstner, W. &amp;
+Kistler, W.&#x00A0;M. Mathematical formulations of Hebbian learning. Biological cybernetics <span id="bold" style="font-weight:bold;">87</span><span id="bold" style="font-weight:bold;">,</span> 404&#8211;415
+(2002)</span></span>)
+</p>
+</div><p class="noindent">
+<!--l. 410--><p class="noindent" >Perceptrons are trained using a variant of this rule that takes into account the error made by the
+network when it makes a prediction. The perceptron learning rule <span id="bold" style="font-weight:bold;">reinforces connections that help
+reduce the error</span>.
+</p><!--l. 414--><p class="noindent" >More specifically, the perceptron is fed one training instance at a time, and for each instance it makes
+its predictions. For every output neuron that produced a wrong prediction, it reinforces the
+connection weights from the inputs that would have contributed to the correct prediction.
+</p><table class="equation-star"><tr><td>
+<!--l. 419--><math 
+ 
+display="block" class="equation">
+                        <mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>w</mi></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc" stretchy="false">,</mo><mi 
+>j</mi></mrow><mrow 
+><mo 
+class="MathClass-open" stretchy="false">(</mo><mi 
+>n</mi><mi 
+>e</mi><mi 
+>x</mi><mi 
+>t</mi><mi 
+>s</mi><mi 
+>t</mi><mi 
+>e</mi><mi 
+>p</mi><mo 
+class="MathClass-close" stretchy="false">)</mo></mrow></msubsup 
+></mstyle>
+                                   <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>w</mi></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc" stretchy="false">,</mo><mi 
+>j</mi></mrow><mrow 
+></mrow></msubsup 
+></mstyle> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <mi 
+>&#x03B7;</mi><msup><mrow 
+> <mrow><mo fence="true" form="prefix">(</mo><mrow><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>y</mi></mrow><mrow 
+><mi 
+>j</mi></mrow><mrow 
+></mrow></msubsup 
+></mstyle> <mo 
+class="MathClass-bin" stretchy="false">-</mo> <mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>&#x0177;</mi></mrow><mrow 
+><mi 
+>j</mi></mrow><mrow 
+></mrow></msubsup 
+></mstyle></mrow><mo fence="true" form="postfix">)</mo></mrow> </mrow><mrow 
+></mrow></msup 
+><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mi 
+>i</mi></mrow><mrow 
+></mrow></msubsup 
+></mstyle><mi 
+>x</mi>
+</math></td></tr></table>
+<!--l. 421--><p class="noindent" ><p>where: </p>
+<ul class="itemize1">     
+<li class="itemize">
+<!--l. 426--><p class="noindent" ><!--l. 426--><math 
+ 
+display="inline" ><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>w</mi></mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-punc" stretchy="false">,</mo><mi 
+>j</mi></mrow><mrow 
+></mrow></msubsup 
+></mstyle></math>
+is the connection weight between the <!--l. 426--><math 
+ 
+display="inline" ><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>i</mi></mrow><mrow 
+></mrow><mrow 
+><mi 
+>t</mi><mi 
+>h</mi></mrow></msubsup 
+></mstyle></math>
+input and the <!--l. 426--><math 
+ 
+display="inline" ><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>j</mi></mrow><mrow 
+></mrow><mrow 
+><mi 
+>t</mi><mi 
+>h</mi></mrow></msubsup 
+></mstyle></math>
+neuron.
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 428--><p class="noindent" ><!--l. 428--><math 
+ 
+display="inline" ><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mi 
+>i</mi></mrow><mrow 
+></mrow></msubsup 
+></mstyle></math>
+is the <!--l. 428--><math 
+ 
+display="inline" ><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>i</mi></mrow><mrow 
+></mrow><mrow 
+><mi 
+>t</mi><mi 
+>h</mi></mrow></msubsup 
+></mstyle></math>
+input value of the current training instance.
+                                                                                
+                                                                                
+     
+</p>
+</li>     
+<li class="itemize">
+<!--l. 429--><p class="noindent" ><!--l. 429--><math 
+ 
+display="inline" ><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>&#x0177;</mi></mrow><mrow 
+></mrow><mrow 
+><mi 
+>j</mi></mrow></msubsup 
+></mstyle></math>
+is the output of the <!--l. 429--><math 
+ 
+display="inline" ><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>j</mi></mrow><mrow 
+></mrow><mrow 
+><mi 
+>t</mi><mi 
+>h</mi></mrow></msubsup 
+></mstyle></math>
+output neuron for the current training instance.
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 431--><p class="noindent" ><!--l. 431--><math 
+ 
+display="inline" ><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>y</mi></mrow><mrow 
+></mrow><mrow 
+><mi 
+>j</mi></mrow></msubsup 
+></mstyle></math>
+is the target output of the <!--l. 431--><math 
+ 
+display="inline" ><mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>j</mi></mrow><mrow 
+></mrow><mrow 
+><mi 
+>t</mi><mi 
+>h</mi></mrow></msubsup 
+></mstyle></math>
+output neuron for the current training instance.
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 433--><p class="noindent" ><!--l. 433--><math 
+ 
+display="inline" ><mi 
+>&#x03B7;</mi></math>
+is the learning rate.</p></li></ul>
+<!--l. 436--><p class="noindent" >The decision boundary of each output neuron is <span id="bold" style="font-weight:bold;">linear</span>, therefore perceptrons are incapable of learning
+complex patterns. However, if the training instances are <span class="alert"><alert style="color: #821131;">linearly separable</alert></span>, Rosenblatt
+demonstrated that this algorithm would converge to a solution.
+</p>
+<div class="knowledge">
+<!--l. 442--><p class="noindent" >This is called the perceptron convergence theorem.
+</p>
+</div><p class="noindent">
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb1"><a 
+ id="x4-6009r60"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">numpy</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">np</span> 
+<a 
+ id="x4-6011r61"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">sklearn.datasets</span> <span style="color:#9E0005;">import</span> load_iris 
+<a 
+ id="x4-6013r62"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">sklearn.linear_model</span> <span style="color:#9E0005;">import</span> Perceptron 
+<a 
+ id="x4-6015r63"></a> 
+<a 
+ id="x4-6017r64"></a>iris = load_iris(as_frame=<span style="color:#9E0005;">True</span>) 
+<a 
+ id="x4-6019r65"></a>X = iris.data[[<span style="color:#78730D;">"petal length (cm)"</span>, <span style="color:#78730D;">"petal width (cm)"</span>]].values 
+<a 
+ id="x4-6021r66"></a>y = (iris.target == <span style="color:#8F4070;">0</span>) <span style="color:#918273;"><italic># Iris setosa</italic></span> 
+<a 
+ id="x4-6023r67"></a> 
+<a 
+ id="x4-6025r68"></a>per_clf = Perceptron(random_state=<span style="color:#8F4070;">42</span>) 
+<a 
+ id="x4-6027r69"></a>per_clf.fit(X, y) 
+<a 
+ id="x4-6029r70"></a>X_new = [[<span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">0.5</span>], [<span style="color:#8F4070;">3</span>, <span style="color:#8F4070;">1</span>]] 
+<a 
+ id="x4-6031r71"></a><span style="color:#918273;"><italic># predicts True and False for these 2 flowers</italic></span> 
+<a 
+ id="x4-6033r72"></a>y_pred = per_clf.predict(X_new) 
+<a 
+ id="x4-6035r73"></a> 
+<a 
+ id="x4-6037r74"></a><span style="color:#B03B03;">print</span>(y_pred)</pre>
+</code></pre><p>
+<!--l. 446--><p class="noindent" >For those of you who have taken a <span id="bold" style="font-weight:bold;">Data Science II</span> course by yours truly, you may have noticed that
+the perceptron learning algorithm strongly resembles <italic>stochastic gradient descent</italic>. In fact, <code class="verb">sklearn</code>&#8217;s
+<code class="verb">Perceptron</code> 
+class is equivalent to using an <code class="verb">SGDClassifier</code> with the following hyperparameters:
+</p>     
+<ul class="itemize1">
+<li class="itemize">     
+<!--l. 452--><p class="noindent" ><code class="verb">loss="perceptron"</code>,
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 453--><p class="noindent" ><code class="verb">learning_rate="constant"</code>,
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 454--><p class="noindent" ><code class="verb">eta0=1</code>, the learning rate
+                                                                                
+                                                                                
+     
+</p>
+</li>     
+<li class="itemize">
+<!--l. 455--><p class="noindent" ><code class="verb">penalty=None</code>, no regularization.</p></li></ul>
+<!--l. 458--><p class="noindent" >In their 1969 monograph Perceptrons, Marvin Minsky and Seymour Papert highlighted a number of
+<span class="alert"><alert style="color: #821131;">serious weaknesses</alert></span> of perceptrons: in particular, they are incapable of solving some trivial problems
+(e.g., the exclusive OR (XOR) classification problem).
+</p>
+<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 1.<a 
+ id="x4-6038r2"></a>2: </span> </span> <span class="info-title"> XOR Problem </span> </span> <div class="body"><p>  A simple logic gate problem which is proven to be unsolvable
+using a single-layer perceptron.  </p></div></div><p class="noindent">
+This is true of any other linear classification model, but researchers had expected much more from
+perceptrons, and some were so disappointed, they dropped neural networks altogether in favour of
+higher-level problems such as logic, problem solving, and search. The lack of practical applications also
+didn&#8217;t help.
+<!--l. 471--><p class="noindent" >It turns out that some of the limitations of perceptrons can be eliminated by stacking multiple
+perceptrons. The resulting <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span> is called a
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:mlp" class="glossary" >MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span><span class="acronym-desc"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span></span></span> and a <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mlp" class="glossary" >MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span><span class="acronym-desc"><a 
+href="#glo:mlp" class="glossary" >Multi-layer
+Perceptrons</a></span></span></span> can solve the XOR problem&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-6039"></a>Popescu, M.-C. et al. Multilayer perceptron and neural
+networks. WSEAS Transactions on Circuits and Systems <span id="bold" style="font-weight:bold;">8</span><span id="bold" style="font-weight:bold;">,</span> 579&#8211;588 (2009)</span></span>.
+</p>
+<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 1.<a 
+ id="x4-6040r3"></a>3: </span> </span> <span class="info-title"> Limitations of Perceptrons </span> </span> <div class="body"><p>  Perceptrons do <span id="bold" style="font-weight:bold;">NOT</span>&#x00A0;output a class probability.
+This is one reason to prefer logistic regression over perceptrons. Moreover, perceptrons do
+<span id="bold" style="font-weight:bold;">NOT</span>&#x00A0;use any regularization by default, and training stops as soon as there are no more
+prediction errors on the training set, so the model typically does not generalize as well as
+logistic regression or a linear SVM classifier. However, perceptrons may train a bit faster.
+</p></div></div><p class="noindent">
+
+<!--l. 483--><p class="noindent" ><div class="subsection-header"> <h4 id="header-subsection-1.1.4"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.1.1.4"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">1.1.4</span> <span class="title">  <a 
+ id="x4-70001.1.4"></a>Multilayer Perceptron and Backpropagation</span></h4></div><p>
+</p><!--l. 485--><p class="noindent" >An <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mlp" class="glossary" >MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span><span class="acronym-desc"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span></span></span> is composed of one input layer, one or more
+layers of <span class="acronym"><span class="acronym-short"><a 
+href="#glo:tlu" class="glossary" >TLU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span><span class="acronym-desc"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span></span></span>s called <span id="bold" style="font-weight:bold;">hidden layers</span>, and one final layer of
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:tlu" class="glossary" >TLU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span><span class="acronym-desc"><a 
+href="#glo:tlu" class="glossary" >Threshold Logic Unit</a></span></span></span>s called the output layer. The layers close to the input
+layer are usually called the lower layers, and the ones close to the outputs are usually called the upper
+layers.
+</p>
+<div class="knowledge">
+<!--l. 493--><p class="noindent" >The signal flows only in one <span class="margin-block">direction, <span class="margin-comment"><span class="ellipsis">[15]</span> 
+<span class="sidenote">From input to output.</span></span></span> so this architecture is an example of a
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:fnn" class="glossary" >FNN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:fnn" class="glossary" >Feedforward Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:fnn" class="glossary" >Feedforward Neural Networks</a></span></span></span>&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-7001"></a>Bebis, G. &amp; Georgiopoulos, M.
+Feed-forward neural networks. Ieee Potentials <span id="bold" style="font-weight:bold;">13</span><span id="bold" style="font-weight:bold;">,</span> 27&#8211;31 (1994)</span></span>.
+</p>
+</div><p class="noindent">
+<!--l. 495--><p class="noindent" >When an <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span> contains a deep stack of hidden
+layers, it is called a <span class="acronym"><span class="acronym-short"><a 
+href="#glo:dnn" class="glossary" >DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:dnn" class="glossary" >Deep Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:dnn" class="glossary" >Deep Neural Networks</a></span></span></span>. The field of deep learning
+studies <span class="acronym"><span class="acronym-short"><a 
+href="#glo:dnn" class="glossary" >DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:dnn" class="glossary" >Deep Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:dnn" class="glossary" >Deep Neural Networks</a></span></span></span>s, and more generally it is interested in
+                                                                                
+                                                                                
+models containing deep stacks of computations&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-7002"></a>Samek, W. et al. Explaining deep neural networks
+and beyond: A review of methods and applications. Proceedings of the IEEE <span id="bold" style="font-weight:bold;">109</span><span id="bold" style="font-weight:bold;">,</span> 247&#8211;278
+(2021)</span></span>.
+</p>
+<figure class="figure"> 
+
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+<a 
+ id="x4-7003r8"></a>
+<figcaption class="caption" ><span class="id">Figure&#x00A0;1.8:&#x00A0;
+         </span><span  
+class="content">Architecture of a Multilayer Perceptron with five inputs, three hidden layer of four neurons, and three
+         output neurons.                                                            </span></figcaption><!--tex4ht:label?: x4-7003r8 -->
+ <img 
+ 
+src="figures/Introduction-to-Artificial-Neural-Networks/figures-2.png" alt="PIC"  
+style="" />
+                                                                                
+                                                                                
+</figure>
+<!--l. 506--><p class="noindent" >For many years researchers struggled to find a way to train <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mlp" class="glossary" >MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span><span class="acronym-desc"><a 
+href="#glo:mlp" class="glossary" >Multi-layer
+Perceptrons</a></span></span></span>s, without success. In the early 1960s several researchers discussed of using <span class="alert"><alert style="color: #821131;">gradient
+descent</alert></span> to train <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s. This requires computing
+the gradients of the model&#8217;s error with regard to the model parameters and at that time, it wasn&#8217;t
+clear at the time how to do this efficiently with such a complex model containing so many
+parameters.
+Then, in 1970, a researcher named <italic>Seppo Linnainmaa</italic> introduced in his master&#8217;s thesis a technique
+to compute all the gradients automatically and efficiently. This algorithm is now called
+<span id="bold" style="font-weight:bold;">reverse-mode automatic differentiation</span>&#x00A0;<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-7004"></a>Linnainmaa, S. Algoritmin kumulatiivinen
+pyöristysvirhe yksittäisten pyöristysvirheiden Taylor-kehitelmänä Available in Finnish at
+<a 
+href="https://people.idsia.ch/~juergen/linnainmaa1970thesis.pdf" class="url" >https://people.idsia.ch/~juergen/linnainmaa1970thesis.pdf</a>. Master&#8217;s thesis (University of
+Helsinki, 1970)</span></span>. In just two (<span class="alert"><alert style="color: #821131;">2</alert></span>)&#x00A0;passes through the <span class="margin-block">network, <span class="margin-comment"><span class="ellipsis">[16]</span> 
+<span class="sidenote">one forward, one backward.</span></span></span> it is able
+to compute the gradients of the neural network&#8217;s error with regard to every single model
+parameter.
+</p><!--l. 518--><p class="noindent" >To put it simply: <div class="quote"><p>  It can find out how each connection weight and each bias should be
+tweaked to reduce the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span>s error.
+</p></p></div><p>
+<!--l. 525--><p class="noindent" >These gradients can then be used to perform a gradient descent step. Repeating the process of
+computing the gradients automatically and taking a gradient descent step, the neural network&#8217;s error
+will gradually drop until it eventually reaches a minimum.
+</p><!--l. 529--><p class="noindent" >This combination of reverse-mode automatic differentiation and gradient descent is now called
+<span id="bold" style="font-weight:bold;">backpropagation</span> <span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-7005"></a>Hecht-Nielsen, R. Theory of the backpropagation neural network in Neural
+networks for perception 65&#8211;93 (Elsevier, 1992)</span></span>.
+</p>
+<div class="knowledge">
+<!--l. 539--><p class="noindent" >There are various automatic differentiation techniques (i.e., forward and reverse), with each having its
+own advantages and disadvantages. Reverse-mode autodiff is well suited when the function to
+differentiate has many variables (e.g., connection weights and biases) and few outputs (e.g., one
+loss).
+</p>
+</div><p class="noindent">
+<!--l. 541--><p class="noindent" >Backpropagation can actually be applied to all sorts of computational graphs, not just neural networks:
+Linnainmaa&#8217;s M.Sc thesis was not about neural nets, it was more general. It was several
+more years before backprop started to be used to train neural networks, but it still wasn&#8217;t
+mainstream.
+</p><!--l. 546--><p class="noindent" >Then, in 1986, David Rumelhart, Geoffrey Hinton, and Ronald Williams published a groundbreaking
+paper analyzing how backpropagation allowed neural networks to learn useful internal representations
+<span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail"><a 
+ id="x4-7006"></a>Rumelhart, D.&#x00A0;E., Hinton, G.&#x00A0;E. &amp; Williams, R.&#x00A0;J. Learning representations by back-propagating
+errors. nature <span id="bold" style="font-weight:bold;">323</span><span id="bold" style="font-weight:bold;">,</span> 533&#8211;536 (1986)</span></span>. Their results were so impressive that backpropagation was quickly
+popularized in the field. Today, it is by far the most popular training technique for neural
+networks.
+</p><!--l. 552--><p class="noindent" >Let&#8217;s run through how backpropagation works again in a bit more detail:
+</p>     
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+                                                                                
+                                                                                
+  
+1. 
+</dt><dd 
+class="enumerate-enumitem">It handles one mini-batch at a time, and goes through the full training set multiple times.
+Each pass is called an <span id="bold" style="font-weight:bold;">epoch</span>.
+</dd>     
+<dt class="enumerate-enumitem">
+2. 
+</dt><dd 
+class="enumerate-enumitem">Each mini-batch enters the network through the input layer. The algorithm then computes
+the output of all the neurons in the first hidden layer, for every instance in the mini-batch.
+The result is passed on to the next layer, its output is computed and passed to the next
+layer, and so on until we get the output of the last layer, the output layer.
+</dd>     
+<dt class="enumerate-enumitem">
+3. 
+</dt><dd 
+class="enumerate-enumitem">Next, the algorithm measures the network&#8217;s output error. This means, it uses a loss function
+that compares the desired output and the actual output of the network, and returns some
+measure of the error.
+</dd>     
+<dt class="enumerate-enumitem">
+4. 
+</dt><dd 
+class="enumerate-enumitem">It then computes how much each output bias and each connection to the output layer
+contributed to the error. This is done analytically by applying the chain rule, which makes
+this step fast and precise.
+</dd>     
+<dt class="enumerate-enumitem">
+5. 
+</dt><dd 
+class="enumerate-enumitem">The  algorithm  then  measures  how  much  of  these  error  contributions  came  from  each
+connection in the layer below, again using the chain rule, working backward until it reaches
+the input layer. As explained earlier, this reverse pass efficiently measures the error gradient
+across all the connection weights and biases in the network by propagating the error gradient
+backward through the network.
+</dd>     
+<dt class="enumerate-enumitem">
+6. 
+</dt><dd 
+class="enumerate-enumitem">Finally, the algorithm performs a gradient descent step to tweak all the connection weights
+in the network, using the error gradients it just computed.</dd></dl>
+<div class="warning">
+<!--l. 580--><p class="noindent" >Initialize all the hidden layers&#8217; connection weights randomly, or training will fail.
+</p>
+</div>
+<!--l. 582--><p class="noindent" >For example, if you initialize all weights and biases to zero, then all neurons in a given layer will be
+perfectly identical, and therefore backpropagation will affect them in exactly the same way, so they will
+remain identical.
+</p><!--l. 586--><p class="noindent" >In other words, despite having hundreds of neurons per layer, your model will act as if it had
+only one neuron per layer: it won&#8217;t be too smart. If instead you randomly initialize the
+weights, you <span id="bold" style="font-weight:bold;">break the symmetry</span> and allow back-propagation to train a diverse team of
+neurons.
+</p><!--l. 591--><p class="noindent" >In short, backpropagation makes predictions for a mini-batch (forward pass), measures the error, then
+goes through each layer in reverse to measure the error contribution from each parameter (reverse
+pass), and finally tweaks the connection weights and biases to reduce the error, which is the gradient
+descent step.
+</p><!--l. 596--><p class="noindent" >For back-propagation to work properly, Rumelhart and his colleagues made a key change to the
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:mlp" class="glossary" >MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span><span class="acronym-desc"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span></span></span>&#8217;s architecture by replacing the step function with
+the logistic function: </p><table class="equation-star"><tr><td>
+                                                                                
+                                                                                
+<!--l. 599--><math 
+ 
+display="block" class="equation">
+                                  <mi 
+>&#x03C3;</mi><msup><mrow 
+> <mrow><mo fence="true" form="prefix">(</mo><mrow><mstyle style="color:#FF0000;"><mi 
+>z</mi></mstyle></mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+> <mo 
+class="MathClass-rel" stretchy="false">=</mo>     <mfrac><mrow 
+><mn>1</mn></mrow> 
+<mrow 
+>
+<mn>1</mn> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <mstyle style="color:#FF0000;"><msubsup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+></mrow><mrow 
+><mo 
+class="MathClass-bin" stretchy="false">-</mo><mi 
+>z</mi></mrow></msubsup 
+></mstyle></mrow></mfrac>
+</math></td></tr></table>
+<p>Which is also called the <span id="bold" style="font-weight:bold;">sigmoid function</span>. This was an important improvement as step function
+contains only flat segments, so there is no gradient to work with, while the sigmoid function has a
+well-defined nonzero derivative everywhere. In fact, the backpropagation algorithm works well with
+many other activation functions, not just the sigmoid function.
+<!--l. 609--><p class="noindent" >Here are two (<span class="alert"><alert style="color: #821131;">2</alert></span>)&#x00A0;other popular choices: </p><div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 1.<a 
+ id="x4-7013r4"></a>4: </span> </span> <span class="info-title"> Other Activation Functions </span> </span>
+<div class="body"><p>
+<!--l. 613--><p class="noindent" ><span id="bold" style="font-weight:bold;">Hyperbolic tangent function</span> </p><table class="equation-star"><tr><td>
+<!--l. 615--><math 
+ 
+display="block" class="equation">
+                               <mi class="loglike">tanh</mi><mo>&#x2061;<!--FUNCTION APPLICATION--></mo><!--nolimits--><msup><mrow 
+><mrow><mo fence="true" form="prefix">(</mo><mrow><mstyle style="color:#FF0000;"><mi 
+>z</mi></mstyle></mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mn>2</mn><mi 
+>&#x03C3;</mi><msup><mrow 
+> <mrow><mo fence="true" form="prefix">(</mo><mrow><mn>2</mn><mstyle style="color:#FF0000;"><mi 
+>z</mi></mstyle></mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+> <mo 
+class="MathClass-bin" stretchy="false">-</mo> <mn>1</mn>
+</math></td></tr></table>
+<!--l. 618--><p class="noindent" ><p>Similar sigmoid function, is also S-shaped, <span class="alert"><alert style="color: #821131;">continuous</alert></span>, and <span class="alert"><alert style="color: #821131;">differentiable</alert></span>, but its output value
+ranges from -1 to 1, instead of 0 to 1 like the sigmoid function.
+This bigger range tends to make each layer&#8217;s output more or less centered around 0 at the beginning of
+training, which often helps speed up convergence.
+</p><!--l. 627--><p class="noindent" ><hr><p class="noindent">
+</p><!--l. 629--><p class="noindent" ><span id="bold" style="font-weight:bold;">The rectified linear unit function</span> </p><table class="equation-star"><tr><td>
+<!--l. 631--><math 
+ 
+display="block" class="equation">
+                                <mstyle 
+class="text"><mtext  >ReLu</mtext></mstyle><msup><mrow 
+>
+                                     <mrow><mo fence="true" form="prefix">(</mo><mrow><mi 
+>z</mi>
+                                      </mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+> <mo 
+class="MathClass-rel" stretchy="false">=</mo><mi class="qopname"> max</mi><mo> &#x2061;<!--FUNCTION APPLICATION--> </mo><msup><mrow 
+> <mrow><mo fence="true" form="prefix">(</mo><mrow><mn>0</mn><mo 
+class="MathClass-punc" stretchy="false">,</mo><mspace width="0.17em" class="thinspace"/><mi 
+>z</mi></mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+>
+</math></td></tr></table>
+                                                                                
+                                                                                
+<!--l. 633--><p class="noindent" ><p>It is continuous bu <span id="bold" style="font-weight:bold;">NOT</span>&#x00A0;differentiable at <!--l. 635--><math 
+ 
+display="inline" ><mi 
+>z</mi> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mn>0</mn></math>
+as the slope changes abruptly, which can make gradient descent bounce around, and its derivative is 0
+for <!--l. 636--><math 
+ 
+display="inline" ><mstyle style="color:#FF0000;"><mi 
+>z</mi></mstyle> <mo 
+class="MathClass-rel" stretchy="false">&#x003c;</mo> <mn>0</mn></math>. In
+practice, however, it works very well and has the advantage of being fast to compute, so it has become
+the default.
+</p><!--l. 640--><p class="noindent" >Importantly, the fact that it does <span id="bold" style="font-weight:bold;">NOT</span>&#x00A0;have a maximum output value helps reduce some issues during
+gradient descent.
+</p></div></div><p class="noindent">
+With all these information you might wonder: <div class="quote"><p>  <italic>What is the point of an activation function, let alone
+whether it is linear or not?</italic>  </p></p></div><p>  Chaining several linear transformations, gives you only linear
+transformation. <div class="quote"><p>  For example: <table class="equation-star"><tr><td>
+<!--l. 656--><math 
+ 
+display="block" class="equation">
+            <mstyle style="color:#FF0000;"><mi 
+>f</mi></mstyle><msup><mrow 
+>
+              <mrow><mo fence="true" form="prefix">(</mo><mrow><mstyle style="color:#FF0000;"><mi 
+>x</mi></mstyle>
+               </mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mn>2</mn><mstyle style="color:#FF0000;"><mi 
+>x</mi></mstyle> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <mn>3</mn><mspace width="1em" class="quad"/><mstyle 
+class="text"><mtext  >and</mtext></mstyle><mspace width="1em" class="quad"/><mstyle style="color:#FF0000;"><mi 
+>g</mi></mstyle><msup><mrow 
+><mrow><mo fence="true" form="prefix">(</mo><mrow><mstyle style="color:#FF0000;"><mi 
+>x</mi></mstyle></mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mn>5</mn><mstyle style="color:#FF0000;"><mi 
+>x</mi></mstyle> <mo 
+class="MathClass-bin" stretchy="false">-</mo> <mn>1</mn><mspace width="1em" class="quad"/> <mi 
+>&#x2192;</mi> <mspace width="1em" class="quad"/><mstyle style="color:#FF0000;"><mi 
+>f</mi></mstyle><msup><mrow 
+><mrow><mo fence="true" form="prefix">(</mo><mrow><mstyle style="color:#FF0000;"><mi 
+>g</mi></mstyle><msup><mrow 
+><mrow><mo fence="true" form="prefix">(</mo><mrow><mstyle style="color:#FF0000;"><mi 
+>x</mi></mstyle></mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+></mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mn>2</mn><msup><mrow 
+> <mrow><mo fence="true" form="prefix">(</mo><mrow><mn>5</mn><mstyle style="color:#FF0000;"><mi 
+>x</mi></mstyle> <mo 
+class="MathClass-bin" stretchy="false">-</mo> <mn>1</mn></mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow 
+></mrow></msup 
+> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <mn>3</mn> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mn>1</mn><mn>0</mn><mstyle style="color:#FF0000;"><mi 
+>x</mi></mstyle> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <mn>1</mn>
+</math></td></tr></table>
+<!--l. 660--><p class="noindent" ><p> </p></p></div><p> As this example shows, we don&#8217;t have some nonlinearity between layers, then even a deep stack
+of layers is equivalent to a single layer, and we can&#8217;t solve very complex problems with
+that.
+<div class="warning">
+<!--l. 670--><p class="noindent" >A large <span class="acronym"><span class="acronym-short"><a 
+href="#glo:dnn" class="glossary" >DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:dnn" class="glossary" >Deep Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:dnn" class="glossary" >Deep Neural Networks</a></span></span></span> with non-linear activations can theoretically
+approximate any continuous function.
+</p>
+</div><figure class="figure"> 
+
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+<!--l. 674--><p class="noindent" > <img 
+ 
+src="codes/images/Introduction-to-Artificial-Neural-Networks/activation_functions_plot-.png" alt="PIC"  
+style="" /> <a 
+ id="x4-7014r9"></a>
+</p>
+<figcaption class="caption" ><span class="id">Figure&#x00A0;1.9:&#x00A0;
+         </span><span  
+class="content">The  activation  function  of  a  node  in  an  <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial  Neural  Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial  Neural  Networks</a></span></span></span>  is
+         a function which calculates the output of the node based on its individual inputs and their weights.
+         Nontrivial problems can be solved using only a few nodes if the activation function is nonlinear <span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail">Knut, H.
+         Neural Networks p. 7. University of Applied Sciences Northwestern Switzerland (2018)</span></span>. Modern activation
+         functions include the smooth version of the ReLU, the GELU, which was used in the 2018 BERT model
+         <span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail">Hendrycks, D. &amp; Gimpel, K. Gaussian error linear units (gelus). arXiv preprint arXiv:1606.08415 (2016)</span></span>,
+         the logistic (sigmoid) function used in the 2012 speech recognition model developed by Hinton et al
+         <span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail">Hinton, G. et al. Deep neural networks for acoustic modeling in speech recognition: The shared views
+         of four research groups. IEEE Signal processing magazine <span id="bold" style="font-weight:bold;">29</span><span id="bold" style="font-weight:bold;">,</span> 82&#8211;97 (2012)</span></span>, the ReLU used in the 2012
+         AlexNet computer vision model <span class="cite"><span class="cite-show">[&#8224;]</span><span class="cite-detail">Krizhevsky, A., Sutskever, I. &amp; Hinton, G.&#x00A0;E. Imagenet classification
+         with deep convolutional neural networks. Advances in neural information processing systems <span id="bold" style="font-weight:bold;">25</span> (2012)</span></span>
+         and in the 2015 ResNet model.                                                  </span></figcaption><!--tex4ht:label?: x4-7014r9 -->
+                                                                                
+                                                                                
+</figure>
+
+<!--l. 686--><p class="noindent" ><div class="subsection-header"> <h4 id="header-subsection-1.1.5"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.1.1.5"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">1.1.5</span> <span class="title">  <a 
+ id="x4-80001.1.5"></a>Regression MLPs</span></h4></div><p>
+</p><!--l. 688--><p class="noindent" >First, <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mlp" class="glossary" >MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span><span class="acronym-desc"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span></span></span>s can be used for <span class="alert"><alert style="color: #821131;">regression tasks</alert></span>. If we
+want to predict a single <span class="margin-block">value, <span class="margin-comment"><span class="ellipsis">[17]</span> 
+<span class="sidenote">e.g., the price of a house, given many of its features.</span></span></span> we just need a
+single output neuron: where its output is the predicted value.
+</p><!--l. 692--><p class="noindent" >For <span class="margin-block">multivariate regression, <span class="margin-comment"><span class="ellipsis">[18]</span> 
+<span class="sidenote">i.e., to predict multiple values at once.</span></span></span> we need one output neuron per
+output dimension.
+</p><!--l. 695--><p class="noindent" ><div class="quote"><p> As an example, to locate the center of an object in an image, you need to predict 2D coordinates, so
+you need two (<span class="alert"><alert style="color: #821131;">2</alert></span>)&#x00A0;output neurons. If you also want to place a bounding box around the object, then
+you need two more numbers which are the width and the height of the object. So, in the end you end
+up with four (<span class="alert"><alert style="color: #821131;">4</alert></span>)&#x00A0;output neurons.  </p></p></div><p>
+<code class="verb">sklearn</code> 
+includes an <code class="verb">MLPRegressor</code> class, so let&#8217;s use it to build an <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mlp" class="glossary" >MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span><span class="acronym-desc"><a 
+href="#glo:mlp" class="glossary" >Multi-layer
+Perceptrons</a></span></span></span> with three (<span class="alert"><alert style="color: #821131;">3</alert></span>)&#x00A0;hidden layers composed of 50 neurons each, and train it on the California
+housing dataset.
+For simplicity, we will use <code class="verb">sklearn</code>&#8217;s <code class="verb">fetch_california_housing()</code> function to load the data instead
+of downloading from a sketchy website.
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb2"><a 
+ id="x4-8002r209"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">sklearn.datasets</span> <span style="color:#9E0005;">import</span> fetch_california_housing 
+<a 
+ id="x4-8004r210"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">sklearn.model_selection</span> <span style="color:#9E0005;">import</span> train_test_split 
+<a 
+ id="x4-8006r211"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">sklearn.neural_network</span> <span style="color:#9E0005;">import</span> MLPRegressor 
+<a 
+ id="x4-8008r212"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">sklearn.pipeline</span> <span style="color:#9E0005;">import</span> make_pipeline 
+<a 
+ id="x4-8010r213"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">sklearn.preprocessing</span> <span style="color:#9E0005;">import</span> StandardScaler 
+<a 
+ id="x4-8012r214"></a> 
+<a 
+ id="x4-8014r215"></a>housing = fetch_california_housing() 
+<a 
+ id="x4-8016r216"></a>X_train_full, X_test, y_train_full, y_test = train_test_split( 
+<a 
+ id="x4-8018r217"></a>    housing.data, housing.target, random_state=<span style="color:#8F4070;">42</span>) 
+<a 
+ id="x4-8020r218"></a>X_train, X_valid, y_train, y_valid = train_test_split( 
+<a 
+ id="x4-8022r219"></a>    X_train_full, y_train_full, random_state=<span style="color:#8F4070;">42</span>) 
+<a 
+ id="x4-8024r220"></a> 
+<a 
+ id="x4-8026r221"></a>mlp_reg = MLPRegressor(hidden_layer_sizes=[<span style="color:#8F4070;">50</span>, <span style="color:#8F4070;">50</span>, <span style="color:#8F4070;">50</span>], random_state=<span style="color:#8F4070;">42</span>) 
+<a 
+ id="x4-8028r222"></a>pipeline = make_pipeline(StandardScaler(), mlp_reg) 
+<a 
+ id="x4-8030r223"></a>pipeline.fit(X_train, y_train) 
+<a 
+ id="x4-8032r224"></a>y_pred = pipeline.predict(X_valid) 
+<a 
+ id="x4-8034r225"></a>rmse = root_mean_squared_error(y_valid, y_pred) 
+<a 
+ id="x4-8036r226"></a> 
+<a 
+ id="x4-8038r227"></a><span style="color:#B03B03;">print</span>(rmse)</pre>
+</code></pre><p>
+<!--l. 711--><p class="noindent" >The following code starts by fetching and splitting the dataset, then it creates a pipeline to standardise
+the input features before sending them to the <code class="verb">MLPRegressor</code>. This is very important for
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:ann" class="glossary" >ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:ann" class="glossary" >Artificial Neural Networks</a></span></span></span> as they are trained using gradient descent,
+and gradient descent does <span id="bold" style="font-weight:bold;">NOT</span>&#x00A0;converge very well when the features have very different
+scales.
+Finally, the code trains the model and evaluates its validation error. The model uses the ReLU
+activation function in the hidden layers, and it uses a variant of gradient descent called <span class="margin-block">Adam <span class="margin-comment"><span class="ellipsis">[19]</span> 
+<span class="sidenote">an
+optimization algorithm that improves upon gradient descent by using adaptive learning rates for each
+parameter, combining the benefits of momentum and RMSprop. It calculates both the first moment
+(mean of gradients) and the second moment (uncentered variance of gradients) to adapt the learning
+rate during training. This makes it computationally efficient, suitable for large datasets, and effective
+for non-stationary or sparse problems</span></span></span> to minimize the mean squared error, with a little bit of
+<!--l. 723--><math 
+ 
+display="inline" ><msub><mrow 
+><mi 
+>&#x2113;</mi></mrow><mrow 
+><mn>2</mn></mrow></msub 
+></math>
+regularisation:
+</p><!--l. 726--><p class="noindent" >We get a validation <!--l. 726--><math 
+ 
+display="inline" ><mi class="qopname">RMSE</mi><mo> &#x2061;<!--FUNCTION APPLICATION--> </mo><!--nolimits--></math>
+of about 0.505, which is comparable to what you would get with a random forest classifier.
+</p>
+<div class="warning">
+<!--l. 732--><p class="noindent" >This <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mlp" class="glossary" >MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span><span class="acronym-desc"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span></span></span> does not use any activation function for the
+output layer, so it&#8217;s free to output any value it wants.
+</p>
+</div>
+                                                                                
+                                                                                
+<!--l. 734--><p class="noindent" >This is generally fine, but if we want to guarantee the output will always be positive, then we should
+use the ReLU activation function in the output layer, or the <span class="alert"><alert style="color: #821131;">softplus activation</alert></span> function, which is a
+smooth variant of ReLU: softplus(z) = log(1 + exp(z)).
+</p>
+<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 1.<a 
+ id="x4-8039r5"></a>5: </span> </span> <span class="info-title"> Softplus Activation Function </span> </span> <div class="body"><p>
+<!--l. 740--><p class="noindent" >The softplus function is </p><table class="equation-star"><tr><td>
+<!--l. 742--><math 
+ 
+display="block" class="equation">
+                                <mi 
+>f</mi><mo 
+class="MathClass-open" stretchy="false">(</mo><mi 
+>x</mi><mo 
+class="MathClass-close" stretchy="false">)</mo> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mi class="loglike">ln</mi><mo>&#x2061;<!--FUNCTION APPLICATION--></mo><!--nolimits--><mo 
+class="MathClass-open" stretchy="false">(</mo><mn>1</mn> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>x</mi></mrow></msup 
+><mo 
+class="MathClass-close" stretchy="false">)</mo><mo 
+class="MathClass-punc" stretchy="false">.</mo>
+</math></td></tr></table>
+<!--l. 744--><p class="noindent" ><p>It is a smooth approximation (in fact, an analytic function) to the ramp function, which is
+known as the rectifier or ReLU (rectified linear unit) in machine learning. For large negative
+<!--l. 748--><math 
+ 
+display="inline" ><mstyle style="color:#FF0000;"><mi 
+>x</mi></mstyle></math> it is
+<!--l. 748--><math 
+ 
+display="inline" ><mi class="loglike">ln</mi><mo>&#x2061;<!--FUNCTION APPLICATION--></mo><!--nolimits--><mo 
+class="MathClass-open" stretchy="false">(</mo><mn>1</mn> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>x</mi></mrow></msup 
+><mo 
+class="MathClass-close" stretchy="false">)</mo> <mo 
+class="MathClass-rel" stretchy="false">=</mo><mo> <mi class="loglike">ln</mi><mo>&#x2061;<!--FUNCTION APPLICATION--></mo></mo><!--nolimits--><mo 
+class="MathClass-open" stretchy="false">(</mo><mn>1</mn> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <mi 
+>&#x03F5;</mi><mo 
+class="MathClass-close" stretchy="false">)</mo> <mo 
+class="MathClass-rel" stretchy="false">&#x2a86;</mo><mo> <mi class="loglike">ln</mi><mo>&#x2061;<!--FUNCTION APPLICATION--></mo></mo><!--nolimits--><mn>1</mn> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mn>0</mn></math>, so just above 0, while
+for large positive <!--l. 749--><math 
+ 
+display="inline" ><mstyle style="color:#FF0000;"><mi 
+>x</mi></mstyle></math>
+it is <!--l. 749--><math 
+ 
+display="inline" ><mi class="loglike">ln</mi><mo>&#x2061;<!--FUNCTION APPLICATION--></mo><!--nolimits--><mo 
+class="MathClass-open" stretchy="false">(</mo><mn>1</mn> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>x</mi></mrow></msup 
+><mo 
+class="MathClass-close" stretchy="false">)</mo> <mo 
+class="MathClass-rel" stretchy="false">&#x2a86;</mo><mo> <mi class="loglike">ln</mi><mo>&#x2061;<!--FUNCTION APPLICATION--></mo></mo><!--nolimits--><mo 
+class="MathClass-open" stretchy="false">(</mo><msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>x</mi></mrow></msup 
+><mo 
+class="MathClass-close" stretchy="false">)</mo> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mi 
+>x</mi></math>, so
+just above <!--l. 749--><math 
+ 
+display="inline" ><mstyle style="color:#FF0000;"><mi 
+>x</mi></mstyle></math>.
+</p></div></div><p class="noindent">
+Softplus is close to 0 when z is negative, and close to z when z is positive. Finally, if you want to
+guarantee that the predictions will always fall within a given range of values, then you should use the
+sigmoid function or the hyperbolic tangent, and scale the targets to the appropriate range: 0 to 1 for
+sigmoid and -1 to 1 for tanh.
+</p><!--l. 758--><p class="noindent" >Sadly, the <code class="verb">MLPRegressor</code> class does not support activation functions in the output layer.
+</p>
+<div class="warning">
+<!--l. 764--><p class="noindent" >Building and training a standard <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mlp" class="glossary" >MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span><span class="acronym-desc"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span></span></span> with <code class="verb">sklearn</code> is
+very convenient, but features are limited. This is why we will switch to Keras in the second part of this
+chapter.
+</p>
+</div>
+<!--l. 766--><p class="noindent" >The <code class="verb">MLPRegressor</code> class uses the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mse" class="glossary" >MSE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mse" class="glossary" >Mean Square Error</a></span><span class="acronym-desc"><a 
+href="#glo:mse" class="glossary" >Mean Square Error</a></span></span></span>, which is usually what we
+want for regression, but if we have a lot of outliers in the training set, we may prefer to use the
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:mae" class="glossary" >MAE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mae" class="glossary" >Mean Absolute Error</a></span><span class="acronym-desc"><a 
+href="#glo:mae" class="glossary" >Mean Absolute Error</a></span></span></span> instead. Alternatively, we may want to use the Huber
+loss, which is a combination of both. It is quadratic when the error is smaller than a threshold
+<!--l. 769--><math 
+ 
+display="inline" ><mi 
+>&#x03B4;</mi></math> (typically 1) but linear when
+the error is larger than <!--l. 770--><math 
+ 
+display="inline" ><mi 
+>&#x03B4;</mi></math>.
+The linear part makes it less sensitive to outliers than the mean squared error, and the quadratic part
+                                                                                
+                                                                                
+allows it to converge faster and be more precise than the mean absolute error. However, <code class="verb">MLPRegressor</code>
+only supports the MSE.
+
+</p>
+<!--l. 775--><p class="noindent" ><div class="subsection-header"> <h4 id="header-subsection-1.1.6"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.1.1.6"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">1.1.6</span> <span class="title">  <a 
+ id="x4-90001.1.6"></a>Classification MLPs</span></h4></div><p>
+</p><!--l. 777--><p class="noindent" ><span class="acronym"><span class="acronym-short"><a 
+href="#glo:mlp" class="glossary" >MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span><span class="acronym-desc"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span></span></span>s can also be used for <span id="bold" style="font-weight:bold;">classification</span> tasks. For a
+binary classification problem, we just need a single output neuron using the sigmoid activation function:
+<div class="quote"><p> The output will be a number between 0 and 1, which you can interpret as the estimated probability of
+the positive class.  </p></p></div><p>
+<div class="knowledge">
+<!--l. 787--><p class="noindent" >The estimated probability of the negative class is equal to one minus that number.
+</p>
+</div><p class="noindent">
+<!--l. 789--><p class="noindent" ><span class="acronym"><span class="acronym-short"><a 
+href="#glo:mlp" class="glossary" >MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span><span class="acronym-desc"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span></span></span>s can also easily handle multi-label binary
+classification tasks. For example, you could have an email classification system that predicts whether
+each incoming email is ham or spam, and simultaneously predicts whether it is an urgent or nonurgent
+email.
+In this case, you would need two (<span class="alert"><alert style="color: #821131;">2</alert></span>)&#x00A0;output neurons, both using the sigmoid activation function where
+the first would output the probability that the email is spam, and the second would output the
+probability that it is urgent. More generally, we would dedicate one output neuron for each positive
+class.
+</p>
+<div class="warning">
+<!--l. 800--><p class="noindent" >Note the output probabilities do <span id="bold" style="font-weight:bold;">NOT</span>&#x00A0;necessarily add up to 1.
+</p>
+</div>
+<!--l. 802--><p class="noindent" >This lets the model output any combination of labels where we can have nonurgent ham, urgent
+ham, nonurgent spam, and perhaps even urgent <span class="margin-block">spam. <span class="margin-comment"><span class="ellipsis">[20]</span> 
+<span class="sidenote">However, this would probably be an
+error.</span></span></span>
+</p><!--l. 806--><p class="noindent" >If each instance can belong only to a single class, out of three or more possible classes (e.g., classes 0
+through 9 for digit image classification), then we need to have one output neuron per class, and you
+should use the softmax activation function for the whole output layer. The softmax function will ensure
+that all the estimated probabilities are between 0 and 1 and that they add up to 1, since the classes are
+<span class="margin-block">exclusive. <span class="margin-comment"><span class="ellipsis">[21]</span> 
+<span class="sidenote">This is called multiclass classification.</span></span></span>
+</p><!--l. 813--><p class="noindent" >Regarding the loss function, since we are predicting probability distributions, the cross-entropy loss is
+generally a good choice.
+<code class="verb">sklearn</code> 
+has an <code class="verb">MLPClassifier</code> class in the <code class="verb">sklearn.neural_network</code> package. It is almost identical
+to the <code class="verb">MLPRegressor</code> class, except that it minimises the cross entropy rather than the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mse" class="glossary" >MSE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mse" class="glossary" >Mean
+Square Error</a></span><span class="acronym-desc"><a 
+href="#glo:mse" class="glossary" >Mean Square Error</a></span></span></span>.
+                                                                                
+                                                                                
+</p>
+<div class="crosslinks-bottom"><a 
+href="ImplementingMLPswithKeras.html" ><span class="nav-next">NEXT</span></a><a 
+href="IntroductiontoArtificialNeuralNetworks.html" ><span class="nav-prev">PREV</span></a><a 
+href="IntroductiontoArtificialNeuralNetworks.html#tailIntroductiontoArtificialNeuralNetworks.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
+href="FromBiologytoSiliconArtificialNeurons.html" ><span class="nav-front">FRONT</span></a><a 
+href="IntroductiontoArtificialNeuralNetworks.html#FromBiologytoSiliconArtificialNeurons.html" ><span class="nav-up">UP</span></a></nav><a 
+ id="tailFromBiologytoSiliconArtificialNeurons.html"></a>  </div> <div class="footer"> <div class="footer-left"><span class="footer-lecture">D. T. McGuiness, PhD</span> 
+<span class="footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 14.8.2026, at 7:52.</span> </div> </div> </div> <div class="author-notes"> 
+<span class="note">Authors Note </span> 
+<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span> 
+</div> 
+</article> 
+<div class="mode-line"> 
+<div class="core-line"> 
+<div class="button-group"> 
+</div> 
+</div> 
+<div class="supp-line"></div> 
+</div> 
+</page> 
+ 
+</body> 
+</html>
