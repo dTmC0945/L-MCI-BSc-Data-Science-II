@@ -1,0 +1,1183 @@
+<!DOCTYPE html> 
+<html lang="en">  
+<head><title>PyTorch Fundamentals</title> 
+<meta  charset="utf-8" /> 
+<meta name="generator" content="lms-WebBook" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="\aa:CssFile " /> 
+<meta name="src" content="DataScienceIILectureBook.tex" /> 
+ <script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js"></script>  
+<link rel="icon" type="image/x-icon" href="logo/lms.ico"> 
+<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" /> 
+<link rel ="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@latest/flatweb.css"> 
+<script src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@latest/flatweb.js" async='true' crossorigin='anonymous'></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css"> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css"/> 
+<script src ="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script> 
+<link rel="stylesheet" href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css"/> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/> 
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet/'> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script> 
+ <style></style> </head><body 
+>
+<page> 
+<nav class="wide"><img class="webbook-logo" src="logo/webbook-logo.svg"></img> <div class="header"> <div class="header-left"><span class="header-lecture-grade">B.Sc</span> 
+<span class="header-lecture-name">Data Science II</span> 
+<span class="header-webBook">WebBook 2.1</span> </div> <div class="header-right"> <span class="header-version">SS.2026</span> 
+ <span class="header-chapter">Understanding PyTorch</span></div></div> <div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style='font-size:20px'></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&hl=en\&user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style='font-size:20px'></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style='font-size:20px'></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style='font-size:20px'></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style='font-size:20px'></i></a></div><hr /><span class="chapterToc"><span class="number">0</span><span class="title"><a 
+href="index.html#x2-10000">index</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a 
+href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial
+Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Current Developments and Overview</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">Logical
+Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">The Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Multilayer Perceptron and
+Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Regression MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.7</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-100001.1.7">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-110001.2">Implementing
+MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-120001.2.1">Building an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-140001.2.2">Creating
+the model using the sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-180001.2.3">Building a Regression MLP Using the
+Sequential API</a></span></span><span class="chapterToc"><span class="number">2</span><span class="title"><a 
+href="UnderstandingPyTorch.html#x6-190002">Understanding PyTorch</a></span></span><span class="sectionToc"><span class="number">2.1</span><span class="title"><a 
+href="#x7-210002.1">PyTorch Fundamentals</a></span></span><span class="subsectionToc"><span class="number">2.1.1</span><span class="title"><a 
+href="#x7-220002.1.1">Making some
+Tensors</a></span></span><span class="subsectionToc"><span class="number">2.1.2</span><span class="title"><a 
+href="#x7-230002.1.2">Hardware Acceleration</a></span></span><span class="sectionToc"><span class="number">2.2</span><span class="title"><a 
+href="ImplementingLinearRegression.html#x8-260002.2">Implementing Linear Regression</a></span></span><span class="subsectionToc"><span class="number">2.2.1</span><span class="title"><a 
+href="ImplementingLinearRegression.html#x8-270002.2.1">Linear
+Regression Using Tensors and Autograd</a></span></span><span class="subsectionToc"><span class="number">2.2.2</span><span class="title"><a 
+href="ImplementingLinearRegression.html#x8-290002.2.2">Linear Regression Using PyTorch’s
+High-Level API</a></span></span><span class="sectionToc"><span class="number">2.3</span><span class="title"><a 
+href="ImplementingaRegressionMLP.html#x9-300002.3">Implementing a Regression MLP</a></span></span><span class="sectionToc"><span class="number">2.4</span><span class="title"><a 
+href="MiniBatchGradientDescentUsingDataLoaders.html#x10-310002.4">Mini-Batch Gradient Descent
+Using DataLoaders</a></span></span><span class="sectionToc"><span class="number">2.5</span><span class="title"><a 
+href="ModelEvaluation.html#x11-320002.5">Model Evaluation</a></span></span><span class="sectionToc"><span class="number">2.6</span><span class="title"><a 
+href="BuildingNonsequentialModelsUsingCustomModules.html#x12-330002.6">Building Nonsequential Models Using Custom
+Modules</a></span></span><span class="subsectionToc"><span class="number">2.6.1</span><span class="title"><a 
+href="BuildingNonsequentialModelsUsingCustomModules.html#x12-340002.6.1">Building Models with Multiple Inputs</a></span></span><span class="subsectionToc"><span class="number">2.6.2</span><span class="title"><a 
+href="BuildingNonsequentialModelsUsingCustomModules.html#x12-350002.6.2">Building Models with Multiple
+Outputs</a></span></span><span class="sectionToc"><span class="number">2.7</span><span class="title"><a 
+href="BuildinganImageClassifierwithPyTorch.html#x13-360002.7">Building an Image Classifier with PyTorch</a></span></span><span class="subsectionToc"><span class="number">2.7.1</span><span class="title"><a 
+href="BuildinganImageClassifierwithPyTorch.html#x13-370002.7.1">Using TorchVision to Load the
+Dataset</a></span></span><span class="subsectionToc"><span class="number">2.7.2</span><span class="title"><a 
+href="BuildinganImageClassifierwithPyTorch.html#x13-380002.7.2">Building the Classifier</a></span></span><span class="sectionToc"><span class="number">2.8</span><span class="title"><a 
+href="FineTuningHyperparameterswithOptuna.html#x14-390002.8">Fine-Tuning Hyperparameters with Optuna</a></span></span><span class="sectionToc"><span class="number">2.9</span><span class="title"><a 
+href="SavingandLoadingPyTorchModels.html#x15-400002.9">Saving
+and Loading PyTorch Models</a></span></span><span class="sectionToc"><span class="number">2.10</span><span class="title"><a 
+href="CompilingandOptimizingaPyTorchModel.html#x16-410002.10">Compiling and Optimizing a PyTorch Model</a></span></span>
+<!--l. 98--><p class="noindent" ><div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span> 
+<span class="nav-footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 9.9.2026, at 9:52.</span></div></div><span class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span></div></div></nav> 
+
+</p>
+<article class="chapter"> 
+<nav class="crosslinks-top"> <a 
+href="ImplementingLinearRegression.html" ><span class="nav-next">NEXT</span></a><a 
+href="UnderstandingPyTorch.html" ><span class="nav-prev">PREV</span></a><a 
+href="UnderstandingPyTorch.html#tailUnderstandingPyTorch.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
+href="#tailPyTorchFundamentals.html"><span class="nav-tail">TAIL</span></a><a 
+href="UnderstandingPyTorch.html#PyTorchFundamentals.html" ><span class="nav-up">UP</span></a></nav> 
+<div class="section-header"> <h3 id="header-section-2.1"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.2.1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a> <span class="number">2.1</span> <span class="title">  <a 
+ id="x7-210002.1"></a>PyTorch Fundamentals</span></h3></div><p>
+<!--l. 100--><p class="noindent" >The core of PyTorch is the <span class="margin-block">tensor. <span class="margin-comment"><span class="ellipsis">[46]</span> 
+<span class="sidenote">There are things called <span id="bold" style="font-weight:bold;">tensors</span> in mathematics and physics, covered
+in <span id="bold" style="font-weight:bold;">M.Sc Higher Mathematics I</span> within <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ml" class="glossary" >ML</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span><span class="acronym-desc"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span></span></span> tensors mean
+something simpler where they’re really just multidimensional arrays for numerical computations, plus a
+                                                                                
+                                                                                
+few extra features.</span></span></span> It’s a <span class="alert"><alert style="color: #821131;">multidimensional array</alert></span> with a <span id="bold" style="font-weight:bold;">shape</span> and a <span id="bold" style="font-weight:bold;">data</span> type, used for numerical
+computations.
+</p>
+<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 2.<a 
+ id="x7-21001r10"></a>10: </span> </span> <span class="info-title"> Tensors v. Array </span> </span> <div class="body"><p>
+<!--l. 108--><p class="noindent" >Some of you whom have previous experience with Python may see similarities with <code class="verb">np.array</code> and
+might wonder are they the same thing just under a different name. </p> 
+<hr/> 
+<p class="noindent"> 
+Well, yes, but a tensor also has
+two (<span class="alert"><alert style="color: #821131;">2</alert></span>) additional features: <div class="quote"><p>  it can live on a GPU<span class="margin-block">, <span class="margin-comment"><span class="ellipsis">[47]</span> 
+<span class="sidenote">or other hardware accelerators, as we
+will see.</span></span></span> and supports <span class="alert"><alert style="color: #821131;">auto-differentiation</alert></span><span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[48]</span> 
+<span class="sidenote">Tensor auto-differentiation (often called
+<span id="bold" style="font-weight:bold;">autograd</span>) is the engine which computes exact derivatives for tensor operations without manual
+calculus. PyTorch tracks every mathematical operation performed on tensors to build a
+dynamic computation graph, then apply the chain rule to calculate gradients automatically.</span></span></span>
+</p></div><p>
+</p></div></div>
+<!--l. 126--><p class="noindent" >From now on, every <span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span></span></span> we will build from now on will input and
+output <italic>tensors</italic><span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[49]</span> 
+<span class="sidenote">This is similar to <code class="verb">scikit-learn</code> models input and output <code class="verb">NumPy</code> arrays, which was the
+focus of <span id="bold" style="font-weight:bold;">B.Sc Data Science I</span>.</span></span></span> So let’s start by looking at how to create and manipulate
+tensors.
+
+</p>
+<!--l. 131--><p class="noindent" ><div class="subsection-header"> <h4 id="header-subsection-2.1.1"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.2.1.1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">2.1.1</span> <span class="title">  <a 
+ id="x7-220002.1.1"></a>Making some Tensors</span></h4></div><p>
+</p><!--l. 133--><p class="noindent" >First, let’s import the PyTorch library and then create a PyTorch tensor similar to how we would a NumPy
+array, such as a <!--l. 134--><math 
+ 
+display="inline" ><mn>2</mn> <mi 
+>×</mi> <mn>3</mn></math>
+array:
+</p>
+ <pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb38"><a 
+ id="x7-22002r119"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch</span> 
+<a 
+ id="x7-22004r120"></a> 
+<a 
+ id="x7-22006r121"></a>X = torch.tensor([[<span style="color:#8F4070;">1.0</span>, <span style="color:#8F4070;">4.0</span>, <span style="color:#8F4070;">7.0</span>], [<span style="color:#8F4070;">2.0</span>, <span style="color:#8F4070;">3.0</span>, <span style="color:#8F4070;">6.0</span>]]) 
+<a 
+ id="x7-22008r122"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">&#x0022;Our tensor is:&#x0022;</span>) 
+<a 
+ id="x7-22010r123"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">&#x0022;--------------&#x0022;</span>) 
+<a 
+ id="x7-22012r124"></a><span style="color:#B03B03;">print</span>(X)</pre>
+</code></pre><p> <pre><code class="language-text">
+<pre class="fancyvrb" id="fancyvrb39"><a 
+ id="x7-22014r129"></a>Our tensor is: 
+<a 
+ id="x7-22016r130"></a>-------------- 
+<a 
+ id="x7-22018r131"></a>tensor([[1., 4., 7.], 
+<a 
+ id="x7-22020r132"></a>        [2., 3., 6.]])</pre>
+</code></pre><p> 
+<!--l. 141--><p class="noindent" >Similar to a NumPy array, a tensor can contain <code class="verb">float</code>, <code class="verb">int</code>, <code class="verb">bool</code>, or <code class="verb">complex</code> numbers.
+</p>
+<div class="warning">
+<!--l. 146--><p class="noindent" >However, we can have just <span class="alert"><alert style="color: #821131;">one data type per tensor</alert></span>.
+</p>
+</div>
+<!--l. 148--><p class="noindent" >Initializing a tensor with values of different types, the most general one will be selected. <div class="quote"><p>  For example,
+<code class="verb">pytorch</code> 
+will follow the hierarchy below: </p>
+<blockquote class="quote">
+<code class="verb">complex</code> 
+&#x003E; <code class="verb">float</code> &#x003E; <code class="verb">int</code> &#x003E; <code class="verb">bool</code>.</blockquote>
+                                                                                
+                                                                                
+</div><p> We can also select the data type <span id="bold" style="font-weight:bold;">explicitly</span> when creating the tensor, <div class="quote"><p>  For example
+<code class="verb">dtype=torch.float16</code> 
+for 16-bit floats. </div><p>
+<div class="warning">
+<!--l. 166--><p class="noindent" >Tensors of <span class="alert"><alert style="color: #821131;">strings</alert></span> or <span class="alert"><alert style="color: #821131;">objects</alert></span> are <span id="bold" style="font-weight:bold;">NOT</span> supported.
+</p>
+</div>
+<!--l. 168--><p class="noindent" >We do operations on tensors similar to how we would do them in <code class="verb">np.array</code>:
+</p>
+ <pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb40"><a 
+ id="x7-22022r137"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0022;We can do quite a few operations with tensors.</span><span style="color:#B03B03;">\n\n</span><span style="color:#78730D;">&#x0022;</span> + 
+<a 
+ id="x7-22024r138"></a>      <span style="color:#78730D;">&#x0022;For example:</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">&#x0022;</span> + 
+<a 
+ id="x7-22026r139"></a>      <span style="color:#78730D;">&#x0022;------------</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">&#x0022;</span> + 
+<a 
+ id="x7-22028r140"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0027;Determine its shape: </span><span style="color:#78730D;">{</span>X.shape<span style="color:#78730D;">}</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">&#x0027;</span> + 
+<a 
+ id="x7-22030r141"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0027;Determine its type : </span><span style="color:#78730D;">{</span>X.dtype<span style="color:#78730D;">}</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">&#x0027;</span> + 
+<a 
+ id="x7-22032r142"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0027;Index operations   : </span><span style="color:#78730D;">{</span>X[<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">1</span>]<span style="color:#78730D;">}</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">&#x0027;</span> + 
+<a 
+ id="x7-22034r143"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0027;Get columns        : </span><span style="color:#78730D;">{</span>X[:, <span style="color:#8F4070;">1</span>]<span style="color:#78730D;">}</span><span style="color:#78730D;">&#x0027;</span>) 
+<a 
+ id="x7-22036r144"></a></pre>
+</code></pre><p> <pre><code class="language-text">
+<pre class="fancyvrb" id="fancyvrb41"><a 
+ id="x7-22038r149"></a>We can do quite a few operations with tensors. 
+<a 
+ id="x7-22040r150"></a> 
+<a 
+ id="x7-22042r151"></a>For example: 
+<a 
+ id="x7-22044r152"></a>------------ 
+<a 
+ id="x7-22046r153"></a>Determine its shape: torch.Size([2, 3]) 
+<a 
+ id="x7-22048r154"></a>Determine its type : torch.float32 
+<a 
+ id="x7-22050r155"></a>Index operations   : 4.0 
+<a 
+ id="x7-22052r156"></a>Get columns        : tensor([4., 3.])</pre>
+</code></pre><p> 
+We can also run all sorts of computations on tensors, and the way we do these operations is
+conveniently similar to NumPy’s: <div class="quote"><p>  Operations such as <code class="verb">torch.abs()</code>, <code class="verb">torch.cos()</code>, <code class="verb">torch.exp()</code>,
+<code class="verb">torch.max()</code>
+, <code class="verb">torch.mean()</code>, <code class="verb">torch.sqrt()</code>, and so on. </div><p>  PyTorch tensors also have methods for most
+of these operations, so we can write <code class="verb">X.exp()</code> instead of <code class="verb">torch.exp(X)</code>. Let’s try a few
+operations:
+ <pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb42"><a 
+ id="x7-22054r176"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0022;We can do mathematical operations with tensors.</span><span style="color:#B03B03;">\n\n</span><span style="color:#78730D;">&#x0022;</span> + 
+<a 
+ id="x7-22056r177"></a>      <span style="color:#78730D;">&#x0022;For example:</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">&#x0022;</span> + 
+<a 
+ id="x7-22058r178"></a>      <span style="color:#78730D;">&#x0022;------------</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">&#x0022;</span> + 
+<a 
+ id="x7-22060r179"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0027;Item-wise addition and multiplication:</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">&#x0027;</span> + 
+<a 
+ id="x7-22062r180"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0027;    </span><span style="color:#78730D;">{</span><span style="color:#8F4070;">10</span> * (X + <span style="color:#8F4070;">1.0</span>)<span style="color:#78730D;">}</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">&#x0027;</span> + 
+<a 
+ id="x7-22064r181"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0027;Item-wise exponential:</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">&#x0027;</span> + 
+<a 
+ id="x7-22066r182"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0027;    </span><span style="color:#78730D;">{</span>X.exp()<span style="color:#78730D;">}</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">&#x0027;</span> + 
+<a 
+ id="x7-22068r183"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0027;Mean of tensor:</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">&#x0027;</span> + 
+<a 
+ id="x7-22070r184"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0027;    </span><span style="color:#78730D;">{</span>X[<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">1</span>]<span style="color:#78730D;">}</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">&#x0027;</span> + 
+<a 
+ id="x7-22072r185"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0027;Maximum value on 0th dimension:</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">&#x0027;</span> + 
+<a 
+ id="x7-22074r186"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0027;    </span><span style="color:#78730D;">{</span>X.max(dim=<span style="color:#8F4070;">0</span>)<span style="color:#78730D;">}</span><span style="color:#78730D;">&#x0027;</span> + 
+<a 
+ id="x7-22076r187"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0027;Transpose and multiplication:</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">&#x0027;</span> + 
+<a 
+ id="x7-22078r188"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0027;    </span><span style="color:#78730D;">{</span>X @ X.T<span style="color:#78730D;">}</span><span style="color:#78730D;">&#x0027;</span>) 
+<a 
+ id="x7-22080r189"></a> 
+<a 
+ id="x7-22082r190"></a> 
+<a 
+ id="x7-22084r191"></a></pre>
+</code></pre><p> <pre><code class="language-text">
+<pre class="fancyvrb" id="fancyvrb43"><a 
+ id="x7-22086r196"></a>We can do mathematical operations with tensors. 
+<a 
+ id="x7-22088r197"></a> 
+<a 
+ id="x7-22090r198"></a>For example: 
+<a 
+ id="x7-22092r199"></a>------------ 
+<a 
+ id="x7-22094r200"></a>Item-wise addition and multiplication: 
+<a 
+ id="x7-22096r201"></a>    tensor([[20., 50., 80.], 
+<a 
+ id="x7-22098r202"></a>        [30., 40., 70.]]) 
+<a 
+ id="x7-22100r203"></a>Item-wise exponential: 
+<a 
+ id="x7-22102r204"></a>    tensor([[   2.7183,   54.5982, 1096.6332], 
+<a 
+ id="x7-22104r205"></a>        [   7.3891,   20.0855,  403.4288]]) 
+<a 
+ id="x7-22106r206"></a>Mean of tensor: 
+<a 
+ id="x7-22108r207"></a>    4.0 
+<a 
+ id="x7-22110r208"></a>Maximum value on 0th dimension: 
+<a 
+ id="x7-22112r209"></a>    torch.return_types.max( 
+<a 
+ id="x7-22114r210"></a>values=tensor([2., 4., 7.]), 
+<a 
+ id="x7-22116r211"></a>indices=tensor([1, 0, 0]))Transpose and multiplication: 
+<a 
+ id="x7-22118r212"></a>    tensor([[66., 56.], 
+<a 
+ id="x7-22120r213"></a>        [56., 49.]])</pre>
+</code></pre><p> 
+<div class="knowledge">
+<!--l. 194--><p class="noindent" >PyTorch prefers the argument name <code class="verb">dim</code> in operations such as <code class="verb">max()</code>, but it also supports <code class="verb">axis</code>, which
+is similar to one used in NumPy or Pandas.
+</p>
+</div>
+<!--l. 196--><p class="noindent" >We can also convert a tensor to a NumPy array using the <code class="verb">numpy()</code> method, and vice versa, create a
+tensor from a NumPy array:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb44"><a 
+ id="x7-22122r238"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">numpy</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">np</span> 
+<a 
+ id="x7-22124r239"></a> 
+<a 
+ id="x7-22126r240"></a>X.numpy() 
+<a 
+ id="x7-22128r241"></a>torch.tensor(np.array([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">7.</span>], [<span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>, <span style="color:#8F4070;">6.</span>]])) 
+<a 
+ id="x7-22130r242"></a></pre>
+</code></pre><p>
+<!--l. 201--><p class="noindent" >Here, the default precision for floats is 32 bits in PyTorch, whereas it’s 64 bits in NumPy.
+</p>
+<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 2.<a 
+ id="x7-22131r11"></a>11: </span> </span> <span class="info-title"> Less is better </span> </span> <div class="body"><p>
+                                                                                
+                                                                                
+<!--l. 205--><p class="noindent" >It’s generally better to use 32 bits in <span class="acronym"><span class="acronym-short"><a 
+href="#glo:dl" class="glossary" >DL</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:dl" class="glossary" >Deep Learning</a></span><span class="acronym-desc"><a 
+href="#glo:dl" class="glossary" >A subset of machine learning that uses
+multi-layered artificial neural networks to mimic human brain function. It automatically extracts
+complex patterns and abstract features from vast amounts of unstructured data, powering modern
+applications like computer vision, speech recognition, and large language models.</a></span></span></span> as this takes half the
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:ram" class="glossary" >RAM</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ram" class="glossary" >Random Access Memory</a></span><span class="acronym-desc"><a 
+href="#glo:ram" class="glossary" >a form of electronic computer memory that can be read and changed in
+any order, typically used to store working data and machine code.</a></span></span></span> and speeds up computations, and
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span></span></span>s do not actually need the extra precision offered by 64-bit floats.
+So when calling the <code class="verb">torch.tensor()</code> function to convert a NumPy array to a tensor, it’s best to specify
+<code class="verb">dtype=torch.float32</code>
+.
+</p></div></div> </p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb45"><a 
+ id="x7-22133r247"></a>torch.tensor(np.array([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">7.</span>], [<span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>, <span style="color:#8F4070;">6.</span>]]), dtype=torch.float32)</pre>
+</code></pre><p>
+<!--l. 214--><p class="noindent" >Alternatively, we can use <code class="verb">torch.FloatTensor()</code> which automatically converts the array to 32
+bits:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb46"><a 
+ id="x7-22135r252"></a>torch.FloatTensor(np.array([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">7.</span>], [<span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>, <span style="color:#8F4070;">6</span>]]))</pre>
+</code></pre><p>
+<!--l. 219--><p class="noindent" >Both <code class="verb">torch.tensor()</code> and <code class="verb">torch.FloatTensor()</code> shown beforehand make a copy of the given NumPy
+array. However, if we prefer, we can use <code class="verb">torch.from_numpy()</code> which creates a tensor on the
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:cpu" class="glossary" >CPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:cpu" class="glossary" >Central Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:cpu" class="glossary" >Central Processing Unit</a></span></span></span> which just uses the NumPy array’s data directly,
+sans copying.
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb47"><a 
+ id="x7-22137r257"></a>X2_np       = np.array([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">7.</span>], [<span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>, <span style="color:#8F4070;">6</span>]]) 
+<a 
+ id="x7-22139r258"></a><span style="color:#918273;"><italic># X2_np and X2 share the same data in memory</italic></span> 
+<a 
+ id="x7-22141r259"></a>X2          = torch.from_numpy(X2_np) 
+<a 
+ id="x7-22143r260"></a>X2_np[<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">1</span>] = <span style="color:#8F4070;">88</span> 
+<a 
+ id="x7-22145r261"></a><span style="color:#B03B03;">print</span>(X2)</pre>
+</code></pre><p>
+<!--l. 225--><p class="noindent" >A word of caution <div class="quote"><p>  modifying the NumPy array will also modify the tensor, and vice versa. </p></div><p>  We can
+also modify a tensor in place using indexing and slicing, as with a NumPy array:
+ <pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb48"><a 
+ id="x7-22147r272"></a>X[:, <span style="color:#8F4070;">1</span>] = -<span style="color:#8F4070;">99</span> 
+<a 
+ id="x7-22149r273"></a><span style="color:#B03B03;">print</span>(X)</pre>
+</code></pre><p> <pre><code class="language-text">
+<pre class="fancyvrb" id="fancyvrb49"><a 
+ id="x7-22151r278"></a>tensor([[  1., -99.,   7.], 
+<a 
+ id="x7-22153r279"></a>        [  2., -99.,   6.]])</pre>
+</code></pre><p> 
+<!--l. 238--><p class="noindent" >PyTorch’s API provides numerous in-place operations, such as <code class="verb">abs_()</code>, <code class="verb">sqrt_()</code>, and <code class="verb">zero_()</code>, which
+modify the input tensor <span class="margin-block">directly. <span class="margin-comment"><span class="ellipsis">[50]</span> 
+<span class="sidenote">they can sometimes save some memory and speed up your models.</span></span></span> <div class="quote"><p>
+For example, the <code class="verb">relu_()</code> method applies the ReLU activation function in place by replacing all
+negative values with 0s: </p></div><p>
+ <pre><code class="language-python">
+                                                                                
+                                                                                
+<pre class="fancyvrb" id="fancyvrb50"><a 
+ id="x7-22155r284"></a>X.relu_() 
+<a 
+ id="x7-22157r285"></a><span style="color:#B03B03;">print</span>(X)</pre>
+</code></pre><p> <pre><code class="language-text">
+<pre class="fancyvrb" id="fancyvrb51"><a 
+ id="x7-22159r290"></a>tensor([[1., 0., 7.], 
+<a 
+ id="x7-22161r291"></a>        [2., 0., 6.]])</pre>
+</code></pre><p> 
+<!--l. 252--><p class="noindent" >PyTorch’s in-place operations are easy to spot at a glance because their name always ends with an
+underscore. With very few exceptions (e.g., <code class="verb">zero_()</code>), removing the underscore gives you the regular
+<span class="margin-block">operation. <span class="margin-comment"><span class="ellipsis">[51]</span> 
+<span class="sidenote">e.g., <code class="verb">abs_()</code> is in place, <code class="verb">abs()</code> is not.</span></span></span>
+</p><!--l. 256--><p class="noindent" >We will cover many more operations as we go, but now let’s look at how to use <span id="bold" style="font-weight:bold;">hardware
+acceleration</span> to make computations much faster.
+
+</p>
+<!--l. 259--><p class="noindent" ><div class="subsection-header"> <h4 id="header-subsection-2.1.2"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.2.1.2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">2.1.2</span> <span class="title">  <a 
+ id="x7-230002.1.2"></a>Hardware Acceleration</span></h4></div><p>
+</p><!--l. 261--><p class="noindent" >PyTorch tensors can be copied easily to the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip
+designed to rapidly render images, video, and 3D animations. Unlike a central processing unit (CPU)
+that processes tasks sequentially, a GPU uses parallel processing with thousands of smaller cores to
+handle many calculations at the same time.</a></span></span></span>, assuming that our machine has a compatible
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip designed to rapidly render images,
+video, and 3D animations. Unlike a central processing unit (CPU) that processes tasks
+sequentially, a GPU uses parallel processing with thousands of smaller cores to handle many
+calculations at the same time.</a></span></span></span>, and have the required libraries installed. PyTorch has excellent
+support for Nvidia <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip designed to
+rapidly render images, video, and 3D animations. Unlike a central processing unit (CPU) that
+processes tasks sequentially, a GPU uses parallel processing with thousands of smaller cores to
+handle many calculations at the same time.</a></span></span></span>s, as well as several other hardware accelerators:
+</p>     
+<ul class="itemize1">
+<li class="itemize">     
+<!--l. 266--><p class="noindent" >Apple’s Metal Performance Shaders (MPS) to accelerate computations on Apple silicon
+such  as  the  <italic>M1</italic>,  <italic>M2</italic>,  and  later  chips,  as  well  as  some  Intel  Macs  with  a  compatible
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip designed to rapidly render
+images, video, and 3D animations. Unlike a central processing unit (CPU) that processes
+tasks sequentially, a GPU uses parallel processing with thousands of smaller cores to handle
+many calculations at the same time.</a></span></span></span>.
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 269--><p class="noindent" ><italic>AMD Instinct</italic> accelerators and <italic>AMD Radeon</italic> <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized
+electronic chip designed to rapidly render images, video, and 3D animations. Unlike a
+central  processing  unit  (CPU)  that  processes  tasks  sequentially,  a  GPU  uses  parallel
+processing with thousands of smaller cores to handle many calculations at the same time.</a></span></span></span>,
+through the ROCm software stack, or via <italic>DirectML</italic> on Windows.
+                                                                                
+                                                                                
+     
+</p>
+</li>     
+<li class="itemize">
+<!--l. 271--><p class="noindent" >Intel GPUs and CPUs on Linux and Windows via Intel’s oneAPI.
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 272--><p class="noindent" >Google TPUs via the <code class="verb">torch_xla</code> library.</p></li></ul>
+<!--l. 275--><p class="noindent" >Let’s check whether PyTorch can access an Nvidia <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized
+electronic chip designed to rapidly render images, video, and 3D animations. Unlike a central processing
+unit (CPU) that processes tasks sequentially, a GPU uses parallel processing with thousands of smaller
+cores to handle many calculations at the same time.</a></span></span></span> or Apple’s MPS, otherwise let’s fall back to the
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:cpu" class="glossary" >CPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:cpu" class="glossary" >Central Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:cpu" class="glossary" >Central Processing Unit</a></span></span></span>:
+</p>
+ <pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb52"><a 
+ id="x7-23002r311"></a><span style="color:#9E0005;">if</span> torch.cuda.is_available(): 
+<a 
+ id="x7-23004r312"></a>    device = <span style="color:#78730D;">&#x0022;cuda&#x0022;</span> 
+<a 
+ id="x7-23006r313"></a><span style="color:#9E0005;">elif</span> torch.backends.mps.is_available(): 
+<a 
+ id="x7-23008r314"></a>    device = <span style="color:#78730D;">&#x0022;mps&#x0022;</span> 
+<a 
+ id="x7-23010r315"></a><span style="color:#9E0005;">else</span>: 
+<a 
+ id="x7-23012r316"></a>    device = <span style="color:#78730D;">&#x0022;cpu&#x0022;</span> 
+<a 
+ id="x7-23014r317"></a> 
+<a 
+ id="x7-23016r318"></a><span style="color:#B03B03;">print</span>(device)</pre>
+</code></pre><p> <pre><code class="language-text">
+<pre class="fancyvrb" id="fancyvrb53"><a 
+ id="x7-23018r323"></a>mps</pre>
+</code></pre><p> 
+<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 2.<a 
+ id="x7-23019r12"></a>12: </span> </span> <span class="info-title"> We Need More Power </span> </span> <div class="body"><p>
+<!--l. 286--><p class="noindent" ><span class="acronym"><span class="acronym-short"><a 
+href="#glo:dl" class="glossary" >DL</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:dl" class="glossary" >Deep Learning</a></span><span class="acronym-desc"><a 
+href="#glo:dl" class="glossary" >A subset of machine learning that uses multi-layered artificial neural networks
+to mimic human brain function. It automatically extracts complex patterns and abstract
+features from vast amounts of unstructured data, powering modern applications like computer
+vision, speech recognition, and large language models.</a></span></span></span> generally requires a lot of compute
+power, especially once we start diving into computer vision and <span class="acronym"><span class="acronym-short"><a 
+href="#glo:nlp" class="glossary" >NLP</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nlp" class="glossary" >Natural Language
+Processing</a></span><span class="acronym-desc"><a 
+href="#glo:nlp" class="glossary" >Natural Language Processing</a></span></span></span>, in the following chapters. </p> 
+<hr/> 
+<p class="noindent"> 
+prepare to be very, very
+<span class="alert"><alert style="color: #821131;">patient</alert></span>.
+</p></div></div> </p>
+<!--l. 295--><p class="noindent" >Now let’s create a tensor on that <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip designed
+to rapidly render images, video, and 3D animations. Unlike a central processing unit (CPU) that
+processes tasks sequentially, a GPU uses parallel processing with thousands of smaller cores to handle
+many calculations at the same time.</a></span></span></span>. To do that, one option is to create the tensor on the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:cpu" class="glossary" >CPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:cpu" class="glossary" >Central
+Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:cpu" class="glossary" >Central Processing Unit</a></span></span></span>, then copy it to the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A
+specialized electronic chip designed to rapidly render images, video, and 3D animations. Unlike a
+central processing unit (CPU) that processes tasks sequentially, a GPU uses parallel processing with
+thousands of smaller cores to handle many calculations at the same time.</a></span></span></span> using the <code class="verb">to()</code>
+method and we can always tell which device a tensor lives on by looking at its <code class="verb">device</code>
+attribute:
+</p>
+ <pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb54"><a 
+ id="x7-23021r328"></a>M = torch.tensor([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>], [<span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">5.</span>, <span style="color:#8F4070;">6.</span>]]) 
+<a 
+ id="x7-23023r329"></a>M = M.to(device) 
+<a 
+ id="x7-23025r330"></a><span style="color:#B03B03;">print</span>(M.device)</pre>
+</code></pre><p> <pre><code class="language-text">
+                                                                                
+                                                                                
+<pre class="fancyvrb" id="fancyvrb55"><a 
+ id="x7-23027r335"></a>mps:0</pre>
+</code></pre><p> 
+<div class="knowledge">
+<!--l. 307--><p class="noindent" >The <code class="verb">cpu()</code>, <code class="verb">mps()</code>, and <code class="verb">cuda()</code> methods are short for <code class="verb">to(&#x0022;cpu&#x0022;)</code>, <code class="verb">to(&#x0022;mps&#x0022;)</code>, and <code class="verb">to(&#x0022;cuda&#x0022;)</code>,
+respectively.
+</p>
+</div>
+<!--l. 309--><p class="noindent" >Alternatively, we can create tensor directly on the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized
+electronic chip designed to rapidly render images, video, and 3D animations. Unlike a central
+processing unit (CPU) that processes tasks sequentially, a GPU uses parallel processing with
+thousands of smaller cores to handle many calculations at the same time.</a></span></span></span> using the <code class="verb">device</code>
+argument:
+</p>
+ <pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb56"><a 
+ id="x7-23029r340"></a>M = torch.tensor([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>], [<span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">5.</span>, <span style="color:#8F4070;">6.</span>]], device=device) 
+<a 
+ id="x7-23031r341"></a><span style="color:#B03B03;">print</span>(M)</pre>
+</code></pre><p> <pre><code class="language-text">
+<pre class="fancyvrb" id="fancyvrb57"><a 
+ id="x7-23033r346"></a>tensor([[1., 2., 3.], 
+<a 
+ id="x7-23035r347"></a>        [4., 5., 6.]], device=&#x0027;mps:0&#x0027;)</pre>
+</code></pre><p> 
+<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 2.<a 
+ id="x7-23036r13"></a>13: </span> </span> <span class="info-title"> Having Multiple GPUs </span> </span> <div class="body"><p>
+<!--l. 318--><p class="noindent" >In the rare event that we have <span class="alert"><alert style="color: #821131;">multiple</alert></span> Nvidia <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized
+electronic chip designed to rapidly render images, video, and 3D animations. Unlike a central
+processing unit (CPU) that processes tasks sequentially, a GPU uses parallel processing
+with thousands of smaller cores to handle many calculations at the same time.</a></span></span></span>s, we can
+refer to the desired <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip designed to
+rapidly render images, video, and 3D animations. Unlike a central processing unit (CPU)
+that processes tasks sequentially, a GPU uses parallel processing with thousands of smaller
+cores to handle many calculations at the same time.</a></span></span></span> by <span class="alert"><alert style="color: #821131;">appending</alert></span> the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical
+Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip designed to rapidly render images, video, and 3D
+animations. Unlike a central processing unit (CPU) that processes tasks sequentially, a GPU uses
+parallel processing with thousands of smaller cores to handle many calculations at the same
+time.</a></span></span></span> index: <div class="quote"><p>  <code class="verb">&#x0022;cuda:0&#x0022;</code> (or just <code class="verb">&#x0022;cuda&#x0022;</code>) for GPU # 0, <code class="verb">&#x0022;cuda:1&#x0022;</code> for GPU #1, and so on.
+</p></div><p>
+</p></div></div>
+<!--l. 328--><p class="noindent" >Once the tensor is on the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip designed to
+rapidly render images, video, and 3D animations. Unlike a central processing unit (CPU) that processes
+tasks sequentially, a GPU uses parallel processing with thousands of smaller cores to handle many
+calculations at the same time.</a></span></span></span>, we can run operations on it normally, and they will all take place on the
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip designed to rapidly render images, video,
+and 3D animations. Unlike a central processing unit (CPU) that processes tasks sequentially, a GPU
+uses parallel processing with thousands of smaller cores to handle many calculations at the same
+time.</a></span></span></span>:
+</p>
+ <pre><code class="language-python">
+                                                                                
+                                                                                
+<pre class="fancyvrb" id="fancyvrb58"><a 
+ id="x7-23038r352"></a>R = M @ M.T  <span style="color:#918273;"><italic># run some operations on the GPU</italic></span> 
+<a 
+ id="x7-23040r353"></a><span style="color:#B03B03;">print</span>(R)</pre>
+</code></pre><p> <pre><code class="language-text">
+<pre class="fancyvrb" id="fancyvrb59"><a 
+ id="x7-23042r358"></a>tensor([[14., 32.], 
+<a 
+ id="x7-23044r359"></a>        [32., 77.]], device=&#x0027;mps:0&#x0027;)</pre>
+</code></pre><p> 
+Note that the result <code class="verb">R</code> also lives on the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip
+designed to rapidly render images, video, and 3D animations. Unlike a central processing unit (CPU)
+that processes tasks sequentially, a GPU uses parallel processing with thousands of smaller
+cores to handle many calculations at the same time.</a></span></span></span>, meaning we can perform multiple
+operations on the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip designed to
+rapidly render images, video, and 3D animations. Unlike a central processing unit (CPU)
+that processes tasks sequentially, a GPU uses parallel processing with thousands of smaller
+cores to handle many calculations at the same time.</a></span></span></span> without having to transfer <span class="alert"><alert style="color: #821131;">data back
+and forth between</alert></span> the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:cpu" class="glossary" >CPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:cpu" class="glossary" >Central Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:cpu" class="glossary" >Central Processing Unit</a></span></span></span> and the
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip designed to rapidly render images,
+video, and 3D animations. Unlike a central processing unit (CPU) that processes tasks
+sequentially, a GPU uses parallel processing with thousands of smaller cores to handle many
+calculations at the same time.</a></span></span></span>. This is crucial in <span class="acronym"><span class="acronym-short"><a 
+href="#glo:dl" class="glossary" >DL</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:dl" class="glossary" >Deep Learning</a></span><span class="acronym-desc"><a 
+href="#glo:dl" class="glossary" >A subset of machine
+learning that uses multi-layered artificial neural networks to mimic human brain function.
+It automatically extracts complex patterns and abstract features from vast amounts of
+unstructured data, powering modern applications like computer vision, speech recognition, and
+large language models.</a></span></span></span> as data transfer between devices can often become a <span class="alert"><alert style="color: #821131;">performance
+bottleneck</alert></span>.
+
+<!--l. 341--><p class="noindent" ><h5 id="header-subsubsection-5" class="subsubsectionHead"> <a 
+ id="x7-24000"></a>Effect of GPU Acceleration</h5>
+</p><!--l. 343--><p class="noindent" >Depends on the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip designed to rapidly render
+images, video, and 3D animations. Unlike a central processing unit (CPU) that processes tasks
+sequentially, a GPU uses parallel processing with thousands of smaller cores to handle many
+calculations at the same time.</a></span></span></span>. The more expensive ones are dozens of times faster than the cheap ones.
+But speed alone is not the only important factor as the data throughput is also crucial. If our model is
+compute <span class="margin-block">heavy, <span class="margin-comment"><span class="ellipsis">[52]</span> 
+<span class="sidenote">e.g., a very deep neural net.</span></span></span> the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic
+chip designed to rapidly render images, video, and 3D animations. Unlike a central processing unit
+(CPU) that processes tasks sequentially, a GPU uses parallel processing with thousands of smaller cores
+to handle many calculations at the same time.</a></span></span></span>’s speed and amount of <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ram" class="glossary" >RAM</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ram" class="glossary" >Random Access
+Memory</a></span><span class="acronym-desc"><a 
+href="#glo:ram" class="glossary" >a form of electronic computer memory that can be read and changed in any order,
+typically used to store working data and machine code.</a></span></span></span> will typically matter most, but if
+it is a shallower model, then pumping the training data into the GPU might become the
+bottleneck.
+Let’s run a little test to compare the speed of a matrix multiplication running on the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:cpu" class="glossary" >CPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:cpu" class="glossary" >Central
+Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:cpu" class="glossary" >Central Processing Unit</a></span></span></span> versus the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized
+electronic chip designed to rapidly render images, video, and 3D animations. Unlike a central processing
+unit (CPU) that processes tasks sequentially, a GPU uses parallel processing with thousands of smaller
+cores to handle many calculations at the same time.</a></span></span></span>:
+                                                                                
+                                                                                
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb60"><a 
+ id="x7-24002r364"></a>M = torch.rand((<span style="color:#8F4070;">1000</span>, <span style="color:#8F4070;">1000</span>))  <span style="color:#918273;"><italic># on the CPU</italic></span> 
+<a 
+ id="x7-24004r365"></a>M @ M.T  <span style="color:#918273;"><italic># warmup</italic></span> 
+<a 
+ id="x7-24006r366"></a>%timeit M @ M.T 
+<a 
+ id="x7-24008r367"></a> 
+<a 
+ id="x7-24010r368"></a>M = M.to(device) 
+<a 
+ id="x7-24012r369"></a>M @ M.T  <span style="color:#918273;"><italic># warmup</italic></span> 
+<a 
+ id="x7-24014r370"></a>%timeit M @ M.T</pre>
+</code></pre><p>
+<!--l. 354--><p class="noindent" >The <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip designed to rapidly render images,
+video, and 3D animations. Unlike a central processing unit (CPU) that processes tasks sequentially, a
+GPU uses parallel processing with thousands of smaller cores to handle many calculations at the same
+time.</a></span></span></span> gave us a 29 times speed boost. We can just imagine the speedup we could get using a more
+powerful <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip designed to rapidly render images,
+video, and 3D animations. Unlike a central processing unit (CPU) that processes tasks sequentially, a
+GPU uses parallel processing with thousands of smaller cores to handle many calculations at the same
+time.</a></span></span></span>.
+</p>
+<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 2.<a 
+ id="x7-24015r14"></a>14: </span> </span> <span class="info-title"> Smaller is Slower </span> </span> <div class="body"><p>
+<!--l. 359--><p class="noindent" >The speed gain using smaller matrices is less than that of using large matrices. That’s because
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip designed to rapidly render images, video,
+and 3D animations. Unlike a central processing unit (CPU) that processes tasks sequentially, a GPU
+uses parallel processing with thousands of smaller cores to handle many calculations at the same time.</a></span></span></span>s
+work by breaking large operations into smaller operations and running them in parallel across
+thousands of cores. </p> 
+<hr/> 
+<p class="noindent"> 
+If the task is small, it cannot be broken up into that many pieces, and the
+performance gain is therefore smaller. In fact, when running many tiny tasks, it can sometimes be
+faster to just run the operations on the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:cpu" class="glossary" >CPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:cpu" class="glossary" >Central Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:cpu" class="glossary" >Central Processing
+Unit</a></span></span></span>.
+</p></div></div> </p>
+<!--l. 371--><p class="noindent" >All right, now that we’ve seen what tensors are and how to use them on the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:cpu" class="glossary" >CPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:cpu" class="glossary" >Central Processing
+Unit</a></span><span class="acronym-desc"><a 
+href="#glo:cpu" class="glossary" >Central Processing Unit</a></span></span></span> or the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip
+designed to rapidly render images, video, and 3D animations. Unlike a central processing unit (CPU)
+that processes tasks sequentially, a GPU uses parallel processing with thousands of smaller cores to
+handle many calculations at the same time.</a></span></span></span>, let’s look at PyTorch’s auto-differentiation
+feature.
+
+</p>
+<!--l. 374--><p class="noindent" ><h5 id="header-subsubsection-6" class="subsubsectionHead"> <a 
+ id="x7-25000"></a>Autograd</h5>
+</p><!--l. 376--><p class="noindent" >PyTorch comes with an efficient implementation of reverse-mode auto-differentiation, called
+<span id="bold" style="font-weight:bold;">autograd</span>, which stands for <italic>automatic gradients</italic>. It is quite easy to use. <div class="quote"><p>  For example, consider
+<!--l. 380--><math 
+ 
+display="inline" ><mi 
+>f</mi><mo 
+class="MathClass-open" stretchy="false">(</mo><mi 
+>x</mi><mo 
+class="MathClass-close" stretchy="false">)</mo> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <msup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></math>. Calculus tells us that the
+derivative of this function is <!--l. 381--><math 
+ 
+display="inline" ><msup><mrow 
+><mi 
+>f</mi></mrow><mrow 
+><mi 
+>′</mi></mrow></msup 
+><mo 
+class="MathClass-open" stretchy="false">(</mo><mi 
+>x</mi><mo 
+class="MathClass-close" stretchy="false">)</mo> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mn>2</mn><mi 
+>x</mi></math>.
+If we evaluate <!--l. 381--><math 
+ 
+display="inline" ><mi 
+>f</mi><mo 
+class="MathClass-open" stretchy="false">(</mo><mn>5</mn><mo 
+class="MathClass-close" stretchy="false">)</mo></math>
+and <!--l. 381--><math 
+ 
+display="inline" ><msup><mrow 
+><mi 
+>f</mi></mrow><mrow 
+><mi 
+>′</mi></mrow></msup 
+><mo 
+class="MathClass-open" stretchy="false">(</mo><mn>5</mn><mo 
+class="MathClass-close" stretchy="false">)</mo></math>,
+we get 25 and 10, respectively. </p></div><p>
+<!--l. 385--><p class="noindent" >Let’s see if PyTorch agrees:
+</p>
+                                                                                
+                                                                                
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb61"><a 
+ id="x7-25002r385"></a>x = torch.tensor(<span style="color:#8F4070;">5.0</span>, requires_grad=<span style="color:#9E0005;">True</span>) 
+<a 
+ id="x7-25004r386"></a>f = x ** <span style="color:#8F4070;">2</span> 
+<a 
+ id="x7-25006r387"></a>f 
+<a 
+ id="x7-25008r388"></a>f.backward() 
+<a 
+ id="x7-25010r389"></a>x.grad</pre>
+</code></pre><p>
+<!--l. 389--><p class="noindent" >Great, we got the correct results: <!--l. 389--><math 
+ 
+display="inline" ><mi 
+>f</mi></math>
+is 25, and <code class="verb">x.grad</code> is 10.
+</p>
+<div class="warning">
+<!--l. 394--><p class="noindent" >The <code class="verb">backward()</code> function automatically computed the gradient
+<!--l. 394--><math 
+ 
+display="inline" ><msup><mrow 
+><mi 
+>f</mi></mrow><mrow 
+><mi 
+>′</mi></mrow></msup 
+><mo 
+class="MathClass-open" stretchy="false">(</mo><mi 
+>x</mi><mo 
+class="MathClass-close" stretchy="false">)</mo></math> at the same
+point <!--l. 394--><math 
+ 
+display="inline" ><mi 
+>x</mi> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mn>5</mn><mo 
+class="MathClass-punc" stretchy="false">.</mo><mn>0</mn></math>.
+</p>
+</div>
+<!--l. 396--><p class="noindent" >Let’s go through this code line by line and get a feeling of what it has done: </p>
+<ul class="itemize1">     
+<li class="itemize">
+<!--l. 399--><p class="noindent" >First, we created a tensor <!--l. 399--><math 
+ 
+display="inline" ><mi 
+>x</mi></math>,
+equal to 5.0, and we told PyTorch that it’s a <span id="bold" style="font-weight:bold;">variable</span> by specifying <code class="verb">requires_grad=True</code>.
+Knowing this, PyTorch will automatically keep track of all operations involving <!--l. 401--><math 
+ 
+display="inline" ><mi 
+>x</mi></math>:
+</p>     
+<div class="knowledge">
+<!--l. 407--><p class="noindent" >this is needed because PyTorch must capture the computation
+graph in order to run backprop on it and obtain the derivative of
+<!--l. 407--><math 
+ 
+display="inline" ><mi 
+>f</mi></math> with regard to
+<!--l. 407--><math 
+ 
+display="inline" ><mi 
+>x</mi></math><span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[53]</span> 
+<span class="sidenote">In this computation
+graph, the tensor <!--l. 407--><math 
+ 
+display="inline" ><mi 
+>x</mi></math>
+is a <italic>leaf node</italic>.</span></span></span>
+</p>     
+</div>
+</li>     
+<li class="itemize">
+<!--l. 410--><p class="noindent" >Then we compute <code class="verb">f = x ** 2.</code> The result is a tensor equal to <code class="verb">25.0</code>, the square of <code class="verb">5.0</code>. Here, <code class="verb">f</code>
+also carries a <code class="verb">grad_fn</code> attribute which represents the operation that created this <span class="margin-block">tensor, <span class="margin-comment"><span class="ellipsis">[54]</span> 
+<span class="sidenote"><code class="verb">**</code>,
+power, hence the name <code class="verb">PowBackward0</code></span></span></span> and which tells PyTorch how to backpropagate the
+gradients through this particular operation. This <code class="verb">grad_fn</code> attribute is how PyTorch keeps track of
+the computation graph.
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 416--><p class="noindent" >Next, we call <code class="verb">f.backward()</code>. This method backpropagates the gradients through the
+computation graph, starting with <code class="verb">f</code>, and all the way back to the leaf nodes. Here, it is
+<!--l. 418--><math 
+ 
+display="inline" ><mi 
+>x</mi></math>.
+                                                                                
+                                                                                
+     
+</p>
+</li>     
+<li class="itemize">
+<!--l. 419--><p class="noindent" >Lastly, we can just read the <code class="verb">x</code> tensor’s <code class="verb">grad</code> attribute, which was computed during backprop. This
+gives us the derivative of <code class="verb">f</code> with regard to <code class="verb">x</code>.</p></li></ul>
+<!--l. 423--><p class="noindent" >PyTorch creates a new computation graph on the fly during <italic>each forward pass</italic>, as the operations
+are executed. This allows PyTorch to support very dynamic models containing loops and
+conditionals.
+</p>
+<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 2.<a 
+ id="x7-25011r15"></a>15: </span> </span> <span class="info-title"> How Grad Works </span> </span> <div class="body"><p>
+<!--l. 429--><p class="noindent" >The way PyTorch accumulates gradients in each variable’s <code class="verb">grad</code> attribute can be surprising at first,
+especially coming from <span class="alert"><alert style="color: #821131;">TensorFlow</alert></span> or <span class="alert"><alert style="color: #821131;">JAX</alert></span>. In these frameworks, computing the gradients of <code class="verb">f</code> with
+regard to <code class="verb">x</code> just returns the gradients, without affecting <code class="verb">x</code>. In PyTorch, if we call <code class="verb">backward()</code> on a
+tensor, it will accumulate the gradients in every variable that was used to compute it. </p> 
+<hr/> 
+<p class="noindent"> 
+So if we call
+<code class="verb">backward()</code> 
+on two tensors <code class="verb">t1</code> and <code class="verb">t2</code> that both used the same variable <code class="verb">v</code>, then <code class="verb">v.grad</code> will be the sum
+of their gradients.
+</p></div></div> </p>
+<!--l. 442--><p class="noindent" >After computing the gradients, we would generally want to perform a gradient descent
+step by subtracting a fraction of the gradients from the model <span class="margin-block">variables. <span class="margin-comment"><span class="ellipsis">[55]</span> 
+<span class="sidenote">at least
+when training a <span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span></span></span>.</span></span></span> In our simple example, running
+gradient descent will gradually push <code class="verb">x</code> toward <code class="verb">0</code>, since that’s the value that minimizes
+<!--l. 445--><math 
+ 
+display="inline" ><mi 
+>f</mi><mo 
+class="MathClass-open" stretchy="false">(</mo><mi 
+>x</mi><mo 
+class="MathClass-close" stretchy="false">)</mo> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <msup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></math>.
+For us to do a gradient descent step, we must temporarily disable gradient tracking since we don’t
+want to track the gradient descent step itself in the computation <span class="margin-block">graph. <span class="margin-comment"><span class="ellipsis">[56]</span> 
+<span class="sidenote">in fact, PyTorch
+would raise an exception if we tried to run an in-place operation on a tracked variable.</span></span></span> This
+can be done by placing the gradient descent step inside a <code class="verb">torch.no_grad()</code> context, like
+this:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb62"><a 
+ id="x7-25013r399"></a>learning_rate = <span style="color:#8F4070;">0.1</span> 
+<a 
+ id="x7-25015r400"></a><span style="color:#9E0005;">with</span> torch.no_grad(): 
+<a 
+ id="x7-25017r401"></a>    x -= learning_rate * x.grad  <span style="color:#918273;"><italic># gradient descent step</italic></span></pre>
+</code></pre><p>
+<!--l. 455--><p class="noindent" >The variable <code class="verb">x</code> gets decremented by <code class="verb">0.1 * 10.0 = 1.0</code>, down from <code class="verb">5.0</code> to <code class="verb">4.0</code>. Another way to avoid
+gradient computation is to use the variable’s <code class="verb">detach()</code> method: <div class="quote"><p>  this creates a new tensor detached
+from the computation graph, with <code class="verb">requires_grad=False</code>, but still pointing to the same data in
+memory. </p></div><p>  We can then update this detached tensor:
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb63"><a 
+ id="x7-25019r414"></a>x_detached = x.detach() 
+<a 
+ id="x7-25021r415"></a>x_detached -= learning_rate * x.grad</pre>
+</code></pre><p>
+<div class="knowledge">
+<!--l. 471--><p class="noindent" >Since <code class="verb">x_detached</code> and <code class="verb">x</code> share the same memory, modifying <code class="verb">x_detached</code> also modifies <code class="verb">x</code>.
+</p>
+</div>
+                                                                                
+                                                                                
+<!--l. 473--><p class="noindent" >The <code class="verb">detach()</code> method can be handy when we need to run some computation on a tensor without
+affecting the <span class="margin-block">gradients, <span class="margin-comment"><span class="ellipsis">[57]</span> 
+<span class="sidenote">e.g., for evaluation or logging.</span></span></span> or when we need fine-grained control over which
+operations should contribute to gradient computation. Using <code class="verb">no_grad()</code> is generally preferred when
+performing inference or doing a gradient descent step, as it provides a convenient context-wide method
+to disable gradient tracking.
+Lastly, before you repeat the whole <span class="margin-block">process, <span class="margin-comment"><span class="ellipsis">[58]</span> 
+<span class="sidenote">Which is forward pass + backward pass + gradient descent
+step.</span></span></span> it’s essential to zero out the gradients of every model <span class="margin-block">parameter: <span class="margin-comment"><span class="ellipsis">[59]</span> 
+<span class="sidenote">you don’t need a <code class="verb">no_grad()</code>
+context for this since the gradient tensor has <code class="verb">requires_grad=False</code>.</span></span></span>
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb64"><a 
+ id="x7-25023r420"></a>x.grad.zero_()</pre>
+</code></pre><p>
+<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 2.<a 
+ id="x7-25024r16"></a>16: </span> </span> <span class="info-title"> Don’t Forget your Gradients </span> </span> <div class="body"><p>
+<!--l. 488--><p class="noindent" >If we forget to zero out the gradients at each training iteration, the <code class="verb">backward()</code> method will just
+accumulate them, causing incorrect gradient descent updates. Since there won’t be any explicit
+error, just low <span class="margin-block">performance, <span class="margin-comment"><span class="ellipsis">[60]</span> 
+<span class="sidenote">and perhaps infinite or <code class="verb">NaN</code> values.</span></span></span> this issue may be <span class="alert"><alert style="color: #821131;">hard to
+debug</alert></span>.
+</p></div></div> </p>
+<!--l. 495--><p class="noindent" >Putting everything together, the whole training loop looks like this:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb65"><a 
+ id="x7-25026r427"></a>learning_rate = <span style="color:#8F4070;">0.1</span> 
+<a 
+ id="x7-25028r428"></a>x = torch.tensor(<span style="color:#8F4070;">5.0</span>, requires_grad=<span style="color:#9E0005;">True</span>) 
+<a 
+ id="x7-25030r429"></a><span style="color:#9E0005;">for</span> iteration <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(<span style="color:#8F4070;">100</span>): 
+<a 
+ id="x7-25032r430"></a>    f = x ** <span style="color:#8F4070;">2</span>  <span style="color:#918273;"><italic># forward pass</italic></span> 
+<a 
+ id="x7-25034r431"></a>    f.backward()  <span style="color:#918273;"><italic># backward pass</italic></span> 
+<a 
+ id="x7-25036r432"></a>    <span style="color:#9E0005;">with</span> torch.no_grad(): 
+<a 
+ id="x7-25038r433"></a>        x -= learning_rate * x.grad  <span style="color:#918273;"><italic># gradient descent step</italic></span> 
+<a 
+ id="x7-25040r434"></a>    x.grad.zero_()  <span style="color:#918273;"><italic># reset the gradients</italic></span></pre>
+</code></pre><p>
+<!--l. 499--><p class="noindent" >If we want to use in-place operations to save memory and speed up our models a bit by avoiding
+unnecessary copy operations, we have to be careful:
+</p>
+<div class="warning">
+<!--l. 504--><p class="noindent" >in-place operations don’t always play nicely with <span class="alert"><alert style="color: #821131;">autograd</alert></span>.
+</p>
+</div>
+<!--l. 506--><p class="noindent" >     
+</p>
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">  
+a. 
+</dt><dd 
+class="enumerate-enumitem">As we saw earlier, you cannot apply an in-place operation to a leaf <span class="margin-block">node, <span class="margin-comment"><span class="ellipsis">[61]</span> 
+<span class="sidenote">i.e., a tensor with
+<code class="verb">requires_grad=True</code>
+.</span></span></span> as PyTorch wouldn’t know where to store the computation graph.
+For example <code class="verb">x.cos_()</code> or <code class="verb">x += 1</code> would cause a <span id="bold" style="font-weight:bold;">RuntimeError</span>.
+</dd>     
+<dt class="enumerate-enumitem">
+b. 
+</dt><dd 
+class="enumerate-enumitem">consider the following code, which computes <!--l. 511--><math 
+ 
+display="inline" ><mi 
+>z</mi><mo 
+class="MathClass-open" stretchy="false">(</mo><mi 
+>t</mi><mo 
+class="MathClass-close" stretchy="false">)</mo> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mi class="loglike">exp</mi><mo>⁡<!--FUNCTION APPLICATION--></mo><!--nolimits--><mo 
+class="MathClass-open" stretchy="false">(</mo><mi 
+>t</mi><mo 
+class="MathClass-close" stretchy="false">)</mo> <mo 
+class="MathClass-bin" stretchy="false">+</mo> <mn>1</mn></math>
+at <!--l. 511--><math 
+ 
+display="inline" ><mi 
+>t</mi> <mo 
+class="MathClass-rel" stretchy="false">=</mo> <mn>2</mn></math>
+and then tries to compute the gradients:</dd></dl>
+<!--l. 521--><p class="noindent" >Oh no! Although <!--l. 521--><math 
+ 
+display="inline" ><mi 
+>z</mi></math>
+is computed correctly, the last line causes a <span id="bold" style="font-weight:bold;">RuntimeError</span>, complaining that: <div class="quote"><p>  one of the variables
+                                                                                
+                                                                                
+needed for gradient computation has been modified by an in-place operation. </p></div><p>  Indeed, the
+intermediate result <code class="verb">z = t.exp()</code> was lost when we ran the in-place operation <code class="verb">z += 1</code>, so
+when the backward pass reached the exponential operation, the gradients could not be
+computed.
+A simple fix is to replace <code class="verb">z += 1</code> with <code class="verb">z = z + 1</code>. It looks similar, but it’s no longer an in-place
+operation:
+<div class="knowledge">
+<!--l. 539--><p class="noindent" >a new tensor is created and assigned to the same variable, but the original tensor is unchanged and
+recorded in the computation graph of the final tensor.
+</p>
+</div>
+<!--l. 541--><p class="noindent" >Surprisingly, if we were to replace <code class="verb">exp()</code> with <code class="verb">cos()</code> in the previous code example, the gradients will be
+computed correctly. This is because the outcome depends on the way each operation is implemented:
+</p>     
+<ul class="itemize1">
+<li class="itemize">     
+<!--l. 546--><p class="noindent" >Some operations, such as <code class="verb">exp()</code>, <code class="verb">relu()</code>, <code class="verb">rsqrt()</code>, <code class="verb">sigmoid()</code>, <code class="verb">sqrt()</code>, <code class="verb">tan()</code>, and <code class="verb">tanh()</code>, save
+their outputs in the <span id="bold" style="font-weight:bold;">computation graph</span> during the forward pass, then use these outputs to
+compute the gradients during the backward pass. <div class="quote"><p>  For example, since the derivative of <code class="verb">exp(x)</code> is
+equal to <code class="verb">exp(x)</code>, it makes a lot of sense to store the output of this operation in the computation
+graph during the forward pass, then use this output during the backward pass to get the
+gradients as we have no need to store additional data, and no need to recompute <code class="verb">exp(x)</code>.
+</p>     
+</div><p>
+<div class="knowledge">     
+<!--l. 561--><p class="noindent" >This means that you must not modify such an operation’s output in place, or you will get an
+<span class="alert"><alert style="color: #821131;">error during the backward pass</alert></span>.
+</p>     
+</div>
+</li>     
+<li class="itemize">
+<!--l. 563--><p class="noindent" >Other operations, such as <code class="verb">abs()</code>, <code class="verb">cos()</code>, <code class="verb">log()</code>, <code class="verb">sin()</code>, <code class="verb">square()</code>, and <code class="verb">var()</code>, save their inputs
+instead of their <span class="margin-block">output. <span class="margin-comment"><span class="ellipsis">[62]</span> 
+<span class="sidenote">For example, the derivative of <code class="verb">abs(x)</code> is <code class="verb">1</code> when <code class="verb">x &#x003C; 0</code> and <code class="verb">+1</code> when
+<code class="verb">x &#x003E; 0</code>
+. If this operation saved its output in the computation graph, the backward pass would be
+unable to know whether x was positive or negative, given <code class="verb">abs(x)</code> is always positive, so it
+wouldn’t be able to compute the gradients. This is why this operation must save its input
+instead.</span></span></span>
+</p>     
+<!--l. 571--><p class="noindent" >Such an operation doesn’t care if you modify its output in place, but you must not modify its
+inputs in place before the backward <span class="margin-block">pass. <span class="margin-comment"><span class="ellipsis">[63]</span> 
+<span class="sidenote">e.g., to compute something else based on the same
+inputs.</span></span></span>
+</p>     
+</li>
+<li class="itemize">
+                                                                                
+                                                                                
+     
+<!--l. 575--><p class="noindent" >Some operations, such as <code class="verb">max()</code>, <code class="verb">min()</code>, <code class="verb">norm()</code>, <code class="verb">prod()</code>, <code class="verb">sgn()</code>, and <code class="verb">std()</code>, save both the inputs
+and the outputs, so we must not modify either of them in place before the backward
+pass.
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 579--><p class="noindent" >Lastly, a few operations, such as <code class="verb">ceil()</code>, <code class="verb">floor()</code>, <code class="verb">mean()</code>, <code class="verb">round()</code>, and <code class="verb">sum()</code>, save neither
+their inputs nor their <span class="margin-block">outputs. <span class="margin-comment"><span class="ellipsis">[64]</span> 
+<span class="sidenote">For example, the derivative of <code class="verb">floor(x)</code> is always zero, at least for
+non-integer inputs, so the <code class="verb">floor()</code> operation just saves the shape of the inputs during the
+forward pass, then during the backward pass it produces gradients of the same shape but full of
+zeros. For integer inputs, <code class="verb">autograd</code> also returns zeros instead of <code class="verb">NaN</code>.</span></span></span> You can safely modify them
+in place.</p></li></ul>
+<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 2.<a 
+ id="x7-25043r17"></a>17: </span> </span> <span class="info-title"> Try Before Commit </span> </span> <div class="body"><p>
+<!--l. 590--><p class="noindent" >Implement models first without any in-place operations, then if we need to save some memory or speed
+up your model a bit, we can try converting some of the most costly operations to their in-place
+counterparts. </p> 
+<hr/> 
+<p class="noindent"> 
+Just make sure that your model still outputs the same result for a given input, and also
+make sure you don’t modify in place a tensor needed for <span class="margin-block">backprop. <span class="margin-comment"><span class="ellipsis">[65]</span> 
+<span class="sidenote">Which in this case we will get a
+<code class="verb">Runtime Error</code>
+.</span></span></span>
+</p></div></div> </p>
+<!--l. 602--><p class="noindent" >Now let’s apply what we’ve learned so far by building and training a simple linear regression model
+with PyTorch.
+                                                                                
+                                                                                
+</p>
+<div class="crosslinks-bottom"><a 
+href="ImplementingLinearRegression.html" ><span class="nav-next">NEXT</span></a><a 
+href="UnderstandingPyTorch.html" ><span class="nav-prev">PREV</span></a><a 
+href="UnderstandingPyTorch.html#tailUnderstandingPyTorch.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
+href="PyTorchFundamentals.html" ><span class="nav-front">FRONT</span></a><a 
+href="UnderstandingPyTorch.html#PyTorchFundamentals.html" ><span class="nav-up">UP</span></a></nav><a 
+ id="tailPyTorchFundamentals.html"></a>    </div> <div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span> 
+<span class="footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 9.9.2026, at 9:52.</span> </div> </div> </div> <div class="author-notes"> 
+<span class="note">Authors Note </span> 
+<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span> 
+</div> 
+</article> 
+<div class="mode-line"> 
+<div class="core-line"> 
+<div class="button-group"> 
+</div> 
+</div> 
+<div class="supp-line"></div> 
+</div> 
+</page> 
+ 
+</body> 
+</html>

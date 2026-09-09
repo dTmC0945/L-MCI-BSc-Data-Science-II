@@ -1,0 +1,307 @@
+<!DOCTYPE html> 
+<html lang="en">  
+<head><title>Model Evaluation</title> 
+<meta  charset="utf-8" /> 
+<meta name="generator" content="lms-WebBook" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="\aa:CssFile " /> 
+<meta name="src" content="DataScienceIILectureBook.tex" /> 
+ <script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js"></script>  
+<link rel="icon" type="image/x-icon" href="logo/lms.ico"> 
+<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" /> 
+<link rel ="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@latest/flatweb.css"> 
+<script src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@latest/flatweb.js" async='true' crossorigin='anonymous'></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css"> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css"/> 
+<script src ="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script> 
+<link rel="stylesheet" href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css"/> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/> 
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet/'> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script> 
+ <style></style> </head><body 
+>
+<page> 
+<nav class="wide"><img class="webbook-logo" src="logo/webbook-logo.svg"></img> <div class="header"> <div class="header-left"><span class="header-lecture-grade">B.Sc</span> 
+<span class="header-lecture-name">Data Science II</span> 
+<span class="header-webBook">WebBook 2.1</span> </div> <div class="header-right"> <span class="header-version">SS.2026</span> 
+ <span class="header-chapter">Understanding PyTorch</span></div></div> <div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style='font-size:20px'></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&hl=en\&user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style='font-size:20px'></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style='font-size:20px'></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style='font-size:20px'></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style='font-size:20px'></i></a></div><hr /><span class="chapterToc"><span class="number">0</span><span class="title"><a 
+href="index.html#x2-10000">index</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a 
+href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial
+Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Current Developments and Overview</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">Logical
+Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">The Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Multilayer Perceptron and
+Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Regression MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.7</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-100001.1.7">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-110001.2">Implementing
+MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-120001.2.1">Building an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-140001.2.2">Creating
+the model using the sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-180001.2.3">Building a Regression MLP Using the
+Sequential API</a></span></span><span class="chapterToc"><span class="number">2</span><span class="title"><a 
+href="UnderstandingPyTorch.html#x6-190002">Understanding PyTorch</a></span></span><span class="sectionToc"><span class="number">2.1</span><span class="title"><a 
+href="PyTorchFundamentals.html#x7-210002.1">PyTorch Fundamentals</a></span></span><span class="subsectionToc"><span class="number">2.1.1</span><span class="title"><a 
+href="PyTorchFundamentals.html#x7-220002.1.1">Making some
+Tensors</a></span></span><span class="subsectionToc"><span class="number">2.1.2</span><span class="title"><a 
+href="PyTorchFundamentals.html#x7-230002.1.2">Hardware Acceleration</a></span></span><span class="sectionToc"><span class="number">2.2</span><span class="title"><a 
+href="ImplementingLinearRegression.html#x8-260002.2">Implementing Linear Regression</a></span></span><span class="subsectionToc"><span class="number">2.2.1</span><span class="title"><a 
+href="ImplementingLinearRegression.html#x8-270002.2.1">Linear
+Regression Using Tensors and Autograd</a></span></span><span class="subsectionToc"><span class="number">2.2.2</span><span class="title"><a 
+href="ImplementingLinearRegression.html#x8-290002.2.2">Linear Regression Using PyTorch’s
+High-Level API</a></span></span><span class="sectionToc"><span class="number">2.3</span><span class="title"><a 
+href="ImplementingaRegressionMLP.html#x9-300002.3">Implementing a Regression MLP</a></span></span><span class="sectionToc"><span class="number">2.4</span><span class="title"><a 
+href="MiniBatchGradientDescentUsingDataLoaders.html#x10-310002.4">Mini-Batch Gradient Descent
+Using DataLoaders</a></span></span><span class="sectionToc"><span class="number">2.5</span><span class="title"><a 
+href="#x11-320002.5">Model Evaluation</a></span></span><span class="sectionToc"><span class="number">2.6</span><span class="title"><a 
+href="BuildingNonsequentialModelsUsingCustomModules.html#x12-330002.6">Building Nonsequential Models Using Custom
+Modules</a></span></span><span class="subsectionToc"><span class="number">2.6.1</span><span class="title"><a 
+href="BuildingNonsequentialModelsUsingCustomModules.html#x12-340002.6.1">Building Models with Multiple Inputs</a></span></span><span class="subsectionToc"><span class="number">2.6.2</span><span class="title"><a 
+href="BuildingNonsequentialModelsUsingCustomModules.html#x12-350002.6.2">Building Models with Multiple
+Outputs</a></span></span><span class="sectionToc"><span class="number">2.7</span><span class="title"><a 
+href="BuildinganImageClassifierwithPyTorch.html#x13-360002.7">Building an Image Classifier with PyTorch</a></span></span><span class="subsectionToc"><span class="number">2.7.1</span><span class="title"><a 
+href="BuildinganImageClassifierwithPyTorch.html#x13-370002.7.1">Using TorchVision to Load the
+Dataset</a></span></span><span class="subsectionToc"><span class="number">2.7.2</span><span class="title"><a 
+href="BuildinganImageClassifierwithPyTorch.html#x13-380002.7.2">Building the Classifier</a></span></span><span class="sectionToc"><span class="number">2.8</span><span class="title"><a 
+href="FineTuningHyperparameterswithOptuna.html#x14-390002.8">Fine-Tuning Hyperparameters with Optuna</a></span></span><span class="sectionToc"><span class="number">2.9</span><span class="title"><a 
+href="SavingandLoadingPyTorchModels.html#x15-400002.9">Saving
+and Loading PyTorch Models</a></span></span><span class="sectionToc"><span class="number">2.10</span><span class="title"><a 
+href="CompilingandOptimizingaPyTorchModel.html#x16-410002.10">Compiling and Optimizing a PyTorch Model</a></span></span>
+<!--l. 1060--><p class="noindent" ><div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span> 
+<span class="nav-footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 9.9.2026, at 9:52.</span></div></div><span class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span></div></div></nav> 
+
+</p>
+<article class="chapter"> 
+<nav class="crosslinks-top"> <a 
+href="BuildingNonsequentialModelsUsingCustomModules.html" ><span class="nav-next">NEXT</span></a><a 
+href="MiniBatchGradientDescentUsingDataLoaders.html" ><span class="nav-prev">PREV</span></a><a 
+href="MiniBatchGradientDescentUsingDataLoaders.html#tailMiniBatchGradientDescentUsingDataLoaders.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
+href="#tailModelEvaluation.html"><span class="nav-tail">TAIL</span></a><a 
+href="UnderstandingPyTorch.html#ModelEvaluation.html" ><span class="nav-up">UP</span></a></nav> 
+<div class="section-header"> <h3 id="header-section-2.5"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.2.5"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a> <span class="number">2.5</span> <span class="title">  <a 
+ id="x11-320002.5"></a>Model Evaluation</span></h3></div><p>
+<!--l. 1062--><p class="noindent" >Let’s write a function to evaluate the model. It takes the model and a <code class="verb">DataLoader</code> for the dataset that
+we want to evaluate the model on, as well as a function to compute the metric for a given
+batch, and lastly a function to aggregate the batch <span class="margin-block">metrics: <span class="margin-comment"><span class="ellipsis">[79]</span> 
+<span class="sidenote">By default, it just computes the
+mean.</span></span></span>
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb77"><a 
+ id="x11-32002r697"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">evaluate</span>(model, data_loader, metric_fn, aggregate_fn=torch.mean): 
+<a 
+ id="x11-32004r698"></a>    model.eval() 
+<a 
+ id="x11-32006r699"></a>    metrics = [] 
+<a 
+ id="x11-32008r700"></a>    <span style="color:#9E0005;">with</span> torch.no_grad(): 
+<a 
+ id="x11-32010r701"></a>        <span style="color:#9E0005;">for</span> X_batch, y_batch <span style="color:#9E0005;">in</span> data_loader: 
+<a 
+ id="x11-32012r702"></a>            X_batch, y_batch = X_batch.to(device), y_batch.to(device) 
+<a 
+ id="x11-32014r703"></a>            y_pred = model(X_batch) 
+<a 
+ id="x11-32016r704"></a>            metric = metric_fn(y_pred, y_batch) 
+<a 
+ id="x11-32018r705"></a>            metrics.append(metric) 
+<a 
+ id="x11-32020r706"></a>    <span style="color:#9E0005;">return</span> aggregate_fn(torch.stack(metrics))</pre>
+</code></pre><p>
+<!--l. 1069--><p class="noindent" >Now let’s build a <code class="verb">TensorDataset</code> and a <code class="verb">DataLoader</code> for our validation set, and pass it to
+our <code class="verb">evaluate()</code> function to compute the validation <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mse" class="glossary" >MSE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mse" class="glossary" >Mean Square Error</a></span><span class="acronym-desc"><a 
+href="#glo:mse" class="glossary" >Mean Square
+Error</a></span></span></span>:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb78"><a 
+ id="x11-32022r711"></a>valid_dataset = TensorDataset(X_valid, y_valid) 
+<a 
+ id="x11-32024r712"></a>valid_loader = DataLoader(valid_dataset, batch_size=<span style="color:#8F4070;">32</span>) 
+<a 
+ id="x11-32026r713"></a>valid_mse = evaluate(model, valid_loader, mse) 
+<a 
+ id="x11-32028r714"></a>valid_mse</pre>
+</code></pre><p>
+<!--l. 1076--><p class="noindent" >It works fine. But now suppose we want to use the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:rmse" class="glossary" >RMSE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:rmse" class="glossary" >Root-Mean Square Error</a></span><span class="acronym-desc"><a 
+href="#glo:rmse" class="glossary" >Root-Mean Square
+Error</a></span></span></span> instead of the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mse" class="glossary" >MSE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mse" class="glossary" >Mean Square Error</a></span><span class="acronym-desc"><a 
+href="#glo:mse" class="glossary" >Mean Square Error</a></span></span></span>. PyTorch does not have a built-in
+function for that, but it’s easy enough to write:
+                                                                                
+                                                                                
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb79"><a 
+ id="x11-32030r719"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">rmse</span>(y_pred, y_true): 
+<a 
+ id="x11-32032r720"></a>    <span style="color:#9E0005;">return</span> ((y_pred - y_true) ** <span style="color:#8F4070;">2</span>).mean().sqrt() 
+<a 
+ id="x11-32034r721"></a> 
+<a 
+ id="x11-32036r722"></a>evaluate(model, valid_loader, rmse)</pre>
+</code></pre><p>
+<!--l. 1082--><p class="noindent" >The <span class="acronym"><span class="acronym-short"><a 
+href="#glo:rmse" class="glossary" >RMSE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:rmse" class="glossary" >Root-Mean Square Error</a></span><span class="acronym-desc"><a 
+href="#glo:rmse" class="glossary" >Root-Mean Square Error</a></span></span></span> should be equal to the square root of the
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:mse" class="glossary" >MSE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mse" class="glossary" >Mean Square Error</a></span><span class="acronym-desc"><a 
+href="#glo:mse" class="glossary" >Mean Square Error</a></span></span></span>. However, when we compute the square root of
+the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mse" class="glossary" >MSE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mse" class="glossary" >Mean Square Error</a></span><span class="acronym-desc"><a 
+href="#glo:mse" class="glossary" >Mean Square Error</a></span></span></span> that we found earlier, we get a different
+result:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb80"><a 
+ id="x11-32038r727"></a>valid_mse.sqrt()</pre>
+</code></pre><p>
+<!--l. 1089--><p class="noindent" >The reason is that instead of calculating the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:rmse" class="glossary" >RMSE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:rmse" class="glossary" >Root-Mean Square Error</a></span><span class="acronym-desc"><a 
+href="#glo:rmse" class="glossary" >Root-Mean Square Error</a></span></span></span>
+over the whole validation set, we computed it over each batch and then computed the mean of all these
+batch <span class="acronym"><span class="acronym-short"><a 
+href="#glo:rmse" class="glossary" >RMSE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:rmse" class="glossary" >Root-Mean Square Error</a></span><span class="acronym-desc"><a 
+href="#glo:rmse" class="glossary" >Root-Mean Square Error</a></span></span></span>s.
+</p>
+<div class="warning">
+<!--l. 1095--><p class="noindent" >That’s <span id="bold" style="font-weight:bold;">NOT</span> mathematically equivalent to computing the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:rmse" class="glossary" >RMSE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:rmse" class="glossary" >Root-Mean Square Error</a></span><span class="acronym-desc"><a 
+href="#glo:rmse" class="glossary" >Root-Mean
+Square Error</a></span></span></span> over the whole validation set.
+</p>
+</div>
+<!--l. 1097--><p class="noindent" >To solve this, we can use the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mse" class="glossary" >MSE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mse" class="glossary" >Mean Square Error</a></span><span class="acronym-desc"><a 
+href="#glo:mse" class="glossary" >Mean Square Error</a></span></span></span> as our <code class="verb">metric_fn</code>, and use the
+<code class="verb">aggregate_fn</code> 
+to compute the square root of the mean <span class="margin-block">MSE: <span class="margin-comment"><span class="ellipsis">[80]</span> 
+<span class="sidenote"> The mean of the batch <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mse" class="glossary" >MSE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mse" class="glossary" >Mean
+Square Error</a></span><span class="acronym-desc"><a 
+href="#glo:mse" class="glossary" >Mean Square Error</a></span></span></span>s is equal to the overall <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mse" class="glossary" >MSE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mse" class="glossary" >Mean Square Error</a></span><span class="acronym-desc"><a 
+href="#glo:mse" class="glossary" >Mean Square Error</a></span></span></span>
+since all batches have the same size. Well, except the last batch, which is often smaller, but this makes
+very little difference.</span></span></span>
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb81"><a 
+ id="x11-32040r732"></a>evaluate(model, valid_loader, mse, 
+<a 
+ id="x11-32042r733"></a>         aggregate_fn=<span style="color:#9E0005;">lambda</span> metrics: torch.sqrt(torch.mean(metrics)))</pre>
+</code></pre><p>
+<!--l. 1107--><p class="noindent" >Rather than implement metrics yourself, you may prefer to use the TorchMetrics <span class="margin-block">library,
+<span class="margin-comment"><span class="ellipsis">[81]</span> 
+<span class="sidenote">made by the same team as PyTorch Lightning.</span></span></span> which provides many well-tested streaming
+metrics.
+</p>
+<div class="knowledge">
+<!--l. 1114--><p class="noindent" >A streaming metric is an object that keeps track of a given metric, and can be updated one batch at a
+time.
+</p>
+</div>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb82"><a 
+ id="x11-32044r738"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torchmetrics</span> 
+<a 
+ id="x11-32046r739"></a> 
+<a 
+ id="x11-32048r740"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">evaluate_tm</span>(model, data_loader, metric): 
+<a 
+ id="x11-32050r741"></a>    model.eval() 
+<a 
+ id="x11-32052r742"></a>    metric.reset()  <span style="color:#918273;"><italic># reset the metric at the beginning</italic></span> 
+<a 
+ id="x11-32054r743"></a>    <span style="color:#9E0005;">with</span> torch.no_grad(): 
+<a 
+ id="x11-32056r744"></a>        <span style="color:#9E0005;">for</span> X_batch, y_batch <span style="color:#9E0005;">in</span> data_loader: 
+<a 
+ id="x11-32058r745"></a>            X_batch, y_batch = X_batch.to(device), y_batch.to(device) 
+<a 
+ id="x11-32060r746"></a>            y_pred = model(X_batch) 
+<a 
+ id="x11-32062r747"></a>            metric.update(y_pred, y_batch)  <span style="color:#918273;"><italic># update it at each iteration</italic></span> 
+<a 
+ id="x11-32064r748"></a>    <span style="color:#9E0005;">return</span> metric.compute()  <span style="color:#918273;"><italic># compute the final result at the end</italic></span></pre>
+                                                                                
+                                                                                
+</code></pre><p>
+<!--l. 1118--><p class="noindent" >Then we can create an <span class="acronym"><span class="acronym-short"><a 
+href="#glo:rmse" class="glossary" >RMSE</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:rmse" class="glossary" >Root-Mean Square Error</a></span><span class="acronym-desc"><a 
+href="#glo:rmse" class="glossary" >Root-Mean Square Error</a></span></span></span> streaming metric,
+move it to the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A specialized electronic chip designed to
+rapidly render images, video, and 3D animations. Unlike a central processing unit (CPU)
+that processes tasks sequentially, a GPU uses parallel processing with thousands of smaller
+cores to handle many calculations at the same time.</a></span></span></span>, and use it to evaluate the validation
+set:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb83"><a 
+ id="x11-32066r753"></a>rmse = torchmetrics.MeanSquaredError(squared=<span style="color:#9E0005;">False</span>).to(device) 
+<a 
+ id="x11-32068r754"></a>evaluate_tm(model, valid_loader, rmse)</pre>
+</code></pre><p>
+<!--l. 1125--><p class="noindent" >If the performance on the training set is much better than on the validation set, your model is probably
+overfitting the training set, or there is a bug, such as a data mismatch between the training set and the
+validation set.
+</p><!--l. 1129--><p class="noindent" >So far we have only looked at simple sequential models, composed of a sequence of linear layers and
+ReLU activation functions. <div class="quote"><p>  How would you build a more complex, nonsequential model? </p></div><p>  For this, we
+will need to build custom modules.
+                                                                                
+                                                                                
+<div class="crosslinks-bottom"><a 
+href="BuildingNonsequentialModelsUsingCustomModules.html" ><span class="nav-next">NEXT</span></a><a 
+href="MiniBatchGradientDescentUsingDataLoaders.html" ><span class="nav-prev">PREV</span></a><a 
+href="MiniBatchGradientDescentUsingDataLoaders.html#tailMiniBatchGradientDescentUsingDataLoaders.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
+href="ModelEvaluation.html" ><span class="nav-front">FRONT</span></a><a 
+href="UnderstandingPyTorch.html#ModelEvaluation.html" ><span class="nav-up">UP</span></a></nav><a 
+ id="tailModelEvaluation.html"></a> </div> <div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span> 
+<span class="footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 9.9.2026, at 9:52.</span> </div> </div> </div> <div class="author-notes"> 
+<span class="note">Authors Note </span> 
+<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span> 
+</div> 
+</article> 
+<div class="mode-line"> 
+<div class="core-line"> 
+<div class="button-group"> 
+</div> 
+</div> 
+<div class="supp-line"></div> 
+</div> 
+</page> 
+ 
+</body> 
+</html>

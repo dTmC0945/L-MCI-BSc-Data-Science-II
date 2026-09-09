@@ -1,0 +1,775 @@
+<!DOCTYPE html> 
+<html lang="en">  
+<head><title>Building Nonsequential Models Using Custom Modules</title> 
+<meta  charset="utf-8" /> 
+<meta name="generator" content="lms-WebBook" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="\aa:CssFile " /> 
+<meta name="src" content="DataScienceIILectureBook.tex" /> 
+ <script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js"></script>  
+<link rel="icon" type="image/x-icon" href="logo/lms.ico"> 
+<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" /> 
+<link rel ="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@latest/flatweb.css"> 
+<script src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@latest/flatweb.js" async='true' crossorigin='anonymous'></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css"> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css"/> 
+<script src ="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script> 
+<link rel="stylesheet" href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css"/> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/> 
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet/'> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script> 
+ <style></style> </head><body 
+>
+<page> 
+<nav class="wide"><img class="webbook-logo" src="logo/webbook-logo.svg"></img> <div class="header"> <div class="header-left"><span class="header-lecture-grade">B.Sc</span> 
+<span class="header-lecture-name">Data Science II</span> 
+<span class="header-webBook">WebBook 2.1</span> </div> <div class="header-right"> <span class="header-version">SS.2026</span> 
+ <span class="header-chapter">Understanding PyTorch</span></div></div> <div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style='font-size:20px'></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&hl=en\&user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style='font-size:20px'></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style='font-size:20px'></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style='font-size:20px'></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style='font-size:20px'></i></a></div><hr /><span class="chapterToc"><span class="number">0</span><span class="title"><a 
+href="index.html#x2-10000">index</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a 
+href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial
+Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Current Developments and Overview</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">Logical
+Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">The Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Multilayer Perceptron and
+Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Regression MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.7</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-100001.1.7">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-110001.2">Implementing
+MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-120001.2.1">Building an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-140001.2.2">Creating
+the model using the sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-180001.2.3">Building a Regression MLP Using the
+Sequential API</a></span></span><span class="chapterToc"><span class="number">2</span><span class="title"><a 
+href="UnderstandingPyTorch.html#x6-190002">Understanding PyTorch</a></span></span><span class="sectionToc"><span class="number">2.1</span><span class="title"><a 
+href="PyTorchFundamentals.html#x7-210002.1">PyTorch Fundamentals</a></span></span><span class="subsectionToc"><span class="number">2.1.1</span><span class="title"><a 
+href="PyTorchFundamentals.html#x7-220002.1.1">Making some
+Tensors</a></span></span><span class="subsectionToc"><span class="number">2.1.2</span><span class="title"><a 
+href="PyTorchFundamentals.html#x7-230002.1.2">Hardware Acceleration</a></span></span><span class="sectionToc"><span class="number">2.2</span><span class="title"><a 
+href="ImplementingLinearRegression.html#x8-260002.2">Implementing Linear Regression</a></span></span><span class="subsectionToc"><span class="number">2.2.1</span><span class="title"><a 
+href="ImplementingLinearRegression.html#x8-270002.2.1">Linear
+Regression Using Tensors and Autograd</a></span></span><span class="subsectionToc"><span class="number">2.2.2</span><span class="title"><a 
+href="ImplementingLinearRegression.html#x8-290002.2.2">Linear Regression Using PyTorch’s
+High-Level API</a></span></span><span class="sectionToc"><span class="number">2.3</span><span class="title"><a 
+href="ImplementingaRegressionMLP.html#x9-300002.3">Implementing a Regression MLP</a></span></span><span class="sectionToc"><span class="number">2.4</span><span class="title"><a 
+href="MiniBatchGradientDescentUsingDataLoaders.html#x10-310002.4">Mini-Batch Gradient Descent
+Using DataLoaders</a></span></span><span class="sectionToc"><span class="number">2.5</span><span class="title"><a 
+href="ModelEvaluation.html#x11-320002.5">Model Evaluation</a></span></span><span class="sectionToc"><span class="number">2.6</span><span class="title"><a 
+href="#x12-330002.6">Building Nonsequential Models Using Custom
+Modules</a></span></span><span class="subsectionToc"><span class="number">2.6.1</span><span class="title"><a 
+href="#x12-340002.6.1">Building Models with Multiple Inputs</a></span></span><span class="subsectionToc"><span class="number">2.6.2</span><span class="title"><a 
+href="#x12-350002.6.2">Building Models with Multiple
+Outputs</a></span></span><span class="sectionToc"><span class="number">2.7</span><span class="title"><a 
+href="BuildinganImageClassifierwithPyTorch.html#x13-360002.7">Building an Image Classifier with PyTorch</a></span></span><span class="subsectionToc"><span class="number">2.7.1</span><span class="title"><a 
+href="BuildinganImageClassifierwithPyTorch.html#x13-370002.7.1">Using TorchVision to Load the
+Dataset</a></span></span><span class="subsectionToc"><span class="number">2.7.2</span><span class="title"><a 
+href="BuildinganImageClassifierwithPyTorch.html#x13-380002.7.2">Building the Classifier</a></span></span><span class="sectionToc"><span class="number">2.8</span><span class="title"><a 
+href="FineTuningHyperparameterswithOptuna.html#x14-390002.8">Fine-Tuning Hyperparameters with Optuna</a></span></span><span class="sectionToc"><span class="number">2.9</span><span class="title"><a 
+href="SavingandLoadingPyTorchModels.html#x15-400002.9">Saving
+and Loading PyTorch Models</a></span></span><span class="sectionToc"><span class="number">2.10</span><span class="title"><a 
+href="CompilingandOptimizingaPyTorchModel.html#x16-410002.10">Compiling and Optimizing a PyTorch Model</a></span></span>
+<!--l. 1138--><p class="noindent" ><div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span> 
+<span class="nav-footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 9.9.2026, at 9:52.</span></div></div><span class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span></div></div></nav> 
+
+</p>
+<article class="chapter"> 
+<nav class="crosslinks-top"> <a 
+href="BuildinganImageClassifierwithPyTorch.html" ><span class="nav-next">NEXT</span></a><a 
+href="ModelEvaluation.html" ><span class="nav-prev">PREV</span></a><a 
+href="ModelEvaluation.html#tailModelEvaluation.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
+href="#tailBuildingNonsequentialModelsUsingCustomModules.html"><span class="nav-tail">TAIL</span></a><a 
+href="UnderstandingPyTorch.html#BuildingNonsequentialModelsUsingCustomModules.html" ><span class="nav-up">UP</span></a></nav> 
+<div class="section-header"> <h3 id="header-section-2.6"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.2.6"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a> <span class="number">2.6</span> <span class="title">  <a 
+ id="x12-330002.6"></a>Building Nonsequential Models Using Custom Modules</span></h3></div><p>
+<!--l. 1140--><p class="noindent" >One example of a nonsequential <span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span></span></span> is a Wide &#x0026; Deep
+<span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span></span></span>. This neural network architecture was introduced in a
+2016 paper by <italic>Heng-Tze Cheng</italic> et al <span class="cite"><span class="cite-show">[†]</span><span class="cite-detail"><a 
+ id="x12-33001"></a>Cheng, H.-T. et al. Wide and deep learning for
+recommender systems in Proceedings of the 1st workshop on deep learning for recommender
+systems (2016), 7–10</span></span>. It connects all or part of the inputs directly to the output layer, as
+shown in <span id="bold" style="font-weight:bold;">Fig.</span> <a 
+href="#x12-33002r1">2.1<!--tex4ht:ref: fig:deep-and-wide-network --></a> This architecture makes it possible for the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural
+Networks</a></span></span></span> to learn both deep patterns, using the deep path, and simple rules, through the short
+path.
+The short path can also be used to provide manually engineered features to the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural
+Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span></span></span>. In contrast, a regular <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mlp" class="glossary" >MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span><span class="acronym-desc"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span></span></span>
+forces all the data to flow through the full stack of layers.
+</p>
+<div class="knowledge">
+<!--l. 1152--><p class="noindent" >Simple patterns in the data may end up being <span class="alert"><alert style="color: #821131;">distorted by this sequence of transformations</alert></span>.
+</p>
+</div>
+<figure class="figure"> 
+
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+<a 
+ id="x12-33002r1"></a>
+<figcaption class="caption" ><span class="id">Figure 2.1: </span><span  
+class="content">Wide &#x0026; Deep neural network                                                   </span></figcaption><!--tex4ht:label?: x12-33002r1 -->
+ <img 
+ 
+src="figures/Understanding-PyTorch/figures-1.png" alt="PIC"  
+style="" />
+                                                                                
+                                                                                
+</figure>
+<!--l. 1160--><p class="noindent" >Let’s build such a <span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span></span></span> to tackle the <italic>California housing dataset</italic>.
+As this wide and deep architecture is nonsequential, we have to create a custom module.
+It’s easier than it sounds: <div class="quote"><p>  We just create a class derived from <code class="verb">torch.nn.Module</code>, then
+create all the layers you need in the <span class="margin-block">constructor, <span class="margin-comment"><span class="ellipsis">[82]</span> 
+<span class="sidenote">after calling the base class’s <code class="verb">__init__()</code>
+method.</span></span></span> and define how these layers should be used by the module in the <code class="verb">forward()</code> method:
+</p></div><p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb84"><a 
+ id="x12-33004r823"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">WideAndDeep</span>(nn.Module): 
+<a 
+ id="x12-33006r824"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, n_features): 
+<a 
+ id="x12-33008r825"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
+<a 
+ id="x12-33010r826"></a>        <span style="color:#B03B03;">self</span>.deep_stack = nn.Sequential( 
+<a 
+ id="x12-33012r827"></a>            nn.Linear(n_features, <span style="color:#8F4070;">50</span>), nn.ReLU(), 
+<a 
+ id="x12-33014r828"></a>            nn.Linear(<span style="color:#8F4070;">50</span>, <span style="color:#8F4070;">40</span>), nn.ReLU(), 
+<a 
+ id="x12-33016r829"></a>            nn.Linear(<span style="color:#8F4070;">40</span>, <span style="color:#8F4070;">30</span>), nn.ReLU(), 
+<a 
+ id="x12-33018r830"></a>        ) 
+<a 
+ id="x12-33020r831"></a>        <span style="color:#B03B03;">self</span>.output_layer = nn.Linear(<span style="color:#8F4070;">30</span> + n_features, <span style="color:#8F4070;">1</span>) 
+<a 
+ id="x12-33022r832"></a> 
+<a 
+ id="x12-33024r833"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, X): 
+<a 
+ id="x12-33026r834"></a>        deep_output = <span style="color:#B03B03;">self</span>.deep_stack(X) 
+<a 
+ id="x12-33028r835"></a>        wide_and_deep = torch.concat([X, deep_output], dim=<span style="color:#8F4070;">1</span>) 
+<a 
+ id="x12-33030r836"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output_layer(wide_and_deep)</pre>
+</code></pre><p>
+<!--l. 1172--><p class="noindent" >We can use any kind of module inside our custom module. In this example, we use an <code class="verb">nn.Sequential</code>
+module to build the <span class="alert"><alert style="color: #821131;">deep</alert></span> part of our <span class="margin-block">model. <span class="margin-comment"><span class="ellipsis">[83]</span> 
+<span class="sidenote">It’s actually not that deep as this is just a toy example.</span></span></span>
+It’s the same <span class="acronym"><span class="acronym-short"><a 
+href="#glo:mlp" class="glossary" >MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span><span class="acronym-desc"><a 
+href="#glo:mlp" class="glossary" >Multi-layer Perceptrons</a></span></span></span> as earlier, except we separated the
+output layer because we need to feed it the concatenation of the model’s inputs and the deep part’s
+outputs. For this same reason, the output layer now has 40 + <code class="verb">n_features</code> inputs instead of just
+40.
+In the <code class="verb">forward()</code> method, we just feed the input <code class="verb">X</code> to the deep stack, concatenate the input and the
+deep stack’s output, and feed the result to the output layer.
+</p>
+<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 2.<a 
+ id="x12-33031r22"></a>22: </span> </span> <span class="info-title"> Child’s Method </span> </span> <div class="body"><p>
+<!--l. 1185--><p class="noindent" >Modules have a <code class="verb">children()</code> method which returns an iterator over the module’s submodules
+<span class="alert"><alert style="color: #821131;">non-recursively</alert></span>. There’s also a <code class="verb">named_children()</code> method. If our model has a variable number of
+submodules, we should store them in an <code class="verb">nn.ModuleList</code> or an <code class="verb">nn.ModuleDict</code>, which are returned by
+the <code class="verb">children()</code> and <code class="verb">named_children()</code> <span class="margin-block">methods. <span class="margin-comment"><span class="ellipsis">[84]</span> 
+<span class="sidenote">as opposed to regular Python lists and dicts.</span></span></span>
+Similarly, if our model has a variable number of parameters, we should store them in an
+<code class="verb">nn.ParameterList</code> 
+or an <code class="verb">nn.ParameterDict</code> to ensure they are returned by the <code class="verb">paramters()</code> and
+<code class="verb">named_parameters()</code> 
+methods.
+</p></div></div> </p>
+<!--l. 1196--><p class="noindent" >Now we can create an instance of our custom module, move it to the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
+href="#glo:gpu" class="glossary" >A
+specialized electronic chip designed to rapidly render images, video, and 3D animations. Unlike a
+central processing unit (CPU) that processes tasks sequentially, a GPU uses parallel processing with
+thousands of smaller cores to handle many calculations at the same time.</a></span></span></span>, train it, evaluate it, and use
+it exactly like our previous models:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb85"><a 
+ id="x12-33033r841"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a 
+ id="x12-33035r842"></a>model = WideAndDeep(n_features).to(device) 
+<a 
+ id="x12-33037r843"></a>learning_rate = <span style="color:#8F4070;">0.002</span>  <span style="color:#918273;"><italic># the model changed, so did the optimal learning rate</italic></span> 
+<a 
+ id="x12-33039r844"></a> 
+<a 
+ id="x12-33041r845"></a>optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, momentum=<span style="color:#8F4070;">0</span>) 
+<a 
+ id="x12-33043r846"></a>mse = nn.MSELoss() 
+<a 
+ id="x12-33045r847"></a>rmse = torchmetrics.MeanSquaredError(squared=<span style="color:#9E0005;">False</span>).to(device) 
+<a 
+ id="x12-33047r848"></a>history = train2(model, optimizer, mse, rmse, train_loader, valid_loader, 
+<a 
+ id="x12-33049r849"></a>                 n_epochs) 
+<a 
+ id="x12-33051r850"></a></pre>
+</code></pre><p>
+<!--l. 1201--><p class="noindent" >But what if we want to send a subset of the features through the wide path and a different subset,
+possibly overlapping, through the deep path, as shown in <span id="bold" style="font-weight:bold;">Fig.</span> <a 
+href="#x12-34001r2">2.2<!--tex4ht:ref: fig:multiple-inputs --></a>?
+</p><!--l. 1204--><p class="noindent" >In this case, one approach is to split the inputs inside the <code class="verb">forward()</code> method, for example:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb86"><a 
+ id="x12-33053r865"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">WideAndDeepV2</span>(nn.Module): 
+<a 
+ id="x12-33055r866"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, n_features): 
+<a 
+ id="x12-33057r867"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
+<a 
+ id="x12-33059r868"></a>        <span style="color:#B03B03;">self</span>.deep_stack = nn.Sequential( 
+<a 
+ id="x12-33061r869"></a>            nn.Linear(n_features - <span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">50</span>), nn.ReLU(), 
+<a 
+ id="x12-33063r870"></a>            nn.Linear(<span style="color:#8F4070;">50</span>, <span style="color:#8F4070;">40</span>), nn.ReLU(), 
+<a 
+ id="x12-33065r871"></a>            nn.Linear(<span style="color:#8F4070;">40</span>, <span style="color:#8F4070;">30</span>), nn.ReLU(), 
+<a 
+ id="x12-33067r872"></a>        ) 
+<a 
+ id="x12-33069r873"></a>        <span style="color:#B03B03;">self</span>.output_layer = nn.Linear(<span style="color:#8F4070;">30</span> + <span style="color:#8F4070;">5</span>, <span style="color:#8F4070;">1</span>) 
+<a 
+ id="x12-33071r874"></a> 
+<a 
+ id="x12-33073r875"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, X): 
+<a 
+ id="x12-33075r876"></a>        X_wide = X[:, :<span style="color:#8F4070;">5</span>] 
+<a 
+ id="x12-33077r877"></a>        X_deep = X[:, <span style="color:#8F4070;">2</span>:] 
+<a 
+ id="x12-33079r878"></a>        deep_output = <span style="color:#B03B03;">self</span>.deep_stack(X_deep) 
+<a 
+ id="x12-33081r879"></a>        wide_and_deep = torch.concat([X_wide, deep_output], dim=<span style="color:#8F4070;">1</span>) 
+<a 
+ id="x12-33083r880"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output_layer(wide_and_deep)</pre>
+                                                                                
+                                                                                
+</code></pre><p>
+<!--l. 1209--><p class="noindent" >This works fine; however, in many cases it’s preferable to just let the model take two separate tensors
+as input. Let’s see why and how.
+
+</p>
+<!--l. 1212--><p class="noindent" ><div class="subsection-header"> <h4 id="header-subsection-2.6.1"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.2.6.1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">2.6.1</span> <span class="title">  <a 
+ id="x12-340002.6.1"></a>Building Models with Multiple Inputs</span></h4></div><p>
+</p>
+<figure class="figure"> 
+
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+<!--l. 1216--><p class="noindent" > <img 
+ 
+src="figures/Understanding-PyTorch/figures-2.png" alt="PIC"  
+style="" /> <a 
+ id="x12-34001r2"></a>
+</p>
+<figcaption class="caption" ><span class="id">Figure 2.2: </span><span  
+class="content">Handling multiple inputs                                                      </span></figcaption><!--tex4ht:label?: x12-34001r2 -->
+                                                                                
+                                                                                
+</figure>
+<!--l. 1220--><p class="noindent" >Some models require multiple inputs that cannot easily be combined into a single tensor. For example,
+the inputs may have a different number of <span class="margin-block">dimensions. <span class="margin-comment"><span class="ellipsis">[85]</span> 
+<span class="sidenote">i.e., when we want to feed both images and text
+to the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span></span></span>.</span></span></span> To make our Wide &#x0026; Deep model, take two
+separate inputs, as shown in <span id="bold" style="font-weight:bold;">Fig.</span> <a 
+href="#x12-34001r2">2.2<!--tex4ht:ref: fig:multiple-inputs --></a>, we must start by changing the model’s <code class="verb">forward()</code>
+method:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb87"><a 
+ id="x12-34003r907"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">WideAndDeepV3</span>(nn.Module): 
+<a 
+ id="x12-34005r908"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, n_features): 
+<a 
+ id="x12-34007r909"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
+<a 
+ id="x12-34009r910"></a>        <span style="color:#B03B03;">self</span>.deep_stack = nn.Sequential( 
+<a 
+ id="x12-34011r911"></a>            nn.Linear(n_features - <span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">50</span>), nn.ReLU(), 
+<a 
+ id="x12-34013r912"></a>            nn.Linear(<span style="color:#8F4070;">50</span>, <span style="color:#8F4070;">40</span>), nn.ReLU(), 
+<a 
+ id="x12-34015r913"></a>            nn.Linear(<span style="color:#8F4070;">40</span>, <span style="color:#8F4070;">30</span>), nn.ReLU(), 
+<a 
+ id="x12-34017r914"></a>        ) 
+<a 
+ id="x12-34019r915"></a>        <span style="color:#B03B03;">self</span>.output_layer = nn.Linear(<span style="color:#8F4070;">30</span> + <span style="color:#8F4070;">5</span>, <span style="color:#8F4070;">1</span>) 
+<a 
+ id="x12-34021r916"></a> 
+<a 
+ id="x12-34023r917"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, X_wide, X_deep): 
+<a 
+ id="x12-34025r918"></a>        deep_output = <span style="color:#B03B03;">self</span>.deep_stack(X_deep) 
+<a 
+ id="x12-34027r919"></a>        wide_and_deep = torch.concat([X_wide, deep_output], dim=<span style="color:#8F4070;">1</span>) 
+<a 
+ id="x12-34029r920"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output_layer(wide_and_deep)</pre>
+</code></pre><p>
+<!--l. 1228--><p class="noindent" >Next, we need to create datasets that return the wide and deep inputs separately:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb88"><a 
+ id="x12-34031r925"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a 
+ id="x12-34033r926"></a>train_data_wd = TensorDataset(X_train[:, :<span style="color:#8F4070;">5</span>], X_train[:, <span style="color:#8F4070;">2</span>:], y_train) 
+<a 
+ id="x12-34035r927"></a>train_loader_wd = DataLoader(train_data_wd, batch_size=<span style="color:#8F4070;">32</span>, shuffle=<span style="color:#9E0005;">True</span>) 
+<a 
+ id="x12-34037r928"></a>valid_data_wd = TensorDataset(X_valid[:, :<span style="color:#8F4070;">5</span>], X_valid[:, <span style="color:#8F4070;">2</span>:], y_valid) 
+<a 
+ id="x12-34039r929"></a>valid_loader_wd = DataLoader(valid_data_wd, batch_size=<span style="color:#8F4070;">32</span>) 
+<a 
+ id="x12-34041r930"></a>test_data_wd = TensorDataset(X_test[:, :<span style="color:#8F4070;">5</span>], X_test[:, <span style="color:#8F4070;">2</span>:], y_test) 
+<a 
+ id="x12-34043r931"></a>test_loader_wd = DataLoader(test_data_wd, batch_size=<span style="color:#8F4070;">32</span>)</pre>
+</code></pre><p>
+<!--l. 1232--><p class="noindent" >Since the data loaders now return three tensors instead of two at each iteration, we need to update the
+main loop in the evaluation and training functions:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb89"><a 
+ id="x12-34045r940"></a>        <span style="color:#9E0005;">for</span> X_batch_wide, X_batch_deep, y_batch <span style="color:#9E0005;">in</span> data_loader: 
+<a 
+ id="x12-34047r941"></a>            X_batch_wide = X_batch_wide.to(device) 
+<a 
+ id="x12-34049r942"></a>            X_batch_deep = X_batch_deep.to(device) 
+<a 
+ id="x12-34051r943"></a>            y_batch = y_batch.to(device) 
+<a 
+ id="x12-34053r944"></a>            y_pred = model(X_batch_wide, X_batch_deep)</pre>
+</code></pre><p>
+<!--l. 1237--><p class="noindent" >Alternatively, since the order of the inputs matches the order of the <code class="verb">forward()</code> method’s arguments, we
+can use Python’s ∗ operator to unpack all the inputs returned by the <code class="verb">data_loader</code> and pass them to
+the model.
+</p>
+<div class="knowledge">
+<!--l. 1244--><p class="noindent" >The advantage of this implementation is that it will work with models that take any number of inputs,
+not just two, <span class="alert"><alert style="color: #821131;">as long as the order is correct</alert></span>.
+</p>
+</div>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb90"><a 
+ id="x12-34055r954"></a>        <span style="color:#9E0005;">for</span> *X_batch_inputs, y_batch <span style="color:#9E0005;">in</span> train_loader: 
+<a 
+ id="x12-34057r955"></a>            model.train() 
+<a 
+ id="x12-34059r956"></a>            X_batch_inputs = [X.to(device) <span style="color:#9E0005;">for</span> X <span style="color:#9E0005;">in</span> X_batch_inputs] 
+<a 
+ id="x12-34061r957"></a>            y_batch = y_batch.to(device) 
+<a 
+ id="x12-34063r958"></a>            y_pred = model(*X_batch_inputs)</pre>
+</code></pre><p>
+<!--l. 1248--><p class="noindent" >When our model has many inputs, it’s easy to make a mistake and mix up the order of the inputs,
+which can lead to hard-to-debug issues. To avoid this, it can be a good idea to name each
+input.
+</p><!--l. 1252--><p class="noindent" >For this, you can define a custom dataset that returns a dictionary from input names to input values,
+like this:
+</p>
+<pre><code class="language-python">
+                                                                                
+                                                                                
+<pre class="fancyvrb" id="fancyvrb91"><a 
+ id="x12-34065r988"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">WideAndDeepDataset</span>(torch.utils.data.Dataset): 
+<a 
+ id="x12-34067r989"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, X_wide, X_deep, y): 
+<a 
+ id="x12-34069r990"></a>        <span style="color:#B03B03;">self</span>.X_wide = X_wide 
+<a 
+ id="x12-34071r991"></a>        <span style="color:#B03B03;">self</span>.X_deep = X_deep 
+<a 
+ id="x12-34073r992"></a>        <span style="color:#B03B03;">self</span>.y = y 
+<a 
+ id="x12-34075r993"></a> 
+<a 
+ id="x12-34077r994"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__len__</span>(<span style="color:#B03B03;">self</span>): 
+<a 
+ id="x12-34079r995"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">len</span>(<span style="color:#B03B03;">self</span>.y) 
+<a 
+ id="x12-34081r996"></a> 
+<a 
+ id="x12-34083r997"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__getitem__</span>(<span style="color:#B03B03;">self</span>, idx): 
+<a 
+ id="x12-34085r998"></a>        input_dict = {<span style="color:#78730D;">&#x0022;X_wide&#x0022;</span>: <span style="color:#B03B03;">self</span>.X_wide[idx], <span style="color:#78730D;">&#x0022;X_deep&#x0022;</span>: <span style="color:#B03B03;">self</span>.X_deep[idx]} 
+<a 
+ id="x12-34087r999"></a>        <span style="color:#9E0005;">return</span> input_dict, <span style="color:#B03B03;">self</span>.y[idx]</pre>
+</code></pre><p>
+<!--l. 1257--><p class="noindent" >Then create the datasets and data loaders:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb92"><a 
+ id="x12-34089r1004"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a 
+ id="x12-34091r1005"></a>train_data_named = WideAndDeepDataset( 
+<a 
+ id="x12-34093r1006"></a>    X_wide=X_train[:, :<span style="color:#8F4070;">5</span>], X_deep=X_train[:, <span style="color:#8F4070;">2</span>:], y=y_train) 
+<a 
+ id="x12-34095r1007"></a>train_loader_named = DataLoader(train_data_named, batch_size=<span style="color:#8F4070;">32</span>, shuffle=<span style="color:#9E0005;">True</span>) 
+<a 
+ id="x12-34097r1008"></a>valid_data_named = WideAndDeepDataset( 
+<a 
+ id="x12-34099r1009"></a>    X_wide=X_valid[:, :<span style="color:#8F4070;">5</span>], X_deep=X_valid[:, <span style="color:#8F4070;">2</span>:], y=y_valid) 
+<a 
+ id="x12-34101r1010"></a>valid_loader_named = DataLoader(valid_data_named, batch_size=<span style="color:#8F4070;">32</span>) 
+<a 
+ id="x12-34103r1011"></a>test_data_named = WideAndDeepDataset( 
+<a 
+ id="x12-34105r1012"></a>    X_wide=X_test[:, :<span style="color:#8F4070;">5</span>], X_deep=X_test[:, <span style="color:#8F4070;">2</span>:], y=y_test) 
+<a 
+ id="x12-34107r1013"></a>test_loader_named = DataLoader(test_data_named, batch_size=<span style="color:#8F4070;">32</span>)</pre>
+</code></pre><p>
+<!--l. 1261--><p class="noindent" >Once again, we also need to update the main loop in the evaluation and training functions:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb93"><a 
+ id="x12-34109r1022"></a>        <span style="color:#9E0005;">for</span> inputs, y_batch <span style="color:#9E0005;">in</span> data_loader: 
+<a 
+ id="x12-34111r1023"></a>            inputs = {name: X.to(device) <span style="color:#9E0005;">for</span> name, X <span style="color:#9E0005;">in</span> inputs.items()} 
+<a 
+ id="x12-34113r1024"></a>            y_batch = y_batch.to(device) 
+<a 
+ id="x12-34115r1025"></a>            y_pred = model(X_wide=inputs[<span style="color:#78730D;">&#x0022;X_wide&#x0022;</span>], X_deep=inputs[<span style="color:#78730D;">&#x0022;X_deep&#x0022;</span>]) 
+<a 
+ id="x12-34117r1026"></a>            metric.update(y_pred, y_batch)</pre>
+</code></pre><p>
+<!--l. 1265--><p class="noindent" >Alternatively, since all the input names match the <code class="verb">forward()</code> method’s argument names, we can use
+Python’s <code class="verb">**</code> operator to unpack all the tensors in the inputs dictionary and pass them as named
+arguments to the model: <code class="verb">y_pred = model(**inputs)</code>.
+Now that we know how to build sequential and nonsequential models with one or more inputs, let’s
+look at models with multiple outputs.
+
+</p>
+<!--l. 1272--><p class="noindent" ><div class="subsection-header"> <h4 id="header-subsection-2.6.2"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.2.6.2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">2.6.2</span> <span class="title">  <a 
+ id="x12-350002.6.2"></a>Building Models with Multiple Outputs</span></h4></div><p>
+</p><!--l. 1274--><p class="noindent" >There are many use cases where you may need a <span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span></span></span> with multiple
+outputs: </p>
+<ul class="itemize1">     
+<li class="itemize">
+<!--l. 1277--><p class="noindent" >The task may demand it. For instance, we may want to locate and classify the main object
+in a picture: a <span id="bold" style="font-weight:bold;">regression task</span> and a <span id="bold" style="font-weight:bold;">classification</span> task.
+</p>     
+</li>
+<li class="itemize">     
+<!--l. 1279--><p class="noindent" >Similarly, we may have multiple independent tasks based on the same data. Sure, we could train
+one <span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span></span></span> per task, but in many cases we will get better results on
+all tasks by training a single <span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span></span></span> with one output per task. This
+is because the <span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span></span></span> can learn features in the data that
+are useful across tasks. <div class="quote"><p>  For example, we could perform multitask classification on
+pictures of faces, using one output to classify the person’s facial <span class="margin-block">expression <span class="margin-comment"><span class="ellipsis">[86]</span> 
+<span class="sidenote">smiling,
+surprised, etc.</span></span></span> and another output to identify whether they are wearing glasses or not.
+</p>     
+</div><p>
+</li>     
+<li class="itemize">
+                                                                                
+                                                                                
+     
+<!--l. 1290--><p class="noindent" >Another use case is <span class="margin-block">regularization. <span class="margin-comment"><span class="ellipsis">[87]</span> 
+<span class="sidenote">i.e., a training constraint whose objective is to reduce
+overfitting and thus improve the model’s ability to generalize</span></span></span> <div class="quote"><p>  For example, you may want to add
+an auxiliary output in a <span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span></span></span> architecture, shown in <span id="bold" style="font-weight:bold;">Fig.</span> <a 
+href="#x12-35001r3">2.3<!--tex4ht:ref: fig:auxiliary-output --></a>, to
+ensure that the underlying part of the network learns something useful on its own, without
+relying on the rest of the network. </p></div><p> </li></ul>
+<figure class="figure"> 
+
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+<a 
+ id="x12-35001r3"></a>
+<figcaption class="caption" ><span class="id">Figure 2.3: </span><span  
+class="content">Handling multiple outputs, in this example to add an auxiliary output for regularization           </span></figcaption><!--tex4ht:label?: x12-35001r3 -->
+ <img 
+ 
+src="figures/Understanding-PyTorch/figures-3.png" alt="PIC"  
+style="" />
+                                                                                
+                                                                                
+</figure>
+<!--l. 1307--><p class="noindent" >Let’s add an auxiliary output to our Wide &#x0026; Deep model to ensure the deep part can make good
+predictions on its own. Since the deep stack’s output dimension is 40, and the targets have a single
+dimension, we must add an <code class="verb">nn.Linear</code> layer for the auxiliary output to go from 40 dimensions down to
+1.
+We also need to make the <code class="verb">forward()</code> method compute the auxiliary output, and return both the main
+output and the auxiliary output:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb94"><a 
+ id="x12-35003r1074"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">WideAndDeepV4</span>(nn.Module): 
+<a 
+ id="x12-35005r1075"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, n_features): 
+<a 
+ id="x12-35007r1076"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
+<a 
+ id="x12-35009r1077"></a>        <span style="color:#B03B03;">self</span>.deep_stack = nn.Sequential( 
+<a 
+ id="x12-35011r1078"></a>            nn.Linear(n_features - <span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">50</span>), nn.ReLU(), 
+<a 
+ id="x12-35013r1079"></a>            nn.Linear(<span style="color:#8F4070;">50</span>, <span style="color:#8F4070;">40</span>), nn.ReLU(), 
+<a 
+ id="x12-35015r1080"></a>            nn.Linear(<span style="color:#8F4070;">40</span>, <span style="color:#8F4070;">30</span>), nn.ReLU(), 
+<a 
+ id="x12-35017r1081"></a>        ) 
+<a 
+ id="x12-35019r1082"></a>        <span style="color:#B03B03;">self</span>.output_layer = nn.Linear(<span style="color:#8F4070;">30</span> + <span style="color:#8F4070;">5</span>, <span style="color:#8F4070;">1</span>) 
+<a 
+ id="x12-35021r1083"></a>        <span style="color:#B03B03;">self</span>.aux_output_layer = nn.Linear(<span style="color:#8F4070;">30</span>, <span style="color:#8F4070;">1</span>) 
+<a 
+ id="x12-35023r1084"></a> 
+<a 
+ id="x12-35025r1085"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, X_wide, X_deep): 
+<a 
+ id="x12-35027r1086"></a>        deep_output = <span style="color:#B03B03;">self</span>.deep_stack(X_deep) 
+<a 
+ id="x12-35029r1087"></a>        wide_and_deep = torch.concat([X_wide, deep_output], dim=<span style="color:#8F4070;">1</span>) 
+<a 
+ id="x12-35031r1088"></a>        main_output = <span style="color:#B03B03;">self</span>.output_layer(wide_and_deep) 
+<a 
+ id="x12-35033r1089"></a>        aux_output = <span style="color:#B03B03;">self</span>.aux_output_layer(deep_output) 
+<a 
+ id="x12-35035r1090"></a>        <span style="color:#9E0005;">return</span> main_output, aux_output</pre>
+</code></pre><p>
+<!--l. 1317--><p class="noindent" >Next, we need to update the main loop in the training function:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb95"><a 
+ id="x12-35037r1018"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">evaluate_named</span>(model, data_loader, metric): 
+<a 
+ id="x12-35039r1019"></a>    model.eval() 
+<a 
+ id="x12-35041r1020"></a>    metric.reset()  <span style="color:#918273;"><italic># reset the metric at the beginning</italic></span> 
+<a 
+ id="x12-35043r1021"></a>    <span style="color:#9E0005;">with</span> torch.no_grad(): 
+<a 
+ id="x12-35045r1022"></a>        <span style="color:#9E0005;">for</span> inputs, y_batch <span style="color:#9E0005;">in</span> data_loader: 
+<a 
+ id="x12-35047r1023"></a>            inputs = {name: X.to(device) <span style="color:#9E0005;">for</span> name, X <span style="color:#9E0005;">in</span> inputs.items()} 
+<a 
+ id="x12-35049r1024"></a>            y_batch = y_batch.to(device) 
+<a 
+ id="x12-35051r1025"></a>            y_pred = model(X_wide=inputs[<span style="color:#78730D;">&#x0022;X_wide&#x0022;</span>], X_deep=inputs[<span style="color:#78730D;">&#x0022;X_deep&#x0022;</span>]) 
+<a 
+ id="x12-35053r1026"></a>            metric.update(y_pred, y_batch) 
+<a 
+ id="x12-35055r1027"></a>    <span style="color:#9E0005;">return</span> metric.compute()  <span style="color:#918273;"><italic># compute the final result at the end</italic></span> 
+<a 
+ id="x12-35057r1028"></a> 
+<a 
+ id="x12-35059r1029"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">train_named</span>(model, optimizer, criterion, metric, train_loader, 
+<a 
+ id="x12-35061r1030"></a>                   valid_loader, n_epochs): 
+<a 
+ id="x12-35063r1031"></a>    history = {<span style="color:#78730D;">&#x0022;train_losses&#x0022;</span>: [], <span style="color:#78730D;">&#x0022;train_metrics&#x0022;</span>: [], <span style="color:#78730D;">&#x0022;valid_metrics&#x0022;</span>: []} 
+<a 
+ id="x12-35065r1032"></a>    <span style="color:#9E0005;">for</span> epoch <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(n_epochs): 
+<a 
+ id="x12-35067r1033"></a>        total_loss = <span style="color:#8F4070;">0.</span> 
+<a 
+ id="x12-35069r1034"></a>        metric.reset() 
+<a 
+ id="x12-35071r1035"></a>        <span style="color:#9E0005;">for</span> inputs, y_batch <span style="color:#9E0005;">in</span> train_loader: 
+<a 
+ id="x12-35073r1036"></a>            model.train() 
+<a 
+ id="x12-35075r1037"></a>            inputs = {name: X.to(device) <span style="color:#9E0005;">for</span> name, X <span style="color:#9E0005;">in</span> inputs.items()} 
+<a 
+ id="x12-35077r1038"></a>            y_batch = y_batch.to(device) 
+<a 
+ id="x12-35079r1039"></a>            y_pred = model(**inputs) 
+<a 
+ id="x12-35081r1040"></a>            loss = criterion(y_pred, y_batch) 
+<a 
+ id="x12-35083r1041"></a>            total_loss += loss.item() 
+<a 
+ id="x12-35085r1042"></a>            loss.backward() 
+<a 
+ id="x12-35087r1043"></a>            optimizer.step() 
+<a 
+ id="x12-35089r1044"></a>            optimizer.zero_grad() 
+<a 
+ id="x12-35091r1045"></a>            metric.update(y_pred, y_batch) 
+<a 
+ id="x12-35093r1046"></a>        mean_loss = total_loss / <span style="color:#B03B03;">len</span>(train_loader) 
+<a 
+ id="x12-35095r1047"></a>        history[<span style="color:#78730D;">&#x0022;train_losses&#x0022;</span>].append(mean_loss) 
+<a 
+ id="x12-35097r1048"></a>        history[<span style="color:#78730D;">&#x0022;train_metrics&#x0022;</span>].append(metric.compute().item()) 
+<a 
+ id="x12-35099r1049"></a>        history[<span style="color:#78730D;">&#x0022;valid_metrics&#x0022;</span>].append( 
+<a 
+ id="x12-35101r1050"></a>            evaluate_named(model, valid_loader, metric).item()) 
+<a 
+ id="x12-35103r1051"></a>        <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0022;Epoch </span><span style="color:#78730D;">{</span>epoch + <span style="color:#8F4070;">1</span><span style="color:#78730D;">}</span><span style="color:#78730D;">/</span><span style="color:#78730D;">{</span>n_epochs<span style="color:#78730D;">}</span><span style="color:#78730D;">, &#x0022;</span> 
+<a 
+ id="x12-35105r1052"></a>              <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0022;train loss: </span><span style="color:#78730D;">{</span>history[<span style="color:#78730D;">&#x0027;train_losses&#x0027;</span>][-<span style="color:#8F4070;">1</span>]<span style="color:#78730D;">:</span><span style="color:#78730D;">.4f</span><span style="color:#78730D;">}</span><span style="color:#78730D;">, &#x0022;</span> 
+<a 
+ id="x12-35107r1053"></a>              <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0022;train metric: </span><span style="color:#78730D;">{</span>history[<span style="color:#78730D;">&#x0027;train_metrics&#x0027;</span>][-<span style="color:#8F4070;">1</span>]<span style="color:#78730D;">:</span><span style="color:#78730D;">.4f</span><span style="color:#78730D;">}</span><span style="color:#78730D;">, &#x0022;</span> 
+<a 
+ id="x12-35109r1054"></a>              <span style="color:#78730D;">f</span><span style="color:#78730D;">&#x0022;valid metric: </span><span style="color:#78730D;">{</span>history[<span style="color:#78730D;">&#x0027;valid_metrics&#x0027;</span>][-<span style="color:#8F4070;">1</span>]<span style="color:#78730D;">:</span><span style="color:#78730D;">.4f</span><span style="color:#78730D;">}</span><span style="color:#78730D;">&#x0022;</span>) 
+<a 
+ id="x12-35111r1055"></a>    <span style="color:#9E0005;">return</span> history 
+<a 
+ id="x12-35113r1056"></a> 
+<a 
+ id="x12-35115r1057"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a 
+ id="x12-35117r1058"></a>learning_rate = <span style="color:#8F4070;">0.01</span> 
+<a 
+ id="x12-35119r1059"></a>model = WideAndDeepV3(n_features).to(device) 
+<a 
+ id="x12-35121r1060"></a>optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, momentum=<span style="color:#8F4070;">0</span>) 
+<a 
+ id="x12-35123r1061"></a>mse = nn.MSELoss() 
+<a 
+ id="x12-35125r1062"></a>rmse = torchmetrics.MeanSquaredError(squared=<span style="color:#9E0005;">False</span>).to(device) 
+<a 
+ id="x12-35127r1063"></a>history = train_named(model, optimizer, mse, rmse, train_loader_named, 
+<a 
+ id="x12-35129r1064"></a>                      valid_loader_named, n_epochs)</pre>
+</code></pre><p>
+<!--l. 1321--><p class="noindent" >Notice that the model now returns both the main predictions <code class="verb">y_pred</code> and the auxiliary predictions
+<code class="verb">y_pred_aux</code>
+.
+In this example, we can use the same targets and the same loss function to compute the main output’s
+loss and the auxiliary output’s loss. In other cases, we may have different targets and loss functions for
+each output, in which case you would need to create a custom dataset to return all the necessary
+targets.
+</p><!--l. 1329--><p class="noindent" >Once we have a loss for each output, we must combine them into a single loss that will be
+minimized by gradient descent. In general, this final loss is just a weighted sum of all the output
+losses.
+</p><!--l. 1333--><p class="noindent" >In this example, we use a higher weight for the main loss (0.8), because that’s what we care about the
+most, and a lower weight for the auxiliary loss (0.2).
+</p>
+<div class="knowledge">
+<!--l. 1338--><p class="noindent" >This ratio is a <span class="alert"><alert style="color: #821131;">regularization hyperparameter</alert></span> that we can tune.
+</p>
+</div>
+<!--l. 1340--><p class="noindent" >We also need to update the main loop in the evaluation function. However, in this case we can just
+ignore the auxiliary output, since we only really care about the main outputthe auxiliary output is just
+there for regularization during training:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb96"><a 
+ id="x12-35131r1114"></a>        <span style="color:#9E0005;">for</span> inputs, y_batch <span style="color:#9E0005;">in</span> train_loader: 
+<a 
+ id="x12-35133r1115"></a>            model.train() 
+<a 
+ id="x12-35135r1116"></a>            inputs = {name: X.to(device) <span style="color:#9E0005;">for</span> name, X <span style="color:#9E0005;">in</span> inputs.items()} 
+<a 
+ id="x12-35137r1117"></a>            y_batch = y_batch.to(device) 
+<a 
+ id="x12-35139r1118"></a>            y_pred, y_pred_aux = model(**inputs) 
+<a 
+ id="x12-35141r1119"></a>            main_loss = criterion(y_pred, y_batch) 
+<a 
+ id="x12-35143r1120"></a>            aux_loss = criterion(y_pred_aux, y_batch) 
+<a 
+ id="x12-35145r1121"></a>            loss = <span style="color:#8F4070;">0.8</span> * main_loss + <span style="color:#8F4070;">0.2</span> * aux_loss 
+<a 
+ id="x12-35147r1122"></a>            total_loss += loss.item() 
+<a 
+ id="x12-35149r1123"></a>            loss.backward() 
+<a 
+ id="x12-35151r1124"></a>            optimizer.step() 
+<a 
+ id="x12-35153r1125"></a>            optimizer.zero_grad() 
+<a 
+ id="x12-35155r1126"></a>            metric.update(y_pred, y_batch)</pre>
+</code></pre><p>
+<!--l. 1346--><p class="noindent" >We can now build and train all sorts of <span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span></span></span> architectures,
+combining predefined modules and custom modules in any way you please, and with any number
+of inputs and outputs. The flexibility of <span class="acronym"><span class="acronym-short"><a 
+href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
+href="#glo:nn" class="glossary" >Neural Networks</a></span></span></span>s is one of
+                                                                                
+                                                                                
+their main qualities. But so far we have only tackled a regression task, so let’s now turn to
+classification.
+                                                                                
+                                                                                
+</p>
+<div class="crosslinks-bottom"><a 
+href="BuildinganImageClassifierwithPyTorch.html" ><span class="nav-next">NEXT</span></a><a 
+href="ModelEvaluation.html" ><span class="nav-prev">PREV</span></a><a 
+href="ModelEvaluation.html#tailModelEvaluation.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
+href="BuildingNonsequentialModelsUsingCustomModules.html" ><span class="nav-front">FRONT</span></a><a 
+href="UnderstandingPyTorch.html#BuildingNonsequentialModelsUsingCustomModules.html" ><span class="nav-up">UP</span></a></nav><a 
+ id="tailBuildingNonsequentialModelsUsingCustomModules.html"></a>   </div> <div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span> 
+<span class="footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 9.9.2026, at 9:52.</span> </div> </div> </div> <div class="author-notes"> 
+<span class="note">Authors Note </span> 
+<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span> 
+</div> 
+</article> 
+<div class="mode-line"> 
+<div class="core-line"> 
+<div class="button-group"> 
+</div> 
+</div> 
+<div class="supp-line"></div> 
+</div> 
+</page> 
+ 
+</body> 
+</html>

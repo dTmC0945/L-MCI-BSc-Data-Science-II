@@ -1,0 +1,272 @@
+<!DOCTYPE html> 
+<html lang="en">  
+<head><title>Saving and Loading PyTorch Models</title> 
+<meta  charset="utf-8" /> 
+<meta name="generator" content="lms-WebBook" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="\aa:CssFile " /> 
+<meta name="src" content="DataScienceIILectureBook.tex" /> 
+ <script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js"></script>  
+<link rel="icon" type="image/x-icon" href="logo/lms.ico"> 
+<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" /> 
+<link rel ="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@latest/flatweb.css"> 
+<script src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@latest/flatweb.js" async='true' crossorigin='anonymous'></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css"> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css"/> 
+<script src ="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script> 
+<link rel="stylesheet" href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css"/> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/> 
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet/'> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script> 
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script> 
+ <style></style> </head><body 
+>
+<page> 
+<nav class="wide"><img class="webbook-logo" src="logo/webbook-logo.svg"></img> <div class="header"> <div class="header-left"><span class="header-lecture-grade">B.Sc</span> 
+<span class="header-lecture-name">Data Science II</span> 
+<span class="header-webBook">WebBook 2.1</span> </div> <div class="header-right"> <span class="header-version">SS.2026</span> 
+ <span class="header-chapter">Understanding PyTorch</span></div></div> <div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style='font-size:20px'></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&hl=en\&user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style='font-size:20px'></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style='font-size:20px'></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style='font-size:20px'></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style='font-size:20px'></i></a></div><hr /><span class="chapterToc"><span class="number">0</span><span class="title"><a 
+href="index.html#x2-10000">index</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a 
+href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial
+Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Current Developments and Overview</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">Logical
+Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">The Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Multilayer Perceptron and
+Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Regression MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.7</span><span class="title"><a 
+href="FromBiologytoSiliconArtificialNeurons.html#x4-100001.1.7">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-110001.2">Implementing
+MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-120001.2.1">Building an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-140001.2.2">Creating
+the model using the sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a 
+href="ImplementingMLPswithKeras.html#x5-180001.2.3">Building a Regression MLP Using the
+Sequential API</a></span></span><span class="chapterToc"><span class="number">2</span><span class="title"><a 
+href="UnderstandingPyTorch.html#x6-190002">Understanding PyTorch</a></span></span><span class="sectionToc"><span class="number">2.1</span><span class="title"><a 
+href="PyTorchFundamentals.html#x7-210002.1">PyTorch Fundamentals</a></span></span><span class="subsectionToc"><span class="number">2.1.1</span><span class="title"><a 
+href="PyTorchFundamentals.html#x7-220002.1.1">Making some
+Tensors</a></span></span><span class="subsectionToc"><span class="number">2.1.2</span><span class="title"><a 
+href="PyTorchFundamentals.html#x7-230002.1.2">Hardware Acceleration</a></span></span><span class="sectionToc"><span class="number">2.2</span><span class="title"><a 
+href="ImplementingLinearRegression.html#x8-260002.2">Implementing Linear Regression</a></span></span><span class="subsectionToc"><span class="number">2.2.1</span><span class="title"><a 
+href="ImplementingLinearRegression.html#x8-270002.2.1">Linear
+Regression Using Tensors and Autograd</a></span></span><span class="subsectionToc"><span class="number">2.2.2</span><span class="title"><a 
+href="ImplementingLinearRegression.html#x8-290002.2.2">Linear Regression Using PyTorch’s
+High-Level API</a></span></span><span class="sectionToc"><span class="number">2.3</span><span class="title"><a 
+href="ImplementingaRegressionMLP.html#x9-300002.3">Implementing a Regression MLP</a></span></span><span class="sectionToc"><span class="number">2.4</span><span class="title"><a 
+href="MiniBatchGradientDescentUsingDataLoaders.html#x10-310002.4">Mini-Batch Gradient Descent
+Using DataLoaders</a></span></span><span class="sectionToc"><span class="number">2.5</span><span class="title"><a 
+href="ModelEvaluation.html#x11-320002.5">Model Evaluation</a></span></span><span class="sectionToc"><span class="number">2.6</span><span class="title"><a 
+href="BuildingNonsequentialModelsUsingCustomModules.html#x12-330002.6">Building Nonsequential Models Using Custom
+Modules</a></span></span><span class="subsectionToc"><span class="number">2.6.1</span><span class="title"><a 
+href="BuildingNonsequentialModelsUsingCustomModules.html#x12-340002.6.1">Building Models with Multiple Inputs</a></span></span><span class="subsectionToc"><span class="number">2.6.2</span><span class="title"><a 
+href="BuildingNonsequentialModelsUsingCustomModules.html#x12-350002.6.2">Building Models with Multiple
+Outputs</a></span></span><span class="sectionToc"><span class="number">2.7</span><span class="title"><a 
+href="BuildinganImageClassifierwithPyTorch.html#x13-360002.7">Building an Image Classifier with PyTorch</a></span></span><span class="subsectionToc"><span class="number">2.7.1</span><span class="title"><a 
+href="BuildinganImageClassifierwithPyTorch.html#x13-370002.7.1">Using TorchVision to Load the
+Dataset</a></span></span><span class="subsectionToc"><span class="number">2.7.2</span><span class="title"><a 
+href="BuildinganImageClassifierwithPyTorch.html#x13-380002.7.2">Building the Classifier</a></span></span><span class="sectionToc"><span class="number">2.8</span><span class="title"><a 
+href="FineTuningHyperparameterswithOptuna.html#x14-390002.8">Fine-Tuning Hyperparameters with Optuna</a></span></span><span class="sectionToc"><span class="number">2.9</span><span class="title"><a 
+href="#x15-400002.9">Saving
+and Loading PyTorch Models</a></span></span><span class="sectionToc"><span class="number">2.10</span><span class="title"><a 
+href="CompilingandOptimizingaPyTorchModel.html#x16-410002.10">Compiling and Optimizing a PyTorch Model</a></span></span>
+<!--l. 1765--><p class="noindent" ><div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span> 
+<span class="nav-footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 9.9.2026, at 9:52.</span></div></div><span class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span></div></div></nav> 
+
+</p>
+<article class="chapter"> 
+<nav class="crosslinks-top"> <a 
+href="CompilingandOptimizingaPyTorchModel.html" ><span class="nav-next">NEXT</span></a><a 
+href="FineTuningHyperparameterswithOptuna.html" ><span class="nav-prev">PREV</span></a><a 
+href="FineTuningHyperparameterswithOptuna.html#tailFineTuningHyperparameterswithOptuna.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
+href="#tailSavingandLoadingPyTorchModels.html"><span class="nav-tail">TAIL</span></a><a 
+href="UnderstandingPyTorch.html#SavingandLoadingPyTorchModels.html" ><span class="nav-up">UP</span></a></nav> 
+<div class="section-header"> <h3 id="header-section-2.9"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.2.9"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a> <span class="number">2.9</span> <span class="title">  <a 
+ id="x15-400002.9"></a>Saving and Loading PyTorch Models</span></h3></div><p>
+<!--l. 1767--><p class="noindent" >The easiest method to save a PyTorch model is to use the <code class="verb">torch.save()</code> method, passing it the <code class="verb">model</code>
+and the <code class="verb">filepath</code>. The model object is <span class="alert"><alert style="color: #821131;">serialized</alert></span> using Python’s pickle <span class="margin-block">module, <span class="margin-comment"><span class="ellipsis">[109]</span> 
+<span class="sidenote">which can
+convert objects into a sequence of bytes</span></span></span> then the result is compressed (<span class="code-directory"><code class="verb">.zip</code></span>) and saved to
+disk.
+</p>
+<div class="knowledge">
+<!--l. 1774--><p class="noindent" >The convention is to use the <code class="verb">.pt</code> or <code class="verb">.pth</code> extension for PyTorch files.
+</p>
+</div>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb113"><a 
+ id="x15-40002r1410"></a>torch.save(model, <span style="color:#78730D;">&#x0022;my_fashion_mnist.pt&#x0022;</span>)</pre>
+</code></pre><p>
+<!--l. 1778--><p class="noindent" >With this we have save the command. When we need to, we can load the <span class="margin-block">model <span class="margin-comment"><span class="ellipsis">[110]</span> 
+<span class="sidenote">For example in our
+production code.</span></span></span> just as easily:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb114"><a 
+ id="x15-40004r1415"></a>loaded_model = torch.load(<span style="color:#78730D;">&#x0022;my_fashion_mnist.pt&#x0022;</span>, weights_only=<span style="color:#9E0005;">False</span>)</pre>
+</code></pre><p>
+                                                                                
+                                                                                
+<!--l. 1783--><p class="noindent" >If our model uses any custom functions or classes, for example <code class="verb">ImageClassifier</code>, then <code class="verb">torch.save()</code>
+only saves <span id="bold" style="font-weight:bold;">references</span> to them, not the code itself. Therefore we need to ensure any custom code is
+loaded in the Python environment before calling <code class="verb">torch.load()</code>.
+</p>
+<div class="knowledge">
+<!--l. 1790--><p class="noindent" >Also we have to make sure to use the same version of the code to avoid any mismatch issues.
+</p>
+</div>
+<!--l. 1792--><p class="noindent" >Setting <code class="verb">weights_only=False</code> ensures the whole model object is loaded rather than just the model
+parameters. Then we can use the loaded model for inference. However, don’t forget to switch to
+evaluation mode first using the <code class="verb">eval()</code> method:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb115"><a 
+ id="x15-40006r1420"></a>loaded_model.eval() 
+<a 
+ id="x15-40008r1421"></a>y_pred_logits = loaded_model(X_new)</pre>
+</code></pre><p>
+<!--l. 1798--><p class="noindent" >This was relatively simple, but unfortunately this approach has some very serious drawbacks:
+</p>     
+<ul class="itemize1">
+<li class="itemize">     
+<!--l. 1801--><p class="noindent" >Pickle’s serialization format is notoriously insecure. While <code class="verb">torch.save()</code> doesn’t save custom
+code, the pickle format supports it, so it is possible that a <span class="margin-block"><span class="margin"><span>hacker <span class="ellipsis">[111]</span></span><span class="sidenote"><span class="sidenote-image"><img 
+ 
+src="figures/Understanding-PyTorch/raster/portrait-hecker-cat.jpg" alt="PIC"  
+style="" /></span><span class="sidenote-text"><span class="ellipsis">[111]</span>It is very possible someone
+could inject code to your <span class="acronym"><span class="acronym-short"><a 
+href="#glo:ml" class="glossary" >ML</a></span><span class="acronym-detail"><span class="acronym-long"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span><span class="acronym-desc"><a 
+href="#glo:ml" class="glossary" >Machine Learning</a></span></span></span> model during loading.</span></span></span></span> could
+inject malicious code in a saved PyTorch model: <div class="quote"><p>  this code would be run automatically by the
+pickle module when the model is loaded. </p></div><p>  So always make sure you fully trust the model’s source
+before you load it this way.
+</li>     
+<li class="itemize">
+<!--l. 1812--><p class="noindent" >Pickle is somewhat brittle. It can vary depending on the Python <span class="margin-block">version, <span class="margin-comment"><span class="ellipsis">[112]</span> 
+<span class="sidenote">e.g., there were big
+changes between Python 3.7 and 3.8.</span></span></span> and it saves specific filepaths to locate code, which can
+break if the loading environment has a different folder structure.</p></li></ul>
+<!--l. 1817--><p class="noindent" >To avoid these issues, it is recommended to save and load the <span id="bold" style="font-weight:bold;">model weights only</span>, rather than the
+full model object:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb116"><a 
+ id="x15-40010r1426"></a>torch.save(model.state_dict(), <span style="color:#78730D;">&#x0022;my_fashion_mnist_weights.pt&#x0022;</span>)</pre>
+</code></pre><p>
+<!--l. 1822--><p class="noindent" >The state dictionary returned by the <code class="verb">state_dict()</code> method is just a Python Ordered Dict containing
+an entry for each parameter returned by the <code class="verb">named_parameters()</code> method. It also contains buffers, if
+the model has any:
+</p>
+<div class="knowledge">
+                                                                                
+                                                                                
+<!--l. 1829--><p class="noindent" >A buffer is just a regular tensor that was registered with the model, or any of its submodules, using the
+<code class="verb">register_buffer()</code> 
+method.
+</p>
+</div>
+<!--l. 1831--><p class="noindent" >Buffers hold extra data which needs to be stored along with the model, but that is not a model
+<span class="margin-block">parameter. <span class="margin-comment"><span class="ellipsis">[113]</span> 
+<span class="sidenote">We will see an example in Chapter 11 with the batch-norm layer.</span></span></span>
+</p><!--l. 1834--><p class="noindent" >To load these weights, we must first create a model with the exact same structure, then load
+the weights using <code class="verb">torch.load()</code> with <code class="verb">weights_only=True</code>, and finally call the model’s
+<code class="verb">load_state_dict()</code> 
+method with the loaded weights:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb117"><a 
+ id="x15-40012r1436"></a>new_model = ImageClassifier(n_inputs=<span style="color:#8F4070;">1</span> * <span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>, n_hidden1=<span style="color:#8F4070;">300</span>, n_hidden2=<span style="color:#8F4070;">100</span>, 
+<a 
+ id="x15-40014r1437"></a>                            n_classes=<span style="color:#8F4070;">10</span>) 
+<a 
+ id="x15-40016r1438"></a>loaded_weights = torch.load(<span style="color:#78730D;">&#x0022;my_fashion_mnist_weights.pt&#x0022;</span>, weights_only=<span style="color:#9E0005;">True</span>) 
+<a 
+ id="x15-40018r1439"></a>new_model.load_state_dict(loaded_weights) 
+<a 
+ id="x15-40020r1440"></a>new_model.eval()</pre>
+</code></pre><p>
+<!--l. 1840--><p class="noindent" >The saved model contains only data, and the <code class="verb">load()</code> function makes sure of that, so this is safe, and
+also much less likely to break between Python versions or to cause any deployment issue.
+However, it only works if you are able to create the exact same model architecture before
+loading the state dictionary. For this, you need to know the number of layers, the number of
+neurons per layer, and so on. It’s a good idea to save this information along with the state
+dictionary:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb118"><a 
+ id="x15-40022r1445"></a>model_data = { 
+<a 
+ id="x15-40024r1446"></a>    <span style="color:#78730D;">&#x0022;model_state_dict&#x0022;</span>: model.state_dict(), 
+<a 
+ id="x15-40026r1447"></a>    <span style="color:#78730D;">&#x0022;model_hyperparameters&#x0022;</span>: { 
+<a 
+ id="x15-40028r1448"></a>        <span style="color:#78730D;">&#x0022;n_inputs&#x0022;</span>: <span style="color:#8F4070;">1</span> * <span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>, 
+<a 
+ id="x15-40030r1449"></a>        <span style="color:#78730D;">&#x0022;n_hidden1&#x0022;</span>: <span style="color:#8F4070;">300</span>, 
+<a 
+ id="x15-40032r1450"></a>        <span style="color:#78730D;">&#x0022;n_hidden2&#x0022;</span>: <span style="color:#8F4070;">100</span>, 
+<a 
+ id="x15-40034r1451"></a>        <span style="color:#78730D;">&#x0022;n_classes&#x0022;</span>: <span style="color:#8F4070;">10</span>, 
+<a 
+ id="x15-40036r1452"></a>    } 
+<a 
+ id="x15-40038r1453"></a>} 
+<a 
+ id="x15-40040r1454"></a>torch.save(model_data, <span style="color:#78730D;">&#x0022;my_fashion_mnist_model.pt&#x0022;</span>)</pre>
+</code></pre><p>
+<!--l. 1849--><p class="noindent" >You can then load this dictionary, construct the model based on the saved hyperparameters, and load
+the state dictionary into this model:
+</p>
+<pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb119"><a 
+ id="x15-40042r1459"></a>loaded_data = torch.load(<span style="color:#78730D;">&#x0022;my_fashion_mnist_model.pt&#x0022;</span>, weights_only=<span style="color:#9E0005;">True</span>) 
+<a 
+ id="x15-40044r1460"></a>new_model = ImageClassifier(**loaded_data[<span style="color:#78730D;">&#x0022;model_hyperparameters&#x0022;</span>]) 
+<a 
+ id="x15-40046r1461"></a>new_model.load_state_dict(loaded_data[<span style="color:#78730D;">&#x0022;model_state_dict&#x0022;</span>]) 
+<a 
+ id="x15-40048r1462"></a>new_model.eval()</pre>
+</code></pre><p>
+<!--l. 1855--><p class="noindent" >If you want to be able to continue training where it left off, you will also need to save the optimizer’s
+state dictionary, its hyperparameters, and any other training information you may need, such as the
+current epoch and the loss history. The safetensors library by Hugging Face is another popular way to
+save model weights safely.
+</p><!--l. 1860--><p class="noindent" >There is yet another way to save and load your model: by first converting it to TorchScript. This also
+makes it possible to speed up your model’s inference.
+                                                                                
+                                                                                
+</p>
+<div class="crosslinks-bottom"><a 
+href="CompilingandOptimizingaPyTorchModel.html" ><span class="nav-next">NEXT</span></a><a 
+href="FineTuningHyperparameterswithOptuna.html" ><span class="nav-prev">PREV</span></a><a 
+href="FineTuningHyperparameterswithOptuna.html#tailFineTuningHyperparameterswithOptuna.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
+href="SavingandLoadingPyTorchModels.html" ><span class="nav-front">FRONT</span></a><a 
+href="UnderstandingPyTorch.html#SavingandLoadingPyTorchModels.html" ><span class="nav-up">UP</span></a></nav><a 
+ id="tailSavingandLoadingPyTorchModels.html"></a> </div> <div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span> 
+<span class="footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 9.9.2026, at 9:52.</span> </div> </div> </div> <div class="author-notes"> 
+<span class="note">Authors Note </span> 
+<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span> 
+</div> 
+</article> 
+<div class="mode-line"> 
+<div class="core-line"> 
+<div class="button-group"> 
+</div> 
+</div> 
+<div class="supp-line"></div> 
+</div> 
+</page> 
+ 
+</body> 
+</html>
