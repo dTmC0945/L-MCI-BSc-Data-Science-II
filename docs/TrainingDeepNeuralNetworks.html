@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>3 Training Deep Neural Networks</title>
+<meta charset="utf-8"/>
+<meta content="lms-WebBook" name="generator"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js" type="text/javascript"></script>
+<link href="logo/lms.ico" rel="icon" type="image/x-icon"/>
+<link href="./pagefind/pagefind-component-ui.css" rel="stylesheet"/>
+<script src="./pagefind/pagefind-component-ui.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.css" rel="stylesheet" type="text/css"/>
+<script async="true" crossorigin="anonymous" src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css" rel="stylesheet"/>
+<script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+<link href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script>
+ </head><body>
+<page>
+<nav class="wide"> <div class="header"><div class="header-left"><span class="header-lecture-grade">B.Sc</span>
+<span class="header-lecture-name">Data Science II</span>
+<span class="header-webBook">WebBook 2.1</span></div><div class="header-right"><span class="header-version">SS.2026</span>
+<span class="header-chapter">Training Deep Neural Networks</span></div></div><div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><pagefind-modal></pagefind-modal><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style="font-size:20px"></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&amp;hl=en\&amp;user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style="font-size:20px"></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style="font-size:20px"></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style="font-size:20px"></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style="font-size:20px"></i></a></div><hr/><span class="chapterToc"><span class="number"></span><span class="title"><a href="index.html#x2-10000">Entry Point</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial
+Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Current Developments and Overview</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">Logical
+Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">The Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Multilayer Perceptron and
+Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Regression MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.7</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-100001.1.7">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-110001.2">Implementing
+MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-120001.2.1">Building an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-140001.2.2">Creating
+the model using the sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-180001.2.3">Building a Regression MLP Using the
+Sequential API</a></span></span><span class="chapterToc"><span class="number">2</span><span class="title"><a href="UnderstandingPyTorch.html#x6-190002">Understanding PyTorch</a></span></span><span class="sectionToc"><span class="number">2.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-210002.1">PyTorch Fundamentals</a></span></span><span class="subsectionToc"><span class="number">2.1.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-220002.1.1">Making some
+Tensors</a></span></span><span class="subsectionToc"><span class="number">2.1.2</span><span class="title"><a href="PyTorchFundamentals.html#x7-230002.1.2">Hardware Acceleration</a></span></span><span class="sectionToc"><span class="number">2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-260002.2">Implementing Linear Regression</a></span></span><span class="subsectionToc"><span class="number">2.2.1</span><span class="title"><a href="ImplementingLinearRegression.html#x8-270002.2.1">Linear
+Regression Using Tensors and Autograd</a></span></span><span class="subsectionToc"><span class="number">2.2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-290002.2.2">Linear Regression Using PyTorch’s
+High-Level API</a></span></span><span class="sectionToc"><span class="number">2.3</span><span class="title"><a href="ImplementingaRegressionMLP.html#x9-300002.3">Implementing a Regression MLP</a></span></span><span class="sectionToc"><span class="number">2.4</span><span class="title"><a href="MiniBatchGradientDescentUsingDataLoaders.html#x10-310002.4">Mini-Batch Gradient Descent
+Using DataLoaders</a></span></span><span class="sectionToc"><span class="number">2.5</span><span class="title"><a href="ModelEvaluation.html#x11-320002.5">Model Evaluation</a></span></span><span class="sectionToc"><span class="number">2.6</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-330002.6">Building Nonsequential Models Using
+Custom Modules</a></span></span><span class="subsectionToc"><span class="number">2.6.1</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-340002.6.1">Building Models with Multiple Inputs</a></span></span><span class="subsectionToc"><span class="number">2.6.2</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-350002.6.2">Building Models
+with Multiple Outputs</a></span></span><span class="sectionToc"><span class="number">2.7</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-360002.7">Building an Image Classifier with PyTorch</a></span></span><span class="subsectionToc"><span class="number">2.7.1</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-370002.7.1">Using
+TorchVision to Load the Dataset</a></span></span><span class="subsectionToc"><span class="number">2.7.2</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-380002.7.2">Building the Classifier</a></span></span><span class="sectionToc"><span class="number">2.8</span><span class="title"><a href="FineTuningHyperparameterswithOptuna.html#x14-390002.8">Fine-Tuning
+Hyperparameters with Optuna</a></span></span><span class="sectionToc"><span class="number">2.9</span><span class="title"><a href="SavingandLoadingPyTorchModels.html#x15-400002.9">Saving and Loading PyTorch Models</a></span></span><span class="sectionToc"><span class="number">2.10</span><span class="title"><a href="CompilingandOptimizingaPyTorchModel.html#x16-410002.10">Compiling
+and Optimizing a PyTorch Model</a></span></span><span class="chapterToc"><span class="number">3</span><span class="title"><a href="#x17-420003">Training Deep Neural Networks</a></span></span><span class="sectionToc"><span class="number">3.1</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-440003.1">The
+Vanishing/Exploding Gradients Problems</a></span></span><span class="subsectionToc"><span class="number">3.1.1</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-450003.1.1">Glorot Initialization and He
+Initialization</a></span></span><span class="subsectionToc"><span class="number">3.1.2</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-470003.1.2">Better Activation Functions</a></span></span><span class="subsectionToc"><span class="number">3.1.3</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-510003.1.3">Batch Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.4</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-540003.1.4">Layer
+Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.5</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-550003.1.5">Gradient Clipping</a></span></span><span class="sectionToc"><span class="number">3.2</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-560003.2">Reusing Pretrained Layers</a></span></span><span class="subsectionToc"><span class="number">3.2.1</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-570003.2.1">Transfer
+Learning with PyTorch</a></span></span><span class="subsectionToc"><span class="number">3.2.2</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-580003.2.2">Unsupervised Pretraining</a></span></span><span class="subsectionToc"><span class="number">3.2.3</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-590003.2.3">Pretraining on an Auxiliary
+Task</a></span></span><span class="subsectionToc"><span class="number">3.2.4</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-600003.2.4">Faster Optimizers</a></span></span><span class="subsectionToc"><span class="number">3.2.5</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-630003.2.5">AdaGrad</a></span></span><span class="subsectionToc"><span class="number">3.2.6</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-640003.2.6">RMSProp</a></span></span><span class="subsectionToc"><span class="number">3.2.7</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-650003.2.7">Adam</a></span></span><span class="subsectionToc"><span class="number">3.2.8</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-660003.2.8">AdaMax</a></span></span><span class="subsectionToc"><span class="number">3.2.9</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-670003.2.9">NAdam</a></span></span><span class="subsectionToc"><span class="number">3.2.10</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-680003.2.10">AdamW</a></span></span><span class="sectionToc"><span class="number">3.3</span><span class="title"><a href="LearningRateScheduling.html#x20-690003.3">Learning
+Rate Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.3.1</span><span class="title"><a href="LearningRateScheduling.html#x20-700003.3.1">Exponential Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="LearningRateScheduling.html#x20-710003.3.2">Cosine Annealing</a></span></span>
+<div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span> ˙<span class="nav-footer-webBook"><b>Last Updated:</b> 6.10.2026, at 8:20.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<article class="chapter">
+<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="TheVanishingExplodingGradientsProblems.html">The Vanishing/Exploding Gradients Problems</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="CompilingandOptimizingaPyTorchModel.html">Compiling and Optimizing a PyTorch Model</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i></span><span class="nav-button">
+<a href="index.html" rel="index" title="Visit Entry Point">
+<i class="fa-solid fa-table-list">
+</i>
+<span class="nav-info">Visit Index Page</span>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Visit Material GitHub Repo">
+<i class="fa-brands fa-git-alt"></i>
+<span class="nav-info">Visit Material GitHub Repo</span>
+</a></span></nav>
+<h2 class="chapterHead"><div class="chapter-header">Chapter <span class="titlemark">3</span>  </div><br/> <a id="x17-420003"></a>Training Deep
+Neural Networks</h2>
+<p class="noindent">In <span class="refclass-ref"><a href="UnderstandingPyTorch.html#x6-190002">Understanding PyTorch</a></span> we’ve built, trained, and fine-tuned several <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span>s using <span class="alert">PyTorch</span>. But they were <b>shallow nets</b> with just a few hidden layers.
+</p><div class="quote"> What if we need to tackle a complex problem, such as detecting hundreds of types of objects in
+high-resolution images? </div>
+<p class="noindent">We may need to train a much deeper <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span>,
+perhaps with dozens or even <i>hundreds</i> of layers, each containing hundreds of neurons, linked by
+hundreds of thousands of connections. Training a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span>
+isn’t a walk in the park.
+Here are some of the problems we could run into:
+</p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent">Gradients growing smaller or larger when flowing backward through the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span> during <span class="margin-block">training. <span class="margin-comment"><span class="ellipsis">[117]</span>
+<span class="sidenote">Both of these problems make lower layers
+very hard to train.</span></span></span>
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">Not having enough training data for such a large network, or the data being too costly to
+label.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">Training taking impractical amount of time.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">A model with millions of parameters risks severely overfitting the training set, especially if
+there are not enough training instances or if they are <b>too noisy</b>.</p></li></ul>
+<div class="paragraphTOCS">
+<span class="sectionToc">3.1  <a href="TheVanishingExplodingGradientsProblems.html#x18-440003.1">The Vanishing/Exploding Gradients Problems</a></span>
+<br/><span class="subsectionToc">3.1.1  <a href="TheVanishingExplodingGradientsProblems.html#x18-450003.1.1">Glorot Initialization and He Initialization</a></span>
+<br/><span class="subsectionToc">3.1.2  <a href="TheVanishingExplodingGradientsProblems.html#x18-470003.1.2">Better Activation Functions</a></span>
+<br/><span class="subsectionToc">3.1.3  <a href="TheVanishingExplodingGradientsProblems.html#x18-510003.1.3">Batch Normalization</a></span>
+<br/><span class="subsectionToc">3.1.4  <a href="TheVanishingExplodingGradientsProblems.html#x18-540003.1.4">Layer Normalization</a></span>
+<br/><span class="subsectionToc">3.1.5  <a href="TheVanishingExplodingGradientsProblems.html#x18-550003.1.5">Gradient Clipping</a></span>
+<br/><span class="sectionToc">3.2  <a href="ReusingPretrainedLayers.html#x19-560003.2">Reusing Pretrained Layers</a></span>
+<br/><span class="subsectionToc">3.2.1  <a href="ReusingPretrainedLayers.html#x19-570003.2.1">Transfer Learning with PyTorch</a></span>
+<br/><span class="subsectionToc">3.2.2  <a href="ReusingPretrainedLayers.html#x19-580003.2.2">Unsupervised Pretraining</a></span>
+<br/><span class="subsectionToc">3.2.3  <a href="ReusingPretrainedLayers.html#x19-590003.2.3">Pretraining on an Auxiliary Task</a></span>
+<br/><span class="subsectionToc">3.2.4  <a href="ReusingPretrainedLayers.html#x19-600003.2.4">Faster Optimizers</a></span>
+<br/><span class="subsectionToc">3.2.5  <a href="ReusingPretrainedLayers.html#x19-630003.2.5">AdaGrad</a></span>
+<br/><span class="subsectionToc">3.2.6  <a href="ReusingPretrainedLayers.html#x19-640003.2.6">RMSProp</a></span>
+<br/><span class="subsectionToc">3.2.7  <a href="ReusingPretrainedLayers.html#x19-650003.2.7">Adam</a></span>
+<br/><span class="subsectionToc">3.2.8  <a href="ReusingPretrainedLayers.html#x19-660003.2.8">AdaMax</a></span>
+<br/><span class="subsectionToc">3.2.9  <a href="ReusingPretrainedLayers.html#x19-670003.2.9">NAdam</a></span>
+<br/><span class="subsectionToc">3.2.10  <a href="ReusingPretrainedLayers.html#x19-680003.2.10">AdamW</a></span>
+<br/><span class="sectionToc">3.3  <a href="LearningRateScheduling.html#x20-690003.3">Learning Rate Scheduling</a></span>
+<br/><span class="subsectionToc">3.3.1  <a href="LearningRateScheduling.html#x20-700003.3.1">Exponential Scheduling</a></span>
+<br/><span class="subsectionToc">3.3.2  <a href="LearningRateScheduling.html#x20-710003.3.2">Cosine Annealing</a></span>
+</div>
+<p class="noindent">
+</p><p class="noindent"><span class="paragraphHead"> <a id="x17-43000"></a>Chapter Structure</span>
+In this chapter we will go through each of these problems and present different techniques to solve
+them. We will start by exploring the <b>vanishing and exploding gradients problems</b>
+and some of their most popular solutions, including: </p><div class="quote">  smart weight initialization, better
+activation functions, batch-norm, <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ln">LN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ln">Layer Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ln">A deep learning technique which
+stabilizes neural network training by calculating the mean and variance across the feature
+dimensions of each individual sample rather than across a mini-batch</a></span></span></span>, and <span class="ind">gradient clipping</span> .
+</div>
+<p class="noindent">Next, we will look at <b>transfer learning</b> and <b>unsupervised pretraining</b>, which can help us
+tackling complex tasks even when we have little labeled data. Then we will discuss a variety of
+optimizers which can speed up training large models tremendously. We will also discuss how
+we can tweak the learning rate during training to speed up training and produce better
+models.
+</p><p class="noindent">Finally, we will cover a few popular regularization techniques for large neural networks: </p><div class="quote">
+<math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>1</mn></mrow></msub></math> and
+<math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
+regularization, dropout, Monte Carlo dropout, and max-norm regularization. </div>
+<p class="noindent">With these tools, you will be able to train all sorts of deep nets. Welcome to deep learning!
+</p>
+<p class="noindent">
+</p>
+<p class="noindent">
+</p>
+<div class="section-header">
+<h3 id="header-section-glossary">
+<span class="number">
+<i aria-hidden="true" class="fa fa-list-alt"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+        Page Glossary Terms</span>
+</h3>
+</div>
+<div class="acronym-block">
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:ln">¶</a>
+<dt class="acr-bottom" id="glo:ln"><span class="acr-short">LN</span><span class="acr-long">Layer Normalization</span></dt>
+<dd class="acr-desc"><p>A deep learning technique which
+stabilizes neural network training by calculating the mean and variance across the feature
+dimensions of each individual sample rather than across a mini-batch</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:dnn">¶</a>
+<dt class="acr-bottom" id="glo:dnn"><span class="acr-short">DNN</span><span class="acr-long">Deep Neural Networks</span></dt>
+<dd class="acr-desc"><p>Deep Neural Networks</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:ann">¶</a>
+<dt class="acr-bottom" id="glo:ann"><span class="acr-short">ANN</span><span class="acr-long">Artificial Neural
+Networks</span></dt>
+<dd class="acr-desc"><p>Artificial Neural Networks</p></dd>
+</dl>
+</div><nav class="crosslinks-bottom"><div class="navigation"><span class="nav-button"><a href="TheVanishingExplodingGradientsProblems.html"><i class="fa-solid fa-caret-right"></i></a></span><span class="nav-button"><a href="CompilingandOptimizingaPyTorchModel.html"><i class="fa-solid fa-caret-left"></i></a></span><span class="nav-button"><a href=""><i class="fa-solid fa-caret-up"></i></a></span><span class="nav-button">
+<a href="index.html" rel="index" title="Index">
+<i class="fa-solid fa-table-list">
+</i>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Index">
+<i class="fa-brands fa-git-alt"></i>
+</a></span></div></nav> <div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
+<span class="footer-webBook"><b>Last Updated:</b> 6.10.2026, at 8:20.</span></div></div><div class="author-notes">
+<span class="note">Authors Note </span>
+<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
+</div>
+</article>
+<div class="mode-line">
+<div class="core-line"><div class="core-line-image"><img class="webbook-logo" src="logo/webbook-logo.svg"/></div>
+<div class="current-header">
+<span class="header-pretext">Viewing | </span>
+<span class="header-text">Chapter 3: Training Deep Neural Networks</span>
+</div>
+<div class="button-group">
+</div>
+</div>
+<div class="supp-line"></div>
+</div>
+</page>
+</body>
+</html>

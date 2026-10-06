@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>The Vanishing/Exploding Gradients Problems</title>
+<meta charset="utf-8"/>
+<meta content="lms-WebBook" name="generator"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js" type="text/javascript"></script>
+<link href="logo/lms.ico" rel="icon" type="image/x-icon"/>
+<link href="./pagefind/pagefind-component-ui.css" rel="stylesheet"/>
+<script src="./pagefind/pagefind-component-ui.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.css" rel="stylesheet" type="text/css"/>
+<script async="true" crossorigin="anonymous" src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css" rel="stylesheet"/>
+<script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+<link href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script>
+ </head><body>
+<page>
+<nav class="wide"> <div class="header"><div class="header-left"><span class="header-lecture-grade">B.Sc</span>
+<span class="header-lecture-name">Data Science II</span>
+<span class="header-webBook">WebBook 2.1</span></div><div class="header-right"><span class="header-version">SS.2026</span>
+<span class="header-chapter">Training Deep Neural Networks</span></div></div><div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><pagefind-modal></pagefind-modal><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style="font-size:20px"></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&amp;hl=en\&amp;user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style="font-size:20px"></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style="font-size:20px"></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style="font-size:20px"></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style="font-size:20px"></i></a></div><hr/><span class="chapterToc"><span class="number"></span><span class="title"><a href="index.html#x2-10000">Entry Point</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial
+Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Current Developments and Overview</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">Logical
+Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">The Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Multilayer Perceptron and
+Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Regression MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.7</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-100001.1.7">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-110001.2">Implementing
+MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-120001.2.1">Building an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-140001.2.2">Creating
+the model using the sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-180001.2.3">Building a Regression MLP Using the
+Sequential API</a></span></span><span class="chapterToc"><span class="number">2</span><span class="title"><a href="UnderstandingPyTorch.html#x6-190002">Understanding PyTorch</a></span></span><span class="sectionToc"><span class="number">2.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-210002.1">PyTorch Fundamentals</a></span></span><span class="subsectionToc"><span class="number">2.1.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-220002.1.1">Making some
+Tensors</a></span></span><span class="subsectionToc"><span class="number">2.1.2</span><span class="title"><a href="PyTorchFundamentals.html#x7-230002.1.2">Hardware Acceleration</a></span></span><span class="sectionToc"><span class="number">2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-260002.2">Implementing Linear Regression</a></span></span><span class="subsectionToc"><span class="number">2.2.1</span><span class="title"><a href="ImplementingLinearRegression.html#x8-270002.2.1">Linear
+Regression Using Tensors and Autograd</a></span></span><span class="subsectionToc"><span class="number">2.2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-290002.2.2">Linear Regression Using PyTorch’s
+High-Level API</a></span></span><span class="sectionToc"><span class="number">2.3</span><span class="title"><a href="ImplementingaRegressionMLP.html#x9-300002.3">Implementing a Regression MLP</a></span></span><span class="sectionToc"><span class="number">2.4</span><span class="title"><a href="MiniBatchGradientDescentUsingDataLoaders.html#x10-310002.4">Mini-Batch Gradient Descent
+Using DataLoaders</a></span></span><span class="sectionToc"><span class="number">2.5</span><span class="title"><a href="ModelEvaluation.html#x11-320002.5">Model Evaluation</a></span></span><span class="sectionToc"><span class="number">2.6</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-330002.6">Building Nonsequential Models Using
+Custom Modules</a></span></span><span class="subsectionToc"><span class="number">2.6.1</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-340002.6.1">Building Models with Multiple Inputs</a></span></span><span class="subsectionToc"><span class="number">2.6.2</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-350002.6.2">Building Models
+with Multiple Outputs</a></span></span><span class="sectionToc"><span class="number">2.7</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-360002.7">Building an Image Classifier with PyTorch</a></span></span><span class="subsectionToc"><span class="number">2.7.1</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-370002.7.1">Using
+TorchVision to Load the Dataset</a></span></span><span class="subsectionToc"><span class="number">2.7.2</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-380002.7.2">Building the Classifier</a></span></span><span class="sectionToc"><span class="number">2.8</span><span class="title"><a href="FineTuningHyperparameterswithOptuna.html#x14-390002.8">Fine-Tuning
+Hyperparameters with Optuna</a></span></span><span class="sectionToc"><span class="number">2.9</span><span class="title"><a href="SavingandLoadingPyTorchModels.html#x15-400002.9">Saving and Loading PyTorch Models</a></span></span><span class="sectionToc"><span class="number">2.10</span><span class="title"><a href="CompilingandOptimizingaPyTorchModel.html#x16-410002.10">Compiling
+and Optimizing a PyTorch Model</a></span></span><span class="chapterToc"><span class="number">3</span><span class="title"><a href="TrainingDeepNeuralNetworks.html#x17-420003">Training Deep Neural Networks</a></span></span><span class="sectionToc"><span class="number">3.1</span><span class="title"><a href="#x18-440003.1">The
+Vanishing/Exploding Gradients Problems</a></span></span><span class="subsectionToc"><span class="number">3.1.1</span><span class="title"><a href="#x18-450003.1.1">Glorot Initialization and He
+Initialization</a></span></span><span class="subsectionToc"><span class="number">3.1.2</span><span class="title"><a href="#x18-470003.1.2">Better Activation Functions</a></span></span><span class="subsectionToc"><span class="number">3.1.3</span><span class="title"><a href="#x18-510003.1.3">Batch Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.4</span><span class="title"><a href="#x18-540003.1.4">Layer
+Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.5</span><span class="title"><a href="#x18-550003.1.5">Gradient Clipping</a></span></span><span class="sectionToc"><span class="number">3.2</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-560003.2">Reusing Pretrained Layers</a></span></span><span class="subsectionToc"><span class="number">3.2.1</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-570003.2.1">Transfer
+Learning with PyTorch</a></span></span><span class="subsectionToc"><span class="number">3.2.2</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-580003.2.2">Unsupervised Pretraining</a></span></span><span class="subsectionToc"><span class="number">3.2.3</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-590003.2.3">Pretraining on an Auxiliary
+Task</a></span></span><span class="subsectionToc"><span class="number">3.2.4</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-600003.2.4">Faster Optimizers</a></span></span><span class="subsectionToc"><span class="number">3.2.5</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-630003.2.5">AdaGrad</a></span></span><span class="subsectionToc"><span class="number">3.2.6</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-640003.2.6">RMSProp</a></span></span><span class="subsectionToc"><span class="number">3.2.7</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-650003.2.7">Adam</a></span></span><span class="subsectionToc"><span class="number">3.2.8</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-660003.2.8">AdaMax</a></span></span><span class="subsectionToc"><span class="number">3.2.9</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-670003.2.9">NAdam</a></span></span><span class="subsectionToc"><span class="number">3.2.10</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-680003.2.10">AdamW</a></span></span><span class="sectionToc"><span class="number">3.3</span><span class="title"><a href="LearningRateScheduling.html#x20-690003.3">Learning
+Rate Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.3.1</span><span class="title"><a href="LearningRateScheduling.html#x20-700003.3.1">Exponential Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="LearningRateScheduling.html#x20-710003.3.2">Cosine Annealing</a></span></span>
+<div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span> ˙<span class="nav-footer-webBook"><b>Last Updated:</b> 6.10.2026, at 8:20.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<article class="chapter">
+<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="ReusingPretrainedLayers.html">Reusing Pretrained Layers</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="TrainingDeepNeuralNetworks.html">Chapter: Training Deep
+Neural Networks</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="TrainingDeepNeuralNetworks.html#TheVanishingExplodingGradientsProblems.html">Chapter: Training Deep
+Neural Networks</a></span><span class="nav-button">
+<a href="index.html" rel="index" title="Visit Entry Point">
+<i class="fa-solid fa-table-list">
+</i>
+<span class="nav-info">Visit Index Page</span>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Visit Material GitHub Repo">
+<i class="fa-brands fa-git-alt"></i>
+<span class="nav-info">Visit Material GitHub Repo</span>
+</a></span></nav>
+<div class="section-header"> <h3 id="header-section-3.1"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.3.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a> <span class="number">3.1</span> <span class="title"> <a id="x18-440003.1"></a>The Vanishing/Exploding
+Gradients Problems</span></h3></div>
+<p class="noindent">As we have seen in <span class="refclass-ref"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span>, the <b>backpropagation algorithm</b>’s
+<math display="inline"><msup><mrow><mstyle class="text"><mtext>2</mtext></mstyle></mrow><mrow><mstyle class="text"><mtext>nd</mtext></mstyle></mrow></msup></math>-phase
+works by going from the output layer to the input layer, propagating the error gradient along the
+way.
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">Once the algorithm has computed the gradient of the cost function with regard to each parameter in
+the network, it uses these gradients to update each parameter with a gradient descent step.
+</p></div></div>
+<p class="noindent">Unfortunately, gradients often get smaller and smaller as the algorithm progresses down to the lower
+layers. As a result, the gradient descent update leaves the lower layers’ connection weights virtually
+unchanged, and training never converges to a good solution.
+</p>
+<div class="warning"><div class="warning-upper">Warning</div><div class="body">
+<p class="noindent">This is called the <span class="ind">vanishing gradients problem</span>  <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail"> <a id="x18-44001"></a>Hochreiter, S. The Vanishing Gradient Problem
+During Learning Recurrent Neural Nets and Problem Solutions. Int. J. Uncertain. Fuzziness Knowl.
+Based Syst. <b>6</b><b>,</b> 107–116 (1998)</span></span>. </p></div></div>
+<p class="noindent">Interestingly in some cases, the opposite can happen: </p><div class="quote">  the gradients can grow bigger and bigger until
+layers get insanely large weight updates and the algorithm diverges. </div>
+<div class="warning"><div class="warning-upper">Warning</div><div class="body">
+<p class="noindent">This is the <span class="ind">exploding gradients problem</span> <span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[118]</span>
+<span class="sidenote">which surfaces most often in <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text, speech, or time series, by
+passing information through loops from one step to the next</a></span></span></span>s.</span></span></span> <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail"> <a id="x18-44002"></a>Balduzzi, D. et al. The Shattered
+Gradients Problem: If resnets are the answer, then what is the question? ArXiv <b>abs/1702.08591</b>
+(2017)</span></span> </p></div></div>
+<p class="noindent">More generally, <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span>s suffer from <span class="ind">unstable gradients</span>
+where different layers may learn at widely different speeds.
+This unfortunate behavior was empirically observed long ago, and it was one of the reasons
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span>s were mostly abandoned in the early 2000s. It
+wasn’t clear what caused the gradients to be so unstable when training a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span>, but some light was shed in <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail"> <a id="x18-44003"></a>Glorot, X. &amp; Bengio, Y.
+Understanding the difficulty of training deep feedforward neural networks in Proceedings
+of the thirteenth international conference on artificial intelligence and statistics (2010),
+249–256</span></span>, where the authors found a few suspects, including the combination of the popular
+sigmoid (logistic) activation function and the weight initialization technique that was most
+popular at the <span class="margin-block">time. <span class="margin-comment"><span class="ellipsis">[119]</span>
+<span class="sidenote">i.e., a normal distribution with a mean of 0 and a standard deviation of
+1</span></span></span>
+</p><p class="noindent">In short, the authors showed that with this activation function and this initialization scheme, the
+variance of the outputs of each layer is much greater than the variance of its inputs. Going forward in
+the network, the variance keeps increasing after each layer until the activation function
+saturates at the top layers. This saturation is actually made worse by the fact that the sigmoid
+function has a mean of 0.5, not 0<span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[120]</span>
+<span class="sidenote">the hyperbolic tangent function has a mean of 0 and
+behaves slightly better than the sigmoid function in <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural
+Networks</a></span></span></span>s.</span></span></span>
+</p><p class="noindent">Looking at the <i>sigmoid</i> activation function, we see that when inputs become <span class="margin-block">large, <span class="margin-comment"><span class="ellipsis">[121]</span>
+<span class="sidenote">either
+in the negative or positive direction.</span></span></span> the function saturates at 0 or 1, with a derivative
+extremely close to 0<span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[122]</span>
+<span class="sidenote">i.e., the curve is flat at both extremes, meaning the rate of change becomes
+vanishingly small.</span></span></span> Therefore, when backpropagation kicks in it has virtually no gradient to
+propagate back through the network, and what little gradient exists keeps getting diluted as
+backpropagation progresses down through the top layers, so there is really nothing left for the lower
+layers.
+</p>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-3.1.1"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.1.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">3.1.1</span> <span class="title"> <a id="x18-450003.1.1"></a>Glorot Initialization and He Initialization</span></h4></div>
+</p><p class="noindent">In <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail"> <a id="x18-45001"></a>Glorot, X. &amp; Bengio, Y. Understanding the difficulty of training deep feedforward neural networks
+in Proceedings of the thirteenth international conference on artificial intelligence and statistics (2010),
+249–256</span></span>, the authors proposed a way to significantly alleviate the unstable gradients problem. They
+pointed out that we need the signal to flow properly in <b>both directions</b>: </p><div class="quote">  in the forward direction
+when making predictions, and in the reverse direction when backpropagating gradients.
+</div>
+<p class="noindent">We don’t want the signal to die out, nor do we want it to explode and saturate. For the signal to flow
+properly, the authors argued that we need the variance of the outputs of each layer to be equal to the
+variance of its <span class="margin-block">inputs, <span class="margin-comment"><span class="ellipsis">[123]</span>
+<span class="sidenote">Here’s an analogy: if you set a microphone amplifier’s volume knob too close to
+zero, people won’t hear your voice, but if you set it too close to the max, your voice will be saturated
+and people won’t understand what you are saying. Now imagine a chain of such amplifiers: they all
+need to be set properly in order for your voice to come out loud and clear at the end of the chain. Your
+voice has to come out of each amplifier at the same amplitude as it came in.</span></span></span> and we need the
+gradients to have equal variance before and after flowing through a layer in the reverse
+direction.
+</p><p class="noindent">It is actually not possible to guarantee both unless the layer has an equal number of inputs
+and <span class="margin-block">outputs, <span class="margin-comment"><span class="ellipsis">[124]</span>
+<span class="sidenote">these numbers are called the fan-in and fan-out of the layer.</span></span></span> but the authors
+proposed a good compromise which has proven to work very well in practice, where the
+connection weights of each layer must be initialized randomly, as described in Eq. (<a href="#x18-45003r2">3.2</a>), where
+</p><table class="equation"><tr><td>
+<math class="equation" display="block">
+<mstyle class="label" id="x18-45002r1"></mstyle>
+<mi>f</mi><mi>a</mi><msub><mrow><mi>n</mi></mrow><mrow><mi>a</mi><mi>v</mi><mi>g</mi></mrow></msub> <mo class="MathClass-rel" stretchy="false">=</mo> <mo class="MathClass-open" stretchy="false">(</mo><mi>f</mi><mi>a</mi><msub><mrow><mi>n</mi></mrow><mrow><mi>i</mi><mi>n</mi></mrow></msub> <mo class="MathClass-bin" stretchy="false">+</mo> <mi>f</mi><mi>a</mi><msub><mrow><mi>n</mi></mrow><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><mo class="MathClass-close" stretchy="false">)</mo><mo class="MathClass-bin" stretchy="false">/</mo><mn>2</mn><mo class="MathClass-punc" stretchy="false">.</mo>
+</math></td><td class="eq-no">(3.1)</td></tr></table>
+<p class="noindent"></p>
+<p class="noindent">This initialization strategy in literature is called <span class="ind">Xavier initialization</span>  or <span class="ind">Glorot initialization</span> , after the
+authors of <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail"> Glorot, X. &amp; Bengio, Y. Understanding the difficulty of training deep feedforward neural
+networks in Proceedings of the thirteenth international conference on artificial intelligence and statistics
+(2010), 249–256</span></span>.
+</p>
+<table class="equation"><tr><td>
+<math class="equation" display="block">
+<mstyle class="label" id="x18-45003r2"></mstyle><mtable class="aligned" displaystyle="true"><mtr><mtd columnalign="right"><mstyle class="text"><mtext>Normal distribution with mean 0 and variance</mtext></mstyle></mtd>
+<mtd columnalign="left"><msup><mrow><mi>σ</mi></mrow><mrow><mn>2</mn></mrow></msup> <mo class="MathClass-rel" stretchy="false">=</mo> <mfrac><mrow></mrow>
+<mrow><msub><mrow>
+<mstyle class="text"><mtext>fan</mtext></mstyle>
+</mrow><mrow><mi>a</mi><mi>v</mi><mi>g</mi></mrow></msub></mrow></mfrac></mtd>
+<mtd columnalign="right"></mtd>
+</mtr><mtr><mtd columnalign="right"><mstyle class="text"><mtext>Or a uniform distribution between r and + r</mtext></mstyle></mtd> <mtd columnalign="left"> <mo class="MathClass-rel" stretchy="false">=</mo> <mfrac><mrow></mrow>
+<mrow><msub><mrow>
+<mstyle class="text"><mtext>fan</mtext></mstyle>
+</mrow><mrow><mi>a</mi><mi>v</mi><mi>g</mi></mrow></msub></mrow></mfrac></mtd>
+</mtr> </mtable>
+</math></td><td class="eq-no">(3.2)</td></tr></table>
+<p class="noindent"></p>
+<p class="noindent">If you replace <math display="inline"><msub><mrow><mstyle class="text"><mtext>fan</mtext></mstyle></mrow><mrow><mi>a</mi><mi>v</mi><mi>g</mi></mrow></msub></math>
+with <math display="inline"><msub><mrow><mstyle class="text"><mtext>fan</mtext></mstyle></mrow><mrow><mi>i</mi><mi>n</mi></mrow></msub></math> in
+Eq. 
+(<a href="#x18-45003r2">3.2</a>)
+, we get an initialization strategy <i>Yann LeCun</i> proposed in the 1990s. He called it <span class="ind">LeCun
+initialization</span> <span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[125]</span>
+<span class="sidenote"><i>Genevieve Orr</i> and <i>Klaus-Robert Müller</i> even recommended it in their 1998 book <i>Neural
+Networks: Tricks of the Trade</i>.</span></span></span>
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent"><span class="alert">LeCun initialization</span> is equivalent to <span class="ind">Glorot initialization</span> when <math display="inline"><msub><mrow><mstyle class="text"><mtext>fan</mtext></mstyle></mrow><mrow><mi>i</mi><mi>n</mi></mrow></msub> <mo class="MathClass-rel" stretchy="false">=</mo><msub><mrow> <mstyle class="text"><mtext>fan</mtext></mstyle></mrow><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub></math>.
+</p></div></div>
+<p class="noindent">It took over a decade for researchers to realize how important this trick is.
+</p>
+<div class="warning"><div class="warning-upper">Warning</div><div class="body">
+<p class="noindent">Using <span class="alert">Glorot initialization</span> can speed up training considerably, and it is one of the tricks that led to the success of deep
+learning. </p></div></div>
+<p class="noindent">Some papers have provided similar strategies for different activation functions, most notably in <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail">
+<a id="x18-45004"></a>He, K. et al. Delving deep into rectifiers: Surpassing human-level performance on imagenet
+classification in Proceedings of the IEEE international conference on computer vision (2015),
+1026–1034</span></span>. These strategies differ only by the scale of the variance and whether they use
+<math display="inline"><msub><mrow><mstyle class="text"><mtext>fan</mtext></mstyle></mrow><mrow><mi>a</mi><mi>v</mi><mi>g</mi></mrow></msub></math> or
+<math display="inline"><msub><mrow><mstyle class="text"><mtext>fan</mtext></mstyle></mrow><mrow><mi>i</mi><mi>n</mi></mrow></msub></math>,
+as shown in Table 11-1<span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[126]</span>
+<span class="sidenote">for the uniform distribution, just use
+<math display="inline"><mi>r</mi> <mo class="MathClass-rel" stretchy="false">=</mo> <msqrt><mrow>
+<mn>3</mn><msup><mrow><mi>σ</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></msqrt></math></span></span></span> The
+initialization strategy proposed for the ReLU activation function and its variants is called <span class="ind">He
+initialization</span>  or <span class="ind">Kaiming initialization</span> , after the paper’s first author.
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">For SELU, use Yann LeCun’s initialization method, preferably with a normal distribution.
+</p></div></div>
+<p class="noindent"></p><figure class="float">
+<a id="x18-45005r1"></a>
+<figcaption class="caption"><span class="id">Table 3.1: </span><span class="content">Initialization parameters for each type of activation function
+</span></figcaption>
+<table class="tabularray tblr" id="tbl-3"> <tr id="row-3-1-"><td id="1-1" style=""> <b>Initialisation</b></td><td id="1-2" style=""> <b>Activation Functions</b></td><td colspan="1" id="1-3" style=""> <b>Variance</b></td></tr>
+<tr id="row-3-2-"><td id="2-1" style=""> Xavier 
+Glorot  </td><td id="2-2" style="">  None, tanh, sigmoid, softmax           </td><td colspan="1" id="2-3" style=""> <math display="inline"> <mfrac><mrow><mn>1</mn></mrow>
+<mrow>
+<mi>f</mi><mi>a</mi><msub><mrow><mi>n</mi></mrow><mrow><mi>a</mi><mi>v</mi><mi>g</mi></mrow></msub></mrow></mfrac></math> </td></tr>
+<tr id="row-3-3-"><td id="3-1" style=""> Kaiming 
+He  </td><td id="3-2" style="">  ReLU,  Leaky  ReLU,  ELU,  GELU, 
+Swish, Mish, SwiGLU, ReLU2          </td><td colspan="1" id="3-3" style=""> <math display="inline"> <mfrac><mrow><mn>2</mn></mrow>
+<mrow>
+<mi>f</mi><mi>a</mi><msub><mrow><mi>n</mi></mrow><mrow><mi>i</mi><mi>n</mi></mrow></msub></mrow></mfrac></math> </td></tr>
+<tr id="row-3-4-"><td id="4-1" style=""> Yann 
+LeCun  </td><td id="4-2" style="">  SELU                                          </td><td colspan="1" id="4-3" style=""> <math display="inline"> <mfrac><mrow><mn>1</mn></mrow>
+<mrow>
+<mi>f</mi><mi>a</mi><msub><mrow><mi>n</mi></mrow><mrow><mi>i</mi><mi>n</mi></mrow></msub></mrow></mfrac></math> </td></tr>
+</table>
+</figure>
+<p class="noindent">For historical reasons, PyTorch’s  <code class="file">nn.Linear</code>  module initializes its weights using
+<b>Kaiming uniform initialization</b>, except the weights are scaled down by a factor of
+<math display="inline"><msqrt><mrow>
+<mn>6</mn></mrow></msqrt></math><span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[127]</span>
+<span class="sidenote">and
+the bias terms are also initialized randomly.</span></span></span> Unfortunately, this is not the optimal scale for any
+common activation function.
+</p><p class="noindent">One solution is to simply multiply the weights by
+<math display="inline"><msqrt><mrow>
+<mn>6</mn></mrow></msqrt></math> just
+after creating the <code class="verb">nn.Linear</code>  layer to get proper <i>Kaiming initialization</i>. To do this, we can update the
+parameter’s data attribute. We will also zero out the biases, as there’s no benefit in randomly
+initializing them:
+</p>
+<pre><div class="code-header"> <a class="code-download" download="" href="test.py">Full Code</a><span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb125"><a id="x18-45007r175"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch</span> 
+<a id="x18-45009r176"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">nn</span> 
+<a id="x18-45011r177"></a> 
+<a id="x18-45013r178"></a>layer = nn.Linear(<span style="color:#8F4070;">40</span>, <span style="color:#8F4070;">10</span>) 
+<a id="x18-45015r179"></a>layer.weight.data *= <span style="color:#8F4070;">6</span> ** <span style="color:#8F4070;">0.5</span>  <span style="color:#918273;"><i># Kaiming init (or 3 ** 0.5 for LeCun init)</i></span> 
+<a id="x18-45017r180"></a>torch.zero_(layer.bias.data)</pre>
+</code></pre>
+<p class="noindent">This works, but it’s clearer and less error-prone to use one of the initialization functions available in the
+<code class="file">torch.nn.init</code>  module:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb126"><a id="x18-45019r185"></a>layer = nn.Linear(<span style="color:#8F4070;">40</span>, <span style="color:#8F4070;">10</span>) 
+<a id="x18-45021r186"></a>nn.init.kaiming_uniform_(layer.weight) 
+<a id="x18-45023r187"></a>nn.init.zeros_(layer.bias)</pre>
+</code></pre>
+<p class="noindent">If we want to apply the same initialization method to the weights of every <code class="verb">nn.Linear</code>  layer in a model, you can
+do so in the model’s constructor, after creating each <code class="verb">nn.Linear</code>  layer. Alternatively, you can write a
+subclass of the <code class="verb">nn.Linear</code>  class and tweak its constructor to initialize the weights as you wish. But
+arguably the simplest option is to write a little function that takes a module, checks whether
+it’s an instance of the <code class="verb">nn.Linear</code>  class, and if so, applies the desired initialization function to its
+weights.
+</p><p class="noindent">You can then apply this function to the model and all of its submodules by passing it to the model’s <code class="verb">apply()</code>
+method. For example:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb127"><a id="x18-45025r192"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">use_he_init</span>(module): 
+<a id="x18-45027r193"></a>    <span style="color:#9E0005;">if</span> <span style="color:#B03B03;">isinstance</span>(module, nn.Linear): 
+<a id="x18-45029r194"></a>        nn.init.kaiming_uniform_(module.weight) 
+<a id="x18-45031r195"></a>        nn.init.zeros_(module.bias) 
+<a id="x18-45033r196"></a> 
+<a id="x18-45035r197"></a>model = nn.Sequential(nn.Linear(<span style="color:#8F4070;">50</span>, <span style="color:#8F4070;">40</span>), nn.ReLU(), nn.Linear(<span style="color:#8F4070;">40</span>, <span style="color:#8F4070;">1</span>), nn.ReLU()) 
+<a id="x18-45037r198"></a>model.apply(use_he_init)</pre>
+</code></pre>
+<p class="noindent">The <code class="verb">torch.nn.init</code>  module also contains an <code class="verb">orthogonal_()</code>  function which initializes the weights using a random orthogonal
+matrix, as proposed in <span class="cite"><a class="cite-show" href="#w3-20001">[†-5]</a><span class="cite-detail"> <a id="x18-45038"></a>Saxe, A. M., McClelland, J. L. &amp; Ganguli, S. Exact solutions to the
+nonlinear dynamics of learning in deep linear neural networks. arXiv preprint arXiv:1312.6120
+(2013)</span></span>.
+</p>
+<p class="noindent"><span class="paragraphHead"> <a id="x18-46000"></a>Usefulness of Orthogonality</span>
+Orthogonal matrices have a number of useful mathematical properties,
+including the fact that they <b>preserve norms</b>: </p><div class="quote">  given an orthogonal matrix
+<math display="inline"><mstyle mathvariant="bold"><mi>W</mi></mstyle></math> and an input
+vector <math display="inline"><mstyle mathvariant="bold"><mi>x</mi></mstyle></math>, the
+norm of <math display="inline"><mstyle mathvariant="bold"><mi>W</mi></mstyle><mstyle mathvariant="bold"><mi>x</mi></mstyle></math> is equal
+to the norm of <math display="inline"><mstyle mathvariant="bold"><mi>x</mi></mstyle></math>,
+and therefore the magnitude of the inputs is preserved in the outputs. When the inputs are
+standardized, this results in a stable variance through the layer, which prevents the activations and
+gradients from vanishing or exploding in a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span>.
+</div>
+<p class="noindent">This initialization technique is much less common than the initialization techniques discussed
+earlier, but it can work well in <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to
+process sequential data, such as text, speech, or time series, by passing information through
+loops from one step to the next</a></span></span></span>s or <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gann">GAN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gann">General Adveserial Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gann">General Adveserial
+Networks</a></span></span></span>.
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">Scaling the weights properly will give a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span> a much
+better starting point for training. </p></div></div>
+<div class="info-block" id="info-block-3.28"> <a class="copiable-link" href="#info-block-3.28"> ¶</a> <span class="info-upper"> <span class="info-header"> <b>Information 3.<a id="x18-46001r28"></a>28: </b> </span> <span class="info-title"> Scale Down the Weights </span> </span> <div class="body">
+<p class="noindent">In a classifier, it’s generally a good idea to scale down the weights of the output layer during
+<span class="margin-block">initialization. <span class="margin-comment"><span class="ellipsis">[128]</span>
+<span class="sidenote">e.g., by a factor of 10.</span></span></span> Indeed, this will result in smaller logits at the beginning of
+training, which means they will be closer together, and hence the estimated probabilities will also be
+closer together. </p>
+<hr/>
+<p class="noindent"> 
+In other words, it encourages the model to be less confident about its predictions when
+training starts. This will avoid extreme losses and huge gradients that can often make the model’s
+weights bounce around randomly at the start of training, losing time and potentially preventing the
+model from learning anything.
+</p>
+</div></div>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-3.1.2"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.1.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">3.1.2</span> <span class="title"> <a id="x18-470003.1.2"></a>Better Activation Functions</span></h4></div>
+</p><p class="noindent">One of the insights in <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail"> <a id="x18-47001"></a>Glorot, X. &amp; Bengio, Y. Understanding the difficulty of training deep
+feedforward neural networks in Proceedings of the thirteenth international conference on artificial
+intelligence and statistics (2010), 249–256</span></span> was that the problems with unstable gradients were in part
+due to a <b>poor choice of activation function</b>. </p><div class="quote">  Until then most people had assumed that if nature
+had chosen to use something pretty close to <i>sigmoid activation functions</i> in biological neurons, they
+must be an excellent choice. </div>
+<p class="noindent">But it turns out that other activation functions behave much better in <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep
+Neural Networks</a></span></span></span>s, particularly, the ReLU activation function, mostly because it does not saturate for
+positive values, and also because it is very fast to compute.
+Unfortunately, the ReLU activation function is <b>NOT</b> perfect, as it suffers from a problem known as
+the dying ReLUs: </p><div class="quote">  during training, some neurons effectively “die”, meaning they stop outputting
+anything other than 0. </div>
+<p class="noindent">In some cases, we may find that half of our network’s neurons are <span class="alert">dead</span>, especially if you used a large
+learning rate.
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">A neuron dies when its weights get tweaked in such a way that the input of the ReLU <span class="margin-block">function <span class="margin-comment"><span class="ellipsis">[129]</span>
+<span class="sidenote">i.e., the
+weighted sum of the neuron’s inputs plus its bias term.</span></span></span> is negative for all instances in the training set.
+</p></div></div>
+<p class="noindent">When this happens, the neuron just keeps outputting zeros, and gradient descent does not affect it
+anymore because the gradient of the ReLU function is zero when its input is <span class="margin-block">negative. <span class="margin-comment"><span class="ellipsis">[130]</span>
+<span class="sidenote">A dead neuron
+may come back to life if its inputs evolve over time and eventually return within a range where the
+ReLU activation function gets a positive input again. For example, this may happen if gradient descent
+tweaks the neurons in the layers below the dead neuron.</span></span></span>
+</p><p class="noindent">To solve this problem, you may want to use a variant of the ReLU function, such as the
+<span class="alert">leaky ReLU</span>.
+</p>
+<p class="noindent"><h5 class="subsubsectionHead" id="header-subsubsection-7"> <a id="x18-48000"></a>Leaky ReLU</h5>
+</p><p class="noindent">The leaky ReLU activation function is defined as <span class="cite"><a class="cite-show" href="#w3-20001">[†-6]</a><span class="cite-detail"> <a id="x18-48001"></a>Maas, A. L., Hannun, A. Y., Ng, A. Y., et al.
+Rectifier nonlinearities improve neural network acoustic models in Proc. icml <b>30</b> (2013), 3</span></span>:
+</p><table class="equation-star"><tr><td>
+<math class="equation" display="block">
+<msub><mrow><mi class="qopname">LeakyReLU</mi><mo> ⁡ </mo></mrow><mrow><mi>α</mi></mrow></msub><mo class="MathClass-open" stretchy="false">(</mo><mi>z</mi><mo class="MathClass-close" stretchy="false">)</mo> <mo class="MathClass-rel" stretchy="false">=</mo><mi class="qopname"> max</mi><mo> ⁡ </mo><mo class="MathClass-open" stretchy="false">(</mo><mi>α</mi><mi>z</mi><mo class="MathClass-punc" stretchy="false">,</mo><mi>z</mi><mo class="MathClass-close" stretchy="false">)</mo><mo class="MathClass-close" stretchy="false">)</mo>
+</math></td></tr></table>
+<p class="noindent">The hyperparameter, <math display="inline"><mi>α</mi></math>
+defines how much the function “leaks”: </p><div class="quote">  it is the slope of the function for
+<math display="inline"><mi>z</mi> <mo class="MathClass-rel" stretchy="false">&lt;</mo> <mn>0</mn></math>.
+</div>
+<p class="noindent">Having a slope for <math display="inline"><mi>z</mi> <mo class="MathClass-rel" stretchy="false">&lt;</mo> <mn>0</mn></math>
+ensures that leaky ReLUs never actually <span class="margin-block">die. <span class="margin-comment"><span class="ellipsis">[131]</span>
+<span class="sidenote">They can go into a <i>dormant state</i>, but they have a chance
+to eventually wake up.</span></span></span> A 2015 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-7]</a><span class="cite-detail"> <a id="x18-48002"></a>Xu, B. et al. Empirical Evaluation of Rectified Activations in
+Convolutional Network. ArXiv <b>abs/1505.00853</b> (2015)</span></span> compared several variants of the ReLU
+activation function, and one of its conclusions was that the leaky variants always outperformed the
+strict ReLU activation function.
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">In fact, setting <math display="inline"><mi>α</mi> <mo class="MathClass-rel" stretchy="false">=</mo> <mn>0</mn><mo class="MathClass-punc" stretchy="false">.</mo><mn>2</mn></math>
+(a huge leak) seemed to result in better performance than
+<math display="inline"><mi>α</mi> <mo class="MathClass-rel" stretchy="false">=</mo> <mn>0</mn><mo class="MathClass-punc" stretchy="false">.</mo><mn>0</mn><mn>1</mn></math> (a
+small leak). </p></div></div>
+<p class="noindent">The paper also evaluated the randomized leaky ReLU (RReLU), where
+<math display="inline"><mi>α</mi></math> is
+picked randomly in a given range during training and is fixed to an average value during testing.
+RReLU also performed fairly well and seemed to act as a regularizer, reducing the risk
+of overfitting. Finally, the paper evaluated the parametric leaky ReLU (PReLU), where
+<math display="inline"><mi>α</mi></math> is
+authorized to be learned during training: </p><div class="quote">  instead of being a hyperparameter, it becomes a parameter
+that can be modified by backpropagation like any other parameter. </div>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">PReLU was reported to strongly outperform ReLU on <span class="alert">large image datasets</span>, but on smaller datasets it runs the <span class="alert">risk of overfitting the training set</span>.
+</p></div></div>
+<p class="noindent">As you might expect, PyTorch includes modules for each of these activation functions: </p><div class="quote"> <code class="verb">nn.LeakyReLU</code> , <code class="verb">nn.RReLU</code> , and <code class="verb">nn.PReLU</code> .
+</div>
+<p class="noindent">Just like for other ReLU variants, we should use these along with <i>Kaiming initialization</i>, but the
+variance should be slightly smaller due to the negative slope: it should be scaled down by a factor of
+<math display="inline"><mn>1</mn> <mo class="MathClass-bin" stretchy="false">+</mo> <msup><mrow><mi>α</mi></mrow><mrow><mn>2</mn></mrow></msup></math>.
+PyTorch supports this:
+</p>
+<div class="quote"> we can pass the <math display="inline"><mi>α</mi></math>
+hyperparameter to the <code class="verb">kaiming_uni form_()</code>  and <code class="verb">kaiming_normal_()</code>  functions, along with <code class="verb">nonlinearity="leaky_relu"</code>  to get the appropriately adjusted <i>Kaiming
+initialization</i>: </div>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb128"><a id="x18-48004r243"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x18-48006r244"></a>alpha = <span style="color:#8F4070;">0.2</span> 
+<a id="x18-48008r245"></a>model = nn.Sequential(nn.Linear(<span style="color:#8F4070;">50</span>, <span style="color:#8F4070;">40</span>), nn.LeakyReLU(negative_slope=alpha)) 
+<a id="x18-48010r246"></a>nn.init.kaiming_uniform_(model[<span style="color:#8F4070;">0</span>].weight, alpha, nonlinearity=<span style="color:#78730D;">"leaky_relu"</span>) 
+<a id="x18-48012r247"></a>model(torch.rand(<span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">50</span>)).shape</pre>
+</code></pre>
+<p class="noindent">ReLU, leaky ReLU, and PReLU all suffer from the fact that they are not smooth functions as their slopes abruptly
+change at <math display="inline"><mi>z</mi> <mo class="MathClass-rel" stretchy="false">=</mo> <mn>0</mn></math>.
+As we saw in <b>B.Sc Data Science I</b> when we discussed <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lasso">LASSO</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lasso">Least Absolute Shrinkage and
+Selection Operator</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lasso">Least Absolute Shrinkage and Selection Operator</a></span></span></span>, this sort of discontinuity
+in the derivatives can make gradient descent bounce around the optimum and slow down
+convergence.
+So now we will look at some smooth variants of the ReLU activation function, starting with ELU and
+SELU.
+</p>
+<p class="noindent"><h5 class="subsubsectionHead" id="header-subsubsection-8"> <a id="x18-49000"></a>ELU and SELU</h5>
+</p><p class="noindent">In 2015, a paper by <i>Djork-Arné Clevert</i> et al. <span class="cite"><a class="cite-show" href="#w3-20001">[†-8]</a><span class="cite-detail"> <a id="x18-49001"></a>Clevert, D.-A., Unterthiner, T. &amp; Hochreiter, S. Fast
+and Accurate Deep Network Learning by Exponential Linear Units (ELUs). arXiv: Learning (2015)</span></span>
+proposed a new activation function, called the <i>exponential linear unit (ELU)</i>, which outperformed all
+the ReLU variants in the authors’ experiments: training time was reduced, and the neural
+network performed better on the test set. Eq. (<a href="#x18-49002r3">3.3</a>) shows this activation function’s definition.
+</p><table class="equation"><tr><td>
+<math class="equation" display="block">
+<mstyle class="label" id="x18-49002r3"></mstyle><msub><mrow><mi class="qopname">ELU</mi><mo> ⁡ </mo></mrow><mrow><mi>α</mi></mrow></msub><mo class="MathClass-open" stretchy="false">(</mo><mi>x</mi><mo class="MathClass-close" stretchy="false">)</mo> <mo class="MathClass-rel" stretchy="false">=</mo> <mrow class="cases"> <mrow><mo fence="true" form="prefix">{</mo><mrow> <mtable align="axis" class="array" columnlines="none" displaystyle="true" equalcolumns="false" equalrows="false" style=""> <mtr class="array-row"><mtd class="array-td" columnalign="left"><mi>α</mi><mo class="MathClass-open" stretchy="false">(</mo><mi class="qopname"><mi class="loglike">exp</mi><mo>⁡</mo></mi><mo> ⁡ </mo><mo class="MathClass-open" stretchy="false">(</mo><mi>z</mi><mo class="MathClass-close" stretchy="false">)</mo> <mo class="MathClass-bin" stretchy="false">−</mo> <mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo><mspace class="quad" width="1em"></mspace></mtd><mtd class="array-td" columnalign="left"><mspace class="quad" width="1em"></mspace><mstyle class="text"><mtext>if</mtext></mstyle><mspace class="quad" width="1em"></mspace><mi>z</mi> <mo class="MathClass-rel" stretchy="false">&lt;</mo> <mn>0</mn><mo class="MathClass-punc" stretchy="false">,</mo></mtd></mtr> <mtr class="array-row"><mtd class="array-td" columnalign="left"><mi>z</mi> <mspace class="quad" width="1em"></mspace> </mtd> <mtd class="array-td" columnalign="left"><mspace class="quad" width="1em"></mspace><mstyle class="text"><mtext>if</mtext></mstyle> <mspace class="quad" width="1em"></mspace> <mi>z</mi> <mo class="MathClass-rel" stretchy="false">⩾</mo> <mn>0</mn><mo class="MathClass-punc" stretchy="false">.</mo></mtd></mtr></mtable> </mrow><mo fence="true" form="postfix"></mo></mrow></mrow>
+</math></td><td class="eq-no">(3.3)</td></tr></table>
+<p class="noindent"></p>
+<p class="noindent">The ELU activation function looks a lot like the ReLU function (see Figure 11-3), with a few major
+differences: </p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent">It takes on negative values when <math display="inline"><mi>z</mi> <mo class="MathClass-rel" stretchy="false">&lt;</mo> <mn>0</mn></math>,
+which allows the unit to have an average output closer to 0 and helps alleviate the vanishing
+gradients problem.
+</p>
+<p class="noindent">The hyperparameter <math display="inline"><mi>α</mi></math>
+defines the opposite of the value that the ELU function approaches when <math display="inline"><mi>z</mi></math>
+is a large negative number. It is usually set to 1, but you can tweak it like any other
+hyperparameter.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">It has a nonzero gradient for <math display="inline"><mi>z</mi> <mo class="MathClass-rel" stretchy="false">&lt;</mo> <mn>0</mn></math>,
+which <span class="alert">avoids the dead neurons problem</span>.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">If <math display="inline"><mi>α</mi></math>
+is equal to 1, then the function is smooth everywhere, including around <math display="inline"><mi>z</mi> <mo class="MathClass-rel" stretchy="false">=</mo> <mn>0</mn></math>,
+which helps speed up gradient descent since it does not bounce as much to the left and right
+of <math display="inline"><mi>z</mi> <mo class="MathClass-rel" stretchy="false">=</mo> <mn>0</mn></math>.</p></li></ul>
+<p class="noindent">Using ELU with PyTorch is as easy as using the <code class="verb">nn.ELU</code>  module, along with <i>Kaiming initialization</i>. The main
+drawback of the ELU activation function is that it is slower to compute than the ReLU function and its
+<span class="margin-block">variants. <span class="margin-comment"><span class="ellipsis">[132]</span>
+<span class="sidenote">due to the use of the exponential function.</span></span></span>
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">Its faster convergence rate during training may compensate for that slow computation, but still, at test
+time an ELU network will be a bit slower than a ReLU network. </p></div></div>
+<p class="noindent">Not long after, a 2017 paper by <i>Günter Klambauer</i> et al. <span class="cite"><a class="cite-show" href="#w3-20001">[†-9]</a><span class="cite-detail"> <a id="x18-49003"></a>Klambauer, G. et al. Self-Normalizing Neural
+Networks in Neural Information Processing Systems (2017)</span></span> introduced the scaled ELU (SELU) activation
+function: </p><div class="quote">  as its name suggests, it is a scaled variant of the ELU activation function (about 1.05 times ELU,
+using <math display="inline"><mi>α</mi> <mi>≈</mi> <mn>1</mn><mo class="MathClass-punc" stretchy="false">.</mo><mn>6</mn><mn>7</mn></math>)
+</div>
+<p class="noindent">The authors showed that if you build a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span> composed exclusively of a
+stack of dense layers (i.e., an MLP), and if all hidden layers use the SELU activation function, then the
+network will self-normalize: </p><div class="quote">  the output of each layer will tend to preserve a mean of 0 and a standard
+deviation of 1 during training, which solves the vanishing/exploding gradients problem.
+</div>
+<p class="noindent">As a result, the SELU activation function may outperform other activation functions for MLPs,
+especially deep ones. To use it with PyTorch, just use <code class="verb">nn.SELU</code> . There are, however, a few conditions for
+self-normalization to happen: </p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent">The input features must be standardized, meaning a mean 0 and standard deviation 1.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">Every hidden layer’s weights must be initialized using <i>LeCun normal initialization</i>.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">The self-normalizing property is only guaranteed with plain MLPs. If you try to use SELU
+in other architectures, like <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to
+process sequential data, such as text, speech, or time series, by passing information through
+loops from one step to the next</a></span></span></span> or networks with skip <span class="margin-block">connections, <span class="margin-comment"><span class="ellipsis">[133]</span>
+<span class="sidenote">i.e., connections that
+skip layers, such as in Wide &amp; Deep neural networks.</span></span></span> it will probably not outperform ELU.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">You cannot use regularization techniques like <math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>1</mn></mrow></msub></math>
+or <math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
+regularization, batch-norm, layer-norm, max-norm, or regular dropout.</p></li></ul>
+<p class="noindent">These are significant constraints, so despite its promises, SELU did not gain a lot of traction. Moreover,
+other activation functions seem to outperform it quite consistently on most tasks. Let’s look at some of
+the most popular ones.
+</p>
+<p class="noindent"><h5 class="subsubsectionHead" id="header-subsubsection-9"> <a id="x18-50000"></a>GELU, Swish, SwiGLU, Mish, and RELU2</h5>
+</p><p class="noindent">The <i>Gaussian Error Linear Unit (GELU)</i> was introduced in a 2016 paper by Dan
+Hendrycks and Kevin Gimpel <span class="cite"><a class="cite-show" href="#w3-20001">[†-10]</a><span class="cite-detail"> <a id="x18-50001"></a>Hendrycks, D. &amp; Gimpel, K. Gaussian Error Linear
+Units (GELUs). arXiv: Learning (2016)</span></span>. Once again, you can think of it as a smooth
+variant of the ReLU activation function. Its definition is given in Equation 11-3, where
+<math display="inline"><mi mathvariant="normal">Φ</mi></math>
+is the standard Gaussian cumulative distribution function (CDF): </p><div class="quote">
+<math display="inline"><mi mathvariant="normal">Φ</mi><mo class="MathClass-open" stretchy="false">(</mo><mi>z</mi><mo class="MathClass-close" stretchy="false">)</mo></math>
+corresponds to the probability that a value sampled randomly from a normal distribution of mean 0
+and variance 1 is lower than z. </div>
+<table class="equation"><tr><td>
+<math class="equation" display="block">
+<mstyle class="label" id="x18-50002r4"></mstyle>
+<mi class="qopname">GELU</mi><mo> ⁡ </mo><mo class="MathClass-open" stretchy="false">(</mo><mi>x</mi><mo class="MathClass-close" stretchy="false">)</mo> <mo class="MathClass-rel" stretchy="false">=</mo> <mi>z</mi><mi mathvariant="normal">Φ</mi><mo class="MathClass-open" stretchy="false">(</mo><mi>z</mi><mo class="MathClass-close" stretchy="false">)</mo>
+</math></td><td class="eq-no">(3.4)</td></tr></table>
+<p class="noindent"></p>
+<p class="noindent">As you can see in Figure 11-4, GELU resembles ReLU: it approaches 0 when its input z is very
+negative, and it approaches z when z is very positive. However, whereas all the activation functions
+we’ve discussed so far were both convex and <span class="margin-block">monotonic, <span class="margin-comment"><span class="ellipsis">[134]</span>
+<span class="sidenote">A function is convex if the line segment
+between any two points on the curve never lies below the curve. A monotonic function only increases,
+or only decreases.</span></span></span> the GELU activation function is neither: from left to right, it starts by going straight,
+then it wiggles down, reaches a low point around 0.17 (near z  0.75), and finally bounces up and ends
+up going straight toward the top right. This fairly complex shape and the fact that it has a curvature at
+every point may explain why it works so well, especially for complex tasks: gradient descent may find it
+easier to fit complex patterns. In practice, it often outperforms every other activation function
+discussed so far. However, it is a bit more computationally intensive, and the performance
+boost it provides is not always sufficient to justify the extra cost. That said, it is possible to
+show that it is approximately equal to z(1.702 z), where  is the sigmoid function: using
+this approximation also works very well, and it has the advantage of being much faster to
+compute.
+</p><p class="noindent">The GELU paper also introduced the <i>sigmoid linear unit (SiLU)</i> activation function, which is equal to
+<math display="inline"><mi>z</mi><mi>σ</mi><mo class="MathClass-open" stretchy="false">(</mo><mi>z</mi><mo class="MathClass-close" stretchy="false">)</mo></math>, but it
+was outperformed by GELU in the authors’ tests.
+</p><p class="noindent">Interestingly, a 2017 paper by Prajit Ramachandran et al.12 rediscovered the SiLU function by
+automatically searching for good activation functions. The authors named it Swish, and the
+name caught on. In their paper, Swish outperformed every other function, including GELU.
+Ramachandran et al. later generalized Swish by adding an extra scalar hyperparameter  to scale
+the sigmoid function’s input. The generalized Swish function is Swish(z) = z(z), so GELU
+is approximately equal to the generalized Swish function using  = 1.702. You can tune
+like any other hyperparameter. Alternatively, it’s also possible to make  trainable and
+let gradient descent optimize it (a bit like PReLU): there is typically a single trainable
+parameter for the whole model, or just one per layer, to keep the model efficient and avoid
+overfitting.
+</p><p class="noindent">A popular Swish variant is SwiGLU:13 the inputs go through the Swish activation function, and in
+parallel through a linear layer, then both outputs are multiplied itemwise. That’s SwiGLU(z) =
+Swish(z)  Linear(z). This is often implemented by doubling the output dimensions of the previous linear
+layer, then splitting the outputs in two along the feature dimension to get z1 and z2, and finally
+applying: SwiGLU(z) = Swish(z1)  z2. This is a variant of the gated linear unit (GLU)14 introduced by
+Facebook researchers in 2016. The itemwise multiplication gives the model more expressive power,
+allowing it to learn when to turn off (i.e., multiply by 0) or amplify specific features: this is
+called a gating mechanism. SwiGLU is very common in modern transformers (see Chapter
+15).
+</p><p class="noindent">Another GELU-like activation function is Mish, which was introduced in a 2019 paper by Diganta
+Misra.15 It is defined as mish(z) = ztanh(softplus(z)), where softplus(z) = log(1 + exp(z)). Just like
+GELU and Swish, it is a smooth, nonconvex, and nonmonotonic variant of ReLU, and once again the
+author ran many experiments and found that Mish generally outperformed other activation
+functionseven Swish and GELU, by a tiny margin. Figure 11-4 shows GELU, Swish (both
+with the default  = 1 and with  = 0.6), and lastly Mish. As you can see, Mish overlaps
+almost perfectly with Swish when z is negative, and almost perfectly with GELU when z is
+positive.
+</p>
+<div class="info-block" id="info-block-3.29"> <a class="copiable-link" href="#info-block-3.29"> ¶</a> <span class="info-upper"> <span class="info-header"> <b>Information 3.<a id="x18-50003r29"></a>29: </b> </span> <span class="info-title"> Choosing the Right Activation Function </span> </span> <div class="body">
+<p class="noindent">So, which activation function should we use for the hidden layers of our <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span>s?
+<span class="alert">ReLU</span> remains a good default for most tasks. It is often just as good as the more sophisticated activation
+functions, plus it’s very fast to compute, and many libraries and hardware accelerators provide
+ReLU-specific optimizations.
+</p><p class="noindent"><span class="alert">Swish</span> is probably a better default for complex tasks, and we can even try <span class="alert">parametrized Swish</span> with a learnable
+<math display="inline"><mi>β</mi></math>
+parameter for the most complex tasks.
+</p><p class="noindent"><span class="alert">Mish</span> and <span class="alert">SwiGLU</span> may give you slightly better results, but they require a bit more computation effort. Therefore, if
+we care a lot about runtime latency, then you may prefer leaky ReLU, or parametrized leaky ReLU for
+complex tasks, or even ReLU, especially for sparse models.
+</p>
+</div></div>
+<p class="noindent">PyTorch supports GELU, Mish, and Swish out of the box. To implement SwiGLU, double the previous
+linear layer’s output dimension, then use z1, z2 = z.chunk(2, dim=-1) to split its output in two, and
+compute F.silu(beta * z1) * z2 (where F is torch.nn.functional). For ReLU2, simply compute
+F.relu(z).square(). PyTorch also includes simplified and approximated versions of several activation
+functions, which are much faster to compute and often more stable during training. These
+simplified versions have names starting with Hard, such as nn.Hardsigmoid, nn.Hardtanh, and
+nn.Hardswish, and they are often used on mobile devices. That’s all for activation functions!
+Now, let’s look at a completely different way to solve the unstable gradients problem: batch
+normalization.
+</p>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-3.1.3"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.1.3"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">3.1.3</span> <span class="title"> <a id="x18-510003.1.3"></a>Batch Normalization</span></h4></div>
+</p><p class="noindent">Although using <i>Kaiming initialization</i> along with <span class="margin-block">ReLU <span class="margin-comment"><span class="ellipsis">[135]</span>
+<span class="sidenote">or any one of its variants.</span></span></span> can significantly
+reduce the danger of the vanishing/exploding gradients problems at the beginning of training.
+</p>
+<div class="warning"><div class="warning-upper">Warning</div><div class="body">
+<p class="noindent">It doesn’t guarantee it won’t come back during training. </p></div></div>
+<p class="noindent">In a 2015 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-11]</a><span class="cite-detail"> <a id="x18-51001"></a>Ioffe, S. &amp; Szegedy, C. Batch Normalization: Accelerating Deep Network Training by
+Reducing Internal Covariate Shift in International Conference on Machine Learning (2015)</span></span>, <i>Sergey
+Ioffe</i> and <i>Christian Szegedy</i> proposed a technique called <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in
+ANNs to make training faster and more stable by adjusting and scaling layer inputs.</a></span></span></span><span class="ind" id="hidden">Batch
+Normalization</span>  which addresses these problems. The technique consists of adding an operation in the
+model just before or after the activation function of each hidden layer. This operation simply
+zero-centers and normalizes each input, then scales and shifts the result using two new
+parameter vectors per layer: </p><div class="quote">  one for scaling, the other for shifting or in other words, the
+operation lets the model learn the optimal scale and mean of each of the layer’s inputs.
+</div>
+<p class="noindent">In many cases, if we were to add a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training
+faster and more stable by adjusting and scaling layer inputs.</a></span></span></span> layer as the very first layer of
+our <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span>, we do not need to standardize our training set
+without needing <code class="verb">StandardScaler</code>  as the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training
+faster and more stable by adjusting and scaling layer inputs.</a></span></span></span> layer will do it for <span class="margin-block">us. <span class="margin-comment"><span class="ellipsis">[136]</span>
+<span class="sidenote">well,
+approximately, as it only looks at one batch at a time, and it can also rescale and shift each input
+feature.</span></span></span>
+</p><p class="noindent">To zero-center and normalize the inputs, the algorithm needs to estimate each input’s <i>mean</i> and
+<i>standard deviation</i>. It does this by evaluating the mean and standard deviation of the input over the
+current <span class="margin-block">mini-batch. <span class="margin-comment"><span class="ellipsis">[137]</span>
+<span class="sidenote">hence the name “batch normalization”.</span></span></span> The whole operation is summarized as:
+</p><table class="equation"><tr><td>
+<math class="equation" display="block">
+<mstyle class="label" id="x18-51002r5"></mstyle><mtable class="aligned" displaystyle="true"><mtr><mtd columnalign="right"><mstyle class="text"><mtext>1. </mtext></mstyle></mtd>
+<mtd columnalign="left"></mtd>
+<mtd columnalign="right"><msub><mrow><mi>μ</mi></mrow><mrow><mi>B</mi></mrow></msub></mtd>
+<mtd columnalign="left"> <mo class="MathClass-rel" stretchy="false">=</mo> <mfrac><mrow><mn>1</mn></mrow>
+<mrow><msub><mrow>
+<mi>m</mi></mrow><mrow><mi>B</mi></mrow></msub></mrow></mfrac><munderover accent="false" accentunder="false"><mrow><mo> ∑</mo>
+</mrow><mrow><mi>i</mi><mo class="MathClass-rel" stretchy="false">=</mo><mn>1</mn></mrow><mrow><msub><mrow><mi>m</mi></mrow><mrow><mi>B</mi></mrow></msub>
+</mrow></munderover><msup><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msup></mtd>
+<mtd columnalign="right"></mtd>
+</mtr><mtr><mtd columnalign="right"><mstyle class="text"><mtext>2. </mtext></mstyle></mtd>
+<mtd columnalign="left"></mtd>
+<mtd columnalign="right"><msubsup><mrow><mi>σ</mi></mrow><mrow><mi>B</mi></mrow><mrow><mn>2</mn></mrow></msubsup></mtd>
+<mtd columnalign="left"> <mo class="MathClass-rel" stretchy="false">=</mo> <mfrac><mrow><mn>1</mn></mrow>
+<mrow><msub><mrow>
+<mi>m</mi></mrow><mrow><mi>B</mi></mrow></msub></mrow></mfrac><munderover accent="false" accentunder="false"><mrow><mo> ∑</mo>
+</mrow><mrow><mi>i</mi><mo class="MathClass-rel" stretchy="false">=</mo><mn>1</mn></mrow><mrow><msub><mrow><mi>m</mi></mrow><mrow><mi>B</mi></mrow></msub>
+</mrow></munderover><msup><mrow> <mrow><mo fence="true" form="prefix">(</mo><mrow><msup><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msup> <mo class="MathClass-bin" stretchy="false">−</mo> <msub><mrow><mi>μ</mi></mrow><mrow>
+<mi>B</mi></mrow></msub></mrow><mo fence="true" form="postfix">)</mo></mrow> </mrow><mrow><mn>2</mn></mrow></msup></mtd>
+</mtr><mtr><mtd columnalign="right"><mstyle class="text"><mtext>3. </mtext></mstyle></mtd>
+<mtd columnalign="left"></mtd>
+<mtd columnalign="right"><msup><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msup></mtd>
+<mtd columnalign="left"> <mo class="MathClass-rel" stretchy="false">=</mo> <mfrac><mrow><msup><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msup>
+<mo class="MathClass-bin" stretchy="false">−</mo> <msub><mrow><mi>μ</mi></mrow><mrow><mi>B</mi></mrow></msub></mrow>
+<mrow>
+<msqrt>
+<mrow><msubsup><mrow>
+<mi>σ</mi></mrow><mrow><mi>B</mi></mrow><mrow><mn>2</mn></mrow></msubsup> <mo class="MathClass-bin" stretchy="false">+</mo> <mi>𝜀</mi></mrow></msqrt></mrow></mfrac></mtd>
+</mtr><mtr><mtd columnalign="right"><mstyle class="text"><mtext>4. </mtext></mstyle></mtd>
+<mtd columnalign="left"></mtd>
+<mtd columnalign="right"><msup><mrow><mstyle mathvariant="bold"><mi>z</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msup></mtd>
+<mtd columnalign="left"> <mo class="MathClass-rel" stretchy="false">=</mo> <mi>γ</mi> <mi>⊗</mi><msup><mrow> <mover accent="true"><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msup> <mo class="MathClass-bin" stretchy="false">+</mo> <mi>β</mi></mtd>
+</mtr> </mtable>
+</math></td><td class="eq-no">(3.5)</td></tr></table>
+<p class="noindent"></p>
+<p class="noindent">In this algorithm: </p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent"><math display="inline"><msub><mrow><mi>μ</mi></mrow><mrow><mi>B</mi></mrow></msub></math>
+is the vector of input means, evaluated over the whole mini-batch <math display="inline"><mi>B</mi></math><span class="margin-block">.
+<span class="margin-comment"><span class="ellipsis">[138]</span>
+<span class="sidenote">it contains one mean per input.</span></span></span>
+</p>
+</li>
+<li class="itemize">
+<p class="noindent"><math display="inline"><msub><mrow><mi>m</mi></mrow><mrow><mi>B</mi></mrow></msub></math>
+is the number of instances in the mini-batch.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent"><math display="inline"><msup><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msup></math>
+is the input vector of the batch-norm layer for instance <math display="inline"><mi>i</mi></math>.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent"><math display="inline"><msub><mrow><mi>σ</mi></mrow><mrow><mi>B</mi></mrow></msub></math>
+is the vector of input standard deviations, also evaluated over the whole <span class="margin-block">mini-batch. <span class="margin-comment"><span class="ellipsis">[139]</span>
+<span class="sidenote">it
+contains one standard deviation per input.</span></span></span>
+</p>
+</li>
+<li class="itemize">
+<p class="noindent"><math display="inline"><msub><mrow><mover accent="true"><mrow><mi>x</mi></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+is the vector of zero-centered and normalized inputs for instance <math display="inline"><mi>i</mi></math>.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent"><math display="inline"><mi>𝜖</mi></math>
+is a tiny number that avoids division by zero and ensures the gradients don’t grow too large,
+which is typically <math display="inline"><mn>1</mn> <mi>×</mi> <mn>1</mn><msup><mrow><mn>0</mn></mrow><mrow><mo class="MathClass-bin" stretchy="false">−</mo><mn>5</mn></mrow></msup></math>.
+This is called a <span class="ind">smoothing term</span> .
+</p>
+</li>
+<li class="itemize">
+<p class="noindent"><math display="inline"><mi>γ</mi></math>
+is the output scale parameter vector for the layer and it contains one scale parameter per
+input.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent"><math display="inline"><mi>⊗</mi></math>
+represents element-wise multiplication where each input is multiplied by its corresponding
+output scale parameter.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent"><math display="inline"><mi>β</mi></math>
+is the output shift (offset) parameter vector for the layer as it contains one shift parameter
+per input. Each input is offset by its corresponding shift parameter.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent"><math display="inline"><msup><mrow><mstyle mathvariant="bold"><mi>z</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msup></math>
+is the output of the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training
+faster and more stable by adjusting and scaling layer inputs.</a></span></span></span> operation. It is a rescaled and
+shifted version of the inputs.</p></li></ul>
+<p class="noindent">So during training, <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training faster and more
+stable by adjusting and scaling layer inputs.</a></span></span></span> standardizes its inputs, then re-scales and offsets them. </p><div class="quote">
+What about at test time? </div>
+<p class="noindent">Well, it’s not that simple. Indeed, we may need to make predictions for individual instances rather than
+for batches of instances: </p><div class="quote">  in this case, we will have no way to compute each input’s standard deviation.
+Moreover, even if we do have a batch of instances, it may be too small, or the instances may not be
+independent and identically distributed, so computing statistics over the batch instances would be
+unreliable. </div>
+<p class="noindent">One solution is to wait until the end of training, then run the whole training set through the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span> and compute the mean and standard deviation of each input of the
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training faster and more stable by
+adjusting and scaling layer inputs.</a></span></span></span> layer. These “final” input means and standard deviations
+can then be used instead of the batch input means and standard deviations when making
+predictions.
+However, most implementations of batch norm estimate these final statistics during training by using a
+moving average of the layer’s batch input means and variances.
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">This is what PyTorch does automatically when you use its batch-norm layers, such as <code class="verb">nn.BatchNorm1d</code> .
+</p></div></div>
+<p class="noindent">To sum up, four parameter vectors are learned in each batch-norm layer:  (the output scale vector) and
+(the output offset vector) are learned through regular backpropagation, and  (the final input mean
+vector) and 2 (the final input variance vector) are estimated using an exponential moving average. Note
+that  and 2 are estimated during training, but they are used only after training, once you switch the
+model to evaluation mode using model.eval():  and 2 then replace B and B2 in Equation
+11-4.
+</p><p class="noindent">In their paper, <i>Ioffe</i> and <i>Szegedy</i> demonstrated that batch norm considerably improved all the
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span> they experimented with, leading to a huge
+improvement in the <span class="ind">ImageNet</span>  classification <span class="margin-block">task. <span class="margin-comment"><span class="ellipsis">[140]</span>
+<span class="sidenote">ImageNet is a large database of images classified into
+many classes, commonly used to evaluate computer vision systems.</span></span></span> The vanishing gradients problem
+was strongly reduced, to the point that they could use saturating activation functions such as
+<math display="inline"><mi class="loglike">tanh</mi><mo>⁡</mo></math> and
+even sigmoid. The networks were also much less sensitive to the weight initialization. The
+authors were able to use much larger learning rates, significantly speeding up the learning
+process.
+</p><p class="noindent">Specifically, they note that: </p><div class="quote">  Applied to a state-of-the-art image classification model, <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A
+technique used in ANNs to make training faster and more stable by adjusting and scaling layer inputs.</a></span></span></span>
+achieves the same accuracy with 14 times fewer training steps, and beats the original model by a significant
+margin. <math display="inline"><mo class="MathClass-open" stretchy="false">[</mo><mo class="MathClass-rel" stretchy="false">⋯</mo><mspace class="thinspace" width="0.17em"></mspace><mo class="MathClass-close" stretchy="false">]</mo></math>
+Using an ensemble of batch-normalized networks, we improve upon the best published result on
+ImageNet classification: reaching 4.9% top-5 validation error (and 4.8% test error), exceeding the
+accuracy of human raters. </div>
+<p class="noindent">Finally, like a gift that keeps on giving, batch norm acts like a <span class="ind">regularizer</span> , reducing the need for other
+regularization <span class="margin-block">techniques. <span class="margin-comment"><span class="ellipsis">[141]</span>
+<span class="sidenote">such as dropout, described later in this chapter.</span></span></span>
+</p><p class="noindent"><span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training faster and more stable by
+adjusting and scaling layer inputs.</a></span></span></span> does, however, add some complexity to the <span class="margin-block">model. <span class="margin-comment"><span class="ellipsis">[142]</span>
+<span class="sidenote">although it can
+remove the need for normalizing the input data.</span></span></span> Moreover, there is a runtime penalty: the
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span> makes slower predictions due to the extra computations
+required at each layer. Fortunately, it’s often possible to fuse the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A
+technique used in ANNs to make training faster and more stable by adjusting and scaling
+layer inputs.</a></span></span></span> layer with the previous layer after training, thereby avoiding the runtime
+penalty.
+This is done by updating the previous layer’s weights and biases so that it directly produces
+outputs of the appropriate scale and offset. For example, if the previous layer computes
+<math display="inline"><mstyle mathvariant="bold"><mi>X</mi></mstyle><mstyle mathvariant="bold"><mi>W</mi></mstyle> <mo class="MathClass-bin" stretchy="false">+</mo> <mstyle mathvariant="bold"><mi>b</mi></mstyle></math>, then
+the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training faster and more stable by
+adjusting and scaling layer inputs.</a></span></span></span> layer will compute: </p><table class="equation-star"><tr><td>
+<math class="equation" display="block">
+<mi>γ</mi> <mi>⊗</mi> <mfrac><mrow><msup><mrow> <mrow><mo fence="true" form="prefix">(</mo><mrow><mstyle mathvariant="bold"><mi>X</mi></mstyle><mstyle mathvariant="bold"><mi>W</mi></mstyle> <mo class="MathClass-bin" stretchy="false">+</mo> <mstyle mathvariant="bold"><mi>b</mi></mstyle><mstyle mathvariant="bold"></mstyle></mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow></mrow></msup></mrow>
+<mrow>
+<mi>σ</mi></mrow></mfrac> <mo class="MathClass-bin" stretchy="false">+</mo> <mi>β</mi><mspace class="qquad" width="2em"></mspace><mstyle class="text"><mtext>ignoring the smoothing term (</mtext><mstyle class="math"><mi>𝜖</mi></mstyle><mtext>) in the denominator</mtext></mstyle><mspace class="qquad" width="2em"></mspace>
+</math></td></tr></table>
+<p class="noindent">If we define: </p><table class="equation-star"><tr><td>
+<math class="equation" display="block"><msup><mrow>
+<mstyle mathvariant="bold">
+<mi>W</mi></mstyle>
+</mrow><mrow><mi>′</mi></mrow></msup>
+<mo class="MathClass-rel" stretchy="false">=</mo> <mi>γ</mi> <mi>⊗</mi> <mfrac><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow>
+<mrow>
+<mi>σ</mi></mrow></mfrac> <mspace class="qquad" width="2em"></mspace><mstyle class="text"><mtext>and</mtext></mstyle><mspace class="qquad" width="2em"></mspace><msup><mrow><mstyle mathvariant="bold"><mi>b</mi></mstyle></mrow><mrow><mi>′</mi></mrow></msup> <mo class="MathClass-rel" stretchy="false">=</mo> <mi>γ</mi> <mi>⊗</mi> <mfrac><mrow><mstyle mathvariant="bold"><mi>b</mi></mstyle> <mo class="MathClass-bin" stretchy="false">−</mo> <mi>μ</mi></mrow>
+<mrow>
+<mi>σ</mi></mrow></mfrac> <mo class="MathClass-bin" stretchy="false">+</mo> <mi>β</mi>
+</math></td></tr></table>
+<p class="noindent">In which case, the equation simplifies to <math display="inline"><mstyle mathvariant="bold"><mi>X</mi></mstyle><msup><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>′</mi></mrow></msup> <mo class="MathClass-bin" stretchy="false">+</mo><msup><mrow> <mstyle mathvariant="bold"><mi>b</mi></mstyle></mrow><mrow><mi>′</mi></mrow></msup></math>.
+So, if we replace the previous layer’s weights and biases
+(<math display="inline"><mstyle mathvariant="bold"><mi>W</mi></mstyle></math> and
+<math display="inline"><mstyle mathvariant="bold"><mi>b</mi></mstyle></math>) with the updated
+weights and biases (<math display="inline"><msup><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>′</mi></mrow></msup></math>
+and <math display="inline"><msup><mrow><mstyle mathvariant="bold"><mi>b</mi></mstyle></mrow><mrow><mi>′</mi></mrow></msup></math>),
+we can get rid of the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training faster and
+more stable by adjusting and scaling layer inputs.</a></span></span></span> layer. This is one of the optimizations performed by <span class="ind"><code class="verb">optimize_for_inference()</code> </span>
+.
+</p>
+<div class="info-block" id="info-block-3.30"> <a class="copiable-link" href="#info-block-3.30"> ¶</a> <span class="info-upper"> <span class="info-header"> <b>Information 3.<a id="x18-51003r30"></a>30: </b> </span> <span class="info-title"> This Method Feels Slower </span> </span> <div class="body">
+<p class="noindent">It may seem like that training is rather slow, because each epoch takes much more time when you use
+batch norm. This is usually counterbalanced by the fact that convergence is much faster
+with <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training faster and more
+stable by adjusting and scaling layer inputs.</a></span></span></span>, so it will take fewer epochs to reach the same
+performance.
+</p>
+</div></div>
+<p class="noindent"><h5 class="subsubsectionHead" id="header-subsubsection-10"> <a id="x18-52000"></a>Implementing batch norm with PyTorch</h5>
+</p><p class="noindent">As with most things in PyTorch, implementing batch norm is straightforward and intuitive. Just add
+an <span class="ind"><code class="verb">nn.BatchNorm1d</code> </span>  layer before or after each hidden layer’s activation function, and specify the number of inputs of
+each <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training faster and more stable by
+adjusting and scaling layer inputs.</a></span></span></span> layer. We may also add a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A
+technique used in ANNs to make training faster and more stable by adjusting and scaling layer
+inputs.</a></span></span></span> layer as the first layer in our model, which removes the need to standardize the inputs
+manually.
+For example, let’s create a <span class="ind">Fashion MNIST</span>  image <span class="margin-block">classifier <span class="margin-comment"><span class="ellipsis">[143]</span>
+<span class="sidenote">similar to the one we built
+in <span class="refclass-ref"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span>.</span></span></span> using <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in
+ANNs to make training faster and more stable by adjusting and scaling layer inputs.</a></span></span></span> as the
+first layer in the <span class="margin-block">model, <span class="margin-comment"><span class="ellipsis">[144]</span>
+<span class="sidenote">after flattening the input images.</span></span></span> then again after each hidden
+layer:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb129"><a id="x18-52002r429"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x18-52004r430"></a> 
+<a id="x18-52006r431"></a>model = nn.Sequential( 
+<a id="x18-52008r432"></a>    nn.Flatten(), 
+<a id="x18-52010r433"></a>    nn.BatchNorm1d(<span style="color:#8F4070;">1</span> * <span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>), 
+<a id="x18-52012r434"></a>    nn.Linear(<span style="color:#8F4070;">1</span> * <span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>, <span style="color:#8F4070;">300</span>), 
+<a id="x18-52014r435"></a>    nn.ReLU(), 
+<a id="x18-52016r436"></a>    nn.BatchNorm1d(<span style="color:#8F4070;">300</span>), 
+<a id="x18-52018r437"></a>    nn.Linear(<span style="color:#8F4070;">300</span>, <span style="color:#8F4070;">100</span>), 
+<a id="x18-52020r438"></a>    nn.ReLU(), 
+<a id="x18-52022r439"></a>    nn.BatchNorm1d(<span style="color:#8F4070;">100</span>), 
+<a id="x18-52024r440"></a>    nn.Linear(<span style="color:#8F4070;">100</span>, <span style="color:#8F4070;">10</span>) 
+<a id="x18-52026r441"></a>)</pre>
+</code></pre>
+<p class="noindent">We can now train the model normally, as we did in <span class="refclass-ref"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span>.
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">In this tiny example with just two (<span class="alert">2</span>) hidden layers, batch norm is unlikely to have a large impact, but
+for <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span> it can make a tremendous difference.
+</p></div></div>
+<div class="info-block" id="info-block-3.31"> <a class="copiable-link" href="#info-block-3.31"> ¶</a> <span class="info-upper"> <span class="info-header"> <b>Information 3.<a id="x18-52027r31"></a>31: </b> </span> <span class="info-title"> Different Modes for Different Norms </span> </span> <div class="body">
+<p class="noindent">Since batch norm behaves differently during training and during evaluation, it’s critical to switch to
+training mode during training using <span class="ind"><code class="verb">model.train()</code> </span> , and switch to evaluation mode during evaluation using <span class="ind"><code class="verb">model.eval()</code> </span> .
+</p>
+<hr/>
+<p class="noindent"> 
+Forgetting to do so is one of the most common mistakes.
+</p>
+</div></div>
+<p class="noindent">If you look at the parameters of the first <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training
+faster and more stable by adjusting and scaling layer inputs.</a></span></span></span> layer, we will find two, which are <code class="verb">weight</code>  and <code class="verb">bias</code> , which
+correspond to <math display="inline"><mi>γ</mi></math>
+and <math display="inline"><mi>β</mi></math> in
+Eq. 
+(<a href="#x18-51002r5">3.5</a>)
+:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb130"><a id="x18-52029r446"></a><span style="color:#B03B03;">dict</span>(model[<span style="color:#8F4070;">1</span>].named_parameters()).keys()</pre>
+</code></pre>
+<p class="noindent">And if we look at the buffers of this same <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make
+training faster and more stable by adjusting and scaling layer inputs.</a></span></span></span> layer, we will find three: </p><div class="quote"> <code class="verb">running_mean</code> , <code class="verb">running_var</code> , and
+<code class="verb">num_batches_tracked</code> . </div>
+<p class="noindent">The first two correspond to the running means <math display="inline"><mi>μ</mi></math>
+and <math display="inline"><msup><mrow><mi>σ</mi></mrow><mrow><mn>2</mn></mrow></msup></math>
+discussed earlier, and <span class="ind"><code class="verb">num_batches_tracked</code> </span>  simply counts the number of batches seen during training:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb131"><a id="x18-52031r451"></a><span style="color:#B03B03;">dict</span>(model[<span style="color:#8F4070;">1</span>].named_buffers()).keys()</pre>
+</code></pre>
+<p class="noindent">The authors of the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training faster
+and more stable by adjusting and scaling layer inputs.</a></span></span></span> paper argued in favor of adding the
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training faster and more stable
+by adjusting and scaling layer inputs.</a></span></span></span> layers before the activation functions, rather than
+after, which is similar to we just did. There is some debate about this, and it seems to
+depend on the task, so you can experiment with this to see which option works best on your
+dataset.
+If we move the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training faster and more
+stable by adjusting and scaling layer inputs.</a></span></span></span> layers before the activation functions, you can also remove
+the bias term from the previous <span class="ind"> <code class="file">nn.Linear</code> </span>  layers by setting their bias hyperparameter
+to  <code class="file">False</code> . Indeed, a batch-norm layer already includes one bias term per input. We can
+also drop the first <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training
+faster and more stable by adjusting and scaling layer inputs.</a></span></span></span> layer to avoid sandwiching
+the first hidden layer between two <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to
+make training faster and more stable by adjusting and scaling layer inputs.</a></span></span></span> layers, but this
+means you should normalize the training set before training. The updated code looks like
+this:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb132"><a id="x18-52033r461"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x18-52035r462"></a> 
+<a id="x18-52037r463"></a>model = nn.Sequential( 
+<a id="x18-52039r464"></a>    nn.Flatten(), 
+<a id="x18-52041r465"></a>    nn.Linear(<span style="color:#8F4070;">1</span> * <span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>, <span style="color:#8F4070;">300</span>, bias=<span style="color:#9E0005;">False</span>), 
+<a id="x18-52043r466"></a>    nn.BatchNorm1d(<span style="color:#8F4070;">300</span>), 
+<a id="x18-52045r467"></a>    nn.ReLU(), 
+<a id="x18-52047r468"></a>    nn.Linear(<span style="color:#8F4070;">300</span>, <span style="color:#8F4070;">100</span>, bias=<span style="color:#9E0005;">False</span>), 
+<a id="x18-52049r469"></a>    nn.BatchNorm1d(<span style="color:#8F4070;">100</span>), 
+<a id="x18-52051r470"></a>    nn.ReLU(), 
+<a id="x18-52053r471"></a>    nn.Linear(<span style="color:#8F4070;">100</span>, <span style="color:#8F4070;">10</span>) 
+<a id="x18-52055r472"></a>)</pre>
+</code></pre>
+<p class="noindent">The <span class="ind"><code class="verb">nn.BatchNorm1d</code> </span>  class has a few hyperparameters we can tweak. The defaults will usually be fine, but we may
+occasionally need to tweak the <code class="verb">momentum</code> . This hyperparameter is used by the <code class="verb">BatchNorm1d</code>  layer when it updates the
+exponential moving averages.
+</p><p class="noindent">Given a new value <math display="inline"><mstyle mathvariant="bold"><mi>v</mi></mstyle></math><span class="margin-block">,
+<span class="margin-comment"><span class="ellipsis">[145]</span>
+<span class="sidenote">i.e., a new vector of input means or variances computed over the current batch</span></span></span> the layer updates the running
+average <math display="inline"><mstyle mathvariant="bold"><mi>v</mi></mstyle></math>
+using the following equation: </p><table class="equation-star"><tr><td>
+<math class="equation" display="block">
+<mover accent="true"><mrow><mstyle mathvariant="bold"><mi>v</mi></mstyle></mrow><mo accent="true">^</mo></mover>
+<mi>←</mi> <mstyle mathvariant="bold"><mi>v</mi></mstyle> <mi>×</mi> <mstyle class="text"><mtext>momentum</mtext></mstyle> <mo class="MathClass-bin" stretchy="false">+</mo> <mover accent="true"><mrow><mstyle mathvariant="bold"><mi>v</mi></mstyle></mrow><mo accent="true">^</mo></mover> <mi>×</mi><msup><mrow> <mrow><mo fence="true" form="prefix">(</mo><mrow><mn>1</mn> <mo class="MathClass-bin" stretchy="false">−</mo> <mstyle class="text"><mtext>momentum</mtext></mstyle></mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow></mrow></msup>
+</math></td></tr></table>
+<p class="noindent">A good momentum value is typically close to 0; for example, 0.01 or 0.001. You want more 0s for
+smaller mini-batches, and fewer for larger mini-batches. The default is 0.1, which is good for large batch
+sizes, but not great for small batch sizes such as 32 or 64.
+</p>
+<div class="info-block" id="info-block-3.32"> <a class="copiable-link" href="#info-block-3.32"> ¶</a> <span class="info-upper"> <span class="info-header"> <b>Information 3.<a id="x18-52056r32"></a>32: </b> </span> <span class="info-title"> What does Momentum even Mean? </span> </span> <div class="body">
+<p class="noindent">When people talk about momentum in the context of a running mean, they usually refer to the weight
+of the current running mean in the update equation. Sadly, for historical reasons, PyTorch uses the
+opposite meaning in the BN layers. </p>
+<hr/>
+<p class="noindent"> 
+However, other parts of PyTorch use the conventional meaning
+(e.g., in optimizers), so don’t get confused.  </p></div></div>
+<p class="noindent"><h5 class="subsubsectionHead" id="header-subsubsection-11"> <a id="x18-53000"></a>Batch norm 1D, 2D, and 3D</h5>
+</p><p class="noindent">In the previous examples, we flattened the input images before sending them through the first<code class="verb"> nn.BatchNorm1d</code>  layer.
+This is because an <code class="verb">nn.BatchNorm1d</code>  layer works on batches of shape <code class="verb">[batch_size, num_features]</code> , similar to what <code class="verb">nn.Linear layer</code>  does, so we would get an error
+if you moved it before the <code class="verb">nn.Flatten</code>  layer.
+</p><p class="noindent">However, we could use an <code class="verb">nn.BatchNorm2d</code>  layer before the <code class="verb">nn.Flatten</code>  layer: indeed, it expects its inputs to be image batches of
+shape <code class="verb">[batch_size, channels, height, width]</code> , and it computes the batch mean and variance across both the batch dimension (dimension 0)
+and the spatial dimensions (dimensions 2 and 3). This means that all pixels in the same batch and
+channel get normalized using the same mean and variance: the <code class="verb">nn.BatchNorm2d</code>  layer only has one weight per channel
+and one bias per <span class="margin-block">channel. <span class="margin-comment"><span class="ellipsis">[146]</span>
+<span class="sidenote">e.g., three weights and three bias terms for color images with three channels
+for red, green, and blue.</span></span></span>
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">This generally works better when dealing with image datasets. </p></div></div>
+<p class="noindent">There’s also an <code class="verb">nn.BatchNorm3d</code>  layer which expects batches of shape <code class="verb">[batch_size, channels, depth, height, width]</code>
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">this is useful for datasets of 3D images, such as CT scans. </p></div></div>
+<p class="noindent">The <code class="verb">nn.BatchNorm1d</code>  layer can also work on batches of sequences.
+</p><p class="noindent">The convention in PyTorch is to represent batches of sequences as 3D tensors of shape <code class="verb">[batch_size, sequence_length, num_features]</code> . </p><div class="quote">  For example,
+suppose you work on particle physics and you have a dataset of particle trajectories, where each
+trajectory is composed of a sequence of 100 points in 3D space, then a batch of 32 trajectories will have
+a shape of <code class="verb">[32, 100, 3]</code> . However, the <code class="verb">nn.BatchNorm1d</code>  layer expects the shape to be <code class="verb">[batch_size, num_features, sequence_length]</code> , and it computes the batch mean and
+variance across the first and last dimensions to get one mean and variance per feature. So you must
+permute the last two dimensions of the data using <code class="verb">X.permute(0, 2, 1)</code>  before letting it go through the nn.BatchNorm1d
+layer. </div>
+<p class="noindent">Batch normalization has become one of the most-used layers in <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural
+Networks</a></span></span></span>s, especially deep convolutional neural networks discussed in Chapter 12, to the point that it
+is often omitted in the architecture diagrams.
+</p>
+<div class="warning"><div class="warning-upper">Warning</div><div class="body">
+<p class="noindent">It is assumed that BN is added after every layer </p></div></div>
+<p class="noindent">However, it is not perfect. In particular, the computed statistics for an instance are biased by the other
+samples in a batch, which may reduce <span class="margin-block">performance. <span class="margin-comment"><span class="ellipsis">[147]</span>
+<span class="sidenote">especially for small batch sizes.</span></span></span> Moreover, BN
+struggles with some architectures, such as <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to
+process sequential data, such as text, speech, or time series, by passing information through loops from
+one step to the next</a></span></span></span>s. For these reasons, batch-norm is more and more often replaced by
+layer-norm.
+</p>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-3.1.4"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.1.4"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">3.1.4</span> <span class="title"> <a id="x18-540003.1.4"></a>Layer Normalization</span></h4></div>
+</p><p class="noindent"><span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ln">LN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ln">Layer Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ln">A deep learning technique which stabilizes neural network training by
+calculating the mean and variance across the feature dimensions of each individual sample rather than
+across a mini-batch</a></span></span></span> is very similar to batch norm, but instead of normalizing across the batch
+dimension, <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ln">LN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ln">Layer Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ln">A deep learning technique which stabilizes neural network training
+by calculating the mean and variance across the feature dimensions of each individual sample rather
+than across a mini-batch</a></span></span></span> normalizes across the feature dimensions. This simple idea was introduced
+by Jimmy Lei Ba et al. in a 2016 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-12]</a><span class="cite-detail"> <a id="x18-54001"></a>Ba, J., Kiros, J. R. &amp; Hinton, G. E. Layer
+Normalization. ArXiv <b>abs/1607.06450</b> (2016)</span></span>, and initially applied mostly to recurrent
+nets.
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">However, in recent years it has been successfully applied to many other architectures, such as
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:cnn">CNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:cnn">Convolutional Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:cnn">Convolutional Neural Networks</a></span></span></span>s, transformers, diffusion nets, and
+more. </p></div></div>
+<p class="noindent">One advantage is that <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ln">LN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ln">Layer Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ln">A deep learning technique which stabilizes neural
+network training by calculating the mean and variance across the feature dimensions of each individual
+sample rather than across a mini-batch</a></span></span></span> can compute the required statistics on the fly, at each time
+step, independently for each instance. This also means that it behaves the same way during training
+and testing (as opposed to BN), and it does not need to use exponential moving averages to estimate
+the feature statistics across all instances in the training set, like BN does. Lastly, <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ln">LN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ln">Layer
+Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ln">A deep learning technique which stabilizes neural network training by calculating the
+mean and variance across the feature dimensions of each individual sample rather than across
+a mini-batch</a></span></span></span> learns a scale and an offset parameter for each input feature, just like BN
+does.
+PyTorch includes an <code class="verb">nn.LayerNorm</code>  module. To create an instance, you must simply indicate the size of the
+dimensions that you want to normalize over. These must be the last dimension(s) of the
+inputs.
+</p>
+<div class="quote"> For example, if the inputs are batches of <math display="inline"><mn>1</mn><mn>0</mn><mn>0</mn> <mi>×</mi> <mn>2</mn><mn>0</mn><mn>0</mn></math>
+RGB images of shape <code class="verb">[3, 100, 200]</code> , and you want to normalize each image over each of the three color channels
+separately, you would use the following <code class="verb">nn.LayerNorm</code>  module: </div>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb133"><a id="x18-54003r482"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x18-54005r483"></a> 
+<a id="x18-54007r484"></a>inputs = torch.randn(<span style="color:#8F4070;">32</span>, <span style="color:#8F4070;">3</span>, <span style="color:#8F4070;">100</span>, <span style="color:#8F4070;">200</span>)  <span style="color:#918273;"><i># a batch of random RGB images</i></span> 
+<a id="x18-54009r485"></a>layer_norm = nn.LayerNorm([<span style="color:#8F4070;">100</span>, <span style="color:#8F4070;">200</span>]) 
+<a id="x18-54011r486"></a>result = layer_norm(inputs)  <span style="color:#918273;"><i># normalizes over the last two dimensions</i></span></pre>
+</code></pre>
+<p class="noindent">The following code produces the same result:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb134"><a id="x18-54013r491"></a>means = inputs.mean(dim=[<span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">3</span>], keepdim=<span style="color:#9E0005;">True</span>) 
+<a id="x18-54015r492"></a>vars_ = inputs.var(dim=[<span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">3</span>], keepdim=<span style="color:#9E0005;">True</span>, unbiased=<span style="color:#9E0005;">False</span>) 
+<a id="x18-54017r493"></a>stds = torch.sqrt(vars_ + layer_norm.eps) 
+<a id="x18-54019r494"></a>result2 = layer_norm.weight * (inputs - means) / stds + layer_norm.bias 
+<a id="x18-54021r495"></a><span style="color:#9E0005;">assert</span> torch.allclose(result, result2)</pre>
+</code></pre>
+<p class="noindent">However, most computer vision architectures that use <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ln">LN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ln">Layer Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ln">A deep learning
+technique which stabilizes neural network training by calculating the mean and variance across the
+feature dimensions of each individual sample rather than across a mini-batch</a></span></span></span> normalize over all
+channels at once. For this, you must include the size of the channel dimension when creating the
+nn.LayerNorm module:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb135"><a id="x18-54023r500"></a>layer_norm = nn.LayerNorm([<span style="color:#8F4070;">3</span>, <span style="color:#8F4070;">100</span>, <span style="color:#8F4070;">200</span>]) 
+<a id="x18-54025r501"></a>result = layer_norm(inputs)  <span style="color:#918273;"><i># normalizes over the last three dimensions</i></span></pre>
+</code></pre>
+<p class="noindent">And that’s all there is to it! Now let’s look at one last technique to stabilize gradients during training:
+gradient clipping.
+</p>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-3.1.5"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.1.5"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">3.1.5</span> <span class="title"> <a id="x18-550003.1.5"></a>Gradient Clipping</span></h4></div>
+</p><p class="noindent">Another technique to mitigate the exploding gradients problem is to clip the gradients during
+backpropagation so that they never exceed some threshold. This is called gradient clipping <span class="cite"><a class="cite-show" href="#w3-20001">[†-13]</a><span class="cite-detail">
+<a id="x18-55001"></a>Pascanu, R., Mikolov, T. &amp; Bengio, Y. On the difficulty of training recurrent neural networks in
+International Conference on Machine Learning (2012)</span></span>. This technique is generally used in
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text,
+speech, or time series, by passing information through loops from one step to the next</a></span></span></span>s, where using
+batch norm is tricky.
+In PyTorch, gradient clipping is generally implemented by calling either torch. <code class="verb">nn.utils.clip_grad_norm_()</code>  or <code class="verb">torch.nn.utils.clip_grad_value_()</code>  at each iteration
+during training, right after the gradients are computed, such as after <code class="verb">loss.back ward()</code> ). Both functions take as a first
+argument the list of model parameters whose gradients must be clippedtypically all of them using <code class="verb">model.parameters()</code> .
+The <code class="verb">clip_grad_norm_()</code>  function clips each gradient vector’s norm if it exceeds the given <code class="verb">max_norm</code>  argument. This is a
+hyperparameter you can <span class="margin-block">tune. <span class="margin-comment"><span class="ellipsis">[148]</span>
+<span class="sidenote">a typical default value is 1.0.</span></span></span> The <code class="verb">clip_grad_value_()</code>  function independently clips the
+individual components of the gradient vector between <code class="verb">-clip_value</code>  and <code class="verb">+clip_value</code> , where <code class="verb">clip_value</code>  is a hyperparameter you
+can tune. </p><div class="quote">  For example, this training loop clips the norm of each gradient vector to 1.0:
+</div>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb136"><a id="x18-55003r593"></a>    <span style="color:#9E0005;">for</span> epoch <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(n_epochs): 
+<a id="x18-55005r594"></a>        total_loss = <span style="color:#8F4070;">0.0</span> 
+<a id="x18-55007r595"></a>        metric.reset() 
+<a id="x18-55009r596"></a>        model.train() 
+<a id="x18-55011r597"></a>        <span style="color:#9E0005;">for</span> X_batch, y_batch <span style="color:#9E0005;">in</span> train_loader: 
+<a id="x18-55013r598"></a>            X_batch, y_batch = X_batch.to(device), y_batch.to(device) 
+<a id="x18-55015r599"></a>            y_pred = model(X_batch) 
+<a id="x18-55017r600"></a>            loss = loss_fn(y_pred, y_batch) 
+<a id="x18-55019r601"></a>            total_loss += loss.item() 
+<a id="x18-55021r602"></a>            loss.backward() 
+<a id="x18-55023r603"></a>            <span style="color:#918273;"><i># Uncomment to activate gradient clipping:</i></span> 
+<a id="x18-55025r604"></a>            <span style="color:#918273;"><i>#nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)</i></span> 
+<a id="x18-55027r605"></a>            optimizer.step() 
+<a id="x18-55029r606"></a>            optimizer.zero_grad() 
+<a id="x18-55031r607"></a>            metric.update(y_pred, y_batch)</pre>
+</code></pre>
+<p class="noindent">Note that <code class="verb">clip_grad_value_()</code>  will change the orientation of the gradient vector when its components are clipped. For
+example, if the original gradient vector is <code class="verb">[0.9, 100.0]</code> , it points mostly in the direction of the second dimension;
+but once you clip it by value, you get <code class="verb">[0.9, 1.0]</code> , which points roughly at the diagonal between the two axes.
+Despite this reorientation, this approach actually works quite well in practice. If you clipped the same
+vector by norm, the result would be <code class="verb">[0.00899964, 0.9999595]</code> : this would preserve the vector’s orientation, but
+almost eliminate the first component. The best clipping function to use depends on the
+dataset.
+<div class="section-header">
+<h3 id="header-section-glossary">
+<span class="number">
+<i aria-hidden="true" class="fa fa-list-alt"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+        Page Glossary Terms</span>
+</h3>
+</div>
+<div class="acronym-block">
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:cnn">¶</a>
+<dt class="acr-bottom" id="glo:cnn"><span class="acr-short">CNN</span><span class="acr-long">Convolutional Neural Networks</span></dt>
+<dd class="acr-desc"><p>Convolutional Neural Networks</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:ln">¶</a>
+<dt class="acr-bottom" id="glo:ln"><span class="acr-short">LN</span><span class="acr-long">Layer Normalization</span></dt>
+<dd class="acr-desc"><p>A deep learning technique which stabilizes neural network training by
+calculating the mean and variance across the feature dimensions of each individual sample rather than
+across a mini-batch</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:bn">¶</a>
+<dt class="acr-bottom" id="glo:bn"><span class="acr-short">BN</span><span class="acr-long">Batch Normalization</span></dt>
+<dd class="acr-desc"><p>A technique used in
+ANNs to make training faster and more stable by adjusting and scaling layer inputs.</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:nn">¶</a>
+<dt class="acr-bottom" id="glo:nn"><span class="acr-short">NN</span><span class="acr-long">Neural Networks</span></dt>
+<dd class="acr-desc"><p>Neural Networks</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:lasso">¶</a>
+<dt class="acr-bottom" id="glo:lasso"><span class="acr-short">LASSO</span><span class="acr-long">Least Absolute Shrinkage and
+Selection Operator</span></dt>
+<dd class="acr-desc"><p>Least Absolute Shrinkage and Selection Operator</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:gann">¶</a>
+<dt class="acr-bottom" id="glo:gann"><span class="acr-short">GAN</span><span class="acr-long">General Adveserial Networks</span></dt>
+<dd class="acr-desc"><p>General Adveserial
+Networks</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:dnn">¶</a>
+<dt class="acr-bottom" id="glo:dnn"><span class="acr-short">DNN</span><span class="acr-long">Deep Neural Networks</span></dt>
+<dd class="acr-desc"><p>Deep Neural Networks</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:rnn">¶</a>
+<dt class="acr-bottom" id="glo:rnn"><span class="acr-short">RNN</span><span class="acr-long">Recurrent Neural
+Networks</span></dt>
+<dd class="acr-desc"><p>a type of ANN designed to process sequential data, such as text, speech, or time series, by
+passing information through loops from one step to the next</p></dd>
+</dl>
+</div>
+<div class="section-header">
+<h3 id="header-section-references">
+<span class="number">
+<i class="fa-solid fa-magnifying-glass"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+            Page References</span>
+</h3>
+</div>
+<div class="cite-block">
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">1.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Hochreiter, S. The Vanishing Gradient Problem During Learning Recurrent Neural Nets and Problem Solutions. Int. J. Uncertain. Fuzziness Knowl. Based Syst. 6, 107–116 (1998)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">2.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Balduzzi, D. et al. The Shattered Gradients Problem: If resnets are the answer, then what is the question? ArXiv abs/1702.08591 (2017)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">3.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Glorot, X. &amp; Bengio, Y. Understanding the difficulty of training deep feedforward neural networks in Proceedings of the thirteenth international conference on artificial intelligence and statistics (2010), 249–256</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">4.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> He, K. et al. Delving deep into rectifiers: Surpassing human-level performance on imagenet classification in Proceedings of the IEEE international conference on computer vision (2015), 1026–1034</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">5.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Saxe, A. M., McClelland, J. L. &amp; Ganguli, S. Exact solutions to the nonlinear dynamics of learning in deep linear neural networks. arXiv preprint arXiv:1312.6120 (2013)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">6.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Maas, A. L., Hannun, A. Y., Ng, A. Y., et al. Rectifier nonlinearities improve neural network acoustic models in Proc. icml 30 (2013), 3</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">7.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Xu, B. et al. Empirical Evaluation of Rectified Activations in Convolutional Network. ArXiv abs/1505.00853 (2015)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">8.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Clevert, D.-A., Unterthiner, T. &amp; Hochreiter, S. Fast and Accurate Deep Network Learning by Exponential Linear Units (ELUs). arXiv: Learning (2015)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">9.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Klambauer, G. et al. Self-Normalizing Neural Networks in Neural Information Processing Systems (2017)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">10.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Hendrycks, D. &amp; Gimpel, K. Gaussian Error Linear Units (GELUs). arXiv: Learning (2016)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">11.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Ioffe, S. &amp; Szegedy, C. Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift in International Conference on Machine Learning (2015)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">12.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Ba, J., Kiros, J. R. &amp; Hinton, G. E. Layer Normalization. ArXiv abs/1607.06450 (2016)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">13.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Pascanu, R., Mikolov, T. &amp; Bengio, Y. On the difficulty of training recurrent neural networks in International Conference on Machine Learning (2012)</dd>
+</dl></div><nav class="crosslinks-bottom"><div class="navigation"><span class="nav-button"><a href="ReusingPretrainedLayers.html"><i class="fa-solid fa-caret-right"></i></a></span><span class="nav-button"><a href="TrainingDeepNeuralNetworks.html"><i class="fa-solid fa-caret-left"></i></a></span><span class="nav-button"><a href="TrainingDeepNeuralNetworks.html#TheVanishingExplodingGradientsProblems.html"><i class="fa-solid fa-caret-up"></i></a></span><span class="nav-button">
+<a href="index.html" rel="index" title="Index">
+<i class="fa-solid fa-table-list">
+</i>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Index">
+<i class="fa-brands fa-git-alt"></i>
+</a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
+<span class="footer-webBook"><b>Last Updated:</b> 6.10.2026, at 8:20.</span></div></div><div class="author-notes">
+<span class="note">Authors Note </span>
+<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
+</div>
+</article>
+<div class="mode-line">
+<div class="core-line"><div class="core-line-image"><img class="webbook-logo" src="logo/webbook-logo.svg"/></div>
+<div class="current-header">
+<span class="header-pretext">Viewing | </span>
+<span class="header-text">Section 3.1: The Vanishing/Exploding Gradients Problems</span>
+</div>
+<div class="button-group">
+</div>
+</div>
+<div class="supp-line"></div>
+</div>
+</page>
+</body>
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Reusing Pretrained Layers</title>
+<meta charset="utf-8"/>
+<meta content="lms-WebBook" name="generator"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js" type="text/javascript"></script>
+<link href="logo/lms.ico" rel="icon" type="image/x-icon"/>
+<link href="./pagefind/pagefind-component-ui.css" rel="stylesheet"/>
+<script src="./pagefind/pagefind-component-ui.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.css" rel="stylesheet" type="text/css"/>
+<script async="true" crossorigin="anonymous" src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css" rel="stylesheet"/>
+<script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+<link href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script>
+ </head><body>
+<page>
+<nav class="wide"> <div class="header"><div class="header-left"><span class="header-lecture-grade">B.Sc</span>
+<span class="header-lecture-name">Data Science II</span>
+<span class="header-webBook">WebBook 2.1</span></div><div class="header-right"><span class="header-version">SS.2026</span>
+<span class="header-chapter">Training Deep Neural Networks</span></div></div><div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><pagefind-modal></pagefind-modal><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style="font-size:20px"></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&amp;hl=en\&amp;user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style="font-size:20px"></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style="font-size:20px"></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style="font-size:20px"></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style="font-size:20px"></i></a></div><hr/><span class="chapterToc"><span class="number"></span><span class="title"><a href="index.html#x2-10000">Entry Point</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial
+Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Current Developments and Overview</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">Logical
+Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">The Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Multilayer Perceptron and
+Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Regression MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.7</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-100001.1.7">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-110001.2">Implementing
+MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-120001.2.1">Building an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-140001.2.2">Creating
+the model using the sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-180001.2.3">Building a Regression MLP Using the
+Sequential API</a></span></span><span class="chapterToc"><span class="number">2</span><span class="title"><a href="UnderstandingPyTorch.html#x6-190002">Understanding PyTorch</a></span></span><span class="sectionToc"><span class="number">2.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-210002.1">PyTorch Fundamentals</a></span></span><span class="subsectionToc"><span class="number">2.1.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-220002.1.1">Making some
+Tensors</a></span></span><span class="subsectionToc"><span class="number">2.1.2</span><span class="title"><a href="PyTorchFundamentals.html#x7-230002.1.2">Hardware Acceleration</a></span></span><span class="sectionToc"><span class="number">2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-260002.2">Implementing Linear Regression</a></span></span><span class="subsectionToc"><span class="number">2.2.1</span><span class="title"><a href="ImplementingLinearRegression.html#x8-270002.2.1">Linear
+Regression Using Tensors and Autograd</a></span></span><span class="subsectionToc"><span class="number">2.2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-290002.2.2">Linear Regression Using PyTorch’s
+High-Level API</a></span></span><span class="sectionToc"><span class="number">2.3</span><span class="title"><a href="ImplementingaRegressionMLP.html#x9-300002.3">Implementing a Regression MLP</a></span></span><span class="sectionToc"><span class="number">2.4</span><span class="title"><a href="MiniBatchGradientDescentUsingDataLoaders.html#x10-310002.4">Mini-Batch Gradient Descent
+Using DataLoaders</a></span></span><span class="sectionToc"><span class="number">2.5</span><span class="title"><a href="ModelEvaluation.html#x11-320002.5">Model Evaluation</a></span></span><span class="sectionToc"><span class="number">2.6</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-330002.6">Building Nonsequential Models Using
+Custom Modules</a></span></span><span class="subsectionToc"><span class="number">2.6.1</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-340002.6.1">Building Models with Multiple Inputs</a></span></span><span class="subsectionToc"><span class="number">2.6.2</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-350002.6.2">Building Models
+with Multiple Outputs</a></span></span><span class="sectionToc"><span class="number">2.7</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-360002.7">Building an Image Classifier with PyTorch</a></span></span><span class="subsectionToc"><span class="number">2.7.1</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-370002.7.1">Using
+TorchVision to Load the Dataset</a></span></span><span class="subsectionToc"><span class="number">2.7.2</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-380002.7.2">Building the Classifier</a></span></span><span class="sectionToc"><span class="number">2.8</span><span class="title"><a href="FineTuningHyperparameterswithOptuna.html#x14-390002.8">Fine-Tuning
+Hyperparameters with Optuna</a></span></span><span class="sectionToc"><span class="number">2.9</span><span class="title"><a href="SavingandLoadingPyTorchModels.html#x15-400002.9">Saving and Loading PyTorch Models</a></span></span><span class="sectionToc"><span class="number">2.10</span><span class="title"><a href="CompilingandOptimizingaPyTorchModel.html#x16-410002.10">Compiling
+and Optimizing a PyTorch Model</a></span></span><span class="chapterToc"><span class="number">3</span><span class="title"><a href="TrainingDeepNeuralNetworks.html#x17-420003">Training Deep Neural Networks</a></span></span><span class="sectionToc"><span class="number">3.1</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-440003.1">The
+Vanishing/Exploding Gradients Problems</a></span></span><span class="subsectionToc"><span class="number">3.1.1</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-450003.1.1">Glorot Initialization and He
+Initialization</a></span></span><span class="subsectionToc"><span class="number">3.1.2</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-470003.1.2">Better Activation Functions</a></span></span><span class="subsectionToc"><span class="number">3.1.3</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-510003.1.3">Batch Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.4</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-540003.1.4">Layer
+Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.5</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-550003.1.5">Gradient Clipping</a></span></span><span class="sectionToc"><span class="number">3.2</span><span class="title"><a href="#x19-560003.2">Reusing Pretrained Layers</a></span></span><span class="subsectionToc"><span class="number">3.2.1</span><span class="title"><a href="#x19-570003.2.1">Transfer
+Learning with PyTorch</a></span></span><span class="subsectionToc"><span class="number">3.2.2</span><span class="title"><a href="#x19-580003.2.2">Unsupervised Pretraining</a></span></span><span class="subsectionToc"><span class="number">3.2.3</span><span class="title"><a href="#x19-590003.2.3">Pretraining on an Auxiliary
+Task</a></span></span><span class="subsectionToc"><span class="number">3.2.4</span><span class="title"><a href="#x19-600003.2.4">Faster Optimizers</a></span></span><span class="subsectionToc"><span class="number">3.2.5</span><span class="title"><a href="#x19-630003.2.5">AdaGrad</a></span></span><span class="subsectionToc"><span class="number">3.2.6</span><span class="title"><a href="#x19-640003.2.6">RMSProp</a></span></span><span class="subsectionToc"><span class="number">3.2.7</span><span class="title"><a href="#x19-650003.2.7">Adam</a></span></span><span class="subsectionToc"><span class="number">3.2.8</span><span class="title"><a href="#x19-660003.2.8">AdaMax</a></span></span><span class="subsectionToc"><span class="number">3.2.9</span><span class="title"><a href="#x19-670003.2.9">NAdam</a></span></span><span class="subsectionToc"><span class="number">3.2.10</span><span class="title"><a href="#x19-680003.2.10">AdamW</a></span></span><span class="sectionToc"><span class="number">3.3</span><span class="title"><a href="LearningRateScheduling.html#x20-690003.3">Learning
+Rate Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.3.1</span><span class="title"><a href="LearningRateScheduling.html#x20-700003.3.1">Exponential Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="LearningRateScheduling.html#x20-710003.3.2">Cosine Annealing</a></span></span>
+<div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span> ˙<span class="nav-footer-webBook"><b>Last Updated:</b> 6.10.2026, at 8:20.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<article class="chapter">
+<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="LearningRateScheduling.html">Learning Rate Scheduling</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="TheVanishingExplodingGradientsProblems.html">The Vanishing/Exploding Gradients Problems</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="TrainingDeepNeuralNetworks.html#ReusingPretrainedLayers.html">Chapter: Training Deep
+Neural Networks</a></span><span class="nav-button">
+<a href="index.html" rel="index" title="Visit Entry Point">
+<i class="fa-solid fa-table-list">
+</i>
+<span class="nav-info">Visit Index Page</span>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Visit Material GitHub Repo">
+<i class="fa-brands fa-git-alt"></i>
+<span class="nav-info">Visit Material GitHub Repo</span>
+</a></span></nav>
+<div class="section-header"> <h3 id="header-section-3.2"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.3.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a> <span class="number">3.2</span> <span class="title"> <a id="x19-560003.2"></a>Reusing Pretrained
+Layers</span></h3></div>
+<p class="noindent">It is generally <b>NOT</b> a good idea to train a very large <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural
+Networks</a></span></span></span> from scratch without first trying to find an existing <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span>
+which accomplishes a similar task to the one we are trying to tackle. If we find such a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span>, then we can generally reuse most of its layers, except for the top ones. This
+technique is called <span class="ind">transfer learning</span> .
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">It will <b>NOT</b> only speed up training considerably, but also require significantly less training data.
+</p></div></div>
+<p class="noindent">Suppose we have access to a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span> which was trained to
+classify pictures into one hundred different categories; </p><div class="quote">  including animals, plants, vehicles, and
+everyday objects, </div>
+<p class="noindent">and we now want to train a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span> to classify specific types
+of vehicles. These tasks are very similar, even partly overlapping, so we should try to reuse parts of the
+first network (see Figure 11-5).
+</p>
+<div class="info-block" id="info-block-3.33"> <a class="copiable-link" href="#info-block-3.33"> ¶</a> <span class="info-upper"> <span class="info-header"> <b>Information 3.<a id="x19-56001r33"></a>33: </b> </span> <span class="info-title"> Keep Images The Same Size </span> </span> <div class="body">
+<p class="noindent">y If the input pictures for our new task don’t have the same size as the ones used in the original task,
+we will usually have to add a <span class="alert">preprocessing step</span> to resize them to the size expected by the original model. More generally,
+transfer learning will work best when the inputs have similar low-level features. </p>
+<hr/>
+<p class="noindent"> 
+For example, a
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span> trained on regular pictures taken from mobile phones will help
+with many other tasks on mobile phone pictures, but it will likely not help at all on satellite images or
+medical images.
+</p>
+</div></div>
+<p class="noindent">The output layer of the original model should usually be replaced because it is most likely not useful at
+all for the new task, and it may not even have the right number of outputs.
+</p><p class="noindent">Similarly, the upper hidden layers of the original model are less likely to be as useful as the lower layers,
+as the high-level features which are most useful for the new task may differ significantly from the ones
+that were most useful for the original task.
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">We want to find the right number of layers to reuse. </p></div></div>
+<div class="info-block" id="info-block-3.34"> <a class="copiable-link" href="#info-block-3.34"> ¶</a> <span class="info-upper"> <span class="info-header"> <b>Information 3.<a id="x19-56002r34"></a>34: </b> </span> <span class="info-title"> What is Familiar is also Easy </span> </span> <div class="body">
+<p class="noindent">The more similar the tasks are, the more layers we will want to <span class="margin-block">reuse. <span class="margin-comment"><span class="ellipsis">[149]</span>
+<span class="sidenote">starting with the lower
+layers.</span></span></span> For very similar tasks, try to keep all the hidden layers and just replace the output
+layer.
+</p>
+</div></div>
+<p class="noindent">Try freezing all the reused layers <span class="margin-block">first, <span class="margin-comment"><span class="ellipsis">[150]</span>
+<span class="sidenote">i.e., make their parameters nontrainable by setting <code class="verb">requires_grad</code>  to  <var class="var"><code class="verb">False</code></var>
+so gradient descent won’t modify them and they will remain fixed.</span></span></span> then train our model and see how it
+performs. Then try unfreezing one or two of the top hidden layers to let backpropagation tweak them
+and see if performance improves. The more training data we have, the more layers we can unfreeze. It is
+also useful to reduce the learning rate when you unfreeze reused layers: </p><div class="quote">  this will avoid wrecking their
+fine-tuned weights. </div>
+<p class="noindent">If we still cannot get good performance, and we have little training data, try dropping the top
+hidden layer(s) and freezing all the remaining hidden layers again. We can iterate until we
+find the right number of layers to reuse. If we have plenty of training data, we may try
+replacing the top hidden layers instead of dropping them, and even adding more hidden
+layers.
+</p>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-3.2.1"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.2.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">3.2.1</span> <span class="title"> <a id="x19-570003.2.1"></a>Transfer Learning with PyTorch</span></h4></div>
+</p><p class="noindent">Let’s look at an example. Suppose the <i>Fashion MNIST</i> dataset only contained eight classes: </p><div class="quote">  For
+example, all the classes except for Pullover and T-shirt/top </div>
+<p class="noindent">Someone built and trained a PyTorch model on that set and got reasonably good performance ( 92%
+accuracy). Let’s call this model A. You now want to tackle a different task: </p><div class="quote">  We have images of
+T-shirts and pullovers, and you want to train a binary classifier: positive for T-shirt/top, negative for
+Pullover. </div>
+<p class="noindent">Our dataset is tiny; you only have 20 labeled images! When you train a new model for this task (let’s
+call it model B) with the same architecture as model A, you get 71.6% test accuracy. While drinking
+your morning coffee, you realize that your task is quite similar to task A, so perhaps transfer learning
+can help? Let’s find out!
+</p><p class="noindent">First, let’s look at model A:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb137"><a id="x19-57002r623"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x19-57004r624"></a> 
+<a id="x19-57006r625"></a>model_A = nn.Sequential( 
+<a id="x19-57008r626"></a>    nn.Flatten(), 
+<a id="x19-57010r627"></a>    nn.Linear(<span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>, <span style="color:#8F4070;">100</span>), 
+<a id="x19-57012r628"></a>    nn.ReLU(), 
+<a id="x19-57014r629"></a>    nn.Linear(<span style="color:#8F4070;">100</span>, <span style="color:#8F4070;">100</span>), 
+<a id="x19-57016r630"></a>    nn.ReLU(), 
+<a id="x19-57018r631"></a>    nn.Linear(<span style="color:#8F4070;">100</span>, <span style="color:#8F4070;">100</span>), 
+<a id="x19-57020r632"></a>    nn.ReLU(), 
+<a id="x19-57022r633"></a>    nn.Linear(<span style="color:#8F4070;">100</span>, <span style="color:#8F4070;">8</span>) 
+<a id="x19-57024r634"></a>) 
+<a id="x19-57026r635"></a>model_A = model_A.to(device)</pre>
+</code></pre>
+<p class="noindent">We can now reuse the layers we want, for example, all layers except for the output layer:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb138"><a id="x19-57028r691"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">copy</span> 
+<a id="x19-57030r692"></a> 
+<a id="x19-57032r693"></a>torch.manual_seed(<span style="color:#8F4070;">43</span>) 
+<a id="x19-57034r694"></a>reused_layers = copy.deepcopy(model_A[:-<span style="color:#8F4070;">1</span>]) 
+<a id="x19-57036r695"></a>model_B_on_A = nn.Sequential( 
+<a id="x19-57038r696"></a>    ,*reused_layers, 
+<a id="x19-57040r697"></a>    nn.Linear(<span style="color:#8F4070;">100</span>, <span style="color:#8F4070;">1</span>)  <span style="color:#918273;"><i># new output layer for task B</i></span> 
+<a id="x19-57042r698"></a>).to(device)</pre>
+</code></pre>
+<p class="noindent">In this code, we use Python’s <code class="verb">copy.deepcopy()</code>  function to copy all the modules in the nn.Sequential <span class="margin-block">module, <span class="margin-comment"><span class="ellipsis">[151]</span>
+<span class="sidenote">along
+with all their data and submodules.</span></span></span> except for the last layer. Since we’re making a deep copy, all the
+submodules are copied as well. Then we create <code class="verb">model_B_on_A</code> , which is an <code class="verb">nn.Sequential</code>  model based on the reused layers of
+model A, plus a new output layer for task B:
+</p><p class="noindent">it has a single output since task B is binary classification.
+</p><p class="noindent">You could start training <code class="verb">model_B_on_A</code>  for task B now, but since the new output layer was initialized randomly,
+it will make large <span class="margin-block">errors, <span class="margin-comment"><span class="ellipsis">[152]</span>
+<span class="sidenote">at least during the first few epochs.</span></span></span> so there will be large error
+gradients that may wreck the reused weights. To avoid this, one approach is to freeze the
+reused layers during the first few epochs, giving the new layer some time to learn reasonable
+weights:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb139"><a id="x19-57044r703"></a><span style="color:#9E0005;">for</span> layer <span style="color:#9E0005;">in</span> model_B_on_A[:-<span style="color:#8F4070;">1</span>]: 
+<a id="x19-57046r704"></a>    <span style="color:#9E0005;">for</span> param <span style="color:#9E0005;">in</span> layer.parameters(): 
+<a id="x19-57048r705"></a>        param.requires_grad = <span style="color:#9E0005;">False</span></pre>
+</code></pre>
+<p class="noindent">Now you can train <code class="verb">model_B_on_A</code> . But don’t forget that task B is binary classification, so you must switch the loss to
+<code class="verb">nn.BCEWithLogitsLoss</code> <span class="margin-block">, <span class="margin-comment"><span class="ellipsis">[153]</span>
+<span class="sidenote">or to <code class="verb">nn.BCELoss</code>  if you prefer to add an <code class="verb">nn.Sigmoid</code>  activation function on the output layer.</span></span></span> as we discussed in
+Chapter 10. Also, if you are using torchmetrics, make sure to set <code class="verb">task="binary"</code>  when creating the Accuracy
+metric:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb140"><a id="x19-57050r710"></a>n_epochs = <span style="color:#8F4070;">10</span> 
+<a id="x19-57052r711"></a>optimizer = torch.optim.SGD(model_B_on_A.parameters(), lr=<span style="color:#8F4070;">0.005</span>) 
+<a id="x19-57054r712"></a>xentropy = nn.BCEWithLogitsLoss() 
+<a id="x19-57056r713"></a>accuracy = torchmetrics.Accuracy(task=<span style="color:#78730D;">"binary"</span>).to(device) 
+<a id="x19-57058r714"></a>history_B = train(model_B_on_A, optimizer, xentropy, accuracy, 
+<a id="x19-57060r715"></a>                  train_loader_B, valid_loader_B, n_epochs)</pre>
+</code></pre>
+<p class="noindent">After you have trained the model for a few epochs, you can unfreeze the reused <span class="margin-block">layers, <span class="margin-comment"><span class="ellipsis">[154]</span>
+<span class="sidenote">setting <code class="verb">param.requires_grad = True</code>  for all
+parameters.</span></span></span> reduce the learning rate, and continue training to fine-tune the reused layers for task
+B.
+</p><p class="noindent">So, what’s the final verdict? Well, this model’s test accuracy is 92.5%, which is much better than the
+71.6% accuracy we reached without pretraining!
+</p><p class="noindent">Are you convinced? Well, you shouldn’t be; I cheated! I tried many configurations until I
+found one that demonstrated a strong improvement. If you try to change the classes or
+the random seed, you will see that the improvement generally drops, or even vanishes or
+reverses. What I did is called torturing the data until it confesses. When a paper looks too
+positive, you should be suspicious. Perhaps the flashy new technique does not actually help
+<span class="margin-block">much, <span class="margin-comment"><span class="ellipsis">[155]</span>
+<span class="sidenote">in fact, it may even degrade performance.</span></span></span> but the authors tried many variants and
+reported only the best resultswhich may be due to sheer luckwithout mentioning how many
+failures they encountered along the way. That’s called p-hacking. Most of the time, this
+is not malicious, but it is part of the reason why so many results in science can never be
+reproduced.
+</p><p class="noindent">But why did I cheat? It turns out that transfer learning does not work very well with small dense
+networks, presumably because small networks learn few patterns, and dense networks learn very specific
+patterns, which are unlikely to be useful for other tasks. Transfer learning works best with deep
+convolutional neural networks and with Transformer architectures.
+</p>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-3.2.2"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.2.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">3.2.2</span> <span class="title"> <a id="x19-580003.2.2"></a>Unsupervised Pretraining</span></h4></div>
+</p><p class="noindent">Suppose we want to tackle a complex task for which we don’t have much labeled training data, but
+unfortunately we cannot find a model trained on a similar task.
+</p><p class="noindent">First, we should try to gather more labeled training data, but if we can’t, we may still be able to
+perform unsupervised pretraining (see Figure 11-6).
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">It is often cheap to gather unlabeled training examples, but expensive to label them. </p></div></div>
+<p class="noindent">If we can gather plenty of unlabeled training data, we can try to use it to train an unsupervised model,
+such as an autoencoder (see Chapter 18). Then we can reuse the lower layers of the autoencoder, add
+the output layer for our task on top, and fine-tune the final network using supervised <span class="margin-block">learning. <span class="margin-comment"><span class="ellipsis">[156]</span>
+<span class="sidenote">i.e., with
+the labeled training examples.</span></span></span>
+</p><p class="noindent">It is this technique that <i>Geoffrey Hinton</i> and his team used in 2006, and which led to the revival of
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span> and the success of deep learning. Until
+2010, unsupervised pretraining, typically with restricted Boltzmann <span class="margin-block">machines, <span class="margin-comment"><span class="ellipsis">[157]</span>
+<span class="sidenote">A two-layer,
+stochastic generative <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span> which learns a
+probability distribution over a set of inputs without requiring labels.</span></span></span> was the norm for deep
+nets, and only after the <i>vanishing gradients problem</i> was alleviated did it become much
+more common to train <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span>s purely using
+supervised learning. Unsupervised <span class="margin-block">pretraining <span class="margin-comment"><span class="ellipsis">[158]</span>
+<span class="sidenote">today typically using autoencoders or diffusion
+models rather than RBMs.</span></span></span> is still a good option when you have a complex task to solve, no
+similar model you can reuse, and little labeled training data, but plenty of unlabeled training
+data.
+</p><p class="noindent">Note that in the early days of deep learning it was difficult to train deep models, so people would use a
+technique called greedy layer-wise pretraining (depicted in Figure 11-6). They would first train an
+unsupervised model with a single layer, typically an RBM, then they would freeze that layer and add
+another one on top of it, then train the model <span class="margin-block">again, <span class="margin-comment"><span class="ellipsis">[159]</span>
+<span class="sidenote">effectively just training the new layer.</span></span></span>
+then freeze the new layer and add another layer on top of it, train the model again, and
+so on. Nowadays, things are much simpler: people generally train the full unsupervised
+model in one shot and use models such as autoencoders or diffusion models rather than
+RBMs.
+</p>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-3.2.3"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.2.3"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">3.2.3</span> <span class="title"> <a id="x19-590003.2.3"></a>Pretraining on an Auxiliary Task</span></h4></div>
+</p><p class="noindent">If we do not have much labeled training data, one last option is to train a first <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span> on an auxiliary task for which you can easily obtain or
+generate labeled training data, then reuse the lower layers of that network for our actual
+task.
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">The first <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span>’s lower layers will learn feature
+detectors that will likely be reusable by the second <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural
+Networks</a></span></span></span>. </p></div></div>
+<p class="noindent">For example, if we want to build a system to recognize faces, we may only have a few pictures of each
+individual which is clearly not enough to train a good classifier. Gathering hundreds of pictures of each
+person would not be practical either.
+</p><p class="noindent">We could, however, use a public dataset containing millions of pictures of <span class="margin-block">people <span class="margin-comment"><span class="ellipsis">[160]</span>
+<span class="sidenote">such as VGGFace2.</span></span></span>
+and train a first <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span> to detect whether two
+different pictures feature the same person. Such a network would learn good feature detectors for faces,
+so reusing its lower layers would allow us to train a good face classifier which uses little training
+data.
+</p>
+<div class="info-block" id="info-block-3.35"> <a class="copiable-link" href="#info-block-3.35"> ¶</a> <span class="info-upper"> <span class="info-header"> <b>Information 3.<a id="x19-59001r35"></a>35: </b> </span> <span class="info-title"> Web-scraping </span> </span> <div class="body">
+<p class="noindent">We could also just scrape pictures of random people from the web, but this would probably be <span class="alert">illegal</span>.
+</p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent">Firstly, photos are usually copyrighted by their creators, and websites like Instagram or
+Facebook enforce these copyright protections through their terms of service, which prohibit
+scraping and unauthorized use.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">Secondly, over 40 countries require explicit consent for collecting and processing personal
+data, including facial images.</p></li></ul>
+</div></div>
+<p class="noindent">For <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nlp">NLP</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nlp">Natural Language Processing</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nlp">Natural Language Processing</a></span></span></span> applications, we can download a
+corpus of millions of text documents and automatically generate labeled data from it. </p><div class="quote">  For example,
+you could randomly mask out some words and train a model to predict what the missing words <span class="margin-block">are.
+<span class="margin-comment"><span class="ellipsis">[161]</span>
+<span class="sidenote">e.g., it should predict that the missing word in the sentence “What <code class="verb">___</code>  you saying?” is probably “are” or
+“were”.</span></span></span> </div>
+<p class="noindent">If we can train a model to reach good performance on this task, then it will already know quite a lot
+about language, and we can certainly reuse it for your actual task and fine-tune it on our labeled <span class="margin-block">data.
+<span class="margin-comment"><span class="ellipsis">[162]</span>
+<span class="sidenote">this is basically how large language models are trained and fine-tuned, as we will see in Chapter
+15.</span></span></span>
+</p>
+<div class="info-block" id="info-block-3.36"> <a class="copiable-link" href="#info-block-3.36"> ¶</a> <span class="info-upper"> <span class="info-header"> <b>Information 3.<a id="x19-59002r36"></a>36: </b> </span> <span class="info-title"> Self-Supervised Learning </span> </span> <div class="body">
+<p class="noindent">Self-supervised learning is when you <span class="alert">automatically generate the labels from the data</span> itself, as in the text-masking example, then you train a model on
+the resulting labeled dataset using supervised learning techniques.
+</p>
+</div></div>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-3.2.4"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.2.4"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">3.2.4</span> <span class="title"> <a id="x19-600003.2.4"></a>Faster Optimizers</span></h4></div>
+</p><p class="noindent">Training a very large <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span> can be painfully slow. So far
+we have seen four ways to speed up <span class="margin-block">training: <span class="margin-comment"><span class="ellipsis">[163]</span>
+<span class="sidenote">and reach a better solution.</span></span></span> applying a good initialization
+strategy for the connection weights, using a good activation function, using batch-norm or <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ln">LN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ln">Layer
+Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ln">A deep learning technique which stabilizes neural network training by calculating the
+mean and variance across the feature dimensions of each individual sample rather than across a
+mini-batch</a></span></span></span>, and reusing parts of a pretrained <span class="margin-block">network. <span class="margin-comment"><span class="ellipsis">[164]</span>
+<span class="sidenote">possibly built for an auxiliary task or using
+unsupervised learning.</span></span></span> Another huge speed boost comes from using a faster optimizer than the regular
+gradient descent optimizer.
+</p><p class="noindent">In this section we will present the most popular optimization algorithms: </p><div class="quote">  momentum,
+Nesterov accelerated gradient, AdaGrad, RMSProp, and finally, Adam and its variants.
+</div>
+<p class="noindent"><h5 class="subsubsectionHead" id="header-subsubsection-12"> <a id="x19-61000"></a>Momentum</h5>
+</p><p class="noindent">Imagine a bowling ball rolling down a gentle slope on a smooth surface: it will start out slowly, but it
+will quickly pick up momentum until it eventually reaches terminal <span class="margin-block">velocity. <span class="margin-comment"><span class="ellipsis">[165]</span>
+<span class="sidenote">if there is some friction or
+air resistance.</span></span></span> This is the core idea behind momentum optimization, proposed by Boris
+Polyak in 1964.20 In contrast, regular gradient descent will take small steps when the slope is
+gentle and big steps when the slope is steep, but it will never pick up speed. As a result,
+regular gradient descent is generally much slower to reach the minimum than momentum
+optimization.
+</p><p class="noindent">As we saw in Chapter 4, gradient descent updates the weights  by directly subtracting the gradient of
+the cost function J() with regard to the weights (J()) multiplied by the learning rate . The equation is
+J(). It does not care about what the earlier gradients were. If the local gradient is tiny, it goes very
+slowly.
+</p><p class="noindent">Momentum optimization cares a great deal about what previous gradients were: at each iteration, it
+subtracts the local gradient from the momentum vector m (multiplied by the learning rate
+), and it updates the weights by adding this momentum vector (see Equation 11-5). In
+other words, the gradient is used as a force learning to an acceleration, not as a speed. To
+simulate some sort of friction mechanism and prevent the momentum from growing too large,
+the algorithm introduces a new hyperparameter , called the momentum coefficient, which
+must be set between 0 (high friction) and 1 (no friction). A typical momentum value is
+0.9.
+</p><p class="noindent">20 Boris T. Polyak, Some Methods of Speeding Up the Convergence of Iteration Methods, USSR
+Computational
+</p><p class="noindent">Mathematics and Mathematical Physics 4, no. 5 (1964): 117.
+</p><p class="noindent">Faster Optimizers |
+</p><p class="noindent">389
+</p><p class="noindent">Equation 11-5. Momentum algorithm 1.
+</p><p class="noindent">m
+</p><p class="noindent">m  J
+</p><p class="noindent">2.
+</p><p class="noindent">
+</p><p class="noindent">+m
+</p><p class="noindent">You can verify that if the gradient remains constant, the terminal velocity (i.e., the maximum size of
+the weight updates) is equal to that gradient multiplied by the learning rate  multiplied by 1
+/ (1  ) (ignoring the sign). For example, if  = 0.9, then the terminal velocity is equal to
+10 times the gradient times the learning rate, so momentum optimization ends up going
+10 times faster than gradient descent! In practice, the gradients are not constant, so the
+speedup is not always as dramatic, but momentum optimization can escape from plateaus
+much faster than regular gradient descent. We saw in Chapter 4 that when the inputs have
+very different scales, the cost function will look like an elongated bowl (see Figure 4-7).
+Gradient descent goes down the steep slope quite fast, but then it takes a very long time to
+go down the valley. In contrast, momentum optimization will roll down the valley faster
+and faster until it reaches the bottom (the optimum). In deep neural networks that don’t
+use batch-norm or layer-norm, the upper layers will often end up having inputs with very
+different scales, so using momentum optimization helps a lot. It can also help roll past local
+optima.
+</p><p class="noindent">Due to the momentum, the optimizer may overshoot a bit, then come back, overshoot again, and
+oscillate like this many times before stabilizing at the minimum. This is one of the reasons why it’s
+good to have a bit of friction in the system: it reduces these oscillations and thus speeds up
+convergence.
+</p><p class="noindent">Implementing momentum optimization in PyTorch is a no-brainer: just use the SGD
+optimizer and set its momentum hyperparameter, then sit back and profit! optimizer =
+torch.optim.SGD(model.parameters(), momentum=0.9, lr=0.05)
+</p><p class="noindent">The one drawback of momentum optimization is that it adds yet another hyperparameter to tune.
+However, the momentum value of 0.9 usually works well in practice and almost always goes faster than
+regular gradient descent.
+</p>
+<p class="noindent"><h5 class="subsubsectionHead" id="header-subsubsection-13"> <a id="x19-62000"></a>Nesterov Accelerated Gradient</h5>
+</p><p class="noindent">One small variant to momentum optimization, proposed by Yurii Nesterov in 1983,21 is almost
+always faster than regular momentum optimization. The Nesterov accelerated gradient
+(NAG) method, also known as Nesterov momentum optimization, measures the gradient
+of the cost function not at the local position  but slightly ahead in the direction of the
+momentum, at  + m (see Equation 11-6). Equation 11-6. Nesterov accelerated gradient algorithm
+1.
+</p><p class="noindent">m
+</p><p class="noindent">m  J  + m
+</p><p class="noindent">2.
+</p><p class="noindent">
+</p><p class="noindent">+m
+</p><p class="noindent">This small tweak works because in general the momentum vector will be pointing in the right <span class="margin-block">direction,
+<span class="margin-comment"><span class="ellipsis">[166]</span>
+<span class="sidenote">i.e., toward the optimum.</span></span></span> so it will be slightly more accurate to use the gradient measured a bit farther
+in that direction rather than the gradient at the original position, as you can see in Figure 11-7<span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[167]</span>
+<span class="sidenote">where
+<math display="inline"><msub><mrow><mi class="MathClass-op">∇</mi><mo> ⁡</mo></mrow><mrow><mn>1</mn></mrow></msub></math>
+represents the gradient of the cost function measured at the starting point
+<math display="inline"><mi>𝜃</mi></math>, and
+<math display="inline"><msub><mrow><mi class="MathClass-op">∇</mi><mo> ⁡</mo></mrow><mrow><mn>2</mn></mrow></msub></math> represents the gradient
+at the point located at <math display="inline"><mi>𝜃</mi> <mo class="MathClass-bin" stretchy="false">+</mo> <msub><mrow><mi>β</mi></mrow><mrow><mi>m</mi></mrow></msub></math>.</span></span></span>
+</p><p class="noindent">As you can see, the Nesterov update ends up closer to the optimum. After a while, these small
+improvements add up and NAG ends up being significantly faster than regular momentum
+optimization. Moreover, note that when the momentum pushes the weights across a valley,
+<math display="inline"><msub><mrow><mi class="MathClass-op">∇</mi><mo> ⁡</mo></mrow><mrow><mn>1</mn></mrow></msub></math> continues to push farther
+across the valley, while <math display="inline"><msub><mrow><mi class="MathClass-op">∇</mi><mo> ⁡</mo></mrow><mrow><mn>2</mn></mrow></msub></math>
+pushes back toward the bottom of the valley. This helps reduce oscillations and thus NAG converges
+faster.
+</p><p class="noindent">To use NAG, simply set <code class="verb">nesterov=True</code>  when creating the SGD optimizer:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb141"><a id="x19-62002r795"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
+<a id="x19-62004r796"></a>optimizer = torch.optim.SGD(model.parameters(), momentum=<span style="color:#8F4070;">0.9</span>, lr=<span style="color:#8F4070;">0.05</span>) 
+<a id="x19-62006r797"></a>history_momentum, acc_momentum = test_optimizer(model, optimizer)  <span style="color:#918273;"><i># extra code</i></span></pre>
+</code></pre>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-3.2.5"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.2.5"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">3.2.5</span> <span class="title"> <a id="x19-630003.2.5"></a>AdaGrad</span></h4></div>
+</p><p class="noindent">Consider the elongated bowl problem again: gradient descent starts by quickly going down the steepest
+slope, which does not point straight toward the global optimum, then it very slowly goes down to the
+bottom of the valley. It would be nice if the algorithm could correct its direction earlier
+to point a bit more toward the global optimum. The AdaGrad algorithm22 achieves this
+correction by scaling down the gradient vector along the steepest dimensions (see Equation
+11-7).
+</p><p class="noindent">The first step accumulates the square of the gradients into the vector s (recall that the
+<math display="inline"><mi>⊗</mi></math> symbol
+represents the element-wise multiplication). This vectorized form is equivalent to computing si  si +
+(J() / i)2 for each element si of the vector s; in other words, each si accumulates the squares of the
+partial derivative of the cost function with regard to parameter i. If the cost function is steep along the
+<math display="inline"><msup><mrow><mstyle class="text"><mtext>i</mtext></mstyle></mrow><mrow><mstyle class="text"><mtext>th</mtext></mstyle></mrow></msup></math>
+dimension, then si will get larger and larger at each iteration.
+</p><p class="noindent">The second step is almost identical to gradient descent, but with one big difference: the gradient vector is scaled down
+by a factor of <math display="inline"><msqrt><mrow>
+<mstyle mathvariant="bold">
+<mi>s</mi></mstyle>
+<mo class="MathClass-bin" stretchy="false">+</mo> <mi>𝜀</mi></mrow></msqrt></math><span class="margin-block">.
+<span class="margin-comment"><span class="ellipsis">[168]</span>
+<span class="sidenote">the <math display="inline"><mi>⊘</mi></math>
+symbol represents the element-wise division, the square root is also computed element-wise, and  is a
+smoothing term to avoid division by zero, typically set to 1010</span></span></span> This vectorized form is equivalent to
+simultaneously computing i i   J  / i / si +  for all parameters i.
+</p><p class="noindent">In short, this algorithm decays the learning rate, but it does so faster for steep dimensions
+than for dimensions with gentler slopes. This is called an adaptive learning rate. It helps
+point the resulting updates more directly toward the global optimum (see Figure 11-8). One
+additional benefit is that it requires much less tuning of the learning rate hyperparameter
+.
+</p><p class="noindent">AdaGrad frequently performs well for simple quadratic problems, but it often stops too early when
+training neural networks: the learning rate gets scaled down so much that the algorithm ends up
+stopping entirely before reaching the global optimum.
+</p><p class="noindent">So even though PyTorch has an Adagrad optimizer, you should not use it to train deep
+neural networks (it may be efficient for simpler tasks such as linear regression, though).
+Still, understanding AdaGrad is helpful to comprehend the other adaptive learning rate
+optimizers.
+</p>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-3.2.6"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.2.6"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">3.2.6</span> <span class="title"> <a id="x19-640003.2.6"></a>RMSProp</span></h4></div>
+</p><p class="noindent">As we’ve seen, AdaGrad runs the risk of slowing down a bit too fast and never converging to the global
+optimum. The RMSProp <span class="margin-block">algorithm <span class="margin-comment"><span class="ellipsis">[169]</span>
+<span class="sidenote">This algorithm was created by Geoffrey Hinton and Tijmen
+Tieleman in 2012 and presented by Geoffrey Hinton in his Coursera class on neural networks (slides:
+https://homl.info/57, video: https://homl.info/58). Amusingly, since the authors did not write a paper
+to describe the algorithm, researchers often cite slide 29 in lecture 6e in their papers.</span></span></span> fixes this by
+accumulating only the gradients from the most recent iterations, as opposed to all the gradients since
+the beginning of training. It does so by using exponential decay in the first step (see Equation
+11-8).
+</p><p class="noindent">The decay rate <math display="inline"><mi>α</mi></math>
+is typically set to 0.9. Yes, it is once again a new hyperparameter, but this default value often works
+well, so you may not need to tune it at all.
+</p><p class="noindent">As can imaging, PyTorch has an <code class="verb">RMSprop</code>  optimizer:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb142"><a id="x19-64002r832"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
+<a id="x19-64004r833"></a>optimizer = torch.optim.RMSprop(model.parameters(), alpha=<span style="color:#8F4070;">0.9</span>, lr=<span style="color:#8F4070;">0.05</span>) 
+<a id="x19-64006r834"></a>history_rmsprop, acc_rmsprop = test_optimizer(model, optimizer)  <span style="color:#918273;"><i># extra code</i></span></pre>
+</code></pre>
+<p class="noindent">Except on very simple problems, this optimizer almost always performs much better than
+<i>AdaGrad</i>.
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">It was the preferred optimization algorithm of many researchers until Adam optimization came around.
+</p></div></div>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-3.2.7"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.2.7"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">3.2.7</span> <span class="title"> <a id="x19-650003.2.7"></a>Adam</span></h4></div>
+</p><p class="noindent">Adam <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail"> <a id="x19-65001"></a>Kingma, D. P. &amp; Ba, J. Adam: A method for stochastic optimization. arXiv preprint
+arXiv:1412.6980 (2014)</span></span>, which stands for adaptive moment estimation, combines the ideas of
+momentum optimization and RMSProp: just like momentum optimization, it keeps track of an
+exponentially decaying average of past gradients; and just like RMSProp, it keeps track of an
+exponentially decaying average of past squared gradients (see Equation 11-9). These are
+estimations of the mean and (uncentered) variance of the gradients. The mean is often called the
+first moment, while the variance is often called the second moment, hence the name of the
+algorithm.
+</p><p class="noindent">In this equation, <math display="inline"><mi>t</mi></math>
+represents the iteration number (starting at 1). If you just look at steps 1, 2, and 5, you
+will notice Adam’s close similarity to both momentum optimization and RMSProp:
+<math display="inline"><msub><mrow><mi>β</mi></mrow><mrow><mn>1</mn></mrow></msub></math> corresponds
+to <math display="inline"><mi>β</mi></math> in
+momentum optimization, and 2 corresponds to  in RMSProp. The only difference is that step 1
+computes an exponentially decaying average rather than an exponentially decaying sum, but these are
+actually equivalent except for a constant factor (the decaying average is just 1  1 times the decaying
+sum). Steps 3 and 4 are somewhat of a technical detail: since m and s are initialized at 0, they will be
+biased toward 0 at the beginning of training, so these two steps will help boost m and s at the
+beginning of training.
+</p><p class="noindent">The momentum decay hyperparameter 1 is typically initialized to 0.9, while the scaling decay
+hyperparameter 2 is often initialized to 0.999. As earlier, the smoothing term  is usually initialized to a
+tiny number such as 108. These are the default values for the Adam class. Here is how to create an
+Adam optimizer using PyTorch: optimizer = torch.optim.Adam(model.parameters(), betas=(0.9,
+0.999), lr=0.05)
+</p><p class="noindent">Since Adam is an adaptive learning rate algorithm, like AdaGrad and RMSProp, it requires
+less tuning of the learning rate hyperparameter . You can often use the default value  =
+0.001, making Adam even easier to use than gradient descent. If you are starting to feel
+overwhelmed by all these different techniques and are wondering how to choose the right
+ones for your task, don’t worry: some practical guidelines are provided at the end of this
+chapter.
+</p><p class="noindent">Finally, three variants of Adam are worth mentioning: AdaMax, NAdam, and AdamW.
+</p>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-3.2.8"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.2.8"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">3.2.8</span> <span class="title"> <a id="x19-660003.2.8"></a>AdaMax</span></h4></div>
+</p><p class="noindent">The Adam paper also introduced AdaMax. Notice that in step 2 of Equation 11-9, Adam accumulates
+the squares of the gradients in s (with a greater weight for more recent gradients). In step 5, if we
+ignore  and steps 3 and 4 (which are technical details anyway), Adam scales down the parameter
+updates by the square root of s. In short, Adam scales down the parameter updates by the 2 norm of
+the time-decayed gradients (recall that the 2 norm is the square root of the sum of squares).
+AdaMax replaces the 2 norm with the  norm (a fancy way of saying the max). Specifically,
+it replaces step 2 in Equation 11-9 with s max 2s,abs(  J  , it drops step 4, and in step
+5 it scales down the gradient updates by a factor of s, which is the max of the absolute
+value of the time-decayed gradients. In practice, this can make AdaMax more stable than
+Adam, but it really depends on the dataset, and in general Adam performs better. So, this
+is just one more optimizer you can try if you experience problems with Adam on some
+task.
+</p>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-3.2.9"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.2.9"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">3.2.9</span> <span class="title"> <a id="x19-670003.2.9"></a>NAdam</span></h4></div>
+</p><p class="noindent">NAdam optimization is <i>Adam</i> optimization with the inclusion of the <i>Nesterov</i> trick, so it will often
+converge <span class="alert">slightly faster</span> than <i>Adam</i>. In <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail"> <a id="x19-67001"></a>Dozat, T. Incorporating nesterov momentum into adam (2016)</span></span>, where this
+technique was introduced, the Timothy Dozat compares many different optimizers on various tasks
+and finds that <i>NAdam</i> generally outperforms Adam but is sometimes outperformed by
+<i>RMSProp</i>.
+</p>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-3.2.10"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.2.10"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">3.2.10</span> <span class="title"> <a id="x19-680003.2.10"></a>AdamW</span></h4></div>
+</p><p class="noindent">AdamW <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail"> <a id="x19-68001"></a>Loshchilov, I. &amp; Hutter, F. Decoupled weight decay regularization. arXiv preprint
+arXiv:1711.05101 (2017)</span></span> is a variant of Adam, integrating a regularization technique called
+weight decay. Weight decay reduces the size of the model’s weights at each training
+iteration by multiplying them by a decay factor such as 0.99. This may remind you of
+<math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
+regularization, which also aims to keep the weights small, and indeed it can be shown mathematically
+that <math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
+regularization is equivalent to weight decay when using SGD. However, when using Adam or its variants,
+<math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
+regularization and weight decay are not equivalent: in practice, combining Adam with
+<math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
+regularization results in models that often don’t generalize as well as those produced by SGD. AdamW
+fixes this issue by properly combining Adam with weight decay.
+</p>
+<div class="info-block" id="info-block-3.37"> <a class="copiable-link" href="#info-block-3.37"> ¶</a> <span class="info-upper"> <span class="info-header"> <b>Information 3.<a id="x19-68002r37"></a>37: </b> </span> <span class="info-title"> Knowing the Tools of the Trade </span> </span> <div class="body">
+<p class="noindent">Adaptive optimization <span class="margin-block">methods <span class="margin-comment"><span class="ellipsis">[170]</span>
+<span class="sidenote">which includes RMSProp, Adam, AdaMax, NAdam, and AdamW
+optimization.</span></span></span> are often great, converging fast to a good solution. However, in <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail"> <a id="x19-68003"></a>Wilson, A. C. et al.
+The marginal value of adaptive gradient methods in machine learning. Advances in neural
+information processing systems <b>30</b> (2017)</span></span>, the authors showed that they can lead to solutions
+which generalize poorly on some datasets. </p>
+<hr/>
+<p class="noindent"> 
+So when you are disappointed by your model’s
+performance, try using NAG instead because your dataset may just be allergic to adaptive
+gradients.
+</p>
+</div></div>
+<p class="noindent">To use NAdam, AdaMax, or AdamW in PyTorch, replace <code class="verb">torch.optim.Adam</code>  with <code class="verb">torch.optim.NAdam</code> , <code class="verb">torch.optim.Adamax</code> , or <code class="verb">torch.optim.AdamW</code> . For AdamW, you probably
+want to tune the <code class="verb">weight_decay</code>  hyperparameter.
+</p><p class="noindent">All the optimization techniques discussed so far only rely on the first-order partial <span class="margin-block">derivatives.
+<span class="margin-comment"><span class="ellipsis">[171]</span>
+<span class="sidenote">Jacobians, which measure the slope of the loss function along each axis.</span></span></span> The optimization literature
+also contains amazing algorithms based on the second-order partial <span class="margin-block">derivatives. <span class="margin-comment"><span class="ellipsis">[172]</span>
+<span class="sidenote">the Hessians, which are
+the partial derivatives of the Jacobians, measuring how each Jacobian changes along each axis; in other
+words, measuring the loss function’s curvature.</span></span></span>
+</p><p class="noindent">Unfortunately, these Hessian-based algorithms are hard to apply directly to deep neural networks because there are
+<math display="inline"><msup><mrow><mi>n</mi></mrow><mrow><mn>2</mn></mrow></msup></math> second-order derivatives per
+output, where <math display="inline"><mi>n</mi></math> is the number of
+parameters, as opposed to just <math display="inline"><mi>n</mi></math>
+number of first-order derivatives per output.
+</p>
+<div class="knowledge"><div class="knowledge-upper">Knowledge</div><div class="body">
+<p class="noindent">Since <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span>s typically have hundreds of thousands of parameters
+or more, the <math display="inline"><msup><mrow><mstyle class="text"><mtext>2</mtext></mstyle></mrow><mrow><mstyle class="text"><mtext>nd</mtext></mstyle></mrow></msup></math>
+optimization algorithms often don’t even fit in memory, and even when they do, computing the Hessian
+matrix is just too slow. </p></div></div>
+<p class="noindent">Luckily, it is possible to use stochastic methods which can efficiently approximate second-order
+information. One such algorithm is Shampoo <span class="cite"><a class="cite-show" href="#w3-20001">[†-5]</a><span class="cite-detail"> <a id="x19-68004"></a>Gupta, V., Koren, T. &amp; Singer, Y. Shampoo:
+Preconditioned stochastic tensor optimization in International Conference on Machine Learning (2018),
+1842–1850</span></span>, which uses accumulated gradient information to approximate the second-order terms,
+similar to how Adam accumulates first-order statistics. It is not included in the PyTorch library, but
+you can get it in the PyTorch-Optimizer library (pip install <code class="verb">torch_optimizer</code> ).
+</p>
+<div class="info-block" id="info-block-3.38"> <a class="copiable-link" href="#info-block-3.38"> ¶</a> <span class="info-upper"> <span class="info-header"> <b>Information 3.<a id="x19-68005r38"></a>38: </b> </span> <span class="info-title"> Training Sparse Models </span> </span> <div class="body">
+<p class="noindent">All the optimization algorithms we just discussed produce dense models, meaning that most parameters
+will be nonzero. If you need a blazingly fast model at runtime, or if you need it to take up less memory,
+you may prefer to end up with a sparse model instead.
+</p><p class="noindent">One way to achieve this is to train the model as usual, then get rid of the tiny weights (set them to
+zero) using <code class="verb">torch.nn.utils.prune.l1_unstructured()</code> . Or you can get rid of entire neurons, channels, or layers, not just individual weights, using
+<code class="verb">torch.nn.utils.prune.ln_structured()</code> , or other functions in the <code class="verb">torch.nn.utils.prune</code>  package.
+</p><p class="noindent">You should generally also apply fairly strong sparsity inducing regularization during training, such as
+<math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>1</mn></mrow></msub></math>
+regularization (you’ll see how later in this chapter), since it pushes the optimizer to zero out as many
+weights as it can (see Lasso Regression on page 162). You can also try scaling down random weights
+during initialization to encourage sparsity.
+</p>
+</div></div>
+<div class="section-header">
+<h3 id="header-section-glossary">
+<span class="number">
+<i aria-hidden="true" class="fa fa-list-alt"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+        Page Glossary Terms</span>
+</h3>
+</div>
+<div class="acronym-block">
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:ln">¶</a>
+<dt class="acr-bottom" id="glo:ln"><span class="acr-short">LN</span><span class="acr-long">Layer
+Normalization</span></dt>
+<dd class="acr-desc"><p>A deep learning technique which stabilizes neural network training by calculating the
+mean and variance across the feature dimensions of each individual sample rather than across a
+mini-batch</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:nlp">¶</a>
+<dt class="acr-bottom" id="glo:nlp"><span class="acr-short">NLP</span><span class="acr-long">Natural Language Processing</span></dt>
+<dd class="acr-desc"><p>Natural Language Processing</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:ann">¶</a>
+<dt class="acr-bottom" id="glo:ann"><span class="acr-short">ANN</span><span class="acr-long">Artificial Neural Networks</span></dt>
+<dd class="acr-desc"><p>Artificial Neural Networks</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:nn">¶</a>
+<dt class="acr-bottom" id="glo:nn"><span class="acr-short">NN</span><span class="acr-long">Neural Networks</span></dt>
+<dd class="acr-desc"><p>Neural Networks</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:dnn">¶</a>
+<dt class="acr-bottom" id="glo:dnn"><span class="acr-short">DNN</span><span class="acr-long">Deep Neural Networks</span></dt>
+<dd class="acr-desc"><p>Deep Neural
+Networks</p></dd>
+</dl>
+</div>
+<div class="section-header">
+<h3 id="header-section-references">
+<span class="number">
+<i class="fa-solid fa-magnifying-glass"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+            Page References</span>
+</h3>
+</div>
+<div class="cite-block">
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">1.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Kingma, D. P. &amp; Ba, J. Adam: A method for stochastic optimization. arXiv preprint arXiv:1412.6980 (2014)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">2.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Dozat, T. Incorporating nesterov momentum into adam (2016)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">3.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Loshchilov, I. &amp; Hutter, F. Decoupled weight decay regularization. arXiv preprint arXiv:1711.05101 (2017)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">4.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Wilson, A. C. et al. The marginal value of adaptive gradient methods in machine learning. Advances in neural information processing systems 30 (2017)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">5.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Gupta, V., Koren, T. &amp; Singer, Y. Shampoo: Preconditioned stochastic tensor optimization in International Conference on Machine Learning (2018), 1842–1850</dd>
+</dl></div><nav class="crosslinks-bottom"><div class="navigation"><span class="nav-button"><a href="LearningRateScheduling.html"><i class="fa-solid fa-caret-right"></i></a></span><span class="nav-button"><a href="TheVanishingExplodingGradientsProblems.html"><i class="fa-solid fa-caret-left"></i></a></span><span class="nav-button"><a href="TrainingDeepNeuralNetworks.html#ReusingPretrainedLayers.html"><i class="fa-solid fa-caret-up"></i></a></span><span class="nav-button">
+<a href="index.html" rel="index" title="Index">
+<i class="fa-solid fa-table-list">
+</i>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Index">
+<i class="fa-brands fa-git-alt"></i>
+</a></span></div></nav> <div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
+<span class="footer-webBook"><b>Last Updated:</b> 6.10.2026, at 8:20.</span></div></div><div class="author-notes">
+<span class="note">Authors Note </span>
+<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
+</div>
+</article>
+<div class="mode-line">
+<div class="core-line"><div class="core-line-image"><img class="webbook-logo" src="logo/webbook-logo.svg"/></div>
+<div class="current-header">
+<span class="header-pretext">Viewing | </span>
+<span class="header-text">Section 3.2: Reusing Pretrained Layers</span>
+</div>
+<div class="button-group">
+</div>
+</div>
+<div class="supp-line"></div>
+</div>
+</page>
+</body>
+</html>

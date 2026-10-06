@@ -1,554 +1,429 @@
-<!DOCTYPE html> 
-<html lang="en">  
-<head><title>Building an Image Classifier with PyTorch</title> 
-<meta  charset="utf-8" /> 
-<meta name="generator" content="lms-WebBook" /> 
-<meta name="viewport" content="width=device-width,initial-scale=1" /> 
-<link rel="stylesheet" type="text/css" href="\aa:CssFile " /> 
-<meta name="src" content="DataScienceIILectureBook.tex" /> 
- <script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js"></script>  
-<link rel="icon" type="image/x-icon" href="logo/lms.ico"> 
-<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" /> 
-<link rel ="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@latest/flatweb.css"> 
-<script src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure@latest/flatweb.js" async='true' crossorigin='anonymous'></script> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css"> 
-<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css"/> 
-<script src ="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script> 
-<link rel="stylesheet" href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css"/> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/> 
-<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet/'> 
-<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script> 
-<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script> 
-<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script> 
-<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script> 
-<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script> 
-<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script> 
-<script src ="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script> 
- <style></style> </head><body 
->
-<page> 
-<nav class="wide"><img class="webbook-logo" src="logo/webbook-logo.svg"></img> <div class="header"> <div class="header-left"><span class="header-lecture-grade">B.Sc</span> 
-<span class="header-lecture-name">Data Science II</span> 
-<span class="header-webBook">WebBook 2.1</span> </div> <div class="header-right"> <span class="header-version">SS.2026</span> 
- <span class="header-chapter">Understanding PyTorch</span></div></div> <div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style='font-size:20px'></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&hl=en\&user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style='font-size:20px'></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style='font-size:20px'></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style='font-size:20px'></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style='font-size:20px'></i></a></div><hr /><span class="chapterToc"><span class="number">0</span><span class="title"><a 
-href="index.html#x2-10000">index</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a 
-href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a 
-href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial
-Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a 
-href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Current Developments and Overview</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a 
-href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a 
-href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">Logical
-Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a 
-href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">The Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a 
-href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Multilayer Perceptron and
-Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a 
-href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Regression MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.7</span><span class="title"><a 
-href="FromBiologytoSiliconArtificialNeurons.html#x4-100001.1.7">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a 
-href="ImplementingMLPswithKeras.html#x5-110001.2">Implementing
-MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a 
-href="ImplementingMLPswithKeras.html#x5-120001.2.1">Building an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a 
-href="ImplementingMLPswithKeras.html#x5-140001.2.2">Creating
-the model using the sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a 
-href="ImplementingMLPswithKeras.html#x5-180001.2.3">Building a Regression MLP Using the
-Sequential API</a></span></span><span class="chapterToc"><span class="number">2</span><span class="title"><a 
-href="UnderstandingPyTorch.html#x6-190002">Understanding PyTorch</a></span></span><span class="sectionToc"><span class="number">2.1</span><span class="title"><a 
-href="PyTorchFundamentals.html#x7-210002.1">PyTorch Fundamentals</a></span></span><span class="subsectionToc"><span class="number">2.1.1</span><span class="title"><a 
-href="PyTorchFundamentals.html#x7-220002.1.1">Making some
-Tensors</a></span></span><span class="subsectionToc"><span class="number">2.1.2</span><span class="title"><a 
-href="PyTorchFundamentals.html#x7-230002.1.2">Hardware Acceleration</a></span></span><span class="sectionToc"><span class="number">2.2</span><span class="title"><a 
-href="ImplementingLinearRegression.html#x8-260002.2">Implementing Linear Regression</a></span></span><span class="subsectionToc"><span class="number">2.2.1</span><span class="title"><a 
-href="ImplementingLinearRegression.html#x8-270002.2.1">Linear
-Regression Using Tensors and Autograd</a></span></span><span class="subsectionToc"><span class="number">2.2.2</span><span class="title"><a 
-href="ImplementingLinearRegression.html#x8-290002.2.2">Linear Regression Using PyTorch’s
-High-Level API</a></span></span><span class="sectionToc"><span class="number">2.3</span><span class="title"><a 
-href="ImplementingaRegressionMLP.html#x9-300002.3">Implementing a Regression MLP</a></span></span><span class="sectionToc"><span class="number">2.4</span><span class="title"><a 
-href="MiniBatchGradientDescentUsingDataLoaders.html#x10-310002.4">Mini-Batch Gradient Descent
-Using DataLoaders</a></span></span><span class="sectionToc"><span class="number">2.5</span><span class="title"><a 
-href="ModelEvaluation.html#x11-320002.5">Model Evaluation</a></span></span><span class="sectionToc"><span class="number">2.6</span><span class="title"><a 
-href="BuildingNonsequentialModelsUsingCustomModules.html#x12-330002.6">Building Nonsequential Models Using Custom
-Modules</a></span></span><span class="subsectionToc"><span class="number">2.6.1</span><span class="title"><a 
-href="BuildingNonsequentialModelsUsingCustomModules.html#x12-340002.6.1">Building Models with Multiple Inputs</a></span></span><span class="subsectionToc"><span class="number">2.6.2</span><span class="title"><a 
-href="BuildingNonsequentialModelsUsingCustomModules.html#x12-350002.6.2">Building Models with Multiple
-Outputs</a></span></span><span class="sectionToc"><span class="number">2.7</span><span class="title"><a 
-href="#x13-360002.7">Building an Image Classifier with PyTorch</a></span></span><span class="subsectionToc"><span class="number">2.7.1</span><span class="title"><a 
-href="#x13-370002.7.1">Using TorchVision to Load the
-Dataset</a></span></span><span class="subsectionToc"><span class="number">2.7.2</span><span class="title"><a 
-href="#x13-380002.7.2">Building the Classifier</a></span></span><span class="sectionToc"><span class="number">2.8</span><span class="title"><a 
-href="FineTuningHyperparameterswithOptuna.html#x14-390002.8">Fine-Tuning Hyperparameters with Optuna</a></span></span><span class="sectionToc"><span class="number">2.9</span><span class="title"><a 
-href="SavingandLoadingPyTorchModels.html#x15-400002.9">Saving
-and Loading PyTorch Models</a></span></span><span class="sectionToc"><span class="number">2.10</span><span class="title"><a 
-href="CompilingandOptimizingaPyTorchModel.html#x16-410002.10">Compiling and Optimizing a PyTorch Model</a></span></span>
-<!--l. 1351--><p class="noindent" ><div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span> 
-<span class="nav-footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 9.9.2026, at 9:52.</span></div></div><span class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span></div></div></nav> 
-
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Building an Image Classifier with PyTorch</title>
+<meta charset="utf-8"/>
+<meta content="lms-WebBook" name="generator"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js" type="text/javascript"></script>
+<link href="logo/lms.ico" rel="icon" type="image/x-icon"/>
+<link href="./pagefind/pagefind-component-ui.css" rel="stylesheet"/>
+<script src="./pagefind/pagefind-component-ui.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.css" rel="stylesheet" type="text/css"/>
+<script async="true" crossorigin="anonymous" src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css" rel="stylesheet"/>
+<script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+<link href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script>
+ </head><body>
+<page>
+<nav class="wide"> <div class="header"><div class="header-left"><span class="header-lecture-grade">B.Sc</span>
+<span class="header-lecture-name">Data Science II</span>
+<span class="header-webBook">WebBook 2.1</span></div><div class="header-right"><span class="header-version">SS.2026</span>
+<span class="header-chapter">Understanding PyTorch</span></div></div><div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><pagefind-modal></pagefind-modal><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style="font-size:20px"></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&amp;hl=en\&amp;user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style="font-size:20px"></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style="font-size:20px"></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style="font-size:20px"></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style="font-size:20px"></i></a></div><hr/><span class="chapterToc"><span class="number"></span><span class="title"><a href="index.html#x2-10000">Entry Point</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial
+Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Current Developments and Overview</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">Logical
+Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">The Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Multilayer Perceptron and
+Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Regression MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.7</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-100001.1.7">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-110001.2">Implementing
+MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-120001.2.1">Building an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-140001.2.2">Creating
+the model using the sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-180001.2.3">Building a Regression MLP Using the
+Sequential API</a></span></span><span class="chapterToc"><span class="number">2</span><span class="title"><a href="UnderstandingPyTorch.html#x6-190002">Understanding PyTorch</a></span></span><span class="sectionToc"><span class="number">2.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-210002.1">PyTorch Fundamentals</a></span></span><span class="subsectionToc"><span class="number">2.1.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-220002.1.1">Making some
+Tensors</a></span></span><span class="subsectionToc"><span class="number">2.1.2</span><span class="title"><a href="PyTorchFundamentals.html#x7-230002.1.2">Hardware Acceleration</a></span></span><span class="sectionToc"><span class="number">2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-260002.2">Implementing Linear Regression</a></span></span><span class="subsectionToc"><span class="number">2.2.1</span><span class="title"><a href="ImplementingLinearRegression.html#x8-270002.2.1">Linear
+Regression Using Tensors and Autograd</a></span></span><span class="subsectionToc"><span class="number">2.2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-290002.2.2">Linear Regression Using PyTorch’s
+High-Level API</a></span></span><span class="sectionToc"><span class="number">2.3</span><span class="title"><a href="ImplementingaRegressionMLP.html#x9-300002.3">Implementing a Regression MLP</a></span></span><span class="sectionToc"><span class="number">2.4</span><span class="title"><a href="MiniBatchGradientDescentUsingDataLoaders.html#x10-310002.4">Mini-Batch Gradient Descent
+Using DataLoaders</a></span></span><span class="sectionToc"><span class="number">2.5</span><span class="title"><a href="ModelEvaluation.html#x11-320002.5">Model Evaluation</a></span></span><span class="sectionToc"><span class="number">2.6</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-330002.6">Building Nonsequential Models Using
+Custom Modules</a></span></span><span class="subsectionToc"><span class="number">2.6.1</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-340002.6.1">Building Models with Multiple Inputs</a></span></span><span class="subsectionToc"><span class="number">2.6.2</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-350002.6.2">Building Models
+with Multiple Outputs</a></span></span><span class="sectionToc"><span class="number">2.7</span><span class="title"><a href="#x13-360002.7">Building an Image Classifier with PyTorch</a></span></span><span class="subsectionToc"><span class="number">2.7.1</span><span class="title"><a href="#x13-370002.7.1">Using
+TorchVision to Load the Dataset</a></span></span><span class="subsectionToc"><span class="number">2.7.2</span><span class="title"><a href="#x13-380002.7.2">Building the Classifier</a></span></span><span class="sectionToc"><span class="number">2.8</span><span class="title"><a href="FineTuningHyperparameterswithOptuna.html#x14-390002.8">Fine-Tuning
+Hyperparameters with Optuna</a></span></span><span class="sectionToc"><span class="number">2.9</span><span class="title"><a href="SavingandLoadingPyTorchModels.html#x15-400002.9">Saving and Loading PyTorch Models</a></span></span><span class="sectionToc"><span class="number">2.10</span><span class="title"><a href="CompilingandOptimizingaPyTorchModel.html#x16-410002.10">Compiling
+and Optimizing a PyTorch Model</a></span></span><span class="chapterToc"><span class="number">3</span><span class="title"><a href="TrainingDeepNeuralNetworks.html#x17-420003">Training Deep Neural Networks</a></span></span><span class="sectionToc"><span class="number">3.1</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-440003.1">The
+Vanishing/Exploding Gradients Problems</a></span></span><span class="subsectionToc"><span class="number">3.1.1</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-450003.1.1">Glorot Initialization and He
+Initialization</a></span></span><span class="subsectionToc"><span class="number">3.1.2</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-470003.1.2">Better Activation Functions</a></span></span><span class="subsectionToc"><span class="number">3.1.3</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-510003.1.3">Batch Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.4</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-540003.1.4">Layer
+Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.5</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-550003.1.5">Gradient Clipping</a></span></span><span class="sectionToc"><span class="number">3.2</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-560003.2">Reusing Pretrained Layers</a></span></span><span class="subsectionToc"><span class="number">3.2.1</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-570003.2.1">Transfer
+Learning with PyTorch</a></span></span><span class="subsectionToc"><span class="number">3.2.2</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-580003.2.2">Unsupervised Pretraining</a></span></span><span class="subsectionToc"><span class="number">3.2.3</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-590003.2.3">Pretraining on an Auxiliary
+Task</a></span></span><span class="subsectionToc"><span class="number">3.2.4</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-600003.2.4">Faster Optimizers</a></span></span><span class="subsectionToc"><span class="number">3.2.5</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-630003.2.5">AdaGrad</a></span></span><span class="subsectionToc"><span class="number">3.2.6</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-640003.2.6">RMSProp</a></span></span><span class="subsectionToc"><span class="number">3.2.7</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-650003.2.7">Adam</a></span></span><span class="subsectionToc"><span class="number">3.2.8</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-660003.2.8">AdaMax</a></span></span><span class="subsectionToc"><span class="number">3.2.9</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-670003.2.9">NAdam</a></span></span><span class="subsectionToc"><span class="number">3.2.10</span><span class="title"><a href="ReusingPretrainedLayers.html#x19-680003.2.10">AdamW</a></span></span><span class="sectionToc"><span class="number">3.3</span><span class="title"><a href="LearningRateScheduling.html#x20-690003.3">Learning
+Rate Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.3.1</span><span class="title"><a href="LearningRateScheduling.html#x20-700003.3.1">Exponential Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="LearningRateScheduling.html#x20-710003.3.2">Cosine Annealing</a></span></span>
+<div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span> ˙<span class="nav-footer-webBook"><b>Last Updated:</b> 6.10.2026, at 8:20.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<article class="chapter">
+<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="FineTuningHyperparameterswithOptuna.html">Fine-Tuning Hyperparameters with Optuna</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="BuildingNonsequentialModelsUsingCustomModules.html">Building Nonsequential Models Using Custom Modules</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="UnderstandingPyTorch.html#BuildinganImageClassifierwithPyTorch.html">Chapter: Understanding
+PyTorch</a></span><span class="nav-button">
+<a href="index.html" rel="index" title="Visit Entry Point">
+<i class="fa-solid fa-table-list">
+</i>
+<span class="nav-info">Visit Index Page</span>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Visit Material GitHub Repo">
+<i class="fa-brands fa-git-alt"></i>
+<span class="nav-info">Visit Material GitHub Repo</span>
+</a></span></nav>
+<div class="section-header"> <h3 id="header-section-2.7"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.2.7"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a> <span class="number">2.7</span> <span class="title"> <a id="x13-360002.7"></a>Building an Image
+Classifier with PyTorch</span></h3></div>
+<p class="noindent">As in <span class="refclass-ref"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span>, we will tackle the <i>Fashion MNIST dataset</i>, so the first
+thing we need to do is to download the dataset. We could use the <code class="verb">fetch_openml()</code>  function like we did in <span class="refclass-ref"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction
+to Artificial Neural Networks</a></span>, but we will show another method instead, using the <i>TorchVision
+library</i>.
 </p>
-<article class="chapter"> 
-<nav class="crosslinks-top"> <a 
-href="FineTuningHyperparameterswithOptuna.html" ><span class="nav-next">NEXT</span></a><a 
-href="BuildingNonsequentialModelsUsingCustomModules.html" ><span class="nav-prev">PREV</span></a><a 
-href="BuildingNonsequentialModelsUsingCustomModules.html#tailBuildingNonsequentialModelsUsingCustomModules.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
-href="#tailBuildinganImageClassifierwithPyTorch.html"><span class="nav-tail">TAIL</span></a><a 
-href="UnderstandingPyTorch.html#BuildinganImageClassifierwithPyTorch.html" ><span class="nav-up">UP</span></a></nav> 
-<div class="section-header"> <h3 id="header-section-2.7"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.2.7"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a> <span class="number">2.7</span> <span class="title">  <a 
- id="x13-360002.7"></a>Building an Image Classifier with PyTorch</span></h3></div><p>
-<!--l. 1353--><p class="noindent" >As in Chapter <a 
-href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">1<!--tex4ht:ref: chap:Introduction-to-Artificial-Neural-Networks --></a>, we will tackle the <italic>Fashion MNIST dataset</italic>, so the first thing we need to do is to
-download the dataset. We could use the <code class="verb">fetch_openml()</code> function like we did in Chapter <a 
-href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">1<!--tex4ht:ref: chap:Introduction-to-Artificial-Neural-Networks --></a>, but we will
-show another method instead, using the <italic>TorchVision library</italic>.
-
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-2.7.1"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.2.7.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">2.7.1</span> <span class="title"> <a id="x13-370002.7.1"></a>Using TorchVision to Load the Dataset</span></h4></div>
+</p><p class="noindent">The <i>TorchVision library</i> is an important part of the PyTorch ecosystem: </p><div class="quote">  it provides many tools for
+computer vision, including utility functions to download common datasets, such as <i>MNIST</i> or <i>Fashion
+MNIST</i>, as well as pretrained models for various computer vision tasks, functions to transform <span class="margin-block">images,
+<span class="margin-comment"><span class="ellipsis">[88]</span>
+<span class="sidenote">e.g., crop, rotate, resize, etc.</span></span></span> and more. </div>
+<p class="noindent">Let’s go ahead and use it to load <i>Fashion MNIST</i>. It is already split into a training set (60,000 images)
+and a test set (10,000 images), but we’ll hold out the last 5,000 images from the training set for
+validation, using PyTorch’s <code class="verb">random_split()</code>  function:
 </p>
-<!--l. 1359--><p class="noindent" ><div class="subsection-header"> <h4 id="header-subsection-2.7.1"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.2.7.1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">2.7.1</span> <span class="title">  <a 
- id="x13-370002.7.1"></a>Using TorchVision to Load the Dataset</span></h4></div><p>
-</p><!--l. 1361--><p class="noindent" >The <italic>TorchVision library</italic> is an important part of the PyTorch ecosystem: <div class="quote"><p>  it provides many tools for
-computer vision, including utility functions to download common datasets, such as <italic>MNIST</italic> or <italic>Fashion
-MNIST</italic>, as well as pretrained models for various computer vision tasks, functions to transform <span class="margin-block">images,
-<span class="margin-comment"><span class="ellipsis">[88]</span> 
-<span class="sidenote">e.g., crop, rotate, resize, etc.</span></span></span> and more. </p></div><p>  Let’s go ahead and use it to load <italic>Fashion MNIST</italic>. It is already
-split into a training set (60,000 images) and a test set (10,000 images), but we’ll hold out the
-last 5,000 images from the training set for validation, using PyTorch’s <code class="verb">random_split()</code>
-function:
-<pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb97"><a 
- id="x13-37002r1160"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torchvision</span> 
-<a 
- id="x13-37004r1161"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torchvision.transforms.v2</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">T</span> 
-<a 
- id="x13-37006r1162"></a> 
-<a 
- id="x13-37008r1163"></a>toTensor = T.Compose([T.ToImage(), T.ToDtype(torch.float32, scale=<span style="color:#9E0005;">True</span>)]) 
-<a 
- id="x13-37010r1164"></a> 
-<a 
- id="x13-37012r1165"></a>train_and_valid_data = torchvision.datasets.FashionMNIST( 
-<a 
- id="x13-37014r1166"></a>    root=<span style="color:#78730D;">&#x0022;datasets&#x0022;</span>, train=<span style="color:#9E0005;">True</span>, download=<span style="color:#9E0005;">True</span>, transform=toTensor) 
-<a 
- id="x13-37016r1167"></a>test_data = torchvision.datasets.FashionMNIST( 
-<a 
- id="x13-37018r1168"></a>    root=<span style="color:#78730D;">&#x0022;datasets&#x0022;</span>, train=<span style="color:#9E0005;">False</span>, download=<span style="color:#9E0005;">True</span>, transform=toTensor) 
-<a 
- id="x13-37020r1169"></a> 
-<a 
- id="x13-37022r1170"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
-<a 
- id="x13-37024r1171"></a>train_data, valid_data = torch.utils.data.random_split( 
-<a 
- id="x13-37026r1172"></a>    train_and_valid_data, [<span style="color:#8F4070;">55_000</span>, <span style="color:#8F4070;">5_000</span>])</pre>
-</code></pre><p>
-                                                                                
-                                                                                
-<!--l. 1376--><p class="noindent" >After the imports and before loading the datasets, we create a <code class="verb">toTensor</code> object. By default, the
-<italic>FashionMNIST</italic> class loads images as PIL (<italic>Python Image Library</italic>) images, with integer pixel values
-ranging from 0 to 255. But we need PyTorch float tensors instead, with scaled pixel values.
-Luckily, TorchVision datasets accept a transform argument which lets you pass a preprocessing
-function that will get executed on the fly whenever the data is <span class="margin-block">accessed. <span class="margin-comment"><span class="ellipsis">[89]</span> 
-<span class="sidenote">There’s also a
-<code class="verb">target_transform</code> 
-argument if you need to preprocess the targets.</span></span></span> TorchVision provides
-many transform objects that you can use for <span class="margin-block">this. <span class="margin-comment"><span class="ellipsis">[90]</span> 
-<span class="sidenote">Most of these transforms are PyTorch
-modules.</span></span></span>
-</p><!--l. 1386--><p class="noindent" >In this code, we create a <code class="verb">Compose</code> transform to chain two transforms: <div class="quote"><p>  a <code class="verb">ToImage</code> transform followed by
-a <code class="verb">ToDtype</code> transform. </p></div><p>  <code class="verb">ToImage</code> converts various formatsincluding PIL images, NumPy arrays, and
-tensorsto TorchVision’s Image class, which is a subclass of <code class="verb">Tensor</code>. The <code class="verb">ToDtype</code> transform converts the
-data type, in this case to 32-bit floats. We also set its scale argument to <code class="verb">True</code> to ensure the values get
-scaled between 0.0 and 1.0.12
-Next, we load the dataset. First the training and validation data, then the test data. The root
-argument is the path to the directory where <italic>TorchVision</italic> will create a subdirectory for the <italic>Fashion
-MNIST dataset</italic>. The train argument indicates whether you want to load the training set (<code class="verb">True</code> by
-default) or the test set. The download argument indicates whether to download the dataset if it cannot
-be found locally (<code class="verb">False</code> by default). And we also set <code class="verb">transform=toTensor</code> to use our custom
-preprocessing pipeline.
-As usual, we must create data loaders:
-<pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb98"><a 
- id="x13-37028r1177"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
-<a 
- id="x13-37030r1178"></a>train_loader = DataLoader(train_data, batch_size=<span style="color:#8F4070;">32</span>, shuffle=<span style="color:#9E0005;">True</span>) 
-<a 
- id="x13-37032r1179"></a>valid_loader = DataLoader(valid_data, batch_size=<span style="color:#8F4070;">32</span>) 
-<a 
- id="x13-37034r1180"></a>test_loader = DataLoader(test_data, batch_size=<span style="color:#8F4070;">32</span>)</pre>
-</code></pre><p>
-<!--l. 1408--><p class="noindent" >Now let’s look at the first image in the training set:
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb97"><a id="x13-37002r1160"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torchvision</span> 
+<a id="x13-37004r1161"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torchvision.transforms.v2</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">T</span> 
+<a id="x13-37006r1162"></a> 
+<a id="x13-37008r1163"></a>toTensor = T.Compose([T.ToImage(), T.ToDtype(torch.float32, scale=<span style="color:#9E0005;">True</span>)]) 
+<a id="x13-37010r1164"></a> 
+<a id="x13-37012r1165"></a>train_and_valid_data = torchvision.datasets.FashionMNIST( 
+<a id="x13-37014r1166"></a>    root=<span style="color:#78730D;">"datasets"</span>, train=<span style="color:#9E0005;">True</span>, download=<span style="color:#9E0005;">True</span>, transform=toTensor) 
+<a id="x13-37016r1167"></a>test_data = torchvision.datasets.FashionMNIST( 
+<a id="x13-37018r1168"></a>    root=<span style="color:#78730D;">"datasets"</span>, train=<span style="color:#9E0005;">False</span>, download=<span style="color:#9E0005;">True</span>, transform=toTensor) 
+<a id="x13-37020r1169"></a> 
+<a id="x13-37022r1170"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x13-37024r1171"></a>train_data, valid_data = torch.utils.data.random_split( 
+<a id="x13-37026r1172"></a>    train_and_valid_data, [<span style="color:#8F4070;">55_000</span>, <span style="color:#8F4070;">5_000</span>])</pre>
+</code></pre>
+<p class="noindent">After the imports and before loading the datasets, we create a <code class="verb">toTensor</code>  object. By default, the <i>FashionMNIST</i>
+class loads images as PIL (<i>Python Image Library</i>) images, with integer pixel values ranging from 0 to
+255. But we need PyTorch float tensors instead, with scaled pixel values. Luckily, TorchVision datasets
+accept a transform argument which lets you pass a preprocessing function that will get executed on the
+fly whenever the data is <span class="margin-block">accessed. <span class="margin-comment"><span class="ellipsis">[89]</span>
+<span class="sidenote">There’s also a <code class="verb">target_transform</code>  argument if you need to preprocess the targets.</span></span></span>
+TorchVision provides many transform objects that you can use for <span class="margin-block">this. <span class="margin-comment"><span class="ellipsis">[90]</span>
+<span class="sidenote">Most of these transforms are
+PyTorch modules.</span></span></span>
+</p><p class="noindent">In this code, we create a <code class="verb">Compose</code>  transform to chain two transforms: </p><div class="quote">  a <code class="verb">ToImage</code>  transform followed by a <code class="verb">ToDtype</code>  transform.
+</div>
+<p class="noindent"><code class="verb">ToImage</code> converts various formatsincluding PIL images, NumPy arrays, and tensorsto TorchVision’s Image
+class, which is a subclass of <code class="verb">Tensor</code> . The <code class="verb">ToDtype</code>  transform converts the data type, in this case to 32-bit
+floats. We also set its scale argument to <code class="verb">True</code>  to ensure the values get scaled between 0.0 and
+1.0.12
+</p><p class="noindent">Next, we load the dataset. First the training and validation data, then the test data. The root
+argument is the path to the directory where <i>TorchVision</i> will create a subdirectory for the <i>Fashion
+MNIST dataset</i>. The train argument indicates whether you want to load the training set (<code class="verb">True</code>  by default)
+or the test set. The download argument indicates whether to download the dataset if it
+cannot be found locally (<code class="verb">False</code>  by default). And we also set <code class="verb">transform=toTensor</code>  to use our custom preprocessing
+pipeline.
+</p><p class="noindent">As usual, we must create data loaders:
 </p>
-<pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb99"><a 
- id="x13-37036r1187"></a>X_sample, y_sample = train_data[<span style="color:#8F4070;">0</span>] 
-<a 
- id="x13-37038r1188"></a>X_sample.shape 
-<a 
- id="x13-37040r1189"></a>X_sample.dtype</pre>
-</code></pre><p>
-<!--l. 1414--><p class="noindent" >In Chapter <a 
-href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">1<!--tex4ht:ref: chap:Introduction-to-Artificial-Neural-Networks --></a>, each image was represented by a 1D array containing 784 pixel
-intensities, but now each image tensor has 3 dimensions, and its shape is:
-<!--l. 1416--><math 
- 
-display="inline" ><mo 
-class="MathClass-open" stretchy="false">[</mo><mn>1</mn><mo 
-class="MathClass-punc" stretchy="false">,</mo><mn>2</mn><mn>8</mn><mo 
-class="MathClass-punc" stretchy="false">,</mo><mn>2</mn><mn>8</mn><mo 
-class="MathClass-close" stretchy="false">]</mo></math>.
-</p>     
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb98"><a id="x13-37028r1177"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x13-37030r1178"></a>train_loader = DataLoader(train_data, batch_size=<span style="color:#8F4070;">32</span>, shuffle=<span style="color:#9E0005;">True</span>) 
+<a id="x13-37032r1179"></a>valid_loader = DataLoader(valid_data, batch_size=<span style="color:#8F4070;">32</span>) 
+<a id="x13-37034r1180"></a>test_loader = DataLoader(test_data, batch_size=<span style="color:#8F4070;">32</span>)</pre>
+</code></pre>
+<p class="noindent">Now let’s look at the first image in the training set:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb99"><a id="x13-37036r1187"></a>X_sample, y_sample = train_data[<span style="color:#8F4070;">0</span>] 
+<a id="x13-37038r1188"></a>X_sample.shape 
+<a id="x13-37040r1189"></a>X_sample.dtype</pre>
+</code></pre>
+<p class="noindent">In <span class="refclass-ref"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span>, each image was represented by a 1D array
+containing 784 pixel intensities, but now each image tensor has 3 dimensions, and its shape is:
+<math display="inline"><mo class="MathClass-open" stretchy="false">[</mo><mn>1</mn><mo class="MathClass-punc" stretchy="false">,</mo><mn>2</mn><mn>8</mn><mo class="MathClass-punc" stretchy="false">,</mo><mn>2</mn><mn>8</mn><mo class="MathClass-close" stretchy="false">]</mo></math>.
+</p>
 <ul class="itemize1">
-<li class="itemize">     
-<!--l. 1419--><p class="noindent" >The first dimension is the channel dimension. For grayscale images, there is a single <span class="margin-block">channel.
-<span class="margin-comment"><span class="ellipsis">[91]</span> 
+<li class="itemize">
+<p class="noindent">The first dimension is the channel dimension. For grayscale images, there is a single <span class="margin-block">channel.
+<span class="margin-comment"><span class="ellipsis">[91]</span>
 <span class="sidenote">color images usually have three channels, as we will see later.</span></span></span>
-</p>     
+</p>
 </li>
-<li class="itemize">     
-<!--l. 1421--><p class="noindent" >The other two dimensions are the height and width dimensions.</p></li></ul>
-<!--l. 1424--><p class="noindent" ><div class="quote"><p> For example, <code class="verb">X_sample[0, 2, 4]</code> represents the pixel located in channel 0, row 2, column 4. In
-Fashion MNIST, a larger value means a darker pixel. </p></div><p>
-                                                                                
-                                                                                
-<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 2.<a 
- id="x13-37041r23"></a>23: </span> </span> <span class="info-title"> Be Careful of the Channel </span> </span> <div class="body"><p>
-<!--l. 1431--><p class="noindent" ><italic>PyTorch</italic> expects the channel dimension to be first, while many other libraries, such as <italic>Matplotlib</italic>, <italic>PIL</italic>,
-<italic>TensorFlow</italic>, <italic>OpenCV</italic>, or <italic>Scikit-Image</italic>, expect it to be last. </p> 
-<hr/> 
+<li class="itemize">
+<p class="noindent">The other two dimensions are the height and width dimensions.</p></li></ul>
+<div class="quote"> For example, <code class="verb">X_sample[0, 2, 4]</code>  represents the pixel located in channel 0, row 2, column 4. In Fashion MNIST, a larger
+value means a darker pixel. </div>
+<div class="info-block" id="info-block-2.23"> <a class="copiable-link" href="#info-block-2.23"> ¶</a> <span class="info-upper"> <span class="info-header"> <b>Information 2.<a id="x13-37041r23"></a>23: </b> </span> <span class="info-title"> Be Careful of the Channel </span> </span> <div class="body">
+<p class="noindent"><i>PyTorch</i> expects the channel dimension to be first, while many other libraries, such as <i>Matplotlib</i>, <i>PIL</i>,
+<i>TensorFlow</i>, <i>OpenCV</i>, or <i>Scikit-Image</i>, expect it to be last. </p>
+<hr/>
 <p class="noindent"> 
 Always make sure to move the channel
-dimension to the right place, depending on the library you are using. <code class="verb">ToImage</code> already took care of
-moving the channel dimension to the first position, otherwise we could have used the <code class="verb">torch.permute()</code>
+dimension to the right place, depending on the library you are using. <code class="verb">ToImage</code>  already took care
+of moving the channel dimension to the first position, otherwise we could have used the <code class="verb">torch.permute()</code>
 function.
-</p></div></div> </p>
-<!--l. 1443--><p class="noindent" >As for the targets, they are integers from 0 to 9, and we can interpret them using the same
-<code class="verb">class_names</code> 
-array as in Chapter <a 
-href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">1<!--tex4ht:ref: chap:Introduction-to-Artificial-Neural-Networks --></a>. In fact, many datasets, including <code class="verb">FashionMNIST</code>, have a classes
-attribute containing the list of class names.
-<div class="quote"><p> For example, here’s how we can tell that the sample image represents an ankle boot: </p></div><p>
-<pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb100"><a 
- id="x13-37043r1209"></a>train_and_valid_data.classes[y_sample]</pre>
-</code></pre><p>
-
-<!--l. 1455--><p class="noindent" ><div class="subsection-header"> <h4 id="header-subsection-2.7.2"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.2.7.2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-pdf" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">2.7.2</span> <span class="title">  <a 
- id="x13-380002.7.2"></a>Building the Classifier</span></h4></div><p>
-</p><!--l. 1457--><p class="noindent" >Let’s build a custom module for a classification MLP with two (<span class="alert"><alert style="color: #821131;">2</alert></span>) hidden layers:
 </p>
-<pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb101"><a 
- id="x13-38002r1219"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">ImageClassifier</span>(nn.Module): 
-<a 
- id="x13-38004r1220"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, n_inputs, n_hidden1, n_hidden2, n_classes): 
-<a 
- id="x13-38006r1221"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
-<a 
- id="x13-38008r1222"></a>        <span style="color:#B03B03;">self</span>.mlp = nn.Sequential( 
-<a 
- id="x13-38010r1223"></a>            nn.Flatten(), 
-<a 
- id="x13-38012r1224"></a>            nn.Linear(n_inputs, n_hidden1), 
-<a 
- id="x13-38014r1225"></a>            nn.ReLU(), 
-<a 
- id="x13-38016r1226"></a>            nn.Linear(n_hidden1, n_hidden2), 
-<a 
- id="x13-38018r1227"></a>            nn.ReLU(), 
-<a 
- id="x13-38020r1228"></a>            nn.Linear(n_hidden2, n_classes) 
-<a 
- id="x13-38022r1229"></a>        ) 
-<a 
- id="x13-38024r1230"></a> 
-<a 
- id="x13-38026r1231"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, X): 
-<a 
- id="x13-38028r1232"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.mlp(X) 
-<a 
- id="x13-38030r1233"></a> 
-<a 
- id="x13-38032r1234"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
-<a 
- id="x13-38034r1235"></a>model = ImageClassifier(n_inputs=<span style="color:#8F4070;">1</span> * <span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>, n_hidden1=<span style="color:#8F4070;">300</span>, n_hidden2=<span style="color:#8F4070;">100</span>, 
-<a 
- id="x13-38036r1236"></a>                        n_classes=<span style="color:#8F4070;">10</span>).to(device) 
-<a 
- id="x13-38038r1237"></a>xentropy = nn.CrossEntropyLoss()</pre>
-</code></pre><p>
-<!--l. 1461--><p class="noindent" >There are a few things to note in this code: </p>
-<ul class="itemize1">     
+</div></div>
+<p class="noindent">As for the targets, they are integers from 0 to 9, and we can interpret them using the same <code class="verb">class_names</code>  array as in
+<span class="refclass-ref"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span>. In fact, many datasets, including <code class="verb">FashionMNIST</code> , have a classes attribute
+containing the list of class names.
+</p>
+<div class="quote"> For example, here’s how we can tell that the sample image represents an ankle boot: </div>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb100"><a id="x13-37043r1209"></a>train_and_valid_data.classes[y_sample]</pre>
+</code></pre>
+<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-2.7.2"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.2.7.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">2.7.2</span> <span class="title"> <a id="x13-380002.7.2"></a>Building the Classifier</span></h4></div>
+</p><p class="noindent">Let’s build a custom module for a classification MLP with two (<span class="alert">2</span>) hidden layers:
+</p>
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb101"><a id="x13-38002r1219"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">ImageClassifier</span>(nn.Module): 
+<a id="x13-38004r1220"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, n_inputs, n_hidden1, n_hidden2, n_classes): 
+<a id="x13-38006r1221"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
+<a id="x13-38008r1222"></a>        <span style="color:#B03B03;">self</span>.mlp = nn.Sequential( 
+<a id="x13-38010r1223"></a>            nn.Flatten(), 
+<a id="x13-38012r1224"></a>            nn.Linear(n_inputs, n_hidden1), 
+<a id="x13-38014r1225"></a>            nn.ReLU(), 
+<a id="x13-38016r1226"></a>            nn.Linear(n_hidden1, n_hidden2), 
+<a id="x13-38018r1227"></a>            nn.ReLU(), 
+<a id="x13-38020r1228"></a>            nn.Linear(n_hidden2, n_classes) 
+<a id="x13-38022r1229"></a>        ) 
+<a id="x13-38024r1230"></a> 
+<a id="x13-38026r1231"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, X): 
+<a id="x13-38028r1232"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.mlp(X) 
+<a id="x13-38030r1233"></a> 
+<a id="x13-38032r1234"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x13-38034r1235"></a>model = ImageClassifier(n_inputs=<span style="color:#8F4070;">1</span> * <span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>, n_hidden1=<span style="color:#8F4070;">300</span>, n_hidden2=<span style="color:#8F4070;">100</span>, 
+<a id="x13-38036r1236"></a>                        n_classes=<span style="color:#8F4070;">10</span>).to(device) 
+<a id="x13-38038r1237"></a>xentropy = nn.CrossEntropyLoss()</pre>
+</code></pre>
+<p class="noindent">There are a few things to note in this code: </p>
+<ul class="itemize1">
 <li class="itemize">
-<!--l. 1464--><p class="noindent" >First, the model is composed of a single sequence of layers, which is why we used the
-<code class="verb">nn.Sequential</code>
-module. We did not have to create a custom module; we could have written
-<code class="verb">model = nn.Sequential(...)</code> 
-instead, but it’s generally preferable to wrap our models
-in custom modules, as it makes our code easier to deploy and reuse, and it’s also easier to
-tune the <span id="bold" style="font-weight:bold;">hyperparameters</span>.
-</p>     
+<p class="noindent">First, the model is composed of a single sequence of layers, which is why we used the <code class="verb">nn.Sequential</code>
+module. We did not have to create a custom module; we could have written <code class="verb">model = nn.Sequential(...)</code>  instead, but
+it’s generally preferable to wrap our models in custom modules, as it makes our code easier
+to deploy and reuse, and it’s also easier to tune the <b>hyperparameters</b>.
+</p>
 </li>
-<li class="itemize">     
-<!--l. 1469--><p class="noindent" >The model starts with an <code class="verb">nn.Flatten</code> layer. This layer does not have any parameters, it
+<li class="itemize">
+<p class="noindent">The model starts with an <code class="verb">nn.Flatten</code>  layer. This layer does not have any parameters, it
 just reshapes each input sample to a single dimension, which is needed for the
-<code class="verb">nn.Linear</code> 
-layers. <div class="quote"><p>  For example, a batch of 32 <italic>Fashion MNIST</italic> images has a shape of
-<!--l. 1474--><math 
- 
-display="inline" ><mo 
-class="MathClass-open" stretchy="false">[</mo><mn>3</mn><mn>2</mn><mo 
-class="MathClass-punc" stretchy="false">,</mo><mn>1</mn><mo 
-class="MathClass-punc" stretchy="false">,</mo><mn>2</mn><mn>8</mn><mo 
-class="MathClass-punc" stretchy="false">,</mo><mn>2</mn><mn>8</mn><mo 
-class="MathClass-close" stretchy="false">]</mo></math>,
-but after going through the <code class="verb">nn.Flatten</code> layer, it ends up with a shape of
-<!--l. 1476--><math 
- 
-display="inline" ><mo 
-class="MathClass-open" stretchy="false">[</mo><mn>3</mn><mn>2</mn><mo 
-class="MathClass-punc" stretchy="false">,</mo><mn>7</mn><mn>8</mn><mn>4</mn><mo 
-class="MathClass-close" stretchy="false">]</mo></math>, given
-<!--l. 1476--><math 
- 
-display="inline" ><mn>2</mn><mn>8</mn> <mi 
->×</mi> <mn>2</mn><mn>8</mn> <mo 
-class="MathClass-rel" stretchy="false">=</mo> <mn>7</mn><mn>8</mn><mn>4</mn></math>.
-</p>     
-</div><p>
-                                                                                
-                                                                                
-     
+<code class="verb">nn.Linear</code> layers. </p><div class="quote">  For example, a batch of 32 <i>Fashion MNIST</i> images has a shape of
+<math display="inline"><mo class="MathClass-open" stretchy="false">[</mo><mn>3</mn><mn>2</mn><mo class="MathClass-punc" stretchy="false">,</mo><mn>1</mn><mo class="MathClass-punc" stretchy="false">,</mo><mn>2</mn><mn>8</mn><mo class="MathClass-punc" stretchy="false">,</mo><mn>2</mn><mn>8</mn><mo class="MathClass-close" stretchy="false">]</mo></math>,
+but after going through the <code class="verb">nn.Flatten</code>   layer, it ends up with a shape of
+<math display="inline"><mo class="MathClass-open" stretchy="false">[</mo><mn>3</mn><mn>2</mn><mo class="MathClass-punc" stretchy="false">,</mo><mn>7</mn><mn>8</mn><mn>4</mn><mo class="MathClass-close" stretchy="false">]</mo></math>, given
+<math display="inline"><mn>2</mn><mn>8</mn> <mi>×</mi> <mn>2</mn><mn>8</mn> <mo class="MathClass-rel" stretchy="false">=</mo> <mn>7</mn><mn>8</mn><mn>4</mn></math>.
+</div>
 </li>
-<li class="itemize">     
-<!--l. 1479--><p class="noindent" >The first hidden layer must have the correct number of inputs
-<!--l. 1479--><math 
- 
-display="inline" ><mo 
-class="MathClass-open" stretchy="false">(</mo><mn>2</mn><mn>8</mn> <mi 
->×</mi> <mn>2</mn><mn>8</mn> <mo 
-class="MathClass-rel" stretchy="false">=</mo> <mn>7</mn><mn>8</mn><mn>4</mn><mo 
-class="MathClass-close" stretchy="false">)</mo></math>,
+<li class="itemize">
+<p class="noindent">The first hidden layer must have the correct number of inputs
+<math display="inline"><mo class="MathClass-open" stretchy="false">(</mo><mn>2</mn><mn>8</mn> <mi>×</mi> <mn>2</mn><mn>8</mn> <mo class="MathClass-rel" stretchy="false">=</mo> <mn>7</mn><mn>8</mn><mn>4</mn><mo class="MathClass-close" stretchy="false">)</mo></math>,
 and the output layer must have the correct number of outputs which is 10 with one per
 class.
-</p>     
+</p>
 </li>
-<li class="itemize">     
-<!--l. 1482--><p class="noindent" >We use a ReLU activation function after each hidden layer, and no activation function at all after
+<li class="itemize">
+<p class="noindent">We use a ReLU activation function after each hidden layer, and no activation function at all after
 the output layer.
-</p>     
+</p>
 </li>
-<li class="itemize">     
-<!--l. 1484--><p class="noindent" >Since this is a multiclass classification task, we use nn.CrossEntropyLoss. It accepts either
-class indices as targets (as in this example), or class <span class="margin-block">probabilities. <span class="margin-comment"><span class="ellipsis">[92]</span> 
+<li class="itemize">
+<p class="noindent">Since this is a multiclass classification task, we use nn.CrossEntropyLoss. It accepts either
+class indices as targets (as in this example), or class <span class="margin-block">probabilities. <span class="margin-comment"><span class="ellipsis">[92]</span>
 <span class="sidenote">such as one-hot
 vectors.</span></span></span></p></li></ul>
-<!--l. 1489--><p class="noindent" ><div class="quote"><p> Didn’t we say in Chapter <a 
-href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">1<!--tex4ht:ref: chap:Introduction-to-Artificial-Neural-Networks --></a> that we should use the softmax activation function on the output layer for
-multiclass classification tasks? </p></div><p>
-<!--l. 1494--><p class="noindent" >Well it turns out that PyTorch’s <code class="verb">nn.CrossEntropyLoss</code> computes the cross-entropy loss directly from
-the logits, the class scores, rather than from the class probabilities. This bypasses some costly
-computations during <span class="margin-block">training, <span class="margin-comment"><span class="ellipsis">[93]</span> 
-<span class="sidenote">i.e., logarithms and exponentials that cancel out.</span></span></span> saving both compute
-and <span class="acronym"><span class="acronym-short"><a 
-href="#glo:ram" class="glossary" >RAM</a></span><span class="acronym-detail"><span class="acronym-long"><a 
-href="#glo:ram" class="glossary" >Random Access Memory</a></span><span class="acronym-desc"><a 
-href="#glo:ram" class="glossary" >a form of electronic computer memory that can be read and changed
-in any order, typically used to store working data and machine code.</a></span></span></span>. It’s also more numerically
+<div class="quote"> Didn’t we say in <span class="refclass-ref"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span> that we should use the softmax activation
+function on the output layer for multiclass classification tasks? </div>
+<p class="noindent">Well it turns out that PyTorch’s <code class="verb">nn.CrossEntropyLoss</code>  computes the cross-entropy loss directly from the logits, the class
+scores, rather than from the class probabilities. This bypasses some costly computations during
+<span class="margin-block">training, <span class="margin-comment"><span class="ellipsis">[93]</span>
+<span class="sidenote">i.e., logarithms and exponentials that cancel out.</span></span></span> saving both compute and <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ram">RAM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ram">Random
+Access Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ram">a form of electronic computer memory that can be read and changed in any
+order, typically used to store working data and machine code.</a></span></span></span>. It’s also more numerically
 stable.
 The downside is that the model must output logits, which means that we will have to call the
 softmax function manually on the logits whenever we want class probabilities, as we will see
 shortly.
 </p>
-<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 2.<a 
- id="x13-38039r24"></a>24: </span> </span> <span class="info-title"> Other Classification Losses </span> </span> <div class="body"><p>
-<!--l. 1505--><p class="noindent" >For <span class="alert"><alert style="color: #821131;">multiclass classification</alert></span>, another option is to add the <code class="verb">nn.LogSoftmax</code> activation function to
-the output layer, and then use the <code class="verb">nn.NLLLoss</code><span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[94]</span> 
-<span class="sidenote">meaning negative log-likelihood loss.</span></span></span> The model then
-outputs log probabilities, rather than <span class="alert"><alert style="color: #821131;">logits</alert></span>, and the loss computes the cross-entropy based on these
-log probabilities. Whenever we need actual estimated probabilities, we just pass the log probabilities
-through the exponential function.
-This approach is a bit slower than using <code class="verb">nn.CrossEntropyLoss</code>, so it’s not used as often, but it can
-sometimes be useful if we want our model to output log probabilities, or when we wish to tweak the
-probability distribution before computing the loss. </p> 
-<hr/> 
+<div class="info-block" id="info-block-2.24"> <a class="copiable-link" href="#info-block-2.24"> ¶</a> <span class="info-upper"> <span class="info-header"> <b>Information 2.<a id="x13-38039r24"></a>24: </b> </span> <span class="info-title"> Other Classification Losses </span> </span> <div class="body">
+<p class="noindent">For <span class="alert">multiclass classification</span>, another option is to add the <code class="verb">nn.LogSoftmax</code>  activation function to the output layer, and then use the <code class="verb">nn.NLLLoss</code> <span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[94]</span>
+<span class="sidenote">meaning
+negative log-likelihood loss.</span></span></span> The model then outputs log probabilities, rather than <span class="alert">logits</span>, and
+the loss computes the cross-entropy based on these log probabilities. Whenever we need
+actual estimated probabilities, we just pass the log probabilities through the exponential
+function.
+</p><p class="noindent">This approach is a bit slower than using <code class="verb">nn.CrossEntropyLoss</code> , so it’s not used as often, but it can sometimes be useful if we
+want our model to output log probabilities, or when we wish to tweak the probability distribution
+before computing the loss. </p>
+<hr/>
 <p class="noindent"> 
-For binary classification tasks, we need to use a
-single output neuron in the output layer, and use the <code class="verb">nn.BCEWithLogitsLoss</code><span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[95]</span> 
-<span class="sidenote">Here BCE stands for
-binary cross-entropy.</span></span></span> The model outputs logits, so we must apply the sigmoid function to get estimated
-probabilities (for the positive class).
-</p><!--l. 1523--><p class="noindent" >Alternatively, you can add the <code class="verb">nn.Sigmoid</code> activation function to the output layer, and use the
-<code class="verb">nn.BCELoss</code>
-: the model will then output estimated probabilities <span class="margin-block">directly. <span class="margin-comment"><span class="ellipsis">[96]</span> 
-<span class="sidenote">but it’s a bit slower and less
-numerically stable.</span></span></span>
-                                                                                
-                                                                                
-</p><!--l. 1527--><p class="noindent" >For multilabel binary classification, the only difference is that you must have one neuron per label in
+For binary classification tasks, we need to use a single output neuron in the
+output layer, and use the <code class="verb">nn.BCEWithLogitsLoss</code> <span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[95]</span>
+<span class="sidenote">Here BCE stands for binary cross-entropy.</span></span></span> The model outputs
+logits, so we must apply the sigmoid function to get estimated probabilities (for the positive
+class).
+</p><p class="noindent">Alternatively, you can add the <code class="verb">nn.Sigmoid</code>  activation function to the output layer, and use the <code class="verb">nn.BCELoss</code> : the model
+will then output estimated probabilities <span class="margin-block">directly. <span class="margin-comment"><span class="ellipsis">[96]</span>
+<span class="sidenote">but it’s a bit slower and less numerically
+stable.</span></span></span>
+</p><p class="noindent">For multilabel binary classification, the only difference is that you must have one neuron per label in
 the output layer.
-</p></div></div> </p>
-<!--l. 1532--><p class="noindent" >Now we can train the model as <span class="margin-block">usual. <span class="margin-comment"><span class="ellipsis">[97]</span> 
-<span class="sidenote">e.g., using the <code class="verb">train()</code> function with an <span class="acronym"><span class="acronym-short"><a 
-href="#glo:sgd" class="glossary" >SGD</a></span><span class="acronym-detail"><span class="acronym-long"><a 
-href="#glo:sgd" class="glossary" >Stochastic
-Gradient Descent</a></span><span class="acronym-desc"><a 
-href="#glo:sgd" class="glossary" >Stochastic Gradient Descent</a></span></span></span> optimizer</span></span></span> To evaluate the model, we can use the
-Accuracy streaming metric from the <code class="verb">torchmetrics</code> library, and move it to the <span class="acronym"><span class="acronym-short"><a 
-href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
-href="#glo:gpu" class="glossary" >Graphical
-Processing Unit</a></span><span class="acronym-desc"><a 
-href="#glo:gpu" class="glossary" >A specialized electronic chip designed to rapidly render images, video, and 3D
+</p>
+</div></div>
+<p class="noindent">Now we can train the model as <span class="margin-block">usual. <span class="margin-comment"><span class="ellipsis">[97]</span>
+<span class="sidenote">e.g., using the <code class="verb">train()</code>  function with an <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:sgd">SGD</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:sgd">Stochastic
+Gradient Descent</a></span><span class="acronym-desc"><a class="glossary" href="#glo:sgd">Stochastic Gradient Descent</a></span></span></span> optimizer</span></span></span> To evaluate the model, we can
+use the Accuracy streaming metric from the <code class="verb">torchmetrics</code>  library, and move it to the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gpu">GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gpu">Graphical
+Processing Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gpu">A specialized electronic chip designed to rapidly render images, video, and 3D
 animations. Unlike a central processing unit (CPU) that processes tasks sequentially, a GPU uses
 parallel processing with thousands of smaller cores to handle many calculations at the same
 time.</a></span></span></span>:
 </p>
-<pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb102"><a 
- id="x13-38041r1242"></a>optimizer = torch.optim.SGD(model.parameters(), lr=<span style="color:#8F4070;">0.1</span>) 
-<a 
- id="x13-38043r1243"></a>accuracy = torchmetrics.Accuracy(task=<span style="color:#78730D;">&#x0022;multiclass&#x0022;</span>, num_classes=<span style="color:#8F4070;">10</span>).to(device) 
-<a 
- id="x13-38045r1244"></a>_ = train2(model, optimizer, xentropy, accuracy, train_loader, valid_loader, 
-<a 
- id="x13-38047r1245"></a>           n_epochs)</pre>
-</code></pre><p>
-<div class="warning">
-<!--l. 1542--><p class="noindent" >Training the model will take a few minutes with a <span class="acronym"><span class="acronym-short"><a 
-href="#glo:gpu" class="glossary" >GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a 
-href="#glo:gpu" class="glossary" >Graphical Processing Unit</a></span><span class="acronym-desc"><a 
-href="#glo:gpu" class="glossary" >A specialized
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb102"><a id="x13-38041r1242"></a>optimizer = torch.optim.SGD(model.parameters(), lr=<span style="color:#8F4070;">0.1</span>) 
+<a id="x13-38043r1243"></a>accuracy = torchmetrics.Accuracy(task=<span style="color:#78730D;">"multiclass"</span>, num_classes=<span style="color:#8F4070;">10</span>).to(device) 
+<a id="x13-38045r1244"></a>_ = train2(model, optimizer, xentropy, accuracy, train_loader, valid_loader, 
+<a id="x13-38047r1245"></a>           n_epochs)</pre>
+</code></pre>
+<div class="warning"><div class="warning-upper">Warning</div><div class="body">
+<p class="noindent">Training the model will take a few minutes with a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gpu">GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gpu">Graphical Processing Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gpu">A specialized
 electronic chip designed to rapidly render images, video, and 3D animations. Unlike a central processing
 unit (CPU) that processes tasks sequentially, a GPU uses parallel processing with thousands of smaller
-cores to handle many calculations at the same time.</a></span></span></span><span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[98]</span> 
+cores to handle many calculations at the same time.</a></span></span></span><span class="margin-block">. <span class="margin-comment"><span class="ellipsis">[98]</span>
 <span class="sidenote">or much longer without one.</span></span></span> Handling
-images requires significantly more compute and memory than handling low-dimensional
-data.
-</p>
-</div>
-<!--l. 1544--><p class="noindent" >The model reaches around 92.8% accuracy on the training set, and 87.2on the validation <span class="margin-block">set. <span class="margin-comment"><span class="ellipsis">[99]</span> 
+images requires significantly more compute and memory than handling low-dimensional data.
+</p></div></div>
+<p class="noindent">The model reaches around 92.8% accuracy on the training set, and 87.2on the validation <span class="margin-block">set. <span class="margin-comment"><span class="ellipsis">[99]</span>
 <span class="sidenote">The
 results differ depending on the hardware accelerator you use.</span></span></span> This means there’s a little bit
 of overfitting going on, so you may want to reduce the number of neurons or add some
 regularization.
-</p><!--l. 1549--><p class="noindent" >Now that the model is trained, we can use it to make predictions on new images. As an example, let’s
+</p><p class="noindent">Now that the model is trained, we can use it to make predictions on new images. As an example, let’s
 make predictions for the first batch in the validation set, and look at the results for the first three
 images:
 </p>
-<pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb103"><a 
- id="x13-38049r1250"></a>model.eval() 
-<a 
- id="x13-38051r1251"></a>X_new, y_new = <span style="color:#B03B03;">next</span>(<span style="color:#B03B03;">iter</span>(valid_loader)) 
-<a 
- id="x13-38053r1252"></a>X_new = X_new[:<span style="color:#8F4070;">3</span>].to(device) 
-<a 
- id="x13-38055r1253"></a><span style="color:#9E0005;">with</span> torch.no_grad(): 
-<a 
- id="x13-38057r1254"></a>    y_pred_logits = model(X_new) 
-<a 
- id="x13-38059r1255"></a>y_pred = y_pred_logits.argmax(dim=<span style="color:#8F4070;">1</span>)  <span style="color:#918273;"><italic># index of the largest logit</italic></span> 
-<a 
- id="x13-38061r1256"></a>y_pred</pre>
-</code></pre><p>
-<!--l. 1557--><p class="noindent" >For each image, the predicted class is the one with the highest logit. In this example, all three
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb103"><a id="x13-38049r1250"></a>model.eval() 
+<a id="x13-38051r1251"></a>X_new, y_new = <span style="color:#B03B03;">next</span>(<span style="color:#B03B03;">iter</span>(valid_loader)) 
+<a id="x13-38053r1252"></a>X_new = X_new[:<span style="color:#8F4070;">3</span>].to(device) 
+<a id="x13-38055r1253"></a><span style="color:#9E0005;">with</span> torch.no_grad(): 
+<a id="x13-38057r1254"></a>    y_pred_logits = model(X_new) 
+<a id="x13-38059r1255"></a>y_pred = y_pred_logits.argmax(dim=<span style="color:#8F4070;">1</span>)  <span style="color:#918273;"><i># index of the largest logit</i></span> 
+<a id="x13-38061r1256"></a>y_pred</pre>
+</code></pre>
+<p class="noindent">For each image, the predicted class is the one with the highest logit. In this example, all three
 predictions are correct.
-</p><!--l. 1560--><p class="noindent" >But what if we want the model’s estimated probabilities? For this, we need to compute the softmax of
+</p><p class="noindent">But what if we want the model’s estimated probabilities? For this, we need to compute the softmax of
 the logits manually, since the model does not include the softmax activation function on the output
-layer, as we discussed earlier. We could create an <code class="verb">nn.Softmax</code> module and pass it the logits, but we can
-also just call the <code class="verb">softmax()</code> function, which is just one of many functions you will find in
-the <code class="verb">torch.nn.functional</code> <span class="margin-block">module. <span class="margin-comment"><span class="ellipsis">[100]</span> 
-<span class="sidenote">by convention, this module is usually imported as <code class="verb">F</code>.</span></span></span>
-It doesn’t make much difference, it just avoids creating a module instance that we don’t
-need:
-                                                                                
-                                                                                
+layer, as we discussed earlier. We could create an <code class="verb">nn.Softmax</code>  module and pass it the logits, but we can also just
+call the <code class="verb">softmax()</code>  function, which is just one of many functions you will find in the <code class="verb">torch.nn.functional</code> <span class="margin-block">module. <span class="margin-comment"><span class="ellipsis">[100]</span>
+<span class="sidenote">by convention, this
+module is usually imported as <code class="verb">F</code> .</span></span></span> It doesn’t make much difference, it just avoids creating a module
+instance that we don’t need:
 </p>
-<pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb104"><a 
- id="x13-38063r1275"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn.functional</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">F</span> 
-<a 
- id="x13-38065r1276"></a>y_proba = F.softmax(y_pred_logits, dim=<span style="color:#8F4070;">1</span>) 
-<a 
- id="x13-38067r1277"></a><span style="color:#9E0005;">if</span> device == <span style="color:#78730D;">&#x0022;mps&#x0022;</span>: 
-<a 
- id="x13-38069r1278"></a>    y_proba = y_proba.cpu() 
-<a 
- id="x13-38071r1279"></a>y_proba.round(decimals=<span style="color:#8F4070;">3</span>)</pre>
-</code></pre><p>
-<!--l. 1570--><p class="noindent" >Similar to Chapter <a 
-href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">1<!--tex4ht:ref: chap:Introduction-to-Artificial-Neural-Networks --></a>, the model is very confident about the first two predictions: 91.1% and 99.6%,
-respectively. If we wish to apply label smoothing during training, just set the <code class="verb">label_smoothing</code>
-hyperparameter of the <code class="verb">nn.CrossEntropyLoss</code> to the amount of smoothing you wish, between 0 and 1,
-such as 0.05.
-It can often be useful to get the model’s top <!--l. 1575--><math 
- 
-display="inline" ><mi 
->k</mi></math>
-predictions. For this, we can use the <code class="verb">torch.topk()</code> function, which returns a tuple containing both the
-top <!--l. 1576--><math 
- 
-display="inline" ><mi 
->k</mi></math>
-values and their indices:
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb104"><a id="x13-38063r1275"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn.functional</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">F</span> 
+<a id="x13-38065r1276"></a>y_proba = F.softmax(y_pred_logits, dim=<span style="color:#8F4070;">1</span>) 
+<a id="x13-38067r1277"></a><span style="color:#9E0005;">if</span> device == <span style="color:#78730D;">"mps"</span>: 
+<a id="x13-38069r1278"></a>    y_proba = y_proba.cpu() 
+<a id="x13-38071r1279"></a>y_proba.round(decimals=<span style="color:#8F4070;">3</span>)</pre>
+</code></pre>
+<p class="noindent">Similar to <span class="refclass-ref"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span>, the model is very confident about the first two
+predictions: 91.1% and 99.6%, respectively. If we wish to apply label smoothing during training, just set
+the <code class="verb">label_smoothing</code>  hyperparameter of the <code class="verb">nn.CrossEntropyLoss</code>  to the amount of smoothing you wish, between 0 and 1, such as
+0.05.
+</p><p class="noindent">It can often be useful to get the model’s top <math display="inline"><mi>k</mi></math>
+predictions. For this, we can use the <code class="verb">torch.topk()</code>  function, which returns a tuple containing both the top
+<math display="inline"><mi>k</mi></math> values
+and their indices:
 </p>
-<pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb105"><a 
- id="x13-38073r1284"></a>y_top4_values, y_top4_indices = torch.topk(y_pred_logits, k=<span style="color:#8F4070;">4</span>, dim=<span style="color:#8F4070;">1</span>) 
-<a 
- id="x13-38075r1285"></a>y_top4_probas = F.softmax(y_top4_values, dim=<span style="color:#8F4070;">1</span>) 
-<a 
- id="x13-38077r1286"></a><span style="color:#9E0005;">if</span> device == <span style="color:#78730D;">&#x0022;mps&#x0022;</span>: 
-<a 
- id="x13-38079r1287"></a>    y_top4_probas = y_top4_probas.cpu() 
-<a 
- id="x13-38081r1288"></a>y_top4_probas.round(decimals=<span style="color:#8F4070;">3</span>) 
-<a 
- id="x13-38083r1289"></a>y_top4_indices</pre>
-</code></pre><p>
-<!--l. 1581--><p class="noindent" >For the first image, the model’s best guess is class 7 (Sneaker) with 91.1% confidence, its second best
+<pre><div class="code-header"> <span class="code-language">python</span></div> <code class="language-python">
+<pre class="fancyvrb" id="fancyvrb105"><a id="x13-38073r1284"></a>y_top4_values, y_top4_indices = torch.topk(y_pred_logits, k=<span style="color:#8F4070;">4</span>, dim=<span style="color:#8F4070;">1</span>) 
+<a id="x13-38075r1285"></a>y_top4_probas = F.softmax(y_top4_values, dim=<span style="color:#8F4070;">1</span>) 
+<a id="x13-38077r1286"></a><span style="color:#9E0005;">if</span> device == <span style="color:#78730D;">"mps"</span>: 
+<a id="x13-38079r1287"></a>    y_top4_probas = y_top4_probas.cpu() 
+<a id="x13-38081r1288"></a>y_top4_probas.round(decimals=<span style="color:#8F4070;">3</span>) 
+<a id="x13-38083r1289"></a>y_top4_indices</pre>
+</code></pre>
+<p class="noindent">For the first image, the model’s best guess is class 7 (Sneaker) with 91.1% confidence, its second best
 guess is class 9 (Ankle boot) with 8.8% confidence, and so on.
 </p>
-<div class="info-block"> <span class="info-upper"> <span class="info-header"> <span id="bold" style="font-weight:bold;">Information 2.<a 
- id="x13-38084r25"></a>25: </span> </span> <span class="info-title"> Perfectly Balanced, as All Things Should Be </span> </span> <div class="body"><p>
-<!--l. 1586--><p class="noindent" >The Fashion MNIST dataset is <span class="alert"><alert style="color: #821131;">balanced</alert></span>, meaning it has the same number of instances of each class.
-When dealing with an unbalanced dataset, we should generally give more weight to the rare classes and
-less weight to the frequent ones, or else your model will be biased toward the more frequent classes. We
-can do this by setting the weight argument of the <code class="verb">nn.CrossEntropyLoss</code>. </p> 
-<hr/> 
+<div class="info-block" id="info-block-2.25"> <a class="copiable-link" href="#info-block-2.25"> ¶</a> <span class="info-upper"> <span class="info-header"> <b>Information 2.<a id="x13-38084r25"></a>25: </b> </span> <span class="info-title"> Perfectly Balanced, as All Things Should Be </span> </span> <div class="body">
+<p class="noindent">The Fashion MNIST dataset is <span class="alert">balanced</span>, meaning it has the same number of instances of each class. When
+dealing with an unbalanced dataset, we should generally give more weight to the rare classes and less
+weight to the frequent ones, or else your model will be biased toward the more frequent
+classes. We can do this by setting the weight argument of the <code class="verb">nn.CrossEntropyLoss</code> . </p>
+<hr/>
 <p class="noindent"> 
 For example, if there are
-three classes with 900, 700, and 400 instances, <span class="margin-block">respectively, <span class="margin-comment"><span class="ellipsis">[101]</span> 
+three classes with 900, 700, and 400 instances, <span class="margin-block">respectively, <span class="margin-comment"><span class="ellipsis">[101]</span>
 <span class="sidenote">i.e., 2000 instances in total.</span></span></span>
 then the respective weights should be 2000/900, 2000/700, and 2000/400. It’s preferable
-to normalize these weights to ensure they add up to 1, so in this example you would set
-<code class="verb">weight=torch.tensor([0.2205, 0.2835, 0.4961])</code>
+to normalize these weights to ensure they add up to 1, so in this example you would set <code class="verb">weight=torch.tensor([0.2205, 0.2835, 0.4961])</code>
 .
-</p></div></div> </p>
-<!--l. 1602--><p class="noindent" >We can now build, train, and evaluate both regression and classification <span class="acronym"><span class="acronym-short"><a 
-href="#glo:nn" class="glossary" >NN</a></span><span class="acronym-detail"><span class="acronym-long"><a 
-href="#glo:nn" class="glossary" >Neural Networks</a></span><span class="acronym-desc"><a 
-href="#glo:nn" class="glossary" >Neural
-Networks</a></span></span></span>. The next step is to learn how to fine-tune the model hyperparameters.
-                                                                                
-                                                                                
 </p>
-<div class="crosslinks-bottom"><a 
-href="FineTuningHyperparameterswithOptuna.html" ><span class="nav-next">NEXT</span></a><a 
-href="BuildingNonsequentialModelsUsingCustomModules.html" ><span class="nav-prev">PREV</span></a><a 
-href="BuildingNonsequentialModelsUsingCustomModules.html#tailBuildingNonsequentialModelsUsingCustomModules.html" ><span class="nav-prev-tail">PREV-TAIL</span></a><a 
-href="BuildinganImageClassifierwithPyTorch.html" ><span class="nav-front">FRONT</span></a><a 
-href="UnderstandingPyTorch.html#BuildinganImageClassifierwithPyTorch.html" ><span class="nav-up">UP</span></a></nav><a 
- id="tailBuildinganImageClassifierwithPyTorch.html"></a>   </div> <div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span> 
-<span class="footer-webBook"><span id="bold" style="font-weight:bold;">Last Updated:</span> 9.9.2026, at 9:52.</span> </div> </div> </div> <div class="author-notes"> 
-<span class="note">Authors Note </span> 
-<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span> 
-</div> 
-</article> 
-<div class="mode-line"> 
-<div class="core-line"> 
-<div class="button-group"> 
-</div> 
-</div> 
-<div class="supp-line"></div> 
-</div> 
-</page> 
- 
-</body> 
+</div></div>
+<p class="noindent">We can now build, train, and evaluate both regression and classification <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural
+Networks</a></span></span></span>. The next step is to learn how to fine-tune the model hyperparameters.
+<div class="section-header">
+<h3 id="header-section-glossary">
+<span class="number">
+<i aria-hidden="true" class="fa fa-list-alt"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+        Page Glossary Terms</span>
+</h3>
+</div>
+<div class="acronym-block">
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:nn">¶</a>
+<dt class="acr-bottom" id="glo:nn"><span class="acr-short">NN</span><span class="acr-long">Neural Networks</span></dt>
+<dd class="acr-desc"><p>Neural
+Networks</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:gpu">¶</a>
+<dt class="acr-bottom" id="glo:gpu"><span class="acr-short">GPU</span><span class="acr-long">Graphical
+Processing Unit</span></dt>
+<dd class="acr-desc"><p>A specialized electronic chip designed to rapidly render images, video, and 3D
+animations. Unlike a central processing unit (CPU) that processes tasks sequentially, a GPU uses
+parallel processing with thousands of smaller cores to handle many calculations at the same
+time.</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:sgd">¶</a>
+<dt class="acr-bottom" id="glo:sgd"><span class="acr-short">SGD</span><span class="acr-long">Stochastic
+Gradient Descent</span></dt>
+<dd class="acr-desc"><p>Stochastic Gradient Descent</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:ram">¶</a>
+<dt class="acr-bottom" id="glo:ram"><span class="acr-short">RAM</span><span class="acr-long">Random
+Access Memory</span></dt>
+<dd class="acr-desc"><p>a form of electronic computer memory that can be read and changed in any
+order, typically used to store working data and machine code.</p></dd>
+</dl>
+</div><nav class="crosslinks-bottom"><div class="navigation"><span class="nav-button"><a href="FineTuningHyperparameterswithOptuna.html"><i class="fa-solid fa-caret-right"></i></a></span><span class="nav-button"><a href="BuildingNonsequentialModelsUsingCustomModules.html"><i class="fa-solid fa-caret-left"></i></a></span><span class="nav-button"><a href="UnderstandingPyTorch.html#BuildinganImageClassifierwithPyTorch.html"><i class="fa-solid fa-caret-up"></i></a></span><span class="nav-button">
+<a href="index.html" rel="index" title="Index">
+<i class="fa-solid fa-table-list">
+</i>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Index">
+<i class="fa-brands fa-git-alt"></i>
+</a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
+<span class="footer-webBook"><b>Last Updated:</b> 6.10.2026, at 8:20.</span></div></div><div class="author-notes">
+<span class="note">Authors Note </span>
+<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
+</div>
+</article>
+<div class="mode-line">
+<div class="core-line"><div class="core-line-image"><img class="webbook-logo" src="logo/webbook-logo.svg"/></div>
+<div class="current-header">
+<span class="header-pretext">Viewing | </span>
+<span class="header-text">Section 2.7: Building an Image Classifier with PyTorch</span>
+</div>
+<div class="button-group">
+</div>
+</div>
+<div class="supp-line"></div>
+</div>
+</page>
+</body>
 </html>
