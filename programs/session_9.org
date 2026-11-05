@@ -1,0 +1,65 @@
+
+#+TITLE: Recurrent Neural Network Lecture Code
+
+
+#+begin_src python :session *rnn*
+from pathlib import Path
+import pandas as pd
+import tarfile
+import urllib.request
+
+
+def download_and_extract_ridership_data ():
+    tarball_path = Path("datasets/ridership.tgz")
+
+    if not tarball_path.is_file():
+        Path("datasets").mkdir(parents=True, exist_ok=True)
+        url = "https://github.com/dTmC0945/L-MCI-BSc-Data-Science-II/raw/main/data/ridership.tgz"
+        urllib.request.urlretrieve(url, tarball_path)
+        with tarfile.open(tarball_path) as housing_tarball:
+            housing_tarball.extractall(path="datasets", filter="data")
+
+download_and_extract_ridership_data()
+#+end_src
+
+
+#+begin_src python :session *rnn*
+path = Path("datasets/ridership/CTA_-_Ridership_-_Daily_Boarding_Totals.csv")
+
+df = pd.read_csv(path, parse_dates=['service_date'])
+df.columns = ['date', 'day_type', 'bus', 'rail', 'total']
+
+df = df.sort_values('date').set_index('date')
+df = df.drop('total', axis=1)
+df = df.drop_duplicates()
+
+print(df.head)
+#+end_src
+
+#+begin_src python :session *rnn*
+import matplotlib.pyplot as plt
+
+df["2019-03":"2019-05"].plot(grid=True, marker='.', figsize=(8, 3.5))
+
+plt.show()
+#+end_src
+
+
+#+begin_src python :session *rnn*
+diff_7 = df[['bus', 'rail']].diff(7)["2019-03":"2019-05"]
+
+
+fig, axs = plt.subplots(2, 1, sharex=True, figsize=(8,5))
+df.plot(ax=axs[0], legend=False, marker='.')
+df.shift(7).plot(ax=axs[0], grid=True, legend=False, linestyle=":")
+diff_7.plot(ax=axs[1], grid=True, marker=".")
+
+plt.show()
+#+end_src
+
+
+#+begin_src python :session *rnn* :results replace output
+print(list(df.loc["2019-05-25":"2019-05-27"]["day_type"]))
+#+end_src
+
+#+RESULTS:
