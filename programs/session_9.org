@@ -63,3 +63,6 @@ print(list(df.loc["2019-05-25":"2019-05-27"]["day_type"]))
 #+end_src
 
 #+RESULTS:
+#+begin_example
+['A', 'U', 'U']
+#+end_example

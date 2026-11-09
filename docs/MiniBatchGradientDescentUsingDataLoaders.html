@@ -10,11 +10,10 @@
 <script src="./pagefind/pagefind-component-ui.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.css" rel="stylesheet" type="text/css"/>
-<script async="true" crossorigin="anonymous" src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css" rel="stylesheet"/>
+<link href="flatweb.css" rel="stylesheet" type="text/css"/>
+<script src="flatweb.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css" rel="stylesheet"/>
+<link href="style-code/gruvbox-light-hard.min.css" id="code-style" rel="stylesheet"/>
 <script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
 <link href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
@@ -56,12 +55,27 @@ Rate Scheduling</a></span></span><span class="subsectionToc"><span class="number
 Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.4</span><span class="title"><a href="LearningRateScheduling.html#x19-730003.2.4">Warming Up the Learning Rate</a></span></span><span class="subsectionToc"><span class="number">3.2.5</span><span class="title"><a href="LearningRateScheduling.html#x19-740003.2.5">Cosine Annealing with Warm
 Restarts</a></span></span><span class="subsectionToc"><span class="number">3.2.6</span><span class="title"><a href="LearningRateScheduling.html#x19-750003.2.6">1cycle Scheduling</a></span></span><span class="sectionToc"><span class="number">3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-760003.3">Avoiding Overfitting Through Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.1</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-770003.3.1"><math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>1</mn></mrow></msub></math>
 and <math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
-Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-780003.3.2">Dropout</a></span></span><span class="subsectionToc"><span class="number">3.3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-790003.3.3">Max-Norm Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.4</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-800003.3.4">Practical Guidelines</a></span></span>
+Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-780003.3.2">Dropout</a></span></span><span class="subsectionToc"><span class="number">3.3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-790003.3.3">Max-Norm Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.4</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-800003.3.4">Practical Guidelines</a></span></span><span class="chapterToc"><span class="number">4</span><span class="title"><a href="WorkingwithRNNsandCNNs.html#x21-810004">Working
+with RNNs and CNNs</a></span></span><span class="sectionToc"><span class="number">4.1</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-830004.1">Recurrent Neurons and Layers</a></span></span><span class="subsectionToc"><span class="number">4.1.1</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-840004.1.1">Memory Cells</a></span></span><span class="subsectionToc"><span class="number">4.1.2</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-850004.1.2">Input
+and Output Sequences</a></span></span><span class="subsectionToc"><span class="number">4.1.3</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-860004.1.3">Training RNNs</a></span></span><span class="sectionToc"><span class="number">4.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-870004.2">Forecasting a Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.1</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-880004.2.1">The ARMA
+Model Family</a></span></span><span class="subsectionToc"><span class="number">4.2.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-890004.2.2">Preparing the Data for Machine Learning Models</a></span></span><span class="subsectionToc"><span class="number">4.2.3</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-900004.2.3">Forecasting
+Using a Linear Model</a></span></span><span class="subsectionToc"><span class="number">4.2.4</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-910004.2.4">Forecasting Using a Simple RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.5</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-920004.2.5">Forecasting Using a
+Deep RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.6</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-930004.2.6">Forecasting Multivariate Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.7</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-940004.2.7">Forecasting Several Time
+Steps Ahead</a></span></span><span class="subsectionToc"><span class="number">4.2.8</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-950004.2.8">Forecasting Using a Sequence-to-Sequence Model</a></span></span><span class="sectionToc"><span class="number">4.3</span><span class="title"><a href="HandlingLongSequences.html#x24-960004.3">Handling
+Long Sequences</a></span></span><span class="subsectionToc"><span class="number">4.3.1</span><span class="title"><a href="HandlingLongSequences.html#x24-970004.3.1">Fighting the Unstable Gradients Problem</a></span></span><span class="subsectionToc"><span class="number">4.3.2</span><span class="title"><a href="HandlingLongSequences.html#x24-980004.3.2">Tackling the
+Short-Term Memory Problem</a></span></span><span class="chapterToc"><span class="number">5</span><span class="title"><a href="NaturalLanguageProcessingwithRNNsandAttention.html#x25-1030005">Natural Language Processing with RNNs and
+Attention</a></span></span><span class="sectionToc"><span class="number">5.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1070005.1">Generating Shakespearean Text Using a Character RNN</a></span></span><span class="subsectionToc"><span class="number">5.1.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1080005.1.1">Creating
+the Training Dataset</a></span></span><span class="subsectionToc"><span class="number">5.1.2</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1090005.1.2">Embeddings</a></span></span><span class="subsectionToc"><span class="number">5.1.3</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1100005.1.3">Building and Training the Char-RNN
+Model</a></span></span><span class="subsectionToc"><span class="number">5.1.4</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1110005.1.4">Generating Fake Shakespearean Text</a></span></span><span class="sectionToc"><span class="number">5.2</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1120005.2">Sentiment Analysis Using
+Hugging Face Libraries</a></span></span><span class="subsectionToc"><span class="number">5.2.1</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1130005.2.1">Tokenization Using the Hugging Face Tokenizers
+Library</a></span></span><span class="subsectionToc"><span class="number">5.2.2</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1140005.2.2">Reusing Pretrained Tokenizers</a></span></span><span class="subsectionToc"><span class="number">5.2.3</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1150005.2.3">Building and Training a Sentiment
+Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1160005.3">Bidirectional RNNs</a></span></span><span class="subsectionToc"><span class="number">5.3.1</span><span class="title"><a href="BidirectionalRNNs.html#x28-1170005.3.1">Reusing Pretrained Embeddings and
+Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
+for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 19.10.2026, at 12:16.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
-<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="ModelEvaluation.html">Model Evaluation</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="ImplementingaRegressionMLP.html">Implementing a Regression MLP</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="UnderstandingPyTorch.html#MiniBatchGradientDescentUsingDataLoaders.html">Chapter: Understanding
-PyTorch</a></span><span class="nav-button">
+<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="ModelEvaluation.html">Model Evaluation</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="ImplementingaRegressionMLP.html">Implementing a Regression MLP</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="UnderstandingPyTorch.html#MiniBatchGradientDescentUsingDataLoaders.html">Chapter: Understanding PyTorch</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
 <i class="fa-solid fa-table-list">
 </i>
@@ -71,8 +85,8 @@ PyTorch</a></span><span class="nav-button">
 <i class="fa-brands fa-git-alt"></i>
 <span class="nav-info">Visit Material GitHub Repo</span>
 </a></span></nav>
-<div class="section-header"> <h3 id="header-section-2.4"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.2.4"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a> <span class="number">2.4</span> <span class="title"> <a id="x10-310002.4"></a>Mini-Batch Gradient
-Descent Using DataLoaders</span></h3></div>
+<div class="section-header"><h3 id="header-section-2.4"><span class="number">2.4</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.2.4"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x10-310002.4"></a>Mini-Batch Gradient Descent
+Using DataLoaders</span></h3></div>
 <p class="noindent">To help implement mini-batch <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gd">GD</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gd">Gradient Descent</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gd">Gradient descent is a method for unconstrained
 mathematical optimization. It is a first-order iterative algorithm for minimizing a differentiable
 multivariate function.The idea is to take repeated steps in the opposite direction of the gradient of the
@@ -96,11 +110,11 @@ Interface</a></span></span></span>. To help with this, PyTorch provides a <code 
 <code class="verb">DataLoader</code> to pull batches from this dataset.
 During training, we want the dataset to be shuffled, so we specify <code class="verb">shuffle=True</code> :
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb74"><a id="x10-31002r602"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">torch.utils.data</span> <span style="color:#9E0005;">import</span> TensorDataset, DataLoader 
-<a id="x10-31004r603"></a> 
-<a id="x10-31006r604"></a>train_dataset = TensorDataset(X_train, y_train) 
-<a id="x10-31008r605"></a>train_loader = DataLoader(train_dataset, batch_size=<span style="color:#8F4070;">32</span>, shuffle=<span style="color:#9E0005;">True</span>)</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb74"><a id="x10-31002r599"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">torch.utils.data</span> <span style="color:#9E0005;">import</span> TensorDataset, DataLoader 
+<a id="x10-31004r600"></a> 
+<a id="x10-31006r601"></a>train_dataset = TensorDataset(X_train, y_train) 
+<a id="x10-31008r602"></a>train_loader = DataLoader(train_dataset, batch_size=<span style="color:#8F4070;">32</span>, shuffle=<span style="color:#9E0005;">True</span>)</pre>
 </code></pre>
 <p class="noindent">Now that we have a larger model and we have the tools to train it one batch at a time, it’s a good time
 to start using <b>hardware acceleration</b>, we just need to move the model to the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gpu">GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gpu">Graphical
@@ -120,21 +134,21 @@ parallel processing with thousands of smaller cores to handle many calculations 
 time.</a></span></span></span>.
 To move the model, we can just use its <code class="verb">to()</code>  method, just like we did with tensors:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb75"><a id="x10-31010r610"></a><span style="color:#918273;"><i># extra code  build the model just like earlier</i></span> 
-<a id="x10-31012r611"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
-<a id="x10-31014r612"></a>model = nn.Sequential( 
-<a id="x10-31016r613"></a>    nn.Linear(n_features, <span style="color:#8F4070;">50</span>), nn.ReLU(), 
-<a id="x10-31018r614"></a>    nn.Linear(<span style="color:#8F4070;">50</span>, <span style="color:#8F4070;">40</span>), nn.ReLU(), 
-<a id="x10-31020r615"></a>    nn.Linear(<span style="color:#8F4070;">40</span>, <span style="color:#8F4070;">1</span>) 
-<a id="x10-31022r616"></a>) 
-<a id="x10-31024r617"></a> 
-<a id="x10-31026r618"></a>model = model.to(device) 
-<a id="x10-31028r619"></a> 
-<a id="x10-31030r620"></a><span style="color:#918273;"><i># extra code  build the optimizer and loss function, as earlier</i></span> 
-<a id="x10-31032r621"></a>learning_rate = <span style="color:#8F4070;">0.02</span> 
-<a id="x10-31034r622"></a>optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, momentum=<span style="color:#8F4070;">0</span>) 
-<a id="x10-31036r623"></a>mse = nn.MSELoss()</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb75"><a id="x10-31010r607"></a><span style="color:#918273;"><i># extra code  build the model just like earlier</i></span> 
+<a id="x10-31012r608"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x10-31014r609"></a>model = nn.Sequential( 
+<a id="x10-31016r610"></a>    nn.Linear(n_features, <span style="color:#8F4070;">50</span>), nn.ReLU(), 
+<a id="x10-31018r611"></a>    nn.Linear(<span style="color:#8F4070;">50</span>, <span style="color:#8F4070;">40</span>), nn.ReLU(), 
+<a id="x10-31020r612"></a>    nn.Linear(<span style="color:#8F4070;">40</span>, <span style="color:#8F4070;">1</span>) 
+<a id="x10-31022r613"></a>) 
+<a id="x10-31024r614"></a> 
+<a id="x10-31026r615"></a>model = model.to(device) 
+<a id="x10-31028r616"></a> 
+<a id="x10-31030r617"></a><span style="color:#918273;"><i># extra code  build the optimizer and loss function, as earlier</i></span> 
+<a id="x10-31032r618"></a>learning_rate = <span style="color:#8F4070;">0.02</span> 
+<a id="x10-31034r619"></a>optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, momentum=<span style="color:#8F4070;">0</span>) 
+<a id="x10-31036r620"></a>mse = nn.MSELoss()</pre>
 </code></pre>
 <p class="noindent">We can also create the loss function and optimizer, as <span class="margin-block">earlier. <span class="margin-comment"><a class="ellipsis" href="#m-ref-77">[77]</a>
 <span class="sidenote">Using a lower learning rate, such as
@@ -154,22 +168,22 @@ maximizes that function; the procedure is then known as gradient ascent. Gradien
 should not be confused with local search algorithms, although both are iterative methods for
 optimization.</a></span></span></span>:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb76"><a id="x10-31038r628"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">train</span>(model, optimizer, criterion, train_loader, n_epochs): 
-<a id="x10-31040r629"></a>    model.train() 
-<a id="x10-31042r630"></a>    <span style="color:#9E0005;">for</span> epoch <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(n_epochs): 
-<a id="x10-31044r631"></a>        total_loss = <span style="color:#8F4070;">0.</span> 
-<a id="x10-31046r632"></a>        <span style="color:#9E0005;">for</span> X_batch, y_batch <span style="color:#9E0005;">in</span> train_loader: 
-<a id="x10-31048r633"></a>            X_batch, y_batch = X_batch.to(device), y_batch.to(device) 
-<a id="x10-31050r634"></a>            y_pred = model(X_batch) 
-<a id="x10-31052r635"></a>            loss = criterion(y_pred, y_batch) 
-<a id="x10-31054r636"></a>            total_loss += loss.item() 
-<a id="x10-31056r637"></a>            loss.backward() 
-<a id="x10-31058r638"></a>            optimizer.step() 
-<a id="x10-31060r639"></a>            optimizer.zero_grad() 
-<a id="x10-31062r640"></a> 
-<a id="x10-31064r641"></a>        mean_loss = total_loss / <span style="color:#B03B03;">len</span>(train_loader) 
-<a id="x10-31066r642"></a>        <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"Epoch </span><span style="color:#78730D;">{</span>epoch + <span style="color:#8F4070;">1</span><span style="color:#78730D;">}</span><span style="color:#78730D;">/</span><span style="color:#78730D;">{</span>n_epochs<span style="color:#78730D;">}</span><span style="color:#78730D;">, Loss: </span><span style="color:#78730D;">{</span>mean_loss<span style="color:#78730D;">:</span><span style="color:#78730D;">.4f</span><span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb76"><a id="x10-31038r625"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">train</span>(model, optimizer, criterion, train_loader, n_epochs): 
+<a id="x10-31040r626"></a>    model.train() 
+<a id="x10-31042r627"></a>    <span style="color:#9E0005;">for</span> epoch <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(n_epochs): 
+<a id="x10-31044r628"></a>        total_loss = <span style="color:#8F4070;">0.</span> 
+<a id="x10-31046r629"></a>        <span style="color:#9E0005;">for</span> X_batch, y_batch <span style="color:#9E0005;">in</span> train_loader: 
+<a id="x10-31048r630"></a>            X_batch, y_batch = X_batch.to(device), y_batch.to(device) 
+<a id="x10-31050r631"></a>            y_pred = model(X_batch) 
+<a id="x10-31052r632"></a>            loss = criterion(y_pred, y_batch) 
+<a id="x10-31054r633"></a>            total_loss += loss.item() 
+<a id="x10-31056r634"></a>            loss.backward() 
+<a id="x10-31058r635"></a>            optimizer.step() 
+<a id="x10-31060r636"></a>            optimizer.zero_grad() 
+<a id="x10-31062r637"></a> 
+<a id="x10-31064r638"></a>        mean_loss = total_loss / <span style="color:#B03B03;">len</span>(train_loader) 
+<a id="x10-31066r639"></a>        <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"Epoch </span><span style="color:#78730D;">{</span>epoch + <span style="color:#8F4070;">1</span><span style="color:#78730D;">}</span><span style="color:#78730D;">/</span><span style="color:#78730D;">{</span>n_epochs<span style="color:#78730D;">}</span><span style="color:#78730D;">, Loss: </span><span style="color:#78730D;">{</span>mean_loss<span style="color:#78730D;">:</span><span style="color:#78730D;">.4f</span><span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre>
 </code></pre>
 <p class="noindent">At every epoch, the function iterates through the whole training set, one batch at a time, and processes
 each batch just like earlier. </p><div class="quote">  But what about the very first line: <code class="verb">model.train()</code> ? </div>
@@ -181,13 +195,13 @@ during training and evaluation, such as with <code class="verb">nn.Dropout</code
 model to evaluation mode by running <code class="verb">model.eval()</code> . It is also worth mentioning here that <code class="verb">model.training</code>  holds a boolean that
 indicates the current mode.
 </p>
-<div class="block-major info-block" id="info-block-2.21"> <a class="copiable-link" href="#info-block-2.21"> ¶</a> <span class="upper"> <span class="header"> <b>Information 2.<a id="x10-31067r21"></a>21: </b> </span> <span class="title"> Working with Loops </span> </span> <div class="body">
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-2.21" id="info-block-2.21"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 2.<a id="x10-31067r21"></a>21: </b> </span> <span class="title"> Working with Loops </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">PyTorch itself does not provide a training loop implementation out of the box. If we need to use a
 well-tested, off-the-shelf training loop with all the bells and whistles, then we can use a
 library such as PyTorch Lightning, FastAI, Catalyst, or Keras which are built on top of
 PyTorch.
 </p>
-</div></div>
+</dd></dl>
 <p class="noindent">Now let’s call this <code class="verb">train()</code>  function to train our model on the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gpu">GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gpu">Graphical Processing Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gpu">A specialized
 electronic chip designed to rapidly render images, video, and 3D animations. Unlike a central processing
 unit (CPU) that processes tasks sequentially, a GPU uses parallel processing with thousands of smaller
@@ -316,7 +330,7 @@ although both are iterative methods for optimization.</p></dd>
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 19.10.2026, at 12:16.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>
@@ -325,7 +339,7 @@ although both are iterative methods for optimization.</p></dd>
 <div class="core-line"><div class="core-line-image"><img class="webbook-logo" src="logo/webbook-logo.svg"/></div>
 <div class="current-header">
 <span class="header-pretext">Viewing | </span>
-<span class="header-text">Section 2.4: Mini-Batch Gradient Descent Using DataLoaders</span>
+<span class="header-text">2.4: Mini-Batch Gradient Descent Using DataLoaders</span>
 </div>
 <div class="button-group">
 </div>

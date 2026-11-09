@@ -10,11 +10,10 @@
 <script src="./pagefind/pagefind-component-ui.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.css" rel="stylesheet" type="text/css"/>
-<script async="true" crossorigin="anonymous" src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css" rel="stylesheet"/>
+<link href="flatweb.css" rel="stylesheet" type="text/css"/>
+<script src="flatweb.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css" rel="stylesheet"/>
+<link href="style-code/gruvbox-light-hard.min.css" id="code-style" rel="stylesheet"/>
 <script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
 <link href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
@@ -56,12 +55,27 @@ Rate Scheduling</a></span></span><span class="subsectionToc"><span class="number
 Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.4</span><span class="title"><a href="LearningRateScheduling.html#x19-730003.2.4">Warming Up the Learning Rate</a></span></span><span class="subsectionToc"><span class="number">3.2.5</span><span class="title"><a href="LearningRateScheduling.html#x19-740003.2.5">Cosine Annealing with Warm
 Restarts</a></span></span><span class="subsectionToc"><span class="number">3.2.6</span><span class="title"><a href="LearningRateScheduling.html#x19-750003.2.6">1cycle Scheduling</a></span></span><span class="sectionToc"><span class="number">3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-760003.3">Avoiding Overfitting Through Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.1</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-770003.3.1"><math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>1</mn></mrow></msub></math>
 and <math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
-Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-780003.3.2">Dropout</a></span></span><span class="subsectionToc"><span class="number">3.3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-790003.3.3">Max-Norm Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.4</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-800003.3.4">Practical Guidelines</a></span></span>
+Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-780003.3.2">Dropout</a></span></span><span class="subsectionToc"><span class="number">3.3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-790003.3.3">Max-Norm Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.4</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-800003.3.4">Practical Guidelines</a></span></span><span class="chapterToc"><span class="number">4</span><span class="title"><a href="WorkingwithRNNsandCNNs.html#x21-810004">Working
+with RNNs and CNNs</a></span></span><span class="sectionToc"><span class="number">4.1</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-830004.1">Recurrent Neurons and Layers</a></span></span><span class="subsectionToc"><span class="number">4.1.1</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-840004.1.1">Memory Cells</a></span></span><span class="subsectionToc"><span class="number">4.1.2</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-850004.1.2">Input
+and Output Sequences</a></span></span><span class="subsectionToc"><span class="number">4.1.3</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-860004.1.3">Training RNNs</a></span></span><span class="sectionToc"><span class="number">4.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-870004.2">Forecasting a Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.1</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-880004.2.1">The ARMA
+Model Family</a></span></span><span class="subsectionToc"><span class="number">4.2.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-890004.2.2">Preparing the Data for Machine Learning Models</a></span></span><span class="subsectionToc"><span class="number">4.2.3</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-900004.2.3">Forecasting
+Using a Linear Model</a></span></span><span class="subsectionToc"><span class="number">4.2.4</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-910004.2.4">Forecasting Using a Simple RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.5</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-920004.2.5">Forecasting Using a
+Deep RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.6</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-930004.2.6">Forecasting Multivariate Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.7</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-940004.2.7">Forecasting Several Time
+Steps Ahead</a></span></span><span class="subsectionToc"><span class="number">4.2.8</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-950004.2.8">Forecasting Using a Sequence-to-Sequence Model</a></span></span><span class="sectionToc"><span class="number">4.3</span><span class="title"><a href="HandlingLongSequences.html#x24-960004.3">Handling
+Long Sequences</a></span></span><span class="subsectionToc"><span class="number">4.3.1</span><span class="title"><a href="HandlingLongSequences.html#x24-970004.3.1">Fighting the Unstable Gradients Problem</a></span></span><span class="subsectionToc"><span class="number">4.3.2</span><span class="title"><a href="HandlingLongSequences.html#x24-980004.3.2">Tackling the
+Short-Term Memory Problem</a></span></span><span class="chapterToc"><span class="number">5</span><span class="title"><a href="NaturalLanguageProcessingwithRNNsandAttention.html#x25-1030005">Natural Language Processing with RNNs and
+Attention</a></span></span><span class="sectionToc"><span class="number">5.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1070005.1">Generating Shakespearean Text Using a Character RNN</a></span></span><span class="subsectionToc"><span class="number">5.1.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1080005.1.1">Creating
+the Training Dataset</a></span></span><span class="subsectionToc"><span class="number">5.1.2</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1090005.1.2">Embeddings</a></span></span><span class="subsectionToc"><span class="number">5.1.3</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1100005.1.3">Building and Training the Char-RNN
+Model</a></span></span><span class="subsectionToc"><span class="number">5.1.4</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1110005.1.4">Generating Fake Shakespearean Text</a></span></span><span class="sectionToc"><span class="number">5.2</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1120005.2">Sentiment Analysis Using
+Hugging Face Libraries</a></span></span><span class="subsectionToc"><span class="number">5.2.1</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1130005.2.1">Tokenization Using the Hugging Face Tokenizers
+Library</a></span></span><span class="subsectionToc"><span class="number">5.2.2</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1140005.2.2">Reusing Pretrained Tokenizers</a></span></span><span class="subsectionToc"><span class="number">5.2.3</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1150005.2.3">Building and Training a Sentiment
+Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1160005.3">Bidirectional RNNs</a></span></span><span class="subsectionToc"><span class="number">5.3.1</span><span class="title"><a href="BidirectionalRNNs.html#x28-1170005.3.1">Reusing Pretrained Embeddings and
+Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
+for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 19.10.2026, at 12:16.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
-<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="SavingandLoadingPyTorchModels.html">Saving and Loading PyTorch Models</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="BuildinganImageClassifierwithPyTorch.html">Building an Image Classifier with PyTorch</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="UnderstandingPyTorch.html#FineTuningHyperparameterswithOptuna.html">Chapter: Understanding
-PyTorch</a></span><span class="nav-button">
+<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="SavingandLoadingPyTorchModels.html">Saving and Loading PyTorch Models</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="BuildinganImageClassifierwithPyTorch.html">Building an Image Classifier with PyTorch</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="UnderstandingPyTorch.html#FineTuningHyperparameterswithOptuna.html">Chapter: Understanding PyTorch</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
 <i class="fa-solid fa-table-list">
 </i>
@@ -71,8 +85,8 @@ PyTorch</a></span><span class="nav-button">
 <i class="fa-brands fa-git-alt"></i>
 <span class="nav-info">Visit Material GitHub Repo</span>
 </a></span></nav>
-<div class="section-header"> <h3 id="header-section-2.8"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.2.8"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a> <span class="number">2.8</span> <span class="title"> <a id="x14-390002.8"></a>Fine-Tuning
-Hyperparameters with Optuna</span></h3></div>
+<div class="section-header"><h3 id="header-section-2.8"><span class="number">2.8</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.2.8"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x14-390002.8"></a>Fine-Tuning Hyperparameters
+with Optuna</span></h3></div>
 <p class="noindent">We’ve discussed how to manually pick reasonable values for our model’s hyperparameters in
 <span class="refclass-ref"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span>, but what if we want to go further and <b>automatically
 search</b> for good hyperparameter values?
@@ -93,22 +107,22 @@ object and use it to ask <i>Optuna</i> for hyperparameter values, and then use t
 to build and train a model. Finally, the function must evaluate the model, typically on the validation
 set, and return the metric:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb106"><a id="x14-39002r1269"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">optuna</span> 
-<a id="x14-39004r1270"></a> 
-<a id="x14-39006r1271"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">objective</span>(trial): 
-<a id="x14-39008r1272"></a>    learning_rate = trial.suggest_float(<span style="color:#78730D;">"learning_rate"</span>, <span style="color:#8F4070;">1e-5</span>, <span style="color:#8F4070;">1e-1</span>, log=<span style="color:#9E0005;">True</span>) 
-<a id="x14-39010r1273"></a>    n_hidden = trial.suggest_int(<span style="color:#78730D;">"n_hidden"</span>, <span style="color:#8F4070;">20</span>, <span style="color:#8F4070;">300</span>) 
-<a id="x14-39012r1274"></a>    model = ImageClassifier(n_inputs=<span style="color:#8F4070;">1</span> * <span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>, n_hidden1=n_hidden, 
-<a id="x14-39014r1275"></a>                            n_hidden2=n_hidden, n_classes=<span style="color:#8F4070;">10</span>).to(device) 
-<a id="x14-39016r1276"></a>    optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate) 
-<a id="x14-39018r1277"></a>    xentropy = nn.CrossEntropyLoss() 
-<a id="x14-39020r1278"></a>    accuracy = torchmetrics.Accuracy(task=<span style="color:#78730D;">"multiclass"</span>, num_classes=<span style="color:#8F4070;">10</span>) 
-<a id="x14-39022r1279"></a>    accuracy = accuracy.to(device) 
-<a id="x14-39024r1280"></a>    history = train2(model, optimizer, xentropy, accuracy, train_loader, 
-<a id="x14-39026r1281"></a>                     valid_loader, n_epochs=<span style="color:#8F4070;">10</span>) 
-<a id="x14-39028r1282"></a>    validation_accuracy = <span style="color:#B03B03;">max</span>(history[<span style="color:#78730D;">"valid_metrics"</span>]) 
-<a id="x14-39030r1283"></a>    <span style="color:#9E0005;">return</span> validation_accuracy</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb106"><a id="x14-39002r1266"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">optuna</span> 
+<a id="x14-39004r1267"></a> 
+<a id="x14-39006r1268"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">objective</span>(trial): 
+<a id="x14-39008r1269"></a>    learning_rate = trial.suggest_float(<span style="color:#78730D;">"learning_rate"</span>, <span style="color:#8F4070;">1e-5</span>, <span style="color:#8F4070;">1e-1</span>, log=<span style="color:#9E0005;">True</span>) 
+<a id="x14-39010r1270"></a>    n_hidden = trial.suggest_int(<span style="color:#78730D;">"n_hidden"</span>, <span style="color:#8F4070;">20</span>, <span style="color:#8F4070;">300</span>) 
+<a id="x14-39012r1271"></a>    model = ImageClassifier(n_inputs=<span style="color:#8F4070;">1</span> * <span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>, n_hidden1=n_hidden, 
+<a id="x14-39014r1272"></a>                            n_hidden2=n_hidden, n_classes=<span style="color:#8F4070;">10</span>).to(device) 
+<a id="x14-39016r1273"></a>    optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate) 
+<a id="x14-39018r1274"></a>    xentropy = nn.CrossEntropyLoss() 
+<a id="x14-39020r1275"></a>    accuracy = torchmetrics.Accuracy(task=<span style="color:#78730D;">"multiclass"</span>, num_classes=<span style="color:#8F4070;">10</span>) 
+<a id="x14-39022r1276"></a>    accuracy = accuracy.to(device) 
+<a id="x14-39024r1277"></a>    history = train2(model, optimizer, xentropy, accuracy, train_loader, 
+<a id="x14-39026r1278"></a>                     valid_loader, n_epochs=<span style="color:#8F4070;">10</span>) 
+<a id="x14-39028r1279"></a>    validation_accuracy = <span style="color:#B03B03;">max</span>(history[<span style="color:#78730D;">"valid_metrics"</span>]) 
+<a id="x14-39030r1280"></a>    <span style="color:#9E0005;">return</span> validation_accuracy</pre>
 </code></pre>
 <p class="noindent">The <code class="verb">suggest_float()</code>  and <code class="verb">suggest_int()</code>  methods let us ask <i>Optuna</i> for a good hyperparameter value in a given <span class="margin-block">range.
 <span class="margin-comment"><a class="ellipsis" href="#m-ref-103">[103]</a>
@@ -129,11 +143,11 @@ when creating the <span class="margin-block">study. <span class="margin-comment"
 reproducibility, we also set <i>PyTorch</i>’s random seed, as well as the random seed used by <i>Optuna</i>’s
 sampler:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb107"><a id="x14-39032r1288"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
-<a id="x14-39034r1289"></a>sampler = optuna.samplers.TPESampler(seed=<span style="color:#8F4070;">42</span>) 
-<a id="x14-39036r1290"></a>study = optuna.create_study(direction=<span style="color:#78730D;">"maximize"</span>, sampler=sampler) 
-<a id="x14-39038r1291"></a>study.optimize(objective, n_trials=<span style="color:#8F4070;">5</span>)</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb107"><a id="x14-39032r1285"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x14-39034r1286"></a>sampler = optuna.samplers.TPESampler(seed=<span style="color:#8F4070;">42</span>) 
+<a id="x14-39036r1287"></a>study = optuna.create_study(direction=<span style="color:#78730D;">"maximize"</span>, sampler=sampler) 
+<a id="x14-39038r1288"></a>study.optimize(objective, n_trials=<span style="color:#8F4070;">5</span>)</pre>
 </code></pre>
 <p class="noindent">By default, Optuna uses the <i>Tree-structured Parzen Estimator</i> (TPE) algorithm to optimize the
 hyperparameters: this is a sequential model-based optimization algorithm, meaning it learns from past
@@ -143,18 +157,18 @@ search on the most promising regions of the hyperparameter space.
 </p>
 <div class="block-minor knowledge"><div class="body">
 <p class="noindent">This allows <i>Optuna</i> to find much better hyperparameters than random search. </p></div></div>
-<div class="block-major info-block" id="info-block-2.26"> <a class="copiable-link" href="#info-block-2.26"> ¶</a> <span class="upper"> <span class="header"> <b>Information 2.<a id="x14-39039r26"></a>26: </b> </span> <span class="title"> Additional Configuration </span> </span> <div class="body">
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-2.26" id="info-block-2.26"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 2.<a id="x14-39039r26"></a>26: </b> </span> <span class="title"> Additional Configuration </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">We can add more hyperparameters to the search space, such as the <span class="alert">batch size</span>, the <span class="alert">type of optimizer</span>, the <span class="alert">number of hidden layers</span>, or the type of activation
 function, but remember that the search space will grow exponentially as we add more hyperparameters,
 so make sure it’s worth the extra search time and compute.
 </p>
-</div></div>
+</dd></dl>
 <p class="noindent">Once <i>Optuna</i> is done, we can look at the best hyperparameters it found, as well as the corresponding
 validation accuracy:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb108"><a id="x14-39041r1296"></a>study.best_params 
-<a id="x14-39043r1297"></a>study.best_value</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb108"><a id="x14-39041r1293"></a>study.best_params 
+<a id="x14-39043r1294"></a>study.best_value</pre>
 </code></pre>
 <p class="noindent">This is slightly better than the performance we got earlier. If we increase <code class="verb">n_trials</code>  up to 50 or more, we will get
 much better results, but of course it will take hours to run. We can also just run <code class="verb">optimize()</code>  repeatedly and stop
@@ -174,33 +188,33 @@ and writing the trial results to the database.
 validation, presumably via global variables. In general, it’s much cleaner to pass them as extra
 arguments to the <code class="verb">objective()</code>  function, for example, like this:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb109"><a id="x14-39045r1269"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">optuna</span> 
-<a id="x14-39047r1270"></a> 
-<a id="x14-39049r1271"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">objective</span>(trial): 
-<a id="x14-39051r1272"></a>    learning_rate = trial.suggest_float(<span style="color:#78730D;">"learning_rate"</span>, <span style="color:#8F4070;">1e-5</span>, <span style="color:#8F4070;">1e-1</span>, log=<span style="color:#9E0005;">True</span>) 
-<a id="x14-39053r1273"></a>    n_hidden = trial.suggest_int(<span style="color:#78730D;">"n_hidden"</span>, <span style="color:#8F4070;">20</span>, <span style="color:#8F4070;">300</span>) 
-<a id="x14-39055r1274"></a>    model = ImageClassifier(n_inputs=<span style="color:#8F4070;">1</span> * <span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>, n_hidden1=n_hidden, 
-<a id="x14-39057r1275"></a>                            n_hidden2=n_hidden, n_classes=<span style="color:#8F4070;">10</span>).to(device) 
-<a id="x14-39059r1276"></a>    optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate) 
-<a id="x14-39061r1277"></a>    xentropy = nn.CrossEntropyLoss() 
-<a id="x14-39063r1278"></a>    accuracy = torchmetrics.Accuracy(task=<span style="color:#78730D;">"multiclass"</span>, num_classes=<span style="color:#8F4070;">10</span>) 
-<a id="x14-39065r1279"></a>    accuracy = accuracy.to(device) 
-<a id="x14-39067r1280"></a>    history = train2(model, optimizer, xentropy, accuracy, train_loader, 
-<a id="x14-39069r1281"></a>                     valid_loader, n_epochs=<span style="color:#8F4070;">10</span>) 
-<a id="x14-39071r1282"></a>    validation_accuracy = <span style="color:#B03B03;">max</span>(history[<span style="color:#78730D;">"valid_metrics"</span>]) 
-<a id="x14-39073r1283"></a>    <span style="color:#9E0005;">return</span> validation_accuracy</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb109"><a id="x14-39045r1266"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">optuna</span> 
+<a id="x14-39047r1267"></a> 
+<a id="x14-39049r1268"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">objective</span>(trial): 
+<a id="x14-39051r1269"></a>    learning_rate = trial.suggest_float(<span style="color:#78730D;">"learning_rate"</span>, <span style="color:#8F4070;">1e-5</span>, <span style="color:#8F4070;">1e-1</span>, log=<span style="color:#9E0005;">True</span>) 
+<a id="x14-39053r1270"></a>    n_hidden = trial.suggest_int(<span style="color:#78730D;">"n_hidden"</span>, <span style="color:#8F4070;">20</span>, <span style="color:#8F4070;">300</span>) 
+<a id="x14-39055r1271"></a>    model = ImageClassifier(n_inputs=<span style="color:#8F4070;">1</span> * <span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>, n_hidden1=n_hidden, 
+<a id="x14-39057r1272"></a>                            n_hidden2=n_hidden, n_classes=<span style="color:#8F4070;">10</span>).to(device) 
+<a id="x14-39059r1273"></a>    optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate) 
+<a id="x14-39061r1274"></a>    xentropy = nn.CrossEntropyLoss() 
+<a id="x14-39063r1275"></a>    accuracy = torchmetrics.Accuracy(task=<span style="color:#78730D;">"multiclass"</span>, num_classes=<span style="color:#8F4070;">10</span>) 
+<a id="x14-39065r1276"></a>    accuracy = accuracy.to(device) 
+<a id="x14-39067r1277"></a>    history = train2(model, optimizer, xentropy, accuracy, train_loader, 
+<a id="x14-39069r1278"></a>                     valid_loader, n_epochs=<span style="color:#8F4070;">10</span>) 
+<a id="x14-39071r1279"></a>    validation_accuracy = <span style="color:#B03B03;">max</span>(history[<span style="color:#78730D;">"valid_metrics"</span>]) 
+<a id="x14-39073r1280"></a>    <span style="color:#9E0005;">return</span> validation_accuracy</pre>
 </code></pre>
 <p class="noindent">To set the extra arguments (the dataset loaders in this case), we just create a lambda function when
 needed and pass it to the optimize() method. Alternatively, you can use the functools.partial() function
 which creates a thin wrapper function around the given callable to provide default values for any
 number of arguments:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb110"><a id="x14-39075r1337"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">functools</span> <span style="color:#9E0005;">import</span> partial 
-<a id="x14-39077r1338"></a> 
-<a id="x14-39079r1339"></a>objective_with_data = partial(objective, train_loader=train_loader, 
-<a id="x14-39081r1340"></a>                              valid_loader=valid_loader)</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb110"><a id="x14-39075r1334"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">functools</span> <span style="color:#9E0005;">import</span> partial 
+<a id="x14-39077r1335"></a> 
+<a id="x14-39079r1336"></a>objective_with_data = partial(objective, train_loader=train_loader, 
+<a id="x14-39081r1337"></a>                              valid_loader=valid_loader)</pre>
 </code></pre>
 <p class="noindent">It’s often possible to quickly tell that a trial is absolutely terrible. </p><div class="quote">  For example, when the loss shoots
 up during the first epoch, or when the model barely improves during the first few epochs.
@@ -223,45 +237,45 @@ Then every few epochs, controlled by <code class="verb">interval_steps</code> , 
 median performance at the same epoch in past trials. To use this pruner, create an instance and pass it
 to the <code class="verb">create_study()</code>  method:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb111"><a id="x14-39083r1288"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
-<a id="x14-39085r1289"></a>sampler = optuna.samplers.TPESampler(seed=<span style="color:#8F4070;">42</span>) 
-<a id="x14-39087r1290"></a>study = optuna.create_study(direction=<span style="color:#78730D;">"maximize"</span>, sampler=sampler) 
-<a id="x14-39089r1291"></a>study.optimize(objective, n_trials=<span style="color:#8F4070;">5</span>)</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb111"><a id="x14-39083r1285"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x14-39085r1286"></a>sampler = optuna.samplers.TPESampler(seed=<span style="color:#8F4070;">42</span>) 
+<a id="x14-39087r1287"></a>study = optuna.create_study(direction=<span style="color:#78730D;">"maximize"</span>, sampler=sampler) 
+<a id="x14-39089r1288"></a>study.optimize(objective, n_trials=<span style="color:#8F4070;">5</span>)</pre>
 </code></pre>
 <p class="noindent">Then in the <code class="verb">objective()</code>  function, add the following code so it runs after each epoch:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb112"><a id="x14-39091r1307"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">objective</span>(trial, train_loader, valid_loader): 
-<a id="x14-39093r1308"></a>    learning_rate = trial.suggest_float(<span style="color:#78730D;">"learning_rate"</span>, <span style="color:#8F4070;">1e-5</span>, <span style="color:#8F4070;">1e-1</span>, log=<span style="color:#9E0005;">True</span>) 
-<a id="x14-39095r1309"></a>    n_hidden = trial.suggest_int(<span style="color:#78730D;">"n_hidden"</span>, <span style="color:#8F4070;">20</span>, <span style="color:#8F4070;">300</span>) 
-<a id="x14-39097r1310"></a>    model = ImageClassifier(n_inputs=<span style="color:#8F4070;">1</span> * <span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>, n_hidden1=n_hidden, 
-<a id="x14-39099r1311"></a>                            n_hidden2=n_hidden, n_classes=<span style="color:#8F4070;">10</span>).to(device) 
-<a id="x14-39101r1312"></a>    optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate) 
-<a id="x14-39103r1313"></a>    xentropy = nn.CrossEntropyLoss() 
-<a id="x14-39105r1314"></a>    accuracy = torchmetrics.Accuracy(task=<span style="color:#78730D;">"multiclass"</span>, num_classes=<span style="color:#8F4070;">10</span>) 
-<a id="x14-39107r1315"></a>    accuracy = accuracy.to(device) 
-<a id="x14-39109r1316"></a>    best_validation_accuracy = <span style="color:#8F4070;">0.0</span> 
-<a id="x14-39111r1317"></a>    <span style="color:#9E0005;">for</span> epoch <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(n_epochs): 
-<a id="x14-39113r1318"></a>        history = train2(model, optimizer, xentropy, accuracy, train_loader, 
-<a id="x14-39115r1319"></a>                         valid_loader, n_epochs=<span style="color:#8F4070;">1</span>) 
-<a id="x14-39117r1320"></a>        validation_accuracy = <span style="color:#B03B03;">max</span>(history[<span style="color:#78730D;">"valid_metrics"</span>]) 
-<a id="x14-39119r1321"></a>        <span style="color:#9E0005;">if</span> validation_accuracy &gt; best_validation_accuracy: 
-<a id="x14-39121r1322"></a>            best_validation_accuracy = validation_accuracy 
-<a id="x14-39123r1323"></a>        trial.report(validation_accuracy, epoch) 
-<a id="x14-39125r1324"></a>        <span style="color:#9E0005;">if</span> trial.should_prune(): 
-<a id="x14-39127r1325"></a>            <span style="color:#9E0005;">raise</span> optuna.TrialPruned() 
-<a id="x14-39129r1326"></a>    <span style="color:#9E0005;">return</span> best_validation_accuracy</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb112"><a id="x14-39091r1304"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">objective</span>(trial, train_loader, valid_loader): 
+<a id="x14-39093r1305"></a>    learning_rate = trial.suggest_float(<span style="color:#78730D;">"learning_rate"</span>, <span style="color:#8F4070;">1e-5</span>, <span style="color:#8F4070;">1e-1</span>, log=<span style="color:#9E0005;">True</span>) 
+<a id="x14-39095r1306"></a>    n_hidden = trial.suggest_int(<span style="color:#78730D;">"n_hidden"</span>, <span style="color:#8F4070;">20</span>, <span style="color:#8F4070;">300</span>) 
+<a id="x14-39097r1307"></a>    model = ImageClassifier(n_inputs=<span style="color:#8F4070;">1</span> * <span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>, n_hidden1=n_hidden, 
+<a id="x14-39099r1308"></a>                            n_hidden2=n_hidden, n_classes=<span style="color:#8F4070;">10</span>).to(device) 
+<a id="x14-39101r1309"></a>    optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate) 
+<a id="x14-39103r1310"></a>    xentropy = nn.CrossEntropyLoss() 
+<a id="x14-39105r1311"></a>    accuracy = torchmetrics.Accuracy(task=<span style="color:#78730D;">"multiclass"</span>, num_classes=<span style="color:#8F4070;">10</span>) 
+<a id="x14-39107r1312"></a>    accuracy = accuracy.to(device) 
+<a id="x14-39109r1313"></a>    best_validation_accuracy = <span style="color:#8F4070;">0.0</span> 
+<a id="x14-39111r1314"></a>    <span style="color:#9E0005;">for</span> epoch <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(n_epochs): 
+<a id="x14-39113r1315"></a>        history = train2(model, optimizer, xentropy, accuracy, train_loader, 
+<a id="x14-39115r1316"></a>                         valid_loader, n_epochs=<span style="color:#8F4070;">1</span>) 
+<a id="x14-39117r1317"></a>        validation_accuracy = <span style="color:#B03B03;">max</span>(history[<span style="color:#78730D;">"valid_metrics"</span>]) 
+<a id="x14-39119r1318"></a>        <span style="color:#9E0005;">if</span> validation_accuracy &gt; best_validation_accuracy: 
+<a id="x14-39121r1319"></a>            best_validation_accuracy = validation_accuracy 
+<a id="x14-39123r1320"></a>        trial.report(validation_accuracy, epoch) 
+<a id="x14-39125r1321"></a>        <span style="color:#9E0005;">if</span> trial.should_prune(): 
+<a id="x14-39127r1322"></a>            <span style="color:#9E0005;">raise</span> optuna.TrialPruned() 
+<a id="x14-39129r1323"></a>    <span style="color:#9E0005;">return</span> best_validation_accuracy</pre>
 </code></pre>
 <p class="noindent">The <code class="verb">report()</code>  method informs <i>Optuna</i> of the current validation accuracy and epoch, so it can determine
 whether the trial should be pruned. If trial.<code class="verb">should_prune()</code>  returns True, we raise a <code class="verb">TrialPruned</code>  exception.
 </p>
-<div class="block-major info-block" id="info-block-2.27"> <a class="copiable-link" href="#info-block-2.27"> ¶</a> <span class="upper"> <span class="header"> <b>Information 2.<a id="x14-39130r27"></a>27: </b> </span> <span class="title"> Usefulness of Optuna </span> </span> <div class="body">
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-2.27" id="info-block-2.27"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 2.<a id="x14-39130r27"></a>27: </b> </span> <span class="title"> Usefulness of Optuna </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">Optuna has many other features well worth exploring, such as visualization tools, persistence tools for
 trial results and other artifacts, a dashboard for human-in-the-loop optimization, and many other
 algorithms for hyperparameter search and trial pruning.
 </p>
-</div></div>
+</dd></dl>
 <p class="noindent">Once we are happy with the hyperparameters, we can train the model on the full training <span class="margin-block">set, <span class="margin-comment"><a class="ellipsis" href="#m-ref-108">[108]</a>
 <span class="sidenote">i.e., the
 training set plus the validation set.</span></span></span> then evaluate it on the test set. Hopefully, it will perform great. If it
@@ -317,7 +331,7 @@ training set plus the validation set.</span></dd>
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 19.10.2026, at 12:16.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>
@@ -326,7 +340,7 @@ training set plus the validation set.</span></dd>
 <div class="core-line"><div class="core-line-image"><img class="webbook-logo" src="logo/webbook-logo.svg"/></div>
 <div class="current-header">
 <span class="header-pretext">Viewing | </span>
-<span class="header-text">Section 2.8: Fine-Tuning Hyperparameters with Optuna</span>
+<span class="header-text">2.8: Fine-Tuning Hyperparameters with Optuna</span>
 </div>
 <div class="button-group">
 </div>

@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Bidirectional RNNs</title>
+<meta charset="utf-8"/>
+<meta content="lms-WebBook" name="generator"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js" type="text/javascript"></script>
+<link href="logo/lms.ico" rel="icon" type="image/x-icon"/>
+<link href="./pagefind/pagefind-component-ui.css" rel="stylesheet"/>
+<script src="./pagefind/pagefind-component-ui.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" rel="stylesheet"/>
+<link href="flatweb.css" rel="stylesheet" type="text/css"/>
+<script src="flatweb.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<link href="style-code/gruvbox-light-hard.min.css" id="code-style" rel="stylesheet"/>
+<script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+<link href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script>
+ </head><body>
+<page>
+<nav class="wide"> <div class="header"><div class="header-left"><span class="header-lecture-grade">B.Sc</span>
+<span class="header-lecture-name">Data Science II</span>
+<span class="header-webBook">WebBook 2.1</span></div><div class="header-right"><span class="header-version">WS.2026</span>
+<span class="header-chapter">Natural Language Processing with RNNs and Attention</span></div></div><div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><pagefind-modal></pagefind-modal><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style="font-size:20px"></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&amp;hl=en\&amp;user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style="font-size:20px"></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style="font-size:20px"></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style="font-size:20px"></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style="font-size:20px"></i></a></div><hr/><span class="chapterToc"><span class="number"></span><span class="title"><a href="index.html#x2-10000">Entry Point</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial
+Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Current Developments and Overview</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">Logical
+Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">The Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Multilayer Perceptron and
+Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Regression MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.7</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-100001.1.7">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-110001.2">Implementing
+MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-120001.2.1">Building an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-140001.2.2">Creating
+the model using the sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-180001.2.3">Building a Regression MLP Using the
+Sequential API</a></span></span><span class="chapterToc"><span class="number">2</span><span class="title"><a href="UnderstandingPyTorch.html#x6-190002">Understanding PyTorch</a></span></span><span class="sectionToc"><span class="number">2.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-210002.1">PyTorch Fundamentals</a></span></span><span class="subsectionToc"><span class="number">2.1.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-220002.1.1">Making some
+Tensors</a></span></span><span class="subsectionToc"><span class="number">2.1.2</span><span class="title"><a href="PyTorchFundamentals.html#x7-230002.1.2">Hardware Acceleration</a></span></span><span class="sectionToc"><span class="number">2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-260002.2">Implementing Linear Regression</a></span></span><span class="subsectionToc"><span class="number">2.2.1</span><span class="title"><a href="ImplementingLinearRegression.html#x8-270002.2.1">Linear
+Regression Using Tensors and Autograd</a></span></span><span class="subsectionToc"><span class="number">2.2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-290002.2.2">Linear Regression Using PyTorch’s
+High-Level API</a></span></span><span class="sectionToc"><span class="number">2.3</span><span class="title"><a href="ImplementingaRegressionMLP.html#x9-300002.3">Implementing a Regression MLP</a></span></span><span class="sectionToc"><span class="number">2.4</span><span class="title"><a href="MiniBatchGradientDescentUsingDataLoaders.html#x10-310002.4">Mini-Batch Gradient Descent
+Using DataLoaders</a></span></span><span class="sectionToc"><span class="number">2.5</span><span class="title"><a href="ModelEvaluation.html#x11-320002.5">Model Evaluation</a></span></span><span class="sectionToc"><span class="number">2.6</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-330002.6">Building Nonsequential Models Using
+Custom Modules</a></span></span><span class="subsectionToc"><span class="number">2.6.1</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-340002.6.1">Building Models with Multiple Inputs</a></span></span><span class="subsectionToc"><span class="number">2.6.2</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-350002.6.2">Building Models
+with Multiple Outputs</a></span></span><span class="sectionToc"><span class="number">2.7</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-360002.7">Building an Image Classifier with PyTorch</a></span></span><span class="subsectionToc"><span class="number">2.7.1</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-370002.7.1">Using
+TorchVision to Load the Dataset</a></span></span><span class="subsectionToc"><span class="number">2.7.2</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-380002.7.2">Building the Classifier</a></span></span><span class="sectionToc"><span class="number">2.8</span><span class="title"><a href="FineTuningHyperparameterswithOptuna.html#x14-390002.8">Fine-Tuning
+Hyperparameters with Optuna</a></span></span><span class="sectionToc"><span class="number">2.9</span><span class="title"><a href="SavingandLoadingPyTorchModels.html#x15-400002.9">Saving and Loading PyTorch Models</a></span></span><span class="sectionToc"><span class="number">2.10</span><span class="title"><a href="CompilingandOptimizingaPyTorchModel.html#x16-410002.10">Compiling
+and Optimizing a PyTorch Model</a></span></span><span class="chapterToc"><span class="number">3</span><span class="title"><a href="TrainingDeepNeuralNetworks.html#x17-420003">Training Deep Neural Networks</a></span></span><span class="sectionToc"><span class="number">3.1</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-440003.1">The
+Vanishing/Exploding Gradients Problems</a></span></span><span class="subsectionToc"><span class="number">3.1.1</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-450003.1.1">Glorot Initialization and He
+Initialization</a></span></span><span class="subsectionToc"><span class="number">3.1.2</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-470003.1.2">Better Activation Functions</a></span></span><span class="subsectionToc"><span class="number">3.1.3</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-510003.1.3">Batch Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.4</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-540003.1.4">Layer
+Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.5</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-550003.1.5">Gradient Clipping</a></span></span><span class="subsectionToc"><span class="number">3.1.6</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-560003.1.6">Reusing Pretrained Layers</a></span></span><span class="subsectionToc"><span class="number">3.1.7</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-570003.1.7">Transfer
+Learning with PyTorch</a></span></span><span class="subsectionToc"><span class="number">3.1.8</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-580003.1.8">Unsupervised Pretraining</a></span></span><span class="subsectionToc"><span class="number">3.1.9</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-590003.1.9">Pretraining on an Auxiliary
+Task</a></span></span><span class="subsectionToc"><span class="number">3.1.10</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-600003.1.10">Faster Optimizers</a></span></span><span class="subsectionToc"><span class="number">3.1.11</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-630003.1.11">AdaGrad</a></span></span><span class="subsectionToc"><span class="number">3.1.12</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-640003.1.12">RMSProp</a></span></span><span class="subsectionToc"><span class="number">3.1.13</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-650003.1.13">Adam</a></span></span><span class="sectionToc"><span class="number">3.2</span><span class="title"><a href="LearningRateScheduling.html#x19-690003.2">Learning
+Rate Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.1</span><span class="title"><a href="LearningRateScheduling.html#x19-700003.2.1">Exponential Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.2</span><span class="title"><a href="LearningRateScheduling.html#x19-710003.2.2">Cosine Annealing</a></span></span><span class="subsectionToc"><span class="number">3.2.3</span><span class="title"><a href="LearningRateScheduling.html#x19-720003.2.3">Performance
+Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.4</span><span class="title"><a href="LearningRateScheduling.html#x19-730003.2.4">Warming Up the Learning Rate</a></span></span><span class="subsectionToc"><span class="number">3.2.5</span><span class="title"><a href="LearningRateScheduling.html#x19-740003.2.5">Cosine Annealing with Warm
+Restarts</a></span></span><span class="subsectionToc"><span class="number">3.2.6</span><span class="title"><a href="LearningRateScheduling.html#x19-750003.2.6">1cycle Scheduling</a></span></span><span class="sectionToc"><span class="number">3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-760003.3">Avoiding Overfitting Through Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.1</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-770003.3.1"><math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>1</mn></mrow></msub></math>
+and <math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
+Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-780003.3.2">Dropout</a></span></span><span class="subsectionToc"><span class="number">3.3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-790003.3.3">Max-Norm Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.4</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-800003.3.4">Practical Guidelines</a></span></span><span class="chapterToc"><span class="number">4</span><span class="title"><a href="WorkingwithRNNsandCNNs.html#x21-810004">Working
+with RNNs and CNNs</a></span></span><span class="sectionToc"><span class="number">4.1</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-830004.1">Recurrent Neurons and Layers</a></span></span><span class="subsectionToc"><span class="number">4.1.1</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-840004.1.1">Memory Cells</a></span></span><span class="subsectionToc"><span class="number">4.1.2</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-850004.1.2">Input
+and Output Sequences</a></span></span><span class="subsectionToc"><span class="number">4.1.3</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-860004.1.3">Training RNNs</a></span></span><span class="sectionToc"><span class="number">4.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-870004.2">Forecasting a Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.1</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-880004.2.1">The ARMA
+Model Family</a></span></span><span class="subsectionToc"><span class="number">4.2.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-890004.2.2">Preparing the Data for Machine Learning Models</a></span></span><span class="subsectionToc"><span class="number">4.2.3</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-900004.2.3">Forecasting
+Using a Linear Model</a></span></span><span class="subsectionToc"><span class="number">4.2.4</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-910004.2.4">Forecasting Using a Simple RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.5</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-920004.2.5">Forecasting Using a
+Deep RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.6</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-930004.2.6">Forecasting Multivariate Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.7</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-940004.2.7">Forecasting Several Time
+Steps Ahead</a></span></span><span class="subsectionToc"><span class="number">4.2.8</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-950004.2.8">Forecasting Using a Sequence-to-Sequence Model</a></span></span><span class="sectionToc"><span class="number">4.3</span><span class="title"><a href="HandlingLongSequences.html#x24-960004.3">Handling
+Long Sequences</a></span></span><span class="subsectionToc"><span class="number">4.3.1</span><span class="title"><a href="HandlingLongSequences.html#x24-970004.3.1">Fighting the Unstable Gradients Problem</a></span></span><span class="subsectionToc"><span class="number">4.3.2</span><span class="title"><a href="HandlingLongSequences.html#x24-980004.3.2">Tackling the
+Short-Term Memory Problem</a></span></span><span class="chapterToc"><span class="number">5</span><span class="title"><a href="NaturalLanguageProcessingwithRNNsandAttention.html#x25-1030005">Natural Language Processing with RNNs and
+Attention</a></span></span><span class="sectionToc"><span class="number">5.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1070005.1">Generating Shakespearean Text Using a Character RNN</a></span></span><span class="subsectionToc"><span class="number">5.1.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1080005.1.1">Creating
+the Training Dataset</a></span></span><span class="subsectionToc"><span class="number">5.1.2</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1090005.1.2">Embeddings</a></span></span><span class="subsectionToc"><span class="number">5.1.3</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1100005.1.3">Building and Training the Char-RNN
+Model</a></span></span><span class="subsectionToc"><span class="number">5.1.4</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1110005.1.4">Generating Fake Shakespearean Text</a></span></span><span class="sectionToc"><span class="number">5.2</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1120005.2">Sentiment Analysis Using
+Hugging Face Libraries</a></span></span><span class="subsectionToc"><span class="number">5.2.1</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1130005.2.1">Tokenization Using the Hugging Face Tokenizers
+Library</a></span></span><span class="subsectionToc"><span class="number">5.2.2</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1140005.2.2">Reusing Pretrained Tokenizers</a></span></span><span class="subsectionToc"><span class="number">5.2.3</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1150005.2.3">Building and Training a Sentiment
+Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.3</span><span class="title"><a href="#x28-1160005.3">Bidirectional RNNs</a></span></span><span class="subsectionToc"><span class="number">5.3.1</span><span class="title"><a href="#x28-1170005.3.1">Reusing Pretrained Embeddings and
+Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="#x28-1210005.3.3">An Encoder-Decoder Network
+for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="#x28-1230005.3.4">Attention Mechanisms</a></span></span>
+<div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<article class="chapter">
+<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><span class="nav-link"></span></span> <span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="SentimentAnalysisUsingHuggingFaceLibraries.html">Sentiment Analysis Using Hugging Face Libraries</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="NaturalLanguageProcessingwithRNNsandAttention.html#BidirectionalRNNs.html">Chapter: Natural Language Processing with RNNs and Attention</a></span><span class="nav-button">
+<a href="index.html" rel="index" title="Visit Entry Point">
+<i class="fa-solid fa-table-list">
+</i>
+<span class="nav-info">Visit Index Page</span>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Visit Material GitHub Repo">
+<i class="fa-brands fa-git-alt"></i>
+<span class="nav-info">Visit Material GitHub Repo</span>
+</a></span></nav>
+<div class="section-header"><h3 id="header-section-5.3"><span class="number">5.3</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.5.3"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x28-1160005.3"></a>Bidirectional RNNs</span></h3></div>
+<p class="noindent">At each time step, a regular recurrent layer only looks at past and present inputs before generating its
+output. In other words, it is causal, meaning it cannot look into the future.
+</p><p class="noindent">This type of <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such
+as text, speech, or time series, by passing information through loops from one step to the next</a></span></span></span> makes
+sense when forecasting time series, or in the decoder of a sequence-to-sequence (seq2seq) model. But for
+tasks like text classification, or in the encoder of a seq2seq model, it is often preferable to look ahead at
+the next words before encoding a given word.
+For example, consider the phrases “the right arm”, “the right person”, and “the right to speak”: to
+properly encode the word “right”, we need to look ahead.
+</p><p class="noindent">One solution is to run two recurrent layers on the same inputs, one reading the words from left to right
+and the other reading them from right to left, then combine their outputs at each time step,
+typically by concatenating them. This is what a bidirectional recurrent layer does (see Figure
+14-4).
+</p>
+<p class="noindent"></p><figure class="float">
+<a id="x28-116001r1"></a>
+<figcaption class="caption"><span class="id">Figure 5.1: </span><span class="content">A bidirectional recurrent layer.                                                  </span></figcaption>
+<img alt="PIC" src="figures/Natural-Language-Processing-with-RNNs-and-Attention/figures-2.png" style=""/>
+</figure>
+<p class="noindent">To make our sentiment analysis model bidirectional, we can just set  <code class="file"><code class="verb">bidirectional=True</code></code> when
+creating the nn.GRU layer (this also works with the nn.RNN and nn.LSTM modules).
+</p><p class="noindent">However, once we do that, we must adjust our model a bit. In particular, we must double
+the input dimension of the output nn.Linear layer, since the hidden states will double in
+size:
+</p><p class="noindent">We must also concatenate the forward and backward hidden states of the GRU’s top layer
+before passing the result to the output layer. For this, we can replace the last line of the
+forward() method (i.e.,  <code class="file"><code class="verb">return self.output(hidden_states[-1])</code></code> ) with the following
+code:
+</p><p class="noindent">Let’s see how the middle line works: </p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent">Until  now,  the  shape  of  the  hidden  states  returned  by  the  nn.GRU  module  was
+<code class="file"><code class="verb">[number of layers, batch size, hidden size]</code></code> , so  <code class="file"><code class="verb">[2, 256, 64]</code></code> in our case. But
+when we set  <code class="file"><code class="verb">bidirectional=True</code></code> , we doubled the first dimension size, so we now have a
+shape of  <code class="file"><code class="verb">[4, 256, 64]</code></code> : the tensor contains the hidden states for layer 1 forward, layer 1
+backward, layer 2 forward, and layer 2 backward. Since we only want the top layer’s hidden
+states, both forward and backward, we must get  <code class="file"><code class="verb">hidden_states[-2:]</code></code> .
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">We also need to concatenate the forward and backward states. One way to do this is to
+permute the first two dimensions of the top hidden states using  <code class="file"><code class="verb">permute(1, 0, 2)</code></code> to get
+the shape  <code class="file"><code class="verb">[256, 2, 64]</code></code> , then reshape the result using  <code class="file"><code class="verb">reshape(-1, n_dims)</code></code> (where
+<code class="file"><code class="verb">n_dims</code></code> equals 128) to get the desired shape:  <code class="file"><code class="verb">[256, 2 * 64]</code></code> .</p></li></ul>
+<p class="noindent">In this model we only use the last hidden states, ignoring the outputs at each time step. If you ever
+want to use the outputs of a bidirectional module, be aware that its last dimension’s size will be
+doubled. You can try training this model, but you will not see any improvement in this case, because
+the first model actually overfit the training set, and this new version makes it even worse: it reaches
+over 99validation set. To fix this, you could try to regularize the model a bit more, reduce the size of
+the model, or increase the size of the training set. But let’s instead try something different: using
+pretrained embeddings.
+</p>
+<div class="subsection-header"><h4 id="header-subsection-5.3.1"><span class="number">5.3.1</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.5.3.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x28-1170005.3.1"></a>Reusing Pretrained Embeddings and Language Models</span></h4></div>
+<p class="noindent">Our model was able to learn useful embeddings for thousands of tokens, based on just 25,000 movie
+reviews: that’s quite impressive! Imagine how good the embeddings would be if we had billions
+of reviews to train on. The good news is that we can reuse word embeddings even when
+they were trained on some other (very) large text corpus, even if it was not composed of
+movie reviews, and even if they were not trained for sentiment analysis. After all, the word
+“amazing” generally has the same meaning whether you use it to talk about movies or anything
+else.
+</p><p class="noindent">Since we used pretrained tokens for the BERT model, we might as well try using its embedding layer.
+First, we need to download the pretrained model using the  <code class="file"><code class="verb">AutoModel.from_pretrained()</code></code> function
+from the Transformers library, then we can directly access its embeddings layer:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb231"><a id="x28-117002r1210"></a>bert_model = transformers.AutoModel.from_pretrained(<span style="color:#78730D;">"bert-base-uncased"</span>) 
+<a id="x28-117004r1211"></a>bert_model.embeddings.word_embeddings</pre>
+</code></pre>
+<p class="noindent">As you can see, this BERT model is implemented using PyTorch, and it contains a regular
+nn.Embedding layer. We could just replace our model’s nn.Embedding layer with this one
+(and retrain our model), but we can keep models cleanly separated by initializing our own
+nn.Embedding layer with a copy of the pretrained embedding matrix. This can be done using the
+<code class="file"><code class="verb">Embedding.from_pretrained()</code></code> function:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb232"><a id="x28-117006r1221"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SentimentAnalysisModelPreEmbeds</span>(nn.Module): 
+<a id="x28-117008r1222"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, pretrained_embeddings, n_layers=<span style="color:#8F4070;">2</span>, hidden_dim=<span style="color:#8F4070;">64</span>, 
+<a id="x28-117010r1223"></a>                 dropout=<span style="color:#8F4070;">0.2</span>): 
+<a id="x28-117012r1224"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
+<a id="x28-117014r1225"></a>        weights = pretrained_embeddings.weight.data 
+<a id="x28-117016r1226"></a>        <span style="color:#B03B03;">self</span>.embed = nn.Embedding.from_pretrained(weights, freeze=<span style="color:#9E0005;">True</span>) 
+<a id="x28-117018r1227"></a>        embed_dim = weights.shape[-<span style="color:#8F4070;">1</span>] 
+<a id="x28-117020r1228"></a>        <span style="color:#B03B03;">self</span>.gru = nn.GRU(embed_dim, hidden_dim, num_layers=n_layers, 
+<a id="x28-117022r1229"></a>                          batch_first=<span style="color:#9E0005;">True</span>, dropout=dropout, bidirectional=<span style="color:#9E0005;">True</span>) 
+<a id="x28-117024r1230"></a>        <span style="color:#B03B03;">self</span>.output = nn.Linear(<span style="color:#8F4070;">2</span> * hidden_dim, <span style="color:#8F4070;">1</span>) 
+<a id="x28-117026r1231"></a> 
+<a id="x28-117028r1232"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, encodings): 
+<a id="x28-117030r1233"></a>        embeddings = <span style="color:#B03B03;">self</span>.embed(encodings[<span style="color:#78730D;">"input_ids"</span>]) 
+<a id="x28-117032r1234"></a>        lengths = encodings[<span style="color:#78730D;">"attention_mask"</span>].sum(dim=<span style="color:#8F4070;">1</span>) 
+<a id="x28-117034r1235"></a>        packed = pack_padded_sequence(embeddings, lengths=lengths.cpu(), 
+<a id="x28-117036r1236"></a>                                      batch_first=<span style="color:#9E0005;">True</span>, enforce_sorted=<span style="color:#9E0005;">False</span>) 
+<a id="x28-117038r1237"></a>        _outputs, hidden_states = <span style="color:#B03B03;">self</span>.gru(packed) 
+<a id="x28-117040r1238"></a>        n_dims = <span style="color:#B03B03;">self</span>.output.in_features 
+<a id="x28-117042r1239"></a>        top_states = hidden_states[-<span style="color:#8F4070;">2</span>:].permute(<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">2</span>).reshape(-<span style="color:#8F4070;">1</span>, n_dims) 
+<a id="x28-117044r1240"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(top_states)</pre>
+</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb233"><a id="x28-117046r1245"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x28-117048r1246"></a> 
+<a id="x28-117050r1247"></a>imdb_model_bert_embeds = SentimentAnalysisModelPreEmbeds( 
+<a id="x28-117052r1248"></a>    bert_model.embeddings.word_embeddings).to(device) 
+<a id="x28-117054r1249"></a> 
+<a id="x28-117056r1250"></a>n_epochs = <span style="color:#8F4070;">10</span> 
+<a id="x28-117058r1251"></a>xentropy = nn.BCEWithLogitsLoss() 
+<a id="x28-117060r1252"></a>optimizer = torch.optim.NAdam(imdb_model_bert_embeds.parameters()) 
+<a id="x28-117062r1253"></a>accuracy = torchmetrics.Accuracy(task=<span style="color:#78730D;">"binary"</span>).to(device) 
+<a id="x28-117064r1254"></a> 
+<a id="x28-117066r1255"></a>history = train(imdb_model_bert_embeds, optimizer, xentropy, accuracy, 
+<a id="x28-117068r1256"></a>                imdb_train_loader, imdb_valid_loader, n_epochs)</pre>
+</code></pre>
+<p class="noindent">Note that we set freeze=True when creating the nn.Embedding layer: this makes it nontrainable and
+ensures that the pretrained embeddings won’t be damaged by large gradients at the beginning of
+training. You can train the model for a few epochs like this, then make the embedding
+layer trainable and continue training, letting the model fine-tune the embeddings for our
+task.
+</p><p class="noindent">Pretrained word embeddings have been popular for quite a while, starting with Goo gle’s Word2vec
+embeddings (2013), Stanford’s GloVe embeddings (2014), Facebook’s FastText embeddings (2016), and
+more. However, this approach has its limits. In particular, a word has a single representation, no matter
+the context. For example, the word “right” is encoded the same way in “left and right” and “right and
+wrong”, even
+</p><p class="noindent">13 Matthew Peters et al., “Deep Contextualized Word Representations”, Proceedings of the 2018
+Conference of the North American Chapter of the Association for Computational Linguistics: Human
+Language Technologies 1 (2018): 22272237. 14 Jeremy Howard and Sebastian Ruder, “Universal
+Language Model Fine-Tuning for Text Classification”, Pro ceedings of the 56th Annual Meeting of the
+Association for Computational Linguistics 1 (2018): 328339. though it means two very different things.
+To address this limitation, a 2018 paper13 by Matthew Peters introduced Embeddings from
+Language Models (ELMo): these are contextualized word embeddings learned from the internal
+states of a deep bidirec tional RNN language model. In other words, instead of just using
+pretrained word embeddings in your model, you can reuse several layers of a pretrained
+language model. At roughly the same time, the Universal Language Model Fine-Tuning
+(ULMFiT) paper14 by Jeremy Howard and Sebastian Ruder demonstrated the effectiveness of
+unsupervised pretraining for NLP tasks. The authors trained an LSTM language model on a
+huge text corpus using self-supervised learning (i.e., generating the labels automatically
+from the data), then they fine-tuned it on various tasks. Their model outperformed the
+state of the art on six text classification tasks by a large margin (reducing the error rate
+by 18that a pretrained model fine-tuned on just 100 labeled examples could achieve the
+same performance as one trained from scratch on 10,000 examples. Before the ULM FiT
+paper, using pretrained models was only the norm in computer vision; in the context of
+NLP, pretraining was limited to word embeddings. This paper marked the beginning of a
+new era in NLP: today, reusing pretrained language models is the norm. For example, why
+not reuse the entire pretrained BERT model for our sentiment analysis model? To use the
+BERT model, the Transformers library lets us call it like a function, passing it the tokenized
+reviews:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb234"><a id="x28-117070r1261"></a>bert_encoding = bert_tokenizer(train_reviews[:<span style="color:#8F4070;">3</span>], padding=<span style="color:#9E0005;">True</span>, 
+<a id="x28-117072r1262"></a>                               max_length=<span style="color:#8F4070;">200</span>, truncation=<span style="color:#9E0005;">True</span>, 
+<a id="x28-117074r1263"></a>                               return_tensors=<span style="color:#78730D;">"pt"</span>) 
+<a id="x28-117076r1264"></a>bert_output = bert_model(**bert_encoding) 
+<a id="x28-117078r1265"></a>bert_output.last_hidden_state.shape</pre>
+</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb235"><a id="x28-117080r1270"></a>bert_output.pooler_output.shape</pre>
+</code></pre>
+<p class="noindent">BERT’s output includes an attribute named  <code class="file"><code class="verb">last_hidden_state</code></code> , which contains contextualized
+embeddings for each token. The word “last” in this case refers to the last layer, not the last time step
+(BERT is a transformer, not an RNN). This  <code class="file"><code class="verb">last_hidden_state</code></code> tensor has a shape of [batch size,
+max sequence length, hidden size]. Let’s use these contextualized embeddings in a sentiment analysis
+model:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb236"><a id="x28-117082r1282"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SentimentAnalysisModelBert</span>(nn.Module): 
+<a id="x28-117084r1283"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, n_layers=<span style="color:#8F4070;">2</span>, hidden_dim=<span style="color:#8F4070;">64</span>, dropout=<span style="color:#8F4070;">0.2</span>): 
+<a id="x28-117086r1284"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
+<a id="x28-117088r1285"></a>        <span style="color:#B03B03;">self</span>.bert = transformers.AutoModel.from_pretrained(<span style="color:#78730D;">"bert-base-uncased"</span>) 
+<a id="x28-117090r1286"></a>        embed_dim = <span style="color:#B03B03;">self</span>.bert.config.hidden_size 
+<a id="x28-117092r1287"></a>        <span style="color:#B03B03;">self</span>.gru = nn.GRU(embed_dim, hidden_dim, num_layers=n_layers, 
+<a id="x28-117094r1288"></a>                          batch_first=<span style="color:#9E0005;">True</span>, dropout=dropout) 
+<a id="x28-117096r1289"></a>        <span style="color:#B03B03;">self</span>.output = nn.Linear(hidden_dim, <span style="color:#8F4070;">1</span>) 
+<a id="x28-117098r1290"></a> 
+<a id="x28-117100r1291"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, encodings): 
+<a id="x28-117102r1292"></a>        contextualized_embeddings = <span style="color:#B03B03;">self</span>.bert(**encodings).last_hidden_state 
+<a id="x28-117104r1293"></a>        lengths = encodings[<span style="color:#78730D;">"attention_mask"</span>].sum(dim=<span style="color:#8F4070;">1</span>) 
+<a id="x28-117106r1294"></a>        packed = pack_padded_sequence(contextualized_embeddings, lengths=lengths.cpu(), 
+<a id="x28-117108r1295"></a>                                      batch_first=<span style="color:#9E0005;">True</span>, enforce_sorted=<span style="color:#9E0005;">False</span>) 
+<a id="x28-117110r1296"></a>        _outputs, hidden_states = <span style="color:#B03B03;">self</span>.gru(packed) 
+<a id="x28-117112r1297"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(hidden_states[-<span style="color:#8F4070;">1</span>])</pre>
+</code></pre>
+<p class="noindent">Note that we don’t need to make the nn.GRU module bidirectional since the contextualized
+embeddings already looked ahead. If you freeze the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bert">BERT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bert">Bidirectional Encoder Representations from
+Transformers</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bert">a ML framework developed by Google in 2018 to help computers understand the context
+of human language</a></span></span></span> <span class="margin-block">model <span class="margin-comment"><a class="ellipsis" href="#m-ref-242">[242]</a>
+<span class="sidenote">e.g., using <code class="verb">model.bert.requires_grad_(False)</code> .</span></span></span> and train the rest of the model, you will notice a significant
+performance boost, reaching over 88% accuracy. Wonderful! Another option is to use only the
+contextualized embedding for the very first token, which is the class token <code class="verb">[CLS]</code> . Indeed, during pretraining,
+the BERT model had to perform a text classification task based solely on this token’s contextualized
+<span class="margin-block">embedding. <span class="margin-comment"><a class="ellipsis" href="#m-ref-243">[243]</a>
+<span class="sidenote">we will discuss BERT pretraining in more detail in <span class="refclass-ref">??</span>.</span></span></span> As a result, it learned to summarize
+the most important features of the text into this embedding. This simplifies our model quite
+a bit, since we can get rid of the <code class="verb">nn.GRU</code>  module altogether, and the <code class="verb">forward()</code>  method becomes much
+shorter:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb237"><a id="x28-117114r1325"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SentimentAnalysisModelBert2</span>(nn.Module): 
+<a id="x28-117116r1326"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, hidden_dim=<span style="color:#8F4070;">64</span>): 
+<a id="x28-117118r1327"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
+<a id="x28-117120r1328"></a>        <span style="color:#B03B03;">self</span>.bert = transformers.AutoModel.from_pretrained(<span style="color:#78730D;">"bert-base-uncased"</span>) 
+<a id="x28-117122r1329"></a>        <span style="color:#B03B03;">self</span>.output = nn.Linear(<span style="color:#B03B03;">self</span>.bert.config.hidden_size, <span style="color:#8F4070;">1</span>) 
+<a id="x28-117124r1330"></a> 
+<a id="x28-117126r1331"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, encodings): 
+<a id="x28-117128r1332"></a>        bert_output = <span style="color:#B03B03;">self</span>.bert(**encodings) 
+<a id="x28-117130r1333"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(bert_output.last_hidden_state[:, <span style="color:#8F4070;">0</span>])</pre>
+</code></pre>
+<p class="noindent">In fact, the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bert">BERT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bert">Bidirectional Encoder Representations from Transformers</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bert">a ML framework developed
+by Google in 2018 to help computers understand the context of human language</a></span></span></span> model contains
+an extra hidden layer on top of the class embedding, composed of an <code class="verb">nn.Linear</code>  module and an <code class="verb">nn.Tanh</code>
+module.
+</p>
+<div class="block-minor warning"><div class="body">
+<p class="noindent">This hidden layer is called the <span class="alert">pooler</span>. </p></div></div>
+<p class="noindent">To use it, just replace <code class="verb">bert_output.last_hidden_state[:, 0]</code>  with <code class="verb">bert_output.pooler_output</code> . You may also want to unfreeze the pooler after a few epochs to fine-tune
+it for the IMDb task. So we started by reusing only the pretrained tokenizer, then we reused the
+pretrained embeddings, then most of the pretrained <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bert">BERT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bert">Bidirectional Encoder Representations from
+Transformers</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bert">a ML framework developed by Google in 2018 to help computers understand the context
+of human language</a></span></span></span> model, and finally the full model, adding only an <code class="verb">nn.Linear</code>  layer on top of the
+pooler. We can actually go one step further and just use an off-the-shelf class for sentence
+classification.
+</p>
+<div class="subsection-header"><h4 id="header-subsection-5.3.2"><span class="number">5.3.2</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.5.3.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x28-1180005.3.2"></a>Task-Specific Classes</span></h4></div>
+<p class="noindent">To tackle our binary classification task using <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bert">BERT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bert">Bidirectional Encoder Representations from
+Transformers</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bert">a ML framework developed by Google in 2018 to help computers understand the context
+of human language</a></span></span></span>, we can use the <code class="verb">BertForSequence Classification</code>  class provided by the Transformers library. It’s just a
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bert">BERT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bert">Bidirectional Encoder Representations from Transformers</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bert">a ML framework developed by Google
+in 2018 to help computers understand the context of human language</a></span></span></span> model plus a classification head
+on top. All you need to do to create this model is specify the pretrained <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bert">BERT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bert">Bidirectional Encoder
+Representations from Transformers</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bert">a ML framework developed by Google in 2018 to help computers
+understand the context of human language</a></span></span></span> checkpoint you want to use, the number of output units for
+your classification task, and optionally the data <span class="margin-block">type: <span class="margin-comment"><a class="ellipsis" href="#m-ref-244">[244]</a>
+<span class="sidenote">We’ll use 16-bit floats to fit on small
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gpu">GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gpu">Graphical Processing Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gpu">A specialized electronic chip designed to rapidly render images, video,
+and 3D animations. Unlike a central processing unit (CPU) that processes tasks sequentially, a GPU
+uses parallel processing with thousands of smaller cores to handle many calculations at the same
+time.</a></span></span></span>s.</span></span></span>
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb238"><a id="x28-118002r1387"></a><span style="color:#918273;"><i># from transformers import AutoModelForSequenceClassification</i></span> 
+<a id="x28-118004r1388"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">transformers</span> <span style="color:#9E0005;">import</span> BertForSequenceClassification 
+<a id="x28-118006r1389"></a> 
+<a id="x28-118008r1390"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x28-118010r1391"></a>bert_for_binary_clf = BertForSequenceClassification.from_pretrained( 
+<a id="x28-118012r1392"></a>    <span style="color:#78730D;">"bert-base-uncased"</span>, num_labels=<span style="color:#8F4070;">2</span>, dtype=torch.float16).to(device)</pre>
+</code></pre>
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-5.61" id="info-block-5.61"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 5.<a id="x28-118013r61"></a>61: </b> </span> <span class="title"> Transformers Library </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
+<p class="noindent">The Transformers library contains many task-specific classes based on various pretrained models, such
+as <code class="verb">BertForQuestionAnswering</code>  or <code class="verb">RobertaForSequenceClassification</code>  (see <span class="refclass-ref">??</span>). You can also use <code class="verb">AutoModelForSequenceClassification</code>  to let the library pick the right class for you, based on the
+requested model <span class="margin-block">checkpoint. <span class="margin-comment"><a class="ellipsis" href="#m-ref-245">[245]</a>
+<span class="sidenote">e.g., if you ask for "bert-base-uncased", you will get an instance of <code class="verb">BertForSequenceClassification</code> .</span></span></span>
+Similar <code class="verb">AutoModelFor[...]</code>  classes are available for other tasks.  </p></dd></dl>
+<p class="noindent">Until now we have always used a single output for binary classification, so why did we set <code class="verb">num_labels=2</code>
+?
+</p><p class="noindent">Well, for simplicity Hugging Face prefers to treat binary classification exactly like multiclass
+classification, so this model will output two logits instead of one, and it must be trained using the
+nn.CrossEntropyLoss instead of <code class="verb">nn.BCELoss</code>  or n<code class="verb">n.BCEWithLogitsLoss</code> . If you want to convert the logits to estimated probabilities, you
+must use <code class="verb">torch.softmax()</code>  rather than <code class="verb">torch.sigmoid()</code> . Let’s call this model on a very positive review:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb239"><a id="x28-118015r1397"></a>encoding = bert_tokenizer([<span style="color:#78730D;">"This was a great movie!"</span>]) 
+<a id="x28-118017r1398"></a><span style="color:#9E0005;">with</span> torch.no_grad(): 
+<a id="x28-118019r1399"></a>    output = bert_for_binary_clf( 
+<a id="x28-118021r1400"></a>        input_ids=torch.tensor(encoding[<span style="color:#78730D;">"input_ids"</span>], device=device), 
+<a id="x28-118023r1401"></a>        attention_mask=torch.tensor(encoding[<span style="color:#78730D;">"attention_mask"</span>], device=device)) 
+<a id="x28-118025r1402"></a> 
+<a id="x28-118027r1403"></a>output.logits</pre>
+</code></pre>
+<p class="noindent">We first tokenize the review, then we call the model, it returns a ModelOutput object containing the
+logits, and we convert these logits to estimated probabilities using the <code class="verb">torch.softmax()</code>  function.
+</p><p class="noindent">The model classified this review as negative with 65.53% confidence. Indeed, the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bert">BERT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bert">Bidirectional
+Encoder Representations from Transformers</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bert">a ML framework developed by Google in 2018 to help
+computers understand the context of human language</a></span></span></span> model inside <code class="verb">BertForSequenceClassification</code>  is pretrained, but not the
+classification head, so we’re going to get terrible performance until we actually train this model on the
+IMDb dataset.
+If you pass labels when calling this <span class="margin-block">model, <span class="margin-comment"><a class="ellipsis" href="#m-ref-246">[246]</a>
+<span class="sidenote">or any other model from the Transformers library.</span></span></span> then it
+also computes the loss and returns it in the ModelOutput object. For example:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb240"><a id="x28-118029r1413"></a><span style="color:#9E0005;">with</span> torch.no_grad(): 
+<a id="x28-118031r1414"></a>    output = bert_for_binary_clf( 
+<a id="x28-118033r1415"></a>        input_ids=torch.tensor(encoding[<span style="color:#78730D;">"input_ids"</span>], device=device), 
+<a id="x28-118035r1416"></a>        attention_mask=torch.tensor(encoding[<span style="color:#78730D;">"attention_mask"</span>], device=device), 
+<a id="x28-118037r1417"></a>        labels=torch.tensor([<span style="color:#8F4070;">1</span>], device=device)) 
+<a id="x28-118039r1418"></a> 
+<a id="x28-118041r1419"></a>output.loss</pre>
+</code></pre>
+<p class="noindent">Since <code class="verb">num_labels</code>  is greater than 1, the model computes the <code class="verb">nn.CrossEntropyLoss</code> <span class="margin-block">. <span class="margin-comment"><a class="ellipsis" href="#m-ref-247">[247]</a>
+<span class="sidenote">which is implemented as nn.LogSoftmax
+followed by <code class="verb">nn.NLLLoss</code> . that’s why we see <code class="verb">None</code> .</span></span></span> If we had used <code class="verb">num_labels=1</code> , then the model would have used the <code class="verb">nn.MSELoss</code>
+instead; this can be useful for regression tasks. We could now train this model using our own
+training code, as we did so far, but the Transformers library provides a convenient Trainer
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:api">API</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:api">Application-Programming Interface</a></span><span class="acronym-desc"><a class="glossary" href="#glo:api">Application-Programming Interface</a></span></span></span>, so let’s check it
+out.
+</p>
+<div class="subsection-header"><h5 id="header-subsubsection-5.3.2.21"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x28-119000"></a>The Trainer API</span></h5></div>
+<p class="noindent">The Trainer API lets you fine-tune a model on your own dataset with very little boilerplate code. It can
+save model checkpoints during training, apply early stopping, distribute the computations
+across GPUs, log metrics, take care of padding, batching, shuffling, and more. Let’s use the
+Trainer API to train our IMDb model. The Trainer API works directly with dataset objects,
+not data loaders, but it expects the datasets to contain tokenized text, not strings, so we
+must take care of tokenization. We can do this quite simply using the dataset’s <code class="verb">map()</code> <span class="margin-block">method:
+<span class="margin-comment"><a class="ellipsis" href="#m-ref-248">[248]</a>
+<span class="sidenote">this method is implemented by the Datasets library; it’s not available on pure PyTorch
+datasets.</span></span></span>
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb241"><a id="x28-119002r1443"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">tokenize_batch</span>(batch): 
+<a id="x28-119004r1444"></a>    <span style="color:#9E0005;">return</span> bert_tokenizer(batch[<span style="color:#78730D;">"text"</span>], truncation=<span style="color:#9E0005;">True</span>, max_length=<span style="color:#8F4070;">200</span>) 
+<a id="x28-119006r1445"></a> 
+<a id="x28-119008r1446"></a>tok_imdb_train_set = imdb_train_set.map(tokenize_batch, batched=<span style="color:#9E0005;">True</span>) 
+<a id="x28-119010r1447"></a>tok_imdb_valid_set = imdb_valid_set.map(tokenize_batch, batched=<span style="color:#9E0005;">True</span>) 
+<a id="x28-119012r1448"></a>tok_imdb_test_set = imdb_test_set.map(tokenize_batch, batched=<span style="color:#9E0005;">True</span>)</pre>
+</code></pre>
+<p class="noindent">Since we set batched=True, the <code class="verb">map()</code>  method passes batches of reviews to the <code class="verb">tokenize_batch()</code>  method: </p><div class="quote">  this is optional,
+but it significantly speeds up this preprocessing step. </div>
+<p class="noindent">The <code class="verb">tokenize_batch()</code>  method tokenizes the given batch of reviews, and the resulting fields are added to each instance
+by the <code class="verb">map()</code>  method. This includes fields such as <code class="verb">token_ids</code>  and <code class="verb">attention_mask</code> , which the model expects. To evaluate
+our model, we can write a simple function that takes an object with two attributes: <code class="verb">label_ids</code>  and
+predictions:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb242"><a id="x28-119014r1471"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">compute_accuracy</span>(pred): 
+<a id="x28-119016r1472"></a>    <span style="color:#9E0005;">return</span> {<span style="color:#78730D;">"accuracy"</span>: (pred.label_ids == pred.predictions.argmax(-<span style="color:#8F4070;">1</span>)).mean()}</pre>
+</code></pre>
+<p class="noindent">Alternatively, you can use metrics provided by the Hugging Face Evaluate library
+</p>
+<div class="block-minor knowledge"><div class="body">
+<p class="noindent">They are designed to work nicely with the <span class="alert">Transformers library</span>. </p></div></div>
+<p class="noindent">Alternatively, although the Trainer API does not support the streaming metrics from the TorchMetrics
+library, you can still use them if you wrap them inside a function. Next, we must specify our training
+configuration in a TrainingArguments object:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb243"><a id="x28-119018r1477"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">transformers</span> <span style="color:#9E0005;">import</span> TrainingArguments 
+<a id="x28-119020r1478"></a> 
+<a id="x28-119022r1479"></a>train_args = TrainingArguments( 
+<a id="x28-119024r1480"></a>    output_dir=<span style="color:#78730D;">"my_imdb_model"</span>, num_train_epochs=<span style="color:#8F4070;">2</span>, 
+<a id="x28-119026r1481"></a>    per_device_train_batch_size=<span style="color:#8F4070;">128</span>, per_device_eval_batch_size=<span style="color:#8F4070;">128</span>, 
+<a id="x28-119028r1482"></a>    eval_strategy=<span style="color:#78730D;">"epoch"</span>, logging_strategy=<span style="color:#78730D;">"epoch"</span>, save_strategy=<span style="color:#78730D;">"epoch"</span>, 
+<a id="x28-119030r1483"></a>    load_best_model_at_end=<span style="color:#9E0005;">True</span>, metric_for_best_model=<span style="color:#78730D;">"accuracy"</span>, 
+<a id="x28-119032r1484"></a>    report_to=<span style="color:#78730D;">"none"</span>)</pre>
+</code></pre>
+<p class="noindent">We specify that the logs and model checkpoints must be saved in the <code class="verb">my_imdb_model</code>  directory;
+</p>
+<div class="quote"> training should run for 2 <span class="margin-block">epochs; <span class="margin-comment"><a class="ellipsis" href="#m-ref-249">[249]</a>
+<span class="sidenote">We can increase this if you want.</span></span></span> the batch size is 128 for
+both training and evaluation (you can tweak this depending on the amount of VRAM you
+have); we want evaluation, logging, and saving to take place at the end of each epoch; and
+the best model should be loaded at the end of training based on the validation accuracy.
+</div>
+<p class="noindent">Lastly, the <code class="verb">report_to</code>  argument lets you specify one or more tools that the training code will report logs to, such
+as TensorBoard or Weights &amp; Biases (W&amp;B). This can be useful to visualize the learning
+curves.
+</p>
+<div class="block-minor knowledge"><div class="body">
+<p class="noindent">For simplicity, set <code class="verb">report_to="none"</code>  to turn reporting off. </p></div></div>
+<p class="noindent">Lastly, we create a Trainer object and pass it the model, along with the training arguments, the
+training and validation sets, the evaluation function, plus a data collator which will take care of
+padding. Finally, we call the trainer’s <code class="verb">train()</code>  method, and we’re done! The model reaches about 90%
+accuracy on the validation set after just two epochs:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb244"><a id="x28-119034r1489"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">transformers</span> <span style="color:#9E0005;">import</span> DataCollatorWithPadding, Trainer 
+<a id="x28-119036r1490"></a> 
+<a id="x28-119038r1491"></a>trainer = Trainer( 
+<a id="x28-119040r1492"></a>    bert_for_binary_clf, train_args, train_dataset=tok_imdb_train_set, 
+<a id="x28-119042r1493"></a>    eval_dataset=tok_imdb_valid_set, compute_metrics=compute_accuracy, 
+<a id="x28-119044r1494"></a>    data_collator=DataCollatorWithPadding(bert_tokenizer)) 
+<a id="x28-119046r1495"></a>train_output = trainer.train()</pre>
+</code></pre>
+<p class="noindent">Great, we now know how to download a pretrained model like <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bert">BERT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bert">Bidirectional Encoder
+Representations from Transformers</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bert">a ML framework developed by Google in 2018 to help computers
+understand the context of human language</a></span></span></span> and fine-tune it on your own dataset! But what if we don’t
+have a dataset at all, and you just want to use a pretrained model that was already fine-tuned for
+sentiment analysis ?
+For this, you can use the pipelines API.
+</p>
+<div class="subsection-header"><h5 id="header-subsubsection-5.3.2.22"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x28-120000"></a>Hugging Face Pipelines</span></h5></div>
+<p class="noindent">The Transformers library provides a very convenient API to download and use pre trained pipelines for
+various tasks. Each pipeline contains a pretrained model along with its corresponding preprocessing and
+post-processing modules. For example let’s create a sentiment analysis pipeline and run it on the first
+10 IMDb reviews in the training set:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb245"><a id="x28-120002r1512"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">transformers</span> <span style="color:#9E0005;">import</span> pipeline 
+<a id="x28-120004r1513"></a> 
+<a id="x28-120006r1514"></a>model_name = <span style="color:#78730D;">"distilbert-base-uncased-finetuned-sst-2-english"</span> 
+<a id="x28-120008r1515"></a>classifier_imdb = pipeline(<span style="color:#78730D;">"sentiment-analysis"</span>, model=model_name, 
+<a id="x28-120010r1516"></a>                           truncation=<span style="color:#9E0005;">True</span>, max_length=<span style="color:#8F4070;">512</span>) 
+<a id="x28-120012r1517"></a>classifier_imdb(train_reviews[:<span style="color:#8F4070;">10</span>])</pre>
+</code></pre>
+<p class="noindent">Well, it could hardly be any easier, could it? Just create a pipeline by specifying the task and the model
+to use, and a couple of other parameters, depending on the task, and off you go! In this example, each
+review gets a <code class="verb">"POSITIVE"</code>  or <code class="verb">"NEGATIVE"</code>  label, along with a score equal to the model’s estimated probability for that label. </p><div class="quote">
+This particular model actually reaches 88.2% accuracy on the validation set, which is reasonably good.
+</div>
+<p class="noindent">Here a few points to note: </p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent">If you don’t specify a model, the <code class="verb">pipeline()</code>  function will use the default model for the chosen task. </p><div class="quote">  For
+sentiment analysis, at the time of writing, it’s the model we chose: it’s a DistilBERT modela
+scaled down version of BERTwith an uncased tokenizer, trained on the English Wikipedia and a
+corpus of English books, and fine-tuned on the Stanford Sentiment Treebank v2 (SST 2) task.
+</div>
+</li>
+<li class="itemize">
+<p class="noindent">The pipeline automatically uses the GPU if you have one. If you have several GPUs, you
+can specify which one to use by setting the pipeline’s device argument to the GPU
+index.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">The models from the Transformers library are always in evaluation mode by default (no need to
+call eval()).
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">The score is for the chosen label, not for the positive class. In particular, since this is a binary
+classification task, the score cannot be lower than 0.5<span class="margin-block">. <span class="margin-comment"><a class="ellipsis" href="#m-ref-250">[250]</a>
+<span class="sidenote">or else the model would have picked the
+other label.</span></span></span></p></li></ul>
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-5.62" id="info-block-5.62"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 5.<a id="x28-120013r62"></a>62: </b> </span> <span class="title"> Bias and Fairness </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
+<p class="noindent">If you try classifying “I am from the USA” and “I am from Iraq”, you will see that the former is
+classified as very positive, while the latter is classified as very negative. The model is also positive about
+Thailand but negative about Vietnam. You can try this model with your own country or city; the result
+may surprise you. Such a bias generally comes in large part from the training data itself: in this case,
+there were plenty of references to the wars in Iraq and Vietnam in the model’s training data,
+creating a negative bias. This bias was then amplified during the fine-tuning process since the
+model was forced to choose between just two classes: positive or negative. If you use a model
+that was fine-tuned on a dataset with an extra neutral class, then the country bias mostly
+disappears.
+</p><p class="noindent">The training data is not the only source of bias: the model’s architecture, the type of loss or
+regularization used for training, the optimizerall of these can affect what the model ends up learning.
+Understanding bias in AI and mitigating its negative effects is still an area of active research, but in
+any case you should probably pause and think before you rush to deploy a model to production. For
+example, if you train a model to score resumes, you must ensure that it’s fair. So make sure you
+evaluate the model’s performance not just on average over the whole test set, but across
+various subsets as well; for example, you may find that although the model works very
+well on average, its performance is abysmal for some categories of people. You may also
+want to run counterfactual tests; for example, check that the model’s predictions do not
+change when you simply switch someone’s gender or place of birth. The solution depends on
+the problem: it may require rebalancing the dataset, fine-tuning on a different dataset,
+switching to another pretrained model, tweaking the model’s architecture or hyperparameters,
+etc.
+</p><p class="noindent">Lastly, even if you manage to train a perfectly fair model, it could be used in a biased way. For
+example, the recruiters may use it only for some category of people and not others.
+</p>
+</dd></dl>
+<p class="noindent">The model we chose is well-suited for general-purpose sentiment analysis, such as movie reviews, but
+other models are better suited for specific use cases, such as social media <span class="margin-block">posts. <span class="margin-comment"><a class="ellipsis" href="#m-ref-251">[251]</a>
+<span class="sidenote">e.g., trained on a
+large dataset of tweets, then fine-tuned on a sentiment analysis dataset.</span></span></span> To find the best
+model for your use case, you can search the list of available models on the Hugging Face
+Hub. However, there are over 80,000 models available in the “text-classification” category
+alone, so you will need to use the filters to narrow down the options. In particular, start by
+filtering on the task, and sort by trending or most-liked models. You can also continue to filter
+by language and dataset, if necessary. Prefer models from reputable <span class="margin-block">sources, <span class="margin-comment"><a class="ellipsis" href="#m-ref-252">[252]</a>
+<span class="sidenote">e.g., models
+from users huggingface, facebook, google, cardiffnlp, and so on.</span></span></span> and if the model includes
+executable code, make absolutely sure you trust the <span class="margin-block">user. <span class="margin-comment"><a class="ellipsis" href="#m-ref-253">[253]</a>
+<span class="sidenote">and if you do, set <code class="verb">trust_remote_code=True</code>  when calling the <code class="verb">pipeline()</code>
+function.</span></span></span>
+</p><p class="noindent">There are many text classification tasks other than sentiment analysis. For example, a model
+fine-tuned on the multi-genre natural language inference (MultiNLI) dataset can classify a
+pair of texts (each ending with a separation token <code class="verb">[SEP]</code> ) into three classes: <span class="margin-block">contradiction, <span class="margin-comment"><a class="ellipsis" href="#m-ref-254">[254]</a>
+<span class="sidenote">if
+the texts contradict each other.</span></span></span> <span class="margin-block">entailment, <span class="margin-comment"><a class="ellipsis" href="#m-ref-255">[255]</a>
+<span class="sidenote">if the first text entails the second</span></span></span> or neutral
+otherwise.
+</p><p class="noindent">For example:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb246"><a id="x28-120015r1608"></a>model_name = <span style="color:#78730D;">"huggingface/distilbert-base-uncased-finetuned-mnli"</span> 
+<a id="x28-120017r1609"></a>classifier_mnli = pipeline(<span style="color:#78730D;">"text-classification"</span>, model=model_name) 
+<a id="x28-120019r1610"></a>classifier_mnli([ 
+<a id="x28-120021r1611"></a>    <span style="color:#78730D;">"She loves me. [SEP] She loves me not. [SEP]"</span>, 
+<a id="x28-120023r1612"></a>    <span style="color:#78730D;">"Alice just woke up. [SEP] Alice is awake. [SEP]"</span>, 
+<a id="x28-120025r1613"></a>    <span style="color:#78730D;">"I like dogs. [SEP] Everyone likes dogs. [SEP]"</span>])</pre>
+</code></pre>
+<p class="noindent">Many other NLP tasks are also available via the pipeline API, such as question answering,
+summarization, sentence similarity, text generation, token classification, translation, and
+more.
+</p><p class="noindent">There are also many computer vision tasks, such as image classification, image segmentation, object
+detection, image-to-text, text-to-image, depth estimation, and even audio tasks, such as audio
+classification, speech-to-text, text-to-speech, and so on.
+</p><p class="noindent">Before you download a model, make sure you trust the hosting <span class="margin-block">platform <span class="margin-comment"><a class="ellipsis" href="#m-ref-256">[256]</a>
+<span class="sidenote">e.g., the Hugging Face Hub.</span></span></span>
+and the model’s author: the model may contain executable code, which could be malicious. It could also
+produce biased outputs, or it may have been trained with copyrighted or sensitive private data which
+might be leaked to your users, or it might even have poisoned weights which could make it
+produce harmful content (e.g., propaganda) only for some types of inputs, otherwise behaving
+normally.
+</p><p class="noindent">Time to step back. So far we have looked at text generation using a char-RNN, and sentiment analysis
+using various subword tokenization methods, pretrained embeddings, and even entire pretrained
+models. Along the way, we discussed embeddings, tokenizers, and the Hugging Face libraries. In the
+next section, we will explore another important NLP task: <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nmt">NMT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nmt">Neural Machine Translation</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nmt">An
+approach to automated text translation that uses ANNs to model entire sentences and generate fluent,
+human-like outputs</a></span></span></span>. Specifically, we will build an encoder-decoder model capable of translating English
+to Spanish, and we will see how to boost its performance using beam search and attention
+mechanisms.
+</p>
+<div class="subsection-header"><h4 id="header-subsection-5.3.3"><span class="number">5.3.3</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.5.3.3"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x28-1210005.3.3"></a>An Encoder-Decoder Network for Neural Machine Translation</span></h4></div>
+<p class="noindent">Let’s begin with a relatively simple sequence-to-sequence NMT model <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Sutskever2014SequenceTS"> <a id="x28-121001"></a>Sutskever, I., Vinyals, O. &amp;
+Le, Q. V. Sequence to Sequence Learning with Neural Networks. ArXiv <b>abs/1409.3215</b> (2014)</span></span> that
+will translate English text to Spanish as shown in <b>Fig.</b> <a href="#x28-121002r2">5.2</a>
+</p>
+<p class="noindent"></p><figure class="float">
+<p class="noindent"> <img alt="PIC" src="figures/Natural-Language-Processing-with-RNNs-and-Attention/figures-1.png" style=""/> <a id="x28-121002r2"></a>
+</p>
+<figcaption class="caption"><span class="id">Figure 5.2: </span><span class="content">A simple machine translation model                                              </span></figcaption>
+</figure>
+<p class="noindent">In short, the architecture is as follows: English texts are fed as inputs to the encoder, and the decoder
+outputs the Spanish translations. Note that the Spanish translations are also used as inputs to the
+decoder during training, but shifted back by one step. In other words, during training the decoder is
+given as input the token that it should have output at the previous step, regardless of what it actually
+output.
+</p>
+<div class="block-minor warning"><div class="body">
+<p class="noindent">This is called <span class="alert">teacher forcing</span>: a technique that significantly speeds up training and improves the model’s performance.
+</p></div></div>
+<p class="noindent">For the very first token, the decoder is given the start-of-sequence (SoS, a.k.a. beginning-of-sequence,
+BoS) token ("<code class="verb">None</code> "), and the decoder is expected to end the text with an end-of-sequence (EoS) token ("<code class="verb">None</code>
+").
+</p><p class="noindent">16 Samy Bengio et al., “Scheduled Sampling for Sequence Prediction with Recurrent Neural
+Networks”, arXiv preprint arXiv:1506.03099 (2015). Each token is initially represented by
+its ID (e.g., 4553 for the token “soccer”). Next, an nn.Embedding layer returns the token
+embedding. These token embeddings are then fed to the encoder and the decoder. At each step,
+the decoder’s dense output layer (i.e., an nn.Linear layer) outputs a logit score for each
+token in the output vocabulary (i.e., Spanish). If you pass these logits through the softmax
+function, you get an estimated probability for each possible token. For example, at the
+first step the word “Me” may have a probability of 7may have a probability of 1tion task,
+and indeed we will train the model using the nn.CrossEntropyLoss, much like we did in
+the char-RNN model. Note that at inference time (after training), you will not have the
+target text to feed to the decoder. Instead, you need to feed it the word that it has just
+output at the previous step, as shown in Figure 14-6 (this will require an embedding lookup
+that is not shown in the diagram). Figure 14-6. At inference time, the decoder is fed as
+input the word it just output at the previous time step In a 2015 paper,16 Samy Bengio et
+al. proposed gradually switching from feeding the decoder the previous target token to
+feeding it the previous output token during training. Let’s build and train this model! First,
+we need to download a dataset of English/ Spanish text pairs. For this, we will use the
+Datasets library to download English/ Spanish pairs from the Tatoeba Challenge dataset.
+The Tatoeba project is a language- learning initiative started in 2006 by Trang Ho, where
+contributors have created a AnEncoder-DecoderNetworkforNeuralMachineTranslation |
+561
+</p><p class="noindent">huge collection of text pairs from many languages. The Tatoeba Challenge dataset was created by
+researchers from the University of Helsinki to benchmark machine translation systems, using
+data extracted from the Tatoeba project. The training set is quite large so we will use the
+validation set as our training set, setting aside 20validation. We will also download the test
+set:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb247"><a id="x28-121004r1676"></a>nmt_original_valid_set, nmt_test_set = load_dataset( 
+<a id="x28-121006r1677"></a>    path=<span style="color:#78730D;">"ageron/tatoeba_mt_train"</span>, name=<span style="color:#78730D;">"eng-spa"</span>, 
+<a id="x28-121008r1678"></a>    split=[<span style="color:#78730D;">"validation"</span>, <span style="color:#78730D;">"test"</span>]) 
+<a id="x28-121010r1679"></a>split = nmt_original_valid_set.train_test_split(train_size=<span style="color:#8F4070;">0.8</span>, seed=<span style="color:#8F4070;">42</span>) 
+<a id="x28-121012r1680"></a>nmt_train_set, nmt_valid_set = split[<span style="color:#78730D;">"train"</span>], split[<span style="color:#78730D;">"test"</span>]</pre>
+</code></pre>
+<p class="noindent">Each sample in the dataset is a dictionary containing an English text along with its Spanish
+translation. For example:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb248"><a id="x28-121014r1710"></a>nmt_train_set[<span style="color:#8F4070;">0</span>]</pre>
+</code></pre>
+<p class="noindent">We will need to tokenize this text. We could use a different tokenizer for English and Spanish, but these
+two languages have many words in <span class="margin-block">common, <span class="margin-comment"><a class="ellipsis" href="#m-ref-257">[257]</a>
+<span class="sidenote">e.g., animal, color, hotel, hospital, idea, radio, motor.</span></span></span>
+and many similar <span class="margin-block">subwords, <span class="margin-comment"><a class="ellipsis" href="#m-ref-258">[258]</a>
+<span class="sidenote">e.g., pre, auto, inter, uni.</span></span></span> so it makes sense to use a common
+tokenizer.
+</p><p class="noindent">Let’s train a BPE tokenizer on all the training text, both English and Spanish:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb249"><a id="x28-121016r1715"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">train_eng_spa</span>():  <span style="color:#918273;"><i># a generator function to iterate over all training text</i></span> 
+<a id="x28-121018r1716"></a>    <span style="color:#9E0005;">for</span> pair <span style="color:#9E0005;">in</span> nmt_train_set: 
+<a id="x28-121020r1717"></a>        <span style="color:#9E0005;">yield</span> pair[<span style="color:#78730D;">"source_text"</span>] 
+<a id="x28-121022r1718"></a>        <span style="color:#9E0005;">yield</span> pair[<span style="color:#78730D;">"target_text"</span>] 
+<a id="x28-121024r1719"></a> 
+<a id="x28-121026r1720"></a>max_length = <span style="color:#8F4070;">256</span> 
+<a id="x28-121028r1721"></a>vocab_size = <span style="color:#8F4070;">10_000</span> 
+<a id="x28-121030r1722"></a> 
+<a id="x28-121032r1723"></a>nmt_tokenizer_model = tokenizers.models.BPE(unk_token=<span style="color:#78730D;">"&lt;unk&gt;"</span>) 
+<a id="x28-121034r1724"></a>nmt_tokenizer = tokenizers.Tokenizer(nmt_tokenizer_model) 
+<a id="x28-121036r1725"></a>nmt_tokenizer.enable_padding(pad_id=<span style="color:#8F4070;">0</span>, pad_token=<span style="color:#78730D;">"&lt;pad&gt;"</span>) 
+<a id="x28-121038r1726"></a>nmt_tokenizer.enable_truncation(max_length=max_length) 
+<a id="x28-121040r1727"></a>nmt_tokenizer.pre_tokenizer = tokenizers.pre_tokenizers.Whitespace() 
+<a id="x28-121042r1728"></a>nmt_tokenizer_trainer = tokenizers.trainers.BpeTrainer( 
+<a id="x28-121044r1729"></a>    vocab_size=vocab_size, special_tokens=[<span style="color:#78730D;">"&lt;pad&gt;"</span>, <span style="color:#78730D;">"&lt;unk&gt;"</span>, <span style="color:#78730D;">"&lt;s&gt;"</span>, <span style="color:#78730D;">"&lt;/s&gt;"</span>]) 
+<a id="x28-121046r1730"></a>nmt_tokenizer.train_from_iterator(train_eng_spa(), nmt_tokenizer_trainer)</pre>
+</code></pre>
+<p class="noindent">Let’s test this tokenizer:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb250"><a id="x28-121048r1735"></a>nmt_tokenizer.encode(<span style="color:#78730D;">"I like soccer"</span>).ids</pre>
+</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb251"><a id="x28-121050r1740"></a>nmt_tokenizer.encode(<span style="color:#78730D;">"&lt;s&gt; Me gusta el fútbol"</span>).ids</pre>
+</code></pre>
+<p class="noindent">Now let’s create a small utility class that will hold tokenized English <span class="margin-block">texts, <span class="margin-comment"><a class="ellipsis" href="#m-ref-259">[259]</a>
+<span class="sidenote">i.e., the source token ID
+sequences.</span></span></span> along with the corresponding tokenized Spanish <span class="margin-block">targets, <span class="margin-comment"><a class="ellipsis" href="#m-ref-260">[260]</a>
+<span class="sidenote">i.e., the target token ID sequences</span></span></span>
+plus the corresponding attention masks. For this, we can create a namedtuple base <span class="margin-block">class, <span class="margin-comment"><a class="ellipsis" href="#m-ref-261">[261]</a>
+<span class="sidenote">i.e., a tuple
+with named fields.</span></span></span> and extend it to add a <code class="verb">to()</code>  method, which will make it easy to move all these tensors to
+the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gpu">GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gpu">Graphical Processing Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gpu">A specialized electronic chip designed to rapidly render images,
+video, and 3D animations. Unlike a central processing unit (CPU) that processes tasks sequentially, a
+GPU uses parallel processing with thousands of smaller cores to handle many calculations at the same
+time.</a></span></span></span>:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb252"><a id="x28-121052r1745"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">collections</span> <span style="color:#9E0005;">import</span> namedtuple 
+<a id="x28-121054r1746"></a> 
+<a id="x28-121056r1747"></a>fields = [<span style="color:#78730D;">"src_token_ids"</span>, <span style="color:#78730D;">"src_mask"</span>, <span style="color:#78730D;">"tgt_token_ids"</span>, <span style="color:#78730D;">"tgt_mask"</span>] 
+<a id="x28-121058r1748"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">NmtPair</span>(namedtuple(<span style="color:#78730D;">"NmtPairBase"</span>, fields)): 
+<a id="x28-121060r1749"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">to</span>(<span style="color:#B03B03;">self</span>, device): 
+<a id="x28-121062r1750"></a>        <span style="color:#9E0005;">return</span> NmtPair(<span style="color:#B03B03;">self</span>.src_token_ids.to(device), <span style="color:#B03B03;">self</span>.src_mask.to(device), 
+<a id="x28-121064r1751"></a>                       <span style="color:#B03B03;">self</span>.tgt_token_ids.to(device), <span style="color:#B03B03;">self</span>.tgt_mask.to(device))</pre>
+</code></pre>
+<p class="noindent">Next, let’s create the data loaders:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb253"><a id="x28-121066r1756"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">nmt_collate_fn</span>(batch): 
+<a id="x28-121068r1757"></a>    src_texts = [pair[<span style="color:#78730D;">'source_text'</span>] <span style="color:#9E0005;">for</span> pair <span style="color:#9E0005;">in</span> batch] 
+<a id="x28-121070r1758"></a>    tgt_texts = [<span style="color:#78730D;">f</span><span style="color:#78730D;">"&lt;s&gt; </span><span style="color:#78730D;">{</span>pair[<span style="color:#78730D;">'target_text'</span>]<span style="color:#78730D;">}</span><span style="color:#78730D;"> &lt;/s&gt;"</span> <span style="color:#9E0005;">for</span> pair <span style="color:#9E0005;">in</span> batch] 
+<a id="x28-121072r1759"></a>    src_encodings = nmt_tokenizer.encode_batch(src_texts) 
+<a id="x28-121074r1760"></a>    tgt_encodings = nmt_tokenizer.encode_batch(tgt_texts) 
+<a id="x28-121076r1761"></a>    src_token_ids = torch.tensor([enc.ids <span style="color:#9E0005;">for</span> enc <span style="color:#9E0005;">in</span> src_encodings]) 
+<a id="x28-121078r1762"></a>    tgt_token_ids = torch.tensor([enc.ids <span style="color:#9E0005;">for</span> enc <span style="color:#9E0005;">in</span> tgt_encodings]) 
+<a id="x28-121080r1763"></a>    src_mask = torch.tensor([enc.attention_mask <span style="color:#9E0005;">for</span> enc <span style="color:#9E0005;">in</span> src_encodings]) 
+<a id="x28-121082r1764"></a>    tgt_mask = torch.tensor([enc.attention_mask <span style="color:#9E0005;">for</span> enc <span style="color:#9E0005;">in</span> tgt_encodings]) 
+<a id="x28-121084r1765"></a>    inputs = NmtPair(src_token_ids, src_mask, 
+<a id="x28-121086r1766"></a>                     tgt_token_ids[:, :-<span style="color:#8F4070;">1</span>], tgt_mask[:, :-<span style="color:#8F4070;">1</span>]) 
+<a id="x28-121088r1767"></a>    labels = tgt_token_ids[:, <span style="color:#8F4070;">1</span>:] 
+<a id="x28-121090r1768"></a>    <span style="color:#9E0005;">return</span> inputs, labels 
+<a id="x28-121092r1769"></a> 
+<a id="x28-121094r1770"></a>batch_size = <span style="color:#8F4070;">32</span> 
+<a id="x28-121096r1771"></a>nmt_train_loader = DataLoader(nmt_train_set, batch_size=batch_size, 
+<a id="x28-121098r1772"></a>                              collate_fn=nmt_collate_fn, shuffle=<span style="color:#9E0005;">True</span>) 
+<a id="x28-121100r1773"></a>nmt_valid_loader = DataLoader(nmt_valid_set, batch_size=batch_size, 
+<a id="x28-121102r1774"></a>                              collate_fn=nmt_collate_fn) 
+<a id="x28-121104r1775"></a>nmt_test_loader = DataLoader(nmt_test_set, batch_size=batch_size, 
+<a id="x28-121106r1776"></a>                             collate_fn=nmt_collate_fn)</pre>
+</code></pre>
+<p class="noindent">The <code class="verb">nmt_collate_fn()</code>  function starts by extracting all the English and Spanish texts from the given batch. In the
+process, it also adds an SoS token at the start of each Spanish text, as well as an EoS token at the end.
+It then tokenizes both the English and Spanish texts using our BPE tokenizer. Next, the input
+sequences and the attention masks are converted to tensors and wrapped in an NmtPair. Importantly,
+the function drops the EoS token from the decoder inputs, and drops the SoS token from the decoder
+targets. For example, the inputs may contain the token IDs for “&lt;s&gt; Me gusta el fútbol”, while the
+targets may contain the token IDs for “Me gusta el fútbol &lt;/s&gt;”. Lastly, the function returns the
+inputs (i.e., the NmtPair) along with the targets. Then we just create the data loaders as
+usual.
+</p><p class="noindent">And now we are ready to build our translation model. It’s just like Figure 14-5, except the encoder and
+decoder share the same <code class="verb">nn.Embedding</code>  layer, and the encoder and decoder <code class="verb">nn.GRU</code>  modules contain two layers
+each:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb254"><a id="x28-121108r1781"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">NmtModel</span>(nn.Module): 
+<a id="x28-121110r1782"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, vocab_size, embed_dim=<span style="color:#8F4070;">512</span>, pad_id=<span style="color:#8F4070;">0</span>, hidden_dim=<span style="color:#8F4070;">512</span>, 
+<a id="x28-121112r1783"></a>                 n_layers=<span style="color:#8F4070;">2</span>): 
+<a id="x28-121114r1784"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
+<a id="x28-121116r1785"></a>        <span style="color:#B03B03;">self</span>.embed = nn.Embedding(vocab_size, embed_dim, padding_idx=pad_id) 
+<a id="x28-121118r1786"></a>        <span style="color:#B03B03;">self</span>.encoder = nn.GRU(embed_dim, hidden_dim, num_layers=n_layers, 
+<a id="x28-121120r1787"></a>                              batch_first=<span style="color:#9E0005;">True</span>) 
+<a id="x28-121122r1788"></a>        <span style="color:#B03B03;">self</span>.decoder = nn.GRU(embed_dim, hidden_dim, num_layers=n_layers, 
+<a id="x28-121124r1789"></a>                              batch_first=<span style="color:#9E0005;">True</span>) 
+<a id="x28-121126r1790"></a>        <span style="color:#B03B03;">self</span>.output = nn.Linear(hidden_dim, vocab_size) 
+<a id="x28-121128r1791"></a> 
+<a id="x28-121130r1792"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, pair): 
+<a id="x28-121132r1793"></a>        src_embeddings = <span style="color:#B03B03;">self</span>.embed(pair.src_token_ids) 
+<a id="x28-121134r1794"></a>        tgt_embeddings = <span style="color:#B03B03;">self</span>.embed(pair.tgt_token_ids) 
+<a id="x28-121136r1795"></a>        src_lengths = pair.src_mask.sum(dim=<span style="color:#8F4070;">1</span>) 
+<a id="x28-121138r1796"></a>        src_packed = pack_padded_sequence( 
+<a id="x28-121140r1797"></a>            src_embeddings, lengths=src_lengths.cpu(), 
+<a id="x28-121142r1798"></a>            batch_first=<span style="color:#9E0005;">True</span>, enforce_sorted=<span style="color:#9E0005;">False</span>) 
+<a id="x28-121144r1799"></a>        _, hidden_states = <span style="color:#B03B03;">self</span>.encoder(src_packed) 
+<a id="x28-121146r1800"></a>        outputs, _ = <span style="color:#B03B03;">self</span>.decoder(tgt_embeddings, hidden_states) 
+<a id="x28-121148r1801"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(outputs).permute(<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">1</span>) 
+<a id="x28-121150r1802"></a> 
+<a id="x28-121152r1803"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x28-121154r1804"></a>vocab_size = nmt_tokenizer.get_vocab_size() 
+<a id="x28-121156r1805"></a>nmt_model = NmtModel(vocab_size).to(device)</pre>
+</code></pre>
+<p class="noindent">Almost everything in this model should look familiar: it’s very similar to our previous models. We
+create the modules in the constructor, then the <code class="verb">forward()</code>  method embeds the input sequences (both English
+and Spanish), it packs the English embeddings and passes them through the encoder, then it passes the
+Spanish embeddings to the decoder, along with the encoder’s last hidden states (across all <code class="verb">nn.GRU</code>
+layers). Lastly, the decoder’s outputs are passed through the output <code class="verb">nn.Linear</code>  layer, and the final
+outputs are permuted to ensure that the class dimension (containing the token logits) is
+the second dimension, since this is expected by the <code class="verb">nn.CrossEntropyLoss</code>  and the Accuracy metric, as we saw
+earlier.
+</p>
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-5.63" id="info-block-5.63"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 5.<a id="x28-121157r63"></a>63: </b> </span> <span class="title"> Bilingual Evaluation Understudy </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
+<p class="noindent">The most common metric used in <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nmt">NMT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nmt">Neural Machine Translation</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nmt">An approach to automated text
+translation that uses ANNs to model entire sentences and generate fluent, human-like outputs</a></span></span></span> is the
+bilingual evaluation understudy (BLEU) score, which compares each translation produced by the model
+with several good translations produced by humans. It counts the number of <i>n</i>-grams (sequences of n
+words) that appear in any of the target translations and adjusts the score to take into account the
+frequency of the produced n-grams in the target translations. It is implemented by TorchMetric’s
+BLEUScore class.
+</p>
+</dd></dl>
+<p class="noindent">We could have packed the Spanish embeddings, but then the decoder’s outputs would have been packed
+sequences, which we would have had to pad before we passed them to the output layer. We avoided this
+complexity because we can just configure the loss to ignore the output tokens when the targets are
+padding tokens, like this:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb255"><a id="x28-121159r344"></a>n_epochs = <span style="color:#8F4070;">20</span> 
+<a id="x28-121161r345"></a>xentropy = nn.CrossEntropyLoss() 
+<a id="x28-121163r346"></a>optimizer = torch.optim.NAdam(model.parameters()) 
+<a id="x28-121165r347"></a>accuracy = torchmetrics.Accuracy(task=<span style="color:#78730D;">"multiclass"</span>, 
+<a id="x28-121167r348"></a>                                 num_classes=<span style="color:#B03B03;">len</span>(vocab)).to(device) 
+<a id="x28-121169r349"></a> 
+<a id="x28-121171r350"></a>history = train(model, optimizer, xentropy, accuracy, train_loader, valid_loader, 
+<a id="x28-121173r351"></a>                n_epochs)</pre>
+</code></pre>
+<p class="noindent">Now you can train this <span class="margin-block">model, <span class="margin-comment"><a class="ellipsis" href="#m-ref-262">[262]</a>
+<span class="sidenote">e.g., for 10 epochs using a <code class="verb">Nadam</code>  optimizer with <code class="verb">lr = 0.001</code> .</span></span></span> and it will take quite a
+while. It’s actually not that long when you consider the fact that the model is learning two languages at
+once!
+</p><p class="noindent">While it’s training, let’s write a little helper function to translate some English text to Spanish using
+our model. It will start by calling the model with the English text for the encoder, and a
+single SoS token for the decoder. The decoder will just output logits for the first token in
+the translation. Our function will then pick the most likely <span class="margin-block">token <span class="margin-comment"><a class="ellipsis" href="#m-ref-263">[263]</a>
+<span class="sidenote">i.e., with the highest
+logit.</span></span></span> and add it to the decoder inputs, then it will call the model again to get the next
+token.
+</p><p class="noindent">It will repeat this process, adding one token at a time, until the model outputs an EoS
+token:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb256"><a id="x28-121175r361"></a>model.eval()  <span style="color:#918273;"><i># don't forget to switch the model to evaluation mode!</i></span> 
+<a id="x28-121177r362"></a>text = <span style="color:#78730D;">"To be or not to b"</span> 
+<a id="x28-121179r363"></a>encoded_text = encode_text(text).unsqueeze(dim=<span style="color:#8F4070;">0</span>).to(device) 
+<a id="x28-121181r364"></a><span style="color:#9E0005;">with</span> torch.no_grad(): 
+<a id="x28-121183r365"></a>    Y_logits = model(encoded_text) 
+<a id="x28-121185r366"></a>    predicted_char_id = Y_logits[<span style="color:#8F4070;">0</span>, :, -<span style="color:#8F4070;">1</span>].argmax().item() 
+<a id="x28-121187r367"></a>    predicted_char = id_to_char[predicted_char_id]  <span style="color:#918273;"><i># correctly predicts "e"</i></span></pre>
+</code></pre>
+<p class="noindent">This implementation works but it’s not optimized at all. We could run the encoder just once on the
+English text, and we could also run the decoder just once per time step, instead of running it over the
+whole growing text at each iteration.
+</p><p class="noindent">Let’s try translating some text!
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb257"><a id="x28-121189r372"></a>predicted_char</pre>
+</code></pre>
+<p class="noindent">It works. We just built a model from scratch that can translate English to Spanish.
+AnEncoder-DecoderNetworkforNeuralMachineTranslation | 565
+</p><p class="noindent">17 Sébastien Jean et al., “On Using Very Large Target Vocabulary for Neural Machine Translation”,
+Proceedings of the 53rd Annual Meeting of the Association for Computational Linguistics and the 7th
+International Joint Conference on Natural Language Processing of the Asian Federation of
+Natural Language Processing 1 (2015): 110. 18 Edouard Grave et al., “Efficient softmax
+approximation for GPUs”, arXiv preprint arXiv:1609.04309 (2016). 19 Ofir Press, Lior Wolf, “Using
+the Output Embedding to Improve Language Models”, arXiv preprint arXiv:1608.05859
+(2016).
+</p>
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-5.64" id="info-block-5.64"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 5.<a id="x28-121190r64"></a>64: </b> </span> <span class="title"> Model Optimizations </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
+<p class="noindent">When the output vocabulary is <span class="margin-block">large, <span class="margin-comment"><a class="ellipsis" href="#m-ref-264">[264]</a>
+<span class="sidenote">e.g., 10,000 tokens or more.</span></span></span> computing the <code class="verb">nn.CrossEntropyLoss</code>  can be quite slow,
+depending on the hardware. To speed things up, one technique is to use <span class="alert">sampled softmax</span>, introduced in 2015 by
+<i>Sébastien Jean et al</i> <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Jean2014OnUV"> <a id="x28-121191"></a>Jean, S. et al. On Using Very Large Target Vocabulary for Neural Machine
+Translation in Annual Meeting of the Association for Computational Linguistics (2014)</span></span>. Instead of
+computing the softmax over all of the logits, it computes an approximation based on the correct class’s
+logit, as well as a random sample of logits for other classes. This technique requires knowing the target,
+so it is only useful during <span class="margin-block">training. <span class="margin-comment"><a class="ellipsis" href="#m-ref-265">[265]</a>
+<span class="sidenote">Moreover, it is not included in PyTorch, so we have to implement it
+ourself.</span></span></span>
+</p><p class="noindent">Another technique is <span class="alert">adaptive softmax</span>, introduced in 2016 by Edouard Grave et al. <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail" id="Grave2016EfficientSA"> <a id="x28-121192"></a>Grave, E. et al. Efficient softmax
+approximation for GPUs in International Conference on Machine Learning (2016)</span></span>, which speeds up
+softmax computation by splitting the vocabulary into frequency-based clusters. Frequent
+tokens are processed normally, while less frequent tokens are placed in progressively larger
+clusters, reducing computation by only accessing the necessary clusters. This speeds up
+computations both during training and inference. PyTorch implements this algorithm in the <code class="verb">nn.AdaptiveLogSoftmaxWithLoss</code>
+class.
+</p><p class="noindent">Another thing you can do to speed up training and also save a lot of memory is to use the embedding
+matrix as the weights of the output layer. This is called <span class="alert">tying the weights</span> of these two layers, and it was first proposed in
+a 2016 paper by <i>Ofir Press</i> and <i>Lior</i> Wolf <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="Press2016UsingTO"> <a id="x28-121193"></a>Press, O. &amp; Wolf, L. Using the Output Embedding to
+Improve Language Models. ArXiv <b>abs/1608.05859</b> (2016)</span></span>.
+</p><p class="noindent">To implement it, just add <code class="verb">self.output.weight = self.embed.weight</code>  to the model’s constructor. You can also get rid of the output layer’s bias
+parameter, by setting <code class="verb">bias=False</code>  when creating the output layer. Tying the weights significantly reduces the
+number of model parameters, which speeds up training and may sometimes improve the
+model’s accuracy as well, especially if you don’t have a lot of training data. Why does this
+work?
+</p><p class="noindent">Well, as we saw earlier, the embedding matrix is equivalent to one-hot encoding followed by a linear
+layer with no bias term and no activation function that maps the one-hot vectors to the embedding
+space. The output layer does the reverse. So if the model can find an embedding matrix whose
+transpose is equal to its <span class="margin-block">inverse, <span class="margin-comment"><a class="ellipsis" href="#m-ref-266">[266]</a>
+<span class="sidenote">such a matrix is called an orthogonal matrix.</span></span></span> then there’s no need to
+learn a separate set of weights for the output layer.
+</p>
+</dd></dl>
+<p class="noindent">If you play around with our translation model, you will find that it often works reasonably well on
+short text, but it really struggles with longer sentences. For example:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb258"><a id="x28-121195r382"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x28-121197r383"></a>probs = torch.tensor([[<span style="color:#8F4070;">0.5</span>, <span style="color:#8F4070;">0.4</span>, <span style="color:#8F4070;">0.1</span>]])  <span style="color:#918273;"><i># probas = 50%, 40%, and 10%</i></span> 
+<a id="x28-121199r384"></a>samples = torch.multinomial(probs, replacement=<span style="color:#9E0005;">True</span>, num_samples=<span style="color:#8F4070;">8</span>) 
+<a id="x28-121201r385"></a>samples</pre>
+</code></pre>
+<p class="noindent">The translation says “I like to play with my friends”, however, there’s no mention of soccer. So how can
+we improve this model?
+</p><p class="noindent">One way is to increase the training set size and add more <code class="verb">nn.GRU</code>  layers in both the encoder and the decoder.
+You could also make the encoder <span class="margin-block">bidirectional. <span class="margin-comment"><a class="ellipsis" href="#m-ref-267">[267]</a>
+<span class="sidenote">but not the decoder, or else it would no longer be causal
+and it would see the full translation at each time step, instead of just the previous tokens.</span></span></span> Another
+popular technique that can greatly improve the performance of a translation model at inference time is
+beam search.
+</p>
+<div class="subsection-header"><h5 id="header-subsubsection-5.3.3.23"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x28-122000"></a>Beam Search</span></h5></div>
+<p class="noindent">To translate an English text to Spanish, we call our model several times, producing one word at a time.
+Unfortunately, this means that when the model makes one mistake, it is stuck with it for the rest of the
+translation, which can cause more errors, making the translation worse and worse. </p><div class="quote">  For example,
+suppose we want to translate “I like soccer”, and the model correctly starts with “Me”, but then
+predicts “gustan” (plural) instead of “gusta” (singular). This mistake is understandable, since “Me
+gustan” is the correct way to start translating “I like” in many cases. Once the model has made this
+mistake, it is stuck with “gustan”. It then reasonably adds “los”, which is the plural for “the”.
+But since the model never saw “los fútbol” in the training data (soccer is singular, not
+plural), the model tries to find something reasonable to add, and given the context it adds
+“jugadores”, which means “the players”. So “I like soccer” gets translated to “I like the players”.
+</div>
+<div class="block-minor warning"><div class="body">
+<p class="noindent">One error caused a <span class="alert">chain of errors</span>. </p></div></div>
+<p class="noindent">How can we give the model a chance to go back and fix mistakes it made earlier? One of the most
+common solutions is beam search: </p><div class="quote">  it keeps track of a short list of the k most promising output
+sequences (say, the top three), and at each decoder step it tries to extend each of them by one word,
+keeping only the k most likely sequences. </div>
+<p class="noindent">The parameter k is called the beam width.
+</p><p class="noindent">For example, suppose you use the model to translate the sentence “I like soccer” using beam search
+with a beam width of three (see Figure 14-7). At the first decoder step, the model will output an
+estimated probability for each possible first word in the translated sentence. Suppose the top three
+words are “Me” (75% estimated probability), “a” (3%), and “como” (1%). That’s our short list so
+far. Next, we use the model to find the next word for each sentence. For the first sentence
+(“Me”), perhaps the model outputs a probability of 36% for the word “gustan”, 32% for
+the word “gusta”, 16% for the word “encanta”, and so on. Note that these are actually
+conditional probabilities, given that the sentence starts with “Me”. For the second sentence (“a”),
+the model might output a conditional probability of 50% for the word “mi”, and so on.
+Assuming the vocabulary has 10,000 tokens, we will end up with 10,000 probabilities per
+sentence.
+</p><p class="noindent">Next, we compute the probabilities of each of the 30,000 two-token sentences we considered
+(<math display="inline"><mn>3</mn> <mi>×</mi> <mn>1</mn><mn>0</mn><mi>,</mi><mn>0</mn><mn>0</mn><mn>0</mn></math>). We
+do this by multiplying the estimated conditional probability of each word by the estimated probability
+of the sentence it completes. </p><div class="quote">  For example, the estimated probability of the sentence “Me” was 75%,
+while the estimated conditional probability of the word “gustan” (given that the first word is “Me”)
+was 36%, so the estimated probability of the sentence “Me gustan” is 75% Œ 36% = 27%.
+</div>
+<p class="noindent">After computing the probabilities of all 30,000 two-word sentences, we keep only the top 3. In this
+example they all start with the word “Me”: “Me gustan” (27%), “Me gusta” (24%), and “Me
+encanta” (12%). Right now, the sentence “Me gustan” is winning, but “Me gusta” has not been
+eliminated.
+</p><p class="noindent">Then we repeat the same process: we use the model to predict the next word in each of these three
+sentences, and we compute the probabilities of all 30,000 three-word sentences we considered. Perhaps
+the top 3 are now “Me gustan los” (10%), “Me gusta el” (8%), and “Me gusta mucho” (2%). At the
+next step we may get “Me gusta el fútbol” (6%), “Me gusta mucho el” (1%), and “Me gusta el deporte”
+(0.2%). Notice that “Me gustan” was eliminated, and the correct translation is now ahead. We boosted
+our encoder-decoder model’s performance without any extra training, simply by using it more
+wisely.
+</p><p class="noindent">The notebook for this chapter contains a very simple <code class="verb">beam_search()</code>  function, if you’re interested, but in general you
+will probably want to use the implementation provided by the <code class="verb">GenerationMixin</code>  class in the Transformers library. This
+is where the text generation models from the Transformers library get their <code class="verb">generate()</code>  method: it accepts a <code class="verb">num_beams</code>
+argument which you can set to the desired beam width if you want to use beam search. It also provides
+a <code class="verb">do_sample</code>  argument that will randomly
+</p><p class="noindent">20 Dzmitry Bahdanau et al., “Neural Machine Translation by Jointly Learning to Align and Translate”,
+arXiv preprint arXiv:1409.0473 (2014). sample the next token using the probability distribution output
+by the model, just like we did earlier with our char-RNN model. Other generation strategies are also
+supported and can be combined (see https://homl.info/hfgen for more details). With all this, you can
+get reasonably good translations for fairly short sentences. For example, the following translation is
+correct:
+</p><p class="noindent">This translates to “I like to play with play with the players of the beach”. That’s not quite right. Once
+again, the problem comes from the limited short-term memory of <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a
+type of ANN designed to process sequential data, such as text, speech, or time series, by passing
+information through loops from one step to the next</a></span></span></span>s.
+</p>
+<div class="block-minor warning"><div class="body">
+<p class="noindent">Attention mechanisms are the game-changing innovation that addressed this problem. </p></div></div>
+<div class="subsection-header"><h4 id="header-subsection-5.3.4"><span class="number">5.3.4</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.5.3.4"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x28-1230005.3.4"></a>Attention Mechanisms</span></h4></div>
+<p class="noindent">Consider the path from the word “soccer” to its translation “fútbol” back in Figure 14-5: it is
+quite long! This means that a representation of this <span class="margin-block">word <span class="margin-comment"><a class="ellipsis" href="#m-ref-268">[268]</a>
+<span class="sidenote">along with all the other words.</span></span></span>
+needs to be carried over many steps before it is actually used. Can’t we make this path
+shorter?
+</p><p class="noindent">This was the core idea in a landmark 2014 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-5]</a><span class="cite-detail" id="Bahdanau2014NeuralMT"> <a id="x28-123001"></a>Bahdanau, D., Cho, K. &amp; Bengio, Y. Neural
+Machine Translation by Jointly Learning to Align and Translate. arXiv: Computation and Language
+(2014)</span></span> by <i>Dzmitry Bahdanau</i> et al., where the authors introduced a technique that allowed the decoder
+to focus on the appropriate words (as encoded by the encoder) at each time step. </p><div class="quote">  For example, at the
+time step where the decoder needs to output the word “fútbol”, it will focus its attention on the word
+“soccer”. </div>
+<p class="noindent">This means that the path from an input word to its translation is now much shorter, so the short-term
+memory limitations of <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential
+data, such as text, speech, or time series, by passing information through loops from one step to the
+next</a></span></span></span>s have much less impact. Attention mechanisms revolutionized <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nmt">NMT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nmt">Neural Machine Translation</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nmt">An
+approach to automated text translation that uses ANNs to model entire sentences and generate fluent,
+human-like outputs</a></span></span></span>, and <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dl">DL</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dl">Deep Learning</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dl">A subset of machine learning that uses multi-layered
+artificial neural networks to mimic human brain function. It automatically extracts complex patterns
+and abstract features from vast amounts of unstructured data, powering modern applications
+like computer vision, speech recognition, and large language models.</a></span></span></span> in general, allowing a
+significant improvement in the state of the art, especially for long <span class="margin-block">sentences. <span class="margin-comment"><a class="ellipsis" href="#m-ref-269">[269]</a>
+<span class="sidenote">e.g., over 30
+words.</span></span></span>
+</p><p class="noindent">Figure 14-8 shows our encoder-decoder model with an added attention mechanism:
+</p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent">On the left, you have the encoder and the <span class="margin-block">decoder. <span class="margin-comment"><a class="ellipsis" href="#m-ref-270">[270]</a>
+<span class="sidenote">I’ve made the encoder bidirectional in
+this figure, as it’s generally a good idea.</span></span></span>
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">Instead of sending the encoder’s final hidden state to the decoder, as well as the previous
+target word at each time <span class="margin-block">step, <span class="margin-comment"><a class="ellipsis" href="#m-ref-271">[271]</a>
+<span class="sidenote">which is still done, but it is not shown in the figure.</span></span></span> we now
+send all of the encoder’s outputs to the decoder as well.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">Since the decoder cannot deal with all these encoder outputs at once, they need to be
+aggregated: at each time step, the decoder’s memory cell computes a weighted sum of all
+the encoder outputs.
+</p>
+<div class="block-minor knowledge"><div class="body">
+<p class="noindent">This determines which words the decoder will focus on at this step. </p></div></div>
+</li>
+<li class="itemize">
+<p class="noindent">The weight <math display="inline"><msub><mrow><mi>α</mi></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-punc" stretchy="false">,</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math> is
+the weight of the <math display="inline"><msup><mrow><mstyle class="text"><mtext>i</mtext></mstyle></mrow><mrow><mstyle class="text"><mtext>th</mtext></mstyle></mrow></msup></math>
+encoder output at the <math display="inline"><msup><mrow><mstyle class="text"><mtext>t</mtext></mstyle></mrow><mrow><mstyle class="text"><mtext>th</mtext></mstyle></mrow></msup></math>
+decoder time step. </p><div class="quote">   For example, if the weight
+<math display="inline"><msub><mrow><mi>α</mi></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>3</mn><mo class="MathClass-punc" stretchy="false">,</mo><mn>2</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math> is much larger
+than the weights <math display="inline"><msub><mrow><mi>α</mi></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>3</mn><mo class="MathClass-punc" stretchy="false">,</mo><mn>0</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+and <math display="inline"><msub><mrow><mi>α</mi></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>3</mn><mo class="MathClass-punc" stretchy="false">,</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>,
+then the decoder will pay much more attention to the encoder’s output for word #2 (“soccer”)
+than to the other two outputs, at least at this time step. </div>
+</li>
+<li class="itemize">
+<p class="noindent">The rest of the decoder works just like earlier: at each time step the memory cell
+receives the inputs we just discussed, plus the hidden state from the previous time step,
+and finally (although it is not represented in the diagram) it receives the target word
+from the previous time <span class="margin-block">step. <span class="margin-comment"><a class="ellipsis" href="#m-ref-272">[272]</a>
+<span class="sidenote">or at inference time, the output from the previous time
+step.</span></span></span></p></li></ul>
+<p class="noindent">But where do these <math display="inline"><msub><mrow><mi>α</mi></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-punc" stretchy="false">,</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+weights come from? Well, they are generated by a small <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span> called
+an alignment model (or an attention layer), which is trained jointly with the rest of the
+encoder-decoder model. This alignment model is illustrated on the righthand side of Figure 14-8:
+</p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent">It starts with a dense layer (i.e., <code class="verb">nn.Linear</code> ) that takes as input each of the
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">encoder’s outputs, along with the decoder’s previous hidden state (e.g., <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>2</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>),
+and outputs a score (or energy) for each encoder output (e.g., <math display="inline"><msub><mrow><mi>e</mi></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>3</mn><mo class="MathClass-punc" stretchy="false">,</mo><mn>2</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>).
+This score measures how well each encoder output is aligned with the decoder’s previous
+hidden state.
+</p>
+<div class="quote">  For example, in Figure 14-8, the model has already output “me gusta el”<span class="margin-block">, <span class="margin-comment"><a class="ellipsis" href="#m-ref-273">[273]</a>
+<span class="sidenote">meaning “I like”.</span></span></span> so
+it’s now expecting a noun. The word “soccer” is the one that best aligns with the current state, so
+it gets a high score. </div>
+</li>
+<li class="itemize">
+<p class="noindent">Finally, all the scores go through a softmax layer to get a final weight for each encoder output (e.All.,
+). g<math display="inline"><msub><mrow><mi>α</mi></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>3</mn><mo class="MathClass-punc" stretchy="false">,</mo><mn>2</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+the weights for a given decoder time step add up to 1.</p></li></ul>
+<p class="noindent">This particular attention mechanism is called <i>Bahdanau</i> <span class="margin-block">attention. <span class="margin-comment"><a class="ellipsis" href="#m-ref-274">[274]</a>
+<span class="sidenote">named after the 2014 paper’s first
+author.</span></span></span> Since it concatenates the encoder output with the decoder’s previous hidden state, it is
+sometimes called concatenative attention (or additive attention).
+</p><p class="noindent">In short, the attention mechanism provides a way to focus the attention of the model on part of the
+inputs. That said, there’s another way to think of this whole process: it acts as a differentiable memory
+retrieval mechanism. For example, let’s suppose the encoder analyzed the input sentence “I like soccer”,
+and it managed to understand that the word “I” is the subject, the word “like” is the verb, and the
+word “soccer” is the noun, so it encoded this information in its outputs for these words. Now suppose
+the decoder has already translated “I like”, and it thinks that it should translate the noun
+next.
+</p><p class="noindent">For this, it needs to fetch the noun from the input sentence. This is analogous to a dictionary lookup:
+it’s as if the encoder had created a dictionary <code class="verb">{"subject'': ``I'', ``verb'': ``like'', ``noun'': ``soccer"}</code>  and the decoder wanted to look up the value that
+corresponds to the key “noun”.
+</p><p class="noindent">However, the model does not have discrete tokens to represent the keys (like “subject”, “verb”, or
+“noun”); instead, it has vectorized representations of these concepts that it learned during training, so
+the query it will use for the lookup will not perfectly match any key in the dictionary. One solution is
+to compute a similarity measure between the query and each key in the dictionary, and then use the
+softmax function to convert these similarity scores to weights that add up to 1. As we just saw, that’s
+exactly what the attention layer does. If the key that represents the noun is by far the
+most similar to the query, then that key’s weight will be close to 1. Next, the attention
+layer computes a weighted sum of the corresponding values: if the weight of the “noun” key
+is close to 1, then the weighted sum will be very close to the representation of the word
+“soccer”. In short, the decoder queried for a noun and the attention mechanism retrieved
+it.
+</p><p class="noindent">In most modern implementations of attention mechanisms, the arguments are named query, key, and
+value. In our example, the query is the decoder’s hidden states, the key is the encoder’s <span class="margin-block">outputs, <span class="margin-comment"><a class="ellipsis" href="#m-ref-275">[275]</a>
+<span class="sidenote">this is
+used to compute the weights.</span></span></span> and the value is also the encoder’s <span class="margin-block">outputs. <span class="margin-comment"><a class="ellipsis" href="#m-ref-276">[276]</a>
+<span class="sidenote">this is used to compute the
+final weighted sum.</span></span></span>
+</p>
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-5.65" id="info-block-5.65"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 5.<a id="x28-123002r65"></a>65: </b> </span> <span class="title"> Computational Complexity </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
+<p class="noindent">If the input sentence is n words long, and assuming the output sentence is
+about as long, then the attention mechanism will need to compute about
+<math display="inline"><msup><mrow><mi>n</mi></mrow><mrow><mn>2</mn></mrow></msup></math>
+weights. This quadratic computational complexity becomes <span class="alert">untractable</span> when the sentences are too
+long.
+</p>
+</dd></dl>
+<p class="noindent">Another common attention mechanism, known as <b>Luong attention</b> or <b>multiplicative attention</b>,
+was proposed shortly after, in 2015 <span class="cite"><a class="cite-show" href="#w3-20001">[†-6]</a><span class="cite-detail" id="Luong2015EffectiveAT"> <a id="x28-123003"></a>Luong, T., Pham, H. &amp; Manning, C. D. Effective Approaches to
+Attention-based Neural Machine Translation in Conference on Empirical Methods in Natural Language
+Processing (2015)</span></span>, by <i>Minh-Thang Luong</i> et al. Because the goal of the alignment model is to
+measure the similarity between one of the encoder’s outputs and the decoder’s previous hidden
+state, the authors proposed to simply compute the dot product of these two vectors, as
+this is often a fairly good similarity measure, and modern hardware can compute it very
+efficiently.
+</p><p class="noindent">For this to be possible, both vectors must have the same dimensionality. The dot product gives a score,
+and all the <span class="margin-block">scores <span class="margin-comment"><a class="ellipsis" href="#m-ref-277">[277]</a>
+<span class="sidenote">at a given decoder time step.</span></span></span> go through a softmax layer to give the final weights,
+just like in <span class="alert">Bahdanau attention</span>.
+</p><p class="noindent"><i>Luong</i> et al. also proposed to use the decoder’s hidden state at the current time step rather than at the previous time
+step (i.e., <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math> rather than
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>) to compute the attention
+vector (denoted <math display="inline"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mo accent="true">~</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>).
+This attention vector is then concatenated with the decoder’s hidden state to form an attentional
+hidden state, which is then used to predict the next token.
+</p>
+<div class="block-minor knowledge"><div class="body">
+<p class="noindent">This simplifies and speeds up the process by allowing the encoder and decoder to operate independently
+before attention is applied, rather than interweaving attention into the decoder’s recurrence.
+</p></div></div>
+<p class="noindent">The researchers also proposed a variant of the dot product mechanism where the encoder outputs first
+go through a fully connected layer (without a bias term) before the dot products are computed. This is
+called the “general” dot product approach. The researchers compared both dot product
+approaches with the concatenative attention mechanism (adding a rescaling parameter vector
+<math display="inline"><mstyle mathvariant="bold"><mi>v</mi></mstyle></math>), and
+they observed that the dot product variants performed better than concatenative attention.
+</p><p class="noindent">For this reason, concatenative attention is much less used now. The equations for these three attention
+mechanisms are summarized in Eq. (<a href="#x28-123004r2">5.2</a>). </p><table class="equation"><tr><td>
+<math class="equation" display="block">
+<mstyle class="label" id="x28-123004r2"></mstyle><mtable class="aligned" displaystyle="true"><mtr><mtd columnalign="right"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mo accent="true">~</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mtd>
+<mtd columnalign="left"> <mo class="MathClass-rel" stretchy="false">=</mo><munder class="msub"><mrow><mo> ∑</mo>
+</mrow><mrow><mi>i</mi></mrow></munder><msub><mrow><mi>α</mi></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-punc" stretchy="false">,</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mtd>
+<mtd columnalign="right"></mtd>
+</mtr><mtr><mtd columnalign="right"><msub><mrow><mi>α</mi></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-punc" stretchy="false">,</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mtd><mtd columnalign="left"> <mo class="MathClass-rel" stretchy="false">=</mo> <mfrac><mrow> <mi class="loglike">exp</mi><mo>⁡</mo><msup><mrow> <mrow><mo fence="true" form="prefix">(</mo><mrow><msub><mrow><mi>e</mi></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-punc" stretchy="false">,</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mrow><mo fence="true" form="postfix">)</mo></mrow> </mrow><mrow></mrow></msup></mrow>
+<mrow>
+<munder class="msub"><mrow><mo> ∑</mo>
+</mrow><mrow><msup><mrow><mi>i</mi></mrow><mrow><mi>′</mi></mrow></msup></mrow></munder><mo> <mi class="loglike">exp</mi><mo>⁡</mo></mo><msup><mrow> <mrow><mo fence="true" form="prefix">(</mo><mrow><msub><mrow><mi>e</mi></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-punc" stretchy="false">,</mo><msup><mrow><mi>i</mi></mrow><mrow><mi>′</mi></mrow></msup><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mrow><mo fence="true" form="postfix">)</mo></mrow> </mrow><mrow></mrow></msup></mrow></mfrac></mtd>
+</mtr> </mtable><mspace class="quad" width="1em"></mspace><mstyle class="text"><mtext>and</mtext></mstyle><mspace class="quad" width="1em"></mspace><msub><mrow><mi>e</mi></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-punc" stretchy="false">,</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mo class="MathClass-rel" stretchy="false">=</mo> <mrow class="cases"> <mrow><mo fence="true" form="prefix">{</mo><mrow> <mtable align="axis" class="array" columnlines="none" displaystyle="true" equalcolumns="false" equalrows="false" style=""> <mtr class="array-row"><mtd class="array-td" columnalign="left"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo></mrow></msub><mi>t</mi><msup><mrow><mo class="MathClass-close" stretchy="false">)</mo></mrow><mrow><mstyle class="text"><mtext>T</mtext></mstyle></mrow></msup><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mspace class="quad" width="1em"></mspace></mtd>
+<mtd class="array-td" columnalign="left"><mstyle class="text"><mtext>dot</mtext></mstyle> </mtd>
+</mtr> <mtr class="array-row"><mtd class="array-td" columnalign="left"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo></mrow></msub><mi>t</mi><msup><mrow><mo class="MathClass-close" stretchy="false">)</mo></mrow><mrow><mstyle class="text"><mtext>T</mtext></mstyle></mrow></msup><mstyle mathvariant="bold"><mi>W</mi></mstyle><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mspace class="quad" width="1em"></mspace></mtd><mtd class="array-td" columnalign="left"><mstyle class="text"><mtext>general</mtext></mstyle></mtd>
+</mtr>
+<mtr class="array-row"><mtd class="array-td" columnalign="left"><msup><mrow><mstyle mathvariant="bold"><mi>v</mi></mstyle></mrow><mrow><mstyle class="text"><mtext>T</mtext></mstyle></mrow></msup><mi class="loglike">tanh</mi><mo>⁡</mo><msup><mrow> <mrow><mo fence="true" form="prefix">(</mo><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle> <mrow><mo fence="true" form="prefix">[</mo><mrow><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub><mo class="MathClass-punc" stretchy="false">;</mo><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mrow><mo fence="true" form="postfix">]</mo></mrow> <mstyle class="text"><mtext></mtext></mstyle> </mrow><mo fence="true" form="postfix">)</mo></mrow> </mrow><mrow></mrow></msup><mspace class="quad" width="1em"></mspace></mtd>
+<mtd class="array-td" columnalign="left"><mstyle class="text"><mtext>concat</mtext></mstyle> </mtd></mtr></mtable> </mrow><mo fence="true" form="postfix"></mo></mrow></mrow>
+</math></td><td class="eq-no">(5.2)</td></tr></table>
+<p class="noindent"></p>
+<p class="noindent">Let’s add Luong attention to our encoder-decoder model. Since PyTorch does not include a Luong
+attention function, we need to write our own. Luckily, it’s pretty short:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb259"><a id="x28-123006r1954"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">attention</span>(query, key, value):  <span style="color:#918273;"><i># note: dq == dk and Lk == Lv</i></span> 
+<a id="x28-123008r1955"></a>    scores = query @ key.transpose(<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">2</span>)  <span style="color:#918273;"><i># [B,Lq,dq] @ [B,dk,Lk] = [B, Lq, Lk]</i></span> 
+<a id="x28-123010r1956"></a>    weights = torch.softmax(scores, dim=-<span style="color:#8F4070;">1</span>)  <span style="color:#918273;"><i># [B, Lq, Lk]</i></span> 
+<a id="x28-123012r1957"></a>    <span style="color:#9E0005;">return</span> weights @ value  <span style="color:#918273;"><i># [B, Lq, Lk] @ [B, Lv, dv] = [B, Lq, dv]</i></span></pre>
+</code></pre>
+<p class="noindent">Just like in Eq. (<a href="#x28-123004r2">5.2</a>), we first compute the attention scores, then we convert them to attention weights
+using the softmax function, and lastly we compute the attention output by multiplying the
+attention weights with the <span class="margin-block">value. <span class="margin-comment"><a class="ellipsis" href="#m-ref-278">[278]</a>
+<span class="sidenote">i.e., the encoder outputs.</span></span></span> This implementation efficiently runs
+all these computations for the whole batch at once. The query argument corresponds to
+<math display="inline"><mstyle mathvariant="bold"><mi>h</mi></mstyle><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></math>
+in Eq. (<a href="#x28-123004r2">5.2</a>) <span class="margin-block">, <span class="margin-comment"><a class="ellipsis" href="#m-ref-279">[279]</a>
+<span class="sidenote">i.e., the decoder’s hidden states.</span></span></span> and the key argument corresponds to
+<math display="inline"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mi>i</mi></mrow></msub></math><span class="margin-block">, <span class="margin-comment"><a class="ellipsis" href="#m-ref-280">[280]</a>
+<span class="sidenote">i.e., the
+encoder’s outputs.</span></span></span> but only for the computation of the attention scores. The value argument also corresponds
+to <math display="inline"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mi>i</mi></mrow></msub></math>, but
+only for the final computation of the weighted sum. The key and value arguments are generally
+identical, but there are a few scenarios where they can <span class="margin-block">differ. <span class="margin-comment"><a class="ellipsis" href="#m-ref-281">[281]</a>
+<span class="sidenote">e.g., some models use compressed keys to
+save memory and speed up the score computation.</span></span></span> The shapes are shown in the comments: </p><div class="quote"> <code class="verb">B</code>  is the
+batch size; <code class="verb">Lq</code>  is the length of the longest query in the batch; <code class="verb">Lk</code>  is the length of the longest key in the
+<span class="margin-block">batch; <span class="margin-comment"><a class="ellipsis" href="#m-ref-282">[282]</a>
+<span class="sidenote">note that each value must have the same length as its corresponding key.</span></span></span> <code class="verb">dq</code>  is the query’s
+embedding size, which must be the same as the key’s embedding size <code class="verb">dk</code> ; and <code class="verb">dv</code>  is the value’s embedding
+size. </div>
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-5.66" id="info-block-5.66"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 5.<a id="x28-123013r66"></a>66: </b> </span> <span class="title"> Tensor Operations </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
+<p class="noindent">Since all arguments are 3D tensors, we could replace the <code class="verb">@</code>  matrix multiplication operator with the <span class="alert">batch matrix multiplication</span>
+function: <code class="verb">torch.bmm()</code> . This function only works with batches of matrices, i.e., 3D tensors, but it’s optimized for
+this use case so it runs faster. The result is the same: </p><div class="quote">  each matrix in the first tensor gets multiplied by
+the corresponding matrix in the second tensor. </div>
+</dd></dl>
+<p class="noindent">Now let’s update our <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nmt">NMT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nmt">Neural Machine Translation</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nmt">An approach to automated text translation that
+uses ANNs to model entire sentences and generate fluent, human-like outputs</a></span></span></span> model. The constructor
+needs just one modification - the output layer’s input size must be doubled, since we will concatenate
+the attention vectors to the decoder outputs:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb260"><a id="x28-123015r1978"></a>        <span style="color:#B03B03;">self</span>.output = nn.Linear(<span style="color:#8F4070;">2</span> * hidden_dim, vocab_size)</pre>
+</code></pre>
+<p class="noindent">Next, let’s add attention to the forward() method:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb261"><a id="x28-123017r1980"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, pair): 
+<a id="x28-123019r1981"></a>        src_embeddings = <span style="color:#B03B03;">self</span>.embed(pair.src_token_ids)  <span style="color:#918273;"><i># same as earlier</i></span> 
+<a id="x28-123021r1982"></a>        tgt_embeddings = <span style="color:#B03B03;">self</span>.embed(pair.tgt_token_ids)  <span style="color:#918273;"><i># same</i></span> 
+<a id="x28-123023r1983"></a>        src_lengths = pair.src_mask.sum(dim=<span style="color:#8F4070;">1</span>)  <span style="color:#918273;"><i># same</i></span> 
+<a id="x28-123025r1984"></a>        src_packed = pack_padded_sequence( 
+<a id="x28-123027r1985"></a>            src_embeddings, lengths=src_lengths.cpu(), 
+<a id="x28-123029r1986"></a>            batch_first=<span style="color:#9E0005;">True</span>, enforce_sorted=<span style="color:#9E0005;">False</span>)  <span style="color:#918273;"><i># same</i></span> 
+<a id="x28-123031r1987"></a>        encoder_outputs_packed, hidden_states = <span style="color:#B03B03;">self</span>.encoder(src_packed) 
+<a id="x28-123033r1988"></a>        decoder_outputs, _ = <span style="color:#B03B03;">self</span>.decoder(tgt_embeddings, hidden_states)  <span style="color:#918273;"><i># same</i></span> 
+<a id="x28-123035r1989"></a>        encoder_outputs, _ = pad_packed_sequence(encoder_outputs_packed, 
+<a id="x28-123037r1990"></a>                                                 batch_first=<span style="color:#9E0005;">True</span>) 
+<a id="x28-123039r1991"></a>        attn_output = attention(query=decoder_outputs, 
+<a id="x28-123041r1992"></a>                                key=encoder_outputs, value=encoder_outputs) 
+<a id="x28-123043r1993"></a>        combined_output = torch.cat((attn_output, decoder_outputs), dim=-<span style="color:#8F4070;">1</span>) 
+<a id="x28-123045r1994"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(combined_output).permute(<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">1</span>)</pre>
+</code></pre>
+<p class="noindent">Let’s go through this code: </p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent">We compute the English and Spanish embeddings, the English sequence lengths, and we
+pack the English embeddings, just like earlier.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">We then run the encoder like earlier, but we no longer ignore its outputs since we will need
+them for the attention function.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">Next, we run the decoder, just like earlier.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">Since  the  encoder’s  inputs  are  represented  as  a  packed  sequence,  its  outputs  are  also
+represented as a packed sequence. Not many operations support packed sequences, so we
+must convert the encoder’s outputs to a padded tensor using the <code class="verb">pad_packed_sequence()</code>  function.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">And now we can call our <code class="verb">attention()</code>  function. Note that we pass the decoder outputs instead of the
+hidden states because the decoder only returns the last hidden states. That’s OK because
+the <code class="verb">nn.GRU</code>  layer’s outputs are equal to its top-layer hidden states.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">Lastly,  we  concatenate  the  attention  output  and  the  decoder  outputs  along  the  last
+dimension, and we pass the result through the output layer. As earlier, we also permute
+the last two dimensions of the result.</p></li></ul>
+<p class="noindent">Our attention mechanism doesn’t ignore padding tokens. The model learns to ignore them during
+training, but it’s preferable to mask them entirely. We will see how in <span class="refclass-ref">??</span>. And that’s it. If you train
+this model, you will find that it now handles much longer sentences.
+</p><p class="noindent">For example:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb262"><a id="x28-123047r2024"></a>translate(nmt_attn_model, longest_text)</pre>
+</code></pre>
+<p class="noindent">Perfect! We didn’t even have to use beam search. In fact, attention mechanisms turned out to be so
+powerful that some Google researchers tried getting rid of recurrent layers altogether, only
+using feedforward layers and attention. Surprisingly, it worked like a charm. This led the
+researchers to name their paper “Attention is all you need”, introducing the Transformer
+architecture to the world. This was the start of a huge revolution in NLP and beyond. In the next
+chapter, we will explore the Transformer architecture and see how it revolutionized deep
+learning.
+<div class="section-header">
+<h3 id="header-section-glossary">
+<span class="number">
+<i class="fa-regular fa-bookmark"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+        Page Glossary Terms</span>
+</h3>
+</div>
+<div class="acronym-block">
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:nn">¶</a>
+<dt class="acr-bottom" id="glo:nn"><span class="acr-short">NN</span><span class="acr-long">Neural Networks</span></dt>
+<dd class="acr-desc"><p>Neural Networks</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:dl">¶</a>
+<dt class="acr-bottom" id="glo:dl"><span class="acr-short">DL</span><span class="acr-long">Deep Learning</span></dt>
+<dd class="acr-desc"><p>A subset of machine learning that uses multi-layered
+artificial neural networks to mimic human brain function. It automatically extracts complex patterns
+and abstract features from vast amounts of unstructured data, powering modern applications
+like computer vision, speech recognition, and large language models.</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:nmt">¶</a>
+<dt class="acr-bottom" id="glo:nmt"><span class="acr-short">NMT</span><span class="acr-long">Neural Machine Translation</span></dt>
+<dd class="acr-desc"><p>An
+approach to automated text translation that uses ANNs to model entire sentences and generate fluent,
+human-like outputs</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:api">¶</a>
+<dt class="acr-bottom" id="glo:api"><span class="acr-short">API</span><span class="acr-long">Application-Programming Interface</span></dt>
+<dd class="acr-desc"><p>Application-Programming Interface</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:gpu">¶</a>
+<dt class="acr-bottom" id="glo:gpu"><span class="acr-short">GPU</span><span class="acr-long">Graphical Processing Unit</span></dt>
+<dd class="acr-desc"><p>A specialized electronic chip designed to rapidly render images, video,
+and 3D animations. Unlike a central processing unit (CPU) that processes tasks sequentially, a GPU
+uses parallel processing with thousands of smaller cores to handle many calculations at the same
+time.</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:bert">¶</a>
+<dt class="acr-bottom" id="glo:bert"><span class="acr-short">BERT</span><span class="acr-long">Bidirectional Encoder Representations from
+Transformers</span></dt>
+<dd class="acr-desc"><p>a ML framework developed by Google in 2018 to help computers understand the context
+of human language</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:rnn">¶</a>
+<dt class="acr-bottom" id="glo:rnn"><span class="acr-short">RNN</span><span class="acr-long">Recurrent Neural Networks</span></dt>
+<dd class="acr-desc"><p>a type of ANN designed to process sequential data, such
+as text, speech, or time series, by passing information through loops from one step to the next</p></dd>
+</dl>
+</div>
+<div class="section-header">
+<h3 id="header-section-references">
+<span class="number">
+<i class="fa-solid fa-magnifying-glass"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+            Page References</span>
+</h3>
+</div>
+<div class="cite-block">
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">1.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Sutskever, I., Vinyals, O. &amp; Le, Q. V. Sequence to Sequence Learning with Neural Networks. ArXiv abs/1409.3215 (2014)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">2.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Jean, S. et al. On Using Very Large Target Vocabulary for Neural Machine Translation in Annual Meeting of the Association for Computational Linguistics (2014)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">3.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Grave, E. et al. Efficient softmax approximation for GPUs in International Conference on Machine Learning (2016)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">4.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Press, O. &amp; Wolf, L. Using the Output Embedding to Improve Language Models. ArXiv abs/1608.05859 (2016)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">5.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Bahdanau, D., Cho, K. &amp; Bengio, Y. Neural Machine Translation by Jointly Learning to Align and Translate. arXiv: Computation and Language (2014)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">6.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Luong, T., Pham, H. &amp; Manning, C. D. Effective Approaches to Attention-based Neural Machine Translation in Conference on Empirical Methods in Natural Language Processing (2015)</dd>
+</dl></div>
+<div class="section-header">
+<h3 id="header-section-references">
+<span class="number">
+<i class="fa-regular fa-note-sticky"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+                    Page Footnotes</span>
+</h3>
+</div>
+<div class="footnote-block">
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-242"><span class="acr-short">[242].</span></dt>
+<dd class="enumerate-enumitem"><span class="">e.g., using <code class="verb">model.bert.requires_grad_(False)</code> .</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-243"><span class="acr-short">[243].</span></dt>
+<dd class="enumerate-enumitem"><span class="">we will discuss BERT pretraining in more detail in <span class="refclass-ref">??</span>.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-244"><span class="acr-short">[244].</span></dt>
+<dd class="enumerate-enumitem"><span class="">We’ll use 16-bit floats to fit on small
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gpu">GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gpu">Graphical Processing Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gpu">A specialized electronic chip designed to rapidly render images, video,
+and 3D animations. Unlike a central processing unit (CPU) that processes tasks sequentially, a GPU
+uses parallel processing with thousands of smaller cores to handle many calculations at the same
+time.</a></span></span></span>s.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-245"><span class="acr-short">[245].</span></dt>
+<dd class="enumerate-enumitem"><span class="">e.g., if you ask for "bert-base-uncased", you will get an instance of <code class="verb">BertForSequenceClassification</code> .</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-246"><span class="acr-short">[246].</span></dt>
+<dd class="enumerate-enumitem"><span class="">or any other model from the Transformers library.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-247"><span class="acr-short">[247].</span></dt>
+<dd class="enumerate-enumitem"><span class="">which is implemented as nn.LogSoftmax
+followed by <code class="verb">nn.NLLLoss</code> . that’s why we see <code class="verb">None</code> .</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-248"><span class="acr-short">[248].</span></dt>
+<dd class="enumerate-enumitem"><span class="">this method is implemented by the Datasets library; it’s not available on pure PyTorch
+datasets.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-249"><span class="acr-short">[249].</span></dt>
+<dd class="enumerate-enumitem"><span class="">We can increase this if you want.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-250"><span class="acr-short">[250].</span></dt>
+<dd class="enumerate-enumitem"><span class="">or else the model would have picked the
+other label.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-251"><span class="acr-short">[251].</span></dt>
+<dd class="enumerate-enumitem"><span class="">e.g., trained on a
+large dataset of tweets, then fine-tuned on a sentiment analysis dataset.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-252"><span class="acr-short">[252].</span></dt>
+<dd class="enumerate-enumitem"><span class="">e.g., models
+from users huggingface, facebook, google, cardiffnlp, and so on.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-253"><span class="acr-short">[253].</span></dt>
+<dd class="enumerate-enumitem"><span class="">and if you do, set <code class="verb">trust_remote_code=True</code>  when calling the <code class="verb">pipeline()</code>
+function.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-254"><span class="acr-short">[254].</span></dt>
+<dd class="enumerate-enumitem"><span class="">if
+the texts contradict each other.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-255"><span class="acr-short">[255].</span></dt>
+<dd class="enumerate-enumitem"><span class="">if the first text entails the second</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-256"><span class="acr-short">[256].</span></dt>
+<dd class="enumerate-enumitem"><span class="">e.g., the Hugging Face Hub.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-257"><span class="acr-short">[257].</span></dt>
+<dd class="enumerate-enumitem"><span class="">e.g., animal, color, hotel, hospital, idea, radio, motor.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-258"><span class="acr-short">[258].</span></dt>
+<dd class="enumerate-enumitem"><span class="">e.g., pre, auto, inter, uni.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-259"><span class="acr-short">[259].</span></dt>
+<dd class="enumerate-enumitem"><span class="">i.e., the source token ID
+sequences.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-260"><span class="acr-short">[260].</span></dt>
+<dd class="enumerate-enumitem"><span class="">i.e., the target token ID sequences</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-261"><span class="acr-short">[261].</span></dt>
+<dd class="enumerate-enumitem"><span class="">i.e., a tuple
+with named fields.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-262"><span class="acr-short">[262].</span></dt>
+<dd class="enumerate-enumitem"><span class="">e.g., for 10 epochs using a <code class="verb">Nadam</code>  optimizer with <code class="verb">lr = 0.001</code> .</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-263"><span class="acr-short">[263].</span></dt>
+<dd class="enumerate-enumitem"><span class="">i.e., with the highest
+logit.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-264"><span class="acr-short">[264].</span></dt>
+<dd class="enumerate-enumitem"><span class="">e.g., 10,000 tokens or more.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-265"><span class="acr-short">[265].</span></dt>
+<dd class="enumerate-enumitem"><span class="">Moreover, it is not included in PyTorch, so we have to implement it
+ourself.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-266"><span class="acr-short">[266].</span></dt>
+<dd class="enumerate-enumitem"><span class="">such a matrix is called an orthogonal matrix.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-267"><span class="acr-short">[267].</span></dt>
+<dd class="enumerate-enumitem"><span class="">but not the decoder, or else it would no longer be causal
+and it would see the full translation at each time step, instead of just the previous tokens.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-268"><span class="acr-short">[268].</span></dt>
+<dd class="enumerate-enumitem"><span class="">along with all the other words.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-269"><span class="acr-short">[269].</span></dt>
+<dd class="enumerate-enumitem"><span class="">e.g., over 30
+words.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-270"><span class="acr-short">[270].</span></dt>
+<dd class="enumerate-enumitem"><span class="">I’ve made the encoder bidirectional in
+this figure, as it’s generally a good idea.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-271"><span class="acr-short">[271].</span></dt>
+<dd class="enumerate-enumitem"><span class="">which is still done, but it is not shown in the figure.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-272"><span class="acr-short">[272].</span></dt>
+<dd class="enumerate-enumitem"><span class="">or at inference time, the output from the previous time
+step.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-273"><span class="acr-short">[273].</span></dt>
+<dd class="enumerate-enumitem"><span class="">meaning “I like”.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-274"><span class="acr-short">[274].</span></dt>
+<dd class="enumerate-enumitem"><span class="">named after the 2014 paper’s first
+author.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-275"><span class="acr-short">[275].</span></dt>
+<dd class="enumerate-enumitem"><span class="">this is
+used to compute the weights.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-276"><span class="acr-short">[276].</span></dt>
+<dd class="enumerate-enumitem"><span class="">this is used to compute the
+final weighted sum.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-277"><span class="acr-short">[277].</span></dt>
+<dd class="enumerate-enumitem"><span class="">at a given decoder time step.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-278"><span class="acr-short">[278].</span></dt>
+<dd class="enumerate-enumitem"><span class="">i.e., the encoder outputs.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-279"><span class="acr-short">[279].</span></dt>
+<dd class="enumerate-enumitem"><span class="">i.e., the decoder’s hidden states.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-280"><span class="acr-short">[280].</span></dt>
+<dd class="enumerate-enumitem"><span class="">i.e., the
+encoder’s outputs.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-281"><span class="acr-short">[281].</span></dt>
+<dd class="enumerate-enumitem"><span class="">e.g., some models use compressed keys to
+save memory and speed up the score computation.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-282"><span class="acr-short">[282].</span></dt>
+<dd class="enumerate-enumitem"><span class="">note that each value must have the same length as its corresponding key.</span></dd>
+</dl></div><nav class="crosslinks-bottom"><div class="navigation"><span class="nav-button"><span class="nav-inactive"><i class="fa-solid fa-caret-right"></i></span></span> <span class="nav-button"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html"><i class="fa-solid fa-caret-left"></i></a></span><span class="nav-button"><a href="NaturalLanguageProcessingwithRNNsandAttention.html#BidirectionalRNNs.html"><i class="fa-solid fa-caret-up"></i></a></span><span class="nav-button">
+<a href="index.html" rel="index" title="Index">
+<i class="fa-solid fa-table-list">
+</i>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Index">
+<i class="fa-brands fa-git-alt"></i>
+</a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
+<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="note">Authors Note </span>
+<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
+</div>
+</article>
+<div class="mode-line">
+<div class="core-line"><div class="core-line-image"><img class="webbook-logo" src="logo/webbook-logo.svg"/></div>
+<div class="current-header">
+<span class="header-pretext">Viewing | </span>
+<span class="header-text">5.3: Bidirectional RNNs</span>
+</div>
+<div class="button-group">
+</div>
+</div>
+<div class="supp-line"></div>
+</div>
+</page>
+</body>
+</html>

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Sentiment Analysis Using Hugging Face Libraries</title>
+<meta charset="utf-8"/>
+<meta content="lms-WebBook" name="generator"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js" type="text/javascript"></script>
+<link href="logo/lms.ico" rel="icon" type="image/x-icon"/>
+<link href="./pagefind/pagefind-component-ui.css" rel="stylesheet"/>
+<script src="./pagefind/pagefind-component-ui.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" rel="stylesheet"/>
+<link href="flatweb.css" rel="stylesheet" type="text/css"/>
+<script src="flatweb.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<link href="style-code/gruvbox-light-hard.min.css" id="code-style" rel="stylesheet"/>
+<script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+<link href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script>
+ </head><body>
+<page>
+<nav class="wide"> <div class="header"><div class="header-left"><span class="header-lecture-grade">B.Sc</span>
+<span class="header-lecture-name">Data Science II</span>
+<span class="header-webBook">WebBook 2.1</span></div><div class="header-right"><span class="header-version">WS.2026</span>
+<span class="header-chapter">Natural Language Processing with RNNs and Attention</span></div></div><div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><pagefind-modal></pagefind-modal><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style="font-size:20px"></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&amp;hl=en\&amp;user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style="font-size:20px"></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style="font-size:20px"></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style="font-size:20px"></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style="font-size:20px"></i></a></div><hr/><span class="chapterToc"><span class="number"></span><span class="title"><a href="index.html#x2-10000">Entry Point</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial
+Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Current Developments and Overview</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">Logical
+Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">The Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Multilayer Perceptron and
+Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Regression MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.7</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-100001.1.7">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-110001.2">Implementing
+MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-120001.2.1">Building an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-140001.2.2">Creating
+the model using the sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-180001.2.3">Building a Regression MLP Using the
+Sequential API</a></span></span><span class="chapterToc"><span class="number">2</span><span class="title"><a href="UnderstandingPyTorch.html#x6-190002">Understanding PyTorch</a></span></span><span class="sectionToc"><span class="number">2.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-210002.1">PyTorch Fundamentals</a></span></span><span class="subsectionToc"><span class="number">2.1.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-220002.1.1">Making some
+Tensors</a></span></span><span class="subsectionToc"><span class="number">2.1.2</span><span class="title"><a href="PyTorchFundamentals.html#x7-230002.1.2">Hardware Acceleration</a></span></span><span class="sectionToc"><span class="number">2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-260002.2">Implementing Linear Regression</a></span></span><span class="subsectionToc"><span class="number">2.2.1</span><span class="title"><a href="ImplementingLinearRegression.html#x8-270002.2.1">Linear
+Regression Using Tensors and Autograd</a></span></span><span class="subsectionToc"><span class="number">2.2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-290002.2.2">Linear Regression Using PyTorch’s
+High-Level API</a></span></span><span class="sectionToc"><span class="number">2.3</span><span class="title"><a href="ImplementingaRegressionMLP.html#x9-300002.3">Implementing a Regression MLP</a></span></span><span class="sectionToc"><span class="number">2.4</span><span class="title"><a href="MiniBatchGradientDescentUsingDataLoaders.html#x10-310002.4">Mini-Batch Gradient Descent
+Using DataLoaders</a></span></span><span class="sectionToc"><span class="number">2.5</span><span class="title"><a href="ModelEvaluation.html#x11-320002.5">Model Evaluation</a></span></span><span class="sectionToc"><span class="number">2.6</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-330002.6">Building Nonsequential Models Using
+Custom Modules</a></span></span><span class="subsectionToc"><span class="number">2.6.1</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-340002.6.1">Building Models with Multiple Inputs</a></span></span><span class="subsectionToc"><span class="number">2.6.2</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-350002.6.2">Building Models
+with Multiple Outputs</a></span></span><span class="sectionToc"><span class="number">2.7</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-360002.7">Building an Image Classifier with PyTorch</a></span></span><span class="subsectionToc"><span class="number">2.7.1</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-370002.7.1">Using
+TorchVision to Load the Dataset</a></span></span><span class="subsectionToc"><span class="number">2.7.2</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-380002.7.2">Building the Classifier</a></span></span><span class="sectionToc"><span class="number">2.8</span><span class="title"><a href="FineTuningHyperparameterswithOptuna.html#x14-390002.8">Fine-Tuning
+Hyperparameters with Optuna</a></span></span><span class="sectionToc"><span class="number">2.9</span><span class="title"><a href="SavingandLoadingPyTorchModels.html#x15-400002.9">Saving and Loading PyTorch Models</a></span></span><span class="sectionToc"><span class="number">2.10</span><span class="title"><a href="CompilingandOptimizingaPyTorchModel.html#x16-410002.10">Compiling
+and Optimizing a PyTorch Model</a></span></span><span class="chapterToc"><span class="number">3</span><span class="title"><a href="TrainingDeepNeuralNetworks.html#x17-420003">Training Deep Neural Networks</a></span></span><span class="sectionToc"><span class="number">3.1</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-440003.1">The
+Vanishing/Exploding Gradients Problems</a></span></span><span class="subsectionToc"><span class="number">3.1.1</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-450003.1.1">Glorot Initialization and He
+Initialization</a></span></span><span class="subsectionToc"><span class="number">3.1.2</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-470003.1.2">Better Activation Functions</a></span></span><span class="subsectionToc"><span class="number">3.1.3</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-510003.1.3">Batch Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.4</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-540003.1.4">Layer
+Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.5</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-550003.1.5">Gradient Clipping</a></span></span><span class="subsectionToc"><span class="number">3.1.6</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-560003.1.6">Reusing Pretrained Layers</a></span></span><span class="subsectionToc"><span class="number">3.1.7</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-570003.1.7">Transfer
+Learning with PyTorch</a></span></span><span class="subsectionToc"><span class="number">3.1.8</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-580003.1.8">Unsupervised Pretraining</a></span></span><span class="subsectionToc"><span class="number">3.1.9</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-590003.1.9">Pretraining on an Auxiliary
+Task</a></span></span><span class="subsectionToc"><span class="number">3.1.10</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-600003.1.10">Faster Optimizers</a></span></span><span class="subsectionToc"><span class="number">3.1.11</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-630003.1.11">AdaGrad</a></span></span><span class="subsectionToc"><span class="number">3.1.12</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-640003.1.12">RMSProp</a></span></span><span class="subsectionToc"><span class="number">3.1.13</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-650003.1.13">Adam</a></span></span><span class="sectionToc"><span class="number">3.2</span><span class="title"><a href="LearningRateScheduling.html#x19-690003.2">Learning
+Rate Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.1</span><span class="title"><a href="LearningRateScheduling.html#x19-700003.2.1">Exponential Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.2</span><span class="title"><a href="LearningRateScheduling.html#x19-710003.2.2">Cosine Annealing</a></span></span><span class="subsectionToc"><span class="number">3.2.3</span><span class="title"><a href="LearningRateScheduling.html#x19-720003.2.3">Performance
+Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.4</span><span class="title"><a href="LearningRateScheduling.html#x19-730003.2.4">Warming Up the Learning Rate</a></span></span><span class="subsectionToc"><span class="number">3.2.5</span><span class="title"><a href="LearningRateScheduling.html#x19-740003.2.5">Cosine Annealing with Warm
+Restarts</a></span></span><span class="subsectionToc"><span class="number">3.2.6</span><span class="title"><a href="LearningRateScheduling.html#x19-750003.2.6">1cycle Scheduling</a></span></span><span class="sectionToc"><span class="number">3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-760003.3">Avoiding Overfitting Through Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.1</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-770003.3.1"><math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>1</mn></mrow></msub></math>
+and <math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
+Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-780003.3.2">Dropout</a></span></span><span class="subsectionToc"><span class="number">3.3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-790003.3.3">Max-Norm Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.4</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-800003.3.4">Practical Guidelines</a></span></span><span class="chapterToc"><span class="number">4</span><span class="title"><a href="WorkingwithRNNsandCNNs.html#x21-810004">Working
+with RNNs and CNNs</a></span></span><span class="sectionToc"><span class="number">4.1</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-830004.1">Recurrent Neurons and Layers</a></span></span><span class="subsectionToc"><span class="number">4.1.1</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-840004.1.1">Memory Cells</a></span></span><span class="subsectionToc"><span class="number">4.1.2</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-850004.1.2">Input
+and Output Sequences</a></span></span><span class="subsectionToc"><span class="number">4.1.3</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-860004.1.3">Training RNNs</a></span></span><span class="sectionToc"><span class="number">4.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-870004.2">Forecasting a Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.1</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-880004.2.1">The ARMA
+Model Family</a></span></span><span class="subsectionToc"><span class="number">4.2.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-890004.2.2">Preparing the Data for Machine Learning Models</a></span></span><span class="subsectionToc"><span class="number">4.2.3</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-900004.2.3">Forecasting
+Using a Linear Model</a></span></span><span class="subsectionToc"><span class="number">4.2.4</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-910004.2.4">Forecasting Using a Simple RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.5</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-920004.2.5">Forecasting Using a
+Deep RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.6</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-930004.2.6">Forecasting Multivariate Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.7</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-940004.2.7">Forecasting Several Time
+Steps Ahead</a></span></span><span class="subsectionToc"><span class="number">4.2.8</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-950004.2.8">Forecasting Using a Sequence-to-Sequence Model</a></span></span><span class="sectionToc"><span class="number">4.3</span><span class="title"><a href="HandlingLongSequences.html#x24-960004.3">Handling
+Long Sequences</a></span></span><span class="subsectionToc"><span class="number">4.3.1</span><span class="title"><a href="HandlingLongSequences.html#x24-970004.3.1">Fighting the Unstable Gradients Problem</a></span></span><span class="subsectionToc"><span class="number">4.3.2</span><span class="title"><a href="HandlingLongSequences.html#x24-980004.3.2">Tackling the
+Short-Term Memory Problem</a></span></span><span class="chapterToc"><span class="number">5</span><span class="title"><a href="NaturalLanguageProcessingwithRNNsandAttention.html#x25-1030005">Natural Language Processing with RNNs and
+Attention</a></span></span><span class="sectionToc"><span class="number">5.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1070005.1">Generating Shakespearean Text Using a Character RNN</a></span></span><span class="subsectionToc"><span class="number">5.1.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1080005.1.1">Creating
+the Training Dataset</a></span></span><span class="subsectionToc"><span class="number">5.1.2</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1090005.1.2">Embeddings</a></span></span><span class="subsectionToc"><span class="number">5.1.3</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1100005.1.3">Building and Training the Char-RNN
+Model</a></span></span><span class="subsectionToc"><span class="number">5.1.4</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1110005.1.4">Generating Fake Shakespearean Text</a></span></span><span class="sectionToc"><span class="number">5.2</span><span class="title"><a href="#x27-1120005.2">Sentiment Analysis Using
+Hugging Face Libraries</a></span></span><span class="subsectionToc"><span class="number">5.2.1</span><span class="title"><a href="#x27-1130005.2.1">Tokenization Using the Hugging Face Tokenizers
+Library</a></span></span><span class="subsectionToc"><span class="number">5.2.2</span><span class="title"><a href="#x27-1140005.2.2">Reusing Pretrained Tokenizers</a></span></span><span class="subsectionToc"><span class="number">5.2.3</span><span class="title"><a href="#x27-1150005.2.3">Building and Training a Sentiment
+Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1160005.3">Bidirectional RNNs</a></span></span><span class="subsectionToc"><span class="number">5.3.1</span><span class="title"><a href="BidirectionalRNNs.html#x28-1170005.3.1">Reusing Pretrained Embeddings and
+Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
+for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
+<div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<article class="chapter">
+<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="BidirectionalRNNs.html">Bidirectional RNNs</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="GeneratingShakespeareanTextUsingaCharacterRNN.html">Generating Shakespearean Text Using a Character RNN</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="NaturalLanguageProcessingwithRNNsandAttention.html#SentimentAnalysisUsingHuggingFaceLibraries.html">Chapter: Natural Language Processing with RNNs and Attention</a></span><span class="nav-button">
+<a href="index.html" rel="index" title="Visit Entry Point">
+<i class="fa-solid fa-table-list">
+</i>
+<span class="nav-info">Visit Index Page</span>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Visit Material GitHub Repo">
+<i class="fa-brands fa-git-alt"></i>
+<span class="nav-info">Visit Material GitHub Repo</span>
+</a></span></nav>
+<div class="section-header"><h3 id="header-section-5.2"><span class="number">5.2</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.5.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x27-1120005.2"></a>Sentiment Analysis Using
+Hugging Face Libraries</span></h3></div>
+<p class="noindent">One of the most common applications of <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nlp">NLP</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nlp">Natural Language Processing</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nlp">Natural Language
+Processing</a></span></span></span> is text classificationespecially sentiment analysis. If image classification on the
+MNIST dataset is the “Hello, world!” of computer vision, then sentiment analysis on the
+IMDb reviews dataset is the “Hello, world!” of natural language processing. The IMDb
+dataset consists of 50,000 movie reviews in <span class="margin-block">English <span class="margin-comment"><a class="ellipsis" href="#m-ref-236">[236]</a>
+<span class="sidenote">25,000 for training, 25,000 for testing.</span></span></span>
+extracted from the famous Internet Movie Database, along with a simple binary target
+for each review indicating whether it is negative (0) or positive (1). Just like MNIST, the
+IMDb reviews dataset is popular for good reasons: </p><div class="quote">  it is simple enough to be tackled on a
+laptop in a reasonable amount of time, but challenging enough to be fun and rewarding.
+</div>
+<p class="noindent">To download the IMDb dataset, we will use the <i>Hugging Face Datasets library</i>, which gives easy access
+to hundreds of thousands of datasets hosted on the Hugging Face Hub. We’ll use 80% of the original
+training set for training, and the remaining 20% for validation, using the  <code class="file"><code class="verb">train_test_split()</code></code>
+method to split the set:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb220"><a id="x27-112002r616"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">datasets</span> <span style="color:#9E0005;">import</span> load_dataset 
+<a id="x27-112004r617"></a> 
+<a id="x27-112006r618"></a>imdb_dataset = load_dataset(<span style="color:#78730D;">"imdb"</span>) 
+<a id="x27-112008r619"></a>split = imdb_dataset[<span style="color:#78730D;">"train"</span>].train_test_split(train_size=<span style="color:#8F4070;">0.8</span>, seed=<span style="color:#8F4070;">42</span>) 
+<a id="x27-112010r620"></a>imdb_train_set, imdb_valid_set = split[<span style="color:#78730D;">"train"</span>], split[<span style="color:#78730D;">"test"</span>] 
+<a id="x27-112012r621"></a>imdb_test_set = imdb_dataset[<span style="color:#78730D;">"test"</span>]</pre>
+</code></pre>
+<p class="noindent">Let’s inspect a couple of reviews:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb221"><a id="x27-112014r661"></a>imdb_train_set[<span style="color:#8F4070;">1</span>][<span style="color:#78730D;">"text"</span>]</pre>
+</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb222"><a id="x27-112016r666"></a>imdb_train_set[<span style="color:#8F4070;">1</span>][<span style="color:#78730D;">"label"</span>]</pre>
+</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb223"><a id="x27-112018r671"></a>imdb_train_set[<span style="color:#8F4070;">16</span>][<span style="color:#78730D;">"text"</span>]</pre>
+</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb224"><a id="x27-112020r676"></a>imdb_train_set[<span style="color:#8F4070;">16</span>][<span style="color:#78730D;">"label"</span>]</pre>
+</code></pre>
+<p class="noindent">The first review immediately says that it’s a wonderful movie; no need to read any further: it’s
+clearly positive ( <code class="file"><code class="verb">label = 1</code></code> ). The second review is much harder to classify: </p><div class="quote">  it contains a
+detailed description of the movie, sprinkled with both positive and negative comments.
+</div>
+<p class="noindent">Luckily, the conclusion is quite clearly negative, making the task much easier ( <code class="file"><code class="verb">label = 0</code></code> ). Still, it’s
+not a trivial task. A simple char-<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process
+sequential data, such as text, speech, or time series, by passing information through loops from one step
+to the next</a></span></span></span> model would struggle; we need a more powerful tokenization technique. So let’s focus on
+tokenization before we return to sentiment analysis.
+</p>
+<div class="subsection-header"><h4 id="header-subsection-5.2.1"><span class="number">5.2.1</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.5.2.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x27-1130005.2.1"></a>Tokenization Using the Hugging Face Tokenizers Library</span></h4></div>
+<p class="noindent">In a 2016 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Sennrich2015NeuralMT"> <a id="x27-113001"></a>Sennrich, R., Haddow, B. &amp; Birch, A. Neural Machine Translation of Rare Words
+with Subword Units. ArXiv <b>abs/1508.07909</b> (2015)</span></span>, the researchers explored several methods to
+tokenize and detokenize text at the subword level. This way, even if your model encounters a rare word
+it has never seen before, it can still reasonably guess what it means. </p><div class="quote">  For example, even if the
+model never saw the word “smartest” during training, if it learned the word “smart” and it
+also learned that the suffix “est” means “the most”, it can infer the meaning of “smartest”.
+</div>
+<p class="noindent">One of the techniques the authors evaluated is byte pair encoding (BPE), introduced by Philip Gage in
+<span class="margin-block">1994. <span class="margin-comment"><a class="ellipsis" href="#m-ref-237">[237]</a>
+<span class="sidenote">Which was initially done for data compression.</span></span></span> BPE works by splitting the whole training set into
+individual characters, then at each iteration it finds the most frequent pair of adjacent tokens and
+adds it to the vocabulary. It repeats this process until the vocabulary reaches the desired
+size.
+</p><p class="noindent">The Hugging Face Tokenizers library includes highly efficient implementations of several popular
+tokenization algorithms, including BPE. Here’s how to train a BPE model on the IMDb
+dataset:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb225"><a id="x27-113003r691"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">tokenizers</span> 
+<a id="x27-113005r692"></a> 
+<a id="x27-113007r693"></a>bpe_model = tokenizers.models.BPE(unk_token=<span style="color:#78730D;">"&lt;unk&gt;"</span>) 
+<a id="x27-113009r694"></a>bpe_tokenizer = tokenizers.Tokenizer(bpe_model) 
+<a id="x27-113011r695"></a>bpe_tokenizer.pre_tokenizer = tokenizers.pre_tokenizers.Whitespace() 
+<a id="x27-113013r696"></a>special_tokens = [<span style="color:#78730D;">"&lt;pad&gt;"</span>, <span style="color:#78730D;">"&lt;unk&gt;"</span>] 
+<a id="x27-113015r697"></a>bpe_trainer = tokenizers.trainers.BpeTrainer(vocab_size=<span style="color:#8F4070;">1000</span>, 
+<a id="x27-113017r698"></a>                                             special_tokens=special_tokens) 
+<a id="x27-113019r699"></a>train_reviews = [review[<span style="color:#78730D;">"text"</span>].lower() <span style="color:#9E0005;">for</span> review <span style="color:#9E0005;">in</span> imdb_train_set] 
+<a id="x27-113021r700"></a>bpe_tokenizer.train_from_iterator(train_reviews, bpe_trainer)</pre>
+</code></pre>
+<p class="noindent">Let’s walk through this code: </p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent">We import the Tokenizers library, and we create a BPE model, specifying an unknown token “
+<code class="file"><code class="verb">&lt;unk&gt;</code></code> ” which will be used later if we try to tokenize some text containing tokens that the model
+never saw during training: </p><div class="quote">  the unknown tokens will be replaced with the “ <code class="file"><code class="verb">&lt;unk&gt;</code></code> ” token.
+</div>
+</li>
+<li class="itemize">
+<p class="noindent">We then create a Tokenizer based on the BPE model.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">The Tokenizers library lets us specify optional preprocessing and post-processing steps, and it also
+provides common preprocessors and postprocessors. In this example, we use the Whitespace
+preprocessor which splits the text at spaces, and drops the spaces, and also separates groups
+of letters and groups of nonletters. For example “Hello, world!!!” will be split into
+<code class="file"><code class="verb">["Hello'', ``,'', ``world'', ``!!!"]</code></code> . The BPE algorithm will then run on these
+individual chunks, which dramatically speeds up training and improves token quality by providing
+reasonable word boundaries.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">We then define a list of special tokens: a padding token “ <code class="file"><code class="verb">&lt;pad&gt;</code></code> ” which will come in handy when
+we create batches of texts of different lengths, and the unknown token we have already
+discussed.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">We create a BpeTrainer, specifying the maximum vocabulary size and the list of special tokens.
+The trainer will add the special tokens at the beginning of the vocabulary, so “ <code class="file"><code class="verb">&lt;pad&gt;</code></code> ” will be
+<code class="file"><code class="verb">token 0</code></code> , and “ <code class="file"><code class="verb">&lt;unk&gt;</code></code> ” will be  <code class="file"><code class="verb">token 1</code></code> .
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">Next we create a list of all the text in the IMBd training set.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">Lastly, we train the tokenizer on this list, using the BpeTrainer. A few seconds later, the BPE
+tokenizer is ready to be used!</p></li></ul>
+<p class="noindent">Now let’s use our BPE tokenizer to tokenize some text: The  <code class="file"><code class="verb">encode()</code></code> method returns an Encoding
+object that contains eight tokens. Let’s look at these tokens and their IDs: Notice that frequent words
+like “what” and “movie” have been identified by the BPE model and are represented by a single token,
+while less frequent words like “awesome” are split into multiple tokens. Also note that the
+smiley was not part of the training data, so it gets replaced with the unknown token “ <code class="file"><code class="verb">&lt;unk&gt;</code></code>
+”.
+</p><p class="noindent">The tokenizer provides a  <code class="file"><code class="verb">get_vocab()</code></code> method which returns a dictionary mapping each token to its
+ID. You can also use the  <code class="file"><code class="verb">token_to_id()</code></code> method to map a single token, or conversely use the
+<code class="file"><code class="verb">id_to_token()</code></code> method to go from ID to token. However, you will more often use the  <code class="file"><code class="verb">decode()</code></code>
+method to convert a list of token IDs into a string:
+</p><p class="noindent">The tokenizer keeps track of each token’s start and end offset in the original string, which can come in
+handy, especially for debugging:
+</p><p class="noindent">It’s also possible to encode a whole batch of strings at once. For example, let’s encode the first three
+reviews of the training set:
+</p><p class="noindent">If we want to create a single integer tensor containing the token IDs of all three reviews, we must first
+ensure that they all have the same number of tokens, which is not the case right now. For this, we can
+ask the tokenizer to pad the shorter reviews with the padding token ID until they are as long as the
+longest review in the batch.
+</p><p class="noindent">We can also ask the tokenizer to truncate any sequence longer than some maximum length, since RNNs
+don’t handle very long sequences very well anyway:
+</p><p class="noindent">Now let’s encode the batch again. This time all sequences will have the same number of tokens, so we
+can create a tensor containing all the token IDs:
+</p><p class="noindent">Notice how the first and second review were padded with 0s, which is our padding token
+ID. Each Encoding object also includes an  <code class="file"><code class="verb">attention_mask</code></code> attribute containing a 1 for
+each non-padding token, and a 0 for each padding token. This can be used in your models
+to easily ignore the padded time steps: </p><div class="quote">  just multiply a tensor with the attention mask.
+</div>
+<p class="noindent">In some cases you will prefer to have the list of sequence lengths (ignoring padding). Here’s how to get
+both the attention mask tensor and the sequence lengths:
+</p><p class="noindent">You may have noted that spaces were not handled very well by our tokenizer. In particular, the
+word “awesome” came back as “aw es ome”, and “movie!” came back as “movie !”. This is
+because the Whitespace pre-tokenizer dropped all spaces, therefore the BPE tokenizer doesn’t
+know where spaces should go and it just adds spaces between all tokens. To fix this, we can
+replace the Whitespace pre-tokenizer with the ByteLevel pre-tokenizer: it replaces all spaces
+with a special character  so the BPE model doesn’t lose track of them. For example, if
+you use this pre-tokenizer and you encode and decode the text “what an awesome movie!
+“, you will get: “what an aw es ome movie !”. After removing the spaces, then replacing
+every  with a space, you get " what an awesome movie!”. This is almost perfect, except for
+the extra space at the startwhich is easily removedand the lost emoji, which was replaced
+with an unknown token because it’s not in the vocabulary, and dropped by the  <code class="file"><code class="verb">decode()</code></code>
+method.
+</p><p class="noindent">As its name suggests, the ByteLevel pre-tokenizer allows the BPE model to work at the byte level,
+rather than the character level: unsurprisingly, this is called Byte-level BPE (BBPE). For example, the
+emoji will be converted to four bytes, using Unicode’s UTF-8 encoding. This means that BBPE will
+never output an unknown token if its vocabulary contains all 256 possible bytes, since any text
+can be broken down into its individual bytes whenever longer tokens are not found in the
+vocabulary. This makes BBPE well suited when the corpus contains rare characters such as
+emojis.
+</p><p class="noindent">Another important variant of BPE is WordPiece <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Wu2016GooglesNM"> <a id="x27-113022"></a>Wu, Y.-H. et al. Google’s Neural Machine
+Translation System: Bridging the Gap between Human and Machine Translation. ArXiv
+<b>abs/1609.08144</b> (2016)</span></span>, proposed by Google in 2016. This tokenization algorithm is very similar to
+BPE, but instead of adding the most frequent adjacent pair of tokens to the vocabulary at each
+iteration, it adds the pair with the highest score. This score is computed using Equation
+14-1: the frequency(AB) term is just like in BPEit boosts pairs that are frequent in the
+corpus. However, the denominator reduces the score of a pair when the individual tokens are
+themselves frequent. This normalization tends to favor more useful and meaningful tokens than
+BPE, and the algorithm often produces shorter encoded sequences than BPE or BBPE.
+</p><table class="equation"><tr><td>
+<math class="equation" display="block">
+<mstyle class="label" id="x27-113023r1"></mstyle>
+<mstyle class="text"><mtext>score</mtext></mstyle>
+<mspace class="thinspace" width="0.17em"></mspace>
+<mo class="MathClass-open" stretchy="false">(</mo><mi>A</mi><mi>B</mi><mo class="MathClass-close" stretchy="false">)</mo> <mo class="MathClass-rel" stretchy="false">=</mo> <mfrac><mrow><mstyle class="text"><mtext>frequency</mtext></mstyle><mspace class="thinspace" width="0.17em"></mspace><mo class="MathClass-open" stretchy="false">(</mo><mi>A</mi><mi>B</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow>
+<mrow>
+<mstyle class="text"><mtext>freq</mtext></mstyle>
+<mspace class="thinspace" width="0.17em"></mspace>
+<mo class="MathClass-open" stretchy="false">(</mo><mi>A</mi><mo class="MathClass-close" stretchy="false">)</mo> <mi>·</mi> <mstyle class="text"><mtext>freq</mtext></mstyle><mspace class="thinspace" width="0.17em"></mspace><mo class="MathClass-open" stretchy="false">(</mo><mi>B</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></mfrac> <mi>·</mi> <mstyle class="text"><mtext>len</mtext></mstyle><mspace class="thinspace" width="0.17em"></mspace><mo class="MathClass-open" stretchy="false">(</mo><mstyle class="text"><mtext>vocab</mtext></mstyle><mo class="MathClass-close" stretchy="false">)</mo>
+</math></td><td class="eq-no">(5.1)</td></tr></table>
+<p class="noindent"></p>
+<p class="noindent">To train a WordPiece tokenizer using the Tokenizers library, you can use the same code as for BPE, but
+replace the BPE model with WordPiece, and the BpeTrainer with WordPieceTrainer. If
+you encode and decode the same review as earlier, you will get “what an aw esome movie
+!”. Notice that WordPiece adds a prefix to tokens that are inside a word, which makes it
+easy to reconstruct the original string: just remove  <code class="file"><code class="verb">" ##``##</code></code> (as well as spaces before
+punctuations). Note that the smiley emoji once again disappeared because it was not in the
+vocabulary.
+</p><p class="noindent">One last popular tokenization algorithm we will discuss is Unigram LM (Language Model), introduced
+in a 2018 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail" id="Kudo2018SubwordRI"> <a id="x27-113024"></a>Kudo, T. Subword Regularization: Improving Neural Network Translation Models
+with Multiple Subword Candidates. ArXiv <b>abs/1804.10959</b> (2018)</span></span> by Taku Kudo at Google. This
+technique is a bit different than the previous ones: it starts out with a very large vocabulary
+containing every frequent word, subword, and character in the training corpus, then it gradually
+removes the least useful tokens until it reaches the desired vocabulary size. To determine how
+useful a token is, this method makes one big simplifying assumption: it assumes that the
+corpus was sampled randomly from the vocabulary, one token at a time (hence the name
+Unigram LM), and that every token was sampled independently from the others. Therefore,
+this tokenizer model assumes that the probability of sampling the pair AB is equal to the
+probability of sampling A times the probability of sampling B. Given this assumption, it
+can estimate the probability of sampling the whole training corpus. At each iteration, the
+training algorithm attempts to remove tokens without reducing this overall probability too
+much.
+</p><p class="noindent">For example, suppose that the vocabulary contains the tokens “them”, “the”, and “m”, respectively,
+with 1%, 5%, and 2% probability. This means that the word “them” has a 1% chance of being
+sampled as the single token “them”, or a 5% Œ 2% = 0.1% chance of being sampled as
+the pair “the” + “m”. Overall, the word “them” has a 1% + 0.1% = 1.1% chance of being
+sampled. If we remove the token “them” from the vocabulary, then the probability of sampling
+the word “them” drops down to 0.1%. If instead we remove either “m” or “the”, then the
+probability only drops down to 1% since we can still sample the single token “them”. So
+if the training corpus only contained the word “them”, then the algorithm would prefer
+to drop either “the” or “m”. Of course, in reality the corpus contains many other words
+that contain these two tokens, so the algorithm will likely find other less useful tokens to
+drop.
+</p>
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-5.58" id="info-block-5.58"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 5.<a id="x27-113025r58"></a>58: </b> </span> <span class="title"> Working with Other Languages </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
+<p class="noindent">Unigram LM is great for languages that don’t use spaces to separate words, like English does. For
+example, Chinese text does not use spaces between words, Vietnamese uses spaces even within words,
+and German often attaches multiple words together, without spaces.
+</p>
+</dd></dl>
+<p class="noindent">The same paper also proposed a novel regularization technique called subword regularization, which
+improves generalization and robustness by introducing some randomness in tokenization while training
+the NLP model (not the tokenizer model). For example, assuming the vocabulary contains the tokens
+“them”, “the”, and “m”, and you choose to use subword regularization, then the word “them” will
+sometimes be tokenized as “the” + “m”, and sometimes as “them”. This technique works best with
+morphologically rich languages, meaning languages where words carry a lot of grammatical information
+through affixes, inflections, and internal <span class="margin-block">modifications, <span class="margin-comment"><a class="ellipsis" href="#m-ref-238">[238]</a>
+<span class="sidenote">such as Arabic, Finnish, German, Hungarian,
+Polish, or Turkish.</span></span></span> as opposed to languages that rely on word order or additional helper words (such as
+English, Chinese, Thai, or Vietnamese).
+</p><p class="noindent">Unfortunately, the Tokenizers library does not natively support subword regularization, so
+you either have to implement it yourself, or you can use Google’s SentencePiece library
+(pip install sentencepiece) which provides an open source implementation. This project is
+described in a 2018 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="Kudo2018SentencePieceAS"> <a id="x27-113026"></a>Kudo, T. &amp; Richardson, J. SentencePiece: A simple and language
+independent subword tokenizer and detokenizer for Neural Text Processing in Conference
+on Empirical Methods in Natural Language Processing (2018)</span></span> by Taku Kudo and John
+Richardson.
+</p><p class="noindent">Table 14-1 summarizes the three main tokenizers used today. Table 14-1. Overview of the
+three main tokenizers Feature BBPE WordPiece UnigramLM How Mergemostfrequentpairs
+Mergepairsthatmaximizedata likelihood Removeleastlikelytokens Pros Fast,simple,greatfor
+multilingual Goodbalanceofefficiencyandtoken quality Mostmeaningful,shortest sequences Cons
+Canproduceawkwardsplits LessrobustthanBBPEformultilingual Slowertotrainandtokenize
+UsedBy GPT,Llama,RoBERTa,BLOOM BERT,DistilBERT,ELECTRA T5,ALBERT,mBART
+Training your own tokenizer is useful in many situations; for example, if you are dealing with
+domain-specific text, such as medical, legal, or engineering documents full of jargon, or if the text is
+written in a low-resource language or dialect, or if it’s code written in a new programming
+language, and so on. However, in most cases you will want to simply reuse a pretrained
+tokenizer.
+</p>
+<div class="subsection-header"><h4 id="header-subsection-5.2.2"><span class="number">5.2.2</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.5.2.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x27-1140005.2.2"></a>Reusing Pretrained Tokenizers</span></h4></div>
+<p class="noindent">To download a pretrained tokenizer, we will use the Hugging Face Transformers library. This library
+provides many popular models for NLP, computer vision, audio processing, and more. Pretrained
+weights are available for almost all of these models, and the library can automatically download them
+from the Hugging Face Hub. The models were originally all based on the Transformer architecture
+(which we will discuss in detail in Chapter 15), hence the name of the library, but other
+kinds of models are now available as well, such as CNNs. Lastly, each model comes with all
+the tools it needs, including tokenizers for NLP models: in a single line of code, you can
+have a fully functional, high-performance model for a given task, as we will see later in this
+chapter.
+</p><p class="noindent">For now, let’s just grab the pretrained tokenizer from some NLP model. For example, the following
+code downloads the pretrained BBPE tokenizer used by the GPT-2 model (a text generation model),
+and it uses this tokenizer to encode the first 3 IMDb reviews, truncating the encoded sequences if they
+exceed 500 tokens:
+</p><p class="noindent">Notice that we use the tokenizer object like a function. The result is a dictionary-like object of type
+BatchEncoding. You can get the token IDs using the  <code class="file"><code class="verb">"input_ids"</code></code> key. It returns a Python list of lists
+of token IDs. For example, let’s look at the first 10 token IDs of the first encoded review, and use the
+tokenizer to decode them, using its  <code class="file"><code class="verb">decode()</code></code> method:
+</p><p class="noindent">If you would prefer to use a pretrained WordPiece tokenizer, you can reuse the tokenizer of any LLM
+that was pretrained using WordPiece, such as BERT<span class="margin-block">. <span class="margin-comment"><a class="ellipsis" href="#m-ref-239">[239]</a>
+<span class="sidenote">another popular NLP model, which stands for
+Bidirectional Encoder Representations from Transformers.</span></span></span> This tokenizer has a padding <span class="margin-block">token, <span class="margin-comment"><a class="ellipsis" href="#m-ref-240">[240]</a>
+<span class="sidenote">unlike
+the previous tokenizer, since GPT-2 didn’t need it.</span></span></span> so we can specify  <code class="file"><code class="verb">padding=True</code></code> when encoding a
+batch of reviews: as usual, the shortest texts will be padded to the length of the longest one using the
+padding token. This allows us to also specify  <code class="file"><code class="verb">return_tensors="pt"</code></code> to get a PyTorch tensor instead
+of a Python list of lists of token IDs: very convenient! So let’s encode the first three IMDb
+reviews:
+</p>
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-5.59" id="info-block-5.59"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 5.<a id="x27-114001r59"></a>59: </b> </span> <span class="title"> Using Checkpoints </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
+<p class="noindent">The name "bert-base-uncased" refers to a model checkpoint: this particular checkpoint is a case-insensitive
+BERT model, pretrained on English text. Other checkpoints are available, such as "bert-large-cased" if
+you want a larger and case-sensitive BERT model, or "bert-base-multilingual-uncased" if you want an
+uncased model pretrained on over 100 languages. For now we are just using the model’s
+tokenizer.
+</p>
+</dd></dl>
+<p class="noindent">The resulting token IDs and attention masks are nicely padded tensors:
+</p><p class="noindent">Notice that each token ID sequence starts with token 101 ([CLS]), and ends with token 102 ([SEP])
+(ignoring padding tokens). These tokens are needed by the BERT model (as we will see in Chapter 15),
+but unless your model needs them too, you can drop them by setting  <code class="file"><code class="verb">add_special_tokens=False</code></code>
+when calling the tokenizer.
+</p><p class="noindent">What about a pretrained Unigram LM tokenizer? Well, many models were trained using Unigram LM,
+such as ALBERT, T5, or XML-R models, just to name a few. For example:
+</p><p class="noindent">The Transformers library also provides an object that can wrap your own tokenizer (from the
+Tokenizers library) and give it the same API as the pretrained tokenizers (from the Transformers
+library). For example, let’s wrap the BPE tokenizer we trained earlier:
+</p><p class="noindent">With that, we have all the tokenization tools we need, so let’s go back to sentiment analysis.
+</p>
+<div class="subsection-header"><h4 id="header-subsection-5.2.3"><span class="number">5.2.3</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.5.2.3"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x27-1150005.2.3"></a>Building and Training a Sentiment Analysis Model</span></h4></div>
+<p class="noindent">Our sentiment analysis model must be trained using batches of tokenized reviews. However, the
+datasets we’ve created did <b>NOT</b> take care of tokenization. One option would be to update
+<span class="margin-block">them, <span class="margin-comment"><a class="ellipsis" href="#m-ref-241">[241]</a>
+<span class="sidenote">e.g., using the <code class="verb">map()</code>  method.</span></span></span> but it’s just as simple to handle tokenization in the data
+loaders.
+</p><p class="noindent">To do this, we can pass a function to the <code class="verb">DataLoader</code>  constructor using its  <code class="file"><code class="verb">collate_fn</code></code> argument: </p><div class="quote">
+the data loader will call this function for every batch, passing it a list of dataset samples.
+</div>
+<p class="noindent">Our function will take this batch, tokenize the reviews, truncate and pad them if needed, and return a <code class="verb">BatchEncoding</code>
+object containing PyTorch tensors for the token IDs and attention masks, along with another tensor
+containing the labels. For tokenization, we will simply use the pretrained WordPiece tokenizer we just
+loaded:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb226"><a id="x27-115002r1066"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">collate_fn</span>(batch, tokenizer=bert_tokenizer): 
+<a id="x27-115004r1067"></a>    reviews = [review[<span style="color:#78730D;">"text"</span>] <span style="color:#9E0005;">for</span> review <span style="color:#9E0005;">in</span> batch] 
+<a id="x27-115006r1068"></a>    labels = [[review[<span style="color:#78730D;">"label"</span>]] <span style="color:#9E0005;">for</span> review <span style="color:#9E0005;">in</span> batch] 
+<a id="x27-115008r1069"></a>    encodings = tokenizer(reviews, padding=<span style="color:#9E0005;">True</span>, truncation=<span style="color:#9E0005;">True</span>, 
+<a id="x27-115010r1070"></a>                          max_length=<span style="color:#8F4070;">200</span>, return_tensors=<span style="color:#78730D;">"pt"</span>) 
+<a id="x27-115012r1071"></a>    labels = torch.tensor(labels, dtype=torch.float32) 
+<a id="x27-115014r1072"></a>    <span style="color:#9E0005;">return</span> encodings, labels 
+<a id="x27-115016r1073"></a> 
+<a id="x27-115018r1074"></a>batch_size = <span style="color:#8F4070;">256</span> 
+<a id="x27-115020r1075"></a>imdb_train_loader = DataLoader(imdb_train_set, batch_size=batch_size, 
+<a id="x27-115022r1076"></a>                               collate_fn=collate_fn, shuffle=<span style="color:#9E0005;">True</span>) 
+<a id="x27-115024r1077"></a>imdb_valid_loader = DataLoader(imdb_valid_set, batch_size=batch_size, 
+<a id="x27-115026r1078"></a>                               collate_fn=collate_fn) 
+<a id="x27-115028r1079"></a>imdb_test_loader = DataLoader(imdb_test_set, batch_size=batch_size, 
+<a id="x27-115030r1080"></a>                              collate_fn=collate_fn)</pre>
+</code></pre>
+<p class="noindent">Now we’re ready to create our sentiment analysis model:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb227"><a id="x27-115032r1085"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SentimentAnalysisModel</span>(nn.Module): 
+<a id="x27-115034r1086"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, vocab_size, n_layers=<span style="color:#8F4070;">2</span>, embed_dim=<span style="color:#8F4070;">128</span>, hidden_dim=<span style="color:#8F4070;">64</span>, 
+<a id="x27-115036r1087"></a>                 pad_id=<span style="color:#8F4070;">0</span>, dropout=<span style="color:#8F4070;">0.2</span>): 
+<a id="x27-115038r1088"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
+<a id="x27-115040r1089"></a>        <span style="color:#B03B03;">self</span>.embed = nn.Embedding(vocab_size, embed_dim, 
+<a id="x27-115042r1090"></a>                                  padding_idx=pad_id) 
+<a id="x27-115044r1091"></a>        <span style="color:#B03B03;">self</span>.gru = nn.GRU(embed_dim, hidden_dim, num_layers=n_layers, 
+<a id="x27-115046r1092"></a>                          batch_first=<span style="color:#9E0005;">True</span>, dropout=dropout) 
+<a id="x27-115048r1093"></a>        <span style="color:#B03B03;">self</span>.output = nn.Linear(hidden_dim, <span style="color:#8F4070;">1</span>) 
+<a id="x27-115050r1094"></a> 
+<a id="x27-115052r1095"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, encodings): 
+<a id="x27-115054r1096"></a>        embeddings = <span style="color:#B03B03;">self</span>.embed(encodings[<span style="color:#78730D;">"input_ids"</span>]) 
+<a id="x27-115056r1097"></a>        _outputs, hidden_states = <span style="color:#B03B03;">self</span>.gru(embeddings) 
+<a id="x27-115058r1098"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(hidden_states[-<span style="color:#8F4070;">1</span>])</pre>
+</code></pre>
+<p class="noindent">As we can see, this model is very similar to our <i>Shakespeare model</i>, but with a few important
+differences: </p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent">When creating the <code class="verb">nn.Embedding layer</code> , we set its  <code class="file"><code class="verb">padding_idx</code></code> argument to our padding ID. This ensures
+that the padding ID gets embedded as a nontrainable zero vector to reduce the impact of
+padding tokens on the loss.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">Since this is a sequence-to-vector model, not a sequence-to-sequence model, we only need
+the last output of the top <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gru">GRU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gru">Gated Recurrent Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gru">a type of RNN architecture designed
+to process sequential data while solving the vanishing gradient problem of standard RNNs.</a></span></span></span>
+layer to make our final prediction which is through the output  <code class="file"><code class="verb">nn.Linear</code></code> layer).
+</p>
+<div class="block-minor knowledge"><div class="body">
+<p class="noindent">We could have used  <code class="file"><code class="verb">outputs[:, -1]</code></code> instead of  <code class="file"><code class="verb">hidden_states[-1]</code></code> , as they are equal.
+</p>
+</div></div>
+</li>
+<li class="itemize">
+<p class="noindent">The output  <code class="file"><code class="verb">nn.Linear</code></code> layer has a single output dimension because it’s a binary classification
+model. The final output will be a 2D tensor with a single column containing one logit per review,
+positive for positive reviews, and negative for negative reviews.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">The  <code class="file"><code class="verb">forward()</code></code> method takes a <code class="verb">BatchEncoding</code>  object as input, containing the token IDs, possibly padded and
+truncated.</p></li></ul>
+<p class="noindent">We can then train this model using the  <code class="file"><code class="verb">nn.BCEWithLogitsLoss</code></code> since this is a binary classification
+task. It reaches close to 85% accuracy on the validation set, which is reasonably good, although the
+best models reach human level, slightly above 90% accuracy. It’s probably not possible to go much
+higher than that: </p><div class="quote">  because many reviews are ambiguous, classifying them feels like flipping a coin.
+</div>
+<p class="noindent">One problem with our model is the fact that we are not fully ignoring the padding tokens. Indeed, if a
+review ends with many padding tokens, the  <code class="file"><code class="verb">nn.GRU</code></code> module will have to process them, and
+by the time it gets through all of them, it might have forgotten what the review was all
+about. To avoid this, we can use a packed sequence instead of a regular tensor. A packed
+sequence is a special data structure designed to efficiently represent a batch of sequences of
+variable lengths. You can use the  <code class="file"><code class="verb">pack_padded_sequence()</code></code> function to convert a tensor
+containing padded sequences to a packed sequence object, and conversely you can use the
+<code class="file"><code class="verb">pad_packed_sequence()</code></code> function whenever you want to convert a packed sequence object to a padded
+tensor:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb228"><a id="x27-115060r1103"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">torch.nn.utils.rnn</span> <span style="color:#9E0005;">import</span> pack_padded_sequence, pad_packed_sequence 
+<a id="x27-115062r1104"></a> 
+<a id="x27-115064r1105"></a>sequences = torch.tensor([[<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">0</span>], [<span style="color:#8F4070;">5</span>, <span style="color:#8F4070;">6</span>, <span style="color:#8F4070;">7</span>, <span style="color:#8F4070;">8</span>]]) 
+<a id="x27-115066r1106"></a>packed = pack_padded_sequence(sequences, lengths=(<span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">4</span>), 
+<a id="x27-115068r1107"></a>                              enforce_sorted=<span style="color:#9E0005;">False</span>, batch_first=<span style="color:#9E0005;">True</span>) 
+<a id="x27-115070r1108"></a>packed</pre>
+</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb229"><a id="x27-115072r1113"></a>padded, lengths = pad_packed_sequence(packed, batch_first=<span style="color:#9E0005;">True</span>) 
+<a id="x27-115074r1114"></a>padded, lengths</pre>
+</code></pre>
+<p class="noindent">By default, the  <code class="file"><code class="verb">pack_padded_sequence()</code></code> function assumes the sequences in the batch are ordered
+from the longest to the shortest. If this is not the case, we then must set  <code class="file"><code class="verb">enforce_sorted=False</code></code> .
+Moreover, the function also assumes that the time dimension comes before the batch dimension. If the
+batch dimension is first, we must set  <code class="file"><code class="verb">batch_first=True</code></code> .
+</p><p class="noindent">PyTorch’s recurrent layers support packed sequences: </p><div class="quote">  they efficiently process the sequences, stopping
+at the end of each sequence. </div>
+<p class="noindent">So let’s update our sentiment analysis model to use packed sequences. In the  <code class="file"><code class="verb">forward()</code></code> method, just
+replace the <code class="verb">self.gru(embeddings)</code>  line with the following code:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb230"><a id="x27-115076r1119"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SentimentAnalysisModelPackedSeq</span>(nn.Module): 
+<a id="x27-115078r1120"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, vocab_size, n_layers=<span style="color:#8F4070;">2</span>, embed_dim=<span style="color:#8F4070;">128</span>, 
+<a id="x27-115080r1121"></a>                 hidden_dim=<span style="color:#8F4070;">64</span>, pad_id=<span style="color:#8F4070;">0</span>, dropout=<span style="color:#8F4070;">0.2</span>): 
+<a id="x27-115082r1122"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
+<a id="x27-115084r1123"></a>        <span style="color:#B03B03;">self</span>.embed = nn.Embedding(vocab_size, embed_dim, 
+<a id="x27-115086r1124"></a>                                  padding_idx=pad_id) 
+<a id="x27-115088r1125"></a>        <span style="color:#B03B03;">self</span>.gru = nn.GRU(embed_dim, hidden_dim, num_layers=n_layers, 
+<a id="x27-115090r1126"></a>                          batch_first=<span style="color:#9E0005;">True</span>, dropout=dropout) 
+<a id="x27-115092r1127"></a>        <span style="color:#B03B03;">self</span>.output = nn.Linear(hidden_dim, <span style="color:#8F4070;">1</span>) 
+<a id="x27-115094r1128"></a> 
+<a id="x27-115096r1129"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, encodings): 
+<a id="x27-115098r1130"></a>        embeddings = <span style="color:#B03B03;">self</span>.embed(encodings[<span style="color:#78730D;">"input_ids"</span>]) 
+<a id="x27-115100r1131"></a>        lengths = encodings[<span style="color:#78730D;">"attention_mask"</span>].sum(dim=<span style="color:#8F4070;">1</span>)                      <span style="color:#918273;"><i># &lt;= line added</i></span> 
+<a id="x27-115102r1132"></a>        packed = pack_padded_sequence(embeddings, lengths=lengths.cpu(),      <span style="color:#918273;"><i># &lt;= line added</i></span> 
+<a id="x27-115104r1133"></a>                                      batch_first=<span style="color:#9E0005;">True</span>, enforce_sorted=<span style="color:#9E0005;">False</span>) <span style="color:#918273;"><i># &lt;= line added</i></span> 
+<a id="x27-115106r1134"></a>        _outputs, hidden_states = <span style="color:#B03B03;">self</span>.gru(packed)                            <span style="color:#918273;"><i># &lt;= line changed</i></span> 
+<a id="x27-115108r1135"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(hidden_states[-<span style="color:#8F4070;">1</span>])</pre>
+</code></pre>
+<p class="noindent">This code starts by computing the length of each sequence in the batch, just like we did earlier,
+then it packs the embeddings tensor and passes the packed sequence to the <code class="verb">nn.GRU</code>  module. With
+that, the model will properly handle sequences without being bothered by any padding
+tokens.
+</p>
+<div class="block-minor knowledge"><div class="body">
+<p class="noindent">We don’t actually need to set  <code class="file"><code class="verb">padding_idx</code></code> anymore when creating the <code class="verb">nn.Embedding</code>  layer, but it doesn’t hurt,
+and it makes debugging a bit easier, so it is better to keep it. </p></div></div>
+<p class="noindent">Another way to improve our model is to let it look at the review in both directions: left to right, and
+right to left. Let’s see how this works.
+</p>
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-5.60" id="info-block-5.60"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 5.<a id="x27-115109r60"></a>60: </b> </span> <span class="title"> Keep It in Sequence </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
+<p class="noindent">If you pass a packed sequence to an <code class="verb">nn.GRU</code>  module, its outputs will also be a packed sequence, and we
+will need to convert it back to a padded tensor before you can pass it to the next layers.
+Luckily, we don’t need these outputs for our sentiment analysis model, only the hidden
+states.
+</p>
+</dd></dl>
+<div class="section-header">
+<h3 id="header-section-glossary">
+<span class="number">
+<i class="fa-regular fa-bookmark"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+        Page Glossary Terms</span>
+</h3>
+</div>
+<div class="acronym-block">
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:gru">¶</a>
+<dt class="acr-bottom" id="glo:gru"><span class="acr-short">GRU</span><span class="acr-long">Gated Recurrent Unit</span></dt>
+<dd class="acr-desc"><p>a type of RNN architecture designed
+to process sequential data while solving the vanishing gradient problem of standard RNNs.</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:rnn">¶</a>
+<dt class="acr-bottom" id="glo:rnn"><span class="acr-short">RNN</span><span class="acr-long">Recurrent Neural Networks</span></dt>
+<dd class="acr-desc"><p>a type of ANN designed to process
+sequential data, such as text, speech, or time series, by passing information through loops from one step
+to the next</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:nlp">¶</a>
+<dt class="acr-bottom" id="glo:nlp"><span class="acr-short">NLP</span><span class="acr-long">Natural Language Processing</span></dt>
+<dd class="acr-desc"><p>Natural Language
+Processing</p></dd>
+</dl>
+</div>
+<div class="section-header">
+<h3 id="header-section-references">
+<span class="number">
+<i class="fa-solid fa-magnifying-glass"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+            Page References</span>
+</h3>
+</div>
+<div class="cite-block">
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">1.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Sennrich, R., Haddow, B. &amp; Birch, A. Neural Machine Translation of Rare Words with Subword Units. ArXiv abs/1508.07909 (2015)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">2.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Wu, Y.-H. et al. Google’s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation. ArXiv abs/1609.08144 (2016)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">3.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Kudo, T. Subword Regularization: Improving Neural Network Translation Models with Multiple Subword Candidates. ArXiv abs/1804.10959 (2018)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">4.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Kudo, T. &amp; Richardson, J. SentencePiece: A simple and language independent subword tokenizer and detokenizer for Neural Text Processing in Conference on Empirical Methods in Natural Language Processing (2018)</dd>
+</dl></div>
+<div class="section-header">
+<h3 id="header-section-references">
+<span class="number">
+<i class="fa-regular fa-note-sticky"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+                    Page Footnotes</span>
+</h3>
+</div>
+<div class="footnote-block">
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-236"><span class="acr-short">[236].</span></dt>
+<dd class="enumerate-enumitem"><span class="">25,000 for training, 25,000 for testing.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-237"><span class="acr-short">[237].</span></dt>
+<dd class="enumerate-enumitem"><span class="">Which was initially done for data compression.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-238"><span class="acr-short">[238].</span></dt>
+<dd class="enumerate-enumitem"><span class="">such as Arabic, Finnish, German, Hungarian,
+Polish, or Turkish.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-239"><span class="acr-short">[239].</span></dt>
+<dd class="enumerate-enumitem"><span class="">another popular NLP model, which stands for
+Bidirectional Encoder Representations from Transformers.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-240"><span class="acr-short">[240].</span></dt>
+<dd class="enumerate-enumitem"><span class="">unlike
+the previous tokenizer, since GPT-2 didn’t need it.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-241"><span class="acr-short">[241].</span></dt>
+<dd class="enumerate-enumitem"><span class="">e.g., using the <code class="verb">map()</code>  method.</span></dd>
+</dl></div><nav class="crosslinks-bottom"><div class="navigation"><span class="nav-button"><a href="BidirectionalRNNs.html"><i class="fa-solid fa-caret-right"></i></a></span><span class="nav-button"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html"><i class="fa-solid fa-caret-left"></i></a></span><span class="nav-button"><a href="NaturalLanguageProcessingwithRNNsandAttention.html#SentimentAnalysisUsingHuggingFaceLibraries.html"><i class="fa-solid fa-caret-up"></i></a></span><span class="nav-button">
+<a href="index.html" rel="index" title="Index">
+<i class="fa-solid fa-table-list">
+</i>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Index">
+<i class="fa-brands fa-git-alt"></i>
+</a></span></div></nav> <div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
+<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="note">Authors Note </span>
+<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
+</div>
+</article>
+<div class="mode-line">
+<div class="core-line"><div class="core-line-image"><img class="webbook-logo" src="logo/webbook-logo.svg"/></div>
+<div class="current-header">
+<span class="header-pretext">Viewing | </span>
+<span class="header-text">5.2: Sentiment Analysis Using Hugging Face Libraries</span>
+</div>
+<div class="button-group">
+</div>
+</div>
+<div class="supp-line"></div>
+</div>
+</page>
+</body>
+</html>

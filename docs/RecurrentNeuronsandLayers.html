@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Recurrent Neurons and Layers</title>
+<meta charset="utf-8"/>
+<meta content="lms-WebBook" name="generator"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js" type="text/javascript"></script>
+<link href="logo/lms.ico" rel="icon" type="image/x-icon"/>
+<link href="./pagefind/pagefind-component-ui.css" rel="stylesheet"/>
+<script src="./pagefind/pagefind-component-ui.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" rel="stylesheet"/>
+<link href="flatweb.css" rel="stylesheet" type="text/css"/>
+<script src="flatweb.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<link href="style-code/gruvbox-light-hard.min.css" id="code-style" rel="stylesheet"/>
+<script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+<link href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script>
+ </head><body>
+<page>
+<nav class="wide"> <div class="header"><div class="header-left"><span class="header-lecture-grade">B.Sc</span>
+<span class="header-lecture-name">Data Science II</span>
+<span class="header-webBook">WebBook 2.1</span></div><div class="header-right"><span class="header-version">WS.2026</span>
+<span class="header-chapter">Working with RNNs and CNNs</span></div></div><div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><pagefind-modal></pagefind-modal><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style="font-size:20px"></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&amp;hl=en\&amp;user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style="font-size:20px"></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style="font-size:20px"></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style="font-size:20px"></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style="font-size:20px"></i></a></div><hr/><span class="chapterToc"><span class="number"></span><span class="title"><a href="index.html#x2-10000">Entry Point</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial
+Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Current Developments and Overview</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">Logical
+Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">The Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Multilayer Perceptron and
+Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Regression MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.7</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-100001.1.7">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-110001.2">Implementing
+MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-120001.2.1">Building an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-140001.2.2">Creating
+the model using the sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-180001.2.3">Building a Regression MLP Using the
+Sequential API</a></span></span><span class="chapterToc"><span class="number">2</span><span class="title"><a href="UnderstandingPyTorch.html#x6-190002">Understanding PyTorch</a></span></span><span class="sectionToc"><span class="number">2.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-210002.1">PyTorch Fundamentals</a></span></span><span class="subsectionToc"><span class="number">2.1.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-220002.1.1">Making some
+Tensors</a></span></span><span class="subsectionToc"><span class="number">2.1.2</span><span class="title"><a href="PyTorchFundamentals.html#x7-230002.1.2">Hardware Acceleration</a></span></span><span class="sectionToc"><span class="number">2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-260002.2">Implementing Linear Regression</a></span></span><span class="subsectionToc"><span class="number">2.2.1</span><span class="title"><a href="ImplementingLinearRegression.html#x8-270002.2.1">Linear
+Regression Using Tensors and Autograd</a></span></span><span class="subsectionToc"><span class="number">2.2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-290002.2.2">Linear Regression Using PyTorch’s
+High-Level API</a></span></span><span class="sectionToc"><span class="number">2.3</span><span class="title"><a href="ImplementingaRegressionMLP.html#x9-300002.3">Implementing a Regression MLP</a></span></span><span class="sectionToc"><span class="number">2.4</span><span class="title"><a href="MiniBatchGradientDescentUsingDataLoaders.html#x10-310002.4">Mini-Batch Gradient Descent
+Using DataLoaders</a></span></span><span class="sectionToc"><span class="number">2.5</span><span class="title"><a href="ModelEvaluation.html#x11-320002.5">Model Evaluation</a></span></span><span class="sectionToc"><span class="number">2.6</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-330002.6">Building Nonsequential Models Using
+Custom Modules</a></span></span><span class="subsectionToc"><span class="number">2.6.1</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-340002.6.1">Building Models with Multiple Inputs</a></span></span><span class="subsectionToc"><span class="number">2.6.2</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-350002.6.2">Building Models
+with Multiple Outputs</a></span></span><span class="sectionToc"><span class="number">2.7</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-360002.7">Building an Image Classifier with PyTorch</a></span></span><span class="subsectionToc"><span class="number">2.7.1</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-370002.7.1">Using
+TorchVision to Load the Dataset</a></span></span><span class="subsectionToc"><span class="number">2.7.2</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-380002.7.2">Building the Classifier</a></span></span><span class="sectionToc"><span class="number">2.8</span><span class="title"><a href="FineTuningHyperparameterswithOptuna.html#x14-390002.8">Fine-Tuning
+Hyperparameters with Optuna</a></span></span><span class="sectionToc"><span class="number">2.9</span><span class="title"><a href="SavingandLoadingPyTorchModels.html#x15-400002.9">Saving and Loading PyTorch Models</a></span></span><span class="sectionToc"><span class="number">2.10</span><span class="title"><a href="CompilingandOptimizingaPyTorchModel.html#x16-410002.10">Compiling
+and Optimizing a PyTorch Model</a></span></span><span class="chapterToc"><span class="number">3</span><span class="title"><a href="TrainingDeepNeuralNetworks.html#x17-420003">Training Deep Neural Networks</a></span></span><span class="sectionToc"><span class="number">3.1</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-440003.1">The
+Vanishing/Exploding Gradients Problems</a></span></span><span class="subsectionToc"><span class="number">3.1.1</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-450003.1.1">Glorot Initialization and He
+Initialization</a></span></span><span class="subsectionToc"><span class="number">3.1.2</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-470003.1.2">Better Activation Functions</a></span></span><span class="subsectionToc"><span class="number">3.1.3</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-510003.1.3">Batch Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.4</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-540003.1.4">Layer
+Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.5</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-550003.1.5">Gradient Clipping</a></span></span><span class="subsectionToc"><span class="number">3.1.6</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-560003.1.6">Reusing Pretrained Layers</a></span></span><span class="subsectionToc"><span class="number">3.1.7</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-570003.1.7">Transfer
+Learning with PyTorch</a></span></span><span class="subsectionToc"><span class="number">3.1.8</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-580003.1.8">Unsupervised Pretraining</a></span></span><span class="subsectionToc"><span class="number">3.1.9</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-590003.1.9">Pretraining on an Auxiliary
+Task</a></span></span><span class="subsectionToc"><span class="number">3.1.10</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-600003.1.10">Faster Optimizers</a></span></span><span class="subsectionToc"><span class="number">3.1.11</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-630003.1.11">AdaGrad</a></span></span><span class="subsectionToc"><span class="number">3.1.12</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-640003.1.12">RMSProp</a></span></span><span class="subsectionToc"><span class="number">3.1.13</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-650003.1.13">Adam</a></span></span><span class="sectionToc"><span class="number">3.2</span><span class="title"><a href="LearningRateScheduling.html#x19-690003.2">Learning
+Rate Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.1</span><span class="title"><a href="LearningRateScheduling.html#x19-700003.2.1">Exponential Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.2</span><span class="title"><a href="LearningRateScheduling.html#x19-710003.2.2">Cosine Annealing</a></span></span><span class="subsectionToc"><span class="number">3.2.3</span><span class="title"><a href="LearningRateScheduling.html#x19-720003.2.3">Performance
+Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.4</span><span class="title"><a href="LearningRateScheduling.html#x19-730003.2.4">Warming Up the Learning Rate</a></span></span><span class="subsectionToc"><span class="number">3.2.5</span><span class="title"><a href="LearningRateScheduling.html#x19-740003.2.5">Cosine Annealing with Warm
+Restarts</a></span></span><span class="subsectionToc"><span class="number">3.2.6</span><span class="title"><a href="LearningRateScheduling.html#x19-750003.2.6">1cycle Scheduling</a></span></span><span class="sectionToc"><span class="number">3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-760003.3">Avoiding Overfitting Through Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.1</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-770003.3.1"><math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>1</mn></mrow></msub></math>
+and <math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
+Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-780003.3.2">Dropout</a></span></span><span class="subsectionToc"><span class="number">3.3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-790003.3.3">Max-Norm Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.4</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-800003.3.4">Practical Guidelines</a></span></span><span class="chapterToc"><span class="number">4</span><span class="title"><a href="WorkingwithRNNsandCNNs.html#x21-810004">Working
+with RNNs and CNNs</a></span></span><span class="sectionToc"><span class="number">4.1</span><span class="title"><a href="#x22-830004.1">Recurrent Neurons and Layers</a></span></span><span class="subsectionToc"><span class="number">4.1.1</span><span class="title"><a href="#x22-840004.1.1">Memory Cells</a></span></span><span class="subsectionToc"><span class="number">4.1.2</span><span class="title"><a href="#x22-850004.1.2">Input
+and Output Sequences</a></span></span><span class="subsectionToc"><span class="number">4.1.3</span><span class="title"><a href="#x22-860004.1.3">Training RNNs</a></span></span><span class="sectionToc"><span class="number">4.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-870004.2">Forecasting a Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.1</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-880004.2.1">The ARMA
+Model Family</a></span></span><span class="subsectionToc"><span class="number">4.2.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-890004.2.2">Preparing the Data for Machine Learning Models</a></span></span><span class="subsectionToc"><span class="number">4.2.3</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-900004.2.3">Forecasting
+Using a Linear Model</a></span></span><span class="subsectionToc"><span class="number">4.2.4</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-910004.2.4">Forecasting Using a Simple RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.5</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-920004.2.5">Forecasting Using a
+Deep RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.6</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-930004.2.6">Forecasting Multivariate Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.7</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-940004.2.7">Forecasting Several Time
+Steps Ahead</a></span></span><span class="subsectionToc"><span class="number">4.2.8</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-950004.2.8">Forecasting Using a Sequence-to-Sequence Model</a></span></span><span class="sectionToc"><span class="number">4.3</span><span class="title"><a href="HandlingLongSequences.html#x24-960004.3">Handling
+Long Sequences</a></span></span><span class="subsectionToc"><span class="number">4.3.1</span><span class="title"><a href="HandlingLongSequences.html#x24-970004.3.1">Fighting the Unstable Gradients Problem</a></span></span><span class="subsectionToc"><span class="number">4.3.2</span><span class="title"><a href="HandlingLongSequences.html#x24-980004.3.2">Tackling the
+Short-Term Memory Problem</a></span></span><span class="chapterToc"><span class="number">5</span><span class="title"><a href="NaturalLanguageProcessingwithRNNsandAttention.html#x25-1030005">Natural Language Processing with RNNs and
+Attention</a></span></span><span class="sectionToc"><span class="number">5.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1070005.1">Generating Shakespearean Text Using a Character RNN</a></span></span><span class="subsectionToc"><span class="number">5.1.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1080005.1.1">Creating
+the Training Dataset</a></span></span><span class="subsectionToc"><span class="number">5.1.2</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1090005.1.2">Embeddings</a></span></span><span class="subsectionToc"><span class="number">5.1.3</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1100005.1.3">Building and Training the Char-RNN
+Model</a></span></span><span class="subsectionToc"><span class="number">5.1.4</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1110005.1.4">Generating Fake Shakespearean Text</a></span></span><span class="sectionToc"><span class="number">5.2</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1120005.2">Sentiment Analysis Using
+Hugging Face Libraries</a></span></span><span class="subsectionToc"><span class="number">5.2.1</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1130005.2.1">Tokenization Using the Hugging Face Tokenizers
+Library</a></span></span><span class="subsectionToc"><span class="number">5.2.2</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1140005.2.2">Reusing Pretrained Tokenizers</a></span></span><span class="subsectionToc"><span class="number">5.2.3</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1150005.2.3">Building and Training a Sentiment
+Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1160005.3">Bidirectional RNNs</a></span></span><span class="subsectionToc"><span class="number">5.3.1</span><span class="title"><a href="BidirectionalRNNs.html#x28-1170005.3.1">Reusing Pretrained Embeddings and
+Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
+for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
+<div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<article class="chapter">
+<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="ForecastingaTimeSeries.html">Forecasting a Time Series</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="WorkingwithRNNsandCNNs.html">Chapter: Working with RNNs and CNNs</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="WorkingwithRNNsandCNNs.html#RecurrentNeuronsandLayers.html">Chapter: Working with RNNs and CNNs</a></span><span class="nav-button">
+<a href="index.html" rel="index" title="Visit Entry Point">
+<i class="fa-solid fa-table-list">
+</i>
+<span class="nav-info">Visit Index Page</span>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Visit Material GitHub Repo">
+<i class="fa-brands fa-git-alt"></i>
+<span class="nav-info">Visit Material GitHub Repo</span>
+</a></span></nav>
+<div class="section-header"><h3 id="header-section-4.1"><span class="number">4.1</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.4.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x22-830004.1"></a>Recurrent Neurons and
+Layers</span></h3></div>
+<p class="noindent">Till now we have focused on <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ffnn">FFNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ffnn">Feed-forward neural network</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ffnn">Feed-forward neural network</a></span></span></span>s, where
+the activations flow only in <span class="alert">one direction</span>, which is from the input layer to the output layer.
+</p>
+<div class="block-minor knowledge"><div class="body">
+<p class="noindent">A <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text,
+speech, or time series, by passing information through loops from one step to the next</a></span></span></span> looks very much
+like a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ffnn">FFNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ffnn">Feed-forward neural network</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ffnn">Feed-forward neural network</a></span></span></span> neural network, except it also
+has connections pointing backward. </p></div></div>
+<p class="noindent">Lets look at the simplest possible <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process
+sequential data, such as text, speech, or time series, by passing information through loops from one step
+to the next</a></span></span></span>: </p><div class="quote">  It is composed of a single neuron receiving inputs, producing an output, and sending that
+output back to itself </div>
+<p class="noindent">(see Figure 13-1, left). At each <i>time step</i> <math display="inline"><mi>t</mi></math>,
+which is also called a <i>frame</i>, this recurrent neuron receives the inputs
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math> as well as its own output
+from the previous time step, <math display="inline"><msub><mrow><mi>ŷ</mi></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.
+Given there is no previous output at the first time step, it is generally set to zero. We can represent this
+tiny network against the time axis (see Figure 13-1, right).
+</p>
+<div class="block-minor knowledge"><div class="body">
+<p class="noindent">This is called <span class="alert">unrolling the network through time</span><span class="margin-block">. <span class="margin-comment"><a class="ellipsis" href="#m-ref-187">[187]</a>
+<span class="sidenote">It’s the same recurrent neuron represented once per time step.</span></span></span> </p></div></div>
+<p class="noindent"></p><figure class="float">
+<a id="x22-83001r1"></a>
+<figcaption class="caption"><span class="id">Figure 4.1: </span><span class="content">A recurrent neuron (left) unrolled through time (right).                                 </span></figcaption>
+<img alt="PIC" src="figures/Working-with-RNNs-and-CNNs/figures-1.png" style=""/>
+</figure>
+<p class="noindent">We can easily create a layer of recurrent neurons. At each time step
+<math display="inline"><mi>t</mi></math>, every neuron receives both the
+input vector <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math> and the output vector
+from the previous time step <math display="inline"><msub><mrow><mi>ŷ</mi></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>,
+as shown in Figure 13-2.
+</p>
+<div class="block-minor warning"><div class="body">
+<p class="noindent">Both the inputs and outputs are now <span class="alert">vectors</span><span class="margin-block">. <span class="margin-comment"><a class="ellipsis" href="#m-ref-188">[188]</a>
+<span class="sidenote">when there was just a single neuron, the output was a scalar.</span></span></span>
+</p></div></div>
+<p class="noindent">Each recurrent neuron has two (<span class="alert">2</span>) sets of weights: </p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent">one for the inputs <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>,
+and
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">the other for the outputs of the previous time step, <math display="inline"><msub><mrow><mi>ŷ</mi></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.</p></li></ul>
+<p class="noindent">Lets call these weight vectors <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>w</mi></mstyle></mrow><mrow><mi>x</mi></mrow></msub></math>
+and <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>w</mi></mstyle></mrow><mrow><mi>ŷ</mi></mrow></msub></math>.
+</p><p class="noindent">If we consider the whole recurrent layer instead of just one recurrent neuron, we can place all the weight vectors in two
+(<span class="alert">2</span>) weight matrices: </p><div class="quote"> <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>x</mi></mrow></msub></math>
+and <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>ŷ</mi></mrow></msub></math>.
+</div>
+<p class="noindent">The output vector of the whole recurrent layer can then be computed pretty much as one might expect, as shown in
+Eq. 
+(<a href="#x22-83004r1">4.1</a>)
+, where <math display="inline"><mstyle mathvariant="bold"><mi>b</mi></mstyle></math> is
+the <i>bias vector</i> and <math display="inline"><mi>ϕ</mi><mo class="MathClass-open" stretchy="false">(</mo><mi>·</mi><mo class="MathClass-close" stretchy="false">)</mo></math>
+is the activation function, such as ReLU<span class="margin-block">. <span class="margin-comment"><a class="ellipsis" href="#m-ref-189">[189]</a>
+<span class="sidenote">Many researchers prefer to use the <i>hyperbolic tangent</i> (tanh)
+activation function in <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process
+sequential data, such as text, speech, or time series, by passing information through loops from
+one step to the next</a></span></span></span>s rather than the ReLU activation function <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Pham2013DropoutIR"> <a id="x22-83002"></a>Pham, V. T. D. et al.
+Dropout Improves Recurrent Neural Networks for Handwriting Recognition. 2014 14th
+International Conference on Frontiers in Handwriting Recognition, 285–290 (2013)</span></span>, however
+ReLU-based <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data,
+such as text, speech, or time series, by passing information through loops from one step
+to the next</a></span></span></span>s are also possible <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Le2015ASW"> <a id="x22-83003"></a>Le, Q. V., Jaitly, N. &amp; Hinton, G. E. A Simple Way to
+Initialize Recurrent Networks of Rectified Linear Units. ArXiv <b>abs/1504.00941</b> (2015)</span></span>.</span></span></span>
+</p><div class="highlight-eq-block"><table class="equation"><tr><td>
+<math class="equation" display="block">
+<mstyle class="label" id="x22-83004r1"></mstyle><msub><mrow>
+<mover accent="true"><mrow><mstyle mathvariant="bold"><mi>y</mi></mstyle></mrow><mo accent="true">^</mo></mover>
+</mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub>
+<mo class="MathClass-rel" stretchy="false">=</mo> <mi>ϕ</mi> <mrow><mo fence="true" form="prefix">(</mo><mrow><msubsup><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>x</mi></mrow><mrow><mstyle class="text"><mtext>T</mtext></mstyle></mrow></msubsup><msub><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mrow>
+<mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mo class="MathClass-bin" stretchy="false">+</mo><msubsup><mrow> <mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>ŷ</mi></mrow><mrow><mstyle class="text"><mtext>T</mtext></mstyle></mrow></msubsup><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow>
+<mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mo class="MathClass-bin" stretchy="false">+</mo> <mstyle mathvariant="bold"><mi>b</mi></mstyle></mrow><mo fence="true" form="postfix">)</mo></mrow>
+</math></td><td class="eq-no">(4.1)</td></tr></table>
+<p class="noindent"></p>
+<p class="noindent"></p></div>
+<p class="noindent">Similar to <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ffnn">FFNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ffnn">Feed-forward neural network</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ffnn">Feed-forward neural network</a></span></span></span>, we can compute a recurrent
+layer’s output in one shot for an entire mini-batch by placing all the inputs at time step
+<math display="inline"><mi>t</mi></math> into an input
+matrix <math display="inline"><mstyle mathvariant="bold"><mi>X</mi></mstyle><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></math>:
+</p><table class="equation"><tr><td>
+<math class="equation" display="block">
+<mstyle class="label" id="x22-83005r2"></mstyle><mtable class="aligned" displaystyle="true"><mtr><mtd columnalign="right"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mtd>
+<mtd columnalign="left"> <mo class="MathClass-rel" stretchy="false">=</mo> <mi>ϕ</mi><msup><mrow> <mrow><mo fence="true" form="prefix">(</mo><mrow><msub><mrow><mstyle mathvariant="bold"><mi>X</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub><msub><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>x</mi></mrow></msub> <mo class="MathClass-bin" stretchy="false">+</mo><msub><mrow> <mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub><msub><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>ŷ</mi></mrow></msub> <mo class="MathClass-bin" stretchy="false">+</mo> <mstyle mathvariant="bold"><mi>b</mi></mstyle></mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow></mrow></msup></mtd>
+<mtd columnalign="right"></mtd>
+</mtr><mtr><mtd columnalign="right"></mtd> <mtd columnalign="left"> <mo class="MathClass-rel" stretchy="false">=</mo> <mi>ϕ</mi><msup><mrow> <mrow><mo fence="true" form="prefix">(</mo><mrow><mrow><mo fence="true" form="prefix">[</mo><mrow><msub><mrow><mstyle mathvariant="bold"><mi>X</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub><mspace class="quad" width="1em"></mspace><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mrow><mo fence="true" form="postfix">]</mo></mrow> <mstyle class="text"><mtext></mtext></mstyle><mstyle mathvariant="bold"><mi>W</mi></mstyle> <mo class="MathClass-bin" stretchy="false">+</mo> <mstyle mathvariant="bold"><mi>b</mi></mstyle></mrow><mo fence="true" form="postfix">)</mo></mrow></mrow><mrow></mrow></msup></mtd>
+</mtr> </mtable><mspace class="qquad" width="2em"></mspace><mstyle class="text"><mtext>where</mtext></mstyle><mspace class="qquad" width="2em"></mspace><mstyle mathvariant="bold"><mi>W</mi></mstyle> <mo class="MathClass-rel" stretchy="false">=</mo> <mrow><mo fence="true" form="prefix">[</mo><mrow><mtable align="axis" class="array" columnlines="none none none none none none none none none" displaystyle="true" equalcolumns="false" equalrows="false" style=""> <mtr class="array-row"><mtd class="array-td" columnalign="center"> <msub><mrow><mi>W</mi></mrow><mrow><mi>x</mi></mrow></msub> </mtd>
+</mtr> <mtr class="array-row"><mtd class="array-td" columnalign="center"> <msub><mrow><mi>W</mi></mrow><mrow><mi>y</mi></mrow></msub> </mtd></mtr></mtable> </mrow><mo fence="true" form="postfix">]</mo></mrow>
+</math></td><td class="eq-no">(4.2)</td></tr></table>
+<p class="noindent"></p>
+<p class="noindent">In this equation: </p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent"><math display="inline"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+is an <math display="inline"><mi>m</mi> <mi>×</mi> <msub><mrow><mi>n</mi></mrow><mrow><mstyle class="text"><mtext>neurons</mtext></mstyle></mrow></msub></math>
+matrix containing the layers outputs at time step <math display="inline"><mi>t</mi></math>
+for each instance in the mini-batch. Here <math display="inline"><mi>m</mi></math>
+is the number of instances in the mini-batch, and <math display="inline"><msub><mrow><mi>n</mi></mrow><mrow><mstyle class="text"><mtext>neurons</mtext></mstyle></mrow></msub></math>
+is the number of neurons.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent"><math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>X</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+is an <math display="inline"><mi>m</mi> <mi>×</mi> <msub><mrow><mi>n</mi></mrow><mrow><mstyle class="text"><mtext>inputs</mtext></mstyle></mrow></msub></math>
+matrix containing the inputs for all instances. Here <math display="inline"><msub><mrow><mi>n</mi></mrow><mrow><mstyle class="text"><mtext>inputs</mtext></mstyle></mrow></msub></math>
+is the number of input features.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent"><math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>x</mi></mrow></msub></math>
+is an ninputs Œ nneurons matrix containing the connection weights for the inputs of the
+current time step.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent"><math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>ŷ</mi></mrow></msub></math>
+is an nneurons Œ nneurons matrix containing the connection weights for the outputs of
+the previous time step.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent"><math display="inline"><mstyle mathvariant="bold"><mi>b</mi></mstyle></math>
+is a vector of size nneurons containing each neurons bias term.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">The weight matrices Wx and W are often concatenated vertically into a single weight
+matrix W of shape (ninputs + nneurons) Œ nneurons (see the second line of Equation
+13-2).
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">The notation <math display="inline"> <mrow><mo fence="true" form="prefix">[</mo><mrow><msub><mrow><mstyle mathvariant="bold"><mi>X</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub><mspace class="quad" width="1em"></mspace><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mrow><mo fence="true" form="postfix">]</mo></mrow> <mstyle class="text"><mtext></mtext></mstyle></math>
+represents the horizontal concatenation of the matrices X(t) and (t1).</p></li></ul>
+<p class="noindent">Please observe that <math display="inline"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+is a function of <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>X</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+and <math display="inline"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>, which is
+a function of <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>X</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+and <math display="inline"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>2</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>, which is a
+function of <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>X</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>2</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math> and
+<math display="inline"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>3</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>, and so on. This makes
+<math display="inline"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math> a function of all the
+inputs since time <math display="inline"><mi>t</mi></math>
+= <span class="margin-block">0. <span class="margin-comment"><a class="ellipsis" href="#m-ref-190">[190]</a>
+<span class="sidenote">That is, <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>X</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>0</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>,
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>X</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>,
+<math display="inline"><mo class="MathClass-rel" stretchy="false">⋯</mo><mspace class="thinspace" width="0.17em"></mspace></math>,
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>X</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.</span></span></span> At the first
+time step, <math display="inline"><mi>t</mi> <mo class="MathClass-rel" stretchy="false">=</mo> <mn>0</mn></math>,
+there are no previous outputs, so they are typically assumed to be all zeros.
+</p>
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-4.43" id="info-block-4.43"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 4.<a id="x22-83006r43"></a>43: </b> </span> <span class="title"> Origins of RNN </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
+<p class="noindent">The idea of introducing backward <span class="margin-block">connections <span class="margin-comment"><a class="ellipsis" href="#m-ref-191">[191]</a>
+<span class="sidenote">basically the use of loops.</span></span></span> in <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span> dates back to the very origins of <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span>s, but the first modern <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of
+ANN designed to process sequential data, such as text, speech, or time series, by passing information
+through loops from one step to the next</a></span></span></span> architecture was proposed in <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail" id="Jordan1990AttractorDA"> <a id="x22-83007"></a>Jordan, M. I. Attractor
+dynamics and parallelism in a connectionist sequential machine in (1990)</span></span>. At each time step, his
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text,
+speech, or time series, by passing information through loops from one step to the next</a></span></span></span> would look at
+the inputs for that time step, plus its own outputs from the previous time step. This is called output
+feedback.
+</p>
+</dd></dl>
+<div class="subsection-header"><h4 id="header-subsection-4.1.1"><span class="number">4.1.1</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.4.1.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x22-840004.1.1"></a>Memory Cells</span></h4></div>
+<p class="noindent">Since the output of a recurrent neuron at time step
+<math display="inline"><mi>t</mi></math> is a
+function of all the inputs from previous time steps, we could say it has a form of <i>memory</i>.
+</p><p class="noindent">A part of a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span> that preserves some state across time steps is called a
+<b>memory cell</b><span class="margin-block">. <span class="margin-comment"><a class="ellipsis" href="#m-ref-192">[192]</a>
+<span class="sidenote">or just simply a <i>cell</i>.</span></span></span> A single recurrent neuron, or a layer of <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text, speech, or time series, by
+passing information through loops from one step to the next</a></span></span></span>s, is a very basic cell, capable of
+learning only short <span class="margin-block">patterns. <span class="margin-comment"><a class="ellipsis" href="#m-ref-193">[193]</a>
+<span class="sidenote">typically about 10 steps long, but this varies depending on the
+task.</span></span></span> Later in this chapter, we will look at some more complex and powerful types of cells
+capable of learning longer <span class="margin-block">patterns. <span class="margin-comment"><a class="ellipsis" href="#m-ref-194">[194]</a>
+<span class="sidenote">Roughly 10 times longer, but again, this depends on the
+task.</span></span></span>
+</p><p class="noindent">A cells state at time step <math display="inline"><mi>t</mi></math>,
+denoted <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>,
+where <math display="inline"><mstyle mathvariant="bold"><mi>h</mi></mstyle></math>
+stands for <span class="alert">hidden</span>, is a function of some inputs at that time step and its state at the previous time step:
+</p><table class="equation-star"><tr><td>
+<math class="equation" display="block"><msub><mrow>
+<mstyle mathvariant="bold">
+<mi>h</mi></mstyle>
+</mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub>
+<mo class="MathClass-rel" stretchy="false">=</mo> <mi>f</mi><mo class="MathClass-open" stretchy="false">(</mo><msub><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub><mo class="MathClass-punc" stretchy="false">,</mo><mspace class="thinspace" width="0.17em"></mspace><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub><mo class="MathClass-close" stretchy="false">)</mo>
+</math></td></tr></table>
+<p class="noindent">Its output at time step <math display="inline"><mi>t</mi></math>,
+denoted <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>y</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>, is
+also a function of the previous state and the current inputs, and typically its just a function of
+the current state. In the case of the basic cells we have discussed so far, the output is just
+equal to the state, but in more complex cells this is not always the case, as shown in Figure
+13-3.
+</p>
+<p class="noindent"></p><figure class="float">
+<a id="x22-84001r2"></a>
+<figcaption class="caption"><span class="id">Figure 4.2: </span><span class="content">A cells hidden state and its output may be different.                                   </span></figcaption>
+<img alt="PIC" src="figures/Working-with-RNNs-and-CNNs/figures-2.png" style=""/>
+</figure>
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-4.44" id="info-block-4.44"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 4.<a id="x22-84002r44"></a>44: </b> </span> <span class="title"> First RNNs </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
+<p class="noindent">The first modern <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data,
+such as text, speech, or time series, by passing information through loops from one step to the next</a></span></span></span>
+which fed back the hidden state rather than the outputs was proposed in <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="Elman1990FindingSI"> <a id="x22-84003"></a>Elman, J. L. Finding
+Structure in Time. Cogn. Sci. <b>14</b><b>,</b> 179–211 (1990)</span></span>. This is called <span class="alert">state feedback</span>, and its the most common approach
+today.
+</p>
+</dd></dl>
+<div class="subsection-header"><h4 id="header-subsection-4.1.2"><span class="number">4.1.2</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.4.1.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x22-850004.1.2"></a>Input and Output Sequences</span></h4></div>
+<p class="noindent">A <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text,
+speech, or time series, by passing information through loops from one step to the next</a></span></span></span> can
+simultaneously take a sequence of inputs and produce a sequence of outputs (see the top-left network in
+Figure 13-4). This type of sequence-to-sequence network is useful to forecast time series, such as our
+homes daily power consumption: we feed it the data over the last N days, and we train it to
+output the power consumption shifted by one day into the future (i.e., from N  1 days ago to
+tomorrow).
+Alternatively, we could feed the network a sequence of inputs and ignore all outputs except for the last
+one. This is a <i>sequence-to-vector network</i>. </p><div class="quote">  For example, we could feed the network a sequence of words
+corresponding to a movie review, and the network would output a sentiment score, from 0  <var class="var"><code class="verb">[hate]</code></var> to 1
+<var class="var"><code class="verb">[love]</code></var> ). </div>
+<p class="noindent">Conversely, we could feed the network the same input vector over and over again at each time step and
+let it output a sequence. This is a <i>vector-to-sequence network</i>. </p><div class="quote">  For example, the input could be an
+image, and the output could be a caption for that image. </div>
+<p class="noindent"></p><figure class="float">
+<a id="x22-85001r3"></a>
+<figcaption class="caption"><span class="id">Figure 4.3: 
+         </span><span class="content">Sequence-to-sequence  (top  left),  sequence-to-vector  (top  right),  vector-to  sequence  (bottom  left),  and
+         encoder-decoder (bottom right) networks.                                           </span></figcaption>
+<img alt="PIC" src="figures/Working-with-RNNs-and-CNNs/figures-3.png" style=""/>
+</figure>
+<p class="noindent">Lastly, we could have a sequence-to-vector network, called an <span class="alert">encoder</span>, followed by a vector-to-sequence
+network, called a <span class="alert">decoder</span>.
+</p><p class="noindent">For example, this could be used for translating a sentence from one language to another. We would feed
+the network a sentence in one language, the encoder would convert this sentence into a single vector
+representation, and then the decoder would decode this vector into a sentence in another language.
+This two-step model, called an encoder-decoder,4 works much better than trying to translate on the fly
+with a single sequence-to-sequence <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to
+process sequential data, such as text, speech, or time series, by passing information through
+loops from one step to the next</a></span></span></span> (like the one represented at the top left): the last words of
+a sentence can affect the first words of the translation, so we need to wait until we have
+seen the whole sentence before translating it. We will go through the implementation of an
+encoder-decoder in Chapter 14 (as we will see, it is a bit more complex than what Figure 13-4
+suggests).
+This versatility sounds promising, but how do we train a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of
+ANN designed to process sequential data, such as text, speech, or time series, by passing information
+through loops from one step to the next</a></span></span></span>?
+</p>
+<div class="subsection-header"><h4 id="header-subsection-4.1.3"><span class="number">4.1.3</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.4.1.3"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x22-860004.1.3"></a>Training RNNs</span></h4></div>
+<p class="noindent">To train an <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as
+text, speech, or time series, by passing information through loops from one step to the next</a></span></span></span>,
+the trick is to unroll it through time, and then use regular <i>backpropagation</i> (see Figure
+13-5).
+</p>
+<div class="block-minor knowledge"><div class="body">
+<p class="noindent">This strategy is called backpropagation through time (BPTT) <span class="cite"><a class="cite-show" href="#w3-20001">[†-5]</a><span class="cite-detail" id="Mozer1989AFB"> <a id="x22-86001"></a>Mozer, M. C. A Focused
+Backpropagation Algorithm for Temporal Pattern Recognition. Complex Syst. <b>3</b> (1989)</span></span>.
+</p></div></div>
+<p class="noindent">Similar to <i>backpropagation</i>, there is a first forward pass through the unrolled network, represented by
+the dashed arrows. Then the output sequence is evaluated using a loss function </p><table class="equation-star"><tr><td>
+<math class="equation" display="block">
+<mi>L</mi><mo class="MathClass-open" stretchy="false">(</mo><msub><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>0</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub><mo class="MathClass-punc" stretchy="false">,</mo><mspace class="thinspace" width="0.17em"></mspace><msub><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub><mo class="MathClass-punc" stretchy="false">,</mo><mspace class="thinspace" width="0.17em"></mspace><mo class="MathClass-rel" stretchy="false">⋯</mo><mspace class="thinspace" width="0.17em"></mspace><mo class="MathClass-punc" stretchy="false">,</mo><mspace class="thinspace" width="0.17em"></mspace><msub><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>T</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub><mo class="MathClass-punc" stretchy="false">;</mo><mspace class="thinspace" width="0.17em"></mspace><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub><mo class="MathClass-punc" stretchy="false">,</mo><mspace class="thinspace" width="0.17em"></mspace><mo class="MathClass-rel" stretchy="false">⋯</mo><mspace class="thinspace" width="0.17em"></mspace><mo class="MathClass-punc" stretchy="false">,</mo><mspace class="thinspace" width="0.17em"></mspace><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>T</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub><mo class="MathClass-close" stretchy="false">)</mo>
+</math></td></tr></table>
+<p class="noindent">where <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math> is
+the <math display="inline"><msup><mrow><mstyle class="text"><mtext>i</mtext></mstyle></mrow><mrow><mstyle class="text"><mtext>th</mtext></mstyle></mrow></msup></math> target,
+<math display="inline"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>i</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math> is the
+<math display="inline"><msup><mrow><mstyle class="text"><mtext>i</mtext></mstyle></mrow><mrow><mstyle class="text"><mtext>th</mtext></mstyle></mrow></msup></math> prediction,
+and <math display="inline"><mi>T</mi></math> is
+the max time step.
+</p><p class="noindent">Note that this loss function may ignore some outputs.
+</p><p class="noindent">For example, in a sequence-to-vector <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to
+process sequential data, such as text, speech, or time series, by passing information through loops from
+one step to the next</a></span></span></span>, all outputs are ignored except for the very last one. In Figure 13-5, the
+loss function is computed based on the last three outputs only. The gradients of that loss
+function are then propagated backward through the unrolled network (represented by the solid
+arrows).
+In this example, since the outputs <math display="inline"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>0</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+and <math display="inline"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math> are
+not used to compute the loss, the gradients do not flow backward through them; </p><div class="quote">  they only flow through
+<math display="inline"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>2</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>,
+<math display="inline"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>3</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>, and
+<math display="inline"><msub><mrow><mover accent="true"><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle></mrow><mo accent="true">^</mo></mover></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>4</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.
+</div>
+<p class="noindent">Moreover, since the same parameters <math display="inline"><mstyle mathvariant="bold"><mi>W</mi></mstyle></math>
+and <math display="inline"><mstyle mathvariant="bold"><mi>b</mi></mstyle></math> are
+used at each time step, their gradients will be tweaked multiple times during backprop. Once the
+backward phase is complete and all the gradients have been computed, BPTT can perform a gradient
+descent step to update the parameters.
+</p>
+<div class="block-minor warning"><div class="body">
+<p class="noindent">This is no different from <span class="alert">regular backprop</span>. </p></div></div>
+<p class="noindent">Fortunately for us, PyTorch takes care of all of this complexity, as we will shortly see. But before we
+get there, let’s load a time series and start analyzing it using classical tools to better understand what
+we’re dealing with, and to get some baseline metrics.
+<div class="section-header">
+<h3 id="header-section-glossary">
+<span class="number">
+<i class="fa-regular fa-bookmark"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+        Page Glossary Terms</span>
+</h3>
+</div>
+<div class="acronym-block">
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:nn">¶</a>
+<dt class="acr-bottom" id="glo:nn"><span class="acr-short">NN</span><span class="acr-long">Neural Networks</span></dt>
+<dd class="acr-desc"><p>Neural Networks</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:ann">¶</a>
+<dt class="acr-bottom" id="glo:ann"><span class="acr-short">ANN</span><span class="acr-long">Artificial Neural
+Networks</span></dt>
+<dd class="acr-desc"><p>Artificial Neural Networks</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:rnn">¶</a>
+<dt class="acr-bottom" id="glo:rnn"><span class="acr-short">RNN</span><span class="acr-long">Recurrent Neural Networks</span></dt>
+<dd class="acr-desc"><p>a type of ANN designed to process sequential data, such as text,
+speech, or time series, by passing information through loops from one step to the next</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:ffnn">¶</a>
+<dt class="acr-bottom" id="glo:ffnn"><span class="acr-short">FFNN</span><span class="acr-long">Feed-forward neural network</span></dt>
+<dd class="acr-desc"><p>Feed-forward neural network</p></dd>
+</dl>
+</div>
+<div class="section-header">
+<h3 id="header-section-references">
+<span class="number">
+<i class="fa-solid fa-magnifying-glass"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+            Page References</span>
+</h3>
+</div>
+<div class="cite-block">
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">1.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Pham, V. T. D. et al. Dropout Improves Recurrent Neural Networks for Handwriting Recognition. 2014 14th International Conference on Frontiers in Handwriting Recognition, 285–290 (2013)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">2.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Le, Q. V., Jaitly, N. &amp; Hinton, G. E. A Simple Way to Initialize Recurrent Networks of Rectified Linear Units. ArXiv abs/1504.00941 (2015)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">3.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Jordan, M. I. Attractor dynamics and parallelism in a connectionist sequential machine in (1990)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">4.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Elman, J. L. Finding Structure in Time. Cogn. Sci. 14, 179–211 (1990)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">5.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Mozer, M. C. A Focused Backpropagation Algorithm for Temporal Pattern Recognition. Complex Syst. 3 (1989)</dd>
+</dl></div>
+<div class="section-header">
+<h3 id="header-section-references">
+<span class="number">
+<i class="fa-regular fa-note-sticky"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+                    Page Footnotes</span>
+</h3>
+</div>
+<div class="footnote-block">
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-187"><span class="acr-short">[187].</span></dt>
+<dd class="enumerate-enumitem"><span class="">It’s the same recurrent neuron represented once per time step.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-188"><span class="acr-short">[188].</span></dt>
+<dd class="enumerate-enumitem"><span class="">when there was just a single neuron, the output was a scalar.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-189"><span class="acr-short">[189].</span></dt>
+<dd class="enumerate-enumitem"><span class="">Many researchers prefer to use the <i>hyperbolic tangent</i> (tanh)
+activation function in <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process
+sequential data, such as text, speech, or time series, by passing information through loops from
+one step to the next</a></span></span></span>s rather than the ReLU activation function <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Pham2013DropoutIR"> <a id="x22-83002"></a>Pham, V. T. D. et al.
+Dropout Improves Recurrent Neural Networks for Handwriting Recognition. 2014 14th
+International Conference on Frontiers in Handwriting Recognition, 285–290 (2013)</span></span>, however
+ReLU-based <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data,
+such as text, speech, or time series, by passing information through loops from one step
+to the next</a></span></span></span>s are also possible <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Le2015ASW"> <a id="x22-83003"></a>Le, Q. V., Jaitly, N. &amp; Hinton, G. E. A Simple Way to
+Initialize Recurrent Networks of Rectified Linear Units. ArXiv <b>abs/1504.00941</b> (2015)</span></span>.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-190"><span class="acr-short">[190].</span></dt>
+<dd class="enumerate-enumitem"><span class="">That is, <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>X</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>0</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>,
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>X</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>,
+<math display="inline"><mo class="MathClass-rel" stretchy="false">⋯</mo><mspace class="thinspace" width="0.17em"></mspace></math>,
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>X</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-191"><span class="acr-short">[191].</span></dt>
+<dd class="enumerate-enumitem"><span class="">basically the use of loops.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-192"><span class="acr-short">[192].</span></dt>
+<dd class="enumerate-enumitem"><span class="">or just simply a <i>cell</i>.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-193"><span class="acr-short">[193].</span></dt>
+<dd class="enumerate-enumitem"><span class="">typically about 10 steps long, but this varies depending on the
+task.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-194"><span class="acr-short">[194].</span></dt>
+<dd class="enumerate-enumitem"><span class="">Roughly 10 times longer, but again, this depends on the
+task.</span></dd>
+</dl></div><nav class="crosslinks-bottom"><div class="navigation"><span class="nav-button"><a href="ForecastingaTimeSeries.html"><i class="fa-solid fa-caret-right"></i></a></span><span class="nav-button"><a href="WorkingwithRNNsandCNNs.html"><i class="fa-solid fa-caret-left"></i></a></span><span class="nav-button"><a href="WorkingwithRNNsandCNNs.html#RecurrentNeuronsandLayers.html"><i class="fa-solid fa-caret-up"></i></a></span><span class="nav-button">
+<a href="index.html" rel="index" title="Index">
+<i class="fa-solid fa-table-list">
+</i>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Index">
+<i class="fa-brands fa-git-alt"></i>
+</a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
+<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="note">Authors Note </span>
+<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
+</div>
+</article>
+<div class="mode-line">
+<div class="core-line"><div class="core-line-image"><img class="webbook-logo" src="logo/webbook-logo.svg"/></div>
+<div class="current-header">
+<span class="header-pretext">Viewing | </span>
+<span class="header-text">4.1: Recurrent Neurons and Layers</span>
+</div>
+<div class="button-group">
+</div>
+</div>
+<div class="supp-line"></div>
+</div>
+</page>
+</body>
+</html>

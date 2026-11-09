@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Handling Long Sequences</title>
+<meta charset="utf-8"/>
+<meta content="lms-WebBook" name="generator"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js" type="text/javascript"></script>
+<link href="logo/lms.ico" rel="icon" type="image/x-icon"/>
+<link href="./pagefind/pagefind-component-ui.css" rel="stylesheet"/>
+<script src="./pagefind/pagefind-component-ui.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" rel="stylesheet"/>
+<link href="flatweb.css" rel="stylesheet" type="text/css"/>
+<script src="flatweb.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<link href="style-code/gruvbox-light-hard.min.css" id="code-style" rel="stylesheet"/>
+<script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+<link href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cpp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/latex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/matlab.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/dockerfile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/cmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/makefile.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/markdown.min.js"></script>
+ </head><body>
+<page>
+<nav class="wide"> <div class="header"><div class="header-left"><span class="header-lecture-grade">B.Sc</span>
+<span class="header-lecture-name">Data Science II</span>
+<span class="header-webBook">WebBook 2.1</span></div><div class="header-right"><span class="header-version">WS.2026</span>
+<span class="header-chapter">Working with RNNs and CNNs</span></div></div><div class="toc"><pagefind-modal-trigger></pagefind-modal-trigger><pagefind-modal></pagefind-modal><div class="toc-links"><a href="https://github.com/dTmC0945" title="Lecturer GitHub Repo"><i class="fab fa-github" style="font-size:20px"></i></a><a href="https://scholar.google.com/citations?view_op=list_works\&amp;hl=en\&amp;user=lxQGADMAAAAJ" title="Lecturer Google Scholar Page"><i class="fa-brands fa-google-scholar" style="font-size:20px"></i></a><a href="https://www.researchgate.net/profile/Daniel-Mcguiness-2" title="Lecturer ResearchGate Account"><i class="fa-brands fa-researchgate" style="font-size:20px"></i></a><a href="https://dtmc0945.github.io/Th-MCI-Thesis-Topics/" title="Lecturer Thesis Ideas for B.Sc and M.Sc"><i class="fa-solid fa-book" style="font-size:20px"></i></a><a href="https://github.com/dTmC0945/C-MCI-LaTeX-Class-mcidoc/tree/main" title="mcidoc LaTeX Standard"><i class="fa-regular fa-file-lines" style="font-size:20px"></i></a></div><hr/><span class="chapterToc"><span class="number"></span><span class="title"><a href="index.html#x2-10000">Entry Point</a></span></span><span class="chapterToc"><span class="number">1</span><span class="title"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural Networks</a></span></span><span class="sectionToc"><span class="number">1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-30001.1">From Biology to Silicon: Artificial
+Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.1</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-40001.1.1">Current Developments and Overview</a></span></span><span class="subsectionToc"><span class="number">1.1.2</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-50001.1.2">Biological Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.3</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-60001.1.3">Logical
+Computations with Neurons</a></span></span><span class="subsectionToc"><span class="number">1.1.4</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-70001.1.4">The Perceptron</a></span></span><span class="subsectionToc"><span class="number">1.1.5</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-80001.1.5">Multilayer Perceptron and
+Backpropagation</a></span></span><span class="subsectionToc"><span class="number">1.1.6</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-90001.1.6">Regression MLPs</a></span></span><span class="subsectionToc"><span class="number">1.1.7</span><span class="title"><a href="FromBiologytoSiliconArtificialNeurons.html#x4-100001.1.7">Classification MLPs</a></span></span><span class="sectionToc"><span class="number">1.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-110001.2">Implementing
+MLPs with Keras</a></span></span><span class="subsectionToc"><span class="number">1.2.1</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-120001.2.1">Building an Image Classifier Using Sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.2</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-140001.2.2">Creating
+the model using the sequential API</a></span></span><span class="subsectionToc"><span class="number">1.2.3</span><span class="title"><a href="ImplementingMLPswithKeras.html#x5-180001.2.3">Building a Regression MLP Using the
+Sequential API</a></span></span><span class="chapterToc"><span class="number">2</span><span class="title"><a href="UnderstandingPyTorch.html#x6-190002">Understanding PyTorch</a></span></span><span class="sectionToc"><span class="number">2.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-210002.1">PyTorch Fundamentals</a></span></span><span class="subsectionToc"><span class="number">2.1.1</span><span class="title"><a href="PyTorchFundamentals.html#x7-220002.1.1">Making some
+Tensors</a></span></span><span class="subsectionToc"><span class="number">2.1.2</span><span class="title"><a href="PyTorchFundamentals.html#x7-230002.1.2">Hardware Acceleration</a></span></span><span class="sectionToc"><span class="number">2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-260002.2">Implementing Linear Regression</a></span></span><span class="subsectionToc"><span class="number">2.2.1</span><span class="title"><a href="ImplementingLinearRegression.html#x8-270002.2.1">Linear
+Regression Using Tensors and Autograd</a></span></span><span class="subsectionToc"><span class="number">2.2.2</span><span class="title"><a href="ImplementingLinearRegression.html#x8-290002.2.2">Linear Regression Using PyTorch’s
+High-Level API</a></span></span><span class="sectionToc"><span class="number">2.3</span><span class="title"><a href="ImplementingaRegressionMLP.html#x9-300002.3">Implementing a Regression MLP</a></span></span><span class="sectionToc"><span class="number">2.4</span><span class="title"><a href="MiniBatchGradientDescentUsingDataLoaders.html#x10-310002.4">Mini-Batch Gradient Descent
+Using DataLoaders</a></span></span><span class="sectionToc"><span class="number">2.5</span><span class="title"><a href="ModelEvaluation.html#x11-320002.5">Model Evaluation</a></span></span><span class="sectionToc"><span class="number">2.6</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-330002.6">Building Nonsequential Models Using
+Custom Modules</a></span></span><span class="subsectionToc"><span class="number">2.6.1</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-340002.6.1">Building Models with Multiple Inputs</a></span></span><span class="subsectionToc"><span class="number">2.6.2</span><span class="title"><a href="BuildingNonsequentialModelsUsingCustomModules.html#x12-350002.6.2">Building Models
+with Multiple Outputs</a></span></span><span class="sectionToc"><span class="number">2.7</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-360002.7">Building an Image Classifier with PyTorch</a></span></span><span class="subsectionToc"><span class="number">2.7.1</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-370002.7.1">Using
+TorchVision to Load the Dataset</a></span></span><span class="subsectionToc"><span class="number">2.7.2</span><span class="title"><a href="BuildinganImageClassifierwithPyTorch.html#x13-380002.7.2">Building the Classifier</a></span></span><span class="sectionToc"><span class="number">2.8</span><span class="title"><a href="FineTuningHyperparameterswithOptuna.html#x14-390002.8">Fine-Tuning
+Hyperparameters with Optuna</a></span></span><span class="sectionToc"><span class="number">2.9</span><span class="title"><a href="SavingandLoadingPyTorchModels.html#x15-400002.9">Saving and Loading PyTorch Models</a></span></span><span class="sectionToc"><span class="number">2.10</span><span class="title"><a href="CompilingandOptimizingaPyTorchModel.html#x16-410002.10">Compiling
+and Optimizing a PyTorch Model</a></span></span><span class="chapterToc"><span class="number">3</span><span class="title"><a href="TrainingDeepNeuralNetworks.html#x17-420003">Training Deep Neural Networks</a></span></span><span class="sectionToc"><span class="number">3.1</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-440003.1">The
+Vanishing/Exploding Gradients Problems</a></span></span><span class="subsectionToc"><span class="number">3.1.1</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-450003.1.1">Glorot Initialization and He
+Initialization</a></span></span><span class="subsectionToc"><span class="number">3.1.2</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-470003.1.2">Better Activation Functions</a></span></span><span class="subsectionToc"><span class="number">3.1.3</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-510003.1.3">Batch Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.4</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-540003.1.4">Layer
+Normalization</a></span></span><span class="subsectionToc"><span class="number">3.1.5</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-550003.1.5">Gradient Clipping</a></span></span><span class="subsectionToc"><span class="number">3.1.6</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-560003.1.6">Reusing Pretrained Layers</a></span></span><span class="subsectionToc"><span class="number">3.1.7</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-570003.1.7">Transfer
+Learning with PyTorch</a></span></span><span class="subsectionToc"><span class="number">3.1.8</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-580003.1.8">Unsupervised Pretraining</a></span></span><span class="subsectionToc"><span class="number">3.1.9</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-590003.1.9">Pretraining on an Auxiliary
+Task</a></span></span><span class="subsectionToc"><span class="number">3.1.10</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-600003.1.10">Faster Optimizers</a></span></span><span class="subsectionToc"><span class="number">3.1.11</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-630003.1.11">AdaGrad</a></span></span><span class="subsectionToc"><span class="number">3.1.12</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-640003.1.12">RMSProp</a></span></span><span class="subsectionToc"><span class="number">3.1.13</span><span class="title"><a href="TheVanishingExplodingGradientsProblems.html#x18-650003.1.13">Adam</a></span></span><span class="sectionToc"><span class="number">3.2</span><span class="title"><a href="LearningRateScheduling.html#x19-690003.2">Learning
+Rate Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.1</span><span class="title"><a href="LearningRateScheduling.html#x19-700003.2.1">Exponential Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.2</span><span class="title"><a href="LearningRateScheduling.html#x19-710003.2.2">Cosine Annealing</a></span></span><span class="subsectionToc"><span class="number">3.2.3</span><span class="title"><a href="LearningRateScheduling.html#x19-720003.2.3">Performance
+Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.4</span><span class="title"><a href="LearningRateScheduling.html#x19-730003.2.4">Warming Up the Learning Rate</a></span></span><span class="subsectionToc"><span class="number">3.2.5</span><span class="title"><a href="LearningRateScheduling.html#x19-740003.2.5">Cosine Annealing with Warm
+Restarts</a></span></span><span class="subsectionToc"><span class="number">3.2.6</span><span class="title"><a href="LearningRateScheduling.html#x19-750003.2.6">1cycle Scheduling</a></span></span><span class="sectionToc"><span class="number">3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-760003.3">Avoiding Overfitting Through Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.1</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-770003.3.1"><math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>1</mn></mrow></msub></math>
+and <math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
+Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-780003.3.2">Dropout</a></span></span><span class="subsectionToc"><span class="number">3.3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-790003.3.3">Max-Norm Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.4</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-800003.3.4">Practical Guidelines</a></span></span><span class="chapterToc"><span class="number">4</span><span class="title"><a href="WorkingwithRNNsandCNNs.html#x21-810004">Working
+with RNNs and CNNs</a></span></span><span class="sectionToc"><span class="number">4.1</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-830004.1">Recurrent Neurons and Layers</a></span></span><span class="subsectionToc"><span class="number">4.1.1</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-840004.1.1">Memory Cells</a></span></span><span class="subsectionToc"><span class="number">4.1.2</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-850004.1.2">Input
+and Output Sequences</a></span></span><span class="subsectionToc"><span class="number">4.1.3</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-860004.1.3">Training RNNs</a></span></span><span class="sectionToc"><span class="number">4.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-870004.2">Forecasting a Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.1</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-880004.2.1">The ARMA
+Model Family</a></span></span><span class="subsectionToc"><span class="number">4.2.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-890004.2.2">Preparing the Data for Machine Learning Models</a></span></span><span class="subsectionToc"><span class="number">4.2.3</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-900004.2.3">Forecasting
+Using a Linear Model</a></span></span><span class="subsectionToc"><span class="number">4.2.4</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-910004.2.4">Forecasting Using a Simple RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.5</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-920004.2.5">Forecasting Using a
+Deep RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.6</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-930004.2.6">Forecasting Multivariate Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.7</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-940004.2.7">Forecasting Several Time
+Steps Ahead</a></span></span><span class="subsectionToc"><span class="number">4.2.8</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-950004.2.8">Forecasting Using a Sequence-to-Sequence Model</a></span></span><span class="sectionToc"><span class="number">4.3</span><span class="title"><a href="#x24-960004.3">Handling
+Long Sequences</a></span></span><span class="subsectionToc"><span class="number">4.3.1</span><span class="title"><a href="#x24-970004.3.1">Fighting the Unstable Gradients Problem</a></span></span><span class="subsectionToc"><span class="number">4.3.2</span><span class="title"><a href="#x24-980004.3.2">Tackling the
+Short-Term Memory Problem</a></span></span><span class="chapterToc"><span class="number">5</span><span class="title"><a href="NaturalLanguageProcessingwithRNNsandAttention.html#x25-1030005">Natural Language Processing with RNNs and
+Attention</a></span></span><span class="sectionToc"><span class="number">5.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1070005.1">Generating Shakespearean Text Using a Character RNN</a></span></span><span class="subsectionToc"><span class="number">5.1.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1080005.1.1">Creating
+the Training Dataset</a></span></span><span class="subsectionToc"><span class="number">5.1.2</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1090005.1.2">Embeddings</a></span></span><span class="subsectionToc"><span class="number">5.1.3</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1100005.1.3">Building and Training the Char-RNN
+Model</a></span></span><span class="subsectionToc"><span class="number">5.1.4</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1110005.1.4">Generating Fake Shakespearean Text</a></span></span><span class="sectionToc"><span class="number">5.2</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1120005.2">Sentiment Analysis Using
+Hugging Face Libraries</a></span></span><span class="subsectionToc"><span class="number">5.2.1</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1130005.2.1">Tokenization Using the Hugging Face Tokenizers
+Library</a></span></span><span class="subsectionToc"><span class="number">5.2.2</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1140005.2.2">Reusing Pretrained Tokenizers</a></span></span><span class="subsectionToc"><span class="number">5.2.3</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1150005.2.3">Building and Training a Sentiment
+Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1160005.3">Bidirectional RNNs</a></span></span><span class="subsectionToc"><span class="number">5.3.1</span><span class="title"><a href="BidirectionalRNNs.html#x28-1170005.3.1">Reusing Pretrained Embeddings and
+Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
+for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
+<div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<article class="chapter">
+<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="NaturalLanguageProcessingwithRNNsandAttention.html">Chapter: Natural Language Processing with RNNs and Attention</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="ForecastingaTimeSeries.html">Forecasting a Time Series</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="WorkingwithRNNsandCNNs.html#HandlingLongSequences.html">Chapter: Working with RNNs and CNNs</a></span><span class="nav-button">
+<a href="index.html" rel="index" title="Visit Entry Point">
+<i class="fa-solid fa-table-list">
+</i>
+<span class="nav-info">Visit Index Page</span>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Visit Material GitHub Repo">
+<i class="fa-brands fa-git-alt"></i>
+<span class="nav-info">Visit Material GitHub Repo</span>
+</a></span></nav>
+<div class="section-header"><h3 id="header-section-4.3"><span class="number">4.3</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.4.3"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x24-960004.3"></a>Handling Long Sequences</span></h3></div>
+<p class="noindent">To train an <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential
+data, such as text, speech, or time series, by passing information through loops from one
+step to the next</a></span></span></span> on long sequences, we must run it over multiple time steps, making the
+unrolled <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data,
+such as text, speech, or time series, by passing information through loops from one step
+to the next</a></span></span></span> a very deep network. Just like any <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural
+Networks</a></span></span></span>, it may suffer from the unstable gradients problem, discussed in <span class="refclass-ref"><a href="TrainingDeepNeuralNetworks.html#x17-420003">Training Deep
+Neural Networks</a></span>: it may take forever to train, or training may be <b>unstable</b>. In addition,
+when an <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential
+data, such as text, speech, or time series, by passing information through loops from one
+step to the next</a></span></span></span> processes a long sequence, it will gradually forget the first inputs in the
+sequence.
+Let’s look at both these problems, starting with the unstable gradients problem.
+</p>
+<div class="subsection-header"><h4 id="header-subsection-4.3.1"><span class="number">4.3.1</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.4.3.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x24-970004.3.1"></a>Fighting the Unstable Gradients Problem</span></h4></div>
+<p class="noindent">Many of the tricks we used in deep nets to alleviate the unstable gradients problem can also be
+used for <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential
+data, such as text, speech, or time series, by passing information through loops from one
+step to the next</a></span></span></span>s: </p><div class="quote">  good parameter initialization, faster optimizers, dropout, and so on.
+</div>
+<p class="noindent">However, nonsaturating activation functions, for example <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:relu">RELU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:relu">Rectified Linear Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:relu">A popular
+activation function in ANNs that outputs the input directly if it is positive, and returns zero if it is
+negative.</a></span></span></span>, may not help as much here. In fact, they may actually lead the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text, speech, or time series, by
+passing information through loops from one step to the next</a></span></span></span> to be even more unstable during
+training.
+Why? Well, suppose gradient descent updates the weights in a way that increases the outputs
+slightly at the first time step. Because the same weights are used at every time step, the
+outputs at the second time step may also be slightly increased, and those at the third, and
+so on until the outputs explodeand a nonsaturating activation function does not prevent
+that.
+</p><p class="noindent">We can reduce this risk by using a smaller learning rate, or we can use a saturating activation function
+like the <i>hyperbolic tangent</i>.
+</p><p class="noindent">In much the same way, the gradients themselves can explode. When training is unstable, we may want
+to monitor the size of the gradients and perhaps use gradient clipping.
+</p><p class="noindent">Moreover, batch normalization cannot be used as efficiently with <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a
+type of ANN designed to process sequential data, such as text, speech, or time series, by passing
+information through loops from one step to the next</a></span></span></span>s as with deep feed-forward nets. In fact, we cannot
+use it between time steps, only between recurrent layers. To be more precise, it is technically possible
+to add a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training faster and
+more stable by adjusting and scaling layer inputs.</a></span></span></span> layer to a memory cell so that it will
+be applied at each time <span class="margin-block">step. <span class="margin-comment"><a class="ellipsis" href="#m-ref-207">[207]</a>
+<span class="sidenote">Both on the inputs for that time step and on the hidden
+state from the previous step.</span></span></span> However, this implies that the same <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A
+technique used in ANNs to make training faster and more stable by adjusting and scaling layer
+inputs.</a></span></span></span> layer will be used at each time step, with the same parameters, regardless of the
+actual scale and offset of the inputs and hidden state. In practice, this does not give good
+results, as was demonstrated in <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Laurent2015BatchNR"> <a id="x24-97001"></a>Laurent, C. et al. Batch normalized recurrent neural
+networks. 2016 IEEE International Conference on Acoustics, Speech and Signal Processing
+(ICASSP), 2657–2661 (2015)</span></span>. The authors found that <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used
+in ANNs to make training faster and more stable by adjusting and scaling layer inputs.</a></span></span></span>
+was slightly beneficial only when it was applied to the layer’s inputs, not to the hidden
+states.
+</p>
+<div class="block-minor knowledge"><div class="body">
+<p class="noindent">In other words, it was slightly better than nothing when applied between recurrent layers (i.e.,
+vertically in Figure 13-10), but not within recurrent layers (i.e., horizontally). </p></div></div>
+<p class="noindent">Layer norm (which was introduced in <span class="refclass-ref"><a href="TrainingDeepNeuralNetworks.html#x17-420003">Training Deep Neural Networks</a></span>.) tends to work a bit better than
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training faster and more stable by
+adjusting and scaling layer inputs.</a></span></span></span> within recurrent layers. It is usually applied just before the
+activation function, at each time step. Sadly, PyTorch’s  <code class="file"><code class="verb">nn.RNN</code></code> module does not support <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ln">LN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ln">Layer
+Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ln">A deep learning technique which stabilizes neural network training by calculating the
+mean and variance across the feature dimensions of each individual sample rather than across a
+mini-batch</a></span></span></span>, so we have to implement the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to
+process sequential data, such as text, speech, or time series, by passing information through loops from
+one step to the next</a></span></span></span>’s loop manually as we did earlier, and apply the  <code class="file"><code class="verb">nn.LayerNorm</code></code> module at
+each iteration. This is not too hard, but we do lose the simplicity and speed of the  <code class="file"><code class="verb">nn.RNN</code></code>
+module.
+For example, we can take the first version of our  <code class="file"><code class="verb">SimpleRnnModel</code></code> class and add an  <code class="file"><code class="verb">nn.LayerNorm</code></code>
+module to the memory cell, just before the  <code class="file"><code class="verb">tanh</code></code> activation function:
+</p>
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-4.52" id="info-block-4.52"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 4.<a id="x24-97002r52"></a>52: </b> </span> <span class="title"> Not Always the Best </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
+<p class="noindent">Layer norm does not always help; we just have to try it. In general, it works better in gated
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text,
+speech, or time series, by passing information through loops from one step to the next</a></span></span></span>s such as
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A specialized type of RNN designed to remember information over
+long sequences and solve the vanishing gradient problem</a></span></span></span> and <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gru">GRU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gru">Gated Recurrent Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gru">a type of RNN
+architecture designed to process sequential data while solving the vanishing gradient problem of
+standard RNNs.</a></span></span></span>. It is also more likely to help when the time series is preprocessed to remove any
+seasonality or trend.
+</p>
+</dd></dl>
+<p class="noindent">Similarly, if we wish to apply dropout between each time step, we must write a custom <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent
+Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text, speech, or time series,
+by passing information through loops from one step to the next</a></span></span></span> as the  <code class="file"><code class="verb">nn.RNN</code></code> module does not
+support that. However, it does support adding a dropout layer after every recurrent layer: </p><div class="quote">
+simply set the dropout hyperparameter to the desired dropout rate as it defaults to zero.
+</div>
+<p class="noindent">With these techniques, we can alleviate the unstable gradients problem and train an <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent
+Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text, speech, or time series,
+by passing information through loops from one step to the next</a></span></span></span> much more efficiently. Now let’s look at
+how to deal with the <b>short-term memory problem</b>.
+When forecasting time series, it is often useful to have some error bars along with our predictions. For
+this, one approach is to use MC dropout (introduced in <span class="refclass-ref"><a href="TrainingDeepNeuralNetworks.html#x17-420003">Training Deep Neural Networks</a></span>).
+</p>
+<div class="subsection-header"><h4 id="header-subsection-4.3.2"><span class="number">4.3.2</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.4.3.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x24-980004.3.2"></a>Tackling the Short-Term Memory Problem</span></h4></div>
+<p class="noindent">Due to the transformations that the data goes through when traversing an <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text, speech, or time series, by
+passing information through loops from one step to the next</a></span></span></span>, some information is lost at each time
+step. After a while, the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process
+sequential data, such as text, speech, or time series, by passing information through loops from
+one step to the next</a></span></span></span>’s state contains virtually no trace of the first inputs. This can be a
+show-stopper.
+To tackle this problem, various types of cells with long-term memory have been introduced. They have
+proven so successful that the basic cells are not used much anymore. Let’s first look at the most
+popular of these long-term memory cells: the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A specialized type of
+RNN designed to remember information over long sequences and solve the vanishing gradient problem</a></span></span></span>
+cell.
+</p>
+<div class="subsection-header"><h5 id="header-subsubsection-4.3.2.17"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x24-99000"></a>LSTM cells</span></h5></div>
+<p class="noindent">The <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A specialized type of RNN designed to remember information over
+long sequences and solve the vanishing gradient problem</a></span></span></span> cell was proposed in <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Hochreiter1997LongSM"> <a id="x24-99001"></a>Hochreiter, S. &amp;
+Schmidhuber, J. U. Long Short-Term Memory. Neural Computation <b>9</b><b>,</b> 1735–1780 (1997)</span></span> by <i>Sepp
+Hochreiter</i> and <i>Jürgen Schmidhuber</i> and gradually improved over the years by several researchers, such
+as <i>Alex Graves</i>, <i>Haim Sak</i> <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail" id="Sak2014LongSM"> <a id="x24-99002"></a>Sak, H., Senior, A. W. &amp; Beaufays, F. Long Short-Term Memory Based
+Recurrent Neural Network Architectures for Large Vocabulary Speech Recognition. ArXiv
+<b>abs/1402.1128</b> (2014)</span></span>, and <i>Wojciech Zaremba</i> <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="Zaremba2014RecurrentNN"> <a id="x24-99003"></a>Zaremba, W., Sutskever, I. &amp; Vinyals, O. Recurrent
+Neural Network Regularization. ArXiv <b>abs/1409.2329</b> (2014)</span></span>. We can simply use the  <code class="file"><code class="verb">nn.LSTM</code></code>
+module instead of the  <code class="file"><code class="verb">nn.RNN</code></code> module: </p><div class="quote">  it’s a drop-in replacement, and it usually performs much
+better asx training converges faster, and the model detects longer-term patterns in the data.
+</div>
+<p class="noindent">So how does this work? Well, the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A specialized type of RNN designed
+to remember information over long sequences and solve the vanishing gradient problem</a></span></span></span> architecture is
+shown in Figure 13-12. If we don’t look at what’s inside the box, the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A
+specialized type of RNN designed to remember information over long sequences and solve the vanishing
+gradient problem</a></span></span></span> cell looks exactly like a regular cell, except that its state is split into two (<span class="alert">2</span>) vectors: </p><div class="quote">
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math> and
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>c</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math> where
+“c” stands for “cell”. </div>
+<p class="noindent">Think of <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math> as the
+short-term state and <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>c</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+as the long-term state.
+</p><p class="noindent">Now let’s open the box. The key idea is that the network can learn what to store in the long-term state,
+what to throw away, and what to read from it. As the long-term state
+</p><p class="noindent"><math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>c</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+traverses the network from left to right, we can see that it first goes through a forget
+gate, dropping some memories, and then it adds some new memories via the addition
+<span class="margin-block">operation. <span class="margin-comment"><a class="ellipsis" href="#m-ref-208">[208]</a>
+<span class="sidenote">which adds the memories that were selected by an input gate.</span></span></span> The result
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>c</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math> is sent
+straight out without any further transformation. So at each time step, some memories are dropped and
+some memories are added. Moreover, after the addition operation, the long-term state is copied and passed
+through the  <code class="file"><code class="verb">tanh</code></code> function, and the result is filtered by the output gate. This produces the short-term state
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math> <span class="margin-block">. <span class="margin-comment"><a class="ellipsis" href="#m-ref-209">[209]</a>
+<span class="sidenote">which is equal to the cell’s
+output for this time step, <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>y</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.</span></span></span>
+Now let’s look at where new memories come from and how the gates work.
+</p><p class="noindent">First, the current input vector <math display="inline"><mstyle mathvariant="bold"><mi>x</mi></mstyle></math>
+and the previous short-term state <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+are fed to four different fully connected layers. They all serve a different purpose: </p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent">The main layer is the one that outputs <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>g</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.
+It has the usual role of analyzing the current inputs <math display="inline"><mstyle mathvariant="bold"><mi>x</mi></mstyle></math>
+and the previous, short-term, state <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.
+In a simple <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential
+data, such as text, speech, or time series, by passing information through loops from one step
+to the next</a></span></span></span> cell, there is nothing other than this layer, and its output goes straight out to
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>y</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+and <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.
+But in an <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A specialized type of RNN designed to remember
+information over long sequences and solve the vanishing gradient problem</a></span></span></span> cell, this layer’s
+output  does  not  go  straight  out.  Instead,  its  most  important  parts  are  stored  in  the
+long-term state and the rest is dropped.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">The three other layers are <i>gate controllers</i>. As they use the logistic activation function, the
+outputs range from 0 to 1. As we can see, the gate controllers’ outputs are fed to element-wise
+multiplication operations: if they output 0s they close the gate, and if they output 1s they open
+it. Specifically: </p>
+<ul class="itemize2">
+<li class="itemize">
+<p class="noindent">The forget gate, controlled by <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>f</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>,
+controls which parts of the long-term state should be erased.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">The input gate, controlled by <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>i</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>,
+controls which parts of <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>g</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+should be added to the long-term state.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">Finally, the output gate, controlled by <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>o</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>,
+controls which parts of the longterm state should be read and output at this time step,
+both to <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+and to <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>y</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.</p></li></ul>
+</li></ul>
+<p class="noindent">In short, an <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A specialized type of RNN designed to remember
+information over long sequences and solve the vanishing gradient problem</a></span></span></span> cell can learn to recognize an
+important <span class="margin-block">input, <span class="margin-comment"><a class="ellipsis" href="#m-ref-210">[210]</a>
+<span class="sidenote">that’s the role of the input gate.</span></span></span> store it in the long-term state, preserve it for as long
+as it is <span class="margin-block">needed, <span class="margin-comment"><a class="ellipsis" href="#m-ref-211">[211]</a>
+<span class="sidenote">that’s the role of the forget gate.</span></span></span> and extract it whenever it is <span class="margin-block">needed, <span class="margin-comment"><a class="ellipsis" href="#m-ref-212">[212]</a>
+<span class="sidenote">that’s the role of
+the output gate.</span></span></span> all while being fully differentiable.
+</p>
+<div class="block-minor knowledge"><div class="body">
+<p class="noindent">This explains why these cells have been amazingly successful at capturing long-term patterns in time
+series, long texts, audio recordings, and more. </p></div></div>
+<p class="noindent">Eq. (<a href="#x24-99004r4">4.4</a>) summarizes how to compute the cell’s long-term state, its short-term state, and its output at
+each time step for a single <span class="margin-block">instance. <span class="margin-comment"><a class="ellipsis" href="#m-ref-213">[213]</a>
+<span class="sidenote">the equations for a whole mini-batch are very similar.</span></span></span>
+</p><table class="equation"><tr><td>
+<math class="equation" display="block">
+<mstyle class="label" id="x24-99004r4"></mstyle><mtable class="aligned" displaystyle="true"><mtr><mtd columnalign="right"><msub><mrow><mstyle mathvariant="bold"><mi>i</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mtd>
+<mtd columnalign="left"> <mo class="MathClass-rel" stretchy="false">=</mo> <mi>σ</mi><msup><mrow> <mrow><mo fence="true" form="prefix">(</mo><mrow><msubsup><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>x</mi><mi>i</mi></mrow><mrow><mstyle class="text"><mtext>T</mtext></mstyle></mrow></msubsup><msub><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mrow>
+<mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mo class="MathClass-bin" stretchy="false">+</mo><msubsup><mrow> <mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>h</mi><mi>i</mi></mrow><mrow><mstyle class="text"><mtext>T</mtext></mstyle></mrow></msubsup><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow>
+<mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mo class="MathClass-bin" stretchy="false">+</mo><msub><mrow> <mstyle mathvariant="bold"><mi>b</mi></mstyle></mrow><mrow><mi>i</mi></mrow></msub></mrow><mo fence="true" form="postfix">)</mo></mrow> </mrow><mrow></mrow></msup></mtd>
+<mtd columnalign="right"></mtd>
+</mtr><mtr><mtd columnalign="right"><msub><mrow><mstyle mathvariant="bold"><mi>f</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mtd>
+<mtd columnalign="left"> <mo class="MathClass-rel" stretchy="false">=</mo> <mi>σ</mi><msup><mrow> <mrow><mo fence="true" form="prefix">(</mo><mrow><msubsup><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>x</mi><mi>f</mi></mrow><mrow><mstyle class="text"><mtext>T</mtext></mstyle></mrow></msubsup><msub><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mrow>
+<mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mo class="MathClass-bin" stretchy="false">+</mo><msubsup><mrow> <mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>h</mi><mi>f</mi></mrow><mrow><mstyle class="text"><mtext>T</mtext></mstyle></mrow></msubsup><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow>
+<mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mo class="MathClass-bin" stretchy="false">+</mo><msub><mrow> <mstyle mathvariant="bold"><mi>b</mi></mstyle></mrow><mrow><mi>f</mi></mrow></msub></mrow><mo fence="true" form="postfix">)</mo></mrow> </mrow><mrow></mrow></msup></mtd>
+</mtr><mtr><mtd columnalign="right"><msub><mrow><mstyle mathvariant="bold"><mi>o</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mtd>
+<mtd columnalign="left"> <mo class="MathClass-rel" stretchy="false">=</mo> <mi>σ</mi><msup><mrow> <mrow><mo fence="true" form="prefix">(</mo><mrow><msubsup><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>x</mi><mi>o</mi></mrow><mrow><mstyle class="text"><mtext>T</mtext></mstyle></mrow></msubsup><msub><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mrow>
+<mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mo class="MathClass-bin" stretchy="false">+</mo><msubsup><mrow> <mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>h</mi><mi>o</mi></mrow><mrow><mstyle class="text"><mtext>T</mtext></mstyle></mrow></msubsup><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow>
+<mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mo class="MathClass-bin" stretchy="false">+</mo><msub><mrow> <mstyle mathvariant="bold"><mi>b</mi></mstyle></mrow><mrow><mi>o</mi></mrow></msub></mrow><mo fence="true" form="postfix">)</mo></mrow> </mrow><mrow></mrow></msup></mtd>
+</mtr><mtr><mtd columnalign="right"><msub><mrow><mstyle mathvariant="bold"><mi>g</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mtd><mtd columnalign="left"> <mo class="MathClass-rel" stretchy="false">=</mo> <mi class="loglike">tanh</mi><mo>⁡</mo><msup><mrow> <mrow><mo fence="true" form="prefix">(</mo><mrow><msubsup><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow>
+<mi>x</mi><mi>g</mi></mrow><mrow><mstyle class="text"><mtext>T</mtext></mstyle></mrow></msubsup><msub><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mrow>
+<mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mo class="MathClass-bin" stretchy="false">+</mo><msubsup><mrow> <mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>h</mi><mi>g</mi></mrow><mrow><mstyle class="text"><mtext>T</mtext></mstyle></mrow></msubsup><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow>
+<mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mo class="MathClass-bin" stretchy="false">+</mo><msub><mrow> <mstyle mathvariant="bold"><mi>b</mi></mstyle></mrow><mrow><mi>g</mi></mrow></msub></mrow><mo fence="true" form="postfix">)</mo></mrow> </mrow><mrow></mrow></msup></mtd>
+</mtr><mtr><mtd columnalign="right"><msub><mrow><mstyle mathvariant="bold"><mi>c</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mtd>
+<mtd columnalign="left"> <mo class="MathClass-rel" stretchy="false">=</mo><msub><mrow> <mstyle mathvariant="bold"><mi>f</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mi>⊗</mi><msub><mrow> <mstyle mathvariant="bold"><mi>c</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mo class="MathClass-bin" stretchy="false">+</mo><msub><mrow> <mstyle mathvariant="bold"><mi>i</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mi>⊗</mi><msub><mrow> <mstyle mathvariant="bold"><mi>g</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mtd>
+</mtr><mtr><mtd columnalign="right"><msub><mrow><mstyle mathvariant="bold"><mi>y</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mtd>
+<mtd columnalign="left"> <mo class="MathClass-rel" stretchy="false">=</mo><msub><mrow> <mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mo class="MathClass-rel" stretchy="false">=</mo><msub><mrow> <mstyle mathvariant="bold"><mi>o</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub> <mi>⊗</mi> <mi class="loglike">tanh</mi><mo>⁡</mo><msup><mrow> <mrow><mo fence="true" form="prefix">(</mo><mrow><msub><mrow><mstyle mathvariant="bold"><mi>c</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></mrow><mo fence="true" form="postfix">)</mo></mrow> </mrow><mrow></mrow></msup></mtd>
+</mtr> </mtable>
+</math></td><td class="eq-no">(4.4)</td></tr></table>
+<p class="noindent"></p>
+<p class="noindent">In this equation: </p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent"><math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>x</mi><mi>i</mi></mrow></msub></math>,<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>x</mi><mi>f</mi></mrow></msub></math>,
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>x</mi><mi>o</mi></mrow></msub></math>,
+and <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>x</mi><mi>g</mi></mrow></msub></math>
+are the weight matrices of each of the four layers for their connection to the input vector
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>x</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent"><math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>h</mi><mi>i</mi></mrow></msub></math>,<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>h</mi><mi>f</mi></mrow></msub></math>,
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>h</mi><mi>o</mi></mrow></msub></math>,
+and <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>W</mi></mstyle></mrow><mrow><mi>h</mi><mi>g</mi></mrow></msub></math>
+are the weight matrices of each of the four layers for their connection to the previous
+short-term state <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent"><math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>b</mi></mstyle></mrow><mrow><mi>i</mi></mrow></msub></math>,<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>b</mi></mstyle></mrow><mrow><mi>f</mi></mrow></msub></math>,
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>b</mi></mstyle></mrow><mrow><mi>o</mi></mrow></msub></math>,
+and <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>b</mi></mstyle></mrow><mrow><mi>g</mi></mrow></msub></math>
+are the bias terms for each of the four layers.</p></li></ul>
+<p class="noindent">Similar simple <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such
+as text, speech, or time series, by passing information through loops from one step to the next</a></span></span></span>s, if we
+want to add layer normalization or dropout at each time step, we need to implement the recurrent loop
+manually. One option is to use Eq. (<a href="#x24-99004r4">4.4</a>), but a simpler option is to use the  <code class="file"><code class="verb">nn.LSTMCell</code></code> module,
+which runs a single time step.
+For example, here is a simple implementation:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb199"><a id="x24-99006r974"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">LstmModel</span>(nn.Module): 
+<a id="x24-99008r975"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, input_size, hidden_size, output_size): 
+<a id="x24-99010r976"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
+<a id="x24-99012r977"></a>        <span style="color:#B03B03;">self</span>.hidden_size = hidden_size 
+<a id="x24-99014r978"></a>        <span style="color:#B03B03;">self</span>.memory_cell = nn.LSTMCell(input_size, hidden_size) 
+<a id="x24-99016r979"></a>        <span style="color:#B03B03;">self</span>.output = nn.Linear(hidden_size, output_size) 
+<a id="x24-99018r980"></a> 
+<a id="x24-99020r981"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, X): 
+<a id="x24-99022r982"></a>        batch_size, window_length, dimensionality = X.shape 
+<a id="x24-99024r983"></a>        X_time_first = X.transpose(<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">1</span>) 
+<a id="x24-99026r984"></a>        H = torch.zeros(batch_size, <span style="color:#B03B03;">self</span>.hidden_size, device=X.device) 
+<a id="x24-99028r985"></a>        C = torch.zeros(batch_size, <span style="color:#B03B03;">self</span>.hidden_size, device=X.device) 
+<a id="x24-99030r986"></a>        <span style="color:#9E0005;">for</span> X_t <span style="color:#9E0005;">in</span> X_time_first: 
+<a id="x24-99032r987"></a>            H, C = <span style="color:#B03B03;">self</span>.memory_cell(X_t, (H, C)) 
+<a id="x24-99034r988"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(H)</pre>
+</code></pre>
+<p class="noindent">This is very similar to the first implementation of our  <code class="file"><code class="verb">SimpleRnnModel</code></code> , but we are now using an
+<code class="file"><code class="verb">nn.LSTMCell</code></code> at each time step, and the hidden state is now split in two parts: </p><div class="quote">  the <i>short-term</i> <code class="verb">H</code>  and
+the <i>long-term</i> <code class="verb">C</code> . </div>
+<p class="noindent">There are several variants of the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A specialized type of RNN designed
+to remember information over long sequences and solve the vanishing gradient problem</a></span></span></span> cell. One
+particularly popular variant is the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gru">GRU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gru">Gated Recurrent Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gru">a type of RNN architecture designed to
+process sequential data while solving the vanishing gradient problem of standard RNNs.</a></span></span></span> cell, which we
+will look at now.
+</p>
+<div class="subsection-header"><h5 id="header-subsubsection-4.3.2.18"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x24-100000"></a>GRU cells</span></h5></div>
+<p class="noindent">The <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gru">GRU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gru">Gated Recurrent Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gru">a type of RNN architecture designed to process sequential data while
+solving the vanishing gradient problem of standard RNNs.</a></span></span></span> cell (see Figure 13-13) was proposed by
+<i>Kyunghyun Cho</i> et al. in <span class="cite"><a class="cite-show" href="#w3-20001">[†-5]</a><span class="cite-detail" id="Cho2014LearningPR"> <a id="x24-100001"></a>Cho, K. et al. Learning Phrase Representations using RNN
+Encoder–Decoder for Statistical Machine Translation in Conference on Empirical Methods in Natural
+Language Processing (2014)</span></span> that also introduced the encoder-decoder network we’ve discussed
+earlier.
+The <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gru">GRU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gru">Gated Recurrent Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gru">a type of RNN architecture designed to process sequential data while
+solving the vanishing gradient problem of standard RNNs.</a></span></span></span> cell is a simplified version of the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long
+Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A specialized type of RNN designed to remember information over
+long sequences and solve the vanishing gradient problem</a></span></span></span> cell, and it often performs just as
+well <span class="cite"><a class="cite-show" href="#w3-20001">[†-6]</a><span class="cite-detail" id="Greff2015LSTMAS"> <a id="x24-100002"></a>Greff, K. et al. LSTM: A Search Space Odyssey. IEEE Transactions on Neural
+Networks and Learning Systems <b>28</b><b>,</b> 2222–2232 (2015)</span></span>. These are the main simplifications:
+</p>
+<ul class="itemize1">
+<li class="itemize">
+<p class="noindent">Both state vectors are merged into a single vector <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.
+</p>
+</li>
+<li class="itemize">
+<p class="noindent">A single gate controller <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>z</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+controls both the forget gate and the input gate. If the gate controller outputs a 1, the forget
+gate is open (<math display="inline"> <mo class="MathClass-rel" stretchy="false">=</mo> <mn>1</mn></math>)
+and the input gate is closed (<math display="inline"><mn>1</mn><mn>1</mn> <mo class="MathClass-rel" stretchy="false">=</mo> <mn>0</mn></math>).
+If it outputs a 0, the opposite happens.
+</p>
+<div class="block-minor knowledge"><div class="body">
+<p class="noindent">whenever a memory must be stored, the location where it will be stored is erased first.
+</p>
+</div></div>
+</li>
+<li class="itemize">
+<p class="noindent">There is no output gate; the full state vector is output at every time step. However, there is a new gate
+controller <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>r</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>
+that controls which part of the previous state will be shown to the main layer,
+<math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>g</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.</p></li></ul>
+<p class="noindent">PyTorch provides an  <code class="file"><code class="verb">nn.GRU</code></code> layer; using it is just a matter of replacing  <code class="file"><code class="verb">nn.RNN</code></code> or  <code class="file"><code class="verb">nn.LSTM</code></code> with
+<code class="file"><code class="verb">nn.GRU</code></code> . It also provides an  <code class="file"><code class="verb">nn.GRUCell</code></code> in case we want to create a custom <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text, speech, or time series, by
+passing information through loops from one step to the next</a></span></span></span> based on a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gru">GRU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gru">Gated Recurrent Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gru">a
+type of RNN architecture designed to process sequential data while solving the vanishing gradient
+problem of standard RNNs.</a></span></span></span> <span class="margin-block">cell. <span class="margin-comment"><a class="ellipsis" href="#m-ref-214">[214]</a>
+<span class="sidenote">just replace  <code class="file"><code class="verb">nn.LSTMCell</code></code> with  <code class="file"><code class="verb">nn.GRUCell</code></code> in the previous
+example, and get rid of <code class="verb">C</code> .</span></span></span>
+</p><p class="noindent"><span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A specialized type of RNN designed to remember information over
+long sequences and solve the vanishing gradient problem</a></span></span></span> and <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gru">GRU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gru">Gated Recurrent Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gru">a
+type of RNN architecture designed to process sequential data while solving the vanishing
+gradient problem of standard RNNs.</a></span></span></span> are one of the main reasons behind the success of
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as
+text, speech, or time series, by passing information through loops from one step to the
+next</a></span></span></span>s. Yet while they can tackle much longer sequences than simple <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text, speech, or time
+series, by passing information through loops from one step to the next</a></span></span></span>s, they still have a
+fairly limited short-term memory, and they have a hard time learning long-term patterns
+in sequences of 100 time steps or more, such as audio samples, long time series, or long
+sentences.
+</p>
+<div class="block-minor knowledge"><div class="body">
+<p class="noindent">One way to solve this is to shorten the input sequences, for example, using 1D convolutional layers.
+</p></div></div>
+<div class="subsection-header"><h5 id="header-subsubsection-4.3.2.19"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x24-101000"></a>Using 1D convolutional layers to process sequences</span></h5></div>
+<p class="noindent">In <span class="refclass-ref">??</span>, we saw that a 2D convolutional layer works by sliding several fairly small kernels,
+or filters, across an image, producing multiple 2D feature maps one per kernel. Similarly,
+a 1D convolutional layer slides several kernels across a sequence, producing a 1D feature
+map per kernel. Each kernel will learn to detect a single very short sequential pattern, no
+longer than the kernel size. If we use 10 kernels, then the layer’s output will be composed
+of 10 1D <span class="margin-block">sequences, <span class="margin-comment"><a class="ellipsis" href="#m-ref-215">[215]</a>
+<span class="sidenote">all of the same length.</span></span></span> or equivalently we can view this output as a
+single 10D sequence. This means that we can build a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span>
+composed of a mix of recurrent layers and 1D convolutional layers (or even 1D pooling
+layers). However, as mentioned earlier, we must swap the last two dimensions of the <code class="verb">nn.Conv1d</code>  layer’s
+inputs and outputs, as the <code class="verb">nn.Conv1d</code>  layer expects inputs of shape <code class="verb">[batch size, input features, sequence length]</code> , and produces outputs of shape <code class="verb">[batch size, output features, sequence length]</code>
+.
+</p>
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-4.53" id="info-block-4.53"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 4.<a id="x24-101001r53"></a>53: </b> </span> <span class="title"> Proper Padding </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
+<p class="noindent">If we use a 1D convolutional layer with a stride of <code class="verb">1</code>  and <code class="verb">"same"</code>  padding, then the output sequence will have
+the same length as the input sequence. But if we use <code class="verb">"valid"</code>  padding or a stride greater than 1, then the
+output sequence will be shorter than the input sequence, so make sure we adjust the targets
+accordingly.
+</p>
+</dd></dl>
+<p class="noindent">For example, the following model is composed of a 1D convolutional layer, followed by a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gru">GRU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gru">Gated
+Recurrent Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gru">a type of RNN architecture designed to process sequential data while solving the
+vanishing gradient problem of standard RNNs.</a></span></span></span> layer, and lastly a linear output layer, all
+of which input and output batches of sequences (i.e., 3D tensors). The nn.Conv1d layer
+downsamples the input sequences by a factor of 2, using a stride of <code class="verb">2</code> . The kernel size is as large as
+the stride (larger, in fact), so all inputs will be used to compute the layer’s output, and
+therefore the model can learn to preserve the most useful information, dropping only the
+unimportant details. In the <code class="verb">forward()</code>  method, we just chain the layers, but we permute the last two
+dimensions before and after the <code class="verb">nn.Conv1d</code>  layer, and we ignore the hidden states returned by the  <code class="file"><code class="verb">nn.GRU</code></code>
+layer:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb200"><a id="x24-101003r1060"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">DownsamplingModel</span>(nn.Module): 
+<a id="x24-101005r1061"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, input_size, hidden_size, output_size): 
+<a id="x24-101007r1062"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
+<a id="x24-101009r1063"></a>        <span style="color:#B03B03;">self</span>.conv = nn.Conv1d(input_size, hidden_size, kernel_size=<span style="color:#8F4070;">4</span>, stride=<span style="color:#8F4070;">2</span>) 
+<a id="x24-101011r1064"></a>        <span style="color:#B03B03;">self</span>.gru = nn.GRU(hidden_size, hidden_size, batch_first=<span style="color:#9E0005;">True</span>) 
+<a id="x24-101013r1065"></a>        <span style="color:#B03B03;">self</span>.linear = nn.Linear(hidden_size, output_size) 
+<a id="x24-101015r1066"></a> 
+<a id="x24-101017r1067"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, X): 
+<a id="x24-101019r1068"></a>        Z = X.permute(<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">1</span>)  <span style="color:#918273;"><i># treat time as a spatial dimension</i></span> 
+<a id="x24-101021r1069"></a>        Z = <span style="color:#B03B03;">self</span>.conv(Z) 
+<a id="x24-101023r1070"></a>        Z = Z.permute(<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">1</span>)  <span style="color:#918273;"><i># swap back time &amp; features dimensions</i></span> 
+<a id="x24-101025r1071"></a>        Z = torch.relu(Z) 
+<a id="x24-101027r1072"></a>        Z, _states = <span style="color:#B03B03;">self</span>.gru(Z) 
+<a id="x24-101029r1073"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.linear(Z) 
+<a id="x24-101031r1074"></a> 
+<a id="x24-101033r1075"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x24-101035r1076"></a>dseq_model = DownsamplingModel(input_size=<span style="color:#8F4070;">1</span>, hidden_size=<span style="color:#8F4070;">32</span>, output_size=<span style="color:#8F4070;">14</span>) 
+<a id="x24-101037r1077"></a>dseq_model = dseq_model.to(device)</pre>
+</code></pre>
+<p class="noindent">By shortening the time series, the convolutional layer helps the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gru">GRU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gru">Gated Recurrent Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gru">a type of
+RNN architecture designed to process sequential data while solving the vanishing gradient problem of
+standard RNNs.</a></span></span></span> layer detect longer patterns, so we can afford to double the window length to 112 days.
+Note that we must also crop off the first three time steps from the targets: indeed, the
+kernel’s size is 4, so the first output of the convolutional layer will be based on the input
+time steps 0 to 3, therefore the first forecasts must be for time steps 4 to 17 (instead of
+time steps 1 to 14). Moreover, we must downsample the targets by a factor of 2 because
+of the stride. For all this, we need a new Dataset class, so let’s create a subclass of the <code class="verb">Seq2SeqDataset</code>
+class:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb201"><a id="x24-101039r1082"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">DownsampledDataset</span>(Seq2SeqDataset): 
+<a id="x24-101041r1083"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__getitem__</span>(<span style="color:#B03B03;">self</span>, idx): 
+<a id="x24-101043r1084"></a>        window, target = <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__getitem__</span>(idx) 
+<a id="x24-101045r1085"></a>        <span style="color:#9E0005;">return</span> window, target[<span style="color:#8F4070;">3</span>::<span style="color:#8F4070;">2</span>]  <span style="color:#918273;"><i># crop the first 3 targets and downsample</i></span> 
+<a id="x24-101047r1086"></a> 
+<a id="x24-101049r1087"></a>window_length = <span style="color:#8F4070;">112</span> 
+<a id="x24-101051r1088"></a>dseq_train_set = DownsampledDataset(rail_train, window_length) 
+<a id="x24-101053r1089"></a>dseq_train_loader = DataLoader(dseq_train_set, batch_size=<span style="color:#8F4070;">32</span>, shuffle=<span style="color:#9E0005;">True</span>) 
+<a id="x24-101055r1090"></a>dseq_valid_set = DownsampledDataset(rail_valid, window_length) 
+<a id="x24-101057r1091"></a>dseq_valid_loader = DataLoader(dseq_valid_set, batch_size=<span style="color:#8F4070;">32</span>) 
+<a id="x24-101059r1092"></a>dseq_test_set = DownsampledDataset(rail_test, window_length) 
+<a id="x24-101061r1093"></a>dseq_test_loader = DataLoader(dseq_test_set, batch_size=<span style="color:#8F4070;">32</span>)</pre>
+</code></pre>
+<p class="noindent">And now the model can be trained as usual. We’ve successfully mixed convolutional layers and
+recurrent layers. However, what if we used only 1D convolutional layers and dropped the recurrent
+layers entirely?
+</p>
+<div class="subsection-header"><h5 id="header-subsubsection-4.3.2.20"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x24-102000"></a>WaveNet</span></h5></div>
+<p class="noindent"></p><figure class="float">
+<a id="x24-102001r9"></a>
+<figcaption class="caption"><span class="id">Figure 4.9: </span><span class="content">WaveNet architecture.                                                       </span></figcaption>
+<img alt="PIC" src="figures/Working-with-RNNs-and-CNNs/figures-5.png" style=""/>
+</figure>
+<p class="noindent">In <span class="cite"><a class="cite-show" href="#w3-20001">[†-7]</a><span class="cite-detail" id="vandenOord2016WaveNetAG"> <a id="x24-102002"></a>van den Oord, A. et al. WaveNet: A Generative Model for Raw Audio in Speech Synthesis
+Workshop (2016)</span></span>, <i>Aaron van den Oord</i> and other DeepMind researchers introduced a novel architecture
+called <i>WaveNet</i>. They stacked 1D convolutional layers, doubling the dilation <span class="margin-block">rate <span class="margin-comment"><a class="ellipsis" href="#m-ref-216">[216]</a>
+<span class="sidenote">This term basically
+means how spread apart each neuron’s inputs are.</span></span></span> at every layer: </p><div class="quote">  The first convolutional layer gets a
+glimpse of just two time steps at a time, while the next one sees four time <span class="margin-block">steps <span class="margin-comment"><a class="ellipsis" href="#m-ref-217">[217]</a>
+<span class="sidenote">its receptive field is
+four time steps long.</span></span></span>, the next one sees eight time steps, and so on as shown in <b>Fig.</b> <a href="#x24-102001r9">4.9</a>.
+</div>
+<p class="noindent">This way, the lower layers learn short-term patterns, while the higher layers learn long-term patterns.
+Thanks to the doubling dilation rate, the network can process extremely large sequences very
+efficiently.
+</p><p class="noindent">The authors of the paper actually stacked 10 convolutional layers with dilation rates of 1, 2, 4, 8,
+<math display="inline"><mo class="MathClass-rel" stretchy="false">⋯</mo><mspace class="thinspace" width="0.17em"></mspace></math>, 256,
+512, then they stacked another group of 10 identical <span class="margin-block">layers, <span class="margin-comment"><a class="ellipsis" href="#m-ref-218">[218]</a>
+<span class="sidenote">Which also have dilation rates 1, 2, 4, 8,
+<math display="inline"><mo class="MathClass-rel" stretchy="false">⋯</mo><mspace class="thinspace" width="0.17em"></mspace></math>, 256, 512.</span></span></span>
+then again another identical group of 10 layers. They justified this architecture by pointing out that a single
+stack of 10 convolutional layers with these dilation rates will act like a <i>super-efficient convolutional layer</i> with a
+kernel of size <math display="inline"><mn>1</mn><mi>,</mi><mn>0</mn><mn>2</mn><mn>4</mn></math><span class="margin-block">.
+<span class="margin-comment"><a class="ellipsis" href="#m-ref-219">[219]</a>
+<span class="sidenote">Except way faster, more powerful, and using significantly fewer parameters.</span></span></span> They also left-padded the
+input sequences with a number of zeros equal to the dilation rate before every layer to preserve the
+same sequence length throughout the network.
+</p>
+<div class="block-minor warning"><div class="body">
+<p class="noindent">Padding on the left rather than on both sides is important, as it ensures that the convolutional layer
+does not peek into the future when making predictions. This makes it a <b>causal model</b>.
+</p></div></div>
+<p class="noindent">Let’s implement a simplified WaveNet to tackle the same sequences as <span class="margin-block">earlier. <span class="margin-comment"><a class="ellipsis" href="#m-ref-220">[220]</a>
+<span class="sidenote">The complete WaveNet
+uses a few more tricks, such as skip connections like in a ResNet, and gated activation units similar to
+those found in a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gru">GRU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gru">Gated Recurrent Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gru">a type of RNN architecture designed to process sequential
+data while solving the vanishing gradient problem of standard RNNs.</a></span></span></span> cell.</span></span></span> We will start by creating a
+custom  <code class="file"><code class="verb">CausalConv1d</code></code> module that acts just like an  <code class="file"><code class="verb">nn.Conv1d</code></code> module, except the inputs get
+padded on the left side by the appropriate amount to ensure the sequence preserves the same
+length:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb202"><a id="x24-102004r1113"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn.functional</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">F</span> 
+<a id="x24-102006r1114"></a> 
+<a id="x24-102008r1115"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">CausalConv1d</span>(nn.Conv1d): 
+<a id="x24-102010r1116"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, X): 
+<a id="x24-102012r1117"></a>        padding = (<span style="color:#B03B03;">self</span>.kernel_size[<span style="color:#8F4070;">0</span>] - <span style="color:#8F4070;">1</span>) * <span style="color:#B03B03;">self</span>.dilation[<span style="color:#8F4070;">0</span>] 
+<a id="x24-102014r1118"></a>        X = F.pad(X, (padding, <span style="color:#8F4070;">0</span>)) 
+<a id="x24-102016r1119"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">super</span>().forward(X)</pre>
+</code></pre>
+<p class="noindent">In this code, we inherit from the  <code class="file"><code class="verb">nn.Conv1d</code></code> class and we override the  <code class="file"><code class="verb">forward()</code></code> method. In it, we
+calculate the size of the left-padding we need, and we pad the sequences using the  <code class="file"><code class="verb">pad()</code></code> function
+before calling the base class’s  <code class="file"><code class="verb">forward()</code></code> method.
+</p><p class="noindent">The  <code class="file"><code class="verb">pad()</code></code> function takes two arguments: </p><div class="quote">  the tensor to pad <code class="verb">(X)</code> , and a tuple of ints that
+indicates how much to pad to the left and right in the last <span class="margin-block">dimension. <span class="margin-comment"><a class="ellipsis" href="#m-ref-221">[221]</a>
+<span class="sidenote">i.e., the time dimension.</span></span></span>
+</div>
+<p class="noindent">Now we’re ready to build the WaveNet model itself:
+</p>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb203"><a id="x24-102018r1140"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">WavenetModel</span>(nn.Module): 
+<a id="x24-102020r1141"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, input_size, hidden_size, output_size): 
+<a id="x24-102022r1142"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
+<a id="x24-102024r1143"></a>        layers = [] 
+<a id="x24-102026r1144"></a>        <span style="color:#9E0005;">for</span> dilation <span style="color:#9E0005;">in</span> (<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">4</span>, <span style="color:#8F4070;">8</span>) * <span style="color:#8F4070;">2</span>: 
+<a id="x24-102028r1145"></a>            conv = CausalConv1d(input_size, hidden_size, kernel_size=<span style="color:#8F4070;">2</span>, 
+<a id="x24-102030r1146"></a>                                dilation=dilation) 
+<a id="x24-102032r1147"></a>            layers += [conv, nn.ReLU()] 
+<a id="x24-102034r1148"></a>            input_size = hidden_size 
+<a id="x24-102036r1149"></a>        <span style="color:#B03B03;">self</span>.convs = nn.Sequential(*layers) 
+<a id="x24-102038r1150"></a>        <span style="color:#B03B03;">self</span>.output = nn.Linear(hidden_size, output_size) 
+<a id="x24-102040r1151"></a> 
+<a id="x24-102042r1152"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, X): 
+<a id="x24-102044r1153"></a>        Z = X.permute(<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">1</span>) 
+<a id="x24-102046r1154"></a>        Z = <span style="color:#B03B03;">self</span>.convs(Z) 
+<a id="x24-102048r1155"></a>        Z = Z.permute(<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">1</span>) 
+<a id="x24-102050r1156"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(Z) 
+<a id="x24-102052r1157"></a> 
+<a id="x24-102054r1158"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x24-102056r1159"></a>wavenet_model = WavenetModel(input_size=<span style="color:#8F4070;">5</span>, hidden_size=<span style="color:#8F4070;">32</span>, output_size=<span style="color:#8F4070;">14</span>) 
+<a id="x24-102058r1160"></a>wavenet_model = wavenet_model.to(device)</pre>
+</code></pre>
+<p class="noindent">In the constructor, we create eight  <code class="file"><code class="verb">CausalConv1d</code></code> layers with various dilation rates (1, 2, 4, 8, then
+again 1, 2, 4, 8), each followed by the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:relu">RELU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:relu">Rectified Linear Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:relu">A popular activation function in
+ANNs that outputs the input directly if it is positive, and returns zero if it is negative.</a></span></span></span> activation
+function. We chain all these modules in an nn.Sequential module self.convs. We also create the output
+nn.Linear layer. In the forward method, we permute the last two dimensions of the inputs, as we
+did earlier, we then pass them through the convolutional layers, then we permute the last
+two dimensions back to their original order, and we pass the result through the output
+layer. Thanks to the causal padding, every convolutional layer outputs a sequence of the
+same length as its input sequence, so the targets we use during training can be the full
+112-day sequences; no need to crop them or downsample them. Thus, we can train the model
+using the data loaders we built for the <code class="verb">Seq2SeqModel</code>  (i.e.,  <code class="file"><code class="verb">seq_train_loader</code></code> and  <code class="file"><code class="verb">seq_valid_loader</code></code>
+).
+The models we’ve discussed in this section offer similar performance for the ridership forecasting task,
+but they may vary significantly depending on the task and the amount of available data. </p><div class="quote">  In the
+WaveNet paper, the authors achieved state-of-the-art performance on various audio tasks, hence the
+name of the architecture, including text-to-speech tasks, producing very realistic voices across several
+languages. </div>
+<p class="noindent">They also used the model to generate music, one audio sample at a time. This feat is all the more
+impressive when we realize that a single second of audio can contain tens of thousands of
+time stepseven <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A specialized type of RNN designed to
+remember information over long sequences and solve the vanishing gradient problem</a></span></span></span>s and
+<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gru">GRU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gru">Gated Recurrent Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gru">a type of RNN architecture designed to process sequential data
+while solving the vanishing gradient problem of standard RNNs.</a></span></span></span>s cannot handle such long
+sequences.
+</p>
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-4.54" id="info-block-4.54"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 4.<a id="x24-102059r54"></a>54: </b> </span> <span class="title"> Correct Model for the Data </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
+<p class="noindent">If we evaluate our best Chicago ridership models on the test period, starting in 2020, we will
+find that they perform much worse than expected! Why is that? Well, that’s when the
+Covid-19 pandemic started, which greatly affected public transportation. </p>
+<hr/>
+<p class="noindent"> 
+As mentioned
+earlier, these models will only work well if the patterns they learned from the past continue
+in the future. In any case, before deploying a model to production, verify that it works
+well on recent data. And once it’s in production, make sure to monitor its performance
+regularly.
+</p>
+</dd></dl>
+<div class="section-header">
+<h3 id="header-section-glossary">
+<span class="number">
+<i class="fa-regular fa-bookmark"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+        Page Glossary Terms</span>
+</h3>
+</div>
+<div class="acronym-block">
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:nn">¶</a>
+<dt class="acr-bottom" id="glo:nn"><span class="acr-short">NN</span><span class="acr-long">Neural Networks</span></dt>
+<dd class="acr-desc"><p>Neural Networks</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:gru">¶</a>
+<dt class="acr-bottom" id="glo:gru"><span class="acr-short">GRU</span><span class="acr-long">Gated Recurrent Unit</span></dt>
+<dd class="acr-desc"><p>a type of RNN
+architecture designed to process sequential data while solving the vanishing gradient problem of
+standard RNNs.</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:lstm">¶</a>
+<dt class="acr-bottom" id="glo:lstm"><span class="acr-short">LSTM</span><span class="acr-long">Long Short-Term Memory</span></dt>
+<dd class="acr-desc"><p>A specialized type of RNN designed to remember information over
+long sequences and solve the vanishing gradient problem</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:ln">¶</a>
+<dt class="acr-bottom" id="glo:ln"><span class="acr-short">LN</span><span class="acr-long">Layer
+Normalization</span></dt>
+<dd class="acr-desc"><p>A deep learning technique which stabilizes neural network training by calculating the
+mean and variance across the feature dimensions of each individual sample rather than across a
+mini-batch</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:bn">¶</a>
+<dt class="acr-bottom" id="glo:bn"><span class="acr-short">BN</span><span class="acr-long">Batch Normalization</span></dt>
+<dd class="acr-desc"><p>A technique used in ANNs to make training faster and
+more stable by adjusting and scaling layer inputs.</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:relu">¶</a>
+<dt class="acr-bottom" id="glo:relu"><span class="acr-short">RELU</span><span class="acr-long">Rectified Linear Unit</span></dt>
+<dd class="acr-desc"><p>A popular
+activation function in ANNs that outputs the input directly if it is positive, and returns zero if it is
+negative.</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:dnn">¶</a>
+<dt class="acr-bottom" id="glo:dnn"><span class="acr-short">DNN</span><span class="acr-long">Deep Neural Networks</span></dt>
+<dd class="acr-desc"><p>Deep Neural
+Networks</p></dd>
+</dl>
+<dl class="acr-list">
+<a class="copiable-link" href="#glo:rnn">¶</a>
+<dt class="acr-bottom" id="glo:rnn"><span class="acr-short">RNN</span><span class="acr-long">Recurrent Neural Networks</span></dt>
+<dd class="acr-desc"><p>a type of ANN designed to process sequential
+data, such as text, speech, or time series, by passing information through loops from one
+step to the next</p></dd>
+</dl>
+</div>
+<div class="section-header">
+<h3 id="header-section-references">
+<span class="number">
+<i class="fa-solid fa-magnifying-glass"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+            Page References</span>
+</h3>
+</div>
+<div class="cite-block">
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">1.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Laurent, C. et al. Batch normalized recurrent neural networks. 2016 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2657–2661 (2015)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">2.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Hochreiter, S. &amp; Schmidhuber, J. U. Long Short-Term Memory. Neural Computation 9, 1735–1780 (1997)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">3.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Sak, H., Senior, A. W. &amp; Beaufays, F. Long Short-Term Memory Based Recurrent Neural Network Architectures for Large Vocabulary Speech Recognition. ArXiv abs/1402.1128 (2014)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">4.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Zaremba, W., Sutskever, I. &amp; Vinyals, O. Recurrent Neural Network Regularization. ArXiv abs/1409.2329 (2014)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">5.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Cho, K. et al. Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation in Conference on Empirical Methods in Natural Language Processing (2014)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">6.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> Greff, K. et al. LSTM: A Search Space Odyssey. IEEE Transactions on Neural Networks and Learning Systems 28, 2222–2232 (2015)</dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">7.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"> van den Oord, A. et al. WaveNet: A Generative Model for Raw Audio in Speech Synthesis Workshop (2016)</dd>
+</dl></div>
+<div class="section-header">
+<h3 id="header-section-references">
+<span class="number">
+<i class="fa-regular fa-note-sticky"></i>
+</span>
+<span class="title">
+<a id="page-glossary"></a>
+                    Page Footnotes</span>
+</h3>
+</div>
+<div class="footnote-block">
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-207"><span class="acr-short">[207].</span></dt>
+<dd class="enumerate-enumitem"><span class="">Both on the inputs for that time step and on the hidden
+state from the previous step.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-208"><span class="acr-short">[208].</span></dt>
+<dd class="enumerate-enumitem"><span class="">which adds the memories that were selected by an input gate.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-209"><span class="acr-short">[209].</span></dt>
+<dd class="enumerate-enumitem"><span class="">which is equal to the cell’s
+output for this time step, <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>y</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-210"><span class="acr-short">[210].</span></dt>
+<dd class="enumerate-enumitem"><span class="">that’s the role of the input gate.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-211"><span class="acr-short">[211].</span></dt>
+<dd class="enumerate-enumitem"><span class="">that’s the role of the forget gate.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-212"><span class="acr-short">[212].</span></dt>
+<dd class="enumerate-enumitem"><span class="">that’s the role of
+the output gate.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-213"><span class="acr-short">[213].</span></dt>
+<dd class="enumerate-enumitem"><span class="">the equations for a whole mini-batch are very similar.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-214"><span class="acr-short">[214].</span></dt>
+<dd class="enumerate-enumitem"><span class="">just replace  <code class="file"><code class="verb">nn.LSTMCell</code></code> with  <code class="file"><code class="verb">nn.GRUCell</code></code> in the previous
+example, and get rid of <code class="verb">C</code> .</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-215"><span class="acr-short">[215].</span></dt>
+<dd class="enumerate-enumitem"><span class="">all of the same length.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-216"><span class="acr-short">[216].</span></dt>
+<dd class="enumerate-enumitem"><span class="">This term basically
+means how spread apart each neuron’s inputs are.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-217"><span class="acr-short">[217].</span></dt>
+<dd class="enumerate-enumitem"><span class="">its receptive field is
+four time steps long.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-218"><span class="acr-short">[218].</span></dt>
+<dd class="enumerate-enumitem"><span class="">Which also have dilation rates 1, 2, 4, 8,
+<math display="inline"><mo class="MathClass-rel" stretchy="false">⋯</mo><mspace class="thinspace" width="0.17em"></mspace></math>, 256, 512.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-219"><span class="acr-short">[219].</span></dt>
+<dd class="enumerate-enumitem"><span class="">Except way faster, more powerful, and using significantly fewer parameters.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-220"><span class="acr-short">[220].</span></dt>
+<dd class="enumerate-enumitem"><span class="">The complete WaveNet
+uses a few more tricks, such as skip connections like in a ResNet, and gated activation units similar to
+those found in a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gru">GRU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gru">Gated Recurrent Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gru">a type of RNN architecture designed to process sequential
+data while solving the vanishing gradient problem of standard RNNs.</a></span></span></span> cell.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="m-ref-221"><span class="acr-short">[221].</span></dt>
+<dd class="enumerate-enumitem"><span class="">i.e., the time dimension.</span></dd>
+</dl></div><nav class="crosslinks-bottom"><div class="navigation"><span class="nav-button"><a href="NaturalLanguageProcessingwithRNNsandAttention.html"><i class="fa-solid fa-caret-right"></i></a></span><span class="nav-button"><a href="ForecastingaTimeSeries.html"><i class="fa-solid fa-caret-left"></i></a></span><span class="nav-button"><a href="WorkingwithRNNsandCNNs.html#HandlingLongSequences.html"><i class="fa-solid fa-caret-up"></i></a></span><span class="nav-button">
+<a href="index.html" rel="index" title="Index">
+<i class="fa-solid fa-table-list">
+</i>
+</a></span><span class="nav-button">
+<a href="Index.html" rel="index" title="Index">
+<i class="fa-brands fa-git-alt"></i>
+</a></span></div></nav> <div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
+<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="note">Authors Note </span>
+<span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
+</div>
+</article>
+<div class="mode-line">
+<div class="core-line"><div class="core-line-image"><img class="webbook-logo" src="logo/webbook-logo.svg"/></div>
+<div class="current-header">
+<span class="header-pretext">Viewing | </span>
+<span class="header-text">4.3: Handling Long Sequences</span>
+</div>
+<div class="button-group">
+</div>
+</div>
+<div class="supp-line"></div>
+</div>
+</page>
+</body>
+</html>

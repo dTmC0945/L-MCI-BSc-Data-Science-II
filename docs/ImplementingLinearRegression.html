@@ -10,11 +10,10 @@
 <script src="./pagefind/pagefind-component-ui.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.css" rel="stylesheet" type="text/css"/>
-<script async="true" crossorigin="anonymous" src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css" rel="stylesheet"/>
+<link href="flatweb.css" rel="stylesheet" type="text/css"/>
+<script src="flatweb.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css" rel="stylesheet"/>
+<link href="style-code/gruvbox-light-hard.min.css" id="code-style" rel="stylesheet"/>
 <script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
 <link href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
@@ -56,12 +55,27 @@ Rate Scheduling</a></span></span><span class="subsectionToc"><span class="number
 Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.4</span><span class="title"><a href="LearningRateScheduling.html#x19-730003.2.4">Warming Up the Learning Rate</a></span></span><span class="subsectionToc"><span class="number">3.2.5</span><span class="title"><a href="LearningRateScheduling.html#x19-740003.2.5">Cosine Annealing with Warm
 Restarts</a></span></span><span class="subsectionToc"><span class="number">3.2.6</span><span class="title"><a href="LearningRateScheduling.html#x19-750003.2.6">1cycle Scheduling</a></span></span><span class="sectionToc"><span class="number">3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-760003.3">Avoiding Overfitting Through Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.1</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-770003.3.1"><math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>1</mn></mrow></msub></math>
 and <math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
-Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-780003.3.2">Dropout</a></span></span><span class="subsectionToc"><span class="number">3.3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-790003.3.3">Max-Norm Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.4</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-800003.3.4">Practical Guidelines</a></span></span>
+Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-780003.3.2">Dropout</a></span></span><span class="subsectionToc"><span class="number">3.3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-790003.3.3">Max-Norm Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.4</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-800003.3.4">Practical Guidelines</a></span></span><span class="chapterToc"><span class="number">4</span><span class="title"><a href="WorkingwithRNNsandCNNs.html#x21-810004">Working
+with RNNs and CNNs</a></span></span><span class="sectionToc"><span class="number">4.1</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-830004.1">Recurrent Neurons and Layers</a></span></span><span class="subsectionToc"><span class="number">4.1.1</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-840004.1.1">Memory Cells</a></span></span><span class="subsectionToc"><span class="number">4.1.2</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-850004.1.2">Input
+and Output Sequences</a></span></span><span class="subsectionToc"><span class="number">4.1.3</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-860004.1.3">Training RNNs</a></span></span><span class="sectionToc"><span class="number">4.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-870004.2">Forecasting a Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.1</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-880004.2.1">The ARMA
+Model Family</a></span></span><span class="subsectionToc"><span class="number">4.2.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-890004.2.2">Preparing the Data for Machine Learning Models</a></span></span><span class="subsectionToc"><span class="number">4.2.3</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-900004.2.3">Forecasting
+Using a Linear Model</a></span></span><span class="subsectionToc"><span class="number">4.2.4</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-910004.2.4">Forecasting Using a Simple RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.5</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-920004.2.5">Forecasting Using a
+Deep RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.6</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-930004.2.6">Forecasting Multivariate Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.7</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-940004.2.7">Forecasting Several Time
+Steps Ahead</a></span></span><span class="subsectionToc"><span class="number">4.2.8</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-950004.2.8">Forecasting Using a Sequence-to-Sequence Model</a></span></span><span class="sectionToc"><span class="number">4.3</span><span class="title"><a href="HandlingLongSequences.html#x24-960004.3">Handling
+Long Sequences</a></span></span><span class="subsectionToc"><span class="number">4.3.1</span><span class="title"><a href="HandlingLongSequences.html#x24-970004.3.1">Fighting the Unstable Gradients Problem</a></span></span><span class="subsectionToc"><span class="number">4.3.2</span><span class="title"><a href="HandlingLongSequences.html#x24-980004.3.2">Tackling the
+Short-Term Memory Problem</a></span></span><span class="chapterToc"><span class="number">5</span><span class="title"><a href="NaturalLanguageProcessingwithRNNsandAttention.html#x25-1030005">Natural Language Processing with RNNs and
+Attention</a></span></span><span class="sectionToc"><span class="number">5.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1070005.1">Generating Shakespearean Text Using a Character RNN</a></span></span><span class="subsectionToc"><span class="number">5.1.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1080005.1.1">Creating
+the Training Dataset</a></span></span><span class="subsectionToc"><span class="number">5.1.2</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1090005.1.2">Embeddings</a></span></span><span class="subsectionToc"><span class="number">5.1.3</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1100005.1.3">Building and Training the Char-RNN
+Model</a></span></span><span class="subsectionToc"><span class="number">5.1.4</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1110005.1.4">Generating Fake Shakespearean Text</a></span></span><span class="sectionToc"><span class="number">5.2</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1120005.2">Sentiment Analysis Using
+Hugging Face Libraries</a></span></span><span class="subsectionToc"><span class="number">5.2.1</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1130005.2.1">Tokenization Using the Hugging Face Tokenizers
+Library</a></span></span><span class="subsectionToc"><span class="number">5.2.2</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1140005.2.2">Reusing Pretrained Tokenizers</a></span></span><span class="subsectionToc"><span class="number">5.2.3</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1150005.2.3">Building and Training a Sentiment
+Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1160005.3">Bidirectional RNNs</a></span></span><span class="subsectionToc"><span class="number">5.3.1</span><span class="title"><a href="BidirectionalRNNs.html#x28-1170005.3.1">Reusing Pretrained Embeddings and
+Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
+for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 19.10.2026, at 12:16.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
-<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="ImplementingaRegressionMLP.html">Implementing a Regression MLP</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="PyTorchFundamentals.html">PyTorch Fundamentals</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="UnderstandingPyTorch.html#ImplementingLinearRegression.html">Chapter: Understanding
-PyTorch</a></span><span class="nav-button">
+<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="ImplementingaRegressionMLP.html">Implementing a Regression MLP</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="PyTorchFundamentals.html">PyTorch Fundamentals</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="UnderstandingPyTorch.html#ImplementingLinearRegression.html">Chapter: Understanding PyTorch</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
 <i class="fa-solid fa-table-list">
 </i>
@@ -71,7 +85,7 @@ PyTorch</a></span><span class="nav-button">
 <i class="fa-brands fa-git-alt"></i>
 <span class="nav-info">Visit Material GitHub Repo</span>
 </a></span></nav>
-<div class="section-header"> <h3 id="header-section-2.2"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.2.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a> <span class="number">2.2</span> <span class="title"> <a id="x8-260002.2"></a>Implementing Linear
+<div class="section-header"><h3 id="header-section-2.2"><span class="number">2.2</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.2.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x8-260002.2"></a>Implementing Linear
 Regression</span></h3></div>
 <p class="noindent">We will start by implementing linear regression using <b>tensors</b> and <b>autograd</b> directly, and
 then will simplify the code using PyTorch’s high-level <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:api">API</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:api">Application-Programming
@@ -81,34 +95,34 @@ Unlike a central processing unit (CPU) that processes tasks sequentially, a GPU 
 processing with thousands of smaller cores to handle many calculations at the same time.</a></span></span></span>
 support.
 </p>
-<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-2.2.1"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.2.2.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">2.2.1</span> <span class="title"> <a id="x8-270002.2.1"></a>Linear Regression Using Tensors and Autograd</span></h4></div>
-</p><p class="noindent">Let’s tackle the same <i>California housing dataset</i>.
+<div class="subsection-header"><h4 id="header-subsection-2.2.1"><span class="number">2.2.1</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.2.2.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x8-270002.2.1"></a>Linear Regression Using Tensors and Autograd</span></h4></div>
+<p class="noindent">Let’s tackle the same <i>California housing dataset</i>.
 </p><p class="noindent">It is assumed that the dataset is already downloaded using <code class="verb">sklearn.datasets.fetch_california_housing()</code> , and have been split into a training set (<code class="verb">X_train</code>
 and <code class="verb">y_train</code> ), a validation set (<code class="verb">X_valid</code>  and <code class="verb">y_valid</code> ), and a test set (<code class="verb">X_test</code>  and <code class="verb">y_test</code> ), using <code class="verb">sklearn.model_selection.train_test_split()</code> .
 </p><p class="noindent">Next, let’s convert it to tensors and <b>normalize</b> it. We could use a <code class="verb">StandardScaler</code>  for this, but let’s just use <b>tensor</b>
 operations instead, to get a bit of practice:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb66"><a id="x8-27002r428"></a>X_train = torch.FloatTensor(X_train) 
-<a id="x8-27004r429"></a>X_valid = torch.FloatTensor(X_valid) 
-<a id="x8-27006r430"></a>X_test = torch.FloatTensor(X_test) 
-<a id="x8-27008r431"></a>means = X_train.mean(dim=<span style="color:#8F4070;">0</span>, keepdims=<span style="color:#9E0005;">True</span>) 
-<a id="x8-27010r432"></a>stds = X_train.std(dim=<span style="color:#8F4070;">0</span>, keepdims=<span style="color:#9E0005;">True</span>) 
-<a id="x8-27012r433"></a>X_train = (X_train - means) / stds 
-<a id="x8-27014r434"></a>X_valid = (X_valid - means) / stds 
-<a id="x8-27016r435"></a>X_test = (X_test - means) / stds</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb66"><a id="x8-27002r425"></a>X_train = torch.FloatTensor(X_train) 
+<a id="x8-27004r426"></a>X_valid = torch.FloatTensor(X_valid) 
+<a id="x8-27006r427"></a>X_test = torch.FloatTensor(X_test) 
+<a id="x8-27008r428"></a>means = X_train.mean(dim=<span style="color:#8F4070;">0</span>, keepdims=<span style="color:#9E0005;">True</span>) 
+<a id="x8-27010r429"></a>stds = X_train.std(dim=<span style="color:#8F4070;">0</span>, keepdims=<span style="color:#9E0005;">True</span>) 
+<a id="x8-27012r430"></a>X_train = (X_train - means) / stds 
+<a id="x8-27014r431"></a>X_valid = (X_valid - means) / stds 
+<a id="x8-27016r432"></a>X_test = (X_test - means) / stds</pre>
 </code></pre>
 <p class="noindent">Let’s also convert the targets to tensors. Given our predictions will be column <span class="margin-block">vectors, <span class="margin-comment"><a class="ellipsis" href="#m-ref-66">[66]</a>
 <span class="sidenote">i.e., matrices
 with a single column.</span></span></span> we need to ensure that our targets are also column vectors.
 </p>
-<div class="block-major info-block" id="info-block-2.18"> <a class="copiable-link" href="#info-block-2.18"> ¶</a> <span class="upper"> <span class="header"> <b>Information 2.<a id="x8-27017r18"></a>18: </b> </span> <span class="title"> The Usefulness of Column Vectors </span> </span> <div class="body">
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-2.18" id="info-block-2.18"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 2.<a id="x8-27017r18"></a>18: </b> </span> <span class="title"> The Usefulness of Column Vectors </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">Column vectors, shape <code class="verb">[m, 1]</code> , and row vectors, shape <code class="verb">[1, m]</code> , are often preferred over 1D vectors, shape <code class="verb">[m]</code> ,
 in <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ml">ML</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ml">Machine Learning</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ml">Machine Learning</a></span></span></span>, as they avoid ambiguity in some operations,
 such as <span class="alert">matrix multiplication</span> or <span class="alert">broadcasting</span>, and they make the code more consistent whether there’s just one feature or
 more.
 </p>
-</div></div>
+</dd></dl>
 <p class="noindent">Unfortunately, the <code class="verb">NumPy</code>  arrays representing the targets are 1D, so we need to reshape the tensors to column vectors
 by adding a <math display="inline"><msup><mrow><mstyle class="text"><mtext>2</mtext></mstyle></mrow><mrow><mstyle class="text"><mtext>nd</mtext></mstyle></mrow></msup></math>
 dimension of size <span class="margin-block">1: <span class="margin-comment"><a class="ellipsis" href="#m-ref-67">[67]</a>
@@ -116,18 +130,18 @@ dimension of size <span class="margin-block">1: <span class="margin-comment"><a 
 This dimension’s size is automatically calculated to ensure the new tensor has the same number of cells
 as the original.</span></span></span>
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb67"><a id="x8-27019r443"></a>y_train = torch.FloatTensor(y_train).view(-<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">1</span>) 
-<a id="x8-27021r444"></a>y_valid = torch.FloatTensor(y_valid).view(-<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">1</span>) 
-<a id="x8-27023r445"></a>y_test = torch.FloatTensor(y_test).view(-<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">1</span>)</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb67"><a id="x8-27019r440"></a>y_train = torch.FloatTensor(y_train).view(-<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">1</span>) 
+<a id="x8-27021r441"></a>y_valid = torch.FloatTensor(y_valid).view(-<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">1</span>) 
+<a id="x8-27023r442"></a>y_test = torch.FloatTensor(y_test).view(-<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">1</span>)</pre>
 </code></pre>
 <p class="noindent">Now that the data is ready, let’s create the parameters of our linear regression model:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb68"><a id="x8-27025r450"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
-<a id="x8-27027r451"></a>n_features = X_train.shape[<span style="color:#8F4070;">1</span>]  <span style="color:#918273;"><i># there are 8 input features</i></span> 
-<a id="x8-27029r452"></a>w = torch.randn((n_features, <span style="color:#8F4070;">1</span>), requires_grad=<span style="color:#9E0005;">True</span>) 
-<a id="x8-27031r453"></a>b = torch.tensor(<span style="color:#8F4070;">0.</span>, requires_grad=<span style="color:#9E0005;">True</span>)</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb68"><a id="x8-27025r447"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x8-27027r448"></a>n_features = X_train.shape[<span style="color:#8F4070;">1</span>]  <span style="color:#918273;"><i># there are 8 input features</i></span> 
+<a id="x8-27029r449"></a>w = torch.randn((n_features, <span style="color:#8F4070;">1</span>), requires_grad=<span style="color:#9E0005;">True</span>) 
+<a id="x8-27031r450"></a>b = torch.tensor(<span style="color:#8F4070;">0.</span>, requires_grad=<span style="color:#9E0005;">True</span>)</pre>
 </code></pre>
 <p class="noindent">We now have a weights parameter <code class="verb">w</code> <span class="margin-block">, <span class="margin-comment"><a class="ellipsis" href="#m-ref-68">[68]</a>
 <span class="sidenote">A column vector with one weight per input dimension, in this case
@@ -137,7 +151,7 @@ get to <span class="acronym"><span class="acronym-short"><a class="glossary" hre
 randomly to break the symmetry between neurons, so we might as well get into the habit
 now.
 </p>
-<div class="block-major info-block" id="info-block-2.19"> <a class="copiable-link" href="#info-block-2.19"> ¶</a> <span class="upper"> <span class="header"> <b>Information 2.<a id="x8-27032r19"></a>19: </b> </span> <span class="title"> Reproducibility </span> </span> <div class="body">
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-2.19" id="info-block-2.19"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 2.<a id="x8-27032r19"></a>19: </b> </span> <span class="title"> Reproducibility </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">We called <code class="verb">torch.manual_seed()</code>  to ensure that the results are reproducible. However, PyTorch does <span class="alert">not guarantee perfectly reproducible results</span> across different
 releases, platforms, or devices, so if we do not run the code in this chapter with PyTorch 2.8.0, we may
 get different results. </p>
@@ -157,26 +171,26 @@ algorithms by <code class="verb">calling torch.use_deterministic_algorithms(True
 don’t have a deterministic version at all, so we will get an error if your code tries to use
 one.
 </p>
-</div></div>
+</dd></dl>
 <p class="noindent">Next, let’s train our model, very much like we did in <b>B.Sc Data Science I</b>, except we will use
 <b>autodiff</b> to compute the gradients rather than using a closed-form equation. For now we will use
 <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bgd">BGD</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bgd">Batch Gradient Descent</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bgd">An iterative optimization algorithm that calculates the gradient of the
 cost function using the entire training dataset for each iteration.</a></span></span></span>, using the full training set at each
 training step:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb69"><a id="x8-27034r478"></a>learning_rate = <span style="color:#8F4070;">0.4</span> 
-<a id="x8-27036r479"></a>n_epochs = <span style="color:#8F4070;">20</span> 
-<a id="x8-27038r480"></a><span style="color:#9E0005;">for</span> epoch <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(n_epochs): 
-<a id="x8-27040r481"></a>    y_pred = X_train @ w + b 
-<a id="x8-27042r482"></a>    loss = ((y_pred - y_train) ** <span style="color:#8F4070;">2</span>).mean() 
-<a id="x8-27044r483"></a>    loss.backward() 
-<a id="x8-27046r484"></a>    <span style="color:#9E0005;">with</span> torch.no_grad(): 
-<a id="x8-27048r485"></a>        b -= learning_rate * b.grad 
-<a id="x8-27050r486"></a>        w -= learning_rate * w.grad 
-<a id="x8-27052r487"></a>        b.grad.zero_() 
-<a id="x8-27054r488"></a>        w.grad.zero_() 
-<a id="x8-27056r489"></a>    <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"Epoch </span><span style="color:#78730D;">{</span>epoch + <span style="color:#8F4070;">1</span><span style="color:#78730D;">}</span><span style="color:#78730D;">/</span><span style="color:#78730D;">{</span>n_epochs<span style="color:#78730D;">}</span><span style="color:#78730D;">, Loss: </span><span style="color:#78730D;">{</span>loss.item()<span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb69"><a id="x8-27034r475"></a>learning_rate = <span style="color:#8F4070;">0.4</span> 
+<a id="x8-27036r476"></a>n_epochs = <span style="color:#8F4070;">20</span> 
+<a id="x8-27038r477"></a><span style="color:#9E0005;">for</span> epoch <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(n_epochs): 
+<a id="x8-27040r478"></a>    y_pred = X_train @ w + b 
+<a id="x8-27042r479"></a>    loss = ((y_pred - y_train) ** <span style="color:#8F4070;">2</span>).mean() 
+<a id="x8-27044r480"></a>    loss.backward() 
+<a id="x8-27046r481"></a>    <span style="color:#9E0005;">with</span> torch.no_grad(): 
+<a id="x8-27048r482"></a>        b -= learning_rate * b.grad 
+<a id="x8-27050r483"></a>        w -= learning_rate * w.grad 
+<a id="x8-27052r484"></a>        b.grad.zero_() 
+<a id="x8-27054r485"></a>        w.grad.zero_() 
+<a id="x8-27056r486"></a>    <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"Epoch </span><span style="color:#78730D;">{</span>epoch + <span style="color:#8F4070;">1</span><span style="color:#78730D;">}</span><span style="color:#78730D;">/</span><span style="color:#78730D;">{</span>n_epochs<span style="color:#78730D;">}</span><span style="color:#78730D;">, Loss: </span><span style="color:#78730D;">{</span>loss.item()<span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre>
 </code></pre>
 <p class="noindent">Let’s walk through this code:
 </p>
@@ -185,7 +199,7 @@ training step:
 </dt><dd class="enumerate-enumitem">Define the <code class="verb">learning_rate</code>  hyperparameter. Here, we can experiment with different values to find a value
 that converges fast and gives a precise result.
 </dd>
-<dt class="enumerate-enumitem">
+<dt class="enumerate-enumitem">  
 2. 
 </dt><dd class="enumerate-enumitem">Run <b>20 epochs</b><span class="margin-block">. <span class="margin-comment"><a class="ellipsis" href="#m-ref-69">[69]</a>
 <span class="sidenote">We could implement early stopping to find the right moment to stop and
@@ -209,7 +223,7 @@ this code inside a with <code class="verb">torch.no_grad()</code>  context, as d
 6. 
 </dt><dd class="enumerate-enumitem">Once we’ve done the gradient descent step, we reset the gradients to zero.
 </dd>
-<dt class="enumerate-enumitem">  
+<dt class="enumerate-enumitem">
 7. 
 </dt><dd class="enumerate-enumitem">Print the epoch number and the current loss at each epoch. The <code class="verb">item()</code>  method extracts the
 value of a scalar tensor.</dd></dl>
@@ -223,20 +237,20 @@ Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ram">
 used to store working data and machine code.</a></span></span></span> and run faster since it won’t have to keep track of the
 computation graph.
 </p>
-<p class="noindent"><span class="paragraphHead"> <a id="x8-28000"></a>Summary</span>
-Implementing linear regression using PyTorch’s low-level <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:api">API</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:api">Application-Programming
+<div class="paragraph-header"><h6 id="header-paragraph-2.2.1.6.2"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x8-28000"></a>Summary</span></h6></div>
+<p class="noindent">Implementing linear regression using PyTorch’s low-level <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:api">API</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:api">Application-Programming
 Interface</a></span><span class="acronym-desc"><a class="glossary" href="#glo:api">Application-Programming Interface</a></span></span></span> wasn’t too hard, but using this approach for more complex
 models would get really messy and difficult. So PyTorch offers a higher-level API to simplify all this.
 Let’s rewrite our model using this higher-level API.
 </p>
-<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-2.2.2"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.2.2.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">2.2.2</span> <span class="title"> <a id="x8-290002.2.2"></a>Linear Regression Using PyTorch’s High-Level API</span></h4></div>
-</p><p class="noindent">PyTorch provides an implementation of linear regression in the <code class="verb">torch.nn.Linear</code>  class, so let’s use it:
+<div class="subsection-header"><h4 id="header-subsection-2.2.2"><span class="number">2.2.2</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.2.2.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x8-290002.2.2"></a>Linear Regression Using PyTorch’s High-Level API</span></h4></div>
+<p class="noindent">PyTorch provides an implementation of linear regression in the <code class="verb">torch.nn.Linear</code>  class, so let’s use it:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb70"><a id="x8-29002r511"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">nn</span> 
-<a id="x8-29004r512"></a> 
-<a id="x8-29006r513"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>)  <span style="color:#918273;"><i># to get reproducible results</i></span> 
-<a id="x8-29008r514"></a>model = nn.Linear(in_features=n_features, out_features=<span style="color:#8F4070;">1</span>)</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb70"><a id="x8-29002r508"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">nn</span> 
+<a id="x8-29004r509"></a> 
+<a id="x8-29006r510"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>)  <span style="color:#918273;"><i># to get reproducible results</i></span> 
+<a id="x8-29008r511"></a>model = nn.Linear(in_features=n_features, out_features=<span style="color:#8F4070;">1</span>)</pre>
 </code></pre>
 <p class="noindent">The <code class="verb">nn.Linear</code>  class, which is short for <code class="verb">torch.nn.Linear</code> , is one of numerous modules provided by PyTorch. Each module is a
 subclass of the <code class="verb">nn.Module</code>  class. To build a simple linear regression model, a single <code class="verb">nn.Linear</code>  module is all we need.
@@ -267,7 +281,7 @@ is not trained yet, its parameters are random and the predictions are terrible.<
 </p><p class="noindent">Observe that the result contains the <code class="verb">grad_fn</code>  attribute, showing that <b>autograd</b> did its job and tracked the
 computation graph while the model was making its predictions.
 </p>
-<div class="block-major info-block" id="info-block-2.20"> <a class="copiable-link" href="#info-block-2.20"> ¶</a> <span class="upper"> <span class="header"> <b>Information 2.<a id="x8-29009r20"></a>20: </b> </span> <span class="title"> Passing Custom Functions </span> </span> <div class="body">
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-2.20" id="info-block-2.20"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 2.<a id="x8-29009r20"></a>20: </b> </span> <span class="title"> Passing Custom Functions </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">If we were to pass a custom function to a module’s <code class="verb">register_forward_hook()</code>  method, it will be <span class="alert">called automatically</span> every time the module itself is
 called. This is particularly handy for <span class="alert">logging</span> or <span class="alert">debugging</span>. </p>
 <hr/>
@@ -278,13 +292,13 @@ its <code class="verb">forward()</code>  method <span class="margin-block">direc
 <span class="sidenote">Which is which is why we should never do that.</span></span></span> We can also register functions to
 run during the backward pass using <code class="verb">register_backward_hook()</code> .
 </p>
-</div></div>
+</dd></dl>
 <p class="noindent">Now that we have our model, we need to create an optimizer to update the model parameters, and we
 must also choose a loss function:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb71"><a id="x8-29011r540"></a>optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate) 
-<a id="x8-29013r541"></a>mse = nn.MSELoss()</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb71"><a id="x8-29011r537"></a>optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate) 
+<a id="x8-29013r538"></a>mse = nn.MSELoss()</pre>
 </code></pre>
 <p class="noindent">PyTorch provides a few different <span class="margin-block">optimizers. <span class="margin-comment"><a class="ellipsis" href="#m-ref-74">[74]</a>
 <span class="sidenote">We will discuss them in the next chapter.</span></span></span> Here we’re using
@@ -311,15 +325,15 @@ Error</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mse">M
 as we will see.
 Next, let’s write a small function to train our model:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
-<pre class="fancyvrb" id="fancyvrb72"><a id="x8-29015r546"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">train_bgd</span>(model, optimizer, criterion, X_train, y_train, n_epochs): 
-<a id="x8-29017r547"></a>    <span style="color:#9E0005;">for</span> epoch <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(n_epochs): 
-<a id="x8-29019r548"></a>        y_pred = model(X_train) 
-<a id="x8-29021r549"></a>        loss = criterion(y_pred, y_train) 
-<a id="x8-29023r550"></a>        loss.backward() 
-<a id="x8-29025r551"></a>        optimizer.step() 
-<a id="x8-29027r552"></a>        optimizer.zero_grad() 
-<a id="x8-29029r553"></a>        <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"Epoch </span><span style="color:#78730D;">{</span>epoch + <span style="color:#8F4070;">1</span><span style="color:#78730D;">}</span><span style="color:#78730D;">/</span><span style="color:#78730D;">{</span>n_epochs<span style="color:#78730D;">}</span><span style="color:#78730D;">, Loss: </span><span style="color:#78730D;">{</span>loss.item()<span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre>
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
+<pre class="fancyvrb" id="fancyvrb72"><a id="x8-29015r543"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">train_bgd</span>(model, optimizer, criterion, X_train, y_train, n_epochs): 
+<a id="x8-29017r544"></a>    <span style="color:#9E0005;">for</span> epoch <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(n_epochs): 
+<a id="x8-29019r545"></a>        y_pred = model(X_train) 
+<a id="x8-29021r546"></a>        loss = criterion(y_pred, y_train) 
+<a id="x8-29023r547"></a>        loss.backward() 
+<a id="x8-29025r548"></a>        optimizer.step() 
+<a id="x8-29027r549"></a>        optimizer.zero_grad() 
+<a id="x8-29029r550"></a>        <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"Epoch </span><span style="color:#78730D;">{</span>epoch + <span style="color:#8F4070;">1</span><span style="color:#78730D;">}</span><span style="color:#78730D;">/</span><span style="color:#78730D;">{</span>n_epochs<span style="color:#78730D;">}</span><span style="color:#78730D;">, Loss: </span><span style="color:#78730D;">{</span>loss.item()<span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre>
 </code></pre>
 <p class="noindent">Compare this training loop with our earlier training loop. It’s very similar, but we’re now using
 higher-level constructs rather than working directly with tensors and autograd.
@@ -496,7 +510,7 @@ is not trained yet, its parameters are random and the predictions are terrible.<
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 19.10.2026, at 12:16.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>
@@ -505,7 +519,7 @@ is not trained yet, its parameters are random and the predictions are terrible.<
 <div class="core-line"><div class="core-line-image"><img class="webbook-logo" src="logo/webbook-logo.svg"/></div>
 <div class="current-header">
 <span class="header-pretext">Viewing | </span>
-<span class="header-text">Section 2.2: Implementing Linear Regression</span>
+<span class="header-text">2.2: Implementing Linear Regression</span>
 </div>
 <div class="button-group">
 </div>

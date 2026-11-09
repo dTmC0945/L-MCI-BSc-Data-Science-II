@@ -10,11 +10,10 @@
 <script src="./pagefind/pagefind-component-ui.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-mono.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.css" rel="stylesheet" type="text/css"/>
-<script async="true" crossorigin="anonymous" src="https://cdn.jsdelivr.net/gh/dTmC0945/Wb-LMS-WebBook-Infrastructure/flatweb.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css" rel="stylesheet"/>
+<link href="flatweb.css" rel="stylesheet" type="text/css"/>
+<script src="flatweb.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/solarized-light.min.css" rel="stylesheet"/>
+<link href="style-code/gruvbox-light-hard.min.css" id="code-style" rel="stylesheet"/>
 <script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
 <link href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
@@ -56,13 +55,27 @@ Rate Scheduling</a></span></span><span class="subsectionToc"><span class="number
 Scheduling</a></span></span><span class="subsectionToc"><span class="number">3.2.4</span><span class="title"><a href="LearningRateScheduling.html#x19-730003.2.4">Warming Up the Learning Rate</a></span></span><span class="subsectionToc"><span class="number">3.2.5</span><span class="title"><a href="LearningRateScheduling.html#x19-740003.2.5">Cosine Annealing with Warm
 Restarts</a></span></span><span class="subsectionToc"><span class="number">3.2.6</span><span class="title"><a href="LearningRateScheduling.html#x19-750003.2.6">1cycle Scheduling</a></span></span><span class="sectionToc"><span class="number">3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-760003.3">Avoiding Overfitting Through Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.1</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-770003.3.1"><math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>1</mn></mrow></msub></math>
 and <math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
-Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-780003.3.2">Dropout</a></span></span><span class="subsectionToc"><span class="number">3.3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-790003.3.3">Max-Norm Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.4</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-800003.3.4">Practical Guidelines</a></span></span>
+Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.2</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-780003.3.2">Dropout</a></span></span><span class="subsectionToc"><span class="number">3.3.3</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-790003.3.3">Max-Norm Regularization</a></span></span><span class="subsectionToc"><span class="number">3.3.4</span><span class="title"><a href="AvoidingOverfittingThroughRegularization.html#x20-800003.3.4">Practical Guidelines</a></span></span><span class="chapterToc"><span class="number">4</span><span class="title"><a href="WorkingwithRNNsandCNNs.html#x21-810004">Working
+with RNNs and CNNs</a></span></span><span class="sectionToc"><span class="number">4.1</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-830004.1">Recurrent Neurons and Layers</a></span></span><span class="subsectionToc"><span class="number">4.1.1</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-840004.1.1">Memory Cells</a></span></span><span class="subsectionToc"><span class="number">4.1.2</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-850004.1.2">Input
+and Output Sequences</a></span></span><span class="subsectionToc"><span class="number">4.1.3</span><span class="title"><a href="RecurrentNeuronsandLayers.html#x22-860004.1.3">Training RNNs</a></span></span><span class="sectionToc"><span class="number">4.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-870004.2">Forecasting a Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.1</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-880004.2.1">The ARMA
+Model Family</a></span></span><span class="subsectionToc"><span class="number">4.2.2</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-890004.2.2">Preparing the Data for Machine Learning Models</a></span></span><span class="subsectionToc"><span class="number">4.2.3</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-900004.2.3">Forecasting
+Using a Linear Model</a></span></span><span class="subsectionToc"><span class="number">4.2.4</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-910004.2.4">Forecasting Using a Simple RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.5</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-920004.2.5">Forecasting Using a
+Deep RNN</a></span></span><span class="subsectionToc"><span class="number">4.2.6</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-930004.2.6">Forecasting Multivariate Time Series</a></span></span><span class="subsectionToc"><span class="number">4.2.7</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-940004.2.7">Forecasting Several Time
+Steps Ahead</a></span></span><span class="subsectionToc"><span class="number">4.2.8</span><span class="title"><a href="ForecastingaTimeSeries.html#x23-950004.2.8">Forecasting Using a Sequence-to-Sequence Model</a></span></span><span class="sectionToc"><span class="number">4.3</span><span class="title"><a href="HandlingLongSequences.html#x24-960004.3">Handling
+Long Sequences</a></span></span><span class="subsectionToc"><span class="number">4.3.1</span><span class="title"><a href="HandlingLongSequences.html#x24-970004.3.1">Fighting the Unstable Gradients Problem</a></span></span><span class="subsectionToc"><span class="number">4.3.2</span><span class="title"><a href="HandlingLongSequences.html#x24-980004.3.2">Tackling the
+Short-Term Memory Problem</a></span></span><span class="chapterToc"><span class="number">5</span><span class="title"><a href="NaturalLanguageProcessingwithRNNsandAttention.html#x25-1030005">Natural Language Processing with RNNs and
+Attention</a></span></span><span class="sectionToc"><span class="number">5.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1070005.1">Generating Shakespearean Text Using a Character RNN</a></span></span><span class="subsectionToc"><span class="number">5.1.1</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1080005.1.1">Creating
+the Training Dataset</a></span></span><span class="subsectionToc"><span class="number">5.1.2</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1090005.1.2">Embeddings</a></span></span><span class="subsectionToc"><span class="number">5.1.3</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1100005.1.3">Building and Training the Char-RNN
+Model</a></span></span><span class="subsectionToc"><span class="number">5.1.4</span><span class="title"><a href="GeneratingShakespeareanTextUsingaCharacterRNN.html#x26-1110005.1.4">Generating Fake Shakespearean Text</a></span></span><span class="sectionToc"><span class="number">5.2</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1120005.2">Sentiment Analysis Using
+Hugging Face Libraries</a></span></span><span class="subsectionToc"><span class="number">5.2.1</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1130005.2.1">Tokenization Using the Hugging Face Tokenizers
+Library</a></span></span><span class="subsectionToc"><span class="number">5.2.2</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1140005.2.2">Reusing Pretrained Tokenizers</a></span></span><span class="subsectionToc"><span class="number">5.2.3</span><span class="title"><a href="SentimentAnalysisUsingHuggingFaceLibraries.html#x27-1150005.2.3">Building and Training a Sentiment
+Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1160005.3">Bidirectional RNNs</a></span></span><span class="subsectionToc"><span class="number">5.3.1</span><span class="title"><a href="BidirectionalRNNs.html#x28-1170005.3.1">Reusing Pretrained Embeddings and
+Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
+for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 19.10.2026, at 12:16.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
-<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="UnderstandingPyTorch.html">Chapter: Understanding
-PyTorch</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="FromBiologytoSiliconArtificialNeurons.html">From Biology to Silicon: Artificial Neurons</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="IntroductiontoArtificialNeuralNetworks.html#ImplementingMLPswithKeras.html">Chapter: Introduction to
-Artificial Neural Networks</a></span><span class="nav-button">
+<nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="UnderstandingPyTorch.html">Chapter: Understanding PyTorch</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="FromBiologytoSiliconArtificialNeurons.html">From Biology to Silicon: Artificial Neurons</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="IntroductiontoArtificialNeuralNetworks.html#ImplementingMLPswithKeras.html">Chapter: Introduction to Artificial Neural Networks</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
 <i class="fa-solid fa-table-list">
 </i>
@@ -72,7 +85,7 @@ Artificial Neural Networks</a></span><span class="nav-button">
 <i class="fa-brands fa-git-alt"></i>
 <span class="nav-info">Visit Material GitHub Repo</span>
 </a></span></nav>
-<div class="section-header"> <h3 id="header-section-1.2"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.1.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a> <span class="number">1.2</span> <span class="title"> <a id="x5-110001.2"></a>Implementing MLPs with
+<div class="section-header"><h3 id="header-section-1.2"><span class="number">1.2</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.1.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x5-110001.2"></a>Implementing MLPs with
 Keras</span></h3></div>
 <p class="noindent">Keras is TensorFlow’s high-level deep learning <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:api">API</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:api">Application-Programming Interface</a></span><span class="acronym-desc"><a class="glossary" href="#glo:api">Application-Programming
 Interface</a></span></span></span>. It allows you to build, train, evaluate, and execute all sorts of neural networks. The original
@@ -80,7 +93,7 @@ Keras library was developed by <i>Francois Chollet</i> as part of a research pro
 standalone open source project in March 2015. It quickly gained popularity, owing to its ease of use,
 flexibility, and beautiful design.
 </p>
-<div class="block-major info-block" id="info-block-1.7"> <a class="copiable-link" href="#info-block-1.7"> ¶</a> <span class="upper"> <span class="header"> <b>Information 1.<a id="x5-11001r7"></a>7: </b> </span> <span class="title"> Application </span> </span> <div class="body">
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-1.7" id="info-block-1.7"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 1.<a id="x5-11001r7"></a>7: </b> </span> <span class="title"> Application </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">Keras used to support multiple backends, including TensorFlow and PlaidML. but since version 2.4,
 Keras is <span class="alert">TensorFlow-only</span>. Similarly, TensorFlow used to include multiple high-level <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:api">API</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:api">Application-Programming
 Interface</a></span><span class="acronym-desc"><a class="glossary" href="#glo:api">Application-Programming Interface</a></span></span></span>s, but Keras was officially chosen as its preferred high-level
@@ -89,21 +102,21 @@ out.
 Installing TensorFlow will automatically install Keras as well, and Keras will <b>NOT</b> work without
 TensorFlow installed.
 </p><p class="noindent">Other popular deep learning libraries include PyTorch by Facebook and JAX by Google.13
-</p></div></div>
-<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-1.2.1"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.1.2.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">1.2.1</span> <span class="title"> <a id="x5-120001.2.1"></a>Building an Image Classifier Using Sequential API</span></h4></div>
-</p><p class="noindent">Before we begin doing anything, we need to <span class="alert">load a dataset</span>.
+</p></dd></dl>
+<div class="subsection-header"><h4 id="header-subsection-1.2.1"><span class="number">1.2.1</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.1.2.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x5-120001.2.1"></a>Building an Image Classifier Using Sequential API</span></h4></div>
+<p class="noindent">Before we begin doing anything, we need to <span class="alert">load a dataset</span>.
 </p><p class="noindent">We will use Fashion <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:mnist">MNIST</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:mnist">Modified National Institute of Standards and Technology</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mnist">Modified
 National Institute of Standards and Technology</a></span></span></span>. There are 70,000 grayscale images of
 <math display="inline"><mn>2</mn><mn>8</mn> <mi>×</mi> <mn>2</mn><mn>8</mn></math> pixels
 each, with 10 classes where images represent fashion items rather than handwritten digits, so each class
 is more diverse, and the problem turns out to be significantly challenging.
 </p>
-<p class="noindent"><h5 class="subsubsectionHead" id="header-subsubsection-1"> <a id="x5-13000"></a>Using Keras to load the dataset</h5>
-</p><p class="noindent">The python library, <code class="verb">keras</code>  provides utility functions to fetch and load common datasets, including MNIST,
+<div class="subsection-header"><h5 id="header-subsubsection-1.2.1.1"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x5-13000"></a>Using Keras to load the dataset</span></h5></div>
+<p class="noindent">The python library, <code class="verb">keras</code>  provides utility functions to fetch and load common datasets, including MNIST,
 Fashion MNIST, and a few more.
 </p><p class="noindent">Let’s load Fashion MNIST. It’s already shuffled and split into a training set (60,000 images) and a test
-set (10,000 images), but we’ll hold out the last 5,000 images from the training set for validation: </p><pre><div class="code-header"> <span class="code-language">python</span> </div>
-<code class="language-python">
+set (10,000 images), but we’ll hold out the last 5,000 images from the training set for validation:
+</p><div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb3"><a id="x5-13002r245"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">tensorflow</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">tf</span> 
 <a id="x5-13004r246"></a> 
 <a id="x5-13006r247"></a>fashion_mnist = tf.keras.datasets.fashion_mnist.load_data() 
@@ -114,7 +127,7 @@ set (10,000 images), but we’ll hold out the last 5,000 images from the trainin
 <div class="block-minor knowledge"><div class="body">
 <p class="noindent">TensorFlow is usually imported as <code class="verb">tf</code> , and the Keras <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:api">API</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:api">Application-Programming
 Interface</a></span><span class="acronym-desc"><a class="glossary" href="#glo:api">Application-Programming Interface</a></span></span></span> is available via <code class="verb">tf.keras</code> . </p></div></div>
-<div class="block-major info-block" id="info-block-1.8"> <a class="copiable-link" href="#info-block-1.8"> ¶</a> <span class="upper"> <span class="header"> <b>Information 1.<a id="x5-13013r8"></a>8: </b> </span> <span class="title"> Data Representation in MNIST </span> </span> <div class="body">
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-1.8" id="info-block-1.8"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 1.<a id="x5-13013r8"></a>8: </b> </span> <span class="title"> Data Representation in MNIST </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">When loading <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:mnist">MNIST</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:mnist">Modified National Institute of Standards and Technology</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mnist">Modified National
 Institute of Standards and Technology</a></span></span></span> or Fashion <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:mnist">MNIST</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:mnist">Modified National Institute of
 Standards and Technology</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mnist">Modified National Institute of Standards and Technology</a></span></span></span>
@@ -123,7 +136,7 @@ using <code class="verb">tf.keras</code>  rather than <code class="verb">sklearn
 rather than a 1D array of size 784 with intensities are represented as integers (0 - 255) rather than
 floats (0.0 - 255.0).
 </p>
-</div></div>
+</dd></dl>
 <p class="noindent">Let’s take a look at the shape and data type of the training set:
 </p>
 <p class="noindent"></p><figure class="float">
@@ -133,7 +146,7 @@ floats (0.0 - 255.0).
           Technology</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mnist">Modified National Institute of Standards and Technology</a></span></span></span>.                       </span></figcaption>
 <img alt="PIC" src="codes/images/Introduction-to-Artificial-Neural-Networks/fashion_mnist_plot-.png" style=""/>
 </figure>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb4"><a id="x5-13016r258"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">"The size of the training dataset: "</span>, X_train.shape) 
 <a id="x5-13018r259"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">"The type of the training dataset: "</span>, X_train.dtype)</pre>
 </code></pre>
@@ -150,24 +163,24 @@ floats (0.0 - 255.0).
 <p class="noindent">To make it simple, we’ll scale the pixel intensities down to the 0 - 1 range by dividing them by 255.0.
 This operation also converts the integer values to floats.
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb6"><a id="x5-13025r273"></a>X_train, X_valid, X_test = X_train / <span style="color:#8F4070;">255.</span>, X_valid / <span style="color:#8F4070;">255.</span>, X_test / <span style="color:#8F4070;">255.</span></pre>
 </code></pre>
 <p class="noindent">Using Fashion MNIST, we need the list of class names to know what we are dealing with:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb7"><a id="x5-13027r280"></a>class_names = [<span style="color:#78730D;">"T-shirt/top"</span>, <span style="color:#78730D;">"Trouser"</span>, <span style="color:#78730D;">"Pullover"</span>, <span style="color:#78730D;">"Dress"</span>, <span style="color:#78730D;">"Coat"</span>, 
 <a id="x5-13029r281"></a>               <span style="color:#78730D;">"Sandal"</span>, <span style="color:#78730D;">"Shirt"</span>, <span style="color:#78730D;">"Sneaker"</span>, <span style="color:#78730D;">"Bag"</span>, <span style="color:#78730D;">"Ankle boot"</span>]</pre>
 </code></pre>
 <p class="noindent">For example, the first image in the training set represents an ankle boot, shown in <b>Fig.</b> <a href="FromBiologytoSiliconArtificialNeurons.html#x4-6001r6">1.6</a>, and we can
 see some samples of the Fashion MNIST datasets in <b>Fig.</b> <a href="#x5-13014r11">1.11</a>.
 </p>
-<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-1.2.2"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.1.2.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">1.2.2</span> <span class="title"> <a id="x5-140001.2.2"></a>Creating the model using the sequential API</span></h4></div>
-</p><p class="noindent">It is time to build our first <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span>. Here is
+<div class="subsection-header"><h4 id="header-subsection-1.2.2"><span class="number">1.2.2</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.1.2.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x5-140001.2.2"></a>Creating the model using the sequential API</span></h4></div>
+<p class="noindent">It is time to build our first <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span>. Here is
 a classification <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:mlp">MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:mlp">Multi-layer Perceptrons</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mlp">Multi-layer Perceptrons</a></span></span></span> with two (<span class="alert">2</span>) hidden
 layers:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb8"><a id="x5-14002r327"></a>tf.random.set_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x5-14004r328"></a>model = tf.keras.Sequential() 
 <a id="x5-14006r329"></a>model.add(tf.keras.layers.InputLayer(shape=[<span style="color:#8F4070;">28</span>, <span style="color:#8F4070;">28</span>])) 
@@ -249,7 +262,7 @@ function as the classes are exclusive.</p></dd></dl>
 when creating the Sequential model. You can also drop the Input layer and instead specify the <code class="verb">input_shape</code>  in the
 first layer:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb9"><a id="x5-14023r340"></a>tf.keras.backend.clear_session() 
 <a id="x5-14025r341"></a>tf.random.set_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x5-14027r342"></a> 
@@ -265,7 +278,7 @@ automatically generated, its output shape, and its number of parameters. The sum
 the total number of parameters, including <span class="alert">trainable</span> and <span class="alert">non-trainable</span> parameters. Here we only have trainable
 parameters:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb10"><a id="x5-14041r359"></a>tf.keras.utils.plot_model(model, imagePath+<span style="color:#78730D;">"mnist-_model.pdf"</span>, show_shapes=<span style="color:#9E0005;">True</span>)</pre>
 </code></pre>
 <div class="sidenote"> <span class="figure">
@@ -297,7 +310,7 @@ name is <b>globally unique</b>, even across models, by appending an index if nee
 <p class="noindent">We can easily get a model’s list of layers using the layers attribute, or use the <code class="verb">get_layer()</code>  method to access a layer
 by name:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb11"><a id="x5-14044r364"></a><span style="color:#B03B03;">print</span>(model.layers)</pre>
 </code></pre>
 <pre><code class="language-text">
@@ -309,7 +322,7 @@ by name:
 <p class="noindent">All the parameters of a layer can be accessed using its <code class="verb">get_weights()</code>  and <code class="verb">set_weights()</code>  methods. For a Dense layer, this includes
 both the connection weights and the bias terms:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb13"><a id="x5-14054r380"></a>hidden1 = model.layers[<span style="color:#8F4070;">1</span>] 
 <a id="x5-14056r381"></a>weights, biases = hidden1.get_weights() 
 <a id="x5-14058r382"></a><span style="color:#B03B03;">print</span>(weights)</pre>
@@ -335,7 +348,7 @@ both the connection weights and the bias terms:
 <p class="noindent">This is needed to break symmetry. </p></div></div>
 <p class="noindent">The biases were initialized to zero (<span class="alert">0</span>), which is fine.
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb15"><a id="x5-14086r404"></a><span style="color:#B03B03;">print</span>(biases)</pre>
 </code></pre>
 <pre><code class="language-text">
@@ -356,7 +369,7 @@ both the connection weights and the bias terms:
 <p class="noindent">If we want to use a different initialization method, we can set <code class="verb">kernel_initializer</code>  or alternatively, we can use <code class="verb">bias_initializer</code>  when
 creating the layer.
 </p>
-<div class="block-major info-block" id="info-block-1.9"> <a class="copiable-link" href="#info-block-1.9"> ¶</a> <span class="upper"> <span class="header"> <b>Information 1.<a id="x5-14113r9"></a>9: </b> </span> <span class="title"> Weight Matrix Shape </span> </span> <div class="body">
+<dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-1.9" id="info-block-1.9"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 1.<a id="x5-14113r9"></a>9: </b> </span> <span class="title"> Weight Matrix Shape </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">The shape of the weight matrix depends on the number of inputs, which is why we specified the <code class="verb">input_shape</code>  when
 creating the model. If you do not specify the input shape, it’s also fine as Keras will simply wait until it
 knows the input shape before it actually builds the model parameters.
@@ -364,13 +377,13 @@ knows the input shape before it actually builds the model parameters.
 <span class="sidenote">such as during training.</span></span></span>, or when we call its <code class="verb">build()</code>
 method. Until the model parameters are built, we will <b>NOT</b> be able to do certain things, such as
 display the model summary or save the model.
-</p><p class="noindent">So, if we know the input shape when creating the model, it is best to specify it.  </p></div></div>
-<p class="noindent"><h5 class="subsubsectionHead" id="header-subsubsection-2"> <a id="x5-15000"></a>Model Compiling</h5>
-</p><p class="noindent">After a model is created, we need to call its <code class="verb">compile()</code>  method to specify the loss function and the
+</p><p class="noindent">So, if we know the input shape when creating the model, it is best to specify it.  </p></dd></dl>
+<div class="subsection-header"><h5 id="header-subsubsection-1.2.2.2"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x5-15000"></a>Model Compiling</span></h5></div>
+<p class="noindent">After a model is created, we need to call its <code class="verb">compile()</code>  method to specify the loss function and the
 optimizer to use, or you can specify a list of extra metrics to compute during training and
 evaluation:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb17"><a id="x5-15002r428"></a>model.compile(loss=<span style="color:#78730D;">"sparse_categorical_crossentropy"</span>, 
 <a id="x5-15004r429"></a>              optimizer=<span style="color:#78730D;">"sgd"</span>, 
 <a id="x5-15006r430"></a>              metrics=[<span style="color:#78730D;">"accuracy"</span>])</pre>
@@ -397,10 +410,10 @@ descent.</span></span></span>
 </p><p class="noindent">Finally, as this is a classifier, it’s useful to measure its accuracy during training and evaluation, which is
 why we set <code class="verb">metrics=["accuracy"]</code> .
 </p>
-<p class="noindent"><h5 class="subsubsectionHead" id="header-subsubsection-3"> <a id="x5-16000"></a>Training and Evaluating Models</h5>
-</p><p class="noindent">Now the model is ready to be trained. For this we simply need to call its <code class="verb">fit()</code>  method:
+<div class="subsection-header"><h5 id="header-subsubsection-1.2.2.3"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x5-16000"></a>Training and Evaluating Models</span></h5></div>
+<p class="noindent">Now the model is ready to be trained. For this we simply need to call its <code class="verb">fit()</code>  method:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb18"><a id="x5-16002r435"></a>history = model.fit(X_train, y_train, epochs=<span style="color:#8F4070;">30</span>, 
 <a id="x5-16004r436"></a>                    validation_data=(X_valid, y_valid))</pre>
 </code></pre>
@@ -444,7 +457,7 @@ the list of epochs it went through (<code class="verb">history.epoch</code> ), a
 extra metrics it measured at the end of each epoch on the training set and on the validation set, if
 any.
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb19"><a id="x5-16006r442"></a><span style="color:#B03B03;">print</span>(history.params) 
 <a id="x5-16008r443"></a><span style="color:#B03B03;">print</span>(history.epoch)</pre>
 </code></pre>
@@ -516,11 +529,11 @@ luck.
 <div class="block-minor warning"><div class="body">
 <p class="noindent">Resist the temptation to tweak the hyperparameters on the test set, or else your estimate of the
 generalization error will be too optimistic. </p></div></div>
-<p class="noindent"><h5 class="subsubsectionHead" id="header-subsubsection-4"> <a id="x5-17000"></a>Using Model to Make Predictions</h5>
-</p><p class="noindent">It is time to use the model’s <code class="verb">predict()</code>  method to make predictions on new instances. As we don’t have actual
+<div class="subsection-header"><h5 id="header-subsubsection-1.2.2.4"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x5-17000"></a>Using Model to Make Predictions</span></h5></div>
+<p class="noindent">It is time to use the model’s <code class="verb">predict()</code>  method to make predictions on new instances. As we don’t have actual
 new instances, we’ll just use the first three (<span class="alert">3</span>) instances of the test set:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb21"><a id="x5-17002r467"></a>X_new = X_test[:<span style="color:#8F4070;">3</span>] 
 <a id="x5-17004r468"></a>y_proba = model.predict(X_new) 
 <a id="x5-17006r469"></a><span style="color:#B03B03;">print</span>(y_proba.round(<span style="color:#8F4070;">2</span>))</pre>
@@ -542,7 +555,7 @@ possibly sneakers or sandals. If you only care about the class with the highest 
 <span class="sidenote">Even if that probability is quite low.</span></span></span> then we can use the <code class="verb">argmax()</code>  method to get the highest probability class
 index for each instance:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb23"><a id="x5-17014r482"></a>y_pred = y_proba.argmax(axis=-<span style="color:#8F4070;">1</span>) 
 <a id="x5-17016r483"></a><span style="color:#B03B03;">print</span>(y_pred)</pre>
 </code></pre>
@@ -558,8 +571,8 @@ index for each instance:
 <img alt="PIC" src="codes/images/Introduction-to-Artificial-Neural-Networks/fashion-mnist-images-plot-.png" style=""/>
 </span>
 <p class="noindent"></p></div>
-<p class="noindent"><div class="subsection-header"> <h4 id="header-subsection-1.2.3"> <a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.1.2.3"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="number">1.2.3</span> <span class="title"> <a id="x5-180001.2.3"></a>Building a Regression MLP Using the Sequential API</span></h4></div>
-</p><p class="noindent">Instead of classifying categories, lets try to estimate a <span class="alert">value</span>. For this application, we need a different dataset.
+<div class="subsection-header"><h4 id="header-subsection-1.2.3"><span class="number">1.2.3</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.1.2.3"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x5-180001.2.3"></a>Building a Regression MLP Using the Sequential API</span></h4></div>
+<p class="noindent">Instead of classifying categories, lets try to estimate a <span class="alert">value</span>. For this application, we need a different dataset.
 Let’s switch back to the California housing problem and tackle it using the same <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:mlp">MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:mlp">Multi-layer
 Perceptrons</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mlp">Multi-layer Perceptrons</a></span></span></span> as earlier, with 3 hidden layers composed of 50 neurons each, but
 this time building it with <code class="verb">tf.keras</code> .
@@ -575,14 +588,14 @@ In addition, in this example we don’t need a Flatten layer, and instead we’r
 layer as the first layer: it does the same thing as <code class="verb">sklearn</code> s <code class="verb">StandardScaler</code> , but it must be fitted to the training data using its <code class="verb">adapt()</code>
 method before you call the model’s <code class="verb">fit()</code>  method. Let’s look at the code:
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb25"><a id="x5-18002r506"></a>housing = fetch_california_housing() 
 <a id="x5-18004r507"></a>X_train_full, X_test, y_train_full, y_test = train_test_split( 
 <a id="x5-18006r508"></a>    housing.data, housing.target, random_state=<span style="color:#8F4070;">42</span>) 
 <a id="x5-18008r509"></a>X_train, X_valid, y_train, y_valid = train_test_split( 
 <a id="x5-18010r510"></a>    X_train_full, y_train_full, random_state=<span style="color:#8F4070;">42</span>)</pre>
 </code></pre>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb26"><a id="x5-18012r515"></a>tf.random.set_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x5-18014r516"></a>norm_layer = tf.keras.layers.Normalization(input_shape=X_train.shape[<span style="color:#8F4070;">1</span>:]) 
 <a id="x5-18016r517"></a>model = tf.keras.Sequential([ 
@@ -606,7 +619,7 @@ models are extremely common, it is sometimes useful to build neural networks wit
 topologies, or with multiple inputs or outputs. For this purpose, Keras offers the functional
 API.
 </p>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb27"><a id="x5-18046r543"></a>normalization_layer = tf.keras.layers.Normalization() 
 <a id="x5-18048r544"></a>hidden_layer1 = tf.keras.layers.Dense(<span style="color:#8F4070;">30</span>, activation=<span style="color:#78730D;">"relu"</span>) 
 <a id="x5-18050r545"></a>hidden_layer2 = tf.keras.layers.Dense(<span style="color:#8F4070;">30</span>, activation=<span style="color:#78730D;">"relu"</span>) 
@@ -622,7 +635,7 @@ API.
 <a id="x5-18070r555"></a> 
 <a id="x5-18072r556"></a>model = tf.keras.Model(inputs=[input_], outputs=[output])</pre>
 </code></pre>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb28"><a id="x5-18074r561"></a>input_wide = tf.keras.layers.Input(shape=[<span style="color:#8F4070;">5</span>])  <span style="color:#918273;"><i># features 0 to 4</i></span> 
 <a id="x5-18076r562"></a>input_deep = tf.keras.layers.Input(shape=[<span style="color:#8F4070;">6</span>])  <span style="color:#918273;"><i># features 2 to 7</i></span> 
 <a id="x5-18078r563"></a>norm_layer_wide = tf.keras.layers.Normalization() 
@@ -635,7 +648,7 @@ API.
 <a id="x5-18092r570"></a>output = tf.keras.layers.Dense(<span style="color:#8F4070;">1</span>)(concat) 
 <a id="x5-18094r571"></a>model = tf.keras.Model(inputs=[input_wide, input_deep], outputs=[output])</pre>
 </code></pre>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb29"><a id="x5-18096r576"></a>optimizer = tf.keras.optimizers.Adam(learning_rate=<span style="color:#8F4070;">1e-3</span>) 
 <a id="x5-18098r577"></a>model.compile(loss=<span style="color:#78730D;">"mse"</span>, optimizer=optimizer, metrics=[<span style="color:#78730D;">"RootMeanSquaredError"</span>]) 
 <a id="x5-18100r578"></a> 
@@ -651,7 +664,7 @@ API.
 <a id="x5-18120r588"></a>mse_test = model.evaluate((X_test_wide, X_test_deep), y_test) 
 <a id="x5-18122r589"></a>y_pred = model.predict((X_new_wide, X_new_deep))</pre>
 </code></pre>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb30"><a id="x5-18124r594"></a>input_wide = tf.keras.layers.Input(shape=[<span style="color:#8F4070;">5</span>])  <span style="color:#918273;"><i># features 0 to 4</i></span> 
 <a id="x5-18126r595"></a>input_deep = tf.keras.layers.Input(shape=[<span style="color:#8F4070;">6</span>])  <span style="color:#918273;"><i># features 2 to 7</i></span> 
 <a id="x5-18128r596"></a>norm_layer_wide = tf.keras.layers.Normalization() 
@@ -667,12 +680,12 @@ API.
 <a id="x5-18148r606"></a>                       outputs=[output, aux_output]) 
 <a id="x5-18150r607"></a></pre>
 </code></pre>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb31"><a id="x5-18152r612"></a>optimizer = tf.keras.optimizers.Adam(learning_rate=<span style="color:#8F4070;">1e-3</span>) 
 <a id="x5-18154r613"></a>model.compile(loss=(<span style="color:#78730D;">"mse"</span>, <span style="color:#78730D;">"mse"</span>), loss_weights=(<span style="color:#8F4070;">0.9</span>, <span style="color:#8F4070;">0.1</span>), optimizer=optimizer, 
 <a id="x5-18156r614"></a>              metrics=[<span style="color:#78730D;">"RootMeanSquaredError"</span>, <span style="color:#78730D;">"RootMeanSquaredError"</span>])</pre>
 </code></pre>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb32"><a id="x5-18158r619"></a>norm_layer_wide.adapt(X_train_wide) 
 <a id="x5-18160r620"></a>norm_layer_deep.adapt(X_train_deep) 
 <a id="x5-18162r621"></a>history = model.fit( 
@@ -680,23 +693,23 @@ API.
 <a id="x5-18166r623"></a>    validation_data=((X_valid_wide, X_valid_deep), (y_valid, y_valid)) 
 <a id="x5-18168r624"></a>)</pre>
 </code></pre>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb33"><a id="x5-18170r629"></a>eval_results = model.evaluate((X_test_wide, X_test_deep), (y_test, y_test)) 
 <a id="x5-18172r630"></a>weighted_sum_of_losses, main_loss, aux_loss = eval_results</pre>
 </code></pre>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb34"><a id="x5-18174r635"></a>y_pred_main, y_pred_aux = model.predict((X_new_wide, X_new_deep))</pre>
 </code></pre>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb35"><a id="x5-18176r640"></a>y_pred_tuple = model.predict((X_new_wide, X_new_deep)) 
 <a id="x5-18178r641"></a>y_pred = <span style="color:#B03B03;">dict</span>(<span style="color:#B03B03;">zip</span>(model.output_names, y_pred_tuple))</pre>
 </code></pre>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb36"><a id="x5-18180r648"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">shutil</span> 
 <a id="x5-18182r649"></a> 
 <a id="x5-18184r650"></a>shutil.rmtree(<span style="color:#78730D;">"my_keras_model"</span>, ignore_errors=<span style="color:#9E0005;">True</span>)</pre>
 </code></pre>
-<pre><div class="code-header"> <span class="code-language">python</span> </div> <code class="language-python">
+<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
 <pre class="fancyvrb" id="fancyvrb37"><a id="x5-18186r655"></a>model.export(<span style="color:#78730D;">"my_keras_model"</span>)</pre>
 </code></pre>
 <div class="section-header">
@@ -824,7 +837,7 @@ other extra metrics you asked for.</span></dd>
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> <div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 19.10.2026, at 12:16.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>
@@ -833,7 +846,7 @@ other extra metrics you asked for.</span></dd>
 <div class="core-line"><div class="core-line-image"><img class="webbook-logo" src="logo/webbook-logo.svg"/></div>
 <div class="current-header">
 <span class="header-pretext">Viewing | </span>
-<span class="header-text">Section 1.2: Implementing MLPs with Keras</span>
+<span class="header-text">1.2: Implementing MLPs with Keras</span>
 </div>
 <div class="button-group">
 </div>
