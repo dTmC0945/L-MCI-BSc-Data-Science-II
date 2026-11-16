@@ -22,6 +22,10 @@ def download_and_extract_ridership_data ():
 download_and_extract_ridership_data()
 #+end_src
 
+#+RESULTS:
+#+begin_example
+None
+#+end_example
 
 #+begin_src python :session *rnn*
 path = Path("datasets/ridership/CTA_-_Ridership_-_Daily_Boarding_Totals.csv")
@@ -36,6 +40,10 @@ df = df.drop_duplicates()
 print(df.head)
 #+end_src
 
+#+RESULTS:
+#+begin_example
+None
+#+end_example
 #+begin_src python :session *rnn*
 import matplotlib.pyplot as plt
 
@@ -44,6 +52,10 @@ df["2019-03":"2019-05"].plot(grid=True, marker='.', figsize=(8, 3.5))
 plt.show()
 #+end_src
 
+#+RESULTS:
+#+begin_example
+None
+#+end_example
 
 #+begin_src python :session *rnn*
 diff_7 = df[['bus', 'rail']].diff(7)["2019-03":"2019-05"]
@@ -57,6 +69,13 @@ diff_7.plot(ax=axs[1], grid=True, marker=".")
 plt.show()
 #+end_src
 
+#+RESULTS:
+#+begin_example
+None
+#+end_example
+#+begin_example
+None
+#+end_example
 
 #+begin_src python :session *rnn* :results replace output
 print(list(df.loc["2019-05-25":"2019-05-27"]["day_type"]))
@@ -66,3 +85,381 @@ print(list(df.loc["2019-05-25":"2019-05-27"]["day_type"]))
 #+begin_example
 ['A', 'U', 'U']
 #+end_example
+
+
+#+begin_src python :session *rnn* :results replace output    
+print(diff_7.abs().mean())
+#+end_src
+
+#+RESULTS:
+#+begin_example
+bus     43915.608696
+rail    42143.271739
+dtype: float64
+#+end_example
+
+#+begin_src python :session *rnn* :results replace output
+targets = df[["bus", "rail"]]["2019-03":"2019-05"]
+
+print((diff_7 / targets).abs().mean())
+#+end_src
+
+#+RESULTS:
+#+begin_example
+bus     0.082938
+rail    0.089948
+dtype: float64
+#+end_example
+
+#+begin_src python :session *rnn* :results replace output
+period = slice("2001", "2019")
+df_monthly = df.select_dtypes(include="number").resample("ME").mean()
+rolling_average_12_months = df_monthly.loc[period].rolling(window=12).mean()
+
+fig, ax = plt.subplots(figsize=(8,6))
+df_monthly[period].plot(ax=ax, marker = ".")
+rolling_average_12_months.plot(ax=ax, grid=True, legend=False)
+plt.show()
+#+end_src
+
+
+#+begin_src python :session *rnn* :results replace output
+df_monthly.diff(12)[period].plot(grid=True, marker=".", figsize=(8,3))
+plt.show()
+#+end_src
+
+
+#+begin_src python :session *rnn* :results replace output
+from statsmodels.tsa.arima.model import ARIMA
+
+origin, today = "2019-01-01", "2019-05-31"
+rail_series   = df.loc[origin:today]["rail"].asfreq('D')
+
+model = ARIMA(rail_series,
+              order=(1, 0, 0),
+              seasonal_order=(0,1,1,7))
+
+model = model.fit()
+y_pred = model.forecast()
+
+print(y_pred.iloc[0])
+
+#+end_src
+
+
+
+#+begin_src python :session *rnn* :results replace output
+origin, start_date, end_date = "2019-01-01", "2019-03-01", "2019-05-31"
+time_period = pd.date_range(start_date, end_date)
+rail_series = df.loc[origin:end_date]["rail"].asfreq("D")
+
+y_preds = []
+
+for today in time_period.shift(-1):
+    model = ARIMA(rail_series[origin:today],
+                  order=(1,0,0),
+                  seasonal_order=(0,1,1,7))
+    model = model.fit()
+    y_pred = model.forecast().iloc[0]
+    y_preds.append(y_pred)
+
+y_preds = pd.Series(y_preds, index=time_period)
+mae     = (y_preds - rail_series[time_period]).abs().mean()
+
+print(mae)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+32040.720100296272
+#+end_example
+
+
+#+begin_src python :session *rnn* :results replace output
+
+
+fix, ax = plt.subplots(figsize=(8,3))
+rail_series.loc[time_period].plot(label=True, ax=ax, marker=".")
+ax.plot(y_preds, color='red')
+plt.legend()
+plt.show()
+#+end_src
+
+#+RESULTS:
+
+
+* Working with Natural Language Processing
+
+
+#+begin_src python :session *nlp* :results replace output
+import matplotlib.pyplot as plt
+
+import gc
+
+def del_vars(variable_names = []):
+
+    for name in variable_names:
+
+        try:
+            del globals()[name]
+
+        except KeyError:
+            pass
+
+    gc.collect()
+          
+#+end_src
+
+#+begin_src python :session *nlp* :results replace output
+from pathlib import Path
+import urllib.request
+
+def download_shakespeare_text():
+
+    path = Path("datsets/shakespeare/shakespeare.txt")
+
+    if not path.is_file():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        url = "https://homl.info/shakespeare"
+        urllib.request.urlretrieve(url, path)
+
+    return path.read_text()
+
+shakespeare_text = download_shakespeare_text()
+#+end_src
+
+#+begin_src python :session *nlp* :results replace output
+print(shakespeare_text[:80])
+#+end_src
+
+#+RESULTS:
+#+begin_example
+First Citizen:
+Before we proceed any further, hear me speak.
+
+All:
+Speak, speak.
+#+end_example
+
+#+begin_src python :session *nlp* :results replace output
+vocab = sorted(set(shakespeare_text.lower()))
+
+print("".join(vocab))
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+ !$&',-.3:;?abcdefghijklmnopqrstuvwxyz
+#+end_example
+
+
+#+begin_src python :session *nlp* :results replace output
+char_to_id = {char : index for index, char in enumerate(vocab)}
+id_to_char = {index: char for index, char in enumerate(vocab)}
+
+print(char_to_id["a"])
+
+print(id_to_char[13])
+#+end_src
+
+#+RESULTS:
+#+begin_example
+13
+a
+#+end_example
+
+
+#+begin_src python :session *nlp* :results replace output
+import torch
+
+def encode_text(text):
+    return torch.tensor([char_to_id[char] for char in text.lower()])
+
+def decode_text(char_ids):
+    return "".join([id_to_char[char_id.item()] for char_id in char_ids])
+
+encoded = encode_text("Hello, world!")
+print(encoded)
+
+print(decode_text(encoded))
+#+end_src
+
+#+RESULTS:
+#+begin_example
+tensor([20, 17, 24, 24, 27,  6,  1, 35, 27, 30, 24, 16,  2])
+hello, world!
+#+end_example
+
+#+begin_src python :session *nlp* :results replace output
+from torch.utils.data import Dataset, DataLoader
+
+class CharDataset(Dataset):
+
+    def __init__ (self, text, window_length):
+
+        self.encoded_text = encode_text(text)
+        self.window_length = window_length
+
+    def __len__(self):
+
+        return len(self.encoded_text) - self.window_length
+
+
+    def __getitem__(self,idx):
+
+        if idx >= len(self):
+            raise IndexError("dataset index out of range")
+
+        end = idx + self.window_length
+        window = self.encoded_text[idx : end]
+
+        target = self.encoded_text[idx + 1 : end + 1]
+
+        return window, target
+
+
+
+to_be_dataset = CharDataset("To be or not to be", window_length=10)
+for x, y in to_be_dataset:
+    print(f"x={x}, y={y}")
+    print(f" decoded: x={decode_text(x)}")
+
+
+window_length = 50
+batch_size = 512
+train_set = CharDataset(shakespeare_text[:1_000_000], window_length)
+valid_set = CharDataset(shakespeare_text[1_000_000:1_060_000], window_length)
+test_set = CharDataset(shakespeare_text[1_060_000:], window_length)
+
+train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
+valid_loader = DataLoader(valid_set, batch_size=batch_size)
+test_loader = DataLoader(test_set, batch_size=batch_size)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+x=tensor([32, 27,  1, 14, 17,  1, 27, 30,  1, 26]), y=tensor([27,  1, 14, 17,  1, 27, 30,  1, 26, 27])
+ decoded: x=to be or n
+x=tensor([27,  1, 14, 17,  1, 27, 30,  1, 26, 27]), y=tensor([ 1, 14, 17,  1, 27, 30,  1, 26, 27, 32])
+ decoded: x=o be or no
+x=tensor([ 1, 14, 17,  1, 27, 30,  1, 26, 27, 32]), y=tensor([14, 17,  1, 27, 30,  1, 26, 27, 32,  1])
+ decoded: x= be or not
+x=tensor([14, 17,  1, 27, 30,  1, 26, 27, 32,  1]), y=tensor([17,  1, 27, 30,  1, 26, 27, 32,  1, 32])
+ decoded: x=be or not 
+x=tensor([17,  1, 27, 30,  1, 26, 27, 32,  1, 32]), y=tensor([ 1, 27, 30,  1, 26, 27, 32,  1, 32, 27])
+ decoded: x=e or not t
+x=tensor([ 1, 27, 30,  1, 26, 27, 32,  1, 32, 27]), y=tensor([27, 30,  1, 26, 27, 32,  1, 32, 27,  1])
+ decoded: x= or not to
+x=tensor([27, 30,  1, 26, 27, 32,  1, 32, 27,  1]), y=tensor([30,  1, 26, 27, 32,  1, 32, 27,  1, 14])
+ decoded: x=or not to 
+x=tensor([30,  1, 26, 27, 32,  1, 32, 27,  1, 14]), y=tensor([ 1, 26, 27, 32,  1, 32, 27,  1, 14, 17])
+ decoded: x=r not to b
+#+end_example
+#+begin_src python :session *nlp* :results replace output
+import torch.nn as nn
+
+torch.manual_seed(42)
+
+embed = nn.Embedding(5,3)
+print(embed(torch.tensor([[3,2], [0,2]])))
+#+end_src
+
+#+RESULTS:
+#+begin_example
+tensor([[[ 0.2674,  0.5349,  0.8094],
+         [ 2.2082, -0.6380,  0.4617]],
+
+        [[ 0.3367,  0.1288,  0.2345],
+         [ 2.2082, -0.6380,  0.4617]]], grad_fn=<EmbeddingBackward0>)
+#+end_example
+
+#+begin_src python :session *nlp* :results replace output
+import torchmetrics
+
+device = "mps"
+
+def evaluate_tm(model, data_loader, metric): 
+    model.eval() 
+    metric.reset()  # reset the metric at the beginning 
+    with torch.no_grad(): 
+        for X_batch, y_batch in data_loader:
+            X_batch, y_batch = X_batch.to(device), y_batch.to(device)
+            y_pred = model(X_batch) 
+            metric.update(y_pred, y_batch)  # update it at each iteration 
+    return metric.compute()  # compute the final result at the end
+
+
+def train(model, optimizer, loss_fn, metric, train_loader, valid_loader, n_epochs, patience=2, factor=0.5, epoch_callback=None):
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode="max", patience=patience, factor=factor)
+    history = {"train_losses": [], "train_metrics": [], "valid_metrics": []}
+    for epoch in range(n_epochs):
+        total_loss = 0.0
+        metric.reset()
+        model.train()
+        if epoch_callback is not None:
+            epoch_callback(model, epoch)
+        for index, (X_batch, y_batch) in enumerate(train_loader):
+            X_batch, y_batch = X_batch.to(device), y_batch.to(device)
+            y_pred = model(X_batch)
+            loss = loss_fn(y_pred, y_batch)
+            total_loss += loss.item()
+            loss.backward()
+            optimizer.step()
+            optimizer.zero_grad()
+            metric.update(y_pred, y_batch)
+            train_metric = metric.compute().item()
+            print(f"\rBatch {index + 1}/{len(train_loader)}", end="")
+            print(f", loss={total_loss/(index+1):.4f}", end="")
+            print(f", {train_metric=:.2%}", end="")
+        history["train_losses"].append(total_loss / len(train_loader))
+        history["train_metrics"].append(train_metric)
+        val_metric = evaluate_tm(model, valid_loader, metric).item()
+        history["valid_metrics"].append(val_metric)
+        scheduler.step(val_metric)
+        print(f"\rEpoch {epoch + 1}/{n_epochs},"
+        f"train loss: {history['train_losses'][-1]:.4f},"
+        f"train metric: {history['train_metrics'][-1]:.2%},"
+        f"valid metric: {history['valid_metrics'][-1]:.2%}")
+    return history
+
+
+class ShakespeareModel (nn.Module):
+
+    def __init__ (self, vocab_size, n_layers=2, embed_dim=10, hidden_dim=120, dropout=0.1):
+
+        super().__init__()
+        self.embed = nn.Embedding(vocab_size, embed_dim)
+        self.gru = nn.GRU(embed_dim, hidden_dim, num_layers=n_layers, batch_first=True, dropout=dropout)
+
+        self.output = nn.Linear(hidden_dim, vocab_size)
+
+    def forward(self, X):
+
+        embeddings = self.embed(X)
+        outputs, _states = self.gru(embeddings)
+        return self.output(outputs).permute(0,2,1)
+
+model = ShakespeareModel(len(vocab))    
+
+    
+#+end_src
+
+#+RESULTS:
+
+
+#+begin_src python :session *nlp* :results replace output
+
+
+n_epochs =10
+xentropy = nn.CrossEntropyLoss()
+optimizer = torch.optim.NAdam(model.parameters())
+accuracy = torchmetrics.Accuracy(task="multiclass", num_classes=len(vocab)).to(device)
+
+
+history = train(model, optimizer, xentropy, accuracy, train_loader, valid_loader, n_epochs)
+
+
+#+end_src
+
+#+RESULTS:

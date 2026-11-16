@@ -1,0 +1,63 @@
+:PROPERTIES:
+:ID:       22BFA627-42C3-4BA1-8270-DE4BB654CE3A
+:CREATED:  21-10-2026
+:END:      
+#+title: session_7.org
+#+filetags: :corg:
+
+These are the code snippets used in session_7.org
+
+#+PROPERTY: header-args :session *tdnn* :results silent :exports both
+
+* Table of Contents :TOC_5:
+- [[#session_7org][session_7.org]]
+  - [[#introduction][Introduction]]
+
+* session_7.org
+
+** Introduction
+
+#+begin_src python :results output
+import torch
+import torch.nn as nn
+#+end_src
+
+#+RESULTS:
+#+begin_example
+None
+#+end_example
+
+Here is a simple BN
+
+#+begin_src python
+model = nn.Sequential(
+nn.Flatten(),
+nn.BatchNorm1d(1 * 28 * 28),
+nn.Linear(1*28*28, 300),
+nn.ReLU(),
+nn.BatchNorm1d(300),
+nn.Linear(300, 100),
+nn.ReLU(),
+nn.BatchNorm1d(100),
+nn.Linear(100,10))
+#+end_src
+
+#+begin_src python
+model = nn.Sequential(
+nn.Flatten(),
+nn.Linear(1*28*28, 300),
+nn.BatchNorm1d(300),
+nn.ReLU(),
+nn.Linear(300, 100),
+nn.BatchNorm1d(100),
+nn.ReLU(),
+nn.Linear(100,10))
+#+end_src
+
+#+begin_src python
+optimizer = torch.optim.SGD(model.parameters(), momentum=0.9, lr=0.05, nesterov=True)
+#+end_src
+
+# ------------------------------------------------------------------------------
+# 
+# session_7.corg ends here.
