@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="NaturalLanguageProcessingwithRNNsandAttention.html">Chapter: Natural Language Processing with RNNs and Attention</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="ForecastingaTimeSeries.html">Forecasting a Time Series</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="WorkingwithRNNsandCNNs.html#HandlingLongSequences.html">Chapter: Working with RNNs and CNNs</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -85,7 +85,8 @@ for Neural Machine Translation</a></span></span><span class="subsectionToc"><spa
 <i class="fa-brands fa-git-alt"></i>
 <span class="nav-info">Visit Material GitHub Repo</span>
 </a></span></nav>
-<div class="section-header"><h3 id="header-section-4.3"><span class="number">4.3</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.4.3"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x24-960004.3"></a>Handling Long Sequences</span></h3></div>
+<div class="section-header"><h3 id="header-section-4.3"><span class="number">4.3</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.4.3"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x24-960004.3"></a>Handling Long
+Sequences</span></h3></div>
 <p class="noindent">To train an <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential
 data, such as text, speech, or time series, by passing information through loops from one
 step to the next</a></span></span></span> on long sequences, we must run it over multiple time steps, making the
@@ -124,18 +125,18 @@ to monitor the size of the gradients and perhaps use gradient clipping.
 </p><p class="noindent">Moreover, batch normalization cannot be used as efficiently with <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a
 type of ANN designed to process sequential data, such as text, speech, or time series, by passing
 information through loops from one step to the next</a></span></span></span>s as with deep feed-forward nets. In fact, we cannot
-use it between time steps, only between recurrent layers. To be more precise, it is technically possible
-to add a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training faster and
-more stable by adjusting and scaling layer inputs.</a></span></span></span> layer to a memory cell so that it will
-be applied at each time <span class="margin-block">step. <span class="margin-comment"><a class="ellipsis" href="#m-ref-207">[207]</a>
-<span class="sidenote">Both on the inputs for that time step and on the hidden
-state from the previous step.</span></span></span> However, this implies that the same <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A
-technique used in ANNs to make training faster and more stable by adjusting and scaling layer
-inputs.</a></span></span></span> layer will be used at each time step, with the same parameters, regardless of the
-actual scale and offset of the inputs and hidden state. In practice, this does not give good
-results, as was demonstrated in <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Laurent2015BatchNR"> <a id="x24-97001"></a>Laurent, C. et al. Batch normalized recurrent neural
-networks. 2016 IEEE International Conference on Acoustics, Speech and Signal Processing
-(ICASSP), 2657–2661 (2015)</span></span>. The authors found that <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used
+use it between time steps, only between recurrent layers. To be more precise, it is technically possible to
+add a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training faster and more stable by
+adjusting and scaling layer inputs.</a></span></span></span> layer to a memory cell so that it will be applied at each time <span class="margin-block">step.
+<span class="margin-comment"><a class="ellipsis" href="#m-ref-207">[207]</a>
+<span class="sidenote">Both on the inputs for that time step and on the hidden state from the previous step.</span></span></span> However, this
+implies that the same <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used in ANNs to make training
+faster and more stable by adjusting and scaling layer inputs.</a></span></span></span> layer will be used at each time
+step, with the same parameters, regardless of the actual scale and offset of the inputs and
+hidden state. In practice, this does not give good results, as was demonstrated in <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Laurent2015BatchNR"> <span class="bib-entry bib-author"><a id="x24-97001"></a>Laurent
+et al.</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:516518">"Batch normalized recurrent neural
+networks"</a>, <span class="bib-entry bib-journal">2016 IEEE International Conference on Acoustics, Speech and Signal Processing
+(ICASSP)</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2015)</span>.</span></span>. The authors found that <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bn">BN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bn">Batch Normalization</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bn">A technique used
 in ANNs to make training faster and more stable by adjusting and scaling layer inputs.</a></span></span></span>
 was slightly beneficial only when it was applied to the layer’s inputs, not to the hidden
 states.
@@ -195,18 +196,19 @@ popular of these long-term memory cells: the <span class="acronym"><span class="
 RNN designed to remember information over long sequences and solve the vanishing gradient problem</a></span></span></span>
 cell.
 </p>
-<div class="subsection-header"><h5 id="header-subsubsection-4.3.2.17"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x24-99000"></a>LSTM cells</span></h5></div>
-<p class="noindent">The <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A specialized type of RNN designed to remember information over
-long sequences and solve the vanishing gradient problem</a></span></span></span> cell was proposed in <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Hochreiter1997LongSM"> <a id="x24-99001"></a>Hochreiter, S. &amp;
-Schmidhuber, J. U. Long Short-Term Memory. Neural Computation <b>9</b><b>,</b> 1735–1780 (1997)</span></span> by <i>Sepp
-Hochreiter</i> and <i>Jürgen Schmidhuber</i> and gradually improved over the years by several researchers, such
-as <i>Alex Graves</i>, <i>Haim Sak</i> <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail" id="Sak2014LongSM"> <a id="x24-99002"></a>Sak, H., Senior, A. W. &amp; Beaufays, F. Long Short-Term Memory Based
-Recurrent Neural Network Architectures for Large Vocabulary Speech Recognition. ArXiv
-<b>abs/1402.1128</b> (2014)</span></span>, and <i>Wojciech Zaremba</i> <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="Zaremba2014RecurrentNN"> <a id="x24-99003"></a>Zaremba, W., Sutskever, I. &amp; Vinyals, O. Recurrent
-Neural Network Regularization. ArXiv <b>abs/1409.2329</b> (2014)</span></span>. We can simply use the  <code class="file"><code class="verb">nn.LSTM</code></code>
-module instead of the  <code class="file"><code class="verb">nn.RNN</code></code> module: </p><div class="quote">  it’s a drop-in replacement, and it usually performs much
-better asx training converges faster, and the model detects longer-term patterns in the data.
-</div>
+<div class="subsubsection-header"><h5 id="header-subsubsection-4.3.2.17"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x24-99000"></a>LSTM cells</span></h5></div>
+<p class="noindent">The <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A specialized type of RNN designed to remember
+information over long sequences and solve the vanishing gradient problem</a></span></span></span> cell was proposed in <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Hochreiter1997LongSM">
+<span class="bib-entry bib-author"><a id="x24-99001"></a>Hochreiter &amp; Schmidhuber</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:1915014">"Long Short-Term
+Memory"</a>, <span class="bib-entry bib-journal">Neural Computation</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1997)</span>.</span></span> by <i>Sepp Hochreiter</i> and <i>Jürgen Schmidhuber</i>
+and gradually improved over the years by several researchers, such as <i>Alex Graves</i>, <i>Haim
+Sak</i> <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail" id="Sak2014LongSM"> <span class="bib-entry bib-author"><a id="x24-99002"></a>Sak, Senior &amp; Beaufays</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:16904319">"Long
+Short-Term Memory Based Recurrent Neural Network Architectures for Large Vocabulary Speech
+Recognition"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2014)</span>.</span></span>, and <i>Wojciech Zaremba</i> <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="Zaremba2014RecurrentNN"> <span class="bib-entry bib-author"><a id="x24-99003"></a>Zaremba, Sutskever &amp; Vinyals</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:17719760">"Recurrent Neural Network Regularization"</a>, <span class="bib-entry bib-journal">ArXiv</span>,
+<span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2014)</span>.</span></span>. We can simply use the  <code class="file"><code class="verb">nn.LSTM</code></code> module instead of the  <code class="file"><code class="verb">nn.RNN</code></code> module: </p><div class="quote">  it’s a
+drop-in replacement, and it usually performs much better asx training converges faster, and the model
+detects longer-term patterns in the data. </div>
 <p class="noindent">So how does this work? Well, the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A specialized type of RNN designed
 to remember information over long sequences and solve the vanishing gradient problem</a></span></span></span> architecture is
 shown in Figure 13-12. If we don’t look at what’s inside the box, the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A
@@ -346,8 +348,7 @@ manually. One option is to use Eq. (<a href="#x24-99004r4">4.4</a>), but a simpl
 which runs a single time step.
 For example, here is a simple implementation:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb199"><a id="x24-99006r974"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">LstmModel</span>(nn.Module): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb199"><a id="x24-99006r974"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">LstmModel</span>(nn.Module): 
 <a id="x24-99008r975"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, input_size, hidden_size, output_size): 
 <a id="x24-99010r976"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
 <a id="x24-99012r977"></a>        <span style="color:#B03B03;">self</span>.hidden_size = hidden_size 
@@ -361,8 +362,7 @@ For example, here is a simple implementation:
 <a id="x24-99028r985"></a>        C = torch.zeros(batch_size, <span style="color:#B03B03;">self</span>.hidden_size, device=X.device) 
 <a id="x24-99030r986"></a>        <span style="color:#9E0005;">for</span> X_t <span style="color:#9E0005;">in</span> X_time_first: 
 <a id="x24-99032r987"></a>            H, C = <span style="color:#B03B03;">self</span>.memory_cell(X_t, (H, C)) 
-<a id="x24-99034r988"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(H)</pre>
-</code></pre>
+<a id="x24-99034r988"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(H)</pre></code></pre></div>
 <p class="noindent">This is very similar to the first implementation of our  <code class="file"><code class="verb">SimpleRnnModel</code></code> , but we are now using an
 <code class="file"><code class="verb">nn.LSTMCell</code></code> at each time step, and the hidden state is now split in two parts: </p><div class="quote">  the <i>short-term</i> <code class="verb">H</code>  and
 the <i>long-term</i> <code class="verb">C</code> . </div>
@@ -372,20 +372,20 @@ particularly popular variant is the <span class="acronym"><span class="acronym-s
 process sequential data while solving the vanishing gradient problem of standard RNNs.</a></span></span></span> cell, which we
 will look at now.
 </p>
-<div class="subsection-header"><h5 id="header-subsubsection-4.3.2.18"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x24-100000"></a>GRU cells</span></h5></div>
+<div class="subsubsection-header"><h5 id="header-subsubsection-4.3.2.18"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x24-100000"></a>GRU cells</span></h5></div>
 <p class="noindent">The <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gru">GRU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gru">Gated Recurrent Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gru">a type of RNN architecture designed to process sequential data while
 solving the vanishing gradient problem of standard RNNs.</a></span></span></span> cell (see Figure 13-13) was proposed by
-<i>Kyunghyun Cho</i> et al. in <span class="cite"><a class="cite-show" href="#w3-20001">[†-5]</a><span class="cite-detail" id="Cho2014LearningPR"> <a id="x24-100001"></a>Cho, K. et al. Learning Phrase Representations using RNN
-Encoder–Decoder for Statistical Machine Translation in Conference on Empirical Methods in Natural
-Language Processing (2014)</span></span> that also introduced the encoder-decoder network we’ve discussed
-earlier.
+<i>Kyunghyun Cho</i> et al. in <span class="cite"><a class="cite-show" href="#w3-20001">[†-5]</a><span class="cite-detail" id="Cho2014LearningPR"> <span class="bib-entry bib-author"><a id="x24-100001"></a>Cho et al.</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:5590763">"Learning
+Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation"</a>,
+<span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">Conference on Empirical Methods in Natural Language Processing</span>, <span class="bib-entry bib-year">(2014)</span>.</span></span> that also
+introduced the encoder-decoder network we’ve discussed earlier.
 The <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gru">GRU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gru">Gated Recurrent Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gru">a type of RNN architecture designed to process sequential data while
 solving the vanishing gradient problem of standard RNNs.</a></span></span></span> cell is a simplified version of the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:lstm">LSTM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:lstm">Long
-Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A specialized type of RNN designed to remember information over
-long sequences and solve the vanishing gradient problem</a></span></span></span> cell, and it often performs just as
-well <span class="cite"><a class="cite-show" href="#w3-20001">[†-6]</a><span class="cite-detail" id="Greff2015LSTMAS"> <a id="x24-100002"></a>Greff, K. et al. LSTM: A Search Space Odyssey. IEEE Transactions on Neural
-Networks and Learning Systems <b>28</b><b>,</b> 2222–2232 (2015)</span></span>. These are the main simplifications:
-</p>
+Short-Term Memory</a></span><span class="acronym-desc"><a class="glossary" href="#glo:lstm">A specialized type of RNN designed to remember information over long sequences
+and solve the vanishing gradient problem</a></span></span></span> cell, and it often performs just as well <span class="cite"><a class="cite-show" href="#w3-20001">[†-6]</a><span class="cite-detail" id="Greff2015LSTMAS"> <span class="bib-entry bib-author"><a id="x24-100002"></a>Greff et al.</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:3356463">"LSTM: A Search Space Odyssey"</a>, <span class="bib-entry bib-journal">IEEE
+Transactions on Neural Networks and Learning Systems</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2015)</span>.</span></span>. These are the main
+simplifications: </p>
 <ul class="itemize1">
 <li class="itemize">
 <p class="noindent">Both state vectors are merged into a single vector <math display="inline"><msub><mrow><mstyle mathvariant="bold"><mi>h</mi></mstyle></mrow><mrow><mo class="MathClass-open" stretchy="false">(</mo><mi>t</mi><mo class="MathClass-close" stretchy="false">)</mo></mrow></msub></math>.
@@ -432,7 +432,7 @@ sentences.
 <div class="block-minor knowledge"><div class="body">
 <p class="noindent">One way to solve this is to shorten the input sequences, for example, using 1D convolutional layers.
 </p></div></div>
-<div class="subsection-header"><h5 id="header-subsubsection-4.3.2.19"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x24-101000"></a>Using 1D convolutional layers to process sequences</span></h5></div>
+<div class="subsubsection-header"><h5 id="header-subsubsection-4.3.2.19"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x24-101000"></a>Using 1D convolutional layers to process sequences</span></h5></div>
 <p class="noindent">In <span class="refclass-ref">??</span>, we saw that a 2D convolutional layer works by sliding several fairly small kernels,
 or filters, across an image, producing multiple 2D feature maps one per kernel. Similarly,
 a 1D convolutional layer slides several kernels across a sequence, producing a 1D feature
@@ -464,8 +464,7 @@ unimportant details. In the <code class="verb">forward()</code>  method, we just
 dimensions before and after the <code class="verb">nn.Conv1d</code>  layer, and we ignore the hidden states returned by the  <code class="file"><code class="verb">nn.GRU</code></code>
 layer:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb200"><a id="x24-101003r1060"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">DownsamplingModel</span>(nn.Module): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb200"><a id="x24-101003r1060"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">DownsamplingModel</span>(nn.Module): 
 <a id="x24-101005r1061"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, input_size, hidden_size, output_size): 
 <a id="x24-101007r1062"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
 <a id="x24-101009r1063"></a>        <span style="color:#B03B03;">self</span>.conv = nn.Conv1d(input_size, hidden_size, kernel_size=<span style="color:#8F4070;">4</span>, stride=<span style="color:#8F4070;">2</span>) 
@@ -482,8 +481,7 @@ layer:
 <a id="x24-101031r1074"></a> 
 <a id="x24-101033r1075"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x24-101035r1076"></a>dseq_model = DownsamplingModel(input_size=<span style="color:#8F4070;">1</span>, hidden_size=<span style="color:#8F4070;">32</span>, output_size=<span style="color:#8F4070;">14</span>) 
-<a id="x24-101037r1077"></a>dseq_model = dseq_model.to(device)</pre>
-</code></pre>
+<a id="x24-101037r1077"></a>dseq_model = dseq_model.to(device)</pre></code></pre></div>
 <p class="noindent">By shortening the time series, the convolutional layer helps the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gru">GRU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gru">Gated Recurrent Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gru">a type of
 RNN architecture designed to process sequential data while solving the vanishing gradient problem of
 standard RNNs.</a></span></span></span> layer detect longer patterns, so we can afford to double the window length to 112 days.
@@ -494,8 +492,7 @@ time steps 1 to 14). Moreover, we must downsample the targets by a factor of 2 b
 of the stride. For all this, we need a new Dataset class, so let’s create a subclass of the <code class="verb">Seq2SeqDataset</code>
 class:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb201"><a id="x24-101039r1082"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">DownsampledDataset</span>(Seq2SeqDataset): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb201"><a id="x24-101039r1082"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">DownsampledDataset</span>(Seq2SeqDataset): 
 <a id="x24-101041r1083"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__getitem__</span>(<span style="color:#B03B03;">self</span>, idx): 
 <a id="x24-101043r1084"></a>        window, target = <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__getitem__</span>(idx) 
 <a id="x24-101045r1085"></a>        <span style="color:#9E0005;">return</span> window, target[<span style="color:#8F4070;">3</span>::<span style="color:#8F4070;">2</span>]  <span style="color:#918273;"><i># crop the first 3 targets and downsample</i></span> 
@@ -506,24 +503,24 @@ class:
 <a id="x24-101055r1090"></a>dseq_valid_set = DownsampledDataset(rail_valid, window_length) 
 <a id="x24-101057r1091"></a>dseq_valid_loader = DataLoader(dseq_valid_set, batch_size=<span style="color:#8F4070;">32</span>) 
 <a id="x24-101059r1092"></a>dseq_test_set = DownsampledDataset(rail_test, window_length) 
-<a id="x24-101061r1093"></a>dseq_test_loader = DataLoader(dseq_test_set, batch_size=<span style="color:#8F4070;">32</span>)</pre>
-</code></pre>
+<a id="x24-101061r1093"></a>dseq_test_loader = DataLoader(dseq_test_set, batch_size=<span style="color:#8F4070;">32</span>)</pre></code></pre></div>
 <p class="noindent">And now the model can be trained as usual. We’ve successfully mixed convolutional layers and
 recurrent layers. However, what if we used only 1D convolutional layers and dropped the recurrent
 layers entirely?
 </p>
-<div class="subsection-header"><h5 id="header-subsubsection-4.3.2.20"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x24-102000"></a>WaveNet</span></h5></div>
+<div class="subsubsection-header"><h5 id="header-subsubsection-4.3.2.20"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x24-102000"></a>WaveNet</span></h5></div>
 <p class="noindent"></p><figure class="float">
 <a id="x24-102001r9"></a>
 <figcaption class="caption"><span class="id">Figure 4.9: </span><span class="content">WaveNet architecture.                                                       </span></figcaption>
 <img alt="PIC" src="figures/Working-with-RNNs-and-CNNs/figures-5.png" style=""/>
 </figure>
-<p class="noindent">In <span class="cite"><a class="cite-show" href="#w3-20001">[†-7]</a><span class="cite-detail" id="vandenOord2016WaveNetAG"> <a id="x24-102002"></a>van den Oord, A. et al. WaveNet: A Generative Model for Raw Audio in Speech Synthesis
-Workshop (2016)</span></span>, <i>Aaron van den Oord</i> and other DeepMind researchers introduced a novel architecture
-called <i>WaveNet</i>. They stacked 1D convolutional layers, doubling the dilation <span class="margin-block">rate <span class="margin-comment"><a class="ellipsis" href="#m-ref-216">[216]</a>
-<span class="sidenote">This term basically
-means how spread apart each neuron’s inputs are.</span></span></span> at every layer: </p><div class="quote">  The first convolutional layer gets a
-glimpse of just two time steps at a time, while the next one sees four time <span class="margin-block">steps <span class="margin-comment"><a class="ellipsis" href="#m-ref-217">[217]</a>
+<p class="noindent">In <span class="cite"><a class="cite-show" href="#w3-20001">[†-7]</a><span class="cite-detail" id="vandenOord2016WaveNetAG"> <span class="bib-entry bib-author"><a id="x24-102002"></a>van den Oord et al.</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:6254678">"WaveNet: A Generative
+Model for Raw Audio"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">Speech Synthesis Workshop</span>, <span class="bib-entry bib-year">(2016)</span>.</span></span>, <i>Aaron van den Oord</i> and
+other DeepMind researchers introduced a novel architecture called <i>WaveNet</i>. They stacked 1D
+convolutional layers, doubling the dilation <span class="margin-block">rate <span class="margin-comment"><a class="ellipsis" href="#m-ref-216">[216]</a>
+<span class="sidenote">This term basically means how spread apart
+each neuron’s inputs are.</span></span></span> at every layer: </p><div class="quote">  The first convolutional layer gets a glimpse of
+just two time steps at a time, while the next one sees four time <span class="margin-block">steps <span class="margin-comment"><a class="ellipsis" href="#m-ref-217">[217]</a>
 <span class="sidenote">its receptive field is
 four time steps long.</span></span></span>, the next one sees eight time steps, and so on as shown in <b>Fig.</b> <a href="#x24-102001r9">4.9</a>.
 </div>
@@ -556,15 +553,13 @@ custom  <code class="file"><code class="verb">CausalConv1d</code></code> module 
 padded on the left side by the appropriate amount to ensure the sequence preserves the same
 length:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb202"><a id="x24-102004r1113"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn.functional</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">F</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb202"><a id="x24-102004r1113"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn.functional</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">F</span> 
 <a id="x24-102006r1114"></a> 
 <a id="x24-102008r1115"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">CausalConv1d</span>(nn.Conv1d): 
 <a id="x24-102010r1116"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, X): 
 <a id="x24-102012r1117"></a>        padding = (<span style="color:#B03B03;">self</span>.kernel_size[<span style="color:#8F4070;">0</span>] - <span style="color:#8F4070;">1</span>) * <span style="color:#B03B03;">self</span>.dilation[<span style="color:#8F4070;">0</span>] 
 <a id="x24-102014r1118"></a>        X = F.pad(X, (padding, <span style="color:#8F4070;">0</span>)) 
-<a id="x24-102016r1119"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">super</span>().forward(X)</pre>
-</code></pre>
+<a id="x24-102016r1119"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">super</span>().forward(X)</pre></code></pre></div>
 <p class="noindent">In this code, we inherit from the  <code class="file"><code class="verb">nn.Conv1d</code></code> class and we override the  <code class="file"><code class="verb">forward()</code></code> method. In it, we
 calculate the size of the left-padding we need, and we pad the sequences using the  <code class="file"><code class="verb">pad()</code></code> function
 before calling the base class’s  <code class="file"><code class="verb">forward()</code></code> method.
@@ -574,8 +569,7 @@ indicates how much to pad to the left and right in the last <span class="margin-
 </div>
 <p class="noindent">Now we’re ready to build the WaveNet model itself:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb203"><a id="x24-102018r1140"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">WavenetModel</span>(nn.Module): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb203"><a id="x24-102018r1140"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">WavenetModel</span>(nn.Module): 
 <a id="x24-102020r1141"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, input_size, hidden_size, output_size): 
 <a id="x24-102022r1142"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
 <a id="x24-102024r1143"></a>        layers = [] 
@@ -595,8 +589,7 @@ indicates how much to pad to the left and right in the last <span class="margin-
 <a id="x24-102052r1157"></a> 
 <a id="x24-102054r1158"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x24-102056r1159"></a>wavenet_model = WavenetModel(input_size=<span style="color:#8F4070;">5</span>, hidden_size=<span style="color:#8F4070;">32</span>, output_size=<span style="color:#8F4070;">14</span>) 
-<a id="x24-102058r1160"></a>wavenet_model = wavenet_model.to(device)</pre>
-</code></pre>
+<a id="x24-102058r1160"></a>wavenet_model = wavenet_model.to(device)</pre></code></pre></div>
 <p class="noindent">In the constructor, we create eight  <code class="file"><code class="verb">CausalConv1d</code></code> layers with various dilation rates (1, 2, 4, 8, then
 again 1, 2, 4, 8), each followed by the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:relu">RELU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:relu">Rectified Linear Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:relu">A popular activation function in
 ANNs that outputs the input directly if it is positive, and returns zero if it is negative.</a></span></span></span> activation
@@ -675,8 +668,8 @@ mini-batch</p></dd>
 <dl class="acr-list">
 <a class="copiable-link" href="#glo:bn">¶</a>
 <dt class="acr-bottom" id="glo:bn"><span class="acr-short">BN</span><span class="acr-long">Batch Normalization</span></dt>
-<dd class="acr-desc"><p>A technique used in ANNs to make training faster and
-more stable by adjusting and scaling layer inputs.</p></dd>
+<dd class="acr-desc"><p>A technique used in ANNs to make training faster and more stable by
+adjusting and scaling layer inputs.</p></dd>
 </dl>
 <dl class="acr-list">
 <a class="copiable-link" href="#glo:relu">¶</a>
@@ -705,38 +698,52 @@ step to the next</p></dd>
 <i class="fa-solid fa-magnifying-glass"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-reference"></a>
             Page References</span>
 </h3>
 </div>
 <div class="cite-block">
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">1.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Laurent, C. et al. Batch normalized recurrent neural networks. 2016 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2657–2661 (2015)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Laurent2015BatchNR"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x24-97001"></a>Laurent
+et al.</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:516518">"Batch normalized recurrent neural
+networks"</a>, <span class="bib-entry bib-journal">2016 IEEE International Conference on Acoustics, Speech and Signal Processing
+(ICASSP)</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2015)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">2.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Hochreiter, S. &amp; Schmidhuber, J. U. Long Short-Term Memory. Neural Computation 9, 1735–1780 (1997)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Hochreiter1997LongSM"><a id="w3-20001"></a>
+<span class="bib-entry bib-author"><a id="x24-99001"></a>Hochreiter &amp; Schmidhuber</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:1915014">"Long Short-Term
+Memory"</a>, <span class="bib-entry bib-journal">Neural Computation</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1997)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">3.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Sak, H., Senior, A. W. &amp; Beaufays, F. Long Short-Term Memory Based Recurrent Neural Network Architectures for Large Vocabulary Speech Recognition. ArXiv abs/1402.1128 (2014)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Sak2014LongSM"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x24-99002"></a>Sak, Senior &amp; Beaufays</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:16904319">"Long
+Short-Term Memory Based Recurrent Neural Network Architectures for Large Vocabulary Speech
+Recognition"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2014)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">4.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Zaremba, W., Sutskever, I. &amp; Vinyals, O. Recurrent Neural Network Regularization. ArXiv abs/1409.2329 (2014)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Zaremba2014RecurrentNN"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x24-99003"></a>Zaremba, Sutskever &amp; Vinyals</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:17719760">"Recurrent Neural Network Regularization"</a>, <span class="bib-entry bib-journal">ArXiv</span>,
+<span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2014)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">5.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Cho, K. et al. Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation in Conference on Empirical Methods in Natural Language Processing (2014)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Cho2014LearningPR"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x24-100001"></a>Cho et al.</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:5590763">"Learning
+Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation"</a>,
+<span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">Conference on Empirical Methods in Natural Language Processing</span>, <span class="bib-entry bib-year">(2014)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">6.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Greff, K. et al. LSTM: A Search Space Odyssey. IEEE Transactions on Neural Networks and Learning Systems 28, 2222–2232 (2015)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Greff2015LSTMAS"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x24-100002"></a>Greff et al.</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:3356463">"LSTM: A Search Space Odyssey"</a>, <span class="bib-entry bib-journal">IEEE
+Transactions on Neural Networks and Learning Systems</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2015)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">7.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> van den Oord, A. et al. WaveNet: A Generative Model for Raw Audio in Speech Synthesis Workshop (2016)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="vandenOord2016WaveNetAG"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x24-102002"></a>van den Oord et al.</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:6254678">"WaveNet: A Generative
+Model for Raw Audio"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">Speech Synthesis Workshop</span>, <span class="bib-entry bib-year">(2016)</span>.</span></dd>
 </dl></div>
 <div class="section-header">
 <h3 id="header-section-references">
@@ -744,15 +751,14 @@ step to the next</p></dd>
 <i class="fa-regular fa-note-sticky"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-margin"></a>
                     Page Footnotes</span>
 </h3>
 </div>
 <div class="footnote-block">
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="m-ref-207"><span class="acr-short">[207].</span></dt>
-<dd class="enumerate-enumitem"><span class="">Both on the inputs for that time step and on the hidden
-state from the previous step.</span></dd>
+<dd class="enumerate-enumitem"><span class="">Both on the inputs for that time step and on the hidden state from the previous step.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="m-ref-208"><span class="acr-short">[208].</span></dt>
@@ -791,8 +797,8 @@ example, and get rid of <code class="verb">C</code> .</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="m-ref-216"><span class="acr-short">[216].</span></dt>
-<dd class="enumerate-enumitem"><span class="">This term basically
-means how spread apart each neuron’s inputs are.</span></dd>
+<dd class="enumerate-enumitem"><span class="">This term basically means how spread apart
+each neuron’s inputs are.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="m-ref-217"><span class="acr-short">[217].</span></dt>
@@ -826,7 +832,7 @@ data while solving the vanishing gradient problem of standard RNNs.</a></span></
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> <div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>

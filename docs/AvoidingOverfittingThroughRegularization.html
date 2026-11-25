@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="WorkingwithRNNsandCNNs.html">Chapter: Working with RNNs and CNNs</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="LearningRateScheduling.html">Learning Rate Scheduling</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="TrainingDeepNeuralNetworks.html#AvoidingOverfittingThroughRegularization.html">Chapter: Training Deep Neural Networks</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -117,11 +117,9 @@ regularization by simply setting the optimizer’s <code class="verb">weight_dec
 regularization to the connection weights of a PyTorch model trained using SGD, with a regularization
 factor of <math display="inline"><mn>1</mn> <mi>×</mi> <mn>1</mn><msup><mrow><mn>0</mn></mrow><mrow><mo class="MathClass-bin" stretchy="false">−</mo><mn>4</mn></mrow></msup></math>:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb154"><a id="x20-77002r1140"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb154"><a id="x20-77002r1140"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
 <a id="x20-77004r1141"></a>optimizer = torch.optim.SGD(model.parameters(), lr=<span style="color:#8F4070;">0.05</span>, weight_decay=<span style="color:#8F4070;">1e-4</span>) 
-<a id="x20-77006r1142"></a>history = test_optimizer(model, optimizer)</pre>
-</code></pre>
+<a id="x20-77006r1142"></a>history = test_optimizer(model, optimizer)</pre></code></pre></div>
 <p class="noindent">If instead you are using an Adam optimizer, you should switch to AdamW and set the <code class="verb">weight_decay</code>  argument. This is not exactly
 equivalent to <math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
 regularization, but as we saw earlier it’s pretty close and it works better.
@@ -139,8 +137,7 @@ feature. For this, you must tweak the training loop to manually compute the
 you want, and add this <math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
 loss to the main loss:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb155"><a id="x20-77008r1147"></a>n_epochs = <span style="color:#8F4070;">3</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb155"><a id="x20-77008r1147"></a>n_epochs = <span style="color:#8F4070;">3</span> 
 <a id="x20-77010r1148"></a>train_loader = DataLoader(train_set, batch_size=<span style="color:#8F4070;">32</span>, shuffle=<span style="color:#9E0005;">True</span>) 
 <a id="x20-77012r1149"></a>loss_fn = nn.CrossEntropyLoss() 
 <a id="x20-77014r1150"></a> 
@@ -166,8 +163,7 @@ loss to the main loss:
 <a id="x20-77054r1170"></a>        optimizer.zero_grad() 
 <a id="x20-77056r1171"></a>    <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"Epoch </span><span style="color:#78730D;">{</span>epoch + <span style="color:#8F4070;">1</span><span style="color:#78730D;">}</span><span style="color:#78730D;">/</span><span style="color:#78730D;">{</span>n_epochs<span style="color:#78730D;">}</span><span style="color:#78730D;">"</span> 
 <a id="x20-77058r1172"></a>          <span style="color:#78730D;">f</span><span style="color:#78730D;">"  l2 loss: </span><span style="color:#78730D;">{</span>total_l2_loss / <span style="color:#B03B03;">len</span>(train_loader)<span style="color:#78730D;">:</span><span style="color:#78730D;">.3f</span><span style="color:#78730D;">}</span><span style="color:#78730D;">"</span> 
-<a id="x20-77060r1173"></a>          <span style="color:#78730D;">f</span><span style="color:#78730D;">"  loss: </span><span style="color:#78730D;">{</span>total_loss / <span style="color:#B03B03;">len</span>(train_loader)<span style="color:#78730D;">:</span><span style="color:#78730D;">.3f</span><span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre>
-</code></pre>
+<a id="x20-77060r1173"></a>          <span style="color:#78730D;">f</span><span style="color:#78730D;">"  loss: </span><span style="color:#78730D;">{</span>total_loss / <span style="color:#B03B03;">len</span>(train_loader)<span style="color:#78730D;">:</span><span style="color:#78730D;">.3f</span><span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre></code></pre></div>
 <p class="noindent">Another approach is to use PyTorch’s <i>parameter groups</i> feature, which lets the optimizer
 apply different hyperparameters to different groups of model parameters. So far, we have
 always created optimizers by passing them the full list of model parameters: </p><div class="quote">  PyTorch
@@ -180,8 +176,7 @@ example, let’s create an optimizer with two parameter groups: </p><div class="
 the parameters we want to regularize and it will use weight decay, while the second group
 will contain all the bias terms and BN parameters, and it will not use weight decay at all.
 </div>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb156"><a id="x20-77062r1178"></a>n_epochs = <span style="color:#8F4070;">3</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb156"><a id="x20-77062r1178"></a>n_epochs = <span style="color:#8F4070;">3</span> 
 <a id="x20-77064r1179"></a>train_loader = DataLoader(train_set, batch_size=<span style="color:#8F4070;">32</span>, shuffle=<span style="color:#9E0005;">True</span>) 
 <a id="x20-77066r1180"></a>loss_fn = nn.CrossEntropyLoss() 
 <a id="x20-77068r1181"></a> 
@@ -208,8 +203,7 @@ will contain all the bias terms and BN parameters, and it will not use weight de
 <a id="x20-77110r1202"></a>        optimizer.step() 
 <a id="x20-77112r1203"></a>        optimizer.zero_grad() 
 <a id="x20-77114r1204"></a>    <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"Epoch </span><span style="color:#78730D;">{</span>epoch + <span style="color:#8F4070;">1</span><span style="color:#78730D;">}</span><span style="color:#78730D;">/</span><span style="color:#78730D;">{</span>n_epochs<span style="color:#78730D;">}</span><span style="color:#78730D;">"</span> 
-<a id="x20-77116r1205"></a>          <span style="color:#78730D;">f</span><span style="color:#78730D;">"  loss: </span><span style="color:#78730D;">{</span>total_loss / <span style="color:#B03B03;">len</span>(train_loader)<span style="color:#78730D;">:</span><span style="color:#78730D;">.3f</span><span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre>
-</code></pre>
+<a id="x20-77116r1205"></a>          <span style="color:#78730D;">f</span><span style="color:#78730D;">"  loss: </span><span style="color:#78730D;">{</span>total_loss / <span style="color:#B03B03;">len</span>(train_loader)<span style="color:#78730D;">:</span><span style="color:#78730D;">.3f</span><span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre></code></pre></div>
 <dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-3.41" id="info-block-3.41"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 3.<a id="x20-77117r41"></a>41: </b> </span> <span class="title"> Benefits of Parameters Groups </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">Parameter groups also allow you to apply different learning rates to different parts of your model.
 This is most common for <span class="alert">transfer learning</span>, when you want new layers to be updated faster than reused
@@ -223,8 +217,7 @@ regularization. This means tweaking the training loop to compute the
 <math display="inline"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>1</mn></mrow></msub></math> loss
 and adding it to the main loss:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb157"><a id="x20-77119r1178"></a>n_epochs = <span style="color:#8F4070;">3</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb157"><a id="x20-77119r1178"></a>n_epochs = <span style="color:#8F4070;">3</span> 
 <a id="x20-77121r1179"></a>train_loader = DataLoader(train_set, batch_size=<span style="color:#8F4070;">32</span>, shuffle=<span style="color:#9E0005;">True</span>) 
 <a id="x20-77123r1180"></a>loss_fn = nn.CrossEntropyLoss() 
 <a id="x20-77125r1181"></a> 
@@ -251,21 +244,20 @@ and adding it to the main loss:
 <a id="x20-77167r1202"></a>        optimizer.step() 
 <a id="x20-77169r1203"></a>        optimizer.zero_grad() 
 <a id="x20-77171r1204"></a>    <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"Epoch </span><span style="color:#78730D;">{</span>epoch + <span style="color:#8F4070;">1</span><span style="color:#78730D;">}</span><span style="color:#78730D;">/</span><span style="color:#78730D;">{</span>n_epochs<span style="color:#78730D;">}</span><span style="color:#78730D;">"</span> 
-<a id="x20-77173r1205"></a>          <span style="color:#78730D;">f</span><span style="color:#78730D;">"  loss: </span><span style="color:#78730D;">{</span>total_loss / <span style="color:#B03B03;">len</span>(train_loader)<span style="color:#78730D;">:</span><span style="color:#78730D;">.3f</span><span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre>
-</code></pre>
+<a id="x20-77173r1205"></a>          <span style="color:#78730D;">f</span><span style="color:#78730D;">"  loss: </span><span style="color:#78730D;">{</span>total_loss / <span style="color:#B03B03;">len</span>(train_loader)<span style="color:#78730D;">:</span><span style="color:#78730D;">.3f</span><span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre></code></pre></div>
 <p class="noindent">That’s all there is to it! Now let’s move on to Dropout, which is one of the most popular regularization
 techniques for deep neural networks.
 </p>
 <div class="subsection-header"><h4 id="header-subsection-3.3.2"><span class="number">3.3.2</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.3.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x20-780003.3.2"></a>Dropout</span></h4></div>
-<p class="noindent">Dropout was proposed in a paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Hinton2012ImprovingNN"> <a id="x20-78001"></a>Hinton, G. E. et al. Improving neural networks by preventing
-co-adaptation of feature detectors. ArXiv <b>abs/1207.0580</b> (2012)</span></span> by <i>Geoffrey Hinton et al.</i> in 2012
-and further detailed in a 2014 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Srivastava2014DropoutAS"> <a id="x20-78002"></a>Srivastava, N. et al. Dropout: a simple way to
-prevent neural networks from overfitting. J. Mach. Learn. Res. <b>15</b><b>,</b> 1929–1958 (2014)</span></span> by
-<i>Nitish Srivastava et al.</i>, and it has proven to be highly successful: many state-of-the-art
-<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span>s use dropout, as it gives them a 1% to 2% accuracy boost.
-This may not sound like a lot, but when a model already has 95% accuracy, getting a 2%
-accuracy boost means dropping the error rate by almost 40% (going from 5% error to roughly
-3%).
+<p class="noindent">Dropout was proposed in a paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Hinton2012ImprovingNN"> <span class="bib-entry bib-author"><a id="x20-78001"></a>Hinton et al.</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:14832074">"Improving
+neural networks by preventing co-adaptation of feature detectors"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2012)</span>.</span></span> by
+<i>Geoffrey Hinton et al.</i> in 2012 and further detailed in a 2014 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Srivastava2014DropoutAS"> <span class="bib-entry bib-author"><a id="x20-78002"></a>Srivastava et al.</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:6844431">"Dropout: a simple way to prevent neural networks
+from overfitting"</a>, <span class="bib-entry bib-journal">J. Mach. Learn. Res.</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2014)</span>.</span></span> by <i>Nitish Srivastava et al.</i>, and it has
+proven to be highly successful: many state-of-the-art <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span>s use
+dropout, as it gives them a 1% to 2% accuracy boost. This may not sound like a lot, but when a model
+already has 95% accuracy, getting a 2% accuracy boost means dropping the error rate by almost 40%
+(going from 5% error to roughly 3%).
 It is a fairly simple algorithm: at every training step, every neuron (including
 the input neurons, but always excluding the output neurons) has a probability
 <math display="inline"><mi>p</mi></math> of
@@ -326,8 +318,7 @@ the keep probability. In evaluation mode, it does nothing at all; it just passes
 layer. The following code applies dropout regularization before every nn.Linear layer, using a dropout
 rate of 0.2:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb158"><a id="x20-78005r1246"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb158"><a id="x20-78005r1246"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x20-78007r1247"></a>model = nn.Sequential( 
 <a id="x20-78009r1248"></a>    nn.Flatten(), 
 <a id="x20-78011r1249"></a>    nn.Dropout(p=<span style="color:#8F4070;">0.2</span>), nn.Linear(<span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>, <span style="color:#8F4070;">100</span>), nn.ReLU(), 
@@ -336,8 +327,7 @@ rate of 0.2:
 <a id="x20-78017r1252"></a>).to(device) 
 <a id="x20-78019r1253"></a>model.apply(use_he_init) 
 <a id="x20-78021r1254"></a>optimizer = torch.optim.SGD(model.parameters(), lr=<span style="color:#8F4070;">0.01</span>, momentum=<span style="color:#8F4070;">0.9</span>) 
-<a id="x20-78023r1255"></a>history_dropout, acc_dropout = test_optimizer(model, optimizer, batch_size=<span style="color:#8F4070;">32</span>)</pre>
-</code></pre>
+<a id="x20-78023r1255"></a>history_dropout, acc_dropout = test_optimizer(model, optimizer, batch_size=<span style="color:#8F4070;">32</span>)</pre></code></pre></div>
 <p class="noindent">Since dropout is only active during training, comparing the training loss and the validation loss can be
 misleading. In particular, a model may be overfitting the training set and yet have similar training and
 validation losses. So make sure to evaluate the training loss without dropout (e.g., after
@@ -375,15 +365,13 @@ step and rescaling <math display="inline"><mstyle mathvariant="bold"><mi>w</mi><
 if needed <math display="inline"><mo class="MathClass-open" stretchy="false">(</mo><mstyle mathvariant="bold"><mi>w</mi></mstyle> <mi>←</mi> <mstyle mathvariant="bold"><mi>w</mi></mstyle><mi>r</mi><mo class="MathClass-bin" stretchy="false">/</mo><mi>|</mi><mi>|</mi><mstyle mathvariant="bold"><mi>w</mi></mstyle><mi>|</mi><msub><mrow><mi>|</mi></mrow><mrow><mn>2</mn></mrow></msub><mo class="MathClass-close" stretchy="false">)</mo></math>.
 </p><p class="noindent">Here’s a common way to implement this in PyTorch:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb159"><a id="x20-79002r1327"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">apply_max_norm</span>(model, max_norm=<span style="color:#8F4070;">2</span>, epsilon=<span style="color:#8F4070;">1e-8</span>, dim=<span style="color:#8F4070;">1</span>): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb159"><a id="x20-79002r1327"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">apply_max_norm</span>(model, max_norm=<span style="color:#8F4070;">2</span>, epsilon=<span style="color:#8F4070;">1e-8</span>, dim=<span style="color:#8F4070;">1</span>): 
 <a id="x20-79004r1328"></a>    <span style="color:#9E0005;">with</span> torch.no_grad(): 
 <a id="x20-79006r1329"></a>        <span style="color:#9E0005;">for</span> name, param <span style="color:#9E0005;">in</span> model.named_parameters(): 
 <a id="x20-79008r1330"></a>            <span style="color:#9E0005;">if</span> <span style="color:#78730D;">'bias'</span> <span style="color:#9E0005;">not</span> <span style="color:#9E0005;">in</span> name: 
 <a id="x20-79010r1331"></a>                actual_norm = param.norm(p=<span style="color:#8F4070;">2</span>, dim=dim, keepdim=<span style="color:#9E0005;">True</span>) 
 <a id="x20-79012r1332"></a>                target_norm = torch.clamp(actual_norm, <span style="color:#8F4070;">0</span>, max_norm) 
-<a id="x20-79014r1333"></a>                param *= target_norm / (epsilon + actual_norm)</pre>
-</code></pre>
+<a id="x20-79014r1333"></a>                param *= target_norm / (epsilon + actual_norm)</pre></code></pre></div>
 <p class="noindent">This function iterates through all of the model’s weight <span class="margin-block">matrices, <span class="margin-comment"><a class="ellipsis" href="#m-ref-183">[183]</a>
 <span class="sidenote">i.e., all parameters
 except for the bias terms.</span></span></span> and for each one of them it uses the <code class="verb">norm()</code>  method to compute the
@@ -486,18 +474,21 @@ Networks</span></dt>
 <i class="fa-solid fa-magnifying-glass"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-reference"></a>
             Page References</span>
 </h3>
 </div>
 <div class="cite-block">
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">1.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Hinton, G. E. et al. Improving neural networks by preventing co-adaptation of feature detectors. ArXiv abs/1207.0580 (2012)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Hinton2012ImprovingNN"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x20-78001"></a>Hinton et al.</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:14832074">"Improving
+neural networks by preventing co-adaptation of feature detectors"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2012)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">2.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Srivastava, N. et al. Dropout: a simple way to prevent neural networks from overfitting. J. Mach. Learn. Res. 15, 1929–1958 (2014)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Srivastava2014DropoutAS"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x20-78002"></a>Srivastava et al.</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:6844431">"Dropout: a simple way to prevent neural networks
+from overfitting"</a>, <span class="bib-entry bib-journal">J. Mach. Learn. Res.</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2014)</span>.</span></dd>
 </dl></div>
 <div class="section-header">
 <h3 id="header-section-references">
@@ -505,7 +496,7 @@ Networks</span></dt>
 <i class="fa-regular fa-note-sticky"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-margin"></a>
                     Page Footnotes</span>
 </h3>
 </div>
@@ -531,7 +522,7 @@ except for the bias terms.</span></dd>
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>

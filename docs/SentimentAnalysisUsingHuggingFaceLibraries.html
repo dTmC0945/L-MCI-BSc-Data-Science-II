@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="BidirectionalRNNs.html">Bidirectional RNNs</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="GeneratingShakespeareanTextUsingaCharacterRNN.html">Generating Shakespearean Text Using a Character RNN</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="NaturalLanguageProcessingwithRNNsandAttention.html#SentimentAnalysisUsingHuggingFaceLibraries.html">Chapter: Natural Language Processing with RNNs and Attention</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -103,28 +103,18 @@ to hundreds of thousands of datasets hosted on the Hugging Face Hub. We’ll use
 training set for training, and the remaining 20% for validation, using the  <code class="file"><code class="verb">train_test_split()</code></code>
 method to split the set:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb220"><a id="x27-112002r616"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">datasets</span> <span style="color:#9E0005;">import</span> load_dataset 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb220"><a id="x27-112002r616"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">datasets</span> <span style="color:#9E0005;">import</span> load_dataset 
 <a id="x27-112004r617"></a> 
 <a id="x27-112006r618"></a>imdb_dataset = load_dataset(<span style="color:#78730D;">"imdb"</span>) 
 <a id="x27-112008r619"></a>split = imdb_dataset[<span style="color:#78730D;">"train"</span>].train_test_split(train_size=<span style="color:#8F4070;">0.8</span>, seed=<span style="color:#8F4070;">42</span>) 
 <a id="x27-112010r620"></a>imdb_train_set, imdb_valid_set = split[<span style="color:#78730D;">"train"</span>], split[<span style="color:#78730D;">"test"</span>] 
-<a id="x27-112012r621"></a>imdb_test_set = imdb_dataset[<span style="color:#78730D;">"test"</span>]</pre>
-</code></pre>
+<a id="x27-112012r621"></a>imdb_test_set = imdb_dataset[<span style="color:#78730D;">"test"</span>]</pre></code></pre></div>
 <p class="noindent">Let’s inspect a couple of reviews:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb221"><a id="x27-112014r661"></a>imdb_train_set[<span style="color:#8F4070;">1</span>][<span style="color:#78730D;">"text"</span>]</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb222"><a id="x27-112016r666"></a>imdb_train_set[<span style="color:#8F4070;">1</span>][<span style="color:#78730D;">"label"</span>]</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb223"><a id="x27-112018r671"></a>imdb_train_set[<span style="color:#8F4070;">16</span>][<span style="color:#78730D;">"text"</span>]</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb224"><a id="x27-112020r676"></a>imdb_train_set[<span style="color:#8F4070;">16</span>][<span style="color:#78730D;">"label"</span>]</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb221"><a id="x27-112014r661"></a>imdb_train_set[<span style="color:#8F4070;">1</span>][<span style="color:#78730D;">"text"</span>]</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb222"><a id="x27-112016r666"></a>imdb_train_set[<span style="color:#8F4070;">1</span>][<span style="color:#78730D;">"label"</span>]</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb223"><a id="x27-112018r671"></a>imdb_train_set[<span style="color:#8F4070;">16</span>][<span style="color:#78730D;">"text"</span>]</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb224"><a id="x27-112020r676"></a>imdb_train_set[<span style="color:#8F4070;">16</span>][<span style="color:#78730D;">"label"</span>]</pre></code></pre></div>
 <p class="noindent">The first review immediately says that it’s a wonderful movie; no need to read any further: it’s
 clearly positive ( <code class="file"><code class="verb">label = 1</code></code> ). The second review is much harder to classify: </p><div class="quote">  it contains a
 detailed description of the movie, sprinkled with both positive and negative comments.
@@ -136,13 +126,13 @@ to the next</a></span></span></span> model would struggle; we need a more powerf
 tokenization before we return to sentiment analysis.
 </p>
 <div class="subsection-header"><h4 id="header-subsection-5.2.1"><span class="number">5.2.1</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.5.2.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x27-1130005.2.1"></a>Tokenization Using the Hugging Face Tokenizers Library</span></h4></div>
-<p class="noindent">In a 2016 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Sennrich2015NeuralMT"> <a id="x27-113001"></a>Sennrich, R., Haddow, B. &amp; Birch, A. Neural Machine Translation of Rare Words
-with Subword Units. ArXiv <b>abs/1508.07909</b> (2015)</span></span>, the researchers explored several methods to
-tokenize and detokenize text at the subword level. This way, even if your model encounters a rare word
-it has never seen before, it can still reasonably guess what it means. </p><div class="quote">  For example, even if the
-model never saw the word “smartest” during training, if it learned the word “smart” and it
-also learned that the suffix “est” means “the most”, it can infer the meaning of “smartest”.
-</div>
+<p class="noindent">In a 2016 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Sennrich2015NeuralMT"> <span class="bib-entry bib-author"><a id="x27-113001"></a>Sennrich, Haddow &amp; Birch</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:1114678">"Neural
+Machine Translation of Rare Words with Subword Units"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2015)</span>.</span></span>, the researchers
+explored several methods to tokenize and detokenize text at the subword level. This way, even if your
+model encounters a rare word it has never seen before, it can still reasonably guess what it means. </p><div class="quote">  For
+example, even if the model never saw the word “smartest” during training, if it learned the word
+“smart” and it also learned that the suffix “est” means “the most”, it can infer the meaning of
+“smartest”. </div>
 <p class="noindent">One of the techniques the authors evaluated is byte pair encoding (BPE), introduced by Philip Gage in
 <span class="margin-block">1994. <span class="margin-comment"><a class="ellipsis" href="#m-ref-237">[237]</a>
 <span class="sidenote">Which was initially done for data compression.</span></span></span> BPE works by splitting the whole training set into
@@ -153,8 +143,7 @@ size.
 tokenization algorithms, including BPE. Here’s how to train a BPE model on the IMDb
 dataset:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb225"><a id="x27-113003r691"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">tokenizers</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb225"><a id="x27-113003r691"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">tokenizers</span> 
 <a id="x27-113005r692"></a> 
 <a id="x27-113007r693"></a>bpe_model = tokenizers.models.BPE(unk_token=<span style="color:#78730D;">"&lt;unk&gt;"</span>) 
 <a id="x27-113009r694"></a>bpe_tokenizer = tokenizers.Tokenizer(bpe_model) 
@@ -163,8 +152,7 @@ dataset:
 <a id="x27-113015r697"></a>bpe_trainer = tokenizers.trainers.BpeTrainer(vocab_size=<span style="color:#8F4070;">1000</span>, 
 <a id="x27-113017r698"></a>                                             special_tokens=special_tokens) 
 <a id="x27-113019r699"></a>train_reviews = [review[<span style="color:#78730D;">"text"</span>].lower() <span style="color:#9E0005;">for</span> review <span style="color:#9E0005;">in</span> imdb_train_set] 
-<a id="x27-113021r700"></a>bpe_tokenizer.train_from_iterator(train_reviews, bpe_trainer)</pre>
-</code></pre>
+<a id="x27-113021r700"></a>bpe_tokenizer.train_from_iterator(train_reviews, bpe_trainer)</pre></code></pre></div>
 <p class="noindent">Let’s walk through this code: </p>
 <ul class="itemize1">
 <li class="itemize">
@@ -254,9 +242,9 @@ never output an unknown token if its vocabulary contains all 256 possible bytes,
 can be broken down into its individual bytes whenever longer tokens are not found in the
 vocabulary. This makes BBPE well suited when the corpus contains rare characters such as
 emojis.
-</p><p class="noindent">Another important variant of BPE is WordPiece <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Wu2016GooglesNM"> <a id="x27-113022"></a>Wu, Y.-H. et al. Google’s Neural Machine
-Translation System: Bridging the Gap between Human and Machine Translation. ArXiv
-<b>abs/1609.08144</b> (2016)</span></span>, proposed by Google in 2016. This tokenization algorithm is very similar to
+</p><p class="noindent">Another important variant of BPE is WordPiece <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Wu2016GooglesNM"> <span class="bib-entry bib-author"><a id="x27-113022"></a>Wu et al.</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:3603249">"Google’s
+Neural Machine Translation System: Bridging the Gap between Human and Machine Translation"</a>,
+<span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2016)</span>.</span></span>, proposed by Google in 2016. This tokenization algorithm is very similar to
 BPE, but instead of adding the most frequent adjacent pair of tokens to the vocabulary at each
 iteration, it adds the pair with the highest score. This score is computed using Equation
 14-1: the frequency(AB) term is just like in BPEit boosts pairs that are frequent in the
@@ -283,12 +271,12 @@ easy to reconstruct the original string: just remove  <code class="file"><code c
 punctuations). Note that the smiley emoji once again disappeared because it was not in the
 vocabulary.
 </p><p class="noindent">One last popular tokenization algorithm we will discuss is Unigram LM (Language Model), introduced
-in a 2018 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail" id="Kudo2018SubwordRI"> <a id="x27-113024"></a>Kudo, T. Subword Regularization: Improving Neural Network Translation Models
-with Multiple Subword Candidates. ArXiv <b>abs/1804.10959</b> (2018)</span></span> by Taku Kudo at Google. This
-technique is a bit different than the previous ones: it starts out with a very large vocabulary
-containing every frequent word, subword, and character in the training corpus, then it gradually
-removes the least useful tokens until it reaches the desired vocabulary size. To determine how
-useful a token is, this method makes one big simplifying assumption: it assumes that the
+in a 2018 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail" id="Kudo2018SubwordRI"> <span class="bib-entry bib-author"><a id="x27-113024"></a>Kudo</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:13753208">"Subword Regularization:
+Improving Neural Network Translation Models with Multiple Subword Candidates"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>,
+<span class="bib-entry bib-year">(2018)</span>.</span></span> by Taku Kudo at Google. This technique is a bit different than the previous ones: it starts out
+with a very large vocabulary containing every frequent word, subword, and character in the training
+corpus, then it gradually removes the least useful tokens until it reaches the desired vocabulary size. To
+determine how useful a token is, this method makes one big simplifying assumption: it assumes that the
 corpus was sampled randomly from the vocabulary, one token at a time (hence the name
 Unigram LM), and that every token was sampled independently from the others. Therefore,
 this tokenizer model assumes that the probability of sampling the pair AB is equal to the
@@ -324,12 +312,12 @@ through affixes, inflections, and internal <span class="margin-block">modificati
 <span class="sidenote">such as Arabic, Finnish, German, Hungarian,
 Polish, or Turkish.</span></span></span> as opposed to languages that rely on word order or additional helper words (such as
 English, Chinese, Thai, or Vietnamese).
-</p><p class="noindent">Unfortunately, the Tokenizers library does not natively support subword regularization, so
-you either have to implement it yourself, or you can use Google’s SentencePiece library
-(pip install sentencepiece) which provides an open source implementation. This project is
-described in a 2018 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="Kudo2018SentencePieceAS"> <a id="x27-113026"></a>Kudo, T. &amp; Richardson, J. SentencePiece: A simple and language
-independent subword tokenizer and detokenizer for Neural Text Processing in Conference
-on Empirical Methods in Natural Language Processing (2018)</span></span> by Taku Kudo and John
+</p><p class="noindent">Unfortunately, the Tokenizers library does not natively support subword regularization, so you either
+have to implement it yourself, or you can use Google’s SentencePiece library (pip install sentencepiece)
+which provides an open source implementation. This project is described in a 2018 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="Kudo2018SentencePieceAS"> <span class="bib-entry bib-author"><a id="x27-113026"></a>Kudo &amp;
+Richardson</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:52051958">"SentencePiece: A simple and language
+independent subword tokenizer and detokenizer for Neural Text Processing"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">Conference
+on Empirical Methods in Natural Language Processing</span>, <span class="bib-entry bib-year">(2018)</span>.</span></span> by Taku Kudo and John
 Richardson.
 </p><p class="noindent">Table 14-1 summarizes the three main tokenizers used today. Table 14-1. Overview of the
 three main tokenizers Feature BBPE WordPiece UnigramLM How Mergemostfrequentpairs
@@ -406,8 +394,7 @@ object containing PyTorch tensors for the token IDs and attention masks, along w
 containing the labels. For tokenization, we will simply use the pretrained WordPiece tokenizer we just
 loaded:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb226"><a id="x27-115002r1066"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">collate_fn</span>(batch, tokenizer=bert_tokenizer): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb226"><a id="x27-115002r1066"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">collate_fn</span>(batch, tokenizer=bert_tokenizer): 
 <a id="x27-115004r1067"></a>    reviews = [review[<span style="color:#78730D;">"text"</span>] <span style="color:#9E0005;">for</span> review <span style="color:#9E0005;">in</span> batch] 
 <a id="x27-115006r1068"></a>    labels = [[review[<span style="color:#78730D;">"label"</span>]] <span style="color:#9E0005;">for</span> review <span style="color:#9E0005;">in</span> batch] 
 <a id="x27-115008r1069"></a>    encodings = tokenizer(reviews, padding=<span style="color:#9E0005;">True</span>, truncation=<span style="color:#9E0005;">True</span>, 
@@ -421,12 +408,10 @@ loaded:
 <a id="x27-115024r1077"></a>imdb_valid_loader = DataLoader(imdb_valid_set, batch_size=batch_size, 
 <a id="x27-115026r1078"></a>                               collate_fn=collate_fn) 
 <a id="x27-115028r1079"></a>imdb_test_loader = DataLoader(imdb_test_set, batch_size=batch_size, 
-<a id="x27-115030r1080"></a>                              collate_fn=collate_fn)</pre>
-</code></pre>
+<a id="x27-115030r1080"></a>                              collate_fn=collate_fn)</pre></code></pre></div>
 <p class="noindent">Now we’re ready to create our sentiment analysis model:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb227"><a id="x27-115032r1085"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SentimentAnalysisModel</span>(nn.Module): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb227"><a id="x27-115032r1085"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SentimentAnalysisModel</span>(nn.Module): 
 <a id="x27-115034r1086"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, vocab_size, n_layers=<span style="color:#8F4070;">2</span>, embed_dim=<span style="color:#8F4070;">128</span>, hidden_dim=<span style="color:#8F4070;">64</span>, 
 <a id="x27-115036r1087"></a>                 pad_id=<span style="color:#8F4070;">0</span>, dropout=<span style="color:#8F4070;">0.2</span>): 
 <a id="x27-115038r1088"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
@@ -439,8 +424,7 @@ loaded:
 <a id="x27-115052r1095"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, encodings): 
 <a id="x27-115054r1096"></a>        embeddings = <span style="color:#B03B03;">self</span>.embed(encodings[<span style="color:#78730D;">"input_ids"</span>]) 
 <a id="x27-115056r1097"></a>        _outputs, hidden_states = <span style="color:#B03B03;">self</span>.gru(embeddings) 
-<a id="x27-115058r1098"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(hidden_states[-<span style="color:#8F4070;">1</span>])</pre>
-</code></pre>
+<a id="x27-115058r1098"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(hidden_states[-<span style="color:#8F4070;">1</span>])</pre></code></pre></div>
 <p class="noindent">As we can see, this model is very similar to our <i>Shakespeare model</i>, but with a few important
 differences: </p>
 <ul class="itemize1">
@@ -485,18 +469,14 @@ containing padded sequences to a packed sequence object, and conversely you can 
 <code class="file"><code class="verb">pad_packed_sequence()</code></code> function whenever you want to convert a packed sequence object to a padded
 tensor:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb228"><a id="x27-115060r1103"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">torch.nn.utils.rnn</span> <span style="color:#9E0005;">import</span> pack_padded_sequence, pad_packed_sequence 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb228"><a id="x27-115060r1103"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">torch.nn.utils.rnn</span> <span style="color:#9E0005;">import</span> pack_padded_sequence, pad_packed_sequence 
 <a id="x27-115062r1104"></a> 
 <a id="x27-115064r1105"></a>sequences = torch.tensor([[<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">0</span>], [<span style="color:#8F4070;">5</span>, <span style="color:#8F4070;">6</span>, <span style="color:#8F4070;">7</span>, <span style="color:#8F4070;">8</span>]]) 
 <a id="x27-115066r1106"></a>packed = pack_padded_sequence(sequences, lengths=(<span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">4</span>), 
 <a id="x27-115068r1107"></a>                              enforce_sorted=<span style="color:#9E0005;">False</span>, batch_first=<span style="color:#9E0005;">True</span>) 
-<a id="x27-115070r1108"></a>packed</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb229"><a id="x27-115072r1113"></a>padded, lengths = pad_packed_sequence(packed, batch_first=<span style="color:#9E0005;">True</span>) 
-<a id="x27-115074r1114"></a>padded, lengths</pre>
-</code></pre>
+<a id="x27-115070r1108"></a>packed</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb229"><a id="x27-115072r1113"></a>padded, lengths = pad_packed_sequence(packed, batch_first=<span style="color:#9E0005;">True</span>) 
+<a id="x27-115074r1114"></a>padded, lengths</pre></code></pre></div>
 <p class="noindent">By default, the  <code class="file"><code class="verb">pack_padded_sequence()</code></code> function assumes the sequences in the batch are ordered
 from the longest to the shortest. If this is not the case, we then must set  <code class="file"><code class="verb">enforce_sorted=False</code></code> .
 Moreover, the function also assumes that the time dimension comes before the batch dimension. If the
@@ -506,8 +486,7 @@ at the end of each sequence. </div>
 <p class="noindent">So let’s update our sentiment analysis model to use packed sequences. In the  <code class="file"><code class="verb">forward()</code></code> method, just
 replace the <code class="verb">self.gru(embeddings)</code>  line with the following code:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb230"><a id="x27-115076r1119"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SentimentAnalysisModelPackedSeq</span>(nn.Module): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb230"><a id="x27-115076r1119"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SentimentAnalysisModelPackedSeq</span>(nn.Module): 
 <a id="x27-115078r1120"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, vocab_size, n_layers=<span style="color:#8F4070;">2</span>, embed_dim=<span style="color:#8F4070;">128</span>, 
 <a id="x27-115080r1121"></a>                 hidden_dim=<span style="color:#8F4070;">64</span>, pad_id=<span style="color:#8F4070;">0</span>, dropout=<span style="color:#8F4070;">0.2</span>): 
 <a id="x27-115082r1122"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
@@ -523,8 +502,7 @@ replace the <code class="verb">self.gru(embeddings)</code>  line with the follow
 <a id="x27-115102r1132"></a>        packed = pack_padded_sequence(embeddings, lengths=lengths.cpu(),      <span style="color:#918273;"><i># &lt;= line added</i></span> 
 <a id="x27-115104r1133"></a>                                      batch_first=<span style="color:#9E0005;">True</span>, enforce_sorted=<span style="color:#9E0005;">False</span>) <span style="color:#918273;"><i># &lt;= line added</i></span> 
 <a id="x27-115106r1134"></a>        _outputs, hidden_states = <span style="color:#B03B03;">self</span>.gru(packed)                            <span style="color:#918273;"><i># &lt;= line changed</i></span> 
-<a id="x27-115108r1135"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(hidden_states[-<span style="color:#8F4070;">1</span>])</pre>
-</code></pre>
+<a id="x27-115108r1135"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(hidden_states[-<span style="color:#8F4070;">1</span>])</pre></code></pre></div>
 <p class="noindent">This code starts by computing the length of each sequence in the batch, just like we did earlier,
 then it packs the embeddings tensor and passes the packed sequence to the <code class="verb">nn.GRU</code>  module. With
 that, the model will properly handle sequences without being bothered by any padding
@@ -580,26 +558,34 @@ Processing</p></dd>
 <i class="fa-solid fa-magnifying-glass"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-reference"></a>
             Page References</span>
 </h3>
 </div>
 <div class="cite-block">
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">1.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Sennrich, R., Haddow, B. &amp; Birch, A. Neural Machine Translation of Rare Words with Subword Units. ArXiv abs/1508.07909 (2015)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Sennrich2015NeuralMT"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x27-113001"></a>Sennrich, Haddow &amp; Birch</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:1114678">"Neural
+Machine Translation of Rare Words with Subword Units"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2015)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">2.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Wu, Y.-H. et al. Google’s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation. ArXiv abs/1609.08144 (2016)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Wu2016GooglesNM"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x27-113022"></a>Wu et al.</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:3603249">"Google’s
+Neural Machine Translation System: Bridging the Gap between Human and Machine Translation"</a>,
+<span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2016)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">3.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Kudo, T. Subword Regularization: Improving Neural Network Translation Models with Multiple Subword Candidates. ArXiv abs/1804.10959 (2018)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Kudo2018SubwordRI"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x27-113024"></a>Kudo</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:13753208">"Subword Regularization:
+Improving Neural Network Translation Models with Multiple Subword Candidates"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>,
+<span class="bib-entry bib-year">(2018)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">4.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Kudo, T. &amp; Richardson, J. SentencePiece: A simple and language independent subword tokenizer and detokenizer for Neural Text Processing in Conference on Empirical Methods in Natural Language Processing (2018)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Kudo2018SentencePieceAS"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x27-113026"></a>Kudo &amp;
+Richardson</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:52051958">"SentencePiece: A simple and language
+independent subword tokenizer and detokenizer for Neural Text Processing"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">Conference
+on Empirical Methods in Natural Language Processing</span>, <span class="bib-entry bib-year">(2018)</span>.</span></dd>
 </dl></div>
 <div class="section-header">
 <h3 id="header-section-references">
@@ -607,7 +593,7 @@ Processing</p></dd>
 <i class="fa-regular fa-note-sticky"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-margin"></a>
                     Page Footnotes</span>
 </h3>
 </div>
@@ -646,7 +632,7 @@ the previous tokenizer, since GPT-2 didn’t need it.</span></dd>
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> <div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>

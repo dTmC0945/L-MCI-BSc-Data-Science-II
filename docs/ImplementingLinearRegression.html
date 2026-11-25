@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="ImplementingaRegressionMLP.html">Implementing a Regression MLP</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="PyTorchFundamentals.html">PyTorch Fundamentals</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="UnderstandingPyTorch.html#ImplementingLinearRegression.html">Chapter: Understanding PyTorch</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -102,16 +102,14 @@ and <code class="verb">y_train</code> ), a validation set (<code class="verb">X_
 </p><p class="noindent">Next, let’s convert it to tensors and <b>normalize</b> it. We could use a <code class="verb">StandardScaler</code>  for this, but let’s just use <b>tensor</b>
 operations instead, to get a bit of practice:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb66"><a id="x8-27002r425"></a>X_train = torch.FloatTensor(X_train) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb66"><a id="x8-27002r425"></a>X_train = torch.FloatTensor(X_train) 
 <a id="x8-27004r426"></a>X_valid = torch.FloatTensor(X_valid) 
 <a id="x8-27006r427"></a>X_test = torch.FloatTensor(X_test) 
 <a id="x8-27008r428"></a>means = X_train.mean(dim=<span style="color:#8F4070;">0</span>, keepdims=<span style="color:#9E0005;">True</span>) 
 <a id="x8-27010r429"></a>stds = X_train.std(dim=<span style="color:#8F4070;">0</span>, keepdims=<span style="color:#9E0005;">True</span>) 
 <a id="x8-27012r430"></a>X_train = (X_train - means) / stds 
 <a id="x8-27014r431"></a>X_valid = (X_valid - means) / stds 
-<a id="x8-27016r432"></a>X_test = (X_test - means) / stds</pre>
-</code></pre>
+<a id="x8-27016r432"></a>X_test = (X_test - means) / stds</pre></code></pre></div>
 <p class="noindent">Let’s also convert the targets to tensors. Given our predictions will be column <span class="margin-block">vectors, <span class="margin-comment"><a class="ellipsis" href="#m-ref-66">[66]</a>
 <span class="sidenote">i.e., matrices
 with a single column.</span></span></span> we need to ensure that our targets are also column vectors.
@@ -130,19 +128,15 @@ dimension of size <span class="margin-block">1: <span class="margin-comment"><a 
 This dimension’s size is automatically calculated to ensure the new tensor has the same number of cells
 as the original.</span></span></span>
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb67"><a id="x8-27019r440"></a>y_train = torch.FloatTensor(y_train).view(-<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">1</span>) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb67"><a id="x8-27019r440"></a>y_train = torch.FloatTensor(y_train).view(-<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">1</span>) 
 <a id="x8-27021r441"></a>y_valid = torch.FloatTensor(y_valid).view(-<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">1</span>) 
-<a id="x8-27023r442"></a>y_test = torch.FloatTensor(y_test).view(-<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">1</span>)</pre>
-</code></pre>
+<a id="x8-27023r442"></a>y_test = torch.FloatTensor(y_test).view(-<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">1</span>)</pre></code></pre></div>
 <p class="noindent">Now that the data is ready, let’s create the parameters of our linear regression model:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb68"><a id="x8-27025r447"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb68"><a id="x8-27025r447"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x8-27027r448"></a>n_features = X_train.shape[<span style="color:#8F4070;">1</span>]  <span style="color:#918273;"><i># there are 8 input features</i></span> 
 <a id="x8-27029r449"></a>w = torch.randn((n_features, <span style="color:#8F4070;">1</span>), requires_grad=<span style="color:#9E0005;">True</span>) 
-<a id="x8-27031r450"></a>b = torch.tensor(<span style="color:#8F4070;">0.</span>, requires_grad=<span style="color:#9E0005;">True</span>)</pre>
-</code></pre>
+<a id="x8-27031r450"></a>b = torch.tensor(<span style="color:#8F4070;">0.</span>, requires_grad=<span style="color:#9E0005;">True</span>)</pre></code></pre></div>
 <p class="noindent">We now have a weights parameter <code class="verb">w</code> <span class="margin-block">, <span class="margin-comment"><a class="ellipsis" href="#m-ref-68">[68]</a>
 <span class="sidenote">A column vector with one weight per input dimension, in this case
 8.</span></span></span> and a bias parameter <code class="verb">b</code> , which is a single <b>scalar</b>. The weights are initialized randomly, while the bias
@@ -178,8 +172,7 @@ one.
 cost function using the entire training dataset for each iteration.</a></span></span></span>, using the full training set at each
 training step:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb69"><a id="x8-27034r475"></a>learning_rate = <span style="color:#8F4070;">0.4</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb69"><a id="x8-27034r475"></a>learning_rate = <span style="color:#8F4070;">0.4</span> 
 <a id="x8-27036r476"></a>n_epochs = <span style="color:#8F4070;">20</span> 
 <a id="x8-27038r477"></a><span style="color:#9E0005;">for</span> epoch <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(n_epochs): 
 <a id="x8-27040r478"></a>    y_pred = X_train @ w + b 
@@ -190,8 +183,7 @@ training step:
 <a id="x8-27050r483"></a>        w -= learning_rate * w.grad 
 <a id="x8-27052r484"></a>        b.grad.zero_() 
 <a id="x8-27054r485"></a>        w.grad.zero_() 
-<a id="x8-27056r486"></a>    <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"Epoch </span><span style="color:#78730D;">{</span>epoch + <span style="color:#8F4070;">1</span><span style="color:#78730D;">}</span><span style="color:#78730D;">/</span><span style="color:#78730D;">{</span>n_epochs<span style="color:#78730D;">}</span><span style="color:#78730D;">, Loss: </span><span style="color:#78730D;">{</span>loss.item()<span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre>
-</code></pre>
+<a id="x8-27056r486"></a>    <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"Epoch </span><span style="color:#78730D;">{</span>epoch + <span style="color:#8F4070;">1</span><span style="color:#78730D;">}</span><span style="color:#78730D;">/</span><span style="color:#78730D;">{</span>n_epochs<span style="color:#78730D;">}</span><span style="color:#78730D;">, Loss: </span><span style="color:#78730D;">{</span>loss.item()<span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre></code></pre></div>
 <p class="noindent">Let’s walk through this code:
 </p>
 <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
@@ -246,12 +238,10 @@ Let’s rewrite our model using this higher-level API.
 <div class="subsection-header"><h4 id="header-subsection-2.2.2"><span class="number">2.2.2</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.2.2.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x8-290002.2.2"></a>Linear Regression Using PyTorch’s High-Level API</span></h4></div>
 <p class="noindent">PyTorch provides an implementation of linear regression in the <code class="verb">torch.nn.Linear</code>  class, so let’s use it:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb70"><a id="x8-29002r508"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">nn</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb70"><a id="x8-29002r508"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">nn</span> 
 <a id="x8-29004r509"></a> 
 <a id="x8-29006r510"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>)  <span style="color:#918273;"><i># to get reproducible results</i></span> 
-<a id="x8-29008r511"></a>model = nn.Linear(in_features=n_features, out_features=<span style="color:#8F4070;">1</span>)</pre>
-</code></pre>
+<a id="x8-29008r511"></a>model = nn.Linear(in_features=n_features, out_features=<span style="color:#8F4070;">1</span>)</pre></code></pre></div>
 <p class="noindent">The <code class="verb">nn.Linear</code>  class, which is short for <code class="verb">torch.nn.Linear</code> , is one of numerous modules provided by PyTorch. Each module is a
 subclass of the <code class="verb">nn.Module</code>  class. To build a simple linear regression model, a single <code class="verb">nn.Linear</code>  module is all we need.
 However, for most <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span>s we will need to assemble many
@@ -296,10 +286,8 @@ run during the backward pass using <code class="verb">register_backward_hook()</
 <p class="noindent">Now that we have our model, we need to create an optimizer to update the model parameters, and we
 must also choose a loss function:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb71"><a id="x8-29011r537"></a>optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate) 
-<a id="x8-29013r538"></a>mse = nn.MSELoss()</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb71"><a id="x8-29011r537"></a>optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate) 
+<a id="x8-29013r538"></a>mse = nn.MSELoss()</pre></code></pre></div>
 <p class="noindent">PyTorch provides a few different <span class="margin-block">optimizers. <span class="margin-comment"><a class="ellipsis" href="#m-ref-74">[74]</a>
 <span class="sidenote">We will discuss them in the next chapter.</span></span></span> Here we’re using
 the simple <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:sgd">SGD</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:sgd">Stochastic Gradient Descent</a></span><span class="acronym-desc"><a class="glossary" href="#glo:sgd">Stochastic Gradient Descent</a></span></span></span> optimizer, which can be used
@@ -325,16 +313,14 @@ Error</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mse">M
 as we will see.
 Next, let’s write a small function to train our model:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb72"><a id="x8-29015r543"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">train_bgd</span>(model, optimizer, criterion, X_train, y_train, n_epochs): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb72"><a id="x8-29015r543"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">train_bgd</span>(model, optimizer, criterion, X_train, y_train, n_epochs): 
 <a id="x8-29017r544"></a>    <span style="color:#9E0005;">for</span> epoch <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(n_epochs): 
 <a id="x8-29019r545"></a>        y_pred = model(X_train) 
 <a id="x8-29021r546"></a>        loss = criterion(y_pred, y_train) 
 <a id="x8-29023r547"></a>        loss.backward() 
 <a id="x8-29025r548"></a>        optimizer.step() 
 <a id="x8-29027r549"></a>        optimizer.zero_grad() 
-<a id="x8-29029r550"></a>        <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"Epoch </span><span style="color:#78730D;">{</span>epoch + <span style="color:#8F4070;">1</span><span style="color:#78730D;">}</span><span style="color:#78730D;">/</span><span style="color:#78730D;">{</span>n_epochs<span style="color:#78730D;">}</span><span style="color:#78730D;">, Loss: </span><span style="color:#78730D;">{</span>loss.item()<span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre>
-</code></pre>
+<a id="x8-29029r550"></a>        <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"Epoch </span><span style="color:#78730D;">{</span>epoch + <span style="color:#8F4070;">1</span><span style="color:#78730D;">}</span><span style="color:#78730D;">/</span><span style="color:#78730D;">{</span>n_epochs<span style="color:#78730D;">}</span><span style="color:#78730D;">, Loss: </span><span style="color:#78730D;">{</span>loss.item()<span style="color:#78730D;">}</span><span style="color:#78730D;">"</span>)</pre></code></pre></div>
 <p class="noindent">Compare this training loop with our earlier training loop. It’s very similar, but we’re now using
 higher-level constructs rather than working directly with tensors and autograd.
 </p><p class="noindent">Here are a few things to note: </p>
@@ -447,7 +433,7 @@ Interface</span></dt>
 <i class="fa-regular fa-note-sticky"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-margin"></a>
                     Page Footnotes</span>
 </h3>
 </div>
@@ -510,7 +496,7 @@ is not trained yet, its parameters are random and the predictions are terrible.<
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>

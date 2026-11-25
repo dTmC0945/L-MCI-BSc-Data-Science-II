@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="SentimentAnalysisUsingHuggingFaceLibraries.html">Sentiment Analysis Using Hugging Face Libraries</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="NaturalLanguageProcessingwithRNNsandAttention.html">Chapter: Natural Language Processing with RNNs and Attention</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="NaturalLanguageProcessingwithRNNsandAttention.html#GeneratingShakespeareanTextUsingaCharacterRNN.html">Chapter: Natural Language Processing with RNNs and Attention</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -85,16 +85,16 @@ for Neural Machine Translation</a></span></span><span class="subsectionToc"><spa
 <i class="fa-brands fa-git-alt"></i>
 <span class="nav-info">Visit Material GitHub Repo</span>
 </a></span></nav>
-<div class="section-header"><h3 id="header-section-5.1"><span class="number">5.1</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.5.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x26-1070005.1"></a>Generating Shakespearean Text
-Using a Character RNN</span></h3></div>
+<div class="section-header"><h3 id="header-section-5.1"><span class="number">5.1</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.5.1"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x26-1070005.1"></a>Generating Shakespearean
+Text Using a Character RNN</span></h3></div>
 <p class="noindent">In a famous 2015 blog post titled “The Unreasonable Effectiveness of Recurrent Neural Networks” <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="karpathy2015unreasonable">
-<a id="x26-107001"></a>Karpathy, A. The Unreasonable Effectiveness of Recurrent Neural Networks Blog post. 2015</span></span>,
-<i>Andrej Karpathy</i> showed how to train an <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN
-designed to process sequential data, such as text, speech, or time series, by passing information
-through loops from one step to the next</a></span></span></span> to predict the next character in a sentence. This
-char-<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data,
-such as text, speech, or time series, by passing information through loops from one step to
-the next</a></span></span></span> can then be used to generate novel text, one character at a time. Here is a small
+<span class="bib-entry bib-author"><a id="x26-107001"></a>Karpathy</span>, <a class="bib-entry bib-title" href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">"The Unreasonable Effectiveness of
+Recurrent Neural Networks"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2015)</span>.</span></span>, <i>Andrej Karpathy</i> showed how to train
+an <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text,
+speech, or time series, by passing information through loops from one step to the next</a></span></span></span> to predict the
+next character in a sentence. This char-<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to
+process sequential data, such as text, speech, or time series, by passing information through loops from
+one step to the next</a></span></span></span> can then be used to generate novel text, one character at a time. Here is a small
 sample of the text generated by a char-<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN
 designed to process sequential data, such as text, speech, or time series, by passing information
 through loops from one step to the next</a></span></span></span> model after it was trained on all of Shakespeare’s
@@ -114,8 +114,7 @@ Karpathy</i>’s char-<span class="acronym"><span class="acronym-short"><a class
 such as text, speech, or time series, by passing information through loops from one step to the next</a></span></span></span>
 project:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb204"><a id="x26-108002r192"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">pathlib</span> <span style="color:#9E0005;">import</span> Path 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb204"><a id="x26-108002r192"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">pathlib</span> <span style="color:#9E0005;">import</span> Path 
 <a id="x26-108004r193"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">urllib.request</span> 
 <a id="x26-108006r194"></a> 
 <a id="x26-108008r195"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">download_shakespeare_text</span>(): 
@@ -126,14 +125,11 @@ project:
 <a id="x26-108018r200"></a>        urllib.request.urlretrieve(url, path) 
 <a id="x26-108020r201"></a>    <span style="color:#9E0005;">return</span> path.read_text() 
 <a id="x26-108022r202"></a> 
-<a id="x26-108024r203"></a>shakespeare_text = download_shakespeare_text()</pre>
-</code></pre>
+<a id="x26-108024r203"></a>shakespeare_text = download_shakespeare_text()</pre></code></pre></div>
 <p class="noindent">and then, let’s print the first few lines:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb205"><a id="x26-108026r208"></a><span style="color:#918273;"><i># extra code  shows a short text sample</i></span> 
-<a id="x26-108028r209"></a><span style="color:#B03B03;">print</span>(shakespeare_text[:<span style="color:#8F4070;">80</span>])</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb205"><a id="x26-108026r208"></a><span style="color:#918273;"><i># extra code  shows a short text sample</i></span> 
+<a id="x26-108028r209"></a><span style="color:#B03B03;">print</span>(shakespeare_text[:<span style="color:#8F4070;">80</span>])</pre></code></pre></div>
 <p class="noindent">Fundamentally <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span>s work with numbers, not text, so we need a way to
 <b>encode text into numbers</b>. In general, this is done by splitting the text into tokens, such as words or
 characters, and assigning an integer ID to each possible token.
@@ -141,44 +137,32 @@ For example, let’s split our text into characters, and assign an <code class="
 first need to find the list of characters used in the text. This will constitute our <b>token
 vocabulary</b>:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb206"><a id="x26-108030r214"></a>vocab = <span style="color:#B03B03;">sorted</span>(<span style="color:#B03B03;">set</span>(shakespeare_text.lower())) 
-<a id="x26-108032r215"></a><span style="color:#78730D;">""</span>.join(vocab)</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb206"><a id="x26-108030r214"></a>vocab = <span style="color:#B03B03;">sorted</span>(<span style="color:#B03B03;">set</span>(shakespeare_text.lower())) 
+<a id="x26-108032r215"></a><span style="color:#78730D;">""</span>.join(vocab)</pre></code></pre></div>
 <div class="block-minor warning"><div class="body">
 <p class="noindent">We call  <code class="file"><code class="verb">lower()</code></code> to <span class="alert">ignore case</span> and thereby reduce the vocabulary size. </p></div></div>
 <p class="noindent">We must now assign a token ID to each character. For this, we can just use its index in the vocabulary.
 To decode the output of our model, we will also need a way to go from a token ID to a
 character:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb207"><a id="x26-108034r220"></a>char_to_id = {char: index <span style="color:#9E0005;">for</span> index, char <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">enumerate</span>(vocab)} 
-<a id="x26-108036r221"></a>id_to_char = {index: char <span style="color:#9E0005;">for</span> index, char <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">enumerate</span>(vocab)}</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb208"><a id="x26-108038r226"></a>char_to_id[<span style="color:#78730D;">"a"</span>]</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb207"><a id="x26-108034r220"></a>char_to_id = {char: index <span style="color:#9E0005;">for</span> index, char <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">enumerate</span>(vocab)} 
+<a id="x26-108036r221"></a>id_to_char = {index: char <span style="color:#9E0005;">for</span> index, char <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">enumerate</span>(vocab)}</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb208"><a id="x26-108038r226"></a>char_to_id[<span style="color:#78730D;">"a"</span>]</pre></code></pre></div>
 <p class="noindent">Next, let’s create two helper functions to encode text to tensors of token IDs, and to decode them back
 to text:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb209"><a id="x26-108040r236"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb209"><a id="x26-108040r236"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch</span> 
 <a id="x26-108042r237"></a> 
 <a id="x26-108044r238"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">encode_text</span>(text): 
 <a id="x26-108046r239"></a>    <span style="color:#9E0005;">return</span> torch.tensor([char_to_id[char] <span style="color:#9E0005;">for</span> char <span style="color:#9E0005;">in</span> text.lower()]) 
 <a id="x26-108048r240"></a> 
 <a id="x26-108050r241"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">decode_text</span>(char_ids): 
-<a id="x26-108052r242"></a>    <span style="color:#9E0005;">return</span> <span style="color:#78730D;">""</span>.join([id_to_char[char_id.item()] <span style="color:#9E0005;">for</span> char_id <span style="color:#9E0005;">in</span> char_ids])</pre>
-</code></pre>
+<a id="x26-108052r242"></a>    <span style="color:#9E0005;">return</span> <span style="color:#78730D;">""</span>.join([id_to_char[char_id.item()] <span style="color:#9E0005;">for</span> char_id <span style="color:#9E0005;">in</span> char_ids])</pre></code></pre></div>
 <p class="noindent">Let’s try them out:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb210"><a id="x26-108054r247"></a>encoded = encode_text(<span style="color:#78730D;">"Hello, world!"</span>) 
-<a id="x26-108056r248"></a>encoded</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb211"><a id="x26-108058r253"></a>decode_text(encoded)</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb210"><a id="x26-108054r247"></a>encoded = encode_text(<span style="color:#78730D;">"Hello, world!"</span>) 
+<a id="x26-108056r248"></a>encoded</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb211"><a id="x26-108058r253"></a>decode_text(encoded)</pre></code></pre></div>
 <p class="noindent">Next, let’s prepare the dataset. Right now, we have a single, extremely long sequence of characters
 containing <i>Shakespeare</i>’s works. Just like we did in <span class="refclass-ref"><a href="WorkingwithRNNsandCNNs.html#x21-810004">Working with RNNs and CNNs</a></span>, we can turn this
 long sequence into a dataset of windows which we can then use to train a sequence-to-sequence
@@ -197,8 +181,7 @@ representing the text “o be or not to be”<span class="margin-block">. <span 
 </div>
 <p class="noindent">Let’s create our dataset class:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb212"><a id="x26-108060r258"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">torch.utils.data</span> <span style="color:#9E0005;">import</span> Dataset, DataLoader 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb212"><a id="x26-108060r258"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">torch.utils.data</span> <span style="color:#9E0005;">import</span> Dataset, DataLoader 
 <a id="x26-108062r259"></a> 
 <a id="x26-108064r260"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">CharDataset</span>(Dataset): 
 <a id="x26-108066r261"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, text, window_length): 
@@ -214,22 +197,19 @@ representing the text “o be or not to be”<span class="margin-block">. <span 
 <a id="x26-108086r271"></a>        end = idx + <span style="color:#B03B03;">self</span>.window_length 
 <a id="x26-108088r272"></a>        window = <span style="color:#B03B03;">self</span>.encoded_text[idx : end] 
 <a id="x26-108090r273"></a>        target = <span style="color:#B03B03;">self</span>.encoded_text[idx + <span style="color:#8F4070;">1</span> : end + <span style="color:#8F4070;">1</span>] 
-<a id="x26-108092r274"></a>        <span style="color:#9E0005;">return</span> window, target</pre>
-</code></pre>
+<a id="x26-108092r274"></a>        <span style="color:#9E0005;">return</span> window, target</pre></code></pre></div>
 <p class="noindent">And now let’s create the data loaders, as usual. Since the text is quite large, we can afford to use
 roughly 90% for training (i.e., one million characters), and just 5% for validation, and 5% for testing
 (60,000 characters each):
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb213"><a id="x26-108094r288"></a>window_length = <span style="color:#8F4070;">50</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb213"><a id="x26-108094r288"></a>window_length = <span style="color:#8F4070;">50</span> 
 <a id="x26-108096r289"></a>batch_size = <span style="color:#8F4070;">512</span>  <span style="color:#918273;"><i># reduce if your GPU cannot handle such a large batch size</i></span> 
 <a id="x26-108098r290"></a>train_set = CharDataset(shakespeare_text[:<span style="color:#8F4070;">1_000_000</span>], window_length) 
 <a id="x26-108100r291"></a>valid_set = CharDataset(shakespeare_text[<span style="color:#8F4070;">1_000_000</span>:<span style="color:#8F4070;">1_060_000</span>], window_length) 
 <a id="x26-108102r292"></a>test_set = CharDataset(shakespeare_text[<span style="color:#8F4070;">1_060_000</span>:], window_length) 
 <a id="x26-108104r293"></a>train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=<span style="color:#9E0005;">True</span>) 
 <a id="x26-108106r294"></a>valid_loader = DataLoader(valid_set, batch_size=batch_size) 
-<a id="x26-108108r295"></a>test_loader = DataLoader(test_set, batch_size=batch_size)</pre>
-</code></pre>
+<a id="x26-108108r295"></a>test_loader = DataLoader(test_set, batch_size=batch_size)</pre></code></pre></div>
 <p class="noindent">Each batch will be composed of 512 50-character windows, where each character is represented by its
 token ID, and where each window comes with its 50-character target window, offset by one
 character.
@@ -313,10 +293,11 @@ chapter.
 The idea of using vectors to represent words dates back to the 1960s, and many sophisticated
 techniques have been used to generate useful vectors, including using <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural
 Networks</a></span></span></span>s. But things really took off in 2013, when <i>Tomá Mikolov</i> and other Google researchers
-published a paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Mikolov2013DistributedRO"> <a id="x26-109002"></a>Mikolov, T. et al. Distributed Representations of Words and Phrases and their
-Compositionality in Neural Information Processing Systems (2013)</span></span> describing an efficient technique to
-learn word embeddings using <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span>s, significantly outperforming
-previous attempts. This allowed them to learn embeddings on a very large corpus of text. They
+published a paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Mikolov2013DistributedRO"> <span class="bib-entry bib-author"><a id="x26-109002"></a>Mikolov et al.</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:16447573">"Distributed
+Representations of Words and Phrases and their Compositionality"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">Neural
+Information Processing Systems</span>, <span class="bib-entry bib-year">(2013)</span>.</span></span> describing an efficient technique to learn word
+embeddings using <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span>s, significantly outperforming previous
+attempts. This allowed them to learn embeddings on a very large corpus of text. They
 trained a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span> to predict the words near any given word and
 obtained astounding word embeddings. </p><div class="quote">  For example, synonyms had very close embeddings,
 and semantically related words such as France, Spain, and Italy were clustered together.
@@ -339,10 +320,10 @@ our worst biases. </p><div class="quote">  For example, although they correctly 
 Queen, they also seem to learn that Man is to Doctor as Woman is to Nurse which is quite a sexist
 bias! </div>
 <p class="noindent">To be fair, this particular example is probably exaggerated, as was pointed out in a 2019 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail" id="Nissim2019FairIB">
-<a id="x26-109003"></a>Nissim, M., van Noord, R. &amp; van der Goot, R. Fair Is Better than Sensational: Man Is to Doctor as
-Woman Is to Doctor. Computational Linguistics <b>46</b><b>,</b> 487–497 (2019)</span></span> by Malvina Nissim et al.
-Nevertheless, ensuring fairness in deep learning algorithms is an important and active research
-topic.
+<span class="bib-entry bib-author"><a id="x26-109003"></a>Nissim, van Noord &amp; van der Goot</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:165163511">"Fair Is Better
+than Sensational: Man Is to Doctor as Woman Is to Doctor"</a>, <span class="bib-entry bib-journal">Computational Linguistics</span>, <span class="bib-entry bib-book">booktitle</span>,
+<span class="bib-entry bib-year">(2019)</span>.</span></span> by Malvina Nissim et al. Nevertheless, ensuring fairness in deep learning algorithms is an
+important and active research topic.
 </p><p class="noindent">PyTorch provides an <code class="verb">nn.Embedding</code>  module, which wraps an embedding matrix: this matrix has one row per possible
 <span class="margin-block">category <span class="margin-comment"><a class="ellipsis" href="#m-ref-232">[232]</a>
 <span class="sidenote">e.g., one row for each token in the vocabulary.</span></span></span> and one column per embedding dimension. The
@@ -351,13 +332,11 @@ initialized randomly.
 </p><p class="noindent">To convert a category ID to an embedding, the  <code class="file"><code class="verb">nn.Embedding</code></code> layer just looks up and returns the
 corresponding row. </p><div class="quote">  For example, let’s initialize an  <code class="file"><code class="verb">nn.Embedding</code></code> layer with five categories and 3D
 embeddings, and use it to encode some categories: </div>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb214"><a id="x26-109005r305"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">nn</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb214"><a id="x26-109005r305"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">nn</span> 
 <a id="x26-109007r306"></a> 
 <a id="x26-109009r307"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x26-109011r308"></a>embed = nn.Embedding(<span style="color:#8F4070;">5</span>, <span style="color:#8F4070;">3</span>)  <span style="color:#918273;"><i># 5 categories Œ 3D embeddings</i></span> 
-<a id="x26-109013r309"></a>embed(torch.tensor([[<span style="color:#8F4070;">3</span>, <span style="color:#8F4070;">2</span>], [<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">2</span>]]))</pre>
-</code></pre>
+<a id="x26-109013r309"></a>embed(torch.tensor([[<span style="color:#8F4070;">3</span>, <span style="color:#8F4070;">2</span>], [<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">2</span>]]))</pre></code></pre></div>
 <p class="noindent">As we can see, category 3 gets encoded as the 3D vector  <var class="var"><code class="verb">[0.2674, 0.5349, 0.8094]</code></var> , category 2 gets
 encoded (twice) as the 3D vector  <var class="var"><code class="verb">[2.2082, -0.6380, 0.4617]</code></var> , and category 0 gets encoded as the
 3D vector  <var class="var"><code class="verb">[0.3367, 0.1288, 0.2345]</code></var> . Since the layer is not trained yet, these encodings are just
@@ -384,8 +363,7 @@ module (introduced in <span class="refclass-ref"><a href="WorkingwithRNNsandCNNs
 dropout.
 We can try tweaking the number of layers and units later, if needed:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb215"><a id="x26-110002r321"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">ShakespeareModel</span>(nn.Module): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb215"><a id="x26-110002r321"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">ShakespeareModel</span>(nn.Module): 
 <a id="x26-110004r322"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, vocab_size, n_layers=<span style="color:#8F4070;">2</span>, embed_dim=<span style="color:#8F4070;">10</span>, hidden_dim=<span style="color:#8F4070;">128</span>, 
 <a id="x26-110006r323"></a>                 dropout=<span style="color:#8F4070;">0.1</span>): 
 <a id="x26-110008r324"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
@@ -400,8 +378,7 @@ We can try tweaking the number of layers and units later, if needed:
 <a id="x26-110026r333"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(outputs).permute(<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">1</span>) 
 <a id="x26-110028r334"></a> 
 <a id="x26-110030r335"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
-<a id="x26-110032r336"></a>model = ShakespeareModel(<span style="color:#B03B03;">len</span>(vocab)).to(device)</pre>
-</code></pre>
+<a id="x26-110032r336"></a>model = ShakespeareModel(<span style="color:#B03B03;">len</span>(vocab)).to(device)</pre></code></pre></div>
 <p class="noindent">Let’s go over this code: </p>
 <ul class="itemize1">
 <li class="itemize">
@@ -439,15 +416,13 @@ ignore them.5</p></li></ul>
 Accuracy metric.
 </p><p class="noindent">And now let’s use our model to predict the next character in a sentence:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb216"><a id="x26-110034r361"></a>model.eval()  <span style="color:#918273;"><i># don't forget to switch the model to evaluation mode!</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb216"><a id="x26-110034r361"></a>model.eval()  <span style="color:#918273;"><i># don't forget to switch the model to evaluation mode!</i></span> 
 <a id="x26-110036r362"></a>text = <span style="color:#78730D;">"To be or not to b"</span> 
 <a id="x26-110038r363"></a>encoded_text = encode_text(text).unsqueeze(dim=<span style="color:#8F4070;">0</span>).to(device) 
 <a id="x26-110040r364"></a><span style="color:#9E0005;">with</span> torch.no_grad(): 
 <a id="x26-110042r365"></a>    Y_logits = model(encoded_text) 
 <a id="x26-110044r366"></a>    predicted_char_id = Y_logits[<span style="color:#8F4070;">0</span>, :, -<span style="color:#8F4070;">1</span>].argmax().item() 
-<a id="x26-110046r367"></a>    predicted_char = id_to_char[predicted_char_id]  <span style="color:#918273;"><i># correctly predicts "e"</i></span></pre>
-</code></pre>
+<a id="x26-110046r367"></a>    predicted_char = id_to_char[predicted_char_id]  <span style="color:#918273;"><i># correctly predicts "e"</i></span></pre></code></pre></div>
 <p class="noindent">We first encode the text, add a batch dimension of size 1, and move the tensor to the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:cpu">CPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:cpu">Central
 Processing Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:cpu">Central Processing Unit</a></span></span></span>. Then we call our model and get logits for each time step.
 We’re only interested in logits for the final time step (hence the 1), and we want to know which
@@ -474,13 +449,11 @@ sampled. </p></div></div>
 <p class="noindent">To sample the next token, we can use the  <code class="file"><code class="verb">torch.multinomial()</code></code> function, which samples random
 class indices, given a list of class probabilities. For example:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb217"><a id="x26-111002r305"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">nn</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb217"><a id="x26-111002r305"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">nn</span> 
 <a id="x26-111004r306"></a> 
 <a id="x26-111006r307"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x26-111008r308"></a>embed = nn.Embedding(<span style="color:#8F4070;">5</span>, <span style="color:#8F4070;">3</span>)  <span style="color:#918273;"><i># 5 categories Œ 3D embeddings</i></span> 
-<a id="x26-111010r309"></a>embed(torch.tensor([[<span style="color:#8F4070;">3</span>, <span style="color:#8F4070;">2</span>], [<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">2</span>]]))</pre>
-</code></pre>
+<a id="x26-111010r309"></a>embed(torch.tensor([[<span style="color:#8F4070;">3</span>, <span style="color:#8F4070;">2</span>], [<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">2</span>]]))</pre></code></pre></div>
 <p class="noindent">To have more control over the diversity of the generated text, we can divide the logits by a number
 called the <b>temperature</b>, which we can tweak as we wish.
 </p>
@@ -492,8 +465,7 @@ mathematical equations, while higher temperatures are preferred when generating 
 creative text. Let’s write a  <code class="file"><code class="verb">next_char()</code></code> helper function which will use this approach to pick the next
 character to add to the input text:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb218"><a id="x26-111012r390"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn.functional</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">F</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb218"><a id="x26-111012r390"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn.functional</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">F</span> 
 <a id="x26-111014r391"></a> 
 <a id="x26-111016r392"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">next_char</span>(model, text, temperature=<span style="color:#8F4070;">1</span>): 
 <a id="x26-111018r393"></a>    encoded_text = encode_text(text).unsqueeze(dim=<span style="color:#8F4070;">0</span>).to(device) 
@@ -501,17 +473,14 @@ character to add to the input text:
 <a id="x26-111022r395"></a>        Y_logits = model(encoded_text) 
 <a id="x26-111024r396"></a>        Y_probas = F.softmax(Y_logits[<span style="color:#8F4070;">0</span>, :, -<span style="color:#8F4070;">1</span>] / temperature, dim=-<span style="color:#8F4070;">1</span>) 
 <a id="x26-111026r397"></a>        predicted_char_id = torch.multinomial(Y_probas, num_samples=<span style="color:#8F4070;">1</span>).item() 
-<a id="x26-111028r398"></a>    <span style="color:#9E0005;">return</span> id_to_char[predicted_char_id]</pre>
-</code></pre>
+<a id="x26-111028r398"></a>    <span style="color:#9E0005;">return</span> id_to_char[predicted_char_id]</pre></code></pre></div>
 <p class="noindent">Next, we can write another small helper function that will repeatedly call  <code class="file"><code class="verb">next_ char()</code></code> to get the
 next character and append it to the given text:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb219"><a id="x26-111030r403"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">extend_text</span>(model, text, n_chars=<span style="color:#8F4070;">80</span>, temperature=<span style="color:#8F4070;">1</span>): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb219"><a id="x26-111030r403"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">extend_text</span>(model, text, n_chars=<span style="color:#8F4070;">80</span>, temperature=<span style="color:#8F4070;">1</span>): 
 <a id="x26-111032r404"></a>    <span style="color:#9E0005;">for</span> _ <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(n_chars): 
 <a id="x26-111034r405"></a>        text += next_char(model, text, temperature) 
-<a id="x26-111036r406"></a>    <span style="color:#9E0005;">return</span> text</pre>
-</code></pre>
+<a id="x26-111036r406"></a>    <span style="color:#9E0005;">return</span> text</pre></code></pre></div>
 <p class="noindent">We are now ready to generate some text! Let’s try low, medium, and high temperatures:
 </p><p class="noindent">Notice the repetitions when the temperature is low: “the state and the” appears twice. The
 intermediate temperature led to more convincing results, although Romeo wasn’t very talkative today.
@@ -541,8 +510,8 @@ requires it to learn some higher-level tasks as well. For example, to find the n
 after “Great movie, I really”, it’s helpful to understand that the sentence is positive, </p><div class="quote">  so
 what follows is more likely to be the letter “l” (for “loved”) rather than “h” (for “hated”).
 </div>
-<p class="noindent">In fact, a 2017 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="Radford2017LearningTG"> <a id="x26-111038"></a>Radford, A., Józefowicz, R. &amp; Sutskever, I. Learning to Generate Reviews
-and Discovering Sentiment. ArXiv <b>abs/1704.01444</b> (2017)</span></span> by <i>Alec Radford</i> and other
+<p class="noindent">In fact, a 2017 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="Radford2017LearningTG"> <span class="bib-entry bib-author"><a id="x26-111038"></a>Radford, Józefowicz &amp; Sutskever</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:14838925">"Learning
+to Generate Reviews and Discovering Sentiment"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2017)</span>.</span></span> by <i>Alec Radford</i> and other
 OpenAI researchers describes how the authors trained a big char-<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural
 Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text, speech, or time
 series, by passing information through loops from one step to the next</a></span></span></span>-like model on a large
@@ -595,9 +564,8 @@ computer vision, speech recognition, and large language models.</p></dd>
 <dl class="acr-list">
 <a class="copiable-link" href="#glo:rnn">¶</a>
 <dt class="acr-bottom" id="glo:rnn"><span class="acr-short">RNN</span><span class="acr-long">Recurrent Neural Networks</span></dt>
-<dd class="acr-desc"><p>a type of ANN
-designed to process sequential data, such as text, speech, or time series, by passing information
-through loops from one step to the next</p></dd>
+<dd class="acr-desc"><p>a type of ANN designed to process sequential data, such as text,
+speech, or time series, by passing information through loops from one step to the next</p></dd>
 </dl>
 </div>
 <div class="section-header">
@@ -606,26 +574,34 @@ through loops from one step to the next</p></dd>
 <i class="fa-solid fa-magnifying-glass"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-reference"></a>
             Page References</span>
 </h3>
 </div>
 <div class="cite-block">
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">1.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Karpathy, A. The Unreasonable Effectiveness of Recurrent Neural Networks Blog post. 2015</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="karpathy2015unreasonable"><a id="w3-20001"></a>
+<span class="bib-entry bib-author"><a id="x26-107001"></a>Karpathy</span>, <a class="bib-entry bib-title" href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">"The Unreasonable Effectiveness of
+Recurrent Neural Networks"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2015)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">2.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Mikolov, T. et al. Distributed Representations of Words and Phrases and their Compositionality in Neural Information Processing Systems (2013)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Mikolov2013DistributedRO"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x26-109002"></a>Mikolov et al.</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:16447573">"Distributed
+Representations of Words and Phrases and their Compositionality"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">Neural
+Information Processing Systems</span>, <span class="bib-entry bib-year">(2013)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">3.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Nissim, M., van Noord, R. &amp; van der Goot, R. Fair Is Better than Sensational: Man Is to Doctor as Woman Is to Doctor. Computational Linguistics 46, 487–497 (2019)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Nissim2019FairIB"><a id="w3-20001"></a>
+<span class="bib-entry bib-author"><a id="x26-109003"></a>Nissim, van Noord &amp; van der Goot</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:165163511">"Fair Is Better
+than Sensational: Man Is to Doctor as Woman Is to Doctor"</a>, <span class="bib-entry bib-journal">Computational Linguistics</span>, <span class="bib-entry bib-book">booktitle</span>,
+<span class="bib-entry bib-year">(2019)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">4.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Radford, A., Józefowicz, R. &amp; Sutskever, I. Learning to Generate Reviews and Discovering Sentiment. ArXiv abs/1704.01444 (2017)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Radford2017LearningTG"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x26-111038"></a>Radford, Józefowicz &amp; Sutskever</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:14838925">"Learning
+to Generate Reviews and Discovering Sentiment"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2017)</span>.</span></dd>
 </dl></div>
 <div class="section-header">
 <h3 id="header-section-references">
@@ -633,7 +609,7 @@ through loops from one step to the next</p></dd>
 <i class="fa-regular fa-note-sticky"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-margin"></a>
                     Page Footnotes</span>
 </h3>
 </div>
@@ -688,7 +664,7 @@ Processing</a></span></span></span>.</span></dd>
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>

@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="BuildingNonsequentialModelsUsingCustomModules.html">Building Nonsequential Models Using Custom Modules</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="MiniBatchGradientDescentUsingDataLoaders.html">Mini-Batch Gradient Descent Using DataLoaders</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="UnderstandingPyTorch.html#ModelEvaluation.html">Chapter: Understanding PyTorch</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -92,8 +92,7 @@ batch, and lastly a function to aggregate the batch <span class="margin-block">m
 <span class="sidenote">By default, it just computes the
 mean.</span></span></span>
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb77"><a id="x11-32002r654"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">evaluate</span>(model, data_loader, metric_fn, aggregate_fn=torch.mean): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb77"><a id="x11-32002r654"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">evaluate</span>(model, data_loader, metric_fn, aggregate_fn=torch.mean): 
 <a id="x11-32004r655"></a>    model.eval() 
 <a id="x11-32006r656"></a>    metrics = [] 
 <a id="x11-32008r657"></a>    <span style="color:#9E0005;">with</span> torch.no_grad(): 
@@ -102,35 +101,28 @@ mean.</span></span></span>
 <a id="x11-32014r660"></a>            y_pred = model(X_batch) 
 <a id="x11-32016r661"></a>            metric = metric_fn(y_pred, y_batch) 
 <a id="x11-32018r662"></a>            metrics.append(metric) 
-<a id="x11-32020r663"></a>    <span style="color:#9E0005;">return</span> aggregate_fn(torch.stack(metrics))</pre>
-</code></pre>
+<a id="x11-32020r663"></a>    <span style="color:#9E0005;">return</span> aggregate_fn(torch.stack(metrics))</pre></code></pre></div>
 <p class="noindent">Now let’s build a <code class="verb">TensorDataset</code>  and a <code class="verb">DataLoader</code>  for our validation set, and pass it to our <code class="verb">evaluate()</code>  function to compute the validation
 <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:mse">MSE</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:mse">Mean Square Error</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mse">Mean Square Error</a></span></span></span>:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb78"><a id="x11-32022r668"></a>valid_dataset = TensorDataset(X_valid, y_valid) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb78"><a id="x11-32022r668"></a>valid_dataset = TensorDataset(X_valid, y_valid) 
 <a id="x11-32024r669"></a>valid_loader = DataLoader(valid_dataset, batch_size=<span style="color:#8F4070;">32</span>) 
 <a id="x11-32026r670"></a>valid_mse = evaluate(model, valid_loader, mse) 
-<a id="x11-32028r671"></a>valid_mse</pre>
-</code></pre>
+<a id="x11-32028r671"></a>valid_mse</pre></code></pre></div>
 <p class="noindent">It works fine. But now suppose we want to use the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rmse">RMSE</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rmse">Root-Mean Square Error</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rmse">Root-Mean Square
 Error</a></span></span></span> instead of the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:mse">MSE</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:mse">Mean Square Error</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mse">Mean Square Error</a></span></span></span>. PyTorch does not have a built-in
 function for that, but it’s easy enough to write:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb79"><a id="x11-32030r676"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">rmse</span>(y_pred, y_true): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb79"><a id="x11-32030r676"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">rmse</span>(y_pred, y_true): 
 <a id="x11-32032r677"></a>    <span style="color:#9E0005;">return</span> ((y_pred - y_true) ** <span style="color:#8F4070;">2</span>).mean().sqrt() 
 <a id="x11-32034r678"></a> 
-<a id="x11-32036r679"></a>evaluate(model, valid_loader, rmse)</pre>
-</code></pre>
+<a id="x11-32036r679"></a>evaluate(model, valid_loader, rmse)</pre></code></pre></div>
 <p class="noindent">The <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rmse">RMSE</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rmse">Root-Mean Square Error</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rmse">Root-Mean Square Error</a></span></span></span> should be equal to the square root of the
 <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:mse">MSE</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:mse">Mean Square Error</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mse">Mean Square Error</a></span></span></span>. However, when we compute the square root of
 the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:mse">MSE</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:mse">Mean Square Error</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mse">Mean Square Error</a></span></span></span> that we found earlier, we get a different
 result:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb80"><a id="x11-32038r684"></a>valid_mse.sqrt()</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb80"><a id="x11-32038r684"></a>valid_mse.sqrt()</pre></code></pre></div>
 <p class="noindent">The reason is that instead of calculating the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rmse">RMSE</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rmse">Root-Mean Square Error</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rmse">Root-Mean Square Error</a></span></span></span>
 over the whole validation set, we computed it over each batch and then computed the mean of all these
 batch <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rmse">RMSE</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rmse">Root-Mean Square Error</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rmse">Root-Mean Square Error</a></span></span></span>s.
@@ -145,10 +137,8 @@ Square Error</a></span></span></span>s is equal to the overall <span class="acro
 the same size. Well, except the last batch, which is often smaller, but this makes very little
 difference.</span></span></span>
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb81"><a id="x11-32040r689"></a>evaluate(model, valid_loader, mse, 
-<a id="x11-32042r690"></a>         aggregate_fn=<span style="color:#9E0005;">lambda</span> metrics: torch.sqrt(torch.mean(metrics)))</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb81"><a id="x11-32040r689"></a>evaluate(model, valid_loader, mse, 
+<a id="x11-32042r690"></a>         aggregate_fn=<span style="color:#9E0005;">lambda</span> metrics: torch.sqrt(torch.mean(metrics)))</pre></code></pre></div>
 <p class="noindent">Rather than implement metrics yourself, you may prefer to use the TorchMetrics <span class="margin-block">library,
 <span class="margin-comment"><a class="ellipsis" href="#m-ref-81">[81]</a>
 <span class="sidenote">made by the same team as PyTorch Lightning.</span></span></span> which provides many well-tested streaming
@@ -157,8 +147,7 @@ metrics.
 <div class="block-minor knowledge"><div class="body">
 <p class="noindent">A streaming metric is an object that keeps track of a given metric, and can be updated one batch at a
 time. </p></div></div>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb82"><a id="x11-32044r695"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torchmetrics</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb82"><a id="x11-32044r695"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torchmetrics</span> 
 <a id="x11-32046r696"></a> 
 <a id="x11-32048r697"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">evaluate_tm</span>(model, data_loader, metric): 
 <a id="x11-32050r698"></a>    model.eval() 
@@ -168,8 +157,7 @@ time. </p></div></div>
 <a id="x11-32058r702"></a>            X_batch, y_batch = X_batch.to(device), y_batch.to(device) 
 <a id="x11-32060r703"></a>            y_pred = model(X_batch) 
 <a id="x11-32062r704"></a>            metric.update(y_pred, y_batch)  <span style="color:#918273;"><i># update it at each iteration</i></span> 
-<a id="x11-32064r705"></a>    <span style="color:#9E0005;">return</span> metric.compute()  <span style="color:#918273;"><i># compute the final result at the end</i></span></pre>
-</code></pre>
+<a id="x11-32064r705"></a>    <span style="color:#9E0005;">return</span> metric.compute()  <span style="color:#918273;"><i># compute the final result at the end</i></span></pre></code></pre></div>
 <p class="noindent">Then we can create an <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rmse">RMSE</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rmse">Root-Mean Square Error</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rmse">Root-Mean Square Error</a></span></span></span> streaming metric,
 move it to the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gpu">GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gpu">Graphical Processing Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gpu">A specialized electronic chip designed to
 rapidly render images, video, and 3D animations. Unlike a central processing unit (CPU)
@@ -177,10 +165,8 @@ that processes tasks sequentially, a GPU uses parallel processing with thousands
 cores to handle many calculations at the same time.</a></span></span></span>, and use it to evaluate the validation
 set:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb83"><a id="x11-32066r710"></a>rmse = torchmetrics.MeanSquaredError(squared=<span style="color:#9E0005;">False</span>).to(device) 
-<a id="x11-32068r711"></a>evaluate_tm(model, valid_loader, rmse)</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb83"><a id="x11-32066r710"></a>rmse = torchmetrics.MeanSquaredError(squared=<span style="color:#9E0005;">False</span>).to(device) 
+<a id="x11-32068r711"></a>evaluate_tm(model, valid_loader, rmse)</pre></code></pre></div>
 <p class="noindent">If the performance on the training set is much better than on the validation set, your model is probably
 overfitting the training set, or there is a bug, such as a data mismatch between the training set and the
 validation set.
@@ -225,7 +211,7 @@ Error</p></dd>
 <i class="fa-regular fa-note-sticky"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-margin"></a>
                     Page Footnotes</span>
 </h3>
 </div>
@@ -253,7 +239,7 @@ difference.</span></dd>
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>

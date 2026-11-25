@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="ImplementingMLPswithKeras.html">Implementing MLPs with Keras</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="IntroductiontoArtificialNeuralNetworks.html">Chapter: Introduction to Artificial Neural Networks</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="IntroductiontoArtificialNeuralNetworks.html#FromBiologytoSiliconArtificialNeurons.html">Chapter: Introduction to Artificial Neural Networks</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -90,9 +90,8 @@ Artificial Neurons</span></h3></div>
 <div class="sidenote"> <span class="figure">
 <p class="noindent"><img alt="PIC" src="figures/Introduction-to-Artificial-Neural-Networks/raster/neural-paper-original.png" style=""/> <a id="x4-3001r3"></a>
 </p>
-<figcaption class="caption"><span class="id">Figure 1.3: </span><span class="content">The original paper which defined how a network of neurons could be defined. <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="mcculloch1943logical"> McCulloch, W. S. &amp;
-Pitts, W. A logical calculus of the ideas immanent in nervous activity. The bulletin of mathematical biophysics <b>5</b><b>,</b>
-115–133 (1943)</span></span> </span></figcaption>
+<figcaption class="caption"><span class="id">Figure 1.3: </span><span class="content">The original paper which defined how a network of neurons could be defined. <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="mcculloch1943logical"> <span class="bib-entry bib-author">McCulloch &amp; Pitts</span>, <a class="bib-entry bib-title" href="url">"A
+logical calculus of the ideas immanent in nervous activity"</a>, <span class="bib-entry bib-journal">The bulletin of mathematical biophysics</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1943)</span>.</span></span></span></figcaption>
 </span>
 <p class="noindent"></p></div>
 <p class="noindent">While it may seem <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span>s are the cutting edge in
@@ -101,21 +100,20 @@ introduced back in 1943 by the <i>neurophysiologist</i> Warren <span class="marg
 <span class="sidenote"><b>Warren Sturgis McCulloch</b>
 <i>(1898  -  1969)</i>
 was an American neurophysiologist and cybernetician known for his work on the foundation for certain
-brain theories and his contribution to the <span class="alert">cybernetics</span> movement. Along with <i>Walter Pitts</i>, McCulloch
-created computational models based on mathematical algorithms called threshold logic
-which split the inquiry into two distinct approaches, one approach focused on biological
-processes in the brain and the other focused on the application of neural networks to artificial
-intelligence <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="mcculloch1943logical"> <a id="x4-3003"></a>McCulloch, W. S. &amp; Pitts, W. A logical calculus of the ideas immanent
-in nervous activity. The bulletin of mathematical biophysics <b>5</b><b>,</b> 115–133 (1943)</span></span>.</span></span></span> and the
-mathematician Walter Pitts. In their landmark paper <i>A Logical Calculus of Ideas Immanent in
-Nervous Activity</i>, They presented a simplified computational model of how biological neurons
-might work together in animal brains to perform complex computations using propositional
-logic.
+brain theories and his contribution to the <span class="alert">cybernetics</span> movement. Along with <i>Walter Pitts</i>, McCulloch created
+computational models based on mathematical algorithms called threshold logic which split the inquiry
+into two distinct approaches, one approach focused on biological processes in the brain and the other
+focused on the application of neural networks to artificial intelligence <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="mcculloch1943logical"> <span class="bib-entry bib-author"><a id="x4-3003"></a>McCulloch &amp; Pitts</span>, <a class="bib-entry bib-title" href="url">"A
+logical calculus of the ideas immanent in nervous activity"</a>, <span class="bib-entry bib-journal">The bulletin of mathematical biophysics</span>,
+<span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1943)</span>.</span></span>.</span></span></span> and the mathematician Walter Pitts. In their landmark paper <i>A Logical Calculus of
+Ideas Immanent in Nervous Activity</i>, They presented a simplified computational model of how
+biological neurons might work together in animal brains to perform complex computations using
+propositional logic.
 </p>
 <div class="block-minor warning"><div class="body">
-<p class="noindent">This was the first <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span> architecture <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="mcculloch1943logical">
-McCulloch, W. S. &amp; Pitts, W. A logical calculus of the ideas immanent in nervous activity. The
-bulletin of mathematical biophysics <b>5</b><b>,</b> 115–133 (1943)</span></span>. </p></div></div>
+<p class="noindent">This was the first <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span> architecture <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail" id="mcculloch1943logical"> <span class="bib-entry bib-author">McCulloch
+&amp; Pitts</span>, <a class="bib-entry bib-title" href="url">"A logical calculus of the ideas immanent in nervous activity"</a>, <span class="bib-entry bib-journal">The bulletin of mathematical
+biophysics</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1943)</span>.</span></span>. </p></div></div>
 <p class="noindent">Since then, many other architectures have been invented. The early successes of <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural
 Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span>s led to the widespread belief that we would soon be conversing
 with truly intelligent machines. When it became clear in the 1960s that this promise would go
@@ -123,8 +121,8 @@ with truly intelligent machines. When it became clear in the 1960s that this pro
 <span class="sidenote">at least for quite a while.</span></span></span> funding was diverted elsewhere, and <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial
 Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span>s entered a long winter. This is also known as the
 <math display="inline"><msup><mrow><mstyle class="text"><mtext>1</mtext></mstyle></mrow><mrow><mstyle class="text"><mtext>st</mtext></mstyle></mrow></msup></math> AI
-winter <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="howe2007artificial"> <a id="x4-3004"></a>Howe, J. Artificial intelligence at edinburgh university: A perspective. Archived from the
-original on <b>17</b> (2007)</span></span>. In the early 1980s, new architectures were invented and better training
+winter <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="howe2007artificial"> <span class="bib-entry bib-author"><a id="x4-3004"></a>Howe</span>, <a class="bib-entry bib-title" href="url">"Artificial intelligence at edinburgh university: A perspective"</a>, <span class="bib-entry bib-journal">Archived from the
+original on</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2007)</span>.</span></span>. In the early 1980s, new architectures were invented and better training
 techniques were developed, sparking a revival of interest in connectionism, the study of <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial
 Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span>s. But progress was slow, and by the 1990s other powerful
 <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ml">ML</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ml">Machine Learning</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ml">Machine Learning</a></span></span></span> techniques had been invented, such as <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:svm">SVM</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:svm">Support Vector
@@ -164,10 +162,10 @@ impact.
 </p><p class="noindent">Some theoretical limitations of <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span>s have turned
 out to be benign in practice. For example, many people thought that <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural
 Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span> training algorithms were doomed because they were likely to get
-stuck in local optima <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail" id="goodfellow2014qualitatively"> <a id="x4-3005"></a>Goodfellow, I. J., Vinyals, O. &amp; Saxe, A. M. Qualitatively characterizing
-neural network optimization problems. arXiv preprint arXiv:1412.6544 (2014)</span></span>, but it turns out that
-this is <b>NOT</b> a big problem in practice, especially for larger <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial
-Neural Networks</a></span></span></span>s:
+stuck in local optima <span class="cite"><a class="cite-show" href="#w3-20001">[†-5]</a><span class="cite-detail" id="goodfellow2014qualitatively"> <span class="bib-entry bib-author"><a id="x4-3005"></a>Goodfellow, Vinyals &amp; Saxe</span>, <a class="bib-entry bib-title" href="url">"Qualitatively characterizing neural network
+optimization problems"</a>, <span class="bib-entry bib-journal">arXiv preprint arXiv:1412.6544</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2014)</span>.</span></span>, but it turns out that this
+is <b>NOT</b> a big problem in practice, especially for larger <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural
+Networks</a></span></span></span>s:
 </p>
 <div class="block-minor warning"><div class="body">
 <p class="noindent">The local optima often perform almost as well as the global optimum. </p></div></div>
@@ -239,8 +237,8 @@ wild.</p></li></ul>
 <figcaption class="caption"><span class="id">Figure 1.4: </span><span class="content">A neuron or nerve cell is an excitable cell that fires electric signals called action potentials across a neural
 network in the nervous system. Neurons communicate with other cells via synapses, which are specialized connections
 that commonly use minute amounts of chemical neurotransmitters to pass the electric signal from the presynaptic neuron
-to the target cell through the synaptic gap <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="sebe2023stepwise"> Sebé-Pedrós, A. Stepwise emergence of the neuronal gene expression
-program in early animal evolution (2023)</span></span>.                                                    </span></figcaption>
+to the target cell through the synaptic gap <span class="cite"><a class="cite-show" href="#w3-20001">[†-6]</a><span class="cite-detail" id="sebe2023stepwise"> <span class="bib-entry bib-author">Sebé-Pedrós</span>, <a class="bib-entry bib-title" href="url">"Stepwise emergence of the neuronal gene expression
+program in early animal evolution"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2023)</span>.</span></span>.                                 </span></figcaption>
 <img alt="PIC" src="figures/Introduction-to-Artificial-Neural-Networks/raster/neuron.png" style=""/>
 </span>
 <p class="noindent"></p></div>
@@ -260,17 +258,16 @@ neurotransmitters. When a neuron receives a sufficient amount of these neurotran
 its own electrical <span class="margin-block">impulses. <span class="margin-comment"><a class="ellipsis" href="#m-ref-10">[10]</a>
 <span class="sidenote">Actually, it depends on the neurotransmitters, as some of them inhibit the
 neuron from firing.</span></span></span>
-</p><p class="noindent">Therefore, individual biological neurons seem to behave in a simple way, but they’re organised
-in a vast network of billions, with each neuron typically connected to thousands of other
-neurons. Highly complex computations can be performed by a network of fairly simple
-neurons, much like a complex anthill can emerge from the combined efforts of simple ants. The
-architecture of biological neural networks (BNNs) is the subject of active research, but some
-parts of the brain have been mapped <span class="cite"><a class="cite-show" href="#w3-20001">[†-5]</a><span class="cite-detail" id="barrett2019analyzing"> <a id="x4-5003"></a>Barrett, D. G., Morcos, A. S. &amp; Macke, J. H.
-Analyzing biological and artificial neural networks: challenges with opportunities for synergy?
-Current opinion in neurobiology <b>55</b><b>,</b> 55–64 (2019)</span></span>. These efforts show that neurons are often
-organised in consecutive layers, especially in the cerebral <span class="margin-block">cortex. <span class="margin-comment"><a class="ellipsis" href="#m-ref-11">[11]</a>
-<span class="sidenote">This is the outer layer of the
-brain.</span></span></span>
+</p><p class="noindent">Therefore, individual biological neurons seem to behave in a simple way, but they’re organised in a vast
+network of billions, with each neuron typically connected to thousands of other neurons. Highly
+complex computations can be performed by a network of fairly simple neurons, much like a complex
+anthill can emerge from the combined efforts of simple ants. The architecture of biological neural
+networks (BNNs) is the subject of active research, but some parts of the brain have been mapped <span class="cite"><a class="cite-show" href="#w3-20001">[†-7]</a><span class="cite-detail" id="barrett2019analyzing">
+<span class="bib-entry bib-author"><a id="x4-5003"></a>Barrett, Morcos &amp; Macke</span>, <a class="bib-entry bib-title" href="url">"Analyzing biological and artificial neural networks: challenges with
+opportunities for synergy?"</a>, <span class="bib-entry bib-journal">Current opinion in neurobiology</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2019)</span>.</span></span>. These efforts show
+that neurons are often organised in consecutive layers, especially in the cerebral <span class="margin-block">cortex. <span class="margin-comment"><a class="ellipsis" href="#m-ref-11">[11]</a>
+<span class="sidenote">This is the
+outer layer of the brain.</span></span></span>
 </p>
 <div class="sidenote"> <span class="figure">
 <a id="x4-5004r5"></a>
@@ -340,8 +337,8 @@ Networks</a></span></span></span> architectures, invented in 1957 by Frank <span
 <i>(1928  -  1971)</i>
 was an American psychologist notable in the field of <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ai">AI</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ai">Artificial Intelligence</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ai">Artificial Intelligence</a></span></span></span>. He is
 sometimes called the father of deep learning for his pioneering work on <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural
-Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span>s.</span></span></span></span> <span class="cite"><a class="cite-show" href="#w3-20001">[†-6]</a><span class="cite-detail" id="block1962perceptron"> <a id="x4-7001"></a>Block, H.-D. The perceptron: A model for brain functioning.
-i. Reviews of Modern Physics <b>34</b><b>,</b> 123 (1962)</span></span>. It is based on a slightly different artificial
+Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span>s.</span></span></span></span> <span class="cite"><a class="cite-show" href="#w3-20001">[†-8]</a><span class="cite-detail" id="block1962perceptron"> <span class="bib-entry bib-author"><a id="x4-7001"></a>Block</span>, <a class="bib-entry bib-title" href="url">"The perceptron: A model for brain functioning. i"</a>,
+<span class="bib-entry bib-journal">Reviews of Modern Physics</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1962)</span>.</span></span>. It is based on a slightly different artificial
 neuron called a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:tlu">TLU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:tlu">Threshold Logic Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:tlu">Threshold Logic Unit</a></span></span></span>, or sometimes a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ltu">LTU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ltu">Linear
 Threshold Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ltu">Linear Threshold Unit</a></span></span></span> which can be seen in <b>Fig.</b> <a href="#x4-7002r7">1.7</a>. The inputs and output are
 <span class="margin-block">numbers, <span class="margin-comment"><a class="ellipsis" href="#m-ref-15">[15]</a>
@@ -371,8 +368,8 @@ bias term <math display="inline"><mi>b</mi></math>.
 <img alt="PIC" src="figures/Introduction-to-Artificial-Neural-Networks/figures-1.png" style=""/>
 </figure>
 <p class="noindent">The most common step function used in perceptrons is the <b>Heaviside step</b> and sometimes the <b>sign
-function</b> is used instead <span class="cite"><a class="cite-show" href="#w3-20001">[†-7]</a><span class="cite-detail" id="sharma2017activation"> <a id="x4-7003"></a>Sharma, S., Sharma, S. &amp; Athaiya, A. Activation functions in neural
-networks. Towards Data Sci <b>6</b><b>,</b> 310–316 (2017)</span></span>. </p><table class="equation-star"><tr><td>
+function</b> is used instead <span class="cite"><a class="cite-show" href="#w3-20001">[†-9]</a><span class="cite-detail" id="sharma2017activation"> <span class="bib-entry bib-author"><a id="x4-7003"></a>Sharma, Sharma &amp; Athaiya</span>, <a class="bib-entry bib-title" href="url">"Activation functions in neural networks"</a>,
+<span class="bib-entry bib-journal">Towards Data Sci</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2017)</span>.</span></span>. </p><table class="equation-star"><tr><td>
 <math class="equation" display="block">
 <mstyle class="text"><mtext>heaviside</mtext></mstyle>
 <mo class="MathClass-open" stretchy="false">(</mo><mi>z</mi><mo class="MathClass-close" stretchy="false">)</mo> <mo class="MathClass-rel" stretchy="false">=</mo> <mrow class="cases"> <mrow><mo fence="true" form="prefix">{</mo><mrow> <mtable align="axis" class="array" columnlines="none" displaystyle="true" equalcolumns="false" equalrows="false" style=""> <mtr class="array-row"><mtd class="array-td" columnalign="left"><mn>0</mn><mspace class="qquad" width="2em"></mspace><mspace class="quad" width="1em"></mspace></mtd><mtd class="array-td" columnalign="left"><mstyle class="text"><mtext>if</mtext></mstyle><mspace class="quad" width="1em"></mspace><mi>z</mi> <mo class="MathClass-rel" stretchy="false">&lt;</mo> <mn>0</mn><mo class="MathClass-punc" stretchy="false">,</mo></mtd></mtr> <mtr class="array-row"><mtd class="array-td" columnalign="left"><mn>1</mn><mspace class="qquad" width="2em"></mspace><mspace class="quad" width="1em"></mspace></mtd> <mtd class="array-td" columnalign="left"><mstyle class="text"><mtext>if</mtext></mstyle> <mspace class="quad" width="1em"></mspace> <mi>z</mi> <mo class="MathClass-rel" stretchy="false">⩾</mo> <mn>0</mn><mo class="MathClass-punc" stretchy="false">.</mo></mtd></mtr></mtable> </mrow><mo fence="true" form="postfix"></mo></mrow></mrow><mspace class="qquad" width="2em"></mspace><mstyle class="text"><mtext>sgn</mtext></mstyle><mo class="MathClass-open" stretchy="false">(</mo><mi>z</mi><mo class="MathClass-close" stretchy="false">)</mo> <mo class="MathClass-rel" stretchy="false">=</mo> <mrow class="cases"> <mrow><mo fence="true" form="prefix">{</mo><mrow> <mtable align="axis" class="array" columnlines="none" displaystyle="true" equalcolumns="false" equalrows="false" style=""> <mtr class="array-row"><mtd class="array-td" columnalign="left"><mo class="MathClass-bin" stretchy="false">−</mo><mn>1</mn><mspace class="qquad" width="2em"></mspace><mspace class="quad" width="1em"></mspace></mtd>
@@ -390,8 +387,8 @@ logistic regression or linear <span class="acronym"><span class="acronym-short">
 <p class="noindent">It is possible, for example, use a single <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:tlu">TLU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:tlu">Threshold Logic Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:tlu">Threshold Logic Unit</a></span></span></span> to
 classify <i>iris flowers</i><span class="margin-block"> <span class="margin-comment"><a class="ellipsis" href="#m-ref-17">[17]</a>
 <span class="sidenote">a famous dataset used by statisticians and <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ml">ML</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ml">Machine Learning</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ml">Machine
-Learning</a></span></span></span> researchers</span></span></span> <span class="cite"><a class="cite-show" href="#w3-20001">[†-8]</a><span class="cite-detail" id="fisher1936use"> <a id="x4-7004"></a>Fisher, R. A. The use of multiple measurements in taxonomic
-problems. Annals of eugenics <b>7</b><b>,</b> 179–188 (1936)</span></span> based on <span class="alert">petal length</span> and <span class="alert">width</span>. Training such a
+Learning</a></span></span></span> researchers</span></span></span> <span class="cite"><a class="cite-show" href="#w3-20001">[†-10]</a><span class="cite-detail" id="fisher1936use"> <span class="bib-entry bib-author"><a id="x4-7004"></a>Fisher</span>, <a class="bib-entry bib-title" href="url">"The use of multiple measurements in taxonomic
+problems"</a>, <span class="bib-entry bib-journal">Annals of eugenics</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1936)</span>.</span></span> based on <span class="alert">petal length</span> and <span class="alert">width</span>. Training such a
 <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:tlu">TLU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:tlu">Threshold Logic Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:tlu">Threshold Logic Unit</a></span></span></span> would require finding the right values for
 <math display="inline"><msubsup><mrow><mi>w</mi></mrow><mrow><mn>1</mn></mrow><mrow></mrow></msubsup><mo class="MathClass-punc" stretchy="false">,</mo><msubsup><mrow><mi>w</mi></mrow><mrow><mn>2</mn></mrow><mrow></mrow></msubsup><mo class="MathClass-punc" stretchy="false">,</mo><mspace class="thinspace" width="0.17em"></mspace><mi>b</mi></math>.
 A perceptron is composed of one or more <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:tlu">TLU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:tlu">Threshold Logic Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:tlu">Threshold Logic Unit</a></span></span></span>s organized in
@@ -460,13 +457,13 @@ is then applied itemwise to each item in the resulting matrix.
 </p>
 <div class="quote"> <i>How is this perceptron trained?</i> </div>
 <p class="noindent">The original perceptron training algorithm proposed by Rosenblatt was largely inspired by Hebb’s
-rule <span class="cite"><a class="cite-show" href="#w3-20001">[†-9]</a><span class="cite-detail" id="sompolinsky2006theory"> <a id="x4-7007"></a>Sompolinsky, H. The theory of neural networks: The Hebb rule and beyond in Heidelberg
-Colloquium on Glassy Dynamics: Proceedings of a Colloquium on Spin Glasses, Optimization and
-Neural Networks Held at the University of Heidelberg June 9–13, 1986 (2006), 485–527</span></span>. In his 1949
-book <i>The Organization of Behaviour</i>, Donald Hebb suggested that when a biological neuron
-triggers another neuron often, the connection between these two neurons grows stronger <span class="cite"><a class="cite-show" href="#w3-20001">[†-10]</a><span class="cite-detail" id="hebb2005organization">
-<a id="x4-7008"></a>Hebb, D. O. The organization of behavior: A neuropsychological theory (Psychology press,
-2005)</span></span>.
+rule <span class="cite"><a class="cite-show" href="#w3-20001">[†-11]</a><span class="cite-detail" id="sompolinsky2006theory"> <span class="bib-entry bib-author"><a id="x4-7007"></a>Sompolinsky</span>, <a class="bib-entry bib-title" href="url">"The theory of neural networks: The Hebb rule and beyond"</a>, <span class="bib-entry bib-journal">journaltitle</span>,
+<span class="bib-entry bib-book">Heidelberg Colloquium on Glassy Dynamics: Proceedings of a Colloquium on Spin Glasses,
+Optimization and Neural Networks Held at the University of Heidelberg June 9–13, 1986</span>, <span class="bib-entry bib-year">(2006)</span>.</span></span>. In
+his 1949 book <i>The Organization of Behaviour</i>, Donald Hebb suggested that when a biological neuron
+triggers another neuron often, the connection between these two neurons grows stronger <span class="cite"><a class="cite-show" href="#w3-20001">[†-12]</a><span class="cite-detail" id="hebb2005organization"> <span class="bib-entry bib-author"><a id="x4-7008"></a>Hebb</span>,
+<a class="bib-entry bib-title" href="url">"The organization of behavior: A neuropsychological theory"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">booktitle</span>,
+<span class="bib-entry bib-year">(2005)</span>.</span></span>.
 </p><p class="noindent">Siegrid Löwel later summarized Hebb’s idea in the catchy phrase,
 </p>
 <div class="quote"> Cells that fire together, wire together. </div>
@@ -475,14 +472,14 @@ triggers another neuron often, the connection between these two neurons grows st
 <div class="block-minor knowledge"><div class="body">
 <p class="noindent">This rule later became known as <span class="margin-block">Hebb’s rule <span class="margin-comment"><a class="ellipsis" href="#m-ref-18">[18]</a>
 <span class="sidenote">The following is an excerpt from primary author of the idea.
-<i>Let us assume that the persistence or repetition of a reverberatory activity (or "trace") tends to induce
-lasting cellular changes that add to its stability. …. When an axon of cell A is near enough to
-excite a cell B and repeatedly or persistently takes part in firing it, some growth process or
-metabolic change takes place in one or both cells such that A’s efficiency, as one of the cells
-firing B, is increased. <span class="cite"><a class="cite-show" href="#w3-20001">[†-10]</a><span class="cite-detail" id="hebb2005organization"> Hebb, D. O. The organization of behavior: A neuropsychological
-theory (Psychology press, 2005)</span></span></i></span></span></span> (or Hebbian learning <span class="cite"><a class="cite-show" href="#w3-20001">[†-11]</a><span class="cite-detail" id="gerstner2002mathematical"> <a id="x4-7009"></a>Gerstner, W. &amp; Kistler, W. M.
-Mathematical formulations of Hebbian learning. Biological cybernetics <b>87</b><b>,</b> 404–415 (2002)</span></span>)
-</p></div></div>
+<i>Let us assume that the persistence or repetition of a reverberatory activity (or "trace") tends
+to induce lasting cellular changes that add to its stability. …. When an axon of cell A is
+near enough to excite a cell B and repeatedly or persistently takes part in firing it, some
+growth process or metabolic change takes place in one or both cells such that A’s efficiency,
+as one of the cells firing B, is increased. <span class="cite"><a class="cite-show" href="#w3-20001">[†-13]</a><span class="cite-detail" id="hebb2005organization"> <span class="bib-entry bib-author">Hebb</span>, <a class="bib-entry bib-title" href="url">"The organization of behavior: A
+neuropsychological theory"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2005)</span>.</span></span></i></span></span></span> (or Hebbian learning <span class="cite"><a class="cite-show" href="#w3-20001">[†-14]</a><span class="cite-detail" id="gerstner2002mathematical"> <span class="bib-entry bib-author"><a id="x4-7009"></a>Gerstner &amp;
+Kistler</span>, <a class="bib-entry bib-title" href="url">"Mathematical formulations of Hebbian learning"</a>, <span class="bib-entry bib-journal">Biological cybernetics</span>, <span class="bib-entry bib-book">booktitle</span>,
+<span class="bib-entry bib-year">(2002)</span>.</span></span>) </p></div></div>
 <p class="noindent">Perceptrons are trained using a variant of this rule that takes into account the error made by the
 network when it makes a prediction. The perceptron learning rule <b>reinforces connections that help
 reduce the error</b>.
@@ -530,8 +527,7 @@ would converge to a solution.
 </p>
 <div class="block-minor knowledge"><div class="body">
 <p class="noindent">This is called the perceptron convergence theorem. </p></div></div>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb1"><a id="x4-7011r60"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">numpy</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">np</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb1"><a id="x4-7011r60"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">numpy</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">np</span> 
 <a id="x4-7013r61"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">sklearn.datasets</span> <span style="color:#9E0005;">import</span> load_iris 
 <a id="x4-7015r62"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">sklearn.linear_model</span> <span style="color:#9E0005;">import</span> Perceptron 
 <a id="x4-7017r63"></a> 
@@ -545,8 +541,7 @@ would converge to a solution.
 <a id="x4-7033r71"></a><span style="color:#918273;"><i># predicts True and False for these 2 flowers</i></span> 
 <a id="x4-7035r72"></a>y_pred = per_clf.predict(X_new) 
 <a id="x4-7037r73"></a> 
-<a id="x4-7039r74"></a><span style="color:#B03B03;">print</span>(y_pred)</pre>
-</code></pre>
+<a id="x4-7039r74"></a><span style="color:#B03B03;">print</span>(y_pred)</pre></code></pre></div>
 <p class="noindent">For those of you who have taken a <b>Data Science I</b> course by yours truly, you may have noticed that
 the perceptron learning algorithm strongly resembles <i>stochastic gradient descent</i>. In fact, <code class="verb">sklearn</code> ’s <code class="verb">Perceptron</code>  class is
 equivalent to using an <code class="verb">SGDClassifier</code>  with the following hyperparameters: </p>
@@ -579,8 +574,8 @@ didn’t help.
 </p><p class="noindent">It turns out that some of the limitations of perceptrons can be eliminated by stacking multiple
 perceptrons. The resulting <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span> is called a
 <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:mlp">MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:mlp">Multi-layer Perceptrons</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mlp">Multi-layer Perceptrons</a></span></span></span> and a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:mlp">MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:mlp">Multi-layer Perceptrons</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mlp">Multi-layer
-Perceptrons</a></span></span></span> can solve the XOR problem <span class="cite"><a class="cite-show" href="#w3-20001">[†-12]</a><span class="cite-detail" id="popescu2009multilayer"> <a id="x4-7041"></a>Popescu, M.-C. et al. Multilayer perceptron and neural
-networks. WSEAS Transactions on Circuits and Systems <b>8</b><b>,</b> 579–588 (2009)</span></span>.
+Perceptrons</a></span></span></span> can solve the XOR problem <span class="cite"><a class="cite-show" href="#w3-20001">[†-15]</a><span class="cite-detail" id="popescu2009multilayer"> <span class="bib-entry bib-author"><a id="x4-7041"></a>Popescu et al.</span>, <a class="bib-entry bib-title" href="url">"Multilayer perceptron and neural
+networks"</a>, <span class="bib-entry bib-journal">WSEAS Transactions on Circuits and Systems</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2009)</span>.</span></span>.
 </p>
 <dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-1.4" id="info-block-1.4"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 1.<a id="x4-7042r4"></a>4: </b> </span> <span class="title"> Limitations of Perceptrons </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">Perceptrons do <b>NOT</b> output a class probability. This is one reason to prefer logistic regression over
@@ -597,15 +592,16 @@ layers.
 </p>
 <div class="block-minor knowledge"><div class="body">
 <p class="noindent">The signal flows only in one <span class="margin-block">direction, <span class="margin-comment"><a class="ellipsis" href="#m-ref-19">[19]</a>
-<span class="sidenote">From input to output.</span></span></span> so this architecture is an example of a
-<span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:fnn">FNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:fnn">Feedforward Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:fnn">Feedforward Neural Networks</a></span></span></span> <span class="cite"><a class="cite-show" href="#w3-20001">[†-13]</a><span class="cite-detail" id="bebis1994feed"> <a id="x4-8001"></a>Bebis, G. &amp; Georgiopoulos, M.
-Feed-forward neural networks. Ieee Potentials <b>13</b><b>,</b> 27–31 (1994)</span></span>. </p></div></div>
+<span class="sidenote">From input to output.</span></span></span> so this architecture is an
+example of a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:fnn">FNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:fnn">Feedforward Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:fnn">Feedforward Neural Networks</a></span></span></span> <span class="cite"><a class="cite-show" href="#w3-20001">[†-16]</a><span class="cite-detail" id="bebis1994feed"> <span class="bib-entry bib-author"><a id="x4-8001"></a>Bebis
+&amp; Georgiopoulos</span>, <a class="bib-entry bib-title" href="url">"Feed-forward neural networks"</a>, <span class="bib-entry bib-journal">Ieee Potentials</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1994)</span>.</span></span>.
+</p></div></div>
 <p class="noindent">When an <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span> contains a deep stack of hidden
 layers, it is called a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span>. The field of deep learning
 studies <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dnn">DNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dnn">Deep Neural Networks</a></span></span></span>s, and more generally it is interested in
-models containing deep stacks of computations <span class="cite"><a class="cite-show" href="#w3-20001">[†-14]</a><span class="cite-detail" id="samek2021explaining"> <a id="x4-8002"></a>Samek, W. et al. Explaining deep neural networks
-and beyond: A review of methods and applications. Proceedings of the IEEE <b>109</b><b>,</b> 247–278
-(2021)</span></span>.
+models containing deep stacks of computations <span class="cite"><a class="cite-show" href="#w3-20001">[†-17]</a><span class="cite-detail" id="samek2021explaining"> <span class="bib-entry bib-author"><a id="x4-8002"></a>Samek et al.</span>, <a class="bib-entry bib-title" href="url">"Explaining deep neural networks
+and beyond: A review of methods and applications"</a>, <span class="bib-entry bib-journal">Proceedings of the IEEE</span>, <span class="bib-entry bib-book">booktitle</span>,
+<span class="bib-entry bib-year">(2021)</span>.</span></span>.
 </p>
 <p class="noindent"></p><figure class="float">
 <a id="x4-8003r9"></a>
@@ -622,10 +618,9 @@ clear at the time how to do this efficiently with such a complex model containin
 parameters.
 Then, in 1970, a researcher named <i>Seppo Linnainmaa</i> introduced in his master’s thesis a technique
 to compute all the gradients automatically and efficiently. This algorithm is now called
-<b>reverse-mode automatic differentiation</b> <span class="cite"><a class="cite-show" href="#w3-20001">[†-15]</a><span class="cite-detail" id="Seppo1970"> <a id="x4-8004"></a>Linnainmaa, S. Algoritmin kumulatiivinen
-pyöristysvirhe yksittäisten pyöristysvirheiden Taylor-kehitelmänä Available in Finnish at
-<a class="url" href="https://people.idsia.ch/~juergen/linnainmaa1970thesis.pdf">https://people.idsia.ch/~juergen/linnainmaa1970thesis.pdf</a>. Master’s thesis (University of
-Helsinki, 1970)</span></span>. In just two (<span class="alert">2</span>) passes through the <span class="margin-block">network, <span class="margin-comment"><a class="ellipsis" href="#m-ref-20">[20]</a>
+<b>reverse-mode automatic differentiation</b> <span class="cite"><a class="cite-show" href="#w3-20001">[†-18]</a><span class="cite-detail" id="Seppo1970"> <span class="bib-entry bib-author"><a id="x4-8004"></a>Linnainmaa</span>, <a class="bib-entry bib-title" href="url">"Algoritmin kumulatiivinen
+pyöristysvirhe yksittäisten pyöristysvirheiden Taylor-kehitelmänä"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">booktitle</span>,
+<span class="bib-entry bib-year">(1970)</span>.</span></span>. In just two (<span class="alert">2</span>) passes through the <span class="margin-block">network, <span class="margin-comment"><a class="ellipsis" href="#m-ref-20">[20]</a>
 <span class="sidenote">one forward, one backward.</span></span></span> it is able
 to compute the gradients of the neural network’s error with regard to every single model
 parameter.
@@ -636,8 +631,8 @@ tweaked to reduce the <span class="acronym"><span class="acronym-short"><a class
 computing the gradients automatically and taking a gradient descent step, the neural network’s error
 will gradually drop until it eventually reaches a minimum.
 </p><p class="noindent">This combination of reverse-mode automatic differentiation and gradient descent is now called
-<b>backpropagation</b> <span class="cite"><a class="cite-show" href="#w3-20001">[†-16]</a><span class="cite-detail" id="hecht1992theory"> <a id="x4-8005"></a>Hecht-Nielsen, R. Theory of the backpropagation neural network in Neural
-networks for perception 65–93 (Elsevier, 1992)</span></span>.
+<b>backpropagation</b> <span class="cite"><a class="cite-show" href="#w3-20001">[†-19]</a><span class="cite-detail" id="hecht1992theory"> <span class="bib-entry bib-author"><a id="x4-8005"></a>Hecht-Nielsen</span>, <a class="bib-entry bib-title" href="url">"Theory of the backpropagation neural network"</a>,
+<span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">Neural networks for perception</span>, <span class="bib-entry bib-year">(1992)</span>.</span></span>.
 </p>
 <div class="block-minor knowledge"><div class="body">
 <p class="noindent">There are various automatic differentiation techniques (i.e., forward and reverse), with each having its
@@ -649,17 +644,17 @@ Linnainmaa’s M.Sc thesis was not about neural nets, it was more general. It wa
 more years before backprop started to be used to train neural networks, but it still wasn’t
 mainstream.
 </p><p class="noindent">Then, in 1986, David Rumelhart, Geoffrey Hinton, and Ronald Williams published a groundbreaking paper
-analyzing how backpropagation allowed neural networks to learn useful internal representations <span class="cite"><a class="cite-show" href="#w3-20001">[†-17]</a><span class="cite-detail" id="rumelhart1986learning">
-<a id="x4-8006"></a>Rumelhart, D. E., Hinton, G. E. &amp; Williams, R. J. Learning representations by back-propagating
-errors. nature <b>323</b><b>,</b> 533–536 (1986)</span></span>. Their results were so impressive that backpropagation was quickly
-popularized in the field.
+analyzing how backpropagation allowed neural networks to learn useful internal representations <span class="cite"><a class="cite-show" href="#w3-20001">[†-20]</a><span class="cite-detail" id="rumelhart1986learning">
+<span class="bib-entry bib-author"><a id="x4-8006"></a>Rumelhart, Hinton &amp; Williams</span>, <a class="bib-entry bib-title" href="url">"Learning representations by back-propagating errors"</a>, <span class="bib-entry bib-journal">nature</span>,
+<span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1986)</span>.</span></span>. Their results were so impressive that backpropagation was quickly popularized in
+the field.
 </p>
 <div class="block-minor knowledge"><div class="body">
 <p class="noindent">Today, it is by far the most popular training technique for <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:nn">NN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:nn">Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn">Neural Networks</a></span></span></span>s.
 </p></div></div>
 <p class="noindent">Let’s run through how backpropagation works again in a bit more detail:
 </p>
-<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">  
+<dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
 1. 
 </dt><dd class="enumerate-enumitem">It handles one mini-batch at a time, and goes through the full training set multiple times.
 Each pass is called an <b>epoch</b>.
@@ -767,16 +762,16 @@ approximate any continuous function. </p></div></div>
 <figcaption class="caption"><span class="id">Figure 1.10: 
           </span><span class="content">The activation function of a node in an <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span> is
           a function which calculates the output of the node based on its individual inputs and their weights.
-          Nontrivial problems can be solved using only a few nodes if the activation function is nonlinear <span class="cite"><a class="cite-show" href="#w3-20001">[†-18]</a><span class="cite-detail" id="knut2018neural">
-          Knut,  H.  Neural  Networks  p.  7.  University  of  Applied  Sciences  Northwestern  Switzerland  (2018)</span></span>.
-          Modern activation functions include the smooth version of the ReLU, the GELU, which was used in the
-          2018 BERT model <span class="cite"><a class="cite-show" href="#w3-20001">[†-19]</a><span class="cite-detail" id="hendrycks2016gaussian"> Hendrycks, D. &amp; Gimpel, K. Gaussian error linear units (gelus). arXiv preprint
-          arXiv:1606.08415  (2016)</span></span>, the logistic (sigmoid) function used in the 2012 speech recognition model
-          developed by Hinton et al <span class="cite"><a class="cite-show" href="#w3-20001">[†-20]</a><span class="cite-detail" id="hinton2012deep"> Hinton, G. et al. Deep neural networks for acoustic modeling in speech
-          recognition: The shared views of four research groups. IEEE Signal processing magazine <b>29</b><b>,</b> 82–97
-          (2012)</span></span>, the ReLU used in the 2012 AlexNet computer vision model <span class="cite"><a class="cite-show" href="#w3-20001">[†-21]</a><span class="cite-detail" id="krizhevsky2012imagenet"> Krizhevsky, A., Sutskever, I.
-          &amp; Hinton, G. E. Imagenet classification with deep convolutional neural networks. Advances in neural
-          information processing systems <b>25</b> (2012)</span></span> and in the 2015 ResNet model.                    </span></figcaption>
+          Nontrivial problems can be solved using only a few nodes if the activation function is nonlinear <span class="cite"><a class="cite-show" href="#w3-20001">[†-21]</a><span class="cite-detail" id="knut2018neural">
+<span class="bib-entry bib-author">Knut</span>, <a class="bib-entry bib-title" href="url">"Neural Networks p. 7"</a>, <span class="bib-entry bib-journal">University of Applied Sciences Northwestern Switzerland</span>, <span class="bib-entry bib-book">booktitle</span>,
+          <span class="bib-entry bib-year">(2018)</span>.</span></span>. Modern activation functions include the smooth version of the ReLU, the GELU, which was
+          used in the 2018 BERT model <span class="cite"><a class="cite-show" href="#w3-20001">[†-22]</a><span class="cite-detail" id="hendrycks2016gaussian"> <span class="bib-entry bib-author">Hendrycks &amp; Gimpel</span>, <a class="bib-entry bib-title" href="url">"Gaussian error linear units (gelus)"</a>, <span class="bib-entry bib-journal">arXiv
+          preprint arXiv:1606.08415</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2016)</span>.</span></span>, the logistic (sigmoid) function used in the 2012 speech
+          recognition model developed by Hinton et al <span class="cite"><a class="cite-show" href="#w3-20001">[†-23]</a><span class="cite-detail" id="hinton2012deep"> <span class="bib-entry bib-author">Hinton et al.</span>, <a class="bib-entry bib-title" href="url">"Deep neural networks for acoustic
+          modeling  in  speech  recognition:  The  shared  views  of  four  research  groups"</a>,  <span class="bib-entry bib-journal">IEEE  Signal  processing
+          magazine</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2012)</span>.</span></span>, the ReLU used in the 2012 AlexNet computer vision model <span class="cite"><a class="cite-show" href="#w3-20001">[†-24]</a><span class="cite-detail" id="krizhevsky2012imagenet"> <span class="bib-entry bib-author">Krizhevsky,
+          Sutskever &amp; Hinton</span>, <a class="bib-entry bib-title" href="url">"Imagenet classification with deep convolutional neural networks"</a>, <span class="bib-entry bib-journal">Advances in
+          neural information processing systems</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2012)</span>.</span></span> and in the 2015 ResNet model.          </span></figcaption>
 <img alt="PIC" src="figures/Introduction-to-Artificial-Neural-Networks/figures-6.png" style=""/>
 </figure>
 <div class="subsection-header"><h4 id="header-subsection-1.1.6"><span class="number">1.1.6</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.1.1.6"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x4-90001.1.6"></a>Regression MLPs</span></h4></div>
@@ -798,8 +793,7 @@ dataset.
 For simplicity, we will use <code class="verb">sklearn</code> ’s <code class="verb">fetch_california_housing()</code>  function to load the data instead of downloading from a sketchy
 website.
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb2"><a id="x4-9002r209"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">sklearn.datasets</span> <span style="color:#9E0005;">import</span> fetch_california_housing 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb2"><a id="x4-9002r209"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">sklearn.datasets</span> <span style="color:#9E0005;">import</span> fetch_california_housing 
 <a id="x4-9004r210"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">sklearn.model_selection</span> <span style="color:#9E0005;">import</span> train_test_split 
 <a id="x4-9006r211"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">sklearn.neural_network</span> <span style="color:#9E0005;">import</span> MLPRegressor 
 <a id="x4-9008r212"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">sklearn.pipeline</span> <span style="color:#9E0005;">import</span> make_pipeline 
@@ -817,8 +811,7 @@ website.
 <a id="x4-9032r224"></a>y_pred = pipeline.predict(X_valid) 
 <a id="x4-9034r225"></a>rmse = root_mean_squared_error(y_valid, y_pred) 
 <a id="x4-9036r226"></a> 
-<a id="x4-9038r227"></a><span style="color:#B03B03;">print</span>(rmse)</pre>
-</code></pre>
+<a id="x4-9038r227"></a><span style="color:#B03B03;">print</span>(rmse)</pre></code></pre></div>
 <p class="noindent">The following code starts by fetching and splitting the dataset, then it creates a pipeline to standardize
 the input features before sending them to the <code class="verb">MLPRegressor</code> .
 </p>
@@ -831,8 +824,8 @@ ReLU activation function in the hidden layers, and it uses a variant of gradient
 called <span class="margin-block">Adam <span class="margin-comment"><a class="ellipsis" href="#m-ref-23">[23]</a>
 <span class="sidenote">An optimization algorithm which improves upon gradient descent by using
 <b>adaptive learning</b> rates for each parameter, combining the benefits of momentum and
-<b>RMSprop</b> <span class="cite"><a class="cite-show" href="#w3-20001">[†-22]</a><span class="cite-detail" id="kingma2014adam"> <a id="x4-9039"></a>Kingma, D. P. &amp; Ba, J. Adam: A method for stochastic optimization. arXiv
-preprint arXiv:1412.6980 (2014)</span></span>. It calculates both the first moment, mean of gradients, and
+<b>RMSprop</b> <span class="cite"><a class="cite-show" href="#w3-20001">[†-25]</a><span class="cite-detail" id="kingma2014adam"> <span class="bib-entry bib-author"><a id="x4-9039"></a>Kingma &amp; Ba</span>, <a class="bib-entry bib-title" href="url">"Adam: A method for stochastic optimization"</a>, <span class="bib-entry bib-journal">arXiv preprint
+arXiv:1412.6980</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2014)</span>.</span></span>. It calculates both the first moment, mean of gradients, and
 the second moment, uncentered variance of gradients, to adapt the learning rate during
 training. This makes it computationally efficient, suitable for large datasets, and effective for
 non-stationary or sparse problems.</span></span></span> to minimize the mean squared error, with a little bit of
@@ -923,9 +916,9 @@ through 9 for digit image classification.</span></span></span> then we need to h
 should use the <i>softmax</i> activation function for the whole output layer. The softmax function will ensure
 all the estimated probabilities are between 0 and 1 and that they add up to 1, given the classes are
 <span class="margin-block">exclusive. <span class="margin-comment"><a class="ellipsis" href="#m-ref-27">[27]</a>
-<span class="sidenote">This is called <b>multiclass classification</b> <span class="cite"><a class="cite-show" href="#w3-20001">[†-23]</a><span class="cite-detail" id="dietterich1994solving"> <a id="x4-10001"></a>Dietterich, T. G. &amp; Bakiri, G. Solving multiclass
-learning problems via error-correcting output codes. Journal of artificial intelligence research <b>2</b><b>,</b>
-263–286 (1994)</span></span>.</span></span></span>
+<span class="sidenote">This is called <b>multiclass classification</b> <span class="cite"><a class="cite-show" href="#w3-20001">[†-26]</a><span class="cite-detail" id="dietterich1994solving"> <span class="bib-entry bib-author"><a id="x4-10001"></a>Dietterich &amp; Bakiri</span>, <a class="bib-entry bib-title" href="url">"Solving multiclass
+learning problems via error-correcting output codes"</a>, <span class="bib-entry bib-journal">Journal of artificial intelligence research</span>,
+<span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1994)</span>.</span></span>.</span></span></span>
 </p><p class="noindent">Regarding the loss function, as we are predicting probability distributions, the cross-entropy <span class="margin-block">loss <span class="margin-comment"><a class="ellipsis" href="#m-ref-28">[28]</a>
 <span class="sidenote">in
 literature this is also known as or <b>x-entropy</b> or <b>log loss</b> for short.</span></span></span> is generally a good
@@ -1019,102 +1012,153 @@ Machines</span></dt>
 <i class="fa-solid fa-magnifying-glass"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-reference"></a>
             Page References</span>
 </h3>
 </div>
 <div class="cite-block">
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">1.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> McCulloch, W. S. &amp; Pitts, W. A logical calculus of the ideas immanent in nervous activity. The bulletin of mathematical biophysics 5, 115–133 (1943)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="mcculloch1943logical"><a id="w3-20001"></a> <span class="bib-entry bib-author">McCulloch &amp; Pitts</span>, <a class="bib-entry bib-title" href="url">"A
+logical calculus of the ideas immanent in nervous activity"</a>, <span class="bib-entry bib-journal">The bulletin of mathematical biophysics</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1943)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">2.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Howe, J. Artificial intelligence at edinburgh university: A perspective. Archived from the original on 17 (2007)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="mcculloch1943logical"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-3003"></a>McCulloch &amp; Pitts</span>, <a class="bib-entry bib-title" href="url">"A
+logical calculus of the ideas immanent in nervous activity"</a>, <span class="bib-entry bib-journal">The bulletin of mathematical biophysics</span>,
+<span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1943)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">3.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Goodfellow, I. J., Vinyals, O. &amp; Saxe, A. M. Qualitatively characterizing neural network optimization problems. arXiv preprint arXiv:1412.6544 (2014)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="mcculloch1943logical"><a id="w3-20001"></a> <span class="bib-entry bib-author">McCulloch
+&amp; Pitts</span>, <a class="bib-entry bib-title" href="url">"A logical calculus of the ideas immanent in nervous activity"</a>, <span class="bib-entry bib-journal">The bulletin of mathematical
+biophysics</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1943)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">4.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Sebé-Pedrós, A. Stepwise emergence of the neuronal gene expression program in early animal evolution (2023)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="howe2007artificial"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-3004"></a>Howe</span>, <a class="bib-entry bib-title" href="url">"Artificial intelligence at edinburgh university: A perspective"</a>, <span class="bib-entry bib-journal">Archived from the
+original on</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2007)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">5.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Barrett, D. G., Morcos, A. S. &amp; Macke, J. H. Analyzing biological and artificial neural networks: challenges with opportunities for synergy? Current opinion in neurobiology 55, 55–64 (2019)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="goodfellow2014qualitatively"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-3005"></a>Goodfellow, Vinyals &amp; Saxe</span>, <a class="bib-entry bib-title" href="url">"Qualitatively characterizing neural network
+optimization problems"</a>, <span class="bib-entry bib-journal">arXiv preprint arXiv:1412.6544</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2014)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">6.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Block, H.-D. The perceptron: A model for brain functioning. i. Reviews of Modern Physics 34, 123 (1962)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="sebe2023stepwise"><a id="w3-20001"></a> <span class="bib-entry bib-author">Sebé-Pedrós</span>, <a class="bib-entry bib-title" href="url">"Stepwise emergence of the neuronal gene expression
+program in early animal evolution"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2023)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">7.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Sharma, S., Sharma, S. &amp; Athaiya, A. Activation functions in neural networks. Towards Data Sci 6, 310–316 (2017)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="barrett2019analyzing"><a id="w3-20001"></a>
+<span class="bib-entry bib-author"><a id="x4-5003"></a>Barrett, Morcos &amp; Macke</span>, <a class="bib-entry bib-title" href="url">"Analyzing biological and artificial neural networks: challenges with
+opportunities for synergy?"</a>, <span class="bib-entry bib-journal">Current opinion in neurobiology</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2019)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">8.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Fisher, R. A. The use of multiple measurements in taxonomic problems. Annals of eugenics 7, 179–188 (1936)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="block1962perceptron"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-7001"></a>Block</span>, <a class="bib-entry bib-title" href="url">"The perceptron: A model for brain functioning. i"</a>,
+<span class="bib-entry bib-journal">Reviews of Modern Physics</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1962)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">9.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Sompolinsky, H. The theory of neural networks: The Hebb rule and beyond in Heidelberg Colloquium on Glassy Dynamics: Proceedings of a Colloquium on Spin Glasses, Optimization and Neural Networks Held at the University of Heidelberg June 9–13, 1986 (2006), 485–527</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="sharma2017activation"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-7003"></a>Sharma, Sharma &amp; Athaiya</span>, <a class="bib-entry bib-title" href="url">"Activation functions in neural networks"</a>,
+<span class="bib-entry bib-journal">Towards Data Sci</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2017)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">10.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Hebb, D. O. The organization of behavior: A neuropsychological theory (Psychology press, 2005)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="fisher1936use"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-7004"></a>Fisher</span>, <a class="bib-entry bib-title" href="url">"The use of multiple measurements in taxonomic
+problems"</a>, <span class="bib-entry bib-journal">Annals of eugenics</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1936)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">11.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Gerstner, W. &amp; Kistler, W. M. Mathematical formulations of Hebbian learning. Biological cybernetics 87, 404–415 (2002)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="sompolinsky2006theory"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-7007"></a>Sompolinsky</span>, <a class="bib-entry bib-title" href="url">"The theory of neural networks: The Hebb rule and beyond"</a>, <span class="bib-entry bib-journal">journaltitle</span>,
+<span class="bib-entry bib-book">Heidelberg Colloquium on Glassy Dynamics: Proceedings of a Colloquium on Spin Glasses,
+Optimization and Neural Networks Held at the University of Heidelberg June 9–13, 1986</span>, <span class="bib-entry bib-year">(2006)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">12.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Popescu, M.-C. et al. Multilayer perceptron and neural networks. WSEAS Transactions on Circuits and Systems 8, 579–588 (2009)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="hebb2005organization"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-7008"></a>Hebb</span>,
+<a class="bib-entry bib-title" href="url">"The organization of behavior: A neuropsychological theory"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">booktitle</span>,
+<span class="bib-entry bib-year">(2005)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">13.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Bebis, G. &amp; Georgiopoulos, M. Feed-forward neural networks. Ieee Potentials 13, 27–31 (1994)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="hebb2005organization"><a id="w3-20001"></a> <span class="bib-entry bib-author">Hebb</span>, <a class="bib-entry bib-title" href="url">"The organization of behavior: A
+neuropsychological theory"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2005)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">14.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Samek, W. et al. Explaining deep neural networks and beyond: A review of methods and applications. Proceedings of the IEEE 109, 247–278 (2021)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="gerstner2002mathematical"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-7009"></a>Gerstner &amp;
+Kistler</span>, <a class="bib-entry bib-title" href="url">"Mathematical formulations of Hebbian learning"</a>, <span class="bib-entry bib-journal">Biological cybernetics</span>, <span class="bib-entry bib-book">booktitle</span>,
+<span class="bib-entry bib-year">(2002)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">15.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Linnainmaa, S. Algoritmin kumulatiivinen pyöristysvirhe yksittäisten pyöristysvirheiden Taylor-kehitelmänä Available in Finnish at https://people.idsia.ch/~juergen/linnainmaa1970thesis.pdf. Master’s thesis (University of Helsinki, 1970)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="popescu2009multilayer"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-7041"></a>Popescu et al.</span>, <a class="bib-entry bib-title" href="url">"Multilayer perceptron and neural
+networks"</a>, <span class="bib-entry bib-journal">WSEAS Transactions on Circuits and Systems</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2009)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">16.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Hecht-Nielsen, R. Theory of the backpropagation neural network in Neural networks for perception 65–93 (Elsevier, 1992)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="bebis1994feed"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-8001"></a>Bebis
+&amp; Georgiopoulos</span>, <a class="bib-entry bib-title" href="url">"Feed-forward neural networks"</a>, <span class="bib-entry bib-journal">Ieee Potentials</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1994)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">17.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Rumelhart, D. E., Hinton, G. E. &amp; Williams, R. J. Learning representations by back-propagating errors. nature 323, 533–536 (1986)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="samek2021explaining"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-8002"></a>Samek et al.</span>, <a class="bib-entry bib-title" href="url">"Explaining deep neural networks
+and beyond: A review of methods and applications"</a>, <span class="bib-entry bib-journal">Proceedings of the IEEE</span>, <span class="bib-entry bib-book">booktitle</span>,
+<span class="bib-entry bib-year">(2021)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">18.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Knut, H. Neural Networks p. 7. University of Applied Sciences Northwestern Switzerland (2018)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Seppo1970"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-8004"></a>Linnainmaa</span>, <a class="bib-entry bib-title" href="url">"Algoritmin kumulatiivinen
+pyöristysvirhe yksittäisten pyöristysvirheiden Taylor-kehitelmänä"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">booktitle</span>,
+<span class="bib-entry bib-year">(1970)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">19.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Hendrycks, D. &amp; Gimpel, K. Gaussian error linear units (gelus). arXiv preprint arXiv:1606.08415 (2016)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="hecht1992theory"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-8005"></a>Hecht-Nielsen</span>, <a class="bib-entry bib-title" href="url">"Theory of the backpropagation neural network"</a>,
+<span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">Neural networks for perception</span>, <span class="bib-entry bib-year">(1992)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">20.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Hinton, G. et al. Deep neural networks for acoustic modeling in speech recognition: The shared views of four research groups. IEEE Signal processing magazine 29, 82–97 (2012)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="rumelhart1986learning"><a id="w3-20001"></a>
+<span class="bib-entry bib-author"><a id="x4-8006"></a>Rumelhart, Hinton &amp; Williams</span>, <a class="bib-entry bib-title" href="url">"Learning representations by back-propagating errors"</a>, <span class="bib-entry bib-journal">nature</span>,
+<span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1986)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">21.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Krizhevsky, A., Sutskever, I. &amp; Hinton, G. E. Imagenet classification with deep convolutional neural networks. Advances in neural information processing systems 25 (2012)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="knut2018neural"><a id="w3-20001"></a>
+<span class="bib-entry bib-author">Knut</span>, <a class="bib-entry bib-title" href="url">"Neural Networks p. 7"</a>, <span class="bib-entry bib-journal">University of Applied Sciences Northwestern Switzerland</span>, <span class="bib-entry bib-book">booktitle</span>,
+ <span class="bib-entry bib-year">(2018)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">22.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Kingma, D. P. &amp; Ba, J. Adam: A method for stochastic optimization. arXiv preprint arXiv:1412.6980 (2014)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="hendrycks2016gaussian"><a id="w3-20001"></a> <span class="bib-entry bib-author">Hendrycks &amp; Gimpel</span>, <a class="bib-entry bib-title" href="url">"Gaussian error linear units (gelus)"</a>, <span class="bib-entry bib-journal">arXiv
+ preprint arXiv:1606.08415</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2016)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">23.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Dietterich, T. G. &amp; Bakiri, G. Solving multiclass learning problems via error-correcting output codes. Journal of artificial intelligence research 2, 263–286 (1994)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="hinton2012deep"><a id="w3-20001"></a> <span class="bib-entry bib-author">Hinton et al.</span>, <a class="bib-entry bib-title" href="url">"Deep neural networks for acoustic
+ modeling in speech recognition: The shared views of four research groups"</a>, <span class="bib-entry bib-journal">IEEE Signal processing
+ magazine</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2012)</span>.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">24.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="krizhevsky2012imagenet"><a id="w3-20001"></a> <span class="bib-entry bib-author">Krizhevsky,
+ Sutskever &amp; Hinton</span>, <a class="bib-entry bib-title" href="url">"Imagenet classification with deep convolutional neural networks"</a>, <span class="bib-entry bib-journal">Advances in
+ neural information processing systems</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2012)</span>.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">25.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="kingma2014adam"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-9039"></a>Kingma &amp; Ba</span>, <a class="bib-entry bib-title" href="url">"Adam: A method for stochastic optimization"</a>, <span class="bib-entry bib-journal">arXiv preprint
+arXiv:1412.6980</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2014)</span>.</span></dd>
+</dl>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">26.</span><span class="acr-long"></span></dt>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="dietterich1994solving"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x4-10001"></a>Dietterich &amp; Bakiri</span>, <a class="bib-entry bib-title" href="url">"Solving multiclass
+learning problems via error-correcting output codes"</a>, <span class="bib-entry bib-journal">Journal of artificial intelligence research</span>,
+<span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1994)</span>.</span></dd>
 </dl></div>
 <div class="section-header">
 <h3 id="header-section-references">
@@ -1122,7 +1166,7 @@ Machines</span></dt>
 <i class="fa-regular fa-note-sticky"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-margin"></a>
                     Page Footnotes</span>
 </h3>
 </div>
@@ -1132,12 +1176,12 @@ Machines</span></dt>
 <dd class="enumerate-enumitem"><span class=""><b>Warren Sturgis McCulloch</b>
 <i>(1898  -  1969)</i>
 was an American neurophysiologist and cybernetician known for his work on the foundation for certain
-brain theories and his contribution to the <span class="alert">cybernetics</span> movement. Along with <i>Walter Pitts</i>, McCulloch
-created computational models based on mathematical algorithms called threshold logic
-which split the inquiry into two distinct approaches, one approach focused on biological
-processes in the brain and the other focused on the application of neural networks to artificial
-intelligence <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="mcculloch1943logical"> <a id="x4-3003"></a>McCulloch, W. S. &amp; Pitts, W. A logical calculus of the ideas immanent
-in nervous activity. The bulletin of mathematical biophysics <b>5</b><b>,</b> 115–133 (1943)</span></span>.</span></dd>
+brain theories and his contribution to the <span class="alert">cybernetics</span> movement. Along with <i>Walter Pitts</i>, McCulloch created
+computational models based on mathematical algorithms called threshold logic which split the inquiry
+into two distinct approaches, one approach focused on biological processes in the brain and the other
+focused on the application of neural networks to artificial intelligence <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="mcculloch1943logical"> <span class="bib-entry bib-author"><a id="x4-3003"></a>McCulloch &amp; Pitts</span>, <a class="bib-entry bib-title" href="url">"A
+logical calculus of the ideas immanent in nervous activity"</a>, <span class="bib-entry bib-journal">The bulletin of mathematical biophysics</span>,
+<span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1943)</span>.</span></span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="m-ref-6"><span class="acr-short">[6].</span></dt>
@@ -1167,8 +1211,8 @@ neuron from firing.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="m-ref-11"><span class="acr-short">[11].</span></dt>
-<dd class="enumerate-enumitem"><span class="">This is the outer layer of the
-brain.</span></dd>
+<dd class="enumerate-enumitem"><span class="">This is the
+outer layer of the brain.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="m-ref-12"><span class="acr-short">[12].</span></dt>
@@ -1196,12 +1240,12 @@ Learning</a></span></span></span> researchers</span></dd>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="m-ref-18"><span class="acr-short">[18].</span></dt>
 <dd class="enumerate-enumitem"><span class="">The following is an excerpt from primary author of the idea.
-<i>Let us assume that the persistence or repetition of a reverberatory activity (or "trace") tends to induce
-lasting cellular changes that add to its stability. …. When an axon of cell A is near enough to
-excite a cell B and repeatedly or persistently takes part in firing it, some growth process or
-metabolic change takes place in one or both cells such that A’s efficiency, as one of the cells
-firing B, is increased. <span class="cite"><a class="cite-show" href="#w3-20001">[†-10]</a><span class="cite-detail" id="hebb2005organization"> Hebb, D. O. The organization of behavior: A neuropsychological
-theory (Psychology press, 2005)</span></span></i></span></dd>
+<i>Let us assume that the persistence or repetition of a reverberatory activity (or "trace") tends
+to induce lasting cellular changes that add to its stability. …. When an axon of cell A is
+near enough to excite a cell B and repeatedly or persistently takes part in firing it, some
+growth process or metabolic change takes place in one or both cells such that A’s efficiency,
+as one of the cells firing B, is increased. <span class="cite"><a class="cite-show" href="#w3-20001">[†-13]</a><span class="cite-detail" id="hebb2005organization"> <span class="bib-entry bib-author">Hebb</span>, <a class="bib-entry bib-title" href="url">"The organization of behavior: A
+neuropsychological theory"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2005)</span>.</span></span></i></span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="m-ref-19"><span class="acr-short">[19].</span></dt>
@@ -1223,8 +1267,8 @@ theory (Psychology press, 2005)</span></span></i></span></dd>
 <dt class="enumerate-enumitem" id="m-ref-23"><span class="acr-short">[23].</span></dt>
 <dd class="enumerate-enumitem"><span class="">An optimization algorithm which improves upon gradient descent by using
 <b>adaptive learning</b> rates for each parameter, combining the benefits of momentum and
-<b>RMSprop</b> <span class="cite"><a class="cite-show" href="#w3-20001">[†-22]</a><span class="cite-detail" id="kingma2014adam"> <a id="x4-9039"></a>Kingma, D. P. &amp; Ba, J. Adam: A method for stochastic optimization. arXiv
-preprint arXiv:1412.6980 (2014)</span></span>. It calculates both the first moment, mean of gradients, and
+<b>RMSprop</b> <span class="cite"><a class="cite-show" href="#w3-20001">[†-25]</a><span class="cite-detail" id="kingma2014adam"> <span class="bib-entry bib-author"><a id="x4-9039"></a>Kingma &amp; Ba</span>, <a class="bib-entry bib-title" href="url">"Adam: A method for stochastic optimization"</a>, <span class="bib-entry bib-journal">arXiv preprint
+arXiv:1412.6980</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2014)</span>.</span></span>. It calculates both the first moment, mean of gradients, and
 the second moment, uncentered variance of gradients, to adapt the learning rate during
 training. This makes it computationally efficient, suitable for large datasets, and effective for
 non-stationary or sparse problems.</span></dd>
@@ -1246,9 +1290,9 @@ through 9 for digit image classification.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="m-ref-27"><span class="acr-short">[27].</span></dt>
-<dd class="enumerate-enumitem"><span class="">This is called <b>multiclass classification</b> <span class="cite"><a class="cite-show" href="#w3-20001">[†-23]</a><span class="cite-detail" id="dietterich1994solving"> <a id="x4-10001"></a>Dietterich, T. G. &amp; Bakiri, G. Solving multiclass
-learning problems via error-correcting output codes. Journal of artificial intelligence research <b>2</b><b>,</b>
-263–286 (1994)</span></span>.</span></dd>
+<dd class="enumerate-enumitem"><span class="">This is called <b>multiclass classification</b> <span class="cite"><a class="cite-show" href="#w3-20001">[†-26]</a><span class="cite-detail" id="dietterich1994solving"> <span class="bib-entry bib-author"><a id="x4-10001"></a>Dietterich &amp; Bakiri</span>, <a class="bib-entry bib-title" href="url">"Solving multiclass
+learning problems via error-correcting output codes"</a>, <span class="bib-entry bib-journal">Journal of artificial intelligence research</span>,
+<span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1994)</span>.</span></span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="m-ref-28"><span class="acr-short">[28].</span></dt>
@@ -1262,7 +1306,7 @@ literature this is also known as or <b>x-entropy</b> or <b>log loss</b> for shor
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>

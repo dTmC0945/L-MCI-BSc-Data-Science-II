@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="AvoidingOverfittingThroughRegularization.html">Avoiding Overfitting Through Regularization</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="TheVanishingExplodingGradientsProblems.html">The Vanishing/Exploding                                                                                                                                                                   Gradients Problems</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="TrainingDeepNeuralNetworks.html#LearningRateScheduling.html">Chapter: Training Deep Neural Networks</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -85,7 +85,8 @@ for Neural Machine Translation</a></span></span><span class="subsectionToc"><spa
 <i class="fa-brands fa-git-alt"></i>
 <span class="nav-info">Visit Material GitHub Repo</span>
 </a></span></nav>
-<div class="section-header"><h3 id="header-section-3.2"><span class="number">3.2</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.3.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x19-690003.2"></a>Learning Rate Scheduling</span></h3></div>
+<div class="section-header"><h3 id="header-section-3.2"><span class="number">3.2</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.3.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x19-690003.2"></a>Learning Rate
+Scheduling</span></h3></div>
 <p class="noindent">Finding a good learning rate is very important. If you set it too high, training will diverge. If you set it
 too low, then training will be painfully slow, and it may also get stuck in a local optimum and produce
 a suboptimal model. If you set the learning rate fairly high, then training will often make
@@ -115,16 +116,13 @@ will be about 35% of the initial learning rate, and after 20 epochs it will be a
 <p class="noindent">The <code class="verb">ExponentialLR</code>  constructor expects at least two argumentsthe optimizer whose learning rate will be tweaked
 during training, and the factor gamma:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb145"><a id="x19-70002r907"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb145"><a id="x19-70002r907"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
 <a id="x19-70004r908"></a>optimizer = torch.optim.SGD(model.parameters(), lr=<span style="color:#8F4070;">0.05</span>)  <span style="color:#918273;"><i># or any other optim.</i></span> 
-<a id="x19-70006r909"></a>exp_scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=<span style="color:#8F4070;">0.9</span>)</pre>
-</code></pre>
+<a id="x19-70006r909"></a>exp_scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=<span style="color:#8F4070;">0.9</span>)</pre></code></pre></div>
 <p class="noindent">Next, you must update the training loop to call <code class="verb">scheduler.step()</code>  at the end of each epoch to tweak the optimizer’s
 learning rate:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb146"><a id="x19-70008r914"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">train_with_scheduler</span>(model, optimizer, loss_fn, metric, train_loader, 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb146"><a id="x19-70008r914"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">train_with_scheduler</span>(model, optimizer, loss_fn, metric, train_loader, 
 <a id="x19-70010r915"></a>                         valid_loader, n_epochs, scheduler): 
 <a id="x19-70012r916"></a>    history = {<span style="color:#78730D;">"train_losses"</span>: [], <span style="color:#78730D;">"train_metrics"</span>: [], <span style="color:#78730D;">"valid_metrics"</span>: []} 
 <a id="x19-70014r917"></a>    <span style="color:#9E0005;">for</span> epoch <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(n_epochs): 
@@ -164,8 +162,7 @@ learning rate:
 <a id="x19-70082r951"></a>    history = train_with_scheduler( 
 <a id="x19-70084r952"></a>        model, optimizer, xentropy, metric, train_loader, valid_loader, 
 <a id="x19-70086r953"></a>        n_epochs, scheduler) 
-<a id="x19-70088r954"></a>    <span style="color:#9E0005;">return</span> history, evaluate_tm(model, test_loader, metric)</pre>
-</code></pre>
+<a id="x19-70088r954"></a>    <span style="color:#9E0005;">return</span> history, evaluate_tm(model, test_loader, metric)</pre></code></pre></div>
 <p class="noindent">If we interrupt training and you later want to resume it where we left off, you should set the <code class="verb">last_epoch</code>  argument
 of the scheduler’s constructor to the last epoch you ran (zero-indexed). The default is <code class="verb">–1</code> , which makes
 the scheduler start training from scratch.
@@ -188,12 +185,10 @@ at epoch t (zero-indexed) is given by Equation 11-10, where Tmax is the maximum 
 <p class="noindent">PyTorch includes the <code class="verb">CosineAnnealingLR</code>  scheduler, which you can create as follows (<code class="verb">T_max</code>  is Tmax and <code class="verb">eta_min</code>  is min). You can
 then use it just like the ExponentialLR scheduler:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb147"><a id="x19-71002r1083"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb147"><a id="x19-71002r1083"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
 <a id="x19-71004r1084"></a>optimizer = torch.optim.SGD(model.parameters(), lr=<span style="color:#8F4070;">0.05</span>)  <span style="color:#918273;"><i># or any other optim.</i></span> 
 <a id="x19-71006r1085"></a>cosine_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR( 
-<a id="x19-71008r1086"></a>    optimizer, T_max=<span style="color:#8F4070;">20</span>, eta_min=<span style="color:#8F4070;">0.001</span>)</pre>
-</code></pre>
+<a id="x19-71008r1086"></a>    optimizer, T_max=<span style="color:#8F4070;">20</span>, eta_min=<span style="color:#8F4070;">0.001</span>)</pre></code></pre></div>
 <p class="noindent">One problem with cosine annealing is that we have to set two new hyperparameters,
 <math display="inline"><msub><mrow><mi>T</mi></mrow><mrow><mstyle class="text"><mtext>max</mtext></mstyle></mrow></msub></math> and
 <math display="inline"><msub><mrow><mi>η</mi></mrow><mrow><mstyle class="text"><mtext>min</mtext></mstyle></mrow></msub></math>, and
@@ -232,19 +227,16 @@ bit small in some cases.</p></dd></dl>
 <span class="sidenote">i.e., which we
 want to maximize.</span></span></span>
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb148"><a id="x19-72005r964"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb148"><a id="x19-72005r964"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
 <a id="x19-72007r965"></a>optimizer = torch.optim.SGD(model.parameters(), lr=<span style="color:#8F4070;">0.05</span>)  <span style="color:#918273;"><i># or any other optim.</i></span> 
 <a id="x19-72009r966"></a>perf_scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau( 
-<a id="x19-72011r967"></a>    optimizer, mode=<span style="color:#78730D;">"max"</span>, patience=<span style="color:#8F4070;">2</span>, factor=<span style="color:#8F4070;">0.1</span>)</pre>
-</code></pre>
+<a id="x19-72011r967"></a>    optimizer, mode=<span style="color:#78730D;">"max"</span>, patience=<span style="color:#8F4070;">2</span>, factor=<span style="color:#8F4070;">0.1</span>)</pre></code></pre></div>
 <p class="noindent">The training loop needs to be tweaked again because we must evaluate the desired metric at each
 <span class="margin-block">epoch, <span class="margin-comment"><a class="ellipsis" href="#m-ref-180">[180]</a>
 <span class="sidenote">in this example, we are using the <code class="verb">evaluate_tm()</code>  function that we defined in <span class="refclass-ref"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to Artificial Neural
 Networks</a></span></span></span></span> and we must then pass the result to the scheduler’s <code class="verb">step()</code>  method:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb149"><a id="x19-72013r996"></a><span style="color:#918273;"><i># extra code</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb149"><a id="x19-72013r996"></a><span style="color:#918273;"><i># extra code</i></span> 
 <a id="x19-72015r997"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">train_with_warmup</span>(model, optimizer, loss_fn, metric, train_loader, 
 <a id="x19-72017r998"></a>                      valid_loader, n_epochs, warmup_scheduler, scheduler): 
 <a id="x19-72019r999"></a>    history = {<span style="color:#78730D;">"train_losses"</span>: [], <span style="color:#78730D;">"train_metrics"</span>: [], <span style="color:#78730D;">"valid_metrics"</span>: []} 
@@ -294,8 +286,7 @@ Networks</a></span></span></span></span> and we must then pass the result to the
 <a id="x19-72107r1043"></a>    history = train_with_warmup( 
 <a id="x19-72109r1044"></a>        model, optimizer, xentropy, metric, train_loader, valid_loader, 
 <a id="x19-72111r1045"></a>        n_epochs, warmup_scheduler, scheduler) 
-<a id="x19-72113r1046"></a>    <span style="color:#9E0005;">return</span> history, evaluate_tm(model, test_loader, metric)</pre>
-</code></pre>
+<a id="x19-72113r1046"></a>    <span style="color:#9E0005;">return</span> history, evaluate_tm(model, test_loader, metric)</pre></code></pre></div>
 <div class="subsection-header"><h4 id="header-subsection-3.2.4"><span class="number">3.2.4</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.2.4"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x19-730003.2.4"></a>Warming Up the Learning Rate</span></h4></div>
 <p class="noindent">So far, we have always started training with the maximum learning rate. However, this can sometimes
 cause gradient descent to bounce around randomly at the beginning of training, neither exploding
@@ -320,29 +311,24 @@ the learning rate from 10% to 100% of the optimizer’s original learning rate o
 during the first epoch, 40% during the second epoch, 70% during the third epoch, and 100% after
 that):
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb150"><a id="x19-73002r977"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb150"><a id="x19-73002r977"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
 <a id="x19-73004r978"></a>optimizer = torch.optim.SGD(model.parameters(), lr=<span style="color:#8F4070;">0.05</span>)  <span style="color:#918273;"><i># or any other optim.</i></span> 
 <a id="x19-73006r979"></a>warmup_scheduler = torch.optim.lr_scheduler.LinearLR( 
-<a id="x19-73008r980"></a>    optimizer, start_factor=<span style="color:#8F4070;">0.1</span>, end_factor=<span style="color:#8F4070;">1.0</span>, total_iters=<span style="color:#8F4070;">3</span>)</pre>
-</code></pre>
+<a id="x19-73008r980"></a>    optimizer, start_factor=<span style="color:#8F4070;">0.1</span>, end_factor=<span style="color:#8F4070;">1.0</span>, total_iters=<span style="color:#8F4070;">3</span>)</pre></code></pre></div>
 <p class="noindent">If you would like more flexibility, you can write your own custom function and wrap it in a
 <code class="verb">LambdaLR</code> scheduler. For example, the following scheduler is equivalent to the <code class="verb">LinearLR</code>  scheduler we just
 defined:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb151"><a id="x19-73010r987"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb151"><a id="x19-73010r987"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
 <a id="x19-73012r988"></a>optimizer = torch.optim.SGD(model.parameters(), lr=<span style="color:#8F4070;">0.05</span>)  <span style="color:#918273;"><i># or any other optim.</i></span> 
 <a id="x19-73014r989"></a>warmup_scheduler = torch.optim.lr_scheduler.LambdaLR( 
 <a id="x19-73016r990"></a>    optimizer, 
-<a id="x19-73018r991"></a>    <span style="color:#9E0005;">lambda</span> epoch: (<span style="color:#B03B03;">min</span>(epoch, <span style="color:#8F4070;">3</span>) / <span style="color:#8F4070;">3</span>) * (<span style="color:#8F4070;">1.0</span> - <span style="color:#8F4070;">0.1</span>) + <span style="color:#8F4070;">0.1</span>)</pre>
-</code></pre>
+<a id="x19-73018r991"></a>    <span style="color:#9E0005;">lambda</span> epoch: (<span style="color:#B03B03;">min</span>(epoch, <span style="color:#8F4070;">3</span>) / <span style="color:#8F4070;">3</span>) * (<span style="color:#8F4070;">1.0</span> - <span style="color:#8F4070;">0.1</span>) + <span style="color:#8F4070;">0.1</span>)</pre></code></pre></div>
 <p class="noindent">You must then insert <code class="verb">warmup_scheduler.step()</code>  at the beginning of each epoch, and make sure you deactivate the
 scheduler(s) you are using for the rest of training during the warm-up phase. And that’s
 all!
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb152"><a id="x19-73020r996"></a><span style="color:#918273;"><i># extra code</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb152"><a id="x19-73020r996"></a><span style="color:#918273;"><i># extra code</i></span> 
 <a id="x19-73022r997"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">train_with_warmup</span>(model, optimizer, loss_fn, metric, train_loader, 
 <a id="x19-73024r998"></a>                      valid_loader, n_epochs, warmup_scheduler, scheduler): 
 <a id="x19-73026r999"></a>    history = {<span style="color:#78730D;">"train_losses"</span>: [], <span style="color:#78730D;">"train_metrics"</span>: [], <span style="color:#78730D;">"valid_metrics"</span>: []} 
@@ -392,8 +378,7 @@ all!
 <a id="x19-73114r1043"></a>    history = train_with_warmup( 
 <a id="x19-73116r1044"></a>        model, optimizer, xentropy, metric, train_loader, valid_loader, 
 <a id="x19-73118r1045"></a>        n_epochs, warmup_scheduler, scheduler) 
-<a id="x19-73120r1046"></a>    <span style="color:#9E0005;">return</span> history, evaluate_tm(model, test_loader, metric)</pre>
-</code></pre>
+<a id="x19-73120r1046"></a>    <span style="color:#9E0005;">return</span> history, evaluate_tm(model, test_loader, metric)</pre></code></pre></div>
 <p class="noindent">In short, you pretty much always want to cool down the learning rate at the end of training, and you
 may also want to warm it up at the beginning if gradient descent needs a bit of help getting
 started. But are there any cases where you may want to tweak the learning rate in the
@@ -411,12 +396,12 @@ now.
 </p>
 <div class="subsection-header"><h4 id="header-subsection-3.2.5"><span class="number">3.2.5</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.2.5"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x19-740003.2.5"></a>Cosine Annealing with Warm Restarts</span></h4></div>
 <p class="noindent">Cosine annealing with warm restarts was introduced in a 2016 paper by Ilya Loshchilov and Frank
-Hutter <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Loshchilov2016SGDRSG"> <a id="x19-74001"></a>Loshchilov, I. &amp; Hutter, F. SGDR: Stochastic Gradient Descent with Warm Restarts. arXiv:
-Learning (2016)</span></span>. This schedule just repeats the cosine annealing schedule over and over again.
-Since the learning rate regularly shoots back up, this schedule allows gradient descent to
-escape local optima and plateaus automatically. The authors recommend starting with a
-fairly short round of cosine annealing, but then doubling Tmax after each round (see Figure
-11-11).
+Hutter <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Loshchilov2016SGDRSG"> <span class="bib-entry bib-author"><a id="x19-74001"></a>Loshchilov &amp; Hutter</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:14337532">"SGDR: Stochastic
+Gradient Descent with Warm Restarts"</a>, <span class="bib-entry bib-journal">arXiv: Learning</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2016)</span>.</span></span>. This schedule just repeats
+the cosine annealing schedule over and over again. Since the learning rate regularly shoots back up, this
+schedule allows gradient descent to escape local optima and plateaus automatically. The authors
+recommend starting with a fairly short round of cosine annealing, but then doubling Tmax after each
+round (see Figure 11-11).
 </p>
 <div class="block-minor knowledge"><div class="body">
 <p class="noindent">This allows gradient descent to do a lot of quick explorations at the start of training, while also taking
@@ -430,8 +415,7 @@ for the first round of cosine annealing. You may also set <code class="verb">T_m
 <span class="sidenote">the default is 1, meaning Tmax stays constant and all rounds have the same length.</span></span></span> Finally, you
 can set <code class="verb">eta_min</code>  which it defaults to 0:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb153"><a id="x19-74003r1091"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb153"><a id="x19-74003r1091"></a>model = build_model()  <span style="color:#918273;"><i># extra code</i></span> 
 <a id="x19-74005r1092"></a>optimizer = torch.optim.SGD(model.parameters(), lr=<span style="color:#8F4070;">0.05</span>)  <span style="color:#918273;"><i># or any other optim.</i></span> 
 <a id="x19-74007r1093"></a>cosine_repeat_scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts( 
 <a id="x19-74009r1094"></a>    optimizer, T_0=<span style="color:#8F4070;">2</span>, T_mult=<span style="color:#8F4070;">2</span>, eta_min=<span style="color:#8F4070;">0.001</span>) 
@@ -450,12 +434,12 @@ can set <code class="verb">eta_min</code>  which it defaults to 0:
 <a id="x19-74035r1107"></a>plt.grid(<span style="color:#9E0005;">True</span>) 
 <a id="x19-74037r1108"></a>plt.xlabel(<span style="color:#78730D;">"Epoch"</span>) 
 <a id="x19-74039r1109"></a>plt.ylabel(<span style="color:#78730D;">"Learning rate"</span>) 
-<a id="x19-74041r1110"></a>plt.show()</pre>
-</code></pre>
+<a id="x19-74041r1110"></a>plt.show()</pre></code></pre></div>
 <div class="subsection-header"><h4 id="header-subsection-3.2.6"><span class="number">3.2.6</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.3.2.6"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x19-750003.2.6"></a>1cycle Scheduling</span></h4></div>
-<p class="noindent">Yet another popular learning schedule is <i>1cycle</i>, introduced in a 2018 paper by Leslie Smith <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Smith2018ADA"> <a id="x19-75001"></a>Smith, L. N.
-A disciplined approach to neural network hyper-parameters: Part 1 - learning rate, batch size, momentum,
-and weight decay. ArXiv <b>abs/1803.09820</b> (2018)</span></span>. It starts by warming up the learning rate, starting at
+<p class="noindent">Yet another popular learning schedule is <i>1cycle</i>, introduced in a 2018 paper by Leslie Smith <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Smith2018ADA">
+<span class="bib-entry bib-author"><a id="x19-75001"></a>Smith</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:4714223">"A disciplined approach to neural
+network hyper-parameters: Part 1 - learning rate, batch size, momentum, and weight
+decay"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2018)</span>.</span></span>. It starts by warming up the learning rate, starting at
 <math display="inline"><msub><mrow><mi>η</mi></mrow><mrow><mn>0</mn></mrow></msub></math> and growing
 linearly up to <math display="inline"><msub><mrow><mi>η</mi></mrow><mrow><mn>1</mn></mrow></msub></math>
 halfway through training. Then it decreases the learning rate linearly down to
@@ -530,18 +514,22 @@ recognition, and large language models.</p></dd>
 <i class="fa-solid fa-magnifying-glass"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-reference"></a>
             Page References</span>
 </h3>
 </div>
 <div class="cite-block">
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">1.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Loshchilov, I. &amp; Hutter, F. SGDR: Stochastic Gradient Descent with Warm Restarts. arXiv: Learning (2016)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Loshchilov2016SGDRSG"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x19-74001"></a>Loshchilov &amp; Hutter</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:14337532">"SGDR: Stochastic
+Gradient Descent with Warm Restarts"</a>, <span class="bib-entry bib-journal">arXiv: Learning</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2016)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">2.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Smith, L. N. A disciplined approach to neural network hyper-parameters: Part 1 - learning rate, batch size, momentum, and weight decay. ArXiv abs/1803.09820 (2018)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Smith2018ADA"><a id="w3-20001"></a>
+<span class="bib-entry bib-author"><a id="x19-75001"></a>Smith</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:4714223">"A disciplined approach to neural
+network hyper-parameters: Part 1 - learning rate, batch size, momentum, and weight
+decay"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2018)</span>.</span></dd>
 </dl></div>
 <div class="section-header">
 <h3 id="header-section-references">
@@ -549,7 +537,7 @@ recognition, and large language models.</p></dd>
 <i class="fa-regular fa-note-sticky"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-margin"></a>
                     Page Footnotes</span>
 </h3>
 </div>
@@ -575,7 +563,7 @@ Networks</a></span></span></dd>
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>

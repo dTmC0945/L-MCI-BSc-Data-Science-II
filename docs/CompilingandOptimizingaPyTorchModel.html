@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="TrainingDeepNeuralNetworks.html">Chapter: Training Deep Neural Networks</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="SavingandLoadingPyTorchModels.html">Saving and Loading PyTorch Models</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="UnderstandingPyTorch.html#CompilingandOptimizingaPyTorchModel.html">Chapter: Understanding PyTorch</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -116,9 +116,7 @@ wide range of devices, including embedded devices. </div>
 PyTorch just runs your model with some sample data, logs every operation that takes place, and then
 converts this log to TorchScript. This is done using the <code class="verb">torch.jit.trace()</code>  function:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb120"><a id="x16-41004r1429"></a>torchscript_model = torch.jit.trace(model, X_new)</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb120"><a id="x16-41004r1429"></a>torchscript_model = torch.jit.trace(model, X_new)</pre></code></pre></div>
 <p class="noindent">This generally works well with static models whose <code class="verb">forward()</code>  method doesn’t use conditionals or loops.
 However, if we try to trace a model that includes an if or match statement, then only the branch that is
 actually executed will be captured by TorchScript, which is generally not what we would want.
@@ -140,23 +138,17 @@ standard library, no third-party libraries, etc. This sounds daunting, but for m
 models, these rules are actually not too hard to respect, and we can save our model like
 this:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb121"><a id="x16-41006r1434"></a>torchscript_model = torch.jit.script(model)</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb121"><a id="x16-41006r1434"></a>torchscript_model = torch.jit.script(model)</pre></code></pre></div>
 <p class="noindent">Regardless of whether we use tracing or scripting to produce your TorchScript model, we can then
 further optimize it:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb122"><a id="x16-41008r1439"></a>optimized_model = torch.jit.optimize_for_inference(torchscript_model)</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb122"><a id="x16-41008r1439"></a>optimized_model = torch.jit.optimize_for_inference(torchscript_model)</pre></code></pre></div>
 <p class="noindent">TorchScript models can only be used for inference, not for training, since the TorchScript environment
 doesn’t support gradient tracking or parameter updates. Finally, you can save a TorchScript model
 using its <code class="verb">save()</code>  method:
 </p><p class="noindent">And then load it using the <code class="verb">torch.jit.load()</code>  function:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb123"><a id="x16-41010r1449"></a>loaded_torchscript_model = torch.jit.load(<span style="color:#78730D;">"my_fashion_mnist_torchscript.pt"</span>)</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb123"><a id="x16-41010r1449"></a>loaded_torchscript_model = torch.jit.load(<span style="color:#78730D;">"my_fashion_mnist_torchscript.pt"</span>)</pre></code></pre></div>
 <p class="noindent">One important caveat:
 </p>
 <div class="block-minor warning"><div class="body">
@@ -169,9 +161,7 @@ the release of <i>PyTorch</i> 2.0 in March 2023, the PyTorch team has been focus
 on a new set of compilation tools centered around the <code class="verb">torch.compile()</code>  function, which we can use very
 easily:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb124"><a id="x16-41012r1460"></a>compiled_model = torch.compile(model)</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb124"><a id="x16-41012r1460"></a>compiled_model = torch.compile(model)</pre></code></pre></div>
 <p class="noindent">The resulting model can now be used normally, and it will automatically be compiled and optimized
 when you use it. This is called Just-In-Time (JIT) compilation, as opposed to Ahead-Of-Time
 (AOT) compilation. Under the hood, <code class="verb">torch.compile()</code>  relies on TorchDynamo (or Dynamo for short) which
@@ -190,7 +180,7 @@ devices: just set <code class="verb">device="xla"</code>  when calling <code cla
 <i class="fa-regular fa-note-sticky"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-margin"></a>
                     Page Footnotes</span>
 </h3>
 </div>
@@ -220,7 +210,7 @@ using <code class="verb">torch.onnx.export()</code> . The <i>ONNX</i> model can 
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>

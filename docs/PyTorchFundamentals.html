@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="ImplementingLinearRegression.html">Implementing Linear Regression</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="UnderstandingPyTorch.html">Chapter: Understanding PyTorch</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="UnderstandingPyTorch.html#PyTorchFundamentals.html">Chapter: Understanding PyTorch</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -118,20 +118,16 @@ tensors.
 array, such as a <math display="inline"><mn>2</mn> <mi>×</mi> <mn>3</mn></math>
 array:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb38"><a id="x7-22002r79"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb38"><a id="x7-22002r79"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch</span> 
 <a id="x7-22004r80"></a> 
 <a id="x7-22006r81"></a>X = torch.tensor([[<span style="color:#8F4070;">1.0</span>, <span style="color:#8F4070;">4.0</span>, <span style="color:#8F4070;">7.0</span>], [<span style="color:#8F4070;">2.0</span>, <span style="color:#8F4070;">3.0</span>, <span style="color:#8F4070;">6.0</span>]]) 
 <a id="x7-22008r82"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">"Our tensor is:"</span>) 
 <a id="x7-22010r83"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">"--------------"</span>) 
-<a id="x7-22012r84"></a><span style="color:#B03B03;">print</span>(X)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb39"><a id="x7-22014r89"></a>Our tensor is: 
+<a id="x7-22012r84"></a><span style="color:#B03B03;">print</span>(X)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb39"><a id="x7-22014r89"></a>Our tensor is: 
 <a id="x7-22016r90"></a>-------------- 
 <a id="x7-22018r91"></a>tensor([[1., 4., 7.], 
-<a id="x7-22020r92"></a>        [2., 3., 6.]])</pre>
-</code></pre>
+<a id="x7-22020r92"></a>        [2., 3., 6.]])</pre></code></pre></div>
 <p class="noindent">Similar to a NumPy array, a tensor can contain <code class="verb">float</code> , <code class="verb">int</code> , <code class="verb">bool</code> , or <code class="verb">complex</code>  numbers.
 </p>
 <div class="block-minor warning"><div class="body">
@@ -147,33 +143,28 @@ will follow the hierarchy below:
 <p class="noindent">Tensors of <span class="alert">strings</span> or <span class="alert">objects</span> are <b>NOT</b> supported. </p></div></div>
 <p class="noindent">We do operations on tensors similar to how we would do them in <code class="verb">np.array</code> :
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb40"><a id="x7-22022r97"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"We can do quite a few operations with tensors.</span><span style="color:#B03B03;">\n\n</span><span style="color:#78730D;">"</span> + 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb40"><a id="x7-22022r97"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"We can do quite a few operations with tensors.</span><span style="color:#B03B03;">\n\n</span><span style="color:#78730D;">"</span> + 
 <a id="x7-22024r98"></a>      <span style="color:#78730D;">"For example:</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">"</span> + 
 <a id="x7-22026r99"></a>      <span style="color:#78730D;">"------------</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">"</span> + 
 <a id="x7-22028r100"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">'Determine its shape: </span><span style="color:#78730D;">{</span>X.shape<span style="color:#78730D;">}</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">'</span> + 
 <a id="x7-22030r101"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">'Determine its type : </span><span style="color:#78730D;">{</span>X.dtype<span style="color:#78730D;">}</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">'</span> + 
 <a id="x7-22032r102"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">'Index operations   : </span><span style="color:#78730D;">{</span>X[<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">1</span>]<span style="color:#78730D;">}</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">'</span> + 
 <a id="x7-22034r103"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">'Get columns        : </span><span style="color:#78730D;">{</span>X[:, <span style="color:#8F4070;">1</span>]<span style="color:#78730D;">}</span><span style="color:#78730D;">'</span>) 
-<a id="x7-22036r104"></a></pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb41"><a id="x7-22038r109"></a>We can do quite a few operations with tensors. 
+<a id="x7-22036r104"></a></pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb41"><a id="x7-22038r109"></a>We can do quite a few operations with tensors. 
 <a id="x7-22040r110"></a> 
 <a id="x7-22042r111"></a>For example: 
 <a id="x7-22044r112"></a>------------ 
 <a id="x7-22046r113"></a>Determine its shape: torch.Size([2, 3]) 
 <a id="x7-22048r114"></a>Determine its type : torch.float32 
 <a id="x7-22050r115"></a>Index operations   : 4.0 
-<a id="x7-22052r116"></a>Get columns        : tensor([4., 3.])</pre>
-</code></pre>
+<a id="x7-22052r116"></a>Get columns        : tensor([4., 3.])</pre></code></pre></div>
 <p class="noindent">We can also run all sorts of computations on tensors, and the way we do these operations is
 conveniently similar to NumPy’s: </p><div class="quote">  Operations such as <code class="verb">torch.abs()</code> , <code class="verb">torch.cos()</code> , <code class="verb">torch.exp()</code> , <code class="verb">torch.max()</code> , <code class="verb">torch.mean()</code> , <code class="verb">torch.sqrt()</code> , and so on. </div>
 <p class="noindent">PyTorch tensors also have methods for most of these operations, so we can write <code class="verb">X.exp()</code>  instead of <code class="verb">torch.exp(X)</code> . Let’s try
 a few operations:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb42"><a id="x7-22054r136"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"We can do mathematical operations with tensors.</span><span style="color:#B03B03;">\n\n</span><span style="color:#78730D;">"</span> + 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb42"><a id="x7-22054r136"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">f</span><span style="color:#78730D;">"We can do mathematical operations with tensors.</span><span style="color:#B03B03;">\n\n</span><span style="color:#78730D;">"</span> + 
 <a id="x7-22056r137"></a>      <span style="color:#78730D;">"For example:</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">"</span> + 
 <a id="x7-22058r138"></a>      <span style="color:#78730D;">"------------</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">"</span> + 
 <a id="x7-22060r139"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">'Item-wise addition and multiplication:</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">'</span> + 
@@ -185,10 +176,8 @@ a few operations:
 <a id="x7-22072r145"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">'Maximum value on 0th dimension:</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">'</span> + 
 <a id="x7-22074r146"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">'    </span><span style="color:#78730D;">{</span>X.max(dim=<span style="color:#8F4070;">0</span>)<span style="color:#78730D;">}</span><span style="color:#78730D;">'</span> + 
 <a id="x7-22076r147"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">'Transpose and multiplication:</span><span style="color:#B03B03;">\n</span><span style="color:#78730D;">'</span> + 
-<a id="x7-22078r148"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">'    </span><span style="color:#78730D;">{</span>X @ X.T<span style="color:#78730D;">}</span><span style="color:#78730D;">'</span>)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb43"><a id="x7-22080r153"></a>We can do mathematical operations with tensors. 
+<a id="x7-22078r148"></a>      <span style="color:#78730D;">f</span><span style="color:#78730D;">'    </span><span style="color:#78730D;">{</span>X @ X.T<span style="color:#78730D;">}</span><span style="color:#78730D;">'</span>)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb43"><a id="x7-22080r153"></a>We can do mathematical operations with tensors. 
 <a id="x7-22082r154"></a> 
 <a id="x7-22084r155"></a>For example: 
 <a id="x7-22086r156"></a>------------ 
@@ -205,21 +194,18 @@ a few operations:
 <a id="x7-22108r167"></a>values=tensor([2., 4., 7.]), 
 <a id="x7-22110r168"></a>indices=tensor([1, 0, 0]))Transpose and multiplication: 
 <a id="x7-22112r169"></a>    tensor([[66., 56.], 
-<a id="x7-22114r170"></a>        [56., 49.]])</pre>
-</code></pre>
+<a id="x7-22114r170"></a>        [56., 49.]])</pre></code></pre></div>
 <div class="block-minor knowledge"><div class="body">
 <p class="noindent">PyTorch prefers the argument name <code class="verb">dim</code>  in operations such as <code class="verb">max()</code> , but it also supports <code class="verb">axis</code> , which is similar to
 one used in NumPy or Pandas. </p></div></div>
 <p class="noindent">We can also convert a tensor to a NumPy array using the <code class="verb">numpy()</code>  method, and vice versa, create a tensor
 from a NumPy array:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb44"><a id="x7-22116r195"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">numpy</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">np</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb44"><a id="x7-22116r195"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">numpy</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">np</span> 
 <a id="x7-22118r196"></a> 
 <a id="x7-22120r197"></a>X.numpy() 
 <a id="x7-22122r198"></a>torch.tensor(np.array([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">7.</span>], [<span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>, <span style="color:#8F4070;">6.</span>]])) 
-<a id="x7-22124r199"></a></pre>
-</code></pre>
+<a id="x7-22124r199"></a></pre></code></pre></div>
 <p class="noindent">Here, the default precision for floats is 32 bits in PyTorch, whereas it’s 64 bits in NumPy.
 </p>
 <dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-2.11" id="info-block-2.11"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 2.<a id="x7-22125r11"></a>11: </b> </span> <span class="title"> Less is better </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
@@ -234,50 +220,36 @@ So when calling the <code class="verb">torch.tensor()</code>  function to conver
 .
 </p>
 </dd></dl>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb45"><a id="x7-22127r204"></a>torch.tensor(np.array([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">7.</span>], [<span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>, <span style="color:#8F4070;">6.</span>]]), dtype=torch.float32)</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb45"><a id="x7-22127r204"></a>torch.tensor(np.array([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">7.</span>], [<span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>, <span style="color:#8F4070;">6.</span>]]), dtype=torch.float32)</pre></code></pre></div>
 <p class="noindent">Alternatively, we can use <code class="verb">torch.FloatTensor()</code>  which automatically converts the array to 32 bits:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb46"><a id="x7-22129r209"></a>torch.FloatTensor(np.array([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">7.</span>], [<span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>, <span style="color:#8F4070;">6</span>]]))</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb46"><a id="x7-22129r209"></a>torch.FloatTensor(np.array([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">7.</span>], [<span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>, <span style="color:#8F4070;">6</span>]]))</pre></code></pre></div>
 <p class="noindent">Both <code class="verb">torch.tensor()</code>  and <code class="verb">torch.FloatTensor()</code>  shown beforehand make a copy of the given NumPy array. However, if we prefer, we can
 use <code class="verb">torch.from_numpy()</code>  which creates a tensor on the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:cpu">CPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:cpu">Central Processing Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:cpu">Central Processing Unit</a></span></span></span> which just uses
 the NumPy array’s data directly, sans copying.
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb47"><a id="x7-22131r214"></a>X2_np       = np.array([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">7.</span>], [<span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>, <span style="color:#8F4070;">6</span>]]) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb47"><a id="x7-22131r214"></a>X2_np       = np.array([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">7.</span>], [<span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>, <span style="color:#8F4070;">6</span>]]) 
 <a id="x7-22133r215"></a><span style="color:#918273;"><i># X2_np and X2 share the same data in memory</i></span> 
 <a id="x7-22135r216"></a>X2          = torch.from_numpy(X2_np) 
 <a id="x7-22137r217"></a>X2_np[<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">1</span>] = <span style="color:#8F4070;">88</span> 
-<a id="x7-22139r218"></a><span style="color:#B03B03;">print</span>(X2)</pre>
-</code></pre>
+<a id="x7-22139r218"></a><span style="color:#B03B03;">print</span>(X2)</pre></code></pre></div>
 <p class="noindent">A word of caution </p><div class="quote">  modifying the NumPy array will also modify the tensor, and vice versa.
 </div>
 <p class="noindent">We can also modify a tensor in place using indexing and slicing, as with a NumPy array:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb48"><a id="x7-22141r229"></a>X[:, <span style="color:#8F4070;">1</span>] = -<span style="color:#8F4070;">99</span> 
-<a id="x7-22143r230"></a><span style="color:#B03B03;">print</span>(X)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb49"><a id="x7-22145r235"></a>tensor([[  1., -99.,   7.], 
-<a id="x7-22147r236"></a>        [  2., -99.,   6.]])</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb48"><a id="x7-22141r229"></a>X[:, <span style="color:#8F4070;">1</span>] = -<span style="color:#8F4070;">99</span> 
+<a id="x7-22143r230"></a><span style="color:#B03B03;">print</span>(X)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb49"><a id="x7-22145r235"></a>tensor([[  1., -99.,   7.], 
+<a id="x7-22147r236"></a>        [  2., -99.,   6.]])</pre></code></pre></div>
 <p class="noindent">PyTorch’s API provides numerous in-place operations, such as <code class="verb">abs_()</code> , <code class="verb">sqrt_()</code> , and <code class="verb">zero_()</code> , which modify the input tensor
 <span class="margin-block">directly. <span class="margin-comment"><a class="ellipsis" href="#m-ref-50">[50]</a>
 <span class="sidenote">they can sometimes save some memory and speed up your models.</span></span></span> </p><div class="quote">  For example, the <code class="verb">relu_()</code>
 method applies the ReLU activation function in place by replacing all negative values with 0s:
 </div>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb50"><a id="x7-22149r241"></a>X.relu_() 
-<a id="x7-22151r242"></a><span style="color:#B03B03;">print</span>(X)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb51"><a id="x7-22153r247"></a>tensor([[1., 0., 7.], 
-<a id="x7-22155r248"></a>        [2., 0., 6.]])</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb50"><a id="x7-22149r241"></a>X.relu_() 
+<a id="x7-22151r242"></a><span style="color:#B03B03;">print</span>(X)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb51"><a id="x7-22153r247"></a>tensor([[1., 0., 7.], 
+<a id="x7-22155r248"></a>        [2., 0., 6.]])</pre></code></pre></div>
 <p class="noindent">PyTorch’s in-place operations are easy to spot at a glance because their name always ends with an
 underscore. With very few exceptions (e.g., <code class="verb">zero_()</code> ), removing the underscore gives you the regular <span class="margin-block">operation.
 <span class="margin-comment"><a class="ellipsis" href="#m-ref-51">[51]</a>
@@ -329,19 +301,15 @@ unit (CPU) that processes tasks sequentially, a GPU uses parallel processing wit
 cores to handle many calculations at the same time.</a></span></span></span> or Apple’s MPS, otherwise let’s fall back to the
 <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:cpu">CPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:cpu">Central Processing Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:cpu">Central Processing Unit</a></span></span></span>:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb52"><a id="x7-23002r268"></a><span style="color:#9E0005;">if</span> torch.cuda.is_available(): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb52"><a id="x7-23002r268"></a><span style="color:#9E0005;">if</span> torch.cuda.is_available(): 
 <a id="x7-23004r269"></a>    device = <span style="color:#78730D;">"cuda"</span> 
 <a id="x7-23006r270"></a><span style="color:#9E0005;">elif</span> torch.backends.mps.is_available(): 
 <a id="x7-23008r271"></a>    device = <span style="color:#78730D;">"mps"</span> 
 <a id="x7-23010r272"></a><span style="color:#9E0005;">else</span>: 
 <a id="x7-23012r273"></a>    device = <span style="color:#78730D;">"cpu"</span> 
 <a id="x7-23014r274"></a> 
-<a id="x7-23016r275"></a><span style="color:#B03B03;">print</span>(device)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb53"><a id="x7-23018r280"></a>mps</pre>
-</code></pre>
+<a id="x7-23016r275"></a><span style="color:#B03B03;">print</span>(device)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb53"><a id="x7-23018r280"></a>mps</pre></code></pre></div>
 <dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-2.12" id="info-block-2.12"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 2.<a id="x7-23019r12"></a>12: </b> </span> <span class="title"> We Need More Power </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent"><span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:dl">DL</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:dl">Deep Learning</a></span><span class="acronym-desc"><a class="glossary" href="#glo:dl">A subset of machine learning that uses multi-layered artificial neural networks
 to mimic human brain function. It automatically extracts complex patterns and abstract
@@ -366,14 +334,10 @@ processing with thousands of smaller cores to handle many calculations at the sa
 using the <code class="verb">to()</code>  method and we can always tell which device a tensor lives on by looking at its <code class="verb">device</code>
 attribute:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb54"><a id="x7-23021r285"></a>M = torch.tensor([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>], [<span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">5.</span>, <span style="color:#8F4070;">6.</span>]]) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb54"><a id="x7-23021r285"></a>M = torch.tensor([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>], [<span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">5.</span>, <span style="color:#8F4070;">6.</span>]]) 
 <a id="x7-23023r286"></a>M = M.to(device) 
-<a id="x7-23025r287"></a><span style="color:#B03B03;">print</span>(M.device)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb55"><a id="x7-23027r292"></a>mps:0</pre>
-</code></pre>
+<a id="x7-23025r287"></a><span style="color:#B03B03;">print</span>(M.device)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb55"><a id="x7-23027r292"></a>mps:0</pre></code></pre></div>
 <div class="block-minor knowledge"><div class="body">
 <p class="noindent">The <code class="verb">cpu()</code> , <code class="verb">mps()</code> , and <code class="verb">cuda()</code>  methods are short for <code class="verb">to("cpu")</code> , <code class="verb">to("mps")</code> , and <code class="verb">to("cuda")</code> , respectively. </p></div></div>
 <p class="noindent">Alternatively, we can create tensor directly on the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gpu">GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gpu">Graphical Processing Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gpu">A specialized
@@ -382,14 +346,10 @@ processing unit (CPU) that processes tasks sequentially, a GPU uses parallel pro
 with thousands of smaller cores to handle many calculations at the same time.</a></span></span></span> using the <code class="verb">device</code>
 argument:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb56"><a id="x7-23029r297"></a>M = torch.tensor([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>], [<span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">5.</span>, <span style="color:#8F4070;">6.</span>]], device=device) 
-<a id="x7-23031r298"></a><span style="color:#B03B03;">print</span>(M)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb57"><a id="x7-23033r303"></a>tensor([[1., 2., 3.], 
-<a id="x7-23035r304"></a>        [4., 5., 6.]], device='mps:0')</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb56"><a id="x7-23029r297"></a>M = torch.tensor([[<span style="color:#8F4070;">1.</span>, <span style="color:#8F4070;">2.</span>, <span style="color:#8F4070;">3.</span>], [<span style="color:#8F4070;">4.</span>, <span style="color:#8F4070;">5.</span>, <span style="color:#8F4070;">6.</span>]], device=device) 
+<a id="x7-23031r298"></a><span style="color:#B03B03;">print</span>(M)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb57"><a id="x7-23033r303"></a>tensor([[1., 2., 3.], 
+<a id="x7-23035r304"></a>        [4., 5., 6.]], device='mps:0')</pre></code></pre></div>
 <dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-2.13" id="info-block-2.13"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 2.<a id="x7-23036r13"></a>13: </b> </span> <span class="title"> Having Multiple GPUs </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">In the rare event that we have <span class="alert">multiple</span> Nvidia <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gpu">GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gpu">Graphical Processing Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gpu">A specialized electronic chip
 designed to rapidly render images, video, and 3D animations. Unlike a central processing unit (CPU)
@@ -413,14 +373,10 @@ and 3D animations. Unlike a central processing unit (CPU) that processes tasks s
 uses parallel processing with thousands of smaller cores to handle many calculations at the same
 time.</a></span></span></span>:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb58"><a id="x7-23038r309"></a>R = M @ M.T  <span style="color:#918273;"><i># run some operations on the GPU</i></span> 
-<a id="x7-23040r310"></a><span style="color:#B03B03;">print</span>(R)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb59"><a id="x7-23042r315"></a>tensor([[14., 32.], 
-<a id="x7-23044r316"></a>        [32., 77.]], device='mps:0')</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb58"><a id="x7-23038r309"></a>R = M @ M.T  <span style="color:#918273;"><i># run some operations on the GPU</i></span> 
+<a id="x7-23040r310"></a><span style="color:#B03B03;">print</span>(R)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb59"><a id="x7-23042r315"></a>tensor([[14., 32.], 
+<a id="x7-23044r316"></a>        [32., 77.]], device='mps:0')</pre></code></pre></div>
 <p class="noindent">Note that the result <code class="verb">R</code>  also lives on the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gpu">GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gpu">Graphical Processing Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gpu">A specialized electronic chip
 designed to rapidly render images, video, and 3D animations. Unlike a central processing unit (CPU)
 that processes tasks sequentially, a GPU uses parallel processing with thousands of smaller cores to
@@ -439,7 +395,7 @@ amounts of unstructured data, powering modern applications like computer vision,
 recognition, and large language models.</a></span></span></span> as data transfer between devices can often become a
 <span class="alert">performance bottleneck</span>.
 </p>
-<div class="subsection-header"><h5 id="header-subsubsection-2.1.2.5"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x7-24000"></a>Effect of GPU Acceleration</span></h5></div>
+<div class="subsubsection-header"><h5 id="header-subsubsection-2.1.2.5"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x7-24000"></a>Effect of GPU Acceleration</span></h5></div>
 <p class="noindent">Depends on the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gpu">GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gpu">Graphical Processing Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gpu">A specialized electronic chip designed to rapidly render
 images, video, and 3D animations. Unlike a central processing unit (CPU) that processes tasks
 sequentially, a GPU uses parallel processing with thousands of smaller cores to handle many
@@ -460,15 +416,13 @@ electronic chip designed to rapidly render images, video, and 3D animations. Unl
 unit (CPU) that processes tasks sequentially, a GPU uses parallel processing with thousands of smaller
 cores to handle many calculations at the same time.</a></span></span></span>:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb60"><a id="x7-24002r321"></a>M = torch.rand((<span style="color:#8F4070;">1000</span>, <span style="color:#8F4070;">1000</span>))  <span style="color:#918273;"><i># on the CPU</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb60"><a id="x7-24002r321"></a>M = torch.rand((<span style="color:#8F4070;">1000</span>, <span style="color:#8F4070;">1000</span>))  <span style="color:#918273;"><i># on the CPU</i></span> 
 <a id="x7-24004r322"></a>M @ M.T  <span style="color:#918273;"><i># warmup</i></span> 
 <a id="x7-24006r323"></a>%timeit M @ M.T 
 <a id="x7-24008r324"></a> 
 <a id="x7-24010r325"></a>M = M.to(device) 
 <a id="x7-24012r326"></a>M @ M.T  <span style="color:#918273;"><i># warmup</i></span> 
-<a id="x7-24014r327"></a>%timeit M @ M.T</pre>
-</code></pre>
+<a id="x7-24014r327"></a>%timeit M @ M.T</pre></code></pre></div>
 <p class="noindent">The <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:gpu">GPU</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:gpu">Graphical Processing Unit</a></span><span class="acronym-desc"><a class="glossary" href="#glo:gpu">A specialized electronic chip designed to rapidly render images,
 video, and 3D animations. Unlike a central processing unit (CPU) that processes tasks sequentially, a
 GPU uses parallel processing with thousands of smaller cores to handle many calculations at the same
@@ -500,7 +454,7 @@ that processes tasks sequentially, a GPU uses parallel processing with thousands
 handle many calculations at the same time.</a></span></span></span>, let’s look at PyTorch’s auto-differentiation
 feature.
 </p>
-<div class="subsection-header"><h5 id="header-subsubsection-2.1.2.6"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x7-25000"></a>Autograd</span></h5></div>
+<div class="subsubsection-header"><h5 id="header-subsubsection-2.1.2.6"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x7-25000"></a>Autograd</span></h5></div>
 <p class="noindent">PyTorch comes with an efficient implementation of reverse-mode auto-differentiation, called
 <b>autograd</b>, which stands for <i>automatic gradients</i>. It is quite easy to use. </p><div class="quote">  For example, consider
 <math display="inline"><mi>f</mi><mo class="MathClass-open" stretchy="false">(</mo><mi>x</mi><mo class="MathClass-close" stretchy="false">)</mo> <mo class="MathClass-rel" stretchy="false">=</mo> <msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup></math>. Calculus tells us that the
@@ -510,13 +464,11 @@ and <math display="inline"><msup><mrow><mi>f</mi></mrow><mrow><mi>′</mi></mrow
 we get 25 and 10, respectively. </div>
 <p class="noindent">Let’s see if PyTorch agrees:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb61"><a id="x7-25002r342"></a>x = torch.tensor(<span style="color:#8F4070;">5.0</span>, requires_grad=<span style="color:#9E0005;">True</span>) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb61"><a id="x7-25002r342"></a>x = torch.tensor(<span style="color:#8F4070;">5.0</span>, requires_grad=<span style="color:#9E0005;">True</span>) 
 <a id="x7-25004r343"></a>f = x ** <span style="color:#8F4070;">2</span> 
 <a id="x7-25006r344"></a>f 
 <a id="x7-25008r345"></a>f.backward() 
-<a id="x7-25010r346"></a>x.grad</pre>
-</code></pre>
+<a id="x7-25010r346"></a>x.grad</pre></code></pre></div>
 <p class="noindent">Great, we got the correct results: <math display="inline"><mi>f</mi></math>
 is 25, and <code class="verb">x.grad</code>  is 10.
 </p>
@@ -587,20 +539,16 @@ to track the gradient descent step itself in the computation <span class="margin
 exception if we tried to run an in-place operation on a tracked variable.</span></span></span> This can be done by placing the
 gradient descent step inside a <code class="verb">torch.no_grad()</code>  context, like this:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb62"><a id="x7-25013r356"></a>learning_rate = <span style="color:#8F4070;">0.1</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb62"><a id="x7-25013r356"></a>learning_rate = <span style="color:#8F4070;">0.1</span> 
 <a id="x7-25015r357"></a><span style="color:#9E0005;">with</span> torch.no_grad(): 
-<a id="x7-25017r358"></a>    x -= learning_rate * x.grad  <span style="color:#918273;"><i># gradient descent step</i></span></pre>
-</code></pre>
+<a id="x7-25017r358"></a>    x -= learning_rate * x.grad  <span style="color:#918273;"><i># gradient descent step</i></span></pre></code></pre></div>
 <p class="noindent">The variable <code class="verb">x</code>  gets decremented by <code class="verb">0.1 * 10.0 = 1.0</code> , down from <code class="verb">5.0</code>  to <code class="verb">4.0</code> . Another way to avoid gradient computation is
 to use the variable’s <code class="verb">detach()</code>  method: </p><div class="quote">  this creates a new tensor detached from the computation graph, with <code class="verb">requires_grad=False</code> ,
 but still pointing to the same data in memory. </div>
 <p class="noindent">We can then update this detached tensor:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb63"><a id="x7-25019r371"></a>x_detached = x.detach() 
-<a id="x7-25021r372"></a>x_detached -= learning_rate * x.grad</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb63"><a id="x7-25019r371"></a>x_detached = x.detach() 
+<a id="x7-25021r372"></a>x_detached -= learning_rate * x.grad</pre></code></pre></div>
 <div class="block-minor knowledge"><div class="body">
 <p class="noindent">Since <code class="verb">x_detached</code>  and <code class="verb">x</code>  share the same memory, modifying <code class="verb">x_detached</code>  also modifies <code class="verb">x</code> . </p></div></div>
 <p class="noindent">The <code class="verb">detach()</code>  method can be handy when we need to run some computation on a tensor without affecting the
@@ -615,9 +563,7 @@ step.</span></span></span> it’s essential to zero out the gradients of every m
 <span class="sidenote">you don’t need a <code class="verb">no_grad()</code>  context for
 this since the gradient tensor has <code class="verb">requires_grad=False</code> .</span></span></span>
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb64"><a id="x7-25023r377"></a>x.grad.zero_()</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb64"><a id="x7-25023r377"></a>x.grad.zero_()</pre></code></pre></div>
 <dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-2.16" id="info-block-2.16"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 2.<a id="x7-25024r16"></a>16: </b> </span> <span class="title"> Don’t Forget your Gradients </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">If we forget to zero out the gradients at each training iteration, the <code class="verb">backward()</code>  method will just accumulate them,
 causing incorrect gradient descent updates. Since there won’t be any explicit error, just low
@@ -627,16 +573,14 @@ causing incorrect gradient descent updates. Since there won’t be any explicit 
 </dd></dl>
 <p class="noindent">Putting everything together, the whole training loop looks like this:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb65"><a id="x7-25026r384"></a>learning_rate = <span style="color:#8F4070;">0.1</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb65"><a id="x7-25026r384"></a>learning_rate = <span style="color:#8F4070;">0.1</span> 
 <a id="x7-25028r385"></a>x = torch.tensor(<span style="color:#8F4070;">5.0</span>, requires_grad=<span style="color:#9E0005;">True</span>) 
 <a id="x7-25030r386"></a><span style="color:#9E0005;">for</span> iteration <span style="color:#9E0005;">in</span> <span style="color:#B03B03;">range</span>(<span style="color:#8F4070;">100</span>): 
 <a id="x7-25032r387"></a>    f = x ** <span style="color:#8F4070;">2</span>  <span style="color:#918273;"><i># forward pass</i></span> 
 <a id="x7-25034r388"></a>    f.backward()  <span style="color:#918273;"><i># backward pass</i></span> 
 <a id="x7-25036r389"></a>    <span style="color:#9E0005;">with</span> torch.no_grad(): 
 <a id="x7-25038r390"></a>        x -= learning_rate * x.grad  <span style="color:#918273;"><i># gradient descent step</i></span> 
-<a id="x7-25040r391"></a>    x.grad.zero_()  <span style="color:#918273;"><i># reset the gradients</i></span></pre>
-</code></pre>
+<a id="x7-25040r391"></a>    x.grad.zero_()  <span style="color:#918273;"><i># reset the gradients</i></span></pre></code></pre></div>
 <p class="noindent">If we want to use in-place operations to save memory and speed up our models a bit by avoiding
 unnecessary copy operations, we have to be careful:
 </p>
@@ -786,7 +730,7 @@ applications like computer vision, speech recognition, and large language models
 <i class="fa-regular fa-note-sticky"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-margin"></a>
                     Page Footnotes</span>
 </h3>
 </div>
@@ -903,7 +847,7 @@ For integer inputs, <code class="verb">autograd</code>  also returns zeros inste
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>

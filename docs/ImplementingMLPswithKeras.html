@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="UnderstandingPyTorch.html">Chapter: Understanding PyTorch</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="FromBiologytoSiliconArtificialNeurons.html">From Biology to Silicon: Artificial Neurons</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="IntroductiontoArtificialNeuralNetworks.html#ImplementingMLPswithKeras.html">Chapter: Introduction to Artificial Neural Networks</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -111,19 +111,17 @@ National Institute of Standards and Technology</a></span></span></span>. There a
 each, with 10 classes where images represent fashion items rather than handwritten digits, so each class
 is more diverse, and the problem turns out to be significantly challenging.
 </p>
-<div class="subsection-header"><h5 id="header-subsubsection-1.2.1.1"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x5-13000"></a>Using Keras to load the dataset</span></h5></div>
+<div class="subsubsection-header"><h5 id="header-subsubsection-1.2.1.1"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x5-13000"></a>Using Keras to load the dataset</span></h5></div>
 <p class="noindent">The python library, <code class="verb">keras</code>  provides utility functions to fetch and load common datasets, including MNIST,
 Fashion MNIST, and a few more.
 </p><p class="noindent">Let’s load Fashion MNIST. It’s already shuffled and split into a training set (60,000 images) and a test
 set (10,000 images), but we’ll hold out the last 5,000 images from the training set for validation:
-</p><div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb3"><a id="x5-13002r245"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">tensorflow</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">tf</span> 
+</p><div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb3"><a id="x5-13002r245"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">tensorflow</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">tf</span> 
 <a id="x5-13004r246"></a> 
 <a id="x5-13006r247"></a>fashion_mnist = tf.keras.datasets.fashion_mnist.load_data() 
 <a id="x5-13008r248"></a>(X_train_full, y_train_full), (X_test, y_test) = fashion_mnist 
 <a id="x5-13010r249"></a>X_train, y_train = X_train_full[:-<span style="color:#8F4070;">5000</span>], y_train_full[:-<span style="color:#8F4070;">5000</span>] 
-<a id="x5-13012r250"></a>X_valid, y_valid = X_train_full[-<span style="color:#8F4070;">5000</span>:], y_train_full[-<span style="color:#8F4070;">5000</span>:]</pre>
-</code></pre>
+<a id="x5-13012r250"></a>X_valid, y_valid = X_train_full[-<span style="color:#8F4070;">5000</span>:], y_train_full[-<span style="color:#8F4070;">5000</span>:]</pre></code></pre></div>
 <div class="block-minor knowledge"><div class="body">
 <p class="noindent">TensorFlow is usually imported as <code class="verb">tf</code> , and the Keras <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:api">API</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:api">Application-Programming
 Interface</a></span><span class="acronym-desc"><a class="glossary" href="#glo:api">Application-Programming Interface</a></span></span></span> is available via <code class="verb">tf.keras</code> . </p></div></div>
@@ -146,14 +144,10 @@ floats (0.0 - 255.0).
           Technology</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mnist">Modified National Institute of Standards and Technology</a></span></span></span>.                       </span></figcaption>
 <img alt="PIC" src="codes/images/Introduction-to-Artificial-Neural-Networks/fashion_mnist_plot-.png" style=""/>
 </figure>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb4"><a id="x5-13016r258"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">"The size of the training dataset: "</span>, X_train.shape) 
-<a id="x5-13018r259"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">"The type of the training dataset: "</span>, X_train.dtype)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb5"><a id="x5-13020r264"></a>The size of the training dataset:  (11610, 8) 
-<a id="x5-13022r265"></a>The type of the training dataset:  float64</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb4"><a id="x5-13016r258"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">"The size of the training dataset: "</span>, X_train.shape) 
+<a id="x5-13018r259"></a><span style="color:#B03B03;">print</span>(<span style="color:#78730D;">"The type of the training dataset: "</span>, X_train.dtype)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb5"><a id="x5-13020r264"></a>The size of the training dataset:  (11610, 8) 
+<a id="x5-13022r265"></a>The type of the training dataset:  float64</pre></code></pre></div>
 <div class="sidenote"> <span class="figure">
 <a id="x5-13023r12"></a>
 <figcaption class="caption"><span class="id">Figure 1.12: </span><span class="content">An example of a data within the Fashion MNIST.                                    </span></figcaption>
@@ -163,15 +157,11 @@ floats (0.0 - 255.0).
 <p class="noindent">To make it simple, we’ll scale the pixel intensities down to the 0 - 1 range by dividing them by 255.0.
 This operation also converts the integer values to floats.
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb6"><a id="x5-13025r273"></a>X_train, X_valid, X_test = X_train / <span style="color:#8F4070;">255.</span>, X_valid / <span style="color:#8F4070;">255.</span>, X_test / <span style="color:#8F4070;">255.</span></pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb6"><a id="x5-13025r273"></a>X_train, X_valid, X_test = X_train / <span style="color:#8F4070;">255.</span>, X_valid / <span style="color:#8F4070;">255.</span>, X_test / <span style="color:#8F4070;">255.</span></pre></code></pre></div>
 <p class="noindent">Using Fashion MNIST, we need the list of class names to know what we are dealing with:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb7"><a id="x5-13027r280"></a>class_names = [<span style="color:#78730D;">"T-shirt/top"</span>, <span style="color:#78730D;">"Trouser"</span>, <span style="color:#78730D;">"Pullover"</span>, <span style="color:#78730D;">"Dress"</span>, <span style="color:#78730D;">"Coat"</span>, 
-<a id="x5-13029r281"></a>               <span style="color:#78730D;">"Sandal"</span>, <span style="color:#78730D;">"Shirt"</span>, <span style="color:#78730D;">"Sneaker"</span>, <span style="color:#78730D;">"Bag"</span>, <span style="color:#78730D;">"Ankle boot"</span>]</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb7"><a id="x5-13027r280"></a>class_names = [<span style="color:#78730D;">"T-shirt/top"</span>, <span style="color:#78730D;">"Trouser"</span>, <span style="color:#78730D;">"Pullover"</span>, <span style="color:#78730D;">"Dress"</span>, <span style="color:#78730D;">"Coat"</span>, 
+<a id="x5-13029r281"></a>               <span style="color:#78730D;">"Sandal"</span>, <span style="color:#78730D;">"Shirt"</span>, <span style="color:#78730D;">"Sneaker"</span>, <span style="color:#78730D;">"Bag"</span>, <span style="color:#78730D;">"Ankle boot"</span>]</pre></code></pre></div>
 <p class="noindent">For example, the first image in the training set represents an ankle boot, shown in <b>Fig.</b> <a href="FromBiologytoSiliconArtificialNeurons.html#x4-6001r6">1.6</a>, and we can
 see some samples of the Fashion MNIST datasets in <b>Fig.</b> <a href="#x5-13014r11">1.11</a>.
 </p>
@@ -180,15 +170,13 @@ see some samples of the Fashion MNIST datasets in <b>Fig.</b> <a href="#x5-1301
 a classification <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:mlp">MLP</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:mlp">Multi-layer Perceptrons</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mlp">Multi-layer Perceptrons</a></span></span></span> with two (<span class="alert">2</span>) hidden
 layers:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb8"><a id="x5-14002r327"></a>tf.random.set_seed(<span style="color:#8F4070;">42</span>) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb8"><a id="x5-14002r327"></a>tf.random.set_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x5-14004r328"></a>model = tf.keras.Sequential() 
 <a id="x5-14006r329"></a>model.add(tf.keras.layers.InputLayer(shape=[<span style="color:#8F4070;">28</span>, <span style="color:#8F4070;">28</span>])) 
 <a id="x5-14008r330"></a>model.add(tf.keras.layers.Flatten()) 
 <a id="x5-14010r331"></a>model.add(tf.keras.layers.Dense(<span style="color:#8F4070;">300</span>, activation=<span style="color:#78730D;">"relu"</span>)) 
 <a id="x5-14012r332"></a>model.add(tf.keras.layers.Dense(<span style="color:#8F4070;">100</span>, activation=<span style="color:#78730D;">"relu"</span>)) 
-<a id="x5-14014r333"></a>model.add(tf.keras.layers.Dense(<span style="color:#8F4070;">10</span>, activation=<span style="color:#78730D;">"softmax"</span>))</pre>
-</code></pre>
+<a id="x5-14014r333"></a>model.add(tf.keras.layers.Dense(<span style="color:#8F4070;">10</span>, activation=<span style="color:#78730D;">"softmax"</span>))</pre></code></pre></div>
 <p class="noindent">Let’s try to understand the code: </p>
 <dl class="description"><dt class="description"><a id="x5-14015x1.2.2"></a>
 <span style="color:#0063B2;"><code class="verb">tf.random.set_seed(42)</code> </span>
@@ -262,8 +250,7 @@ function as the classes are exclusive.</p></dd></dl>
 when creating the Sequential model. You can also drop the Input layer and instead specify the <code class="verb">input_shape</code>  in the
 first layer:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb9"><a id="x5-14023r340"></a>tf.keras.backend.clear_session() 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb9"><a id="x5-14023r340"></a>tf.keras.backend.clear_session() 
 <a id="x5-14025r341"></a>tf.random.set_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x5-14027r342"></a> 
 <a id="x5-14029r343"></a>model = tf.keras.Sequential([ 
@@ -271,16 +258,13 @@ first layer:
 <a id="x5-14033r345"></a>    tf.keras.layers.Dense(<span style="color:#8F4070;">300</span>, activation=<span style="color:#78730D;">"relu"</span>), 
 <a id="x5-14035r346"></a>    tf.keras.layers.Dense(<span style="color:#8F4070;">100</span>, activation=<span style="color:#78730D;">"relu"</span>), 
 <a id="x5-14037r347"></a>    tf.keras.layers.Dense(<span style="color:#8F4070;">10</span>, activation=<span style="color:#78730D;">"softmax"</span>) 
-<a id="x5-14039r348"></a>])</pre>
-</code></pre>
+<a id="x5-14039r348"></a>])</pre></code></pre></div>
 <p class="noindent">The model’s <code class="verb">summary()</code>  method displays all the model’s layers, including each layer’s name, which is
 automatically generated, its output shape, and its number of parameters. The summary ends with
 the total number of parameters, including <span class="alert">trainable</span> and <span class="alert">non-trainable</span> parameters. Here we only have trainable
 parameters:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb10"><a id="x5-14041r359"></a>tf.keras.utils.plot_model(model, imagePath+<span style="color:#78730D;">"mnist-_model.pdf"</span>, show_shapes=<span style="color:#9E0005;">True</span>)</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb10"><a id="x5-14041r359"></a>tf.keras.utils.plot_model(model, imagePath+<span style="color:#78730D;">"mnist-_model.pdf"</span>, show_shapes=<span style="color:#9E0005;">True</span>)</pre></code></pre></div>
 <div class="sidenote"> <span class="figure">
 <a id="x5-14042r13"></a>
 <figcaption class="caption"><span class="id">Figure 1.13: </span><span class="content">The plot of the neural network, showcasing its layers.                                  </span></figcaption>
@@ -310,25 +294,18 @@ name is <b>globally unique</b>, even across models, by appending an index if nee
 <p class="noindent">We can easily get a model’s list of layers using the layers attribute, or use the <code class="verb">get_layer()</code>  method to access a layer
 by name:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb11"><a id="x5-14044r364"></a><span style="color:#B03B03;">print</span>(model.layers)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb12"><a id="x5-14046r369"></a>[&lt;Flatten name=flatten, built=True&gt;, 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb11"><a id="x5-14044r364"></a><span style="color:#B03B03;">print</span>(model.layers)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb12"><a id="x5-14046r369"></a>[&lt;Flatten name=flatten, built=True&gt;, 
 <a id="x5-14048r370"></a>&lt;Dense name=dense, built=True&gt;, 
 <a id="x5-14050r371"></a>&lt;Dense name=dense_1, built=True&gt;, 
-<a id="x5-14052r372"></a>&lt;Dense name=dense_2, built=True&gt;]</pre>
-</code></pre>
+<a id="x5-14052r372"></a>&lt;Dense name=dense_2, built=True&gt;]</pre></code></pre></div>
 <p class="noindent">All the parameters of a layer can be accessed using its <code class="verb">get_weights()</code>  and <code class="verb">set_weights()</code>  methods. For a Dense layer, this includes
 both the connection weights and the bias terms:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb13"><a id="x5-14054r380"></a>hidden1 = model.layers[<span style="color:#8F4070;">1</span>] 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb13"><a id="x5-14054r380"></a>hidden1 = model.layers[<span style="color:#8F4070;">1</span>] 
 <a id="x5-14056r381"></a>weights, biases = hidden1.get_weights() 
-<a id="x5-14058r382"></a><span style="color:#B03B03;">print</span>(weights)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb14"><a id="x5-14060r387"></a>[[-0.05415904  0.00010975 -0.00299759 ...  0.05136904  0.0740822 
+<a id="x5-14058r382"></a><span style="color:#B03B03;">print</span>(weights)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb14"><a id="x5-14060r387"></a>[[-0.05415904  0.00010975 -0.00299759 ...  0.05136904  0.0740822 
 <a id="x5-14062r388"></a>   0.06472497] 
 <a id="x5-14064r389"></a> [ 0.05510217 -0.01353022 -0.00363479 ...  0.07100512 -0.04926914 
 <a id="x5-14066r390"></a>  -0.02905609] 
@@ -340,19 +317,15 @@ both the connection weights and the bias terms:
 <a id="x5-14078r396"></a> [ 0.05826265 -0.0361187  -0.04228947 ...  0.05612285 -0.03179397 
 <a id="x5-14080r397"></a>   0.06843598] 
 <a id="x5-14082r398"></a> [ 0.06636336 -0.00123435 -0.00247347 ...  0.01809192  0.03434542 
-<a id="x5-14084r399"></a>   0.00700523]]</pre>
-</code></pre>
+<a id="x5-14084r399"></a>   0.00700523]]</pre></code></pre></div>
 <p class="noindent">Please observe that the Dense layer initialized the connection weights randomly.
 </p>
 <div class="block-minor warning"><div class="body">
 <p class="noindent">This is needed to break symmetry. </p></div></div>
 <p class="noindent">The biases were initialized to zero (<span class="alert">0</span>), which is fine.
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb15"><a id="x5-14086r404"></a><span style="color:#B03B03;">print</span>(biases)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb16"><a id="x5-14088r409"></a>[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb15"><a id="x5-14086r404"></a><span style="color:#B03B03;">print</span>(biases)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb16"><a id="x5-14088r409"></a>[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 
 <a id="x5-14090r410"></a> 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 
 <a id="x5-14092r411"></a> 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 
 <a id="x5-14094r412"></a> 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 
@@ -364,8 +337,7 @@ both the connection weights and the bias terms:
 <a id="x5-14106r418"></a> 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 
 <a id="x5-14108r419"></a> 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 
 <a id="x5-14110r420"></a> 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 
-<a id="x5-14112r421"></a> 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]</pre>
-</code></pre>
+<a id="x5-14112r421"></a> 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]</pre></code></pre></div>
 <p class="noindent">If we want to use a different initialization method, we can set <code class="verb">kernel_initializer</code>  or alternatively, we can use <code class="verb">bias_initializer</code>  when
 creating the layer.
 </p>
@@ -378,16 +350,14 @@ knows the input shape before it actually builds the model parameters.
 method. Until the model parameters are built, we will <b>NOT</b> be able to do certain things, such as
 display the model summary or save the model.
 </p><p class="noindent">So, if we know the input shape when creating the model, it is best to specify it.  </p></dd></dl>
-<div class="subsection-header"><h5 id="header-subsubsection-1.2.2.2"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x5-15000"></a>Model Compiling</span></h5></div>
+<div class="subsubsection-header"><h5 id="header-subsubsection-1.2.2.2"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x5-15000"></a>Model Compiling</span></h5></div>
 <p class="noindent">After a model is created, we need to call its <code class="verb">compile()</code>  method to specify the loss function and the
 optimizer to use, or you can specify a list of extra metrics to compute during training and
 evaluation:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb17"><a id="x5-15002r428"></a>model.compile(loss=<span style="color:#78730D;">"sparse_categorical_crossentropy"</span>, 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb17"><a id="x5-15002r428"></a>model.compile(loss=<span style="color:#78730D;">"sparse_categorical_crossentropy"</span>, 
 <a id="x5-15004r429"></a>              optimizer=<span style="color:#78730D;">"sgd"</span>, 
-<a id="x5-15006r430"></a>              metrics=[<span style="color:#78730D;">"accuracy"</span>])</pre>
-</code></pre>
+<a id="x5-15006r430"></a>              metrics=[<span style="color:#78730D;">"accuracy"</span>])</pre></code></pre></div>
 <p class="noindent">Before continuing, we need to explain what is going on here.
 </p><p class="noindent">We use the <code class="verb">sparse_categorical_crossentropy</code>  loss because we have sparse <span class="margin-block">labels, <span class="margin-comment"><a class="ellipsis" href="#m-ref-36">[36]</a>
 <span class="sidenote">i.e., for each instance, there is just a target class index,
@@ -410,13 +380,11 @@ descent.</span></span></span>
 </p><p class="noindent">Finally, as this is a classifier, it’s useful to measure its accuracy during training and evaluation, which is
 why we set <code class="verb">metrics=["accuracy"]</code> .
 </p>
-<div class="subsection-header"><h5 id="header-subsubsection-1.2.2.3"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x5-16000"></a>Training and Evaluating Models</span></h5></div>
+<div class="subsubsection-header"><h5 id="header-subsubsection-1.2.2.3"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x5-16000"></a>Training and Evaluating Models</span></h5></div>
 <p class="noindent">Now the model is ready to be trained. For this we simply need to call its <code class="verb">fit()</code>  method:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb18"><a id="x5-16002r435"></a>history = model.fit(X_train, y_train, epochs=<span style="color:#8F4070;">30</span>, 
-<a id="x5-16004r436"></a>                    validation_data=(X_valid, y_valid))</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb18"><a id="x5-16002r435"></a>history = model.fit(X_train, y_train, epochs=<span style="color:#8F4070;">30</span>, 
+<a id="x5-16004r436"></a>                    validation_data=(X_valid, y_valid))</pre></code></pre></div>
 <p class="noindent">We pass it the input features (<code class="verb">X_train</code> ) and the target classes (<code class="verb">y_train</code> ), as well as the number of epochs to <span class="margin-block">train. <span class="margin-comment"><a class="ellipsis" href="#m-ref-38">[38]</a>
 <span class="sidenote">or
 else it would default to just 1, which would definitely not be enough to converge to a good
@@ -457,14 +425,10 @@ the list of epochs it went through (<code class="verb">history.epoch</code> ), a
 extra metrics it measured at the end of each epoch on the training set and on the validation set, if
 any.
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb19"><a id="x5-16006r442"></a><span style="color:#B03B03;">print</span>(history.params) 
-<a id="x5-16008r443"></a><span style="color:#B03B03;">print</span>(history.epoch)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb20"><a id="x5-16010r448"></a>{'verbose': 'auto', 'epochs': 30, 'steps': 1719} 
-<a id="x5-16012r449"></a>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb19"><a id="x5-16006r442"></a><span style="color:#B03B03;">print</span>(history.params) 
+<a id="x5-16008r443"></a><span style="color:#B03B03;">print</span>(history.epoch)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb20"><a id="x5-16010r448"></a>{'verbose': 'auto', 'epochs': 30, 'steps': 1719} 
+<a id="x5-16012r449"></a>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]</pre></code></pre></div>
 <p class="noindent">If we use this dictionary to create a Pandas DataFrame and call its <code class="verb">plot()</code>  method, you get the learning
 curves shown in <b>Fig.</b> <a href="#x5-16013r14">1.14</a>.
 </p>
@@ -529,20 +493,16 @@ luck.
 <div class="block-minor warning"><div class="body">
 <p class="noindent">Resist the temptation to tweak the hyperparameters on the test set, or else your estimate of the
 generalization error will be too optimistic. </p></div></div>
-<div class="subsection-header"><h5 id="header-subsubsection-1.2.2.4"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x5-17000"></a>Using Model to Make Predictions</span></h5></div>
+<div class="subsubsection-header"><h5 id="header-subsubsection-1.2.2.4"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x5-17000"></a>Using Model to Make Predictions</span></h5></div>
 <p class="noindent">It is time to use the model’s <code class="verb">predict()</code>  method to make predictions on new instances. As we don’t have actual
 new instances, we’ll just use the first three (<span class="alert">3</span>) instances of the test set:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb21"><a id="x5-17002r467"></a>X_new = X_test[:<span style="color:#8F4070;">3</span>] 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb21"><a id="x5-17002r467"></a>X_new = X_test[:<span style="color:#8F4070;">3</span>] 
 <a id="x5-17004r468"></a>y_proba = model.predict(X_new) 
-<a id="x5-17006r469"></a><span style="color:#B03B03;">print</span>(y_proba.round(<span style="color:#8F4070;">2</span>))</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb22"><a id="x5-17008r474"></a>[[0.   0.   0.   0.   0.   0.12 0.   0.01 0.   0.87] 
+<a id="x5-17006r469"></a><span style="color:#B03B03;">print</span>(y_proba.round(<span style="color:#8F4070;">2</span>))</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb22"><a id="x5-17008r474"></a>[[0.   0.   0.   0.   0.   0.12 0.   0.01 0.   0.87] 
 <a id="x5-17010r475"></a> [0.   0.   1.   0.   0.   0.   0.   0.   0.   0.  ] 
-<a id="x5-17012r476"></a> [0.   1.   0.   0.   0.   0.   0.   0.   0.   0.  ]]</pre>
-</code></pre>
+<a id="x5-17012r476"></a> [0.   1.   0.   0.   0.   0.   0.   0.   0.   0.  ]]</pre></code></pre></div>
 <p class="noindent">For each instance the model estimates one probability per class, from class 0 to class 9. This is similar
 to the output of the <code class="verb">predict_proba()</code>  method in <code class="verb">sklearn</code>  classifiers.
 </p>
@@ -555,13 +515,9 @@ possibly sneakers or sandals. If you only care about the class with the highest 
 <span class="sidenote">Even if that probability is quite low.</span></span></span> then we can use the <code class="verb">argmax()</code>  method to get the highest probability class
 index for each instance:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb23"><a id="x5-17014r482"></a>y_pred = y_proba.argmax(axis=-<span style="color:#8F4070;">1</span>) 
-<a id="x5-17016r483"></a><span style="color:#B03B03;">print</span>(y_pred)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb24"><a id="x5-17018r488"></a>[9 2 1]</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb23"><a id="x5-17014r482"></a>y_pred = y_proba.argmax(axis=-<span style="color:#8F4070;">1</span>) 
+<a id="x5-17016r483"></a><span style="color:#B03B03;">print</span>(y_pred)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb24"><a id="x5-17018r488"></a>[9 2 1]</pre></code></pre></div>
 <p class="noindent">Here, the classifier actually classified all three images correctly, where these images are shown in
 <b>Fig.</b> <a href="#x5-17019r15">1.15</a>.
 </p>
@@ -588,15 +544,12 @@ In addition, in this example we don’t need a Flatten layer, and instead we’r
 layer as the first layer: it does the same thing as <code class="verb">sklearn</code> s <code class="verb">StandardScaler</code> , but it must be fitted to the training data using its <code class="verb">adapt()</code>
 method before you call the model’s <code class="verb">fit()</code>  method. Let’s look at the code:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb25"><a id="x5-18002r506"></a>housing = fetch_california_housing() 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb25"><a id="x5-18002r506"></a>housing = fetch_california_housing() 
 <a id="x5-18004r507"></a>X_train_full, X_test, y_train_full, y_test = train_test_split( 
 <a id="x5-18006r508"></a>    housing.data, housing.target, random_state=<span style="color:#8F4070;">42</span>) 
 <a id="x5-18008r509"></a>X_train, X_valid, y_train, y_valid = train_test_split( 
-<a id="x5-18010r510"></a>    X_train_full, y_train_full, random_state=<span style="color:#8F4070;">42</span>)</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb26"><a id="x5-18012r515"></a>tf.random.set_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x5-18010r510"></a>    X_train_full, y_train_full, random_state=<span style="color:#8F4070;">42</span>)</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb26"><a id="x5-18012r515"></a>tf.random.set_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x5-18014r516"></a>norm_layer = tf.keras.layers.Normalization(input_shape=X_train.shape[<span style="color:#8F4070;">1</span>:]) 
 <a id="x5-18016r517"></a>model = tf.keras.Sequential([ 
 <a id="x5-18018r518"></a>    norm_layer, 
@@ -612,15 +565,13 @@ method before you call the model’s <code class="verb">fit()</code>  method. Le
 <a id="x5-18038r528"></a>                    validation_data=(X_valid, y_valid)) 
 <a id="x5-18040r529"></a>mse_test, rmse_test = model.evaluate(X_test, y_test) 
 <a id="x5-18042r530"></a>X_new = X_test[:<span style="color:#8F4070;">3</span>] 
-<a id="x5-18044r531"></a>y_pred = model.predict(X_new)</pre>
-</code></pre>
+<a id="x5-18044r531"></a>y_pred = model.predict(X_new)</pre></code></pre></div>
 <p class="noindent">As we can see, the sequential API is quite clean and straightforward. However, although Sequential
 models are extremely common, it is sometimes useful to build neural networks with more complex
 topologies, or with multiple inputs or outputs. For this purpose, Keras offers the functional
 API.
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb27"><a id="x5-18046r543"></a>normalization_layer = tf.keras.layers.Normalization() 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb27"><a id="x5-18046r543"></a>normalization_layer = tf.keras.layers.Normalization() 
 <a id="x5-18048r544"></a>hidden_layer1 = tf.keras.layers.Dense(<span style="color:#8F4070;">30</span>, activation=<span style="color:#78730D;">"relu"</span>) 
 <a id="x5-18050r545"></a>hidden_layer2 = tf.keras.layers.Dense(<span style="color:#8F4070;">30</span>, activation=<span style="color:#78730D;">"relu"</span>) 
 <a id="x5-18052r546"></a>concat_layer = tf.keras.layers.Concatenate() 
@@ -633,10 +584,8 @@ API.
 <a id="x5-18066r553"></a>concat = concat_layer([normalized, hidden2]) 
 <a id="x5-18068r554"></a>output = output_layer(concat) 
 <a id="x5-18070r555"></a> 
-<a id="x5-18072r556"></a>model = tf.keras.Model(inputs=[input_], outputs=[output])</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb28"><a id="x5-18074r561"></a>input_wide = tf.keras.layers.Input(shape=[<span style="color:#8F4070;">5</span>])  <span style="color:#918273;"><i># features 0 to 4</i></span> 
+<a id="x5-18072r556"></a>model = tf.keras.Model(inputs=[input_], outputs=[output])</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb28"><a id="x5-18074r561"></a>input_wide = tf.keras.layers.Input(shape=[<span style="color:#8F4070;">5</span>])  <span style="color:#918273;"><i># features 0 to 4</i></span> 
 <a id="x5-18076r562"></a>input_deep = tf.keras.layers.Input(shape=[<span style="color:#8F4070;">6</span>])  <span style="color:#918273;"><i># features 2 to 7</i></span> 
 <a id="x5-18078r563"></a>norm_layer_wide = tf.keras.layers.Normalization() 
 <a id="x5-18080r564"></a>norm_layer_deep = tf.keras.layers.Normalization() 
@@ -646,10 +595,8 @@ API.
 <a id="x5-18088r568"></a>hidden2 = tf.keras.layers.Dense(<span style="color:#8F4070;">30</span>, activation=<span style="color:#78730D;">"relu"</span>)(hidden1) 
 <a id="x5-18090r569"></a>concat = tf.keras.layers.concatenate([norm_wide, hidden2]) 
 <a id="x5-18092r570"></a>output = tf.keras.layers.Dense(<span style="color:#8F4070;">1</span>)(concat) 
-<a id="x5-18094r571"></a>model = tf.keras.Model(inputs=[input_wide, input_deep], outputs=[output])</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb29"><a id="x5-18096r576"></a>optimizer = tf.keras.optimizers.Adam(learning_rate=<span style="color:#8F4070;">1e-3</span>) 
+<a id="x5-18094r571"></a>model = tf.keras.Model(inputs=[input_wide, input_deep], outputs=[output])</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb29"><a id="x5-18096r576"></a>optimizer = tf.keras.optimizers.Adam(learning_rate=<span style="color:#8F4070;">1e-3</span>) 
 <a id="x5-18098r577"></a>model.compile(loss=<span style="color:#78730D;">"mse"</span>, optimizer=optimizer, metrics=[<span style="color:#78730D;">"RootMeanSquaredError"</span>]) 
 <a id="x5-18100r578"></a> 
 <a id="x5-18102r579"></a>X_train_wide, X_train_deep = X_train[:, :<span style="color:#8F4070;">5</span>], X_train[:, <span style="color:#8F4070;">2</span>:] 
@@ -662,10 +609,8 @@ API.
 <a id="x5-18116r586"></a>history = model.fit((X_train_wide, X_train_deep), y_train, epochs=<span style="color:#8F4070;">20</span>, 
 <a id="x5-18118r587"></a>                    validation_data=((X_valid_wide, X_valid_deep), y_valid)) 
 <a id="x5-18120r588"></a>mse_test = model.evaluate((X_test_wide, X_test_deep), y_test) 
-<a id="x5-18122r589"></a>y_pred = model.predict((X_new_wide, X_new_deep))</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb30"><a id="x5-18124r594"></a>input_wide = tf.keras.layers.Input(shape=[<span style="color:#8F4070;">5</span>])  <span style="color:#918273;"><i># features 0 to 4</i></span> 
+<a id="x5-18122r589"></a>y_pred = model.predict((X_new_wide, X_new_deep))</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb30"><a id="x5-18124r594"></a>input_wide = tf.keras.layers.Input(shape=[<span style="color:#8F4070;">5</span>])  <span style="color:#918273;"><i># features 0 to 4</i></span> 
 <a id="x5-18126r595"></a>input_deep = tf.keras.layers.Input(shape=[<span style="color:#8F4070;">6</span>])  <span style="color:#918273;"><i># features 2 to 7</i></span> 
 <a id="x5-18128r596"></a>norm_layer_wide = tf.keras.layers.Normalization() 
 <a id="x5-18130r597"></a>norm_layer_deep = tf.keras.layers.Normalization() 
@@ -678,40 +623,25 @@ API.
 <a id="x5-18144r604"></a>aux_output = tf.keras.layers.Dense(<span style="color:#8F4070;">1</span>)(hidden2) 
 <a id="x5-18146r605"></a>model = tf.keras.Model(inputs=[input_wide, input_deep], 
 <a id="x5-18148r606"></a>                       outputs=[output, aux_output]) 
-<a id="x5-18150r607"></a></pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb31"><a id="x5-18152r612"></a>optimizer = tf.keras.optimizers.Adam(learning_rate=<span style="color:#8F4070;">1e-3</span>) 
+<a id="x5-18150r607"></a></pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb31"><a id="x5-18152r612"></a>optimizer = tf.keras.optimizers.Adam(learning_rate=<span style="color:#8F4070;">1e-3</span>) 
 <a id="x5-18154r613"></a>model.compile(loss=(<span style="color:#78730D;">"mse"</span>, <span style="color:#78730D;">"mse"</span>), loss_weights=(<span style="color:#8F4070;">0.9</span>, <span style="color:#8F4070;">0.1</span>), optimizer=optimizer, 
-<a id="x5-18156r614"></a>              metrics=[<span style="color:#78730D;">"RootMeanSquaredError"</span>, <span style="color:#78730D;">"RootMeanSquaredError"</span>])</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb32"><a id="x5-18158r619"></a>norm_layer_wide.adapt(X_train_wide) 
+<a id="x5-18156r614"></a>              metrics=[<span style="color:#78730D;">"RootMeanSquaredError"</span>, <span style="color:#78730D;">"RootMeanSquaredError"</span>])</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb32"><a id="x5-18158r619"></a>norm_layer_wide.adapt(X_train_wide) 
 <a id="x5-18160r620"></a>norm_layer_deep.adapt(X_train_deep) 
 <a id="x5-18162r621"></a>history = model.fit( 
 <a id="x5-18164r622"></a>    (X_train_wide, X_train_deep), (y_train, y_train), epochs=<span style="color:#8F4070;">20</span>, 
 <a id="x5-18166r623"></a>    validation_data=((X_valid_wide, X_valid_deep), (y_valid, y_valid)) 
-<a id="x5-18168r624"></a>)</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb33"><a id="x5-18170r629"></a>eval_results = model.evaluate((X_test_wide, X_test_deep), (y_test, y_test)) 
-<a id="x5-18172r630"></a>weighted_sum_of_losses, main_loss, aux_loss = eval_results</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb34"><a id="x5-18174r635"></a>y_pred_main, y_pred_aux = model.predict((X_new_wide, X_new_deep))</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb35"><a id="x5-18176r640"></a>y_pred_tuple = model.predict((X_new_wide, X_new_deep)) 
-<a id="x5-18178r641"></a>y_pred = <span style="color:#B03B03;">dict</span>(<span style="color:#B03B03;">zip</span>(model.output_names, y_pred_tuple))</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb36"><a id="x5-18180r648"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">shutil</span> 
+<a id="x5-18168r624"></a>)</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb33"><a id="x5-18170r629"></a>eval_results = model.evaluate((X_test_wide, X_test_deep), (y_test, y_test)) 
+<a id="x5-18172r630"></a>weighted_sum_of_losses, main_loss, aux_loss = eval_results</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb34"><a id="x5-18174r635"></a>y_pred_main, y_pred_aux = model.predict((X_new_wide, X_new_deep))</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb35"><a id="x5-18176r640"></a>y_pred_tuple = model.predict((X_new_wide, X_new_deep)) 
+<a id="x5-18178r641"></a>y_pred = <span style="color:#B03B03;">dict</span>(<span style="color:#B03B03;">zip</span>(model.output_names, y_pred_tuple))</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb36"><a id="x5-18180r648"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">shutil</span> 
 <a id="x5-18182r649"></a> 
-<a id="x5-18184r650"></a>shutil.rmtree(<span style="color:#78730D;">"my_keras_model"</span>, ignore_errors=<span style="color:#9E0005;">True</span>)</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb37"><a id="x5-18186r655"></a>model.export(<span style="color:#78730D;">"my_keras_model"</span>)</pre>
-</code></pre>
+<a id="x5-18184r650"></a>shutil.rmtree(<span style="color:#78730D;">"my_keras_model"</span>, ignore_errors=<span style="color:#9E0005;">True</span>)</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb37"><a id="x5-18186r655"></a>model.export(<span style="color:#78730D;">"my_keras_model"</span>)</pre></code></pre></div>
 <div class="section-header">
 <h3 id="header-section-glossary">
 <span class="number">
@@ -762,7 +692,7 @@ Interface</p></dd>
 <i class="fa-regular fa-note-sticky"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-margin"></a>
                     Page Footnotes</span>
 </h3>
 </div>
@@ -837,7 +767,7 @@ other extra metrics you asked for.</span></dd>
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> <div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>

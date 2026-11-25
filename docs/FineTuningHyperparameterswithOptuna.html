@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="SavingandLoadingPyTorchModels.html">Saving and Loading PyTorch Models</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="BuildinganImageClassifierwithPyTorch.html">Building an Image Classifier with PyTorch</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="UnderstandingPyTorch.html#FineTuningHyperparameterswithOptuna.html">Chapter: Understanding PyTorch</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -107,8 +107,7 @@ object and use it to ask <i>Optuna</i> for hyperparameter values, and then use t
 to build and train a model. Finally, the function must evaluate the model, typically on the validation
 set, and return the metric:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb106"><a id="x14-39002r1266"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">optuna</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb106"><a id="x14-39002r1266"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">optuna</span> 
 <a id="x14-39004r1267"></a> 
 <a id="x14-39006r1268"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">objective</span>(trial): 
 <a id="x14-39008r1269"></a>    learning_rate = trial.suggest_float(<span style="color:#78730D;">"learning_rate"</span>, <span style="color:#8F4070;">1e-5</span>, <span style="color:#8F4070;">1e-1</span>, log=<span style="color:#9E0005;">True</span>) 
@@ -122,8 +121,7 @@ set, and return the metric:
 <a id="x14-39024r1277"></a>    history = train2(model, optimizer, xentropy, accuracy, train_loader, 
 <a id="x14-39026r1278"></a>                     valid_loader, n_epochs=<span style="color:#8F4070;">10</span>) 
 <a id="x14-39028r1279"></a>    validation_accuracy = <span style="color:#B03B03;">max</span>(history[<span style="color:#78730D;">"valid_metrics"</span>]) 
-<a id="x14-39030r1280"></a>    <span style="color:#9E0005;">return</span> validation_accuracy</pre>
-</code></pre>
+<a id="x14-39030r1280"></a>    <span style="color:#9E0005;">return</span> validation_accuracy</pre></code></pre></div>
 <p class="noindent">The <code class="verb">suggest_float()</code>  and <code class="verb">suggest_int()</code>  methods let us ask <i>Optuna</i> for a good hyperparameter value in a given <span class="margin-block">range.
 <span class="margin-comment"><a class="ellipsis" href="#m-ref-103">[103]</a>
 <span class="sidenote">Optuna also provides a <code class="verb">suggest_categorical()</code>  method.</span></span></span> For the <code class="verb">learning_rate</code>  hyperparameter, we ask for a value between
@@ -143,12 +141,10 @@ when creating the <span class="margin-block">study. <span class="margin-comment"
 reproducibility, we also set <i>PyTorch</i>’s random seed, as well as the random seed used by <i>Optuna</i>’s
 sampler:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb107"><a id="x14-39032r1285"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb107"><a id="x14-39032r1285"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x14-39034r1286"></a>sampler = optuna.samplers.TPESampler(seed=<span style="color:#8F4070;">42</span>) 
 <a id="x14-39036r1287"></a>study = optuna.create_study(direction=<span style="color:#78730D;">"maximize"</span>, sampler=sampler) 
-<a id="x14-39038r1288"></a>study.optimize(objective, n_trials=<span style="color:#8F4070;">5</span>)</pre>
-</code></pre>
+<a id="x14-39038r1288"></a>study.optimize(objective, n_trials=<span style="color:#8F4070;">5</span>)</pre></code></pre></div>
 <p class="noindent">By default, Optuna uses the <i>Tree-structured Parzen Estimator</i> (TPE) algorithm to optimize the
 hyperparameters: this is a sequential model-based optimization algorithm, meaning it learns from past
 results to better select promising hyperparameters.
@@ -166,10 +162,8 @@ so make sure it’s worth the extra search time and compute.
 <p class="noindent">Once <i>Optuna</i> is done, we can look at the best hyperparameters it found, as well as the corresponding
 validation accuracy:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb108"><a id="x14-39041r1293"></a>study.best_params 
-<a id="x14-39043r1294"></a>study.best_value</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb108"><a id="x14-39041r1293"></a>study.best_params 
+<a id="x14-39043r1294"></a>study.best_value</pre></code></pre></div>
 <p class="noindent">This is slightly better than the performance we got earlier. If we increase <code class="verb">n_trials</code>  up to 50 or more, we will get
 much better results, but of course it will take hours to run. We can also just run <code class="verb">optimize()</code>  repeatedly and stop
 once we are happy with the performance.
@@ -188,8 +182,7 @@ and writing the trial results to the database.
 validation, presumably via global variables. In general, it’s much cleaner to pass them as extra
 arguments to the <code class="verb">objective()</code>  function, for example, like this:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb109"><a id="x14-39045r1266"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">optuna</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb109"><a id="x14-39045r1266"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">optuna</span> 
 <a id="x14-39047r1267"></a> 
 <a id="x14-39049r1268"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">objective</span>(trial): 
 <a id="x14-39051r1269"></a>    learning_rate = trial.suggest_float(<span style="color:#78730D;">"learning_rate"</span>, <span style="color:#8F4070;">1e-5</span>, <span style="color:#8F4070;">1e-1</span>, log=<span style="color:#9E0005;">True</span>) 
@@ -203,19 +196,16 @@ arguments to the <code class="verb">objective()</code>  function, for example, l
 <a id="x14-39067r1277"></a>    history = train2(model, optimizer, xentropy, accuracy, train_loader, 
 <a id="x14-39069r1278"></a>                     valid_loader, n_epochs=<span style="color:#8F4070;">10</span>) 
 <a id="x14-39071r1279"></a>    validation_accuracy = <span style="color:#B03B03;">max</span>(history[<span style="color:#78730D;">"valid_metrics"</span>]) 
-<a id="x14-39073r1280"></a>    <span style="color:#9E0005;">return</span> validation_accuracy</pre>
-</code></pre>
+<a id="x14-39073r1280"></a>    <span style="color:#9E0005;">return</span> validation_accuracy</pre></code></pre></div>
 <p class="noindent">To set the extra arguments (the dataset loaders in this case), we just create a lambda function when
 needed and pass it to the optimize() method. Alternatively, you can use the functools.partial() function
 which creates a thin wrapper function around the given callable to provide default values for any
 number of arguments:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb110"><a id="x14-39075r1334"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">functools</span> <span style="color:#9E0005;">import</span> partial 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb110"><a id="x14-39075r1334"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">functools</span> <span style="color:#9E0005;">import</span> partial 
 <a id="x14-39077r1335"></a> 
 <a id="x14-39079r1336"></a>objective_with_data = partial(objective, train_loader=train_loader, 
-<a id="x14-39081r1337"></a>                              valid_loader=valid_loader)</pre>
-</code></pre>
+<a id="x14-39081r1337"></a>                              valid_loader=valid_loader)</pre></code></pre></div>
 <p class="noindent">It’s often possible to quickly tell that a trial is absolutely terrible. </p><div class="quote">  For example, when the loss shoots
 up during the first epoch, or when the model barely improves during the first few epochs.
 </div>
@@ -237,16 +227,13 @@ Then every few epochs, controlled by <code class="verb">interval_steps</code> , 
 median performance at the same epoch in past trials. To use this pruner, create an instance and pass it
 to the <code class="verb">create_study()</code>  method:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb111"><a id="x14-39083r1285"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb111"><a id="x14-39083r1285"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x14-39085r1286"></a>sampler = optuna.samplers.TPESampler(seed=<span style="color:#8F4070;">42</span>) 
 <a id="x14-39087r1287"></a>study = optuna.create_study(direction=<span style="color:#78730D;">"maximize"</span>, sampler=sampler) 
-<a id="x14-39089r1288"></a>study.optimize(objective, n_trials=<span style="color:#8F4070;">5</span>)</pre>
-</code></pre>
+<a id="x14-39089r1288"></a>study.optimize(objective, n_trials=<span style="color:#8F4070;">5</span>)</pre></code></pre></div>
 <p class="noindent">Then in the <code class="verb">objective()</code>  function, add the following code so it runs after each epoch:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb112"><a id="x14-39091r1304"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">objective</span>(trial, train_loader, valid_loader): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb112"><a id="x14-39091r1304"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">objective</span>(trial, train_loader, valid_loader): 
 <a id="x14-39093r1305"></a>    learning_rate = trial.suggest_float(<span style="color:#78730D;">"learning_rate"</span>, <span style="color:#8F4070;">1e-5</span>, <span style="color:#8F4070;">1e-1</span>, log=<span style="color:#9E0005;">True</span>) 
 <a id="x14-39095r1306"></a>    n_hidden = trial.suggest_int(<span style="color:#78730D;">"n_hidden"</span>, <span style="color:#8F4070;">20</span>, <span style="color:#8F4070;">300</span>) 
 <a id="x14-39097r1307"></a>    model = ImageClassifier(n_inputs=<span style="color:#8F4070;">1</span> * <span style="color:#8F4070;">28</span> * <span style="color:#8F4070;">28</span>, n_hidden1=n_hidden, 
@@ -265,8 +252,7 @@ to the <code class="verb">create_study()</code>  method:
 <a id="x14-39123r1320"></a>        trial.report(validation_accuracy, epoch) 
 <a id="x14-39125r1321"></a>        <span style="color:#9E0005;">if</span> trial.should_prune(): 
 <a id="x14-39127r1322"></a>            <span style="color:#9E0005;">raise</span> optuna.TrialPruned() 
-<a id="x14-39129r1323"></a>    <span style="color:#9E0005;">return</span> best_validation_accuracy</pre>
-</code></pre>
+<a id="x14-39129r1323"></a>    <span style="color:#9E0005;">return</span> best_validation_accuracy</pre></code></pre></div>
 <p class="noindent">The <code class="verb">report()</code>  method informs <i>Optuna</i> of the current validation accuracy and epoch, so it can determine
 whether the trial should be pruned. If trial.<code class="verb">should_prune()</code>  returns True, we raise a <code class="verb">TrialPruned</code>  exception.
 </p>
@@ -287,7 +273,7 @@ this chapter.
 <i class="fa-regular fa-note-sticky"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-margin"></a>
                     Page Footnotes</span>
 </h3>
 </div>
@@ -331,7 +317,7 @@ training set plus the validation set.</span></dd>
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>

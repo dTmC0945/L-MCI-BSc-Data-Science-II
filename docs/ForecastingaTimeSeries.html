@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="HandlingLongSequences.html">Handling Long Sequences</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="RecurrentNeuronsandLayers.html">Recurrent Neurons and Layers</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="WorkingwithRNNsandCNNs.html#ForecastingaTimeSeries.html">Chapter: Working with RNNs and CNNs</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -97,8 +97,7 @@ day.
 this. As with any <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ml">ML</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ml">Machine Learning</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ml">Machine Learning</a></span></span></span> project, we’ll first start by loading and
 cleaning up the data:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb160"><a id="x23-87002r136"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">pandas</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">pd</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb160"><a id="x23-87002r136"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">pandas</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">pd</span> 
 <a id="x23-87004r137"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">pathlib</span> <span style="color:#9E0005;">import</span> Path 
 <a id="x23-87006r138"></a> 
 <a id="x23-87008r139"></a>path = Path(<span style="color:#78730D;">"datasets/ridership/CTA_-_Ridership_-_Daily_Boarding_Totals.csv"</span>) 
@@ -106,23 +105,18 @@ cleaning up the data:
 <a id="x23-87012r141"></a>df.columns = [<span style="color:#78730D;">"date"</span>, <span style="color:#78730D;">"day_type"</span>, <span style="color:#78730D;">"bus"</span>, <span style="color:#78730D;">"rail"</span>, <span style="color:#78730D;">"total"</span>]  <span style="color:#918273;"><i># shorter names</i></span> 
 <a id="x23-87014r142"></a>df = df.sort_values(<span style="color:#78730D;">"date"</span>).set_index(<span style="color:#78730D;">"date"</span>) 
 <a id="x23-87016r143"></a>df = df.drop(<span style="color:#78730D;">"total"</span>, axis=<span style="color:#8F4070;">1</span>)  <span style="color:#918273;"><i># no need for total, it's just bus + rail</i></span> 
-<a id="x23-87018r144"></a>df = df.drop_duplicates()  <span style="color:#918273;"><i># remove duplicated months (2011-10 and 2014-07)</i></span></pre>
-</code></pre>
+<a id="x23-87018r144"></a>df = df.drop_duplicates()  <span style="color:#918273;"><i># remove duplicated months (2011-10 and 2014-07)</i></span></pre></code></pre></div>
 <p class="noindent">We load the  <code class="file">.csv</code>  file, set short column names, sort the rows by date, remove the redundant total
 column, and drop duplicate rows. Now let’s check what the first few rows look like:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb161"><a id="x23-87020r149"></a><span style="color:#B03B03;">print</span>(df.head())</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb162"><a id="x23-87022r154"></a>           day_type     bus    rail 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb161"><a id="x23-87020r149"></a><span style="color:#B03B03;">print</span>(df.head())</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb162"><a id="x23-87022r154"></a>           day_type     bus    rail 
 <a id="x23-87024r155"></a>date 
 <a id="x23-87026r156"></a>2001-01-01        U  297192  126455 
 <a id="x23-87028r157"></a>2001-01-02        W  780827  501952 
 <a id="x23-87030r158"></a>2001-01-03        W  824923  536432 
 <a id="x23-87032r159"></a>2001-01-04        W  870021  550011 
-<a id="x23-87034r160"></a>2001-01-05        W  890426  557917</pre>
-</code></pre>
+<a id="x23-87034r160"></a>2001-01-05        W  890426  557917</pre></code></pre></div>
 <p class="noindent">On January 1st, 2001, </p>
 <ul class="itemize1">
 <li class="itemize">
@@ -137,13 +131,11 @@ boarded a train.</p></li></ul>
 Now let’s plot the bus and rail ridership figures over a few months in 2019, to see what it looks
 like:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb163"><a id="x23-87036r168"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">matplotlib.pyplot</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">plt</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb163"><a id="x23-87036r168"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">matplotlib.pyplot</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">plt</span> 
 <a id="x23-87038r169"></a> 
 <a id="x23-87040r170"></a>df[<span style="color:#78730D;">"2019-03"</span>:<span style="color:#78730D;">"2019-05"</span>].plot(grid=<span style="color:#9E0005;">True</span>, marker=<span style="color:#78730D;">"."</span>, figsize=(<span style="color:#8F4070;">15</span>, <span style="color:#8F4070;">6</span>)) 
 <a id="x23-87042r171"></a>plt.savefig(<span style="color:#78730D;">'images/Working-with-RNNs-and-CNNs/daily-ridership.pdf'</span>) 
-<a id="x23-87044r172"></a>plt.show()</pre>
-</code></pre>
+<a id="x23-87044r172"></a>plt.show()</pre></code></pre></div>
 <p class="noindent"></p><figure class="float">
 <a id="x23-87045r4"></a>
 <figcaption class="caption"><span class="id">Figure 4.4: </span><span class="content">Daily ridership in Chicago.                                                    </span></figcaption>
@@ -184,8 +176,7 @@ using dotted lines. We’ll also plot the difference between the <span class="ma
 value at time <math display="inline"><mi>t</mi><mn>7</mn></math>.</span></span></span>
 this is called differencing (see Figure 13-7):
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb164"><a id="x23-87047r178"></a>diff_7 = df[[<span style="color:#78730D;">"bus"</span>, <span style="color:#78730D;">"rail"</span>]].diff(<span style="color:#8F4070;">7</span>)[<span style="color:#78730D;">"2019-03"</span>:<span style="color:#78730D;">"2019-05"</span>] 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb164"><a id="x23-87047r178"></a>diff_7 = df[[<span style="color:#78730D;">"bus"</span>, <span style="color:#78730D;">"rail"</span>]].diff(<span style="color:#8F4070;">7</span>)[<span style="color:#78730D;">"2019-03"</span>:<span style="color:#78730D;">"2019-05"</span>] 
 <a id="x23-87049r179"></a> 
 <a id="x23-87051r180"></a>fig, axs = plt.subplots(<span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">1</span>, sharex=<span style="color:#9E0005;">True</span>, figsize=(<span style="color:#8F4070;">15</span>, <span style="color:#8F4070;">8</span>)) 
 <a id="x23-87053r181"></a>df.plot(ax=axs[<span style="color:#8F4070;">0</span>], legend=<span style="color:#9E0005;">False</span>, marker=<span style="color:#78730D;">"."</span>)  <span style="color:#918273;"><i># original time series</i></span> 
@@ -194,8 +185,7 @@ this is called differencing (see Figure 13-7):
 <a id="x23-87059r184"></a>axs[<span style="color:#8F4070;">0</span>].set_ylim([<span style="color:#8F4070;">170_000</span>, <span style="color:#8F4070;">900_000</span>])  <span style="color:#918273;"><i># extra code  beautifies the plot</i></span> 
 <a id="x23-87061r185"></a> 
 <a id="x23-87063r186"></a>plt.savefig(<span style="color:#78730D;">'images/Working-with-RNNs-and-CNNs/ridership-comparison.pdf'</span>) 
-<a id="x23-87065r187"></a>plt.show()</pre>
-</code></pre>
+<a id="x23-87065r187"></a>plt.show()</pre></code></pre></div>
 <p class="noindent"></p><figure class="float">
 <a id="x23-87066r5"></a>
 <figcaption class="caption"><span class="id">Figure 4.5: </span><span class="content">Time series overlaid with 7-day lagged time series (top), and difference between t and t  7 (bottom).   </span></figcaption>
@@ -206,41 +196,29 @@ is correlated with a lagged version of itself, we say that the time series is <b
 see, most of the differences are fairly small, except at the end of May. Maybe there was a holiday at
 that time? Let’s check the  <var class="var"><code class="verb">day_type</code></var> column:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb165"><a id="x23-87068r193"></a><span style="color:#B03B03;">print</span>(<span style="color:#B03B03;">list</span>(df.loc[<span style="color:#78730D;">"2019-05-25"</span>:<span style="color:#78730D;">"2019-05-27"</span>][<span style="color:#78730D;">"day_type"</span>]))</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb166"><a id="x23-87070r198"></a>[<span style="color:#78730D;">'A'</span>, <span style="color:#78730D;">'U'</span>, <span style="color:#78730D;">'U'</span>]</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb165"><a id="x23-87068r193"></a><span style="color:#B03B03;">print</span>(<span style="color:#B03B03;">list</span>(df.loc[<span style="color:#78730D;">"2019-05-25"</span>:<span style="color:#78730D;">"2019-05-27"</span>][<span style="color:#78730D;">"day_type"</span>]))</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb166"><a id="x23-87070r198"></a>[<span style="color:#78730D;">'A'</span>, <span style="color:#78730D;">'U'</span>, <span style="color:#78730D;">'U'</span>]</pre></code></pre></div>
 <p class="noindent">Indeed, there was a long weekend back then: </p><div class="quote">  the Monday was the <b>Memorial Day holiday</b>.
 </div>
 <p class="noindent">We could use this column to improve our forecasts, but for now let’s just measure the mean absolute
 error over the three-month period we’re arbitrarily focusing on - March, April, and May 2019 - to get a
 rough idea:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb167"><a id="x23-87072r205"></a><span style="color:#B03B03;">print</span>(diff_7.abs().mean())</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb168"><a id="x23-87074r210"></a>bus     43915.608696 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb167"><a id="x23-87072r205"></a><span style="color:#B03B03;">print</span>(diff_7.abs().mean())</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb168"><a id="x23-87074r210"></a>bus     43915.608696 
 <a id="x23-87076r211"></a>rail    42143.271739 
-<a id="x23-87078r212"></a>dtype: float64</pre>
-</code></pre>
+<a id="x23-87078r212"></a>dtype: float64</pre></code></pre></div>
 <p class="noindent">Our naive forecasts get a <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:mae">MAE</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:mae">Mean Absolute Error</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mae">Mean Absolute Error</a></span></span></span> of about
 <math display="inline"><mn>4</mn><mn>3</mn><mi>,</mi><mn>9</mn><mn>1</mn><mn>6</mn></math> bus riders,
 and about <math display="inline"><mn>4</mn><mn>2</mn><mi>,</mi><mn>1</mn><mn>4</mn><mn>3</mn></math>
 rail riders. It’s hard to tell at a glance how good or bad this is, so let’s put the forecast errors into
 perspective by dividing them by the target values:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb169"><a id="x23-87080r218"></a>targets = df[[<span style="color:#78730D;">"bus"</span>, <span style="color:#78730D;">"rail"</span>]][<span style="color:#78730D;">"2019-03"</span>:<span style="color:#78730D;">"2019-05"</span>] 
-<a id="x23-87082r219"></a><span style="color:#B03B03;">print</span>((diff_7 / targets).abs().mean())</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb170"><a id="x23-87084r224"></a>bus     0.082938 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb169"><a id="x23-87080r218"></a>targets = df[[<span style="color:#78730D;">"bus"</span>, <span style="color:#78730D;">"rail"</span>]][<span style="color:#78730D;">"2019-03"</span>:<span style="color:#78730D;">"2019-05"</span>] 
+<a id="x23-87082r219"></a><span style="color:#B03B03;">print</span>((diff_7 / targets).abs().mean())</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb170"><a id="x23-87084r224"></a>bus     0.082938 
 <a id="x23-87086r225"></a>rail    0.089948 
-<a id="x23-87088r226"></a>dtype: float64</pre>
-</code></pre>
+<a id="x23-87088r226"></a>dtype: float64</pre></code></pre></div>
 <p class="noindent">What we just computed is called the mean absolute percentage error (MAPE).
 </p>
 <dl class="def-block block-major desc-block"> <a class="copiable-link" href="#desc-block-4.1" id="desc-block-4.1"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Description: 4.<a id="x23-87089r1"></a>1: </b> </span> <span class="title"> Mean Absolute Percentage Error (MAPE) </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
@@ -294,8 +272,7 @@ but let’s check whether there’s any yearly seasonality. We’ll look at the 
 plot a 12-month rolling average for each series to visualize long-term trends (see Figure
 13-8):
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb171"><a id="x23-87092r232"></a>period = <span style="color:#B03B03;">slice</span>(<span style="color:#78730D;">"2001"</span>, <span style="color:#78730D;">"2019"</span>) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb171"><a id="x23-87092r232"></a>period = <span style="color:#B03B03;">slice</span>(<span style="color:#78730D;">"2001"</span>, <span style="color:#78730D;">"2019"</span>) 
 <a id="x23-87094r233"></a>df_monthly = df.select_dtypes(include=<span style="color:#78730D;">"number"</span>).resample(<span style="color:#78730D;">'ME'</span>).mean() 
 <a id="x23-87096r234"></a>rolling_average_12_months = df_monthly.loc[period].rolling(window=<span style="color:#8F4070;">12</span>).mean() 
 <a id="x23-87098r235"></a> 
@@ -303,8 +280,7 @@ plot a 12-month rolling average for each series to visualize long-term trends (s
 <a id="x23-87102r237"></a>df_monthly[period].plot(ax=ax, marker=<span style="color:#78730D;">"."</span>) 
 <a id="x23-87104r238"></a>rolling_average_12_months.plot(ax=ax, grid=<span style="color:#9E0005;">True</span>, legend=<span style="color:#9E0005;">False</span>) 
 <a id="x23-87106r239"></a>plt.savefig(<span style="color:#78730D;">'images/Working-with-RNNs-and-CNNs/yearly-seasonality.pdf'</span>) 
-<a id="x23-87108r240"></a>plt.show()</pre>
-</code></pre>
+<a id="x23-87108r240"></a>plt.show()</pre></code></pre></div>
 <p class="noindent"></p><figure class="float">
 <a id="x23-87109r6"></a>
 <figcaption class="caption"><span class="id">Figure 4.6: </span><span class="content">Yearly seasonality and long-term trends.                                           </span></figcaption>
@@ -315,11 +291,9 @@ more visible for the rail series than the bus series: </p><div class="quote">  w
 each year. </div>
 <p class="noindent">Let’s check what we get if we plot the 12-month difference (see Figure 13-9):
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb172"><a id="x23-87111r246"></a>df_monthly.diff(<span style="color:#8F4070;">12</span>)[period].plot(grid=<span style="color:#9E0005;">True</span>, marker=<span style="color:#78730D;">"."</span>, figsize=(<span style="color:#8F4070;">8</span>, <span style="color:#8F4070;">3</span>)) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb172"><a id="x23-87111r246"></a>df_monthly.diff(<span style="color:#8F4070;">12</span>)[period].plot(grid=<span style="color:#9E0005;">True</span>, marker=<span style="color:#78730D;">"."</span>, figsize=(<span style="color:#8F4070;">8</span>, <span style="color:#8F4070;">3</span>)) 
 <a id="x23-87113r247"></a>plt.savefig(<span style="color:#78730D;">'images/Working-with-RNNs-and-CNNs/yearly-difference.pdf'</span>) 
-<a id="x23-87115r248"></a>plt.show()</pre>
-</code></pre>
+<a id="x23-87115r248"></a>plt.show()</pre></code></pre></div>
 <p class="noindent"></p><figure class="float">
 <a id="x23-87116r7"></a>
 <figcaption class="caption"><span class="id">Figure 4.7: </span><span class="content">The 12-month difference.                                                      </span></figcaption>
@@ -425,8 +399,7 @@ ridership for tomorrow, the 1st of June, 2019. For this, we can use the statsmod
 contains many different statistical models, including the ARMA model and its variants, implemented
 by the ARIMA class:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb173"><a id="x23-88003r259"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">statsmodels.tsa.arima.model</span> <span style="color:#9E0005;">import</span> ARIMA 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb173"><a id="x23-88003r259"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">statsmodels.tsa.arima.model</span> <span style="color:#9E0005;">import</span> ARIMA 
 <a id="x23-88005r260"></a> 
 <a id="x23-88007r261"></a>origin, today = <span style="color:#78730D;">"2019-01-01"</span>, <span style="color:#78730D;">"2019-05-31"</span> 
 <a id="x23-88009r262"></a>rail_series = df.loc[origin:today][<span style="color:#78730D;">"rail"</span>].asfreq(<span style="color:#78730D;">"D"</span>) 
@@ -434,8 +407,7 @@ by the ARIMA class:
 <a id="x23-88013r264"></a>              order=(<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">0</span>), 
 <a id="x23-88015r265"></a>              seasonal_order=(<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">7</span>)) 
 <a id="x23-88017r266"></a>model = model.fit() 
-<a id="x23-88019r267"></a>y_pred = model.forecast()  <span style="color:#918273;"><i># returns 427,758.6</i></span></pre>
-</code></pre>
+<a id="x23-88019r267"></a>y_pred = model.forecast()  <span style="color:#918273;"><i># returns 427,758.6</i></span></pre></code></pre></div>
 <p class="noindent">In this code example: </p>
 <ul class="itemize1">
 <li class="itemize">
@@ -463,8 +435,7 @@ perhaps we were just unlucky that day? To check this, we can run the same code i
 make forecasts for every day in March, April, and May, and compute the MAE over that
 period:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb174"><a id="x23-88021r287"></a>origin, start_date, end_date = <span style="color:#78730D;">"2019-01-01"</span>, <span style="color:#78730D;">"2019-03-01"</span>, <span style="color:#78730D;">"2019-05-31"</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb174"><a id="x23-88021r287"></a>origin, start_date, end_date = <span style="color:#78730D;">"2019-01-01"</span>, <span style="color:#78730D;">"2019-03-01"</span>, <span style="color:#78730D;">"2019-05-31"</span> 
 <a id="x23-88023r288"></a>time_period = pd.date_range(start_date, end_date) 
 <a id="x23-88025r289"></a>rail_series = df.loc[origin:end_date][<span style="color:#78730D;">"rail"</span>].asfreq(<span style="color:#78730D;">"D"</span>) 
 <a id="x23-88027r290"></a>y_preds = [] 
@@ -477,8 +448,7 @@ period:
 <a id="x23-88041r297"></a>    y_preds.append(y_pred) 
 <a id="x23-88043r298"></a> 
 <a id="x23-88045r299"></a>y_preds = pd.Series(y_preds, index=time_period) 
-<a id="x23-88047r300"></a>mae = (y_preds - rail_series[time_period]).abs().mean()  <span style="color:#918273;"><i># returns 32,040.7</i></span></pre>
-</code></pre>
+<a id="x23-88047r300"></a>mae = (y_preds - rail_series[time_period]).abs().mean()  <span style="color:#918273;"><i># returns 32,040.7</i></span></pre></code></pre></div>
 <p class="noindent">Ah, that’s much better! The <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:mae">MAE</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:mae">Mean Absolute Error</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mae">Mean Absolute Error</a></span></span></span> is about 32,041, which is
 significantly lower than the MAE we got with naive forecasting (42,143). So although the model is not
 perfect, it still beats naive forecasting by a large margin, on average.
@@ -517,8 +487,7 @@ past as training data, and the target for each window will be the value immediat
 that, we need to create a custom dataset that will chop a given time series into all possible windows of
 a given length, each with its corresponding target:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb175"><a id="x23-89002r342"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">TimeSeriesDataset</span>(torch.utils.data.Dataset): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb175"><a id="x23-89002r342"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">TimeSeriesDataset</span>(torch.utils.data.Dataset): 
 <a id="x23-89004r343"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, series, window_length): 
 <a id="x23-89006r344"></a>        <span style="color:#B03B03;">self</span>.series = series 
 <a id="x23-89008r345"></a>        <span style="color:#B03B03;">self</span>.window_length = window_length 
@@ -532,8 +501,7 @@ a given length, each with its corresponding target:
 <a id="x23-89024r353"></a>        end = idx + <span style="color:#B03B03;">self</span>.window_length  <span style="color:#918273;"><i># 1st index after window</i></span> 
 <a id="x23-89026r354"></a>        window = <span style="color:#B03B03;">self</span>.series[idx : end] 
 <a id="x23-89028r355"></a>        target = <span style="color:#B03B03;">self</span>.series[end] 
-<a id="x23-89030r356"></a>        <span style="color:#9E0005;">return</span> window, target</pre>
-</code></pre>
+<a id="x23-89030r356"></a>        <span style="color:#9E0005;">return</span> window, target</pre></code></pre></div>
 <p class="noindent">Let’s test this class by applying it to a simple time series containing the numbers 0 to 5. We could
 represent this series in 1D using [0, 1, 2, 3, 4, 5], but the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of
 ANN designed to process sequential data, such as text, speech, or time series, by passing information
@@ -543,14 +511,11 @@ we represent the time series as [[0], [1], [2], [3], [4], [5]]. In the following
 <code class="file"><code class="verb">TimeSeriesDataset</code></code> contains all the windows of length 3, each with its corresponding target (i.e., the
 first value after the window):
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb176"><a id="x23-89032r361"></a>my_series = torch.tensor([[<span style="color:#8F4070;">0</span>], [<span style="color:#8F4070;">1</span>], [<span style="color:#8F4070;">2</span>], [<span style="color:#8F4070;">3</span>], [<span style="color:#8F4070;">4</span>], [<span style="color:#8F4070;">5</span>]]) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb176"><a id="x23-89032r361"></a>my_series = torch.tensor([[<span style="color:#8F4070;">0</span>], [<span style="color:#8F4070;">1</span>], [<span style="color:#8F4070;">2</span>], [<span style="color:#8F4070;">3</span>], [<span style="color:#8F4070;">4</span>], [<span style="color:#8F4070;">5</span>]]) 
 <a id="x23-89034r362"></a>my_dataset = TimeSeriesDataset(my_series, window_length=<span style="color:#8F4070;">3</span>) 
 <a id="x23-89036r363"></a><span style="color:#9E0005;">for</span> window, target <span style="color:#9E0005;">in</span> my_dataset: 
-<a id="x23-89038r364"></a>    <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">"Window:"</span>, window, <span style="color:#78730D;">" Target:"</span>, target)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb177"><a id="x23-89040r369"></a>Window: tensor([[0], 
+<a id="x23-89038r364"></a>    <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">"Window:"</span>, window, <span style="color:#78730D;">" Target:"</span>, target)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb177"><a id="x23-89040r369"></a>Window: tensor([[0], 
 <a id="x23-89042r370"></a>        [1], 
 <a id="x23-89044r371"></a>        [2]])  Target: tensor([3]) 
 <a id="x23-89046r372"></a>Window: tensor([[1], 
@@ -558,18 +523,15 @@ first value after the window):
 <a id="x23-89050r374"></a>        [3]])  Target: tensor([4]) 
 <a id="x23-89052r375"></a>Window: tensor([[2], 
 <a id="x23-89054r376"></a>        [3], 
-<a id="x23-89056r377"></a>        [4]])  Target: tensor([5])</pre>
-</code></pre>
+<a id="x23-89056r377"></a>        [4]])  Target: tensor([5])</pre></code></pre></div>
 <p class="noindent">It looks like our  <code class="file"><code class="verb">TimeSeriesDataset</code></code> class works fine! Now we can create a Data Loader for this tiny
 dataset, shuffling the windows and grouping them into batches of two:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb178"><a id="x23-89058r382"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">torch.utils.data</span> <span style="color:#9E0005;">import</span> DataLoader 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb178"><a id="x23-89058r382"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">torch.utils.data</span> <span style="color:#9E0005;">import</span> DataLoader 
 <a id="x23-89060r383"></a>torch.manual_seed(<span style="color:#8F4070;">0</span>) 
 <a id="x23-89062r384"></a>my_loader = DataLoader(my_dataset, batch_size=<span style="color:#8F4070;">2</span>, shuffle=<span style="color:#9E0005;">True</span>) 
 <a id="x23-89064r385"></a><span style="color:#9E0005;">for</span> X, y <span style="color:#9E0005;">in</span> my_loader: 
-<a id="x23-89066r386"></a>    <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">"X:"</span>, X, <span style="color:#78730D;">" y:"</span>, y)</pre>
-</code></pre>
+<a id="x23-89066r386"></a>    <span style="color:#B03B03;">print</span>(<span style="color:#78730D;">"X:"</span>, X, <span style="color:#78730D;">" y:"</span>, y)</pre></code></pre></div>
 <p class="noindent">The first batch contains the windows <code class="verb">[[0], [1], [2]]</code>  and <code class="verb">[[2], [3], [4]]</code> , along with their respective targets <code class="verb">[3]</code>  and <code class="verb">[5]</code> ; and the second
 batch contains only one window <code class="verb">[[1], [2], [3]]</code> , with its target <code class="verb">[4]</code> . Indeed, when the length of a dataset is not a
 multiple of the batch size, the last batch is shorter.
@@ -582,13 +544,10 @@ tensors, and scale them down by a factor of one million to ensure the values end
 code, we use <code class="verb">df[["rail"]]</code>  instead of <code class="verb">df["rail"]</code>  to ensure the resulting tensor has a shape of <code class="verb">[series length, 1]</code>  rather than [series
 length]:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb179"><a id="x23-89068r409"></a>rail_train = torch.FloatTensor(df[[<span style="color:#78730D;">"rail"</span>]][<span style="color:#78730D;">"2016-01"</span>:<span style="color:#78730D;">"2018-12"</span>].values / <span style="color:#8F4070;">1e6</span>) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb179"><a id="x23-89068r409"></a>rail_train = torch.FloatTensor(df[[<span style="color:#78730D;">"rail"</span>]][<span style="color:#78730D;">"2016-01"</span>:<span style="color:#78730D;">"2018-12"</span>].values / <span style="color:#8F4070;">1e6</span>) 
 <a id="x23-89070r410"></a>rail_valid = torch.FloatTensor(df[[<span style="color:#78730D;">"rail"</span>]][<span style="color:#78730D;">"2019-01"</span>:<span style="color:#78730D;">"2019-05"</span>].values / <span style="color:#8F4070;">1e6</span>) 
-<a id="x23-89072r411"></a>rail_test = torch.FloatTensor(df[[<span style="color:#78730D;">"rail"</span>]][<span style="color:#78730D;">"2019-06"</span>:].values / <span style="color:#8F4070;">1e6</span>)</pre>
-</code></pre>
-<pre><code class="language-text">
-<pre class="fancyvrb" id="fancyvrb180"><a id="x23-89074r391"></a>X: tensor([[[0], 
+<a id="x23-89072r411"></a>rail_test = torch.FloatTensor(df[[<span style="color:#78730D;">"rail"</span>]][<span style="color:#78730D;">"2019-06"</span>:].values / <span style="color:#8F4070;">1e6</span>)</pre></code></pre></div>
+<div class="code-wrapper"><pre><code class="language-text"><pre class="fancyvrb" id="fancyvrb180"><a id="x23-89074r391"></a>X: tensor([[[0], 
 <a id="x23-89076r392"></a>         [1], 
 <a id="x23-89078r393"></a>         [2]], 
 <a id="x23-89080r394"></a> 
@@ -598,8 +557,7 @@ length]:
 <a id="x23-89088r398"></a>        [5]]) 
 <a id="x23-89090r399"></a>X: tensor([[[1], 
 <a id="x23-89092r400"></a>         [2], 
-<a id="x23-89094r401"></a>         [3]]])  y: tensor([[4]])</pre>
-</code></pre>
+<a id="x23-89094r401"></a>         [3]]])  y: tensor([[4]])</pre></code></pre></div>
 <dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-4.47" id="info-block-4.47"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 4.<a id="x23-89095r47"></a>47: </b> </span> <span class="title"> Working with Time </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">When dealing with time series, we generally want to split across time. However, in some cases we may
 be able to split along other dimensions, which will give you a longer time period to train on. </p>
@@ -621,15 +579,13 @@ instances in the training set to be independent and identically distributed (IID
 saw in Chapter 4, we must set shuffle to Truethis will shuffle the windows, but not their
 contents:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb181"><a id="x23-89097r416"></a>window_length = <span style="color:#8F4070;">56</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb181"><a id="x23-89097r416"></a>window_length = <span style="color:#8F4070;">56</span> 
 <a id="x23-89099r417"></a>train_set = TimeSeriesDataset(rail_train, window_length) 
 <a id="x23-89101r418"></a>train_loader = DataLoader(train_set, batch_size=<span style="color:#8F4070;">32</span>, shuffle=<span style="color:#9E0005;">True</span>) 
 <a id="x23-89103r419"></a>valid_set = TimeSeriesDataset(rail_valid, window_length) 
 <a id="x23-89105r420"></a>valid_loader = DataLoader(valid_set, batch_size=<span style="color:#8F4070;">32</span>) 
 <a id="x23-89107r421"></a>test_set = TimeSeriesDataset(rail_test, window_length) 
-<a id="x23-89109r422"></a>test_loader = DataLoader(test_set, batch_size=<span style="color:#8F4070;">32</span>)</pre>
-</code></pre>
+<a id="x23-89109r422"></a>test_loader = DataLoader(test_set, batch_size=<span style="color:#8F4070;">32</span>)</pre></code></pre></div>
 <p class="noindent">And now we’re ready to build and train any regression model we want!
 </p>
 <div class="subsection-header"><h4 id="header-subsection-4.2.3"><span class="number">4.2.3</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.4.2.3"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x23-900004.2.3"></a>Forecasting Using a Linear Model</span></h4></div>
@@ -637,8 +593,7 @@ contents:
 minimizing the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:mae">MAE</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:mae">Mean Absolute Error</a></span><span class="acronym-desc"><a class="glossary" href="#glo:mae">Mean Absolute Error</a></span></span></span> directly, as discussed in <span class="refclass-ref"><a href="IntroductiontoArtificialNeuralNetworks.html#x3-20001">Introduction to
 Artificial Neural Networks</a></span>:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb182"><a id="x23-90002r471"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">nn</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb182"><a id="x23-90002r471"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torch.nn</span> <span style="color:#9E0005;">as</span> <span style="color:#427A59;">nn</span> 
 <a id="x23-90004r472"></a><span style="color:#9E0005;">import</span> <span style="color:#427A59;">torchmetrics</span> 
 <a id="x23-90006r473"></a> 
 <a id="x23-90008r474"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
@@ -648,8 +603,7 @@ Artificial Neural Networks</a></span>:
 <a id="x23-90016r478"></a>metric = torchmetrics.MeanAbsoluteError().to(device) 
 <a id="x23-90018r479"></a> 
 <a id="x23-90020r480"></a>history = train(model, optimizer, loss_fn, metric, train_loader, 
-<a id="x23-90022r481"></a>                valid_loader, n_epochs=<span style="color:#8F4070;">50</span>)</pre>
-</code></pre>
+<a id="x23-90022r481"></a>                valid_loader, n_epochs=<span style="color:#8F4070;">50</span>)</pre></code></pre></div>
 <p class="noindent">Note that we must use an  <code class="file"><code class="verb">nn.Flatten</code></code> layer before the  <code class="file"><code class="verb">nn.Linear</code></code> layer, because the inputs have a shape of <code class="verb">[batch size, window length, dimensionality]</code> ,
 but the  <code class="file"><code class="verb">nn.Linear</code></code> layer expects inputs of shape <code class="verb">[batch size, features]</code> . If we train this model, we will see that it reaches a validation
 MAE of <math display="inline"><mn>3</mn><mn>7</mn><mi>,</mi><mn>7</mn><mn>2</mn><mn>6</mn></math>
@@ -662,8 +616,7 @@ data, such as text, speech, or time series, by passing information through loops
 next</a></span></span></span> containing a single recurrent layer (see Figure 13-2) plus a final  <code class="file"><code class="verb">nn.Linear</code></code> layer that will take
 the last hidden state as input and output the model’s forecast:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb183"><a id="x23-91002r496"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SimpleRnnModel</span>(nn.Module): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb183"><a id="x23-91002r496"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SimpleRnnModel</span>(nn.Module): 
 <a id="x23-91004r497"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, input_size, hidden_size, output_size): 
 <a id="x23-91006r498"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
 <a id="x23-91008r499"></a>        <span style="color:#B03B03;">self</span>.hidden_size = hidden_size 
@@ -683,8 +636,7 @@ the last hidden state as input and output the model’s forecast:
 <a id="x23-91036r513"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(H) 
 <a id="x23-91038r514"></a> 
 <a id="x23-91040r515"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
-<a id="x23-91042r516"></a>model = SimpleRnnModel(input_size=<span style="color:#8F4070;">1</span>, hidden_size=<span style="color:#8F4070;">32</span>, output_size=<span style="color:#8F4070;">1</span>).to(device)</pre>
-</code></pre>
+<a id="x23-91042r516"></a>model = SimpleRnnModel(input_size=<span style="color:#8F4070;">1</span>, hidden_size=<span style="color:#8F4070;">32</span>, output_size=<span style="color:#8F4070;">1</span>).to(device)</pre></code></pre></div>
 <p class="noindent">Let’s go through this code: </p>
 <ul class="itemize1">
 <li class="itemize">
@@ -764,8 +716,7 @@ differencing.
 <code class="file"><code class="verb">SimpleRnnModel</code></code> . The following implementation is (almost) equivalent to the previous
 one:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb184"><a id="x23-91045r496"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SimpleRnnModel</span>(nn.Module): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb184"><a id="x23-91045r496"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SimpleRnnModel</span>(nn.Module): 
 <a id="x23-91047r497"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, input_size, hidden_size, output_size): 
 <a id="x23-91049r498"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
 <a id="x23-91051r499"></a>        <span style="color:#B03B03;">self</span>.hidden_size = hidden_size 
@@ -785,8 +736,7 @@ one:
 <a id="x23-91079r513"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(H) 
 <a id="x23-91081r514"></a> 
 <a id="x23-91083r515"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
-<a id="x23-91085r516"></a>model = SimpleRnnModel(input_size=<span style="color:#8F4070;">1</span>, hidden_size=<span style="color:#8F4070;">32</span>, output_size=<span style="color:#8F4070;">1</span>).to(device)</pre>
-</code></pre>
+<a id="x23-91085r516"></a>model = SimpleRnnModel(input_size=<span style="color:#8F4070;">1</span>, hidden_size=<span style="color:#8F4070;">32</span>, output_size=<span style="color:#8F4070;">1</span>).to(device)</pre></code></pre></div>
 <p class="noindent">The code is much shorter than before. Let’s go through it: </p>
 <ul class="itemize1">
 <li class="itemize">
@@ -872,12 +822,10 @@ Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#
 by passing information through loops from one step to the next</a></span></span></span> (the rest of the code remains
 unchanged):
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb185"><a id="x23-92003r600"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb185"><a id="x23-92003r600"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x23-92005r601"></a>deep_model = DeepRnnModel( 
 <a id="x23-92007r602"></a>    input_size=<span style="color:#8F4070;">1</span>, hidden_size=<span style="color:#8F4070;">32</span>, output_size=<span style="color:#8F4070;">1</span>, num_layers=<span style="color:#8F4070;">3</span>).to(device) 
-<a id="x23-92009r603"></a>fit_and_evaluate(deep_model, train_loader, valid_loader, lr=<span style="color:#8F4070;">0.07</span>, n_epochs=<span style="color:#8F4070;">50</span>)</pre>
-</code></pre>
+<a id="x23-92009r603"></a>fit_and_evaluate(deep_model, train_loader, valid_loader, lr=<span style="color:#8F4070;">0.07</span>, n_epochs=<span style="color:#8F4070;">50</span>)</pre></code></pre></div>
 <p class="noindent">If we train and evaluate this model, we will find that it reaches an MAE of 29,273. That’s our best
 model so far!
 </p>
@@ -891,11 +839,9 @@ a weekday, a weekend, or a holiday, we can shift the day type series one day int
 model is given tomorrow’s day type as input. For simplicity, we’ll do this processing using
 Pandas:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb186"><a id="x23-93002r613"></a>df_mulvar = df[[<span style="color:#78730D;">"rail"</span>, <span style="color:#78730D;">"bus"</span>]] / <span style="color:#8F4070;">1e6</span>  <span style="color:#918273;"><i># use both rail &amp; bus series as input</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb186"><a id="x23-93002r613"></a>df_mulvar = df[[<span style="color:#78730D;">"rail"</span>, <span style="color:#78730D;">"bus"</span>]] / <span style="color:#8F4070;">1e6</span>  <span style="color:#918273;"><i># use both rail &amp; bus series as input</i></span> 
 <a id="x23-93004r614"></a>df_mulvar[<span style="color:#78730D;">"next_day_type"</span>] = df[<span style="color:#78730D;">"day_type"</span>].shift(-<span style="color:#8F4070;">1</span>)  <span style="color:#918273;"><i># we know tomorrow's type</i></span> 
-<a id="x23-93006r615"></a>df_mulvar = pd.get_dummies(df_mulvar, dtype=<span style="color:#B03B03;">float</span>)  <span style="color:#918273;"><i># one-hot encode day type</i></span></pre>
-</code></pre>
+<a id="x23-93006r615"></a>df_mulvar = pd.get_dummies(df_mulvar, dtype=<span style="color:#B03B03;">float</span>)  <span style="color:#918273;"><i># one-hot encode day type</i></span></pre></code></pre></div>
 <p class="noindent">Now  <code class="file"><code class="verb">df_mulvar</code></code> is a DataFrame with five (<span class="alert">5</span>) columns: </p><div class="quote">  the rail and bus data, plus three columns
 containing the one-hot encoding of the next day’s <span class="margin-block">type. <span class="margin-comment"><a class="ellipsis" href="#m-ref-204">[204]</a>
 <span class="sidenote">recall that there are three possible day types,
@@ -903,11 +849,9 @@ W, A, and U.</span></span></span> </div>
 <p class="noindent">Next, we can proceed much like we did earlier. First we split the data into three periods, scale it down
 by a factor of one million, and convert it to tensors:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb187"><a id="x23-93008r620"></a>mulvar_train = torch.FloatTensor(df_mulvar[<span style="color:#78730D;">"2016-01"</span>:<span style="color:#78730D;">"2018-12"</span>].values) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb187"><a id="x23-93008r620"></a>mulvar_train = torch.FloatTensor(df_mulvar[<span style="color:#78730D;">"2016-01"</span>:<span style="color:#78730D;">"2018-12"</span>].values) 
 <a id="x23-93010r621"></a>mulvar_valid = torch.FloatTensor(df_mulvar[<span style="color:#78730D;">"2019-01"</span>:<span style="color:#78730D;">"2019-05"</span>].values) 
-<a id="x23-93012r622"></a>mulvar_test = torch.FloatTensor(df_mulvar[<span style="color:#78730D;">"2019-06"</span>:].values)</pre>
-</code></pre>
+<a id="x23-93012r622"></a>mulvar_test = torch.FloatTensor(df_mulvar[<span style="color:#78730D;">"2019-06"</span>:].values)</pre></code></pre></div>
 <p class="noindent">Then we need to create the PyTorch datasets. If we used the TimeSeriesDataset for this, the targets
 would include the next day’s rail and bus ridership, as well as the one-hot encoding of the following day
 type. Since we only want to predict the rail ridership for now, we must tweak the TimeSeriesDataset to
@@ -915,34 +859,28 @@ keep only the first value in the target, which is the rail ridership. One way to
 MulvarTimeSeriesDataset class that extends the TimeSeriesDataset class and tweaks the
 <code class="file"><code class="verb">__getitem__()</code></code> method to filter the target:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb188"><a id="x23-93014r627"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">MulvarTimeSeriesDataset</span>(TimeSeriesDataset): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb188"><a id="x23-93014r627"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">MulvarTimeSeriesDataset</span>(TimeSeriesDataset): 
 <a id="x23-93016r628"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__getitem__</span>(<span style="color:#B03B03;">self</span>, idx): 
 <a id="x23-93018r629"></a>        window, target = <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__getitem__</span>(idx) 
-<a id="x23-93020r630"></a>        <span style="color:#9E0005;">return</span> window, target[:<span style="color:#8F4070;">1</span>]</pre>
-</code></pre>
+<a id="x23-93020r630"></a>        <span style="color:#9E0005;">return</span> window, target[:<span style="color:#8F4070;">1</span>]</pre></code></pre></div>
 <p class="noindent">Next, we can create the datasets and the data loaders, much like we did earlier:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb189"><a id="x23-93022r635"></a>window_length = <span style="color:#8F4070;">56</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb189"><a id="x23-93022r635"></a>window_length = <span style="color:#8F4070;">56</span> 
 <a id="x23-93024r636"></a>mulvar_train_set = MulvarTimeSeriesDataset(mulvar_train, window_length) 
 <a id="x23-93026r637"></a>mulvar_train_loader = DataLoader(mulvar_train_set, batch_size=<span style="color:#8F4070;">32</span>, shuffle=<span style="color:#9E0005;">True</span>) 
 <a id="x23-93028r638"></a>mulvar_valid_set = MulvarTimeSeriesDataset(mulvar_valid, window_length) 
 <a id="x23-93030r639"></a>mulvar_valid_loader = DataLoader(mulvar_valid_set, batch_size=<span style="color:#8F4070;">32</span>) 
 <a id="x23-93032r640"></a>mulvar_test_set = MulvarTimeSeriesDataset(mulvar_test, window_length) 
-<a id="x23-93034r641"></a>mulvar_test_loader = DataLoader(mulvar_test_set, batch_size=<span style="color:#8F4070;">32</span>)</pre>
-</code></pre>
+<a id="x23-93034r641"></a>mulvar_test_loader = DataLoader(mulvar_test_set, batch_size=<span style="color:#8F4070;">32</span>)</pre></code></pre></div>
 <p class="noindent">If we look at the batches produced by the data loaders, we will find that the input shape is <code class="verb">[32, 56, 5]</code> , and the
 target shape is <code class="verb">[32, 1]</code> . Perfect!
 </p><p class="noindent">So we can finally create the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process
 sequential data, such as text, speech, or time series, by passing information through loops from one step
 to the next</a></span></span></span>:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb190"><a id="x23-93036r646"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb190"><a id="x23-93036r646"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x23-93038r647"></a>mulvar_model = SimpleRnnModel(input_size=<span style="color:#8F4070;">5</span>, hidden_size=<span style="color:#8F4070;">32</span>, output_size=<span style="color:#8F4070;">1</span>) 
-<a id="x23-93040r648"></a>mulvar_model = mulvar_model.to(device)</pre>
-</code></pre>
+<a id="x23-93040r648"></a>mulvar_model = mulvar_model.to(device)</pre></code></pre></div>
 <p class="noindent">Notice that this model is identical to the  <code class="file"><code class="verb">univar_model</code></code> <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of
 ANN designed to process sequential data, such as text, speech, or time series, by passing information
 through loops from one step to the next</a></span></span></span> we built earlier, except  <code class="file"><code class="verb">input_size=5</code></code> : at each time step, the
@@ -977,8 +915,7 @@ and add that value to the inputs, acting as if the predicted value had actually 
 We then use the model again to predict the following value, and so on, as in the following
 code:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb191"><a id="x23-94002r712"></a>univar_model.eval() 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb191"><a id="x23-94002r712"></a>univar_model.eval() 
 <a id="x23-94004r713"></a>n_steps = <span style="color:#8F4070;">14</span> 
 <a id="x23-94006r714"></a><span style="color:#9E0005;">with</span> torch.no_grad(): 
 <a id="x23-94008r715"></a>    X = rail_valid[:window_length].unsqueeze(dim=<span style="color:#8F4070;">0</span>).to(device) 
@@ -986,8 +923,7 @@ code:
 <a id="x23-94012r717"></a>        y_pred_one = univar_model(X) 
 <a id="x23-94014r718"></a>        X = torch.cat([X, y_pred_one.unsqueeze(dim=<span style="color:#8F4070;">1</span>)], dim=<span style="color:#8F4070;">1</span>) 
 <a id="x23-94016r719"></a> 
-<a id="x23-94018r720"></a>    Y_pred = X[<span style="color:#8F4070;">0</span>, -n_steps:, <span style="color:#8F4070;">0</span>]</pre>
-</code></pre>
+<a id="x23-94018r720"></a>    Y_pred = X[<span style="color:#8F4070;">0</span>, -n_steps:, <span style="color:#8F4070;">0</span>]</pre></code></pre></div>
 <p class="noindent">In this code, we take the rail ridership of the first 56 days of the validation period, we add a batch
 dimension of size 1 using the  <code class="file"><code class="verb">unsqueeze()</code></code> method (since our  <code class="file"><code class="verb">univar_model</code></code> expects 3D inputs),
 then we move the tensor to the GPU. Now the shape of X is [1, 56, 1]. Then we repeatedly use the
@@ -1010,8 +946,7 @@ sequence-to-vector model, but it will output 14 values instead of 1. However, we
 targets to be vectors containing the next 14 values. For this, we can create the following
 class:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb192"><a id="x23-94021r748"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">ForecastAheadDataset</span>(TimeSeriesDataset): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb192"><a id="x23-94021r748"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">ForecastAheadDataset</span>(TimeSeriesDataset): 
 <a id="x23-94023r749"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__len__</span>(<span style="color:#B03B03;">self</span>): 
 <a id="x23-94025r750"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">len</span>(<span style="color:#B03B03;">self</span>.series) - <span style="color:#B03B03;">self</span>.window_length - <span style="color:#8F4070;">14</span> + <span style="color:#8F4070;">1</span> 
 <a id="x23-94027r751"></a> 
@@ -1019,8 +954,7 @@ class:
 <a id="x23-94031r753"></a>        end = idx + <span style="color:#B03B03;">self</span>.window_length  <span style="color:#918273;"><i># 1st index after window</i></span> 
 <a id="x23-94033r754"></a>        window = <span style="color:#B03B03;">self</span>.series[idx : end] 
 <a id="x23-94035r755"></a>        target = <span style="color:#B03B03;">self</span>.series[end : end + <span style="color:#8F4070;">14</span>, <span style="color:#8F4070;">0</span>]  <span style="color:#918273;"><i># 0 = rail ridership</i></span> 
-<a id="x23-94037r756"></a>        <span style="color:#9E0005;">return</span> window, target</pre>
-</code></pre>
+<a id="x23-94037r756"></a>        <span style="color:#9E0005;">return</span> window, target</pre></code></pre></div>
 <p class="noindent">I’ve hardcoded the number 14, but in a real project we should make this <span class="margin-block">configurable. <span class="margin-comment"><a class="ellipsis" href="#m-ref-206">[206]</a>
 <span class="sidenote">e.g., just like the
 <code class="file"><code class="verb">window_length</code></code> .</span></span></span>
@@ -1029,35 +963,29 @@ methods. The target is now a tensor containing the next 14 rail ridership values
 next value. We can once again create a training set, a validation set, and a test set, based on the
 multivariate time series we built earlier:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb193"><a id="x23-94039r761"></a>window_length = <span style="color:#8F4070;">56</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb193"><a id="x23-94039r761"></a>window_length = <span style="color:#8F4070;">56</span> 
 <a id="x23-94041r762"></a>ahead_train_set = ForecastAheadDataset(mulvar_train, window_length) 
 <a id="x23-94043r763"></a>ahead_train_loader = DataLoader(ahead_train_set, batch_size=<span style="color:#8F4070;">32</span>, shuffle=<span style="color:#9E0005;">True</span>) 
 <a id="x23-94045r764"></a>ahead_valid_set = ForecastAheadDataset(mulvar_valid, window_length) 
 <a id="x23-94047r765"></a>ahead_valid_loader = DataLoader(ahead_valid_set, batch_size=<span style="color:#8F4070;">32</span>) 
 <a id="x23-94049r766"></a>ahead_test_set = ForecastAheadDataset(mulvar_test, window_length) 
-<a id="x23-94051r767"></a>ahead_test_loader = DataLoader(ahead_test_set, batch_size=<span style="color:#8F4070;">32</span>)</pre>
-</code></pre>
+<a id="x23-94051r767"></a>ahead_test_loader = DataLoader(ahead_test_set, batch_size=<span style="color:#8F4070;">32</span>)</pre></code></pre></div>
 <p class="noindent">Lastly, we can create a simple <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to
 process sequential data, such as text, speech, or time series, by passing information through
 loops from one step to the next</a></span></span></span>, just like the  <code class="file"><code class="verb">mulvar_model</code></code> , but with out  <code class="file"><code class="verb">put_size=14</code></code>
 :
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb194"><a id="x23-94053r772"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb194"><a id="x23-94053r772"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x23-94055r773"></a>ahead_model = SimpleRnnModel(input_size=<span style="color:#8F4070;">5</span>, hidden_size=<span style="color:#8F4070;">32</span>, output_size=<span style="color:#8F4070;">14</span>) 
 <a id="x23-94057r774"></a>ahead_model = ahead_model.to(device) 
-<a id="x23-94059r775"></a>fit_and_evaluate(ahead_model, ahead_train_loader, ahead_valid_loader, lr=<span style="color:#8F4070;">0.05</span>, n_epochs=<span style="color:#8F4070;">50</span>)</pre>
-</code></pre>
+<a id="x23-94059r775"></a>fit_and_evaluate(ahead_model, ahead_train_loader, ahead_valid_loader, lr=<span style="color:#8F4070;">0.05</span>, n_epochs=<span style="color:#8F4070;">50</span>)</pre></code></pre></div>
 <p class="noindent">After training this model, we can predict the next 14 values at once, like this:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb195"><a id="x23-94061r780"></a>ahead_model.eval() 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb195"><a id="x23-94061r780"></a>ahead_model.eval() 
 <a id="x23-94063r781"></a><span style="color:#9E0005;">with</span> torch.no_grad(): 
 <a id="x23-94065r782"></a>    window = mulvar_valid[:window_length]  <span style="color:#918273;"><i># shape [56, 5]</i></span> 
 <a id="x23-94067r783"></a>    X = window.unsqueeze(dim=<span style="color:#8F4070;">0</span>)            <span style="color:#918273;"><i># shape [1, 56, 5]</i></span> 
-<a id="x23-94069r784"></a>    Y_pred = ahead_model(X.to(device))     <span style="color:#918273;"><i># shape [1, 14]</i></span></pre>
-</code></pre>
+<a id="x23-94069r784"></a>    Y_pred = ahead_model(X.to(device))     <span style="color:#918273;"><i># shape [1, 14]</i></span></pre></code></pre></div>
 <p class="noindent">This approach works quite well. Its forecasts for the next day are obviously better than its forecasts for
 14 days into the future, but it doesn’t accumulate errors like the previous approach did. Now let’s see
 whether a sequence-to-sequence model can do even better.
@@ -1104,15 +1032,13 @@ the specific window length used during training. Well, at least that’s the hop
 this technique a try on the rail ridership time series. As usual, we first need to prepare the
 dataset:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb196"><a id="x23-95002r802"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">Seq2SeqDataset</span>(ForecastAheadDataset): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb196"><a id="x23-95002r802"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">Seq2SeqDataset</span>(ForecastAheadDataset): 
 <a id="x23-95004r803"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__getitem__</span>(<span style="color:#B03B03;">self</span>, idx): 
 <a id="x23-95006r804"></a>        end = idx + <span style="color:#B03B03;">self</span>.window_length  <span style="color:#918273;"><i># 1st index after window</i></span> 
 <a id="x23-95008r805"></a>        window = <span style="color:#B03B03;">self</span>.series[idx : end] 
 <a id="x23-95010r806"></a>        target_period = <span style="color:#B03B03;">self</span>.series[idx + <span style="color:#8F4070;">1</span> : end + <span style="color:#8F4070;">14</span>, <span style="color:#8F4070;">0</span>] 
 <a id="x23-95012r807"></a>        target = target_period.unfold(dimension=<span style="color:#8F4070;">0</span>, size=<span style="color:#8F4070;">14</span>, step=<span style="color:#8F4070;">1</span>) 
-<a id="x23-95014r808"></a>        <span style="color:#9E0005;">return</span> window, target</pre>
-</code></pre>
+<a id="x23-95014r808"></a>        <span style="color:#9E0005;">return</span> window, target</pre></code></pre></div>
 <p class="noindent">Our new Seq2SeqDataset class inherits from the ForecastAheadDataset class and overrides the
 <code class="file"><code class="verb">__getitem__()</code></code> method: the input window is defined just like before, but the target is now a sequence
 of consecutive windows, shifted by one time step at each time step. The unfold() method is where the
@@ -1122,23 +1048,19 @@ example:
 </p><p class="noindent">Once again we must create a training set, a validation set, and a test set, as well as the corresponding
 data loaders:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb197"><a id="x23-95016r818"></a>window_length = <span style="color:#8F4070;">56</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb197"><a id="x23-95016r818"></a>window_length = <span style="color:#8F4070;">56</span> 
 <a id="x23-95018r819"></a>seq_train_set = Seq2SeqDataset(mulvar_train, window_length) 
 <a id="x23-95020r820"></a>seq_train_loader = DataLoader(seq_train_set, batch_size=<span style="color:#8F4070;">32</span>, shuffle=<span style="color:#9E0005;">True</span>) 
 <a id="x23-95022r821"></a>seq_valid_set = Seq2SeqDataset(mulvar_valid, window_length) 
 <a id="x23-95024r822"></a>seq_valid_loader = DataLoader(seq_valid_set, batch_size=<span style="color:#8F4070;">32</span>) 
 <a id="x23-95026r823"></a>seq_test_set = Seq2SeqDataset(mulvar_test, window_length) 
-<a id="x23-95028r824"></a>seq_test_loader = DataLoader(seq_test_set, batch_size=<span style="color:#8F4070;">32</span>)</pre>
-</code></pre>
+<a id="x23-95028r824"></a>seq_test_loader = DataLoader(seq_test_set, batch_size=<span style="color:#8F4070;">32</span>)</pre></code></pre></div>
 <p class="noindent">And lastly, we can build the sequence-to-sequence model:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb198"><a id="x23-95030r829"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">Seq2SeqRnnModel</span>(SimpleRnnModel): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb198"><a id="x23-95030r829"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">Seq2SeqRnnModel</span>(SimpleRnnModel): 
 <a id="x23-95032r830"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, X): 
 <a id="x23-95034r831"></a>        outputs, last_state = <span style="color:#B03B03;">self</span>.rnn(X) 
-<a id="x23-95036r832"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(outputs)</pre>
-</code></pre>
+<a id="x23-95036r832"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(outputs)</pre></code></pre></div>
 <p class="noindent">We inherit from the SimpleRnnModel class, and we override the forward() method. Instead of applying
 the linear self.output layer only to the outputs of the last time step, as we did before, we now apply it
 to the outputs of every time step. It may surprise we that this works at all. So far, we have only
@@ -1242,7 +1164,7 @@ Square Error</p></dd>
 <i class="fa-regular fa-note-sticky"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-margin"></a>
                     Page Footnotes</span>
 </h3>
 </div>
@@ -1309,7 +1231,7 @@ instead of 1 day ahead.</span></dd>
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>

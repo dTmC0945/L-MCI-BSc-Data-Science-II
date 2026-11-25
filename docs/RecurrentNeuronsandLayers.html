@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="ForecastingaTimeSeries.html">Forecasting a Time Series</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="WorkingwithRNNsandCNNs.html">Chapter: Working with RNNs and CNNs</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="WorkingwithRNNsandCNNs.html#RecurrentNeuronsandLayers.html">Chapter: Working with RNNs and CNNs</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -145,17 +145,17 @@ Eq.
 , where <math display="inline"><mstyle mathvariant="bold"><mi>b</mi></mstyle></math> is
 the <i>bias vector</i> and <math display="inline"><mi>ϕ</mi><mo class="MathClass-open" stretchy="false">(</mo><mi>·</mi><mo class="MathClass-close" stretchy="false">)</mo></math>
 is the activation function, such as ReLU<span class="margin-block">. <span class="margin-comment"><a class="ellipsis" href="#m-ref-189">[189]</a>
-<span class="sidenote">Many researchers prefer to use the <i>hyperbolic tangent</i> (tanh)
-activation function in <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process
-sequential data, such as text, speech, or time series, by passing information through loops from
-one step to the next</a></span></span></span>s rather than the ReLU activation function <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Pham2013DropoutIR"> <a id="x22-83002"></a>Pham, V. T. D. et al.
-Dropout Improves Recurrent Neural Networks for Handwriting Recognition. 2014 14th
-International Conference on Frontiers in Handwriting Recognition, 285–290 (2013)</span></span>, however
-ReLU-based <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data,
-such as text, speech, or time series, by passing information through loops from one step
-to the next</a></span></span></span>s are also possible <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Le2015ASW"> <a id="x22-83003"></a>Le, Q. V., Jaitly, N. &amp; Hinton, G. E. A Simple Way to
-Initialize Recurrent Networks of Rectified Linear Units. ArXiv <b>abs/1504.00941</b> (2015)</span></span>.</span></span></span>
-</p><div class="highlight-eq-block"><table class="equation"><tr><td>
+<span class="sidenote">Many researchers prefer to use the <i>hyperbolic tangent</i>
+(tanh) activation function in <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to
+process sequential data, such as text, speech, or time series, by passing information through
+loops from one step to the next</a></span></span></span>s rather than the ReLU activation function <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Pham2013DropoutIR"> <span class="bib-entry bib-author"><a id="x22-83002"></a>Pham et al.</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:9919769">"Dropout Improves Recurrent Neural Networks for
+Handwriting Recognition"</a>, <span class="bib-entry bib-journal">2014 14th International Conference on Frontiers in Handwriting
+Recognition</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2013)</span>.</span></span>, however ReLU-based <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of
+ANN designed to process sequential data, such as text, speech, or time series, by passing
+information through loops from one step to the next</a></span></span></span>s are also possible <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Le2015ASW"> <span class="bib-entry bib-author"><a id="x22-83003"></a>Le, Jaitly &amp; Hinton</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:299149">"A Simple Way to Initialize Recurrent Networks of
+Rectified Linear Units"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2015)</span>.</span></span>.</span></span></span> </p><div class="highlight-eq-block"><table class="equation"><tr><td>
 <math class="equation" display="block">
 <mstyle class="label" id="x22-83004r1"></mstyle><msub><mrow>
 <mover accent="true"><mrow><mstyle mathvariant="bold"><mi>y</mi></mstyle></mrow><mo accent="true">^</mo></mover>
@@ -246,9 +246,10 @@ there are no previous outputs, so they are typically assumed to be all zeros.
 <span class="sidenote">basically the use of loops.</span></span></span> in <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural
 Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span> dates back to the very origins of <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:ann">ANN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:ann">Artificial Neural
 Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:ann">Artificial Neural Networks</a></span></span></span>s, but the first modern <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of
-ANN designed to process sequential data, such as text, speech, or time series, by passing information
-through loops from one step to the next</a></span></span></span> architecture was proposed in <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail" id="Jordan1990AttractorDA"> <a id="x22-83007"></a>Jordan, M. I. Attractor
-dynamics and parallelism in a connectionist sequential machine in (1990)</span></span>. At each time step, his
+ANN designed to process sequential data, such as text, speech, or time series, by passing
+information through loops from one step to the next</a></span></span></span> architecture was proposed in <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail" id="Jordan1990AttractorDA"> <span class="bib-entry bib-author"><a id="x22-83007"></a>Jordan</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:56723681">"Attractor dynamics and parallelism in a
+connectionist sequential machine"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1990)</span>.</span></span>. At each time step, his
 <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such as text,
 speech, or time series, by passing information through loops from one step to the next</a></span></span></span> would look at
 the inputs for that time step, plus its own outputs from the previous time step. This is called output
@@ -295,10 +296,10 @@ equal to the state, but in more complex cells this is not always the case, as sh
 </figure>
 <dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-4.44" id="info-block-4.44"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 4.<a id="x22-84002r44"></a>44: </b> </span> <span class="title"> First RNNs </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">The first modern <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data,
-such as text, speech, or time series, by passing information through loops from one step to the next</a></span></span></span>
-which fed back the hidden state rather than the outputs was proposed in <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="Elman1990FindingSI"> <a id="x22-84003"></a>Elman, J. L. Finding
-Structure in Time. Cogn. Sci. <b>14</b><b>,</b> 179–211 (1990)</span></span>. This is called <span class="alert">state feedback</span>, and its the most common approach
-today.
+such as text, speech, or time series, by passing information through loops from one step to the
+next</a></span></span></span> which fed back the hidden state rather than the outputs was proposed in <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="Elman1990FindingSI"> <span class="bib-entry bib-author"><a id="x22-84003"></a>Elman</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:2763403">"Finding Structure in Time"</a>, <span class="bib-entry bib-journal">Cogn. Sci.</span>, <span class="bib-entry bib-book">booktitle</span>,
+<span class="bib-entry bib-year">(1990)</span>.</span></span>. This is called <span class="alert">state feedback</span>, and its the most common approach today.
 </p>
 </dd></dl>
 <div class="subsection-header"><h4 id="header-subsection-4.1.2"><span class="number">4.1.2</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.4.1.2"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x22-850004.1.2"></a>Input and Output Sequences</span></h4></div>
@@ -347,9 +348,9 @@ the trick is to unroll it through time, and then use regular <i>backpropagation<
 13-5).
 </p>
 <div class="block-minor knowledge"><div class="body">
-<p class="noindent">This strategy is called backpropagation through time (BPTT) <span class="cite"><a class="cite-show" href="#w3-20001">[†-5]</a><span class="cite-detail" id="Mozer1989AFB"> <a id="x22-86001"></a>Mozer, M. C. A Focused
-Backpropagation Algorithm for Temporal Pattern Recognition. Complex Syst. <b>3</b> (1989)</span></span>.
-</p></div></div>
+<p class="noindent">This strategy is called backpropagation through time (BPTT) <span class="cite"><a class="cite-show" href="#w3-20001">[†-5]</a><span class="cite-detail" id="Mozer1989AFB"> <span class="bib-entry bib-author"><a id="x22-86001"></a>Mozer</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:18036435">"A Focused Backpropagation Algorithm for
+Temporal Pattern Recognition"</a>, <span class="bib-entry bib-journal">Complex Syst.</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1989)</span>.</span></span>. </p></div></div>
 <p class="noindent">Similar to <i>backpropagation</i>, there is a first forward pass through the unrolled network, represented by
 the dashed arrows. Then the output sequence is evaluated using a loss function </p><table class="equation-star"><tr><td>
 <math class="equation" display="block">
@@ -426,30 +427,41 @@ speech, or time series, by passing information through loops from one step to th
 <i class="fa-solid fa-magnifying-glass"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-reference"></a>
             Page References</span>
 </h3>
 </div>
 <div class="cite-block">
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">1.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Pham, V. T. D. et al. Dropout Improves Recurrent Neural Networks for Handwriting Recognition. 2014 14th International Conference on Frontiers in Handwriting Recognition, 285–290 (2013)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Pham2013DropoutIR"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x22-83002"></a>Pham et al.</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:9919769">"Dropout Improves Recurrent Neural Networks for
+Handwriting Recognition"</a>, <span class="bib-entry bib-journal">2014 14th International Conference on Frontiers in Handwriting
+Recognition</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2013)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">2.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Le, Q. V., Jaitly, N. &amp; Hinton, G. E. A Simple Way to Initialize Recurrent Networks of Rectified Linear Units. ArXiv abs/1504.00941 (2015)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Le2015ASW"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x22-83003"></a>Le, Jaitly &amp; Hinton</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:299149">"A Simple Way to Initialize Recurrent Networks of
+Rectified Linear Units"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2015)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">3.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Jordan, M. I. Attractor dynamics and parallelism in a connectionist sequential machine in (1990)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Jordan1990AttractorDA"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x22-83007"></a>Jordan</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:56723681">"Attractor dynamics and parallelism in a
+connectionist sequential machine"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1990)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">4.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Elman, J. L. Finding Structure in Time. Cogn. Sci. 14, 179–211 (1990)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Elman1990FindingSI"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x22-84003"></a>Elman</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:2763403">"Finding Structure in Time"</a>, <span class="bib-entry bib-journal">Cogn. Sci.</span>, <span class="bib-entry bib-book">booktitle</span>,
+<span class="bib-entry bib-year">(1990)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">5.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Mozer, M. C. A Focused Backpropagation Algorithm for Temporal Pattern Recognition. Complex Syst. 3 (1989)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Mozer1989AFB"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x22-86001"></a>Mozer</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:18036435">"A Focused Backpropagation Algorithm for
+Temporal Pattern Recognition"</a>, <span class="bib-entry bib-journal">Complex Syst.</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(1989)</span>.</span></dd>
 </dl></div>
 <div class="section-header">
 <h3 id="header-section-references">
@@ -457,7 +469,7 @@ speech, or time series, by passing information through loops from one step to th
 <i class="fa-regular fa-note-sticky"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-margin"></a>
                     Page Footnotes</span>
 </h3>
 </div>
@@ -472,16 +484,17 @@ speech, or time series, by passing information through loops from one step to th
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="m-ref-189"><span class="acr-short">[189].</span></dt>
-<dd class="enumerate-enumitem"><span class="">Many researchers prefer to use the <i>hyperbolic tangent</i> (tanh)
-activation function in <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process
-sequential data, such as text, speech, or time series, by passing information through loops from
-one step to the next</a></span></span></span>s rather than the ReLU activation function <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Pham2013DropoutIR"> <a id="x22-83002"></a>Pham, V. T. D. et al.
-Dropout Improves Recurrent Neural Networks for Handwriting Recognition. 2014 14th
-International Conference on Frontiers in Handwriting Recognition, 285–290 (2013)</span></span>, however
-ReLU-based <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data,
-such as text, speech, or time series, by passing information through loops from one step
-to the next</a></span></span></span>s are also possible <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Le2015ASW"> <a id="x22-83003"></a>Le, Q. V., Jaitly, N. &amp; Hinton, G. E. A Simple Way to
-Initialize Recurrent Networks of Rectified Linear Units. ArXiv <b>abs/1504.00941</b> (2015)</span></span>.</span></dd>
+<dd class="enumerate-enumitem"><span class="">Many researchers prefer to use the <i>hyperbolic tangent</i>
+(tanh) activation function in <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to
+process sequential data, such as text, speech, or time series, by passing information through
+loops from one step to the next</a></span></span></span>s rather than the ReLU activation function <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Pham2013DropoutIR"> <span class="bib-entry bib-author"><a id="x22-83002"></a>Pham et al.</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:9919769">"Dropout Improves Recurrent Neural Networks for
+Handwriting Recognition"</a>, <span class="bib-entry bib-journal">2014 14th International Conference on Frontiers in Handwriting
+Recognition</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2013)</span>.</span></span>, however ReLU-based <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of
+ANN designed to process sequential data, such as text, speech, or time series, by passing
+information through loops from one step to the next</a></span></span></span>s are also possible <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Le2015ASW"> <span class="bib-entry bib-author"><a id="x22-83003"></a>Le, Jaitly &amp; Hinton</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:299149">"A Simple Way to Initialize Recurrent Networks of
+Rectified Linear Units"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2015)</span>.</span></span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="m-ref-190"><span class="acr-short">[190].</span></dt>
@@ -515,7 +528,7 @@ task.</span></dd>
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>

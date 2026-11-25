@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="BidirectionalRNNs.html#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="BidirectionalRNNs.html#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="BidirectionalRNNs.html#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><a class="nav-link" href="MiniBatchGradientDescentUsingDataLoaders.html">Mini-Batch Gradient Descent Using DataLoaders</a></span><span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="ImplementingLinearRegression.html">Implementing Linear Regression</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="UnderstandingPyTorch.html#ImplementingaRegressionMLP.html">Chapter: Understanding PyTorch</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -98,16 +98,14 @@ Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:nn"
 <p class="noindent">The MLP we want to build is just that: a simple stack of modulestwo hidden layers and one output
 layer. So let’s build it using the
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb73"><a id="x9-30002r574"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb73"><a id="x9-30002r574"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x9-30004r575"></a>model = nn.Sequential( 
 <a id="x9-30006r576"></a>    nn.Linear(n_features, <span style="color:#8F4070;">50</span>), 
 <a id="x9-30008r577"></a>    nn.ReLU(), 
 <a id="x9-30010r578"></a>    nn.Linear(<span style="color:#8F4070;">50</span>, <span style="color:#8F4070;">40</span>), 
 <a id="x9-30012r579"></a>    nn.ReLU(), 
 <a id="x9-30014r580"></a>    nn.Linear(<span style="color:#8F4070;">40</span>, <span style="color:#8F4070;">1</span>) 
-<a id="x9-30016r581"></a>)</pre>
-</code></pre>
+<a id="x9-30016r581"></a>)</pre></code></pre></div>
 <p class="noindent">Let’s go through each layer:
 </p>
 <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
@@ -185,7 +183,7 @@ optimization.</p></dd>
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>

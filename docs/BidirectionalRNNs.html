@@ -73,7 +73,7 @@ Analysis Model</a></span></span><span class="sectionToc"><span class="number">5.
 Language Models</a></span></span><span class="subsectionToc"><span class="number">5.3.2</span><span class="title"><a href="#x28-1180005.3.2">Task-Specific Classes</a></span></span><span class="subsectionToc"><span class="number">5.3.3</span><span class="title"><a href="#x28-1210005.3.3">An Encoder-Decoder Network
 for Neural Machine Translation</a></span></span><span class="subsectionToc"><span class="number">5.3.4</span><span class="title"><a href="#x28-1230005.3.4">Attention Mechanisms</a></span></span>
 <div class="nav-footer"><div class="nav-footer-left"><span class="nav-footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="nav-footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
+<span class="nav-footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><p class="nav-comments">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </p></div></nav>
 <article class="chapter">
 <nav class="crosslinks-top"> <span class="nav-button"><i class="fa-solid fa-caret-right"></i><span class="nav-link"></span></span> <span class="nav-button"><i class="fa-solid fa-caret-left"></i><a class="nav-link" href="SentimentAnalysisUsingHuggingFaceLibraries.html">Sentiment Analysis Using Hugging Face Libraries</a></span><span class="nav-button"><i class="fa-solid fa-caret-up"></i><a class="nav-link" href="NaturalLanguageProcessingwithRNNsandAttention.html#BidirectionalRNNs.html">Chapter: Natural Language Processing with RNNs and Attention</a></span><span class="nav-button">
 <a href="index.html" rel="index" title="Visit Entry Point">
@@ -85,7 +85,8 @@ for Neural Machine Translation</a></span></span><span class="subsectionToc"><spa
 <i class="fa-brands fa-git-alt"></i>
 <span class="nav-info">Visit Material GitHub Repo</span>
 </a></span></nav>
-<div class="section-header"><h3 id="header-section-5.3"><span class="number">5.3</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.5.3"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x28-1160005.3"></a>Bidirectional RNNs</span></h3></div>
+<div class="section-header"><h3 id="header-section-5.3"><span class="number">5.3</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#section.5.3"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x28-1160005.3"></a>Bidirectional
+RNNs</span></h3></div>
 <p class="noindent">At each time step, a regular recurrent layer only looks at past and present inputs before generating its
 output. In other words, it is causal, meaning it cannot look into the future.
 </p><p class="noindent">This type of <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential data, such
@@ -150,18 +151,15 @@ else.
 First, we need to download the pretrained model using the  <code class="file"><code class="verb">AutoModel.from_pretrained()</code></code> function
 from the Transformers library, then we can directly access its embeddings layer:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb231"><a id="x28-117002r1210"></a>bert_model = transformers.AutoModel.from_pretrained(<span style="color:#78730D;">"bert-base-uncased"</span>) 
-<a id="x28-117004r1211"></a>bert_model.embeddings.word_embeddings</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb231"><a id="x28-117002r1210"></a>bert_model = transformers.AutoModel.from_pretrained(<span style="color:#78730D;">"bert-base-uncased"</span>) 
+<a id="x28-117004r1211"></a>bert_model.embeddings.word_embeddings</pre></code></pre></div>
 <p class="noindent">As you can see, this BERT model is implemented using PyTorch, and it contains a regular
 nn.Embedding layer. We could just replace our model’s nn.Embedding layer with this one
 (and retrain our model), but we can keep models cleanly separated by initializing our own
 nn.Embedding layer with a copy of the pretrained embedding matrix. This can be done using the
 <code class="file"><code class="verb">Embedding.from_pretrained()</code></code> function:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb232"><a id="x28-117006r1221"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SentimentAnalysisModelPreEmbeds</span>(nn.Module): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb232"><a id="x28-117006r1221"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SentimentAnalysisModelPreEmbeds</span>(nn.Module): 
 <a id="x28-117008r1222"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, pretrained_embeddings, n_layers=<span style="color:#8F4070;">2</span>, hidden_dim=<span style="color:#8F4070;">64</span>, 
 <a id="x28-117010r1223"></a>                 dropout=<span style="color:#8F4070;">0.2</span>): 
 <a id="x28-117012r1224"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
@@ -180,10 +178,8 @@ nn.Embedding layer with a copy of the pretrained embedding matrix. This can be d
 <a id="x28-117038r1237"></a>        _outputs, hidden_states = <span style="color:#B03B03;">self</span>.gru(packed) 
 <a id="x28-117040r1238"></a>        n_dims = <span style="color:#B03B03;">self</span>.output.in_features 
 <a id="x28-117042r1239"></a>        top_states = hidden_states[-<span style="color:#8F4070;">2</span>:].permute(<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">2</span>).reshape(-<span style="color:#8F4070;">1</span>, n_dims) 
-<a id="x28-117044r1240"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(top_states)</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb233"><a id="x28-117046r1245"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<a id="x28-117044r1240"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(top_states)</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb233"><a id="x28-117046r1245"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x28-117048r1246"></a> 
 <a id="x28-117050r1247"></a>imdb_model_bert_embeds = SentimentAnalysisModelPreEmbeds( 
 <a id="x28-117052r1248"></a>    bert_model.embeddings.word_embeddings).to(device) 
@@ -194,8 +190,7 @@ nn.Embedding layer with a copy of the pretrained embedding matrix. This can be d
 <a id="x28-117062r1253"></a>accuracy = torchmetrics.Accuracy(task=<span style="color:#78730D;">"binary"</span>).to(device) 
 <a id="x28-117064r1254"></a> 
 <a id="x28-117066r1255"></a>history = train(imdb_model_bert_embeds, optimizer, xentropy, accuracy, 
-<a id="x28-117068r1256"></a>                imdb_train_loader, imdb_valid_loader, n_epochs)</pre>
-</code></pre>
+<a id="x28-117068r1256"></a>                imdb_train_loader, imdb_valid_loader, n_epochs)</pre></code></pre></div>
 <p class="noindent">Note that we set freeze=True when creating the nn.Embedding layer: this makes it nontrainable and
 ensures that the pretrained embeddings won’t be damaged by large gradients at the beginning of
 training. You can train the model for a few epochs like this, then make the embedding
@@ -230,24 +225,19 @@ not reuse the entire pretrained BERT model for our sentiment analysis model? To 
 BERT model, the Transformers library lets us call it like a function, passing it the tokenized
 reviews:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb234"><a id="x28-117070r1261"></a>bert_encoding = bert_tokenizer(train_reviews[:<span style="color:#8F4070;">3</span>], padding=<span style="color:#9E0005;">True</span>, 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb234"><a id="x28-117070r1261"></a>bert_encoding = bert_tokenizer(train_reviews[:<span style="color:#8F4070;">3</span>], padding=<span style="color:#9E0005;">True</span>, 
 <a id="x28-117072r1262"></a>                               max_length=<span style="color:#8F4070;">200</span>, truncation=<span style="color:#9E0005;">True</span>, 
 <a id="x28-117074r1263"></a>                               return_tensors=<span style="color:#78730D;">"pt"</span>) 
 <a id="x28-117076r1264"></a>bert_output = bert_model(**bert_encoding) 
-<a id="x28-117078r1265"></a>bert_output.last_hidden_state.shape</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb235"><a id="x28-117080r1270"></a>bert_output.pooler_output.shape</pre>
-</code></pre>
+<a id="x28-117078r1265"></a>bert_output.last_hidden_state.shape</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb235"><a id="x28-117080r1270"></a>bert_output.pooler_output.shape</pre></code></pre></div>
 <p class="noindent">BERT’s output includes an attribute named  <code class="file"><code class="verb">last_hidden_state</code></code> , which contains contextualized
 embeddings for each token. The word “last” in this case refers to the last layer, not the last time step
 (BERT is a transformer, not an RNN). This  <code class="file"><code class="verb">last_hidden_state</code></code> tensor has a shape of [batch size,
 max sequence length, hidden size]. Let’s use these contextualized embeddings in a sentiment analysis
 model:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb236"><a id="x28-117082r1282"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SentimentAnalysisModelBert</span>(nn.Module): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb236"><a id="x28-117082r1282"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SentimentAnalysisModelBert</span>(nn.Module): 
 <a id="x28-117084r1283"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, n_layers=<span style="color:#8F4070;">2</span>, hidden_dim=<span style="color:#8F4070;">64</span>, dropout=<span style="color:#8F4070;">0.2</span>): 
 <a id="x28-117086r1284"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
 <a id="x28-117088r1285"></a>        <span style="color:#B03B03;">self</span>.bert = transformers.AutoModel.from_pretrained(<span style="color:#78730D;">"bert-base-uncased"</span>) 
@@ -262,8 +252,7 @@ model:
 <a id="x28-117106r1294"></a>        packed = pack_padded_sequence(contextualized_embeddings, lengths=lengths.cpu(), 
 <a id="x28-117108r1295"></a>                                      batch_first=<span style="color:#9E0005;">True</span>, enforce_sorted=<span style="color:#9E0005;">False</span>) 
 <a id="x28-117110r1296"></a>        _outputs, hidden_states = <span style="color:#B03B03;">self</span>.gru(packed) 
-<a id="x28-117112r1297"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(hidden_states[-<span style="color:#8F4070;">1</span>])</pre>
-</code></pre>
+<a id="x28-117112r1297"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(hidden_states[-<span style="color:#8F4070;">1</span>])</pre></code></pre></div>
 <p class="noindent">Note that we don’t need to make the nn.GRU module bidirectional since the contextualized
 embeddings already looked ahead. If you freeze the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bert">BERT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bert">Bidirectional Encoder Representations from
 Transformers</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bert">a ML framework developed by Google in 2018 to help computers understand the context
@@ -278,8 +267,7 @@ the most important features of the text into this embedding. This simplifies our
 a bit, since we can get rid of the <code class="verb">nn.GRU</code>  module altogether, and the <code class="verb">forward()</code>  method becomes much
 shorter:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb237"><a id="x28-117114r1325"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SentimentAnalysisModelBert2</span>(nn.Module): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb237"><a id="x28-117114r1325"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">SentimentAnalysisModelBert2</span>(nn.Module): 
 <a id="x28-117116r1326"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, hidden_dim=<span style="color:#8F4070;">64</span>): 
 <a id="x28-117118r1327"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
 <a id="x28-117120r1328"></a>        <span style="color:#B03B03;">self</span>.bert = transformers.AutoModel.from_pretrained(<span style="color:#78730D;">"bert-base-uncased"</span>) 
@@ -287,8 +275,7 @@ shorter:
 <a id="x28-117124r1330"></a> 
 <a id="x28-117126r1331"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, encodings): 
 <a id="x28-117128r1332"></a>        bert_output = <span style="color:#B03B03;">self</span>.bert(**encodings) 
-<a id="x28-117130r1333"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(bert_output.last_hidden_state[:, <span style="color:#8F4070;">0</span>])</pre>
-</code></pre>
+<a id="x28-117130r1333"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(bert_output.last_hidden_state[:, <span style="color:#8F4070;">0</span>])</pre></code></pre></div>
 <p class="noindent">In fact, the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bert">BERT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bert">Bidirectional Encoder Representations from Transformers</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bert">a ML framework developed
 by Google in 2018 to help computers understand the context of human language</a></span></span></span> model contains
 an extra hidden layer on top of the class embedding, composed of an <code class="verb">nn.Linear</code>  module and an <code class="verb">nn.Tanh</code>
@@ -320,14 +307,12 @@ and 3D animations. Unlike a central processing unit (CPU) that processes tasks s
 uses parallel processing with thousands of smaller cores to handle many calculations at the same
 time.</a></span></span></span>s.</span></span></span>
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb238"><a id="x28-118002r1387"></a><span style="color:#918273;"><i># from transformers import AutoModelForSequenceClassification</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb238"><a id="x28-118002r1387"></a><span style="color:#918273;"><i># from transformers import AutoModelForSequenceClassification</i></span> 
 <a id="x28-118004r1388"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">transformers</span> <span style="color:#9E0005;">import</span> BertForSequenceClassification 
 <a id="x28-118006r1389"></a> 
 <a id="x28-118008r1390"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x28-118010r1391"></a>bert_for_binary_clf = BertForSequenceClassification.from_pretrained( 
-<a id="x28-118012r1392"></a>    <span style="color:#78730D;">"bert-base-uncased"</span>, num_labels=<span style="color:#8F4070;">2</span>, dtype=torch.float16).to(device)</pre>
-</code></pre>
+<a id="x28-118012r1392"></a>    <span style="color:#78730D;">"bert-base-uncased"</span>, num_labels=<span style="color:#8F4070;">2</span>, dtype=torch.float16).to(device)</pre></code></pre></div>
 <dl class="def-block block-major info-block"> <a class="copiable-link" href="#info-block-5.61" id="info-block-5.61"> ¶</a> <dt class="def-line"> <span class="upper"> <span class="header"> <b>Information 5.<a id="x28-118013r61"></a>61: </b> </span> <span class="title"> Transformers Library </span> </span> <input class="body-button" type="button" value="Show/Hide"/> </dt> <dd class="body">
 <p class="noindent">The Transformers library contains many task-specific classes based on various pretrained models, such
 as <code class="verb">BertForQuestionAnswering</code>  or <code class="verb">RobertaForSequenceClassification</code>  (see <span class="refclass-ref">??</span>). You can also use <code class="verb">AutoModelForSequenceClassification</code>  to let the library pick the right class for you, based on the
@@ -341,15 +326,13 @@ classification, so this model will output two logits instead of one, and it must
 nn.CrossEntropyLoss instead of <code class="verb">nn.BCELoss</code>  or n<code class="verb">n.BCEWithLogitsLoss</code> . If you want to convert the logits to estimated probabilities, you
 must use <code class="verb">torch.softmax()</code>  rather than <code class="verb">torch.sigmoid()</code> . Let’s call this model on a very positive review:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb239"><a id="x28-118015r1397"></a>encoding = bert_tokenizer([<span style="color:#78730D;">"This was a great movie!"</span>]) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb239"><a id="x28-118015r1397"></a>encoding = bert_tokenizer([<span style="color:#78730D;">"This was a great movie!"</span>]) 
 <a id="x28-118017r1398"></a><span style="color:#9E0005;">with</span> torch.no_grad(): 
 <a id="x28-118019r1399"></a>    output = bert_for_binary_clf( 
 <a id="x28-118021r1400"></a>        input_ids=torch.tensor(encoding[<span style="color:#78730D;">"input_ids"</span>], device=device), 
 <a id="x28-118023r1401"></a>        attention_mask=torch.tensor(encoding[<span style="color:#78730D;">"attention_mask"</span>], device=device)) 
 <a id="x28-118025r1402"></a> 
-<a id="x28-118027r1403"></a>output.logits</pre>
-</code></pre>
+<a id="x28-118027r1403"></a>output.logits</pre></code></pre></div>
 <p class="noindent">We first tokenize the review, then we call the model, it returns a ModelOutput object containing the
 logits, and we convert these logits to estimated probabilities using the <code class="verb">torch.softmax()</code>  function.
 </p><p class="noindent">The model classified this review as negative with 65.53% confidence. Indeed, the <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bert">BERT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bert">Bidirectional
@@ -361,15 +344,13 @@ If you pass labels when calling this <span class="margin-block">model, <span cla
 <span class="sidenote">or any other model from the Transformers library.</span></span></span> then it
 also computes the loss and returns it in the ModelOutput object. For example:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb240"><a id="x28-118029r1413"></a><span style="color:#9E0005;">with</span> torch.no_grad(): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb240"><a id="x28-118029r1413"></a><span style="color:#9E0005;">with</span> torch.no_grad(): 
 <a id="x28-118031r1414"></a>    output = bert_for_binary_clf( 
 <a id="x28-118033r1415"></a>        input_ids=torch.tensor(encoding[<span style="color:#78730D;">"input_ids"</span>], device=device), 
 <a id="x28-118035r1416"></a>        attention_mask=torch.tensor(encoding[<span style="color:#78730D;">"attention_mask"</span>], device=device), 
 <a id="x28-118037r1417"></a>        labels=torch.tensor([<span style="color:#8F4070;">1</span>], device=device)) 
 <a id="x28-118039r1418"></a> 
-<a id="x28-118041r1419"></a>output.loss</pre>
-</code></pre>
+<a id="x28-118041r1419"></a>output.loss</pre></code></pre></div>
 <p class="noindent">Since <code class="verb">num_labels</code>  is greater than 1, the model computes the <code class="verb">nn.CrossEntropyLoss</code> <span class="margin-block">. <span class="margin-comment"><a class="ellipsis" href="#m-ref-247">[247]</a>
 <span class="sidenote">which is implemented as nn.LogSoftmax
 followed by <code class="verb">nn.NLLLoss</code> . that’s why we see <code class="verb">None</code> .</span></span></span> If we had used <code class="verb">num_labels=1</code> , then the model would have used the <code class="verb">nn.MSELoss</code>
@@ -378,7 +359,7 @@ training code, as we did so far, but the Transformers library provides a conveni
 <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:api">API</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:api">Application-Programming Interface</a></span><span class="acronym-desc"><a class="glossary" href="#glo:api">Application-Programming Interface</a></span></span></span>, so let’s check it
 out.
 </p>
-<div class="subsection-header"><h5 id="header-subsubsection-5.3.2.21"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x28-119000"></a>The Trainer API</span></h5></div>
+<div class="subsubsection-header"><h5 id="header-subsubsection-5.3.2.21"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x28-119000"></a>The Trainer API</span></h5></div>
 <p class="noindent">The Trainer API lets you fine-tune a model on your own dataset with very little boilerplate code. It can
 save model checkpoints during training, apply early stopping, distribute the computations
 across GPUs, log metrics, take care of padding, batching, shuffling, and more. Let’s use the
@@ -389,14 +370,12 @@ must take care of tokenization. We can do this quite simply using the dataset’
 <span class="sidenote">this method is implemented by the Datasets library; it’s not available on pure PyTorch
 datasets.</span></span></span>
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb241"><a id="x28-119002r1443"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">tokenize_batch</span>(batch): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb241"><a id="x28-119002r1443"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">tokenize_batch</span>(batch): 
 <a id="x28-119004r1444"></a>    <span style="color:#9E0005;">return</span> bert_tokenizer(batch[<span style="color:#78730D;">"text"</span>], truncation=<span style="color:#9E0005;">True</span>, max_length=<span style="color:#8F4070;">200</span>) 
 <a id="x28-119006r1445"></a> 
 <a id="x28-119008r1446"></a>tok_imdb_train_set = imdb_train_set.map(tokenize_batch, batched=<span style="color:#9E0005;">True</span>) 
 <a id="x28-119010r1447"></a>tok_imdb_valid_set = imdb_valid_set.map(tokenize_batch, batched=<span style="color:#9E0005;">True</span>) 
-<a id="x28-119012r1448"></a>tok_imdb_test_set = imdb_test_set.map(tokenize_batch, batched=<span style="color:#9E0005;">True</span>)</pre>
-</code></pre>
+<a id="x28-119012r1448"></a>tok_imdb_test_set = imdb_test_set.map(tokenize_batch, batched=<span style="color:#9E0005;">True</span>)</pre></code></pre></div>
 <p class="noindent">Since we set batched=True, the <code class="verb">map()</code>  method passes batches of reviews to the <code class="verb">tokenize_batch()</code>  method: </p><div class="quote">  this is optional,
 but it significantly speeds up this preprocessing step. </div>
 <p class="noindent">The <code class="verb">tokenize_batch()</code>  method tokenizes the given batch of reviews, and the resulting fields are added to each instance
@@ -404,10 +383,8 @@ by the <code class="verb">map()</code>  method. This includes fields such as <co
 our model, we can write a simple function that takes an object with two attributes: <code class="verb">label_ids</code>  and
 predictions:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb242"><a id="x28-119014r1471"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">compute_accuracy</span>(pred): 
-<a id="x28-119016r1472"></a>    <span style="color:#9E0005;">return</span> {<span style="color:#78730D;">"accuracy"</span>: (pred.label_ids == pred.predictions.argmax(-<span style="color:#8F4070;">1</span>)).mean()}</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb242"><a id="x28-119014r1471"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">compute_accuracy</span>(pred): 
+<a id="x28-119016r1472"></a>    <span style="color:#9E0005;">return</span> {<span style="color:#78730D;">"accuracy"</span>: (pred.label_ids == pred.predictions.argmax(-<span style="color:#8F4070;">1</span>)).mean()}</pre></code></pre></div>
 <p class="noindent">Alternatively, you can use metrics provided by the Hugging Face Evaluate library
 </p>
 <div class="block-minor knowledge"><div class="body">
@@ -416,16 +393,14 @@ predictions:
 library, you can still use them if you wrap them inside a function. Next, we must specify our training
 configuration in a TrainingArguments object:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb243"><a id="x28-119018r1477"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">transformers</span> <span style="color:#9E0005;">import</span> TrainingArguments 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb243"><a id="x28-119018r1477"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">transformers</span> <span style="color:#9E0005;">import</span> TrainingArguments 
 <a id="x28-119020r1478"></a> 
 <a id="x28-119022r1479"></a>train_args = TrainingArguments( 
 <a id="x28-119024r1480"></a>    output_dir=<span style="color:#78730D;">"my_imdb_model"</span>, num_train_epochs=<span style="color:#8F4070;">2</span>, 
 <a id="x28-119026r1481"></a>    per_device_train_batch_size=<span style="color:#8F4070;">128</span>, per_device_eval_batch_size=<span style="color:#8F4070;">128</span>, 
 <a id="x28-119028r1482"></a>    eval_strategy=<span style="color:#78730D;">"epoch"</span>, logging_strategy=<span style="color:#78730D;">"epoch"</span>, save_strategy=<span style="color:#78730D;">"epoch"</span>, 
 <a id="x28-119030r1483"></a>    load_best_model_at_end=<span style="color:#9E0005;">True</span>, metric_for_best_model=<span style="color:#78730D;">"accuracy"</span>, 
-<a id="x28-119032r1484"></a>    report_to=<span style="color:#78730D;">"none"</span>)</pre>
-</code></pre>
+<a id="x28-119032r1484"></a>    report_to=<span style="color:#78730D;">"none"</span>)</pre></code></pre></div>
 <p class="noindent">We specify that the logs and model checkpoints must be saved in the <code class="verb">my_imdb_model</code>  directory;
 </p>
 <div class="quote"> training should run for 2 <span class="margin-block">epochs; <span class="margin-comment"><a class="ellipsis" href="#m-ref-249">[249]</a>
@@ -445,15 +420,13 @@ training and validation sets, the evaluation function, plus a data collator whic
 padding. Finally, we call the trainer’s <code class="verb">train()</code>  method, and we’re done! The model reaches about 90%
 accuracy on the validation set after just two epochs:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb244"><a id="x28-119034r1489"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">transformers</span> <span style="color:#9E0005;">import</span> DataCollatorWithPadding, Trainer 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb244"><a id="x28-119034r1489"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">transformers</span> <span style="color:#9E0005;">import</span> DataCollatorWithPadding, Trainer 
 <a id="x28-119036r1490"></a> 
 <a id="x28-119038r1491"></a>trainer = Trainer( 
 <a id="x28-119040r1492"></a>    bert_for_binary_clf, train_args, train_dataset=tok_imdb_train_set, 
 <a id="x28-119042r1493"></a>    eval_dataset=tok_imdb_valid_set, compute_metrics=compute_accuracy, 
 <a id="x28-119044r1494"></a>    data_collator=DataCollatorWithPadding(bert_tokenizer)) 
-<a id="x28-119046r1495"></a>train_output = trainer.train()</pre>
-</code></pre>
+<a id="x28-119046r1495"></a>train_output = trainer.train()</pre></code></pre></div>
 <p class="noindent">Great, we now know how to download a pretrained model like <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:bert">BERT</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:bert">Bidirectional Encoder
 Representations from Transformers</a></span><span class="acronym-desc"><a class="glossary" href="#glo:bert">a ML framework developed by Google in 2018 to help computers
 understand the context of human language</a></span></span></span> and fine-tune it on your own dataset! But what if we don’t
@@ -461,20 +434,18 @@ have a dataset at all, and you just want to use a pretrained model that was alre
 sentiment analysis ?
 For this, you can use the pipelines API.
 </p>
-<div class="subsection-header"><h5 id="header-subsubsection-5.3.2.22"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x28-120000"></a>Hugging Face Pipelines</span></h5></div>
+<div class="subsubsection-header"><h5 id="header-subsubsection-5.3.2.22"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x28-120000"></a>Hugging Face Pipelines</span></h5></div>
 <p class="noindent">The Transformers library provides a very convenient API to download and use pre trained pipelines for
 various tasks. Each pipeline contains a pretrained model along with its corresponding preprocessing and
 post-processing modules. For example let’s create a sentiment analysis pipeline and run it on the first
 10 IMDb reviews in the training set:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb245"><a id="x28-120002r1512"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">transformers</span> <span style="color:#9E0005;">import</span> pipeline 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb245"><a id="x28-120002r1512"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">transformers</span> <span style="color:#9E0005;">import</span> pipeline 
 <a id="x28-120004r1513"></a> 
 <a id="x28-120006r1514"></a>model_name = <span style="color:#78730D;">"distilbert-base-uncased-finetuned-sst-2-english"</span> 
 <a id="x28-120008r1515"></a>classifier_imdb = pipeline(<span style="color:#78730D;">"sentiment-analysis"</span>, model=model_name, 
 <a id="x28-120010r1516"></a>                           truncation=<span style="color:#9E0005;">True</span>, max_length=<span style="color:#8F4070;">512</span>) 
-<a id="x28-120012r1517"></a>classifier_imdb(train_reviews[:<span style="color:#8F4070;">10</span>])</pre>
-</code></pre>
+<a id="x28-120012r1517"></a>classifier_imdb(train_reviews[:<span style="color:#8F4070;">10</span>])</pre></code></pre></div>
 <p class="noindent">Well, it could hardly be any easier, could it? Just create a pipeline by specifying the task and the model
 to use, and a couple of other parameters, depending on the task, and off you go! In this example, each
 review gets a <code class="verb">"POSITIVE"</code>  or <code class="verb">"NEGATIVE"</code>  label, along with a score equal to the model’s estimated probability for that label. </p><div class="quote">
@@ -555,14 +526,12 @@ the texts contradict each other.</span></span></span> <span class="margin-block"
 otherwise.
 </p><p class="noindent">For example:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb246"><a id="x28-120015r1608"></a>model_name = <span style="color:#78730D;">"huggingface/distilbert-base-uncased-finetuned-mnli"</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb246"><a id="x28-120015r1608"></a>model_name = <span style="color:#78730D;">"huggingface/distilbert-base-uncased-finetuned-mnli"</span> 
 <a id="x28-120017r1609"></a>classifier_mnli = pipeline(<span style="color:#78730D;">"text-classification"</span>, model=model_name) 
 <a id="x28-120019r1610"></a>classifier_mnli([ 
 <a id="x28-120021r1611"></a>    <span style="color:#78730D;">"She loves me. [SEP] She loves me not. [SEP]"</span>, 
 <a id="x28-120023r1612"></a>    <span style="color:#78730D;">"Alice just woke up. [SEP] Alice is awake. [SEP]"</span>, 
-<a id="x28-120025r1613"></a>    <span style="color:#78730D;">"I like dogs. [SEP] Everyone likes dogs. [SEP]"</span>])</pre>
-</code></pre>
+<a id="x28-120025r1613"></a>    <span style="color:#78730D;">"I like dogs. [SEP] Everyone likes dogs. [SEP]"</span>])</pre></code></pre></div>
 <p class="noindent">Many other NLP tasks are also available via the pipeline API, such as question answering,
 summarization, sentence similarity, text generation, token classification, translation, and
 more.
@@ -586,9 +555,10 @@ to Spanish, and we will see how to boost its performance using beam search and a
 mechanisms.
 </p>
 <div class="subsection-header"><h4 id="header-subsection-5.3.3"><span class="number">5.3.3</span><a class="pdf-icon" href="DataScienceIILectureBook.pdf#subsection.5.3.3"><svg class="bi bi-file-pdf" fill="currentColor" height="20" viewbox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"></path><path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.27.27 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.647 12.647 0 0 1 1.01-.193 11.666 11.666 0 0 1-.51-.858 20.741 20.741 0 0 1-.5 1.05zm2.446.45c.15.162.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.881 3.881 0 0 0-.612-.053zM8.078 5.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"></path></svg></a><span class="title"> <a id="x28-1210005.3.3"></a>An Encoder-Decoder Network for Neural Machine Translation</span></h4></div>
-<p class="noindent">Let’s begin with a relatively simple sequence-to-sequence NMT model <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Sutskever2014SequenceTS"> <a id="x28-121001"></a>Sutskever, I., Vinyals, O. &amp;
-Le, Q. V. Sequence to Sequence Learning with Neural Networks. ArXiv <b>abs/1409.3215</b> (2014)</span></span> that
-will translate English text to Spanish as shown in <b>Fig.</b> <a href="#x28-121002r2">5.2</a>
+<p class="noindent">Let’s begin with a relatively simple sequence-to-sequence NMT model <span class="cite"><a class="cite-show" href="#w3-20001">[†-1]</a><span class="cite-detail" id="Sutskever2014SequenceTS"> <span class="bib-entry bib-author"><a id="x28-121001"></a>Sutskever, Vinyals &amp; Le</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:7961699">"Sequence to Sequence Learning with Neural
+Networks"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2014)</span>.</span></span> that will translate English text to Spanish as shown in
+<b>Fig.</b> <a href="#x28-121002r2">5.2</a>
 </p>
 <p class="noindent"></p><figure class="float">
 <p class="noindent"> <img alt="PIC" src="figures/Natural-Language-Processing-with-RNNs-and-Attention/figures-1.png" style=""/> <a id="x28-121002r2"></a>
@@ -605,7 +575,7 @@ output.
 <p class="noindent">This is called <span class="alert">teacher forcing</span>: a technique that significantly speeds up training and improves the model’s performance.
 </p></div></div>
 <p class="noindent">For the very first token, the decoder is given the start-of-sequence (SoS, a.k.a. beginning-of-sequence,
-BoS) token ("<code class="verb">None</code> "), and the decoder is expected to end the text with an end-of-sequence (EoS) token ("<code class="verb">None</code>
+BoS) token ("<code class="verb">None</code> "), and the decoder is expected to end the text with an end-of-sequence (EoS) token ("<code class="verb"></code>
 ").
 </p><p class="noindent">16 Samy Bengio et al., “Scheduled Sampling for Sequence Prediction with Recurrent Neural
 Networks”, arXiv preprint arXiv:1506.03099 (2015). Each token is initially represented by
@@ -634,19 +604,15 @@ data extracted from the Tatoeba project. The training set is quite large so we w
 validation set as our training set, setting aside 20validation. We will also download the test
 set:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb247"><a id="x28-121004r1676"></a>nmt_original_valid_set, nmt_test_set = load_dataset( 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb247"><a id="x28-121004r1676"></a>nmt_original_valid_set, nmt_test_set = load_dataset( 
 <a id="x28-121006r1677"></a>    path=<span style="color:#78730D;">"ageron/tatoeba_mt_train"</span>, name=<span style="color:#78730D;">"eng-spa"</span>, 
 <a id="x28-121008r1678"></a>    split=[<span style="color:#78730D;">"validation"</span>, <span style="color:#78730D;">"test"</span>]) 
 <a id="x28-121010r1679"></a>split = nmt_original_valid_set.train_test_split(train_size=<span style="color:#8F4070;">0.8</span>, seed=<span style="color:#8F4070;">42</span>) 
-<a id="x28-121012r1680"></a>nmt_train_set, nmt_valid_set = split[<span style="color:#78730D;">"train"</span>], split[<span style="color:#78730D;">"test"</span>]</pre>
-</code></pre>
+<a id="x28-121012r1680"></a>nmt_train_set, nmt_valid_set = split[<span style="color:#78730D;">"train"</span>], split[<span style="color:#78730D;">"test"</span>]</pre></code></pre></div>
 <p class="noindent">Each sample in the dataset is a dictionary containing an English text along with its Spanish
 translation. For example:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb248"><a id="x28-121014r1710"></a>nmt_train_set[<span style="color:#8F4070;">0</span>]</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb248"><a id="x28-121014r1710"></a>nmt_train_set[<span style="color:#8F4070;">0</span>]</pre></code></pre></div>
 <p class="noindent">We will need to tokenize this text. We could use a different tokenizer for English and Spanish, but these
 two languages have many words in <span class="margin-block">common, <span class="margin-comment"><a class="ellipsis" href="#m-ref-257">[257]</a>
 <span class="sidenote">e.g., animal, color, hotel, hospital, idea, radio, motor.</span></span></span>
@@ -655,8 +621,7 @@ and many similar <span class="margin-block">subwords, <span class="margin-commen
 tokenizer.
 </p><p class="noindent">Let’s train a BPE tokenizer on all the training text, both English and Spanish:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb249"><a id="x28-121016r1715"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">train_eng_spa</span>():  <span style="color:#918273;"><i># a generator function to iterate over all training text</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb249"><a id="x28-121016r1715"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">train_eng_spa</span>():  <span style="color:#918273;"><i># a generator function to iterate over all training text</i></span> 
 <a id="x28-121018r1716"></a>    <span style="color:#9E0005;">for</span> pair <span style="color:#9E0005;">in</span> nmt_train_set: 
 <a id="x28-121020r1717"></a>        <span style="color:#9E0005;">yield</span> pair[<span style="color:#78730D;">"source_text"</span>] 
 <a id="x28-121022r1718"></a>        <span style="color:#9E0005;">yield</span> pair[<span style="color:#78730D;">"target_text"</span>] 
@@ -671,16 +636,11 @@ tokenizer.
 <a id="x28-121040r1727"></a>nmt_tokenizer.pre_tokenizer = tokenizers.pre_tokenizers.Whitespace() 
 <a id="x28-121042r1728"></a>nmt_tokenizer_trainer = tokenizers.trainers.BpeTrainer( 
 <a id="x28-121044r1729"></a>    vocab_size=vocab_size, special_tokens=[<span style="color:#78730D;">"&lt;pad&gt;"</span>, <span style="color:#78730D;">"&lt;unk&gt;"</span>, <span style="color:#78730D;">"&lt;s&gt;"</span>, <span style="color:#78730D;">"&lt;/s&gt;"</span>]) 
-<a id="x28-121046r1730"></a>nmt_tokenizer.train_from_iterator(train_eng_spa(), nmt_tokenizer_trainer)</pre>
-</code></pre>
+<a id="x28-121046r1730"></a>nmt_tokenizer.train_from_iterator(train_eng_spa(), nmt_tokenizer_trainer)</pre></code></pre></div>
 <p class="noindent">Let’s test this tokenizer:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb250"><a id="x28-121048r1735"></a>nmt_tokenizer.encode(<span style="color:#78730D;">"I like soccer"</span>).ids</pre>
-</code></pre>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb251"><a id="x28-121050r1740"></a>nmt_tokenizer.encode(<span style="color:#78730D;">"&lt;s&gt; Me gusta el fútbol"</span>).ids</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb250"><a id="x28-121048r1735"></a>nmt_tokenizer.encode(<span style="color:#78730D;">"I like soccer"</span>).ids</pre></code></pre></div>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb251"><a id="x28-121050r1740"></a>nmt_tokenizer.encode(<span style="color:#78730D;">"&lt;s&gt; Me gusta el fútbol"</span>).ids</pre></code></pre></div>
 <p class="noindent">Now let’s create a small utility class that will hold tokenized English <span class="margin-block">texts, <span class="margin-comment"><a class="ellipsis" href="#m-ref-259">[259]</a>
 <span class="sidenote">i.e., the source token ID
 sequences.</span></span></span> along with the corresponding tokenized Spanish <span class="margin-block">targets, <span class="margin-comment"><a class="ellipsis" href="#m-ref-260">[260]</a>
@@ -693,19 +653,16 @@ video, and 3D animations. Unlike a central processing unit (CPU) that processes 
 GPU uses parallel processing with thousands of smaller cores to handle many calculations at the same
 time.</a></span></span></span>:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb252"><a id="x28-121052r1745"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">collections</span> <span style="color:#9E0005;">import</span> namedtuple 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb252"><a id="x28-121052r1745"></a><span style="color:#9E0005;">from</span> <span style="color:#427A59;">collections</span> <span style="color:#9E0005;">import</span> namedtuple 
 <a id="x28-121054r1746"></a> 
 <a id="x28-121056r1747"></a>fields = [<span style="color:#78730D;">"src_token_ids"</span>, <span style="color:#78730D;">"src_mask"</span>, <span style="color:#78730D;">"tgt_token_ids"</span>, <span style="color:#78730D;">"tgt_mask"</span>] 
 <a id="x28-121058r1748"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">NmtPair</span>(namedtuple(<span style="color:#78730D;">"NmtPairBase"</span>, fields)): 
 <a id="x28-121060r1749"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">to</span>(<span style="color:#B03B03;">self</span>, device): 
 <a id="x28-121062r1750"></a>        <span style="color:#9E0005;">return</span> NmtPair(<span style="color:#B03B03;">self</span>.src_token_ids.to(device), <span style="color:#B03B03;">self</span>.src_mask.to(device), 
-<a id="x28-121064r1751"></a>                       <span style="color:#B03B03;">self</span>.tgt_token_ids.to(device), <span style="color:#B03B03;">self</span>.tgt_mask.to(device))</pre>
-</code></pre>
+<a id="x28-121064r1751"></a>                       <span style="color:#B03B03;">self</span>.tgt_token_ids.to(device), <span style="color:#B03B03;">self</span>.tgt_mask.to(device))</pre></code></pre></div>
 <p class="noindent">Next, let’s create the data loaders:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb253"><a id="x28-121066r1756"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">nmt_collate_fn</span>(batch): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb253"><a id="x28-121066r1756"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">nmt_collate_fn</span>(batch): 
 <a id="x28-121068r1757"></a>    src_texts = [pair[<span style="color:#78730D;">'source_text'</span>] <span style="color:#9E0005;">for</span> pair <span style="color:#9E0005;">in</span> batch] 
 <a id="x28-121070r1758"></a>    tgt_texts = [<span style="color:#78730D;">f</span><span style="color:#78730D;">"&lt;s&gt; </span><span style="color:#78730D;">{</span>pair[<span style="color:#78730D;">'target_text'</span>]<span style="color:#78730D;">}</span><span style="color:#78730D;"> &lt;/s&gt;"</span> <span style="color:#9E0005;">for</span> pair <span style="color:#9E0005;">in</span> batch] 
 <a id="x28-121072r1759"></a>    src_encodings = nmt_tokenizer.encode_batch(src_texts) 
@@ -725,8 +682,7 @@ time.</a></span></span></span>:
 <a id="x28-121100r1773"></a>nmt_valid_loader = DataLoader(nmt_valid_set, batch_size=batch_size, 
 <a id="x28-121102r1774"></a>                              collate_fn=nmt_collate_fn) 
 <a id="x28-121104r1775"></a>nmt_test_loader = DataLoader(nmt_test_set, batch_size=batch_size, 
-<a id="x28-121106r1776"></a>                             collate_fn=nmt_collate_fn)</pre>
-</code></pre>
+<a id="x28-121106r1776"></a>                             collate_fn=nmt_collate_fn)</pre></code></pre></div>
 <p class="noindent">The <code class="verb">nmt_collate_fn()</code>  function starts by extracting all the English and Spanish texts from the given batch. In the
 process, it also adds an SoS token at the start of each Spanish text, as well as an EoS token at the end.
 It then tokenizes both the English and Spanish texts using our BPE tokenizer. Next, the input
@@ -740,8 +696,7 @@ usual.
 decoder share the same <code class="verb">nn.Embedding</code>  layer, and the encoder and decoder <code class="verb">nn.GRU</code>  modules contain two layers
 each:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb254"><a id="x28-121108r1781"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">NmtModel</span>(nn.Module): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb254"><a id="x28-121108r1781"></a><span style="color:#9E0005;">class</span> <span style="color:#427A59;">NmtModel</span>(nn.Module): 
 <a id="x28-121110r1782"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">__init__</span>(<span style="color:#B03B03;">self</span>, vocab_size, embed_dim=<span style="color:#8F4070;">512</span>, pad_id=<span style="color:#8F4070;">0</span>, hidden_dim=<span style="color:#8F4070;">512</span>, 
 <a id="x28-121112r1783"></a>                 n_layers=<span style="color:#8F4070;">2</span>): 
 <a id="x28-121114r1784"></a>        <span style="color:#B03B03;">super</span>().<span style="color:#427A59;">__init__</span>() 
@@ -765,8 +720,7 @@ each:
 <a id="x28-121150r1802"></a> 
 <a id="x28-121152r1803"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x28-121154r1804"></a>vocab_size = nmt_tokenizer.get_vocab_size() 
-<a id="x28-121156r1805"></a>nmt_model = NmtModel(vocab_size).to(device)</pre>
-</code></pre>
+<a id="x28-121156r1805"></a>nmt_model = NmtModel(vocab_size).to(device)</pre></code></pre></div>
 <p class="noindent">Almost everything in this model should look familiar: it’s very similar to our previous models. We
 create the modules in the constructor, then the <code class="verb">forward()</code>  method embeds the input sequences (both English
 and Spanish), it packs the English embeddings and passes them through the encoder, then it passes the
@@ -791,16 +745,14 @@ sequences, which we would have had to pad before we passed them to the output la
 complexity because we can just configure the loss to ignore the output tokens when the targets are
 padding tokens, like this:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb255"><a id="x28-121159r344"></a>n_epochs = <span style="color:#8F4070;">20</span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb255"><a id="x28-121159r344"></a>n_epochs = <span style="color:#8F4070;">20</span> 
 <a id="x28-121161r345"></a>xentropy = nn.CrossEntropyLoss() 
 <a id="x28-121163r346"></a>optimizer = torch.optim.NAdam(model.parameters()) 
 <a id="x28-121165r347"></a>accuracy = torchmetrics.Accuracy(task=<span style="color:#78730D;">"multiclass"</span>, 
 <a id="x28-121167r348"></a>                                 num_classes=<span style="color:#B03B03;">len</span>(vocab)).to(device) 
 <a id="x28-121169r349"></a> 
 <a id="x28-121171r350"></a>history = train(model, optimizer, xentropy, accuracy, train_loader, valid_loader, 
-<a id="x28-121173r351"></a>                n_epochs)</pre>
-</code></pre>
+<a id="x28-121173r351"></a>                n_epochs)</pre></code></pre></div>
 <p class="noindent">Now you can train this <span class="margin-block">model, <span class="margin-comment"><a class="ellipsis" href="#m-ref-262">[262]</a>
 <span class="sidenote">e.g., for 10 epochs using a <code class="verb">Nadam</code>  optimizer with <code class="verb">lr = 0.001</code> .</span></span></span> and it will take quite a
 while. It’s actually not that long when you consider the fact that the model is learning two languages at
@@ -815,23 +767,19 @@ token.
 </p><p class="noindent">It will repeat this process, adding one token at a time, until the model outputs an EoS
 token:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb256"><a id="x28-121175r361"></a>model.eval()  <span style="color:#918273;"><i># don't forget to switch the model to evaluation mode!</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb256"><a id="x28-121175r361"></a>model.eval()  <span style="color:#918273;"><i># don't forget to switch the model to evaluation mode!</i></span> 
 <a id="x28-121177r362"></a>text = <span style="color:#78730D;">"To be or not to b"</span> 
 <a id="x28-121179r363"></a>encoded_text = encode_text(text).unsqueeze(dim=<span style="color:#8F4070;">0</span>).to(device) 
 <a id="x28-121181r364"></a><span style="color:#9E0005;">with</span> torch.no_grad(): 
 <a id="x28-121183r365"></a>    Y_logits = model(encoded_text) 
 <a id="x28-121185r366"></a>    predicted_char_id = Y_logits[<span style="color:#8F4070;">0</span>, :, -<span style="color:#8F4070;">1</span>].argmax().item() 
-<a id="x28-121187r367"></a>    predicted_char = id_to_char[predicted_char_id]  <span style="color:#918273;"><i># correctly predicts "e"</i></span></pre>
-</code></pre>
+<a id="x28-121187r367"></a>    predicted_char = id_to_char[predicted_char_id]  <span style="color:#918273;"><i># correctly predicts "e"</i></span></pre></code></pre></div>
 <p class="noindent">This implementation works but it’s not optimized at all. We could run the encoder just once on the
 English text, and we could also run the decoder just once per time step, instead of running it over the
 whole growing text at each iteration.
 </p><p class="noindent">Let’s try translating some text!
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb257"><a id="x28-121189r372"></a>predicted_char</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb257"><a id="x28-121189r372"></a>predicted_char</pre></code></pre></div>
 <p class="noindent">It works. We just built a model from scratch that can translate English to Spanish.
 AnEncoder-DecoderNetworkforNeuralMachineTranslation | 565
 </p><p class="noindent">17 Sébastien Jean et al., “On Using Very Large Target Vocabulary for Neural Machine Translation”,
@@ -846,24 +794,27 @@ the Output Embedding to Improve Language Models”, arXiv preprint arXiv:1608.05
 <p class="noindent">When the output vocabulary is <span class="margin-block">large, <span class="margin-comment"><a class="ellipsis" href="#m-ref-264">[264]</a>
 <span class="sidenote">e.g., 10,000 tokens or more.</span></span></span> computing the <code class="verb">nn.CrossEntropyLoss</code>  can be quite slow,
 depending on the hardware. To speed things up, one technique is to use <span class="alert">sampled softmax</span>, introduced in 2015 by
-<i>Sébastien Jean et al</i> <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Jean2014OnUV"> <a id="x28-121191"></a>Jean, S. et al. On Using Very Large Target Vocabulary for Neural Machine
-Translation in Annual Meeting of the Association for Computational Linguistics (2014)</span></span>. Instead of
-computing the softmax over all of the logits, it computes an approximation based on the correct class’s
-logit, as well as a random sample of logits for other classes. This technique requires knowing the target,
-so it is only useful during <span class="margin-block">training. <span class="margin-comment"><a class="ellipsis" href="#m-ref-265">[265]</a>
+<i>Sébastien Jean et al</i> <span class="cite"><a class="cite-show" href="#w3-20001">[†-2]</a><span class="cite-detail" id="Jean2014OnUV"> <span class="bib-entry bib-author"><a id="x28-121191"></a>Jean et al.</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:2863491">"On Using Very
+Large Target Vocabulary for Neural Machine Translation"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">Annual Meeting of the
+Association for Computational Linguistics</span>, <span class="bib-entry bib-year">(2014)</span>.</span></span>. Instead of computing the softmax over all of the
+logits, it computes an approximation based on the correct class’s logit, as well as a random
+sample of logits for other classes. This technique requires knowing the target, so it is only
+useful during <span class="margin-block">training. <span class="margin-comment"><a class="ellipsis" href="#m-ref-265">[265]</a>
 <span class="sidenote">Moreover, it is not included in PyTorch, so we have to implement it
 ourself.</span></span></span>
-</p><p class="noindent">Another technique is <span class="alert">adaptive softmax</span>, introduced in 2016 by Edouard Grave et al. <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail" id="Grave2016EfficientSA"> <a id="x28-121192"></a>Grave, E. et al. Efficient softmax
-approximation for GPUs in International Conference on Machine Learning (2016)</span></span>, which speeds up
+</p><p class="noindent">Another technique is <span class="alert">adaptive softmax</span>, introduced in 2016 by Edouard Grave et al. <span class="cite"><a class="cite-show" href="#w3-20001">[†-3]</a><span class="cite-detail" id="Grave2016EfficientSA"> <span class="bib-entry bib-author"><a id="x28-121192"></a>Grave et al.</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:6483732">"Efficient softmax approximation for GPUs"</a>,
+<span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">International Conference on Machine Learning</span>, <span class="bib-entry bib-year">(2016)</span>.</span></span>, which speeds up
 softmax computation by splitting the vocabulary into frequency-based clusters. Frequent
 tokens are processed normally, while less frequent tokens are placed in progressively larger
 clusters, reducing computation by only accessing the necessary clusters. This speeds up
 computations both during training and inference. PyTorch implements this algorithm in the <code class="verb">nn.AdaptiveLogSoftmaxWithLoss</code>
 class.
-</p><p class="noindent">Another thing you can do to speed up training and also save a lot of memory is to use the embedding
-matrix as the weights of the output layer. This is called <span class="alert">tying the weights</span> of these two layers, and it was first proposed in
-a 2016 paper by <i>Ofir Press</i> and <i>Lior</i> Wolf <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="Press2016UsingTO"> <a id="x28-121193"></a>Press, O. &amp; Wolf, L. Using the Output Embedding to
-Improve Language Models. ArXiv <b>abs/1608.05859</b> (2016)</span></span>.
+</p><p class="noindent">Another thing you can do to speed up training and also save a lot of memory is to use the
+embedding matrix as the weights of the output layer. This is called <span class="alert">tying the weights</span> of these two layers,
+and it was first proposed in a 2016 paper by <i>Ofir Press</i> and <i>Lior</i> Wolf <span class="cite"><a class="cite-show" href="#w3-20001">[†-4]</a><span class="cite-detail" id="Press2016UsingTO"> <span class="bib-entry bib-author"><a id="x28-121193"></a>Press &amp; Wolf</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:836219">"Using the Output Embedding to Improve Language
+Models"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2016)</span>.</span></span>.
 </p><p class="noindent">To implement it, just add <code class="verb">self.output.weight = self.embed.weight</code>  to the model’s constructor. You can also get rid of the output layer’s bias
 parameter, by setting <code class="verb">bias=False</code>  when creating the output layer. Tying the weights significantly reduces the
 number of model parameters, which speeds up training and may sometimes improve the
@@ -880,12 +831,10 @@ learn a separate set of weights for the output layer.
 <p class="noindent">If you play around with our translation model, you will find that it often works reasonably well on
 short text, but it really struggles with longer sentences. For example:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb258"><a id="x28-121195r382"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb258"><a id="x28-121195r382"></a>torch.manual_seed(<span style="color:#8F4070;">42</span>) 
 <a id="x28-121197r383"></a>probs = torch.tensor([[<span style="color:#8F4070;">0.5</span>, <span style="color:#8F4070;">0.4</span>, <span style="color:#8F4070;">0.1</span>]])  <span style="color:#918273;"><i># probas = 50%, 40%, and 10%</i></span> 
 <a id="x28-121199r384"></a>samples = torch.multinomial(probs, replacement=<span style="color:#9E0005;">True</span>, num_samples=<span style="color:#8F4070;">8</span>) 
-<a id="x28-121201r385"></a>samples</pre>
-</code></pre>
+<a id="x28-121201r385"></a>samples</pre></code></pre></div>
 <p class="noindent">The translation says “I like to play with my friends”, however, there’s no mention of soccer. So how can
 we improve this model?
 </p><p class="noindent">One way is to increase the training set size and add more <code class="verb">nn.GRU</code>  layers in both the encoder and the decoder.
@@ -895,7 +844,7 @@ and it would see the full translation at each time step, instead of just the pre
 popular technique that can greatly improve the performance of a translation model at inference time is
 beam search.
 </p>
-<div class="subsection-header"><h5 id="header-subsubsection-5.3.3.23"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x28-122000"></a>Beam Search</span></h5></div>
+<div class="subsubsection-header"><h5 id="header-subsubsection-5.3.3.23"><span class="number"></span><a class="pdf-icon" href=""></a><span class="title"> <a id="x28-122000"></a>Beam Search</span></h5></div>
 <p class="noindent">To translate an English text to Spanish, we call our model several times, producing one word at a time.
 Unfortunately, this means that when the model makes one mistake, it is stuck with it for the rest of the
 translation, which can cause more errors, making the translation worse and worse. </p><div class="quote">  For example,
@@ -967,12 +916,13 @@ quite long! This means that a representation of this <span class="margin-block">
 <span class="sidenote">along with all the other words.</span></span></span>
 needs to be carried over many steps before it is actually used. Can’t we make this path
 shorter?
-</p><p class="noindent">This was the core idea in a landmark 2014 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-5]</a><span class="cite-detail" id="Bahdanau2014NeuralMT"> <a id="x28-123001"></a>Bahdanau, D., Cho, K. &amp; Bengio, Y. Neural
-Machine Translation by Jointly Learning to Align and Translate. arXiv: Computation and Language
-(2014)</span></span> by <i>Dzmitry Bahdanau</i> et al., where the authors introduced a technique that allowed the decoder
-to focus on the appropriate words (as encoded by the encoder) at each time step. </p><div class="quote">  For example, at the
-time step where the decoder needs to output the word “fútbol”, it will focus its attention on the word
-“soccer”. </div>
+</p><p class="noindent">This was the core idea in a landmark 2014 paper <span class="cite"><a class="cite-show" href="#w3-20001">[†-5]</a><span class="cite-detail" id="Bahdanau2014NeuralMT"> <span class="bib-entry bib-author"><a id="x28-123001"></a>Bahdanau, Cho &amp; Bengio</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:11212020">"Neural Machine Translation by Jointly Learning to
+Align and Translate"</a>, <span class="bib-entry bib-journal">arXiv: Computation and Language</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2014)</span>.</span></span> by <i>Dzmitry Bahdanau</i> et
+al., where the authors introduced a technique that allowed the decoder to focus on the appropriate
+words (as encoded by the encoder) at each time step. </p><div class="quote">  For example, at the time step where the
+decoder needs to output the word “fútbol”, it will focus its attention on the word “soccer”.
+</div>
 <p class="noindent">This means that the path from an input word to its translation is now much shorter, so the short-term
 memory limitations of <span class="acronym"><span class="acronym-short"><a class="glossary" href="#glo:rnn">RNN</a></span><span class="acronym-detail"><span class="acronym-long"><a class="glossary" href="#glo:rnn">Recurrent Neural Networks</a></span><span class="acronym-desc"><a class="glossary" href="#glo:rnn">a type of ANN designed to process sequential
 data, such as text, speech, or time series, by passing information through loops from one step to the
@@ -1092,10 +1042,11 @@ weights. This quadratic computational complexity becomes <span class="alert">unt
 long.
 </p>
 </dd></dl>
-<p class="noindent">Another common attention mechanism, known as <b>Luong attention</b> or <b>multiplicative attention</b>,
-was proposed shortly after, in 2015 <span class="cite"><a class="cite-show" href="#w3-20001">[†-6]</a><span class="cite-detail" id="Luong2015EffectiveAT"> <a id="x28-123003"></a>Luong, T., Pham, H. &amp; Manning, C. D. Effective Approaches to
-Attention-based Neural Machine Translation in Conference on Empirical Methods in Natural Language
-Processing (2015)</span></span>, by <i>Minh-Thang Luong</i> et al. Because the goal of the alignment model is to
+<p class="noindent">Another common attention mechanism, known as <b>Luong attention</b> or <b>multiplicative
+attention</b>, was proposed shortly after, in 2015 <span class="cite"><a class="cite-show" href="#w3-20001">[†-6]</a><span class="cite-detail" id="Luong2015EffectiveAT"> <span class="bib-entry bib-author"><a id="x28-123003"></a>Luong, Pham &amp; Manning</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:1998416">"Effective Approaches to Attention-based Neural
+Machine Translation"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">Conference on Empirical Methods in Natural Language
+Processing</span>, <span class="bib-entry bib-year">(2015)</span>.</span></span>, by <i>Minh-Thang Luong</i> et al. Because the goal of the alignment model is to
 measure the similarity between one of the encoder’s outputs and the decoder’s previous hidden
 state, the authors proposed to simply compute the dot product of these two vectors, as
 this is often a fairly good similarity measure, and modern hardware can compute it very
@@ -1143,12 +1094,10 @@ mechanisms are summarized in Eq. (<a href="#x28-123004r2">5.2</a>). </p><table c
 <p class="noindent">Let’s add Luong attention to our encoder-decoder model. Since PyTorch does not include a Luong
 attention function, we need to write our own. Luckily, it’s pretty short:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb259"><a id="x28-123006r1954"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">attention</span>(query, key, value):  <span style="color:#918273;"><i># note: dq == dk and Lk == Lv</i></span> 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb259"><a id="x28-123006r1954"></a><span style="color:#9E0005;">def</span> <span style="color:#427A59;">attention</span>(query, key, value):  <span style="color:#918273;"><i># note: dq == dk and Lk == Lv</i></span> 
 <a id="x28-123008r1955"></a>    scores = query @ key.transpose(<span style="color:#8F4070;">1</span>, <span style="color:#8F4070;">2</span>)  <span style="color:#918273;"><i># [B,Lq,dq] @ [B,dk,Lk] = [B, Lq, Lk]</i></span> 
 <a id="x28-123010r1956"></a>    weights = torch.softmax(scores, dim=-<span style="color:#8F4070;">1</span>)  <span style="color:#918273;"><i># [B, Lq, Lk]</i></span> 
-<a id="x28-123012r1957"></a>    <span style="color:#9E0005;">return</span> weights @ value  <span style="color:#918273;"><i># [B, Lq, Lk] @ [B, Lv, dv] = [B, Lq, dv]</i></span></pre>
-</code></pre>
+<a id="x28-123012r1957"></a>    <span style="color:#9E0005;">return</span> weights @ value  <span style="color:#918273;"><i># [B, Lq, Lk] @ [B, Lv, dv] = [B, Lq, dv]</i></span></pre></code></pre></div>
 <p class="noindent">Just like in Eq. (<a href="#x28-123004r2">5.2</a>), we first compute the attention scores, then we convert them to attention weights
 using the softmax function, and lastly we compute the attention output by multiplying the
 attention weights with the <span class="margin-block">value. <span class="margin-comment"><a class="ellipsis" href="#m-ref-278">[278]</a>
@@ -1181,13 +1130,10 @@ uses ANNs to model entire sentences and generate fluent, human-like outputs</a><
 needs just one modification - the output layer’s input size must be doubled, since we will concatenate
 the attention vectors to the decoder outputs:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb260"><a id="x28-123015r1978"></a>        <span style="color:#B03B03;">self</span>.output = nn.Linear(<span style="color:#8F4070;">2</span> * hidden_dim, vocab_size)</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb260"><a id="x28-123015r1978"></a>        <span style="color:#B03B03;">self</span>.output = nn.Linear(<span style="color:#8F4070;">2</span> * hidden_dim, vocab_size)</pre></code></pre></div>
 <p class="noindent">Next, let’s add attention to the forward() method:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb261"><a id="x28-123017r1980"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, pair): 
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb261"><a id="x28-123017r1980"></a>    <span style="color:#9E0005;">def</span> <span style="color:#427A59;">forward</span>(<span style="color:#B03B03;">self</span>, pair): 
 <a id="x28-123019r1981"></a>        src_embeddings = <span style="color:#B03B03;">self</span>.embed(pair.src_token_ids)  <span style="color:#918273;"><i># same as earlier</i></span> 
 <a id="x28-123021r1982"></a>        tgt_embeddings = <span style="color:#B03B03;">self</span>.embed(pair.tgt_token_ids)  <span style="color:#918273;"><i># same</i></span> 
 <a id="x28-123023r1983"></a>        src_lengths = pair.src_mask.sum(dim=<span style="color:#8F4070;">1</span>)  <span style="color:#918273;"><i># same</i></span> 
@@ -1201,8 +1147,7 @@ the attention vectors to the decoder outputs:
 <a id="x28-123039r1991"></a>        attn_output = attention(query=decoder_outputs, 
 <a id="x28-123041r1992"></a>                                key=encoder_outputs, value=encoder_outputs) 
 <a id="x28-123043r1993"></a>        combined_output = torch.cat((attn_output, decoder_outputs), dim=-<span style="color:#8F4070;">1</span>) 
-<a id="x28-123045r1994"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(combined_output).permute(<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">1</span>)</pre>
-</code></pre>
+<a id="x28-123045r1994"></a>        <span style="color:#9E0005;">return</span> <span style="color:#B03B03;">self</span>.output(combined_output).permute(<span style="color:#8F4070;">0</span>, <span style="color:#8F4070;">2</span>, <span style="color:#8F4070;">1</span>)</pre></code></pre></div>
 <p class="noindent">Let’s go through this code: </p>
 <ul class="itemize1">
 <li class="itemize">
@@ -1240,9 +1185,7 @@ training, but it’s preferable to mask them entirely. We will see how in <span 
 this model, you will find that it now handles much longer sentences.
 </p><p class="noindent">For example:
 </p>
-<div class="code-header"><span class="code-language">python</span></div><pre><code class="language-python">
-<pre class="fancyvrb" id="fancyvrb262"><a id="x28-123047r2024"></a>translate(nmt_attn_model, longest_text)</pre>
-</code></pre>
+<div class="code-header"><span class="code-language">python</span></div><div class="code-wrapper"><pre><code class="language-python"><pre class="fancyvrb" id="fancyvrb262"><a id="x28-123047r2024"></a>translate(nmt_attn_model, longest_text)</pre></code></pre></div>
 <p class="noindent">Perfect! We didn’t even have to use beam search. In fact, attention mechanisms turned out to be so
 powerful that some Google researchers tried getting rid of recurrent layers altogether, only
 using feedforward layers and attention. Surprisingly, it worked like a charm. This led the
@@ -1314,34 +1257,47 @@ as text, speech, or time series, by passing information through loops from one s
 <i class="fa-solid fa-magnifying-glass"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-reference"></a>
             Page References</span>
 </h3>
 </div>
 <div class="cite-block">
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">1.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Sutskever, I., Vinyals, O. &amp; Le, Q. V. Sequence to Sequence Learning with Neural Networks. ArXiv abs/1409.3215 (2014)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Sutskever2014SequenceTS"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x28-121001"></a>Sutskever, Vinyals &amp; Le</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:7961699">"Sequence to Sequence Learning with Neural
+Networks"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2014)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">2.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Jean, S. et al. On Using Very Large Target Vocabulary for Neural Machine Translation in Annual Meeting of the Association for Computational Linguistics (2014)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Jean2014OnUV"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x28-121191"></a>Jean et al.</span>, <a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:2863491">"On Using Very
+Large Target Vocabulary for Neural Machine Translation"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">Annual Meeting of the
+Association for Computational Linguistics</span>, <span class="bib-entry bib-year">(2014)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">3.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Grave, E. et al. Efficient softmax approximation for GPUs in International Conference on Machine Learning (2016)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Grave2016EfficientSA"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x28-121192"></a>Grave et al.</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:6483732">"Efficient softmax approximation for GPUs"</a>,
+<span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">International Conference on Machine Learning</span>, <span class="bib-entry bib-year">(2016)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">4.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Press, O. &amp; Wolf, L. Using the Output Embedding to Improve Language Models. ArXiv abs/1608.05859 (2016)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Press2016UsingTO"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x28-121193"></a>Press &amp; Wolf</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:836219">"Using the Output Embedding to Improve Language
+Models"</a>, <span class="bib-entry bib-journal">ArXiv</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2016)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">5.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Bahdanau, D., Cho, K. &amp; Bengio, Y. Neural Machine Translation by Jointly Learning to Align and Translate. arXiv: Computation and Language (2014)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Bahdanau2014NeuralMT"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x28-123001"></a>Bahdanau, Cho &amp; Bengio</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:11212020">"Neural Machine Translation by Jointly Learning to
+Align and Translate"</a>, <span class="bib-entry bib-journal">arXiv: Computation and Language</span>, <span class="bib-entry bib-book">booktitle</span>, <span class="bib-entry bib-year">(2014)</span>.</span></dd>
 </dl>
 <dl class="enumerate-enumitem">
 <dt class="enumerate-enumitem" id="w3-20001"><span class="acr-short">6.</span><span class="acr-long"></span></dt>
-<dd class="enumerate-enumitem"> Luong, T., Pham, H. &amp; Manning, C. D. Effective Approaches to Attention-based Neural Machine Translation in Conference on Empirical Methods in Natural Language Processing (2015)</dd>
+<dd class="enumerate-enumitem"><span class="cite-detail" id="Luong2015EffectiveAT"><a id="w3-20001"></a> <span class="bib-entry bib-author"><a id="x28-123003"></a>Luong, Pham &amp; Manning</span>,
+<a class="bib-entry bib-title" href="https://api.semanticscholar.org/CorpusID:1998416">"Effective Approaches to Attention-based Neural
+Machine Translation"</a>, <span class="bib-entry bib-journal">journaltitle</span>, <span class="bib-entry bib-book">Conference on Empirical Methods in Natural Language
+Processing</span>, <span class="bib-entry bib-year">(2015)</span>.</span></dd>
 </dl></div>
 <div class="section-header">
 <h3 id="header-section-references">
@@ -1349,7 +1305,7 @@ as text, speech, or time series, by passing information through loops from one s
 <i class="fa-regular fa-note-sticky"></i>
 </span>
 <span class="title">
-<a id="page-glossary"></a>
+<a id="page-margin"></a>
                     Page Footnotes</span>
 </h3>
 </div>
@@ -1549,7 +1505,7 @@ save memory and speed up the score computation.</span></dd>
 <a href="Index.html" rel="index" title="Index">
 <i class="fa-brands fa-git-alt"></i>
 </a></span></div></nav> </p><div class="footer"> <div class="footer-left"><span class="footer-lecture">Daniel T. McGuiness, Ph.D</span>
-<span class="footer-webBook"><b>Last Updated:</b> 9.11.2026, at 7:40.</span></div></div><div class="author-notes">
+<span class="footer-webBook"><b>Last Updated:</b> 25.11.2026, at 10:43.</span></div></div><div class="author-notes">
 <span class="note">Authors Note </span>
 <span class="text">The website you are viewing is auto-generated using lms-WebBook and therefore subject to slight errors in typography and formatting. When in doubt, please consult the LectureBook. </span>
 </div>
