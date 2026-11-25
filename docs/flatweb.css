@@ -1,1 +1,3656 @@
-/Users/danielmcguiness/GitHub/MCI-Source-Files/Configuration/ScriptsHTML/webBook/flatweb.css
+/*
+  #INFO: css for the WebBook Documentation
+ 
+  ------------------------------------------------------------------------------
+  
+  Author: DTMc
+  
+  This file is part of lms. 
+  
+  lms is free software: you can redistribute it and/or modify it under the 
+  terms of the GNU General Public License as published by the Free Software 
+  Foundation, either version 3 of the License, or (at your option) any later 
+  version. 
+  
+  lms is distributed in the hope that it will be useful, but WITHOUT ANY 
+  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+  A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+  
+  ------------------------------------------------------------------------------
+*/
+
+/* GLOBAL VARIABLES --------------------------------------------------------- */
+
+/* Set global settings and colour information */
+:root {
+
+    --body-backgound-color : white;
+    --body-text-color:       black;
+
+    
+    --border-color:        #DCDCDC;
+
+    --sidenote-text-color   : #2C2D2d;
+    --sidenote-bg-color   : white;
+    --sidenote-border-color : #DCDCDC;
+
+    --code-bg-color : #f9f5d7;
+
+    --nav-bg-color : var(--chosen-science);
+    --nav-hr-color : white;
+    --nav-toc-links-padding-top: 0px;
+    --nav-toc-links-padding-bottom: 10px;
+
+    --nav-nav-footer-padding-top: 20px;
+    --nav-nav-footer-padding-bottom: 20px;
+    
+    --dropdown-bg-color: #eee8d5;
+    --dropdown-bg-color-05: color-mix(var(--dropdown-bg-color), black 5%);
+    --dropdown-bg-color-10: color-mix(var(--dropdown-bg-color), black 10%);
+    --modeline-color :  #363737;
+
+    --link-font-color       : #1481b8;
+    --link-inact-top   : #fdf6e3;
+    --link-inact-bot   : #2b2c2c;
+    
+    --block-font-color : #444;
+    --block-upper-font-color: black;
+    --block-border-color : lightgray;
+    --block-border-width : 1px;
+    --block-border-style : solid;
+
+    --description-list-header-font-color : var(--chosen-science);
+
+    --sidenote-max-width : 300px;
+    
+    --figure-bg-color: white;
+    --figure-padding: 15px;
+
+    --dropdown-text-color: black;
+
+    --figcaption-content-font-color: gray;
+    --figcaption-id-font-color: var(--chosen-science);
+
+    --pdf-link-color   : #B9484C;
+    --pdf-link-pos-left : -25px;
+    
+    --core-line-color            : #2C2D2d;
+    --alert-color                : #B9484C;
+    --verb-color                 : #fdf6e3;
+    --verb-text-color            : #586e75;
+    --button-text-color          : white;
+    --code-font-color            : #bf0000;
+    --acronym-font-color         : green;
+    --citation-font-color        : #1481b8;
+    --comment-block-bg-color     : #fdf6e3;
+    --comment-block-border-color : black;
+    --quote-font-color           : #88807B;
+
+    --z-index-modeline         : 10000;
+
+    --margin-chapter-header    : 60px 0 20px 0;
+    --margin-section-header    : 70px 0 0 0;
+    --margin-subsection-header : 50px 0 0 0;
+    --margin-paragraph-header  : 0 0 0 0;
+
+    --margin-article--tablet   : 70px;
+    --margin-article--mobile   : 30px;
+    
+    --margin-code-header       : 10px 0px 5px 5px;
+
+    --nav-article-gap-width: 40px;
+
+    --padding-paragraph-header: 0 0 0 0;
+    
+    --block-minor-margin-top: 10px;
+    --block-minor-margin-bottom: 10px;
+
+    --standard-border-color : lightgray;
+    --standard-border-width : 1px;
+    --standard-border-style : solid;
+
+    /* Block settings */
+    --alert-block     : #fcc055;
+    --alert-body-bg-color      : #fef2dd;
+    --knowledge-block : #4fb1a1;
+    --knowledge-body-bg-color  : #dcefec;
+    --info-block      : #7BA591;
+    --info-body-bg-color       : #e5ede9;
+
+    --table-header-bg-color : var(--chosen-science);
+
+    --chapter-pos-top: 50px;
+    
+    --exer-block      : #326199;
+    --exer-body-bg-color       : #e8eff7;
+    
+    --theo-block      : #42395f;
+    --theo-body-bg-color       : #ebe9f2;
+    
+    --desc-block      : #eb8d50;
+    --desc-body-bg-color       : #fbe8dc;
+    --docs-block      : snow;
+    --code-block      : #586e75;
+    --code-header-bg-color    : #F2F2F2;
+
+    --code-body       : #fae8b6;
+
+    --nav-font-color  : white;
+    --nav-width       : 350px;
+
+    /* Colour domain settings */
+    --fundamental-science : #42395f;
+    --ai-science          : #0063B2;
+    --robotic-science     : #0a2a0a;
+    --computer-science    : #313244;
+    --electro-science     : #1c2e4a;
+    --org-science         : #004983;
+
+    --hljs-theme-padding: 10px;
+
+    --box-shadow-config   : 0px 10px 15px -10px rgba(0, 0, 0, 0.3);
+    
+    /* Some propeties of buttons */
+    --button-radius       : 5px;
+
+    --defn-block-body-bg-color        : #FAFAFA;
+    --table-row-bg-color    : #F2F2F2;
+    --on-this-page-color : snow;
+    
+    --chosen-science     : var(--fundamental-science);
+
+    --core-line-height   : 40px;
+    --supp-line-height   : 10px;
+    --core-line-pos-top  : 0px;
+    --mode-line-width    : calc(100vw);
+    --mode-line-pos-left : 0px;
+
+    --nav-toc-height    : 100vh;
+    --nav-toc-pos-top    : calc(var(--supp-line-height) + var(--core-line-height));
+
+    --article-width     : 700px;
+ 
+    --title-linewidth    : 1.3;
+    --text-lineheight    : 1.8;
+    --tblr-lineheight    : 1.5;
+
+    --tblr-inner-brdr    : 0.5px solid gray;
+    --nav-thin-line      : 0.2px solid black;
+
+    --padding-chapter-top : 70px;
+    --padding-chapter-left: 15px;
+    --padding-chapter-right: 30px;
+    
+    --padding-code-block: 1em 1em 1em 1em;
+
+    --main-text-font:              15px  "Roboto", sans-serif;
+    --main-stxt-font:              15px  "Roboto", sans-serif;
+    --toc-title-font:       bold   20px  "Roboto", sans-serif;
+    --toc-s-----font:              15px  "Roboto", sans-serif;
+    --toc-ss----font:              12px  "Roboto", sans-serif;
+    --toc-sss---font:              12px  "Roboto", sans-serif;
+    --box--text-font:              14px  "Roboto", sans-serif;
+    --tblr-text-font:       normal 14px  "Roboto", sans-serif;
+    --side-text-font:       normal 12px / 20px  "Roboto", sans-serif;
+    --quot-text-font:       normal 14px  "Roboto", sans-serif;
+    --toc-font-color:       #E0E0E0;
+    --chap-head-font:       normal 16px / 30px  "Roboto", sans-serif;
+    --mode-text-font:       normal 12px  "Roboto", sans-serif;
+    --supp-text-font:       normal 13px  "Roboto", sans-serif;
+    --dropdown-font:        normal 14px / 30px "Roboto", sans-serif;
+    --comm-text-font:       normal 12px / 20px "Roboto", sans-serif;
+    --code-text-font:       normal 12px / 20px "Source Code Pro", Menlo, Consolas, Monaco, monospace;
+
+     --table-border-width: 0.5px;
+    --table-border-color    : gray;
+    --table-border-style    : solid;
+    
+
+    --h1---text-font:       bold   48px  "Roboto", sans-serif;
+    --h2---text-font:       bold   48px  "Roboto", sans-serif;
+
+    --h1-s-text-font:       bold   30px  "Roboto", sans-serif;
+    --h3-s-text-font:       bold   24px / 30px  "Roboto", sans-serif;
+    --h4-s-text-font:       bold   20px / 30px  "Roboto", sans-serif;
+
+    --margin-article: 0 0 0 calc(var(--nav-width) + var(--nav-article-gap-width));
+
+    /* Sidebar TOC active highlight & search bar */
+    --toc-active-bg           : rgba(255, 255, 255, 0.16);
+    --toc-active-accent       : #ffd166;
+    --toc-current-page-bg     : rgba(255, 255, 255, 0.06);
+    --toc-current-page-border : rgba(255, 255, 255, 0.35);
+    --toc-hover-bg            : rgba(255, 255, 255, 0.09);
+    --toc-search-bg           : rgba(255, 255, 255, 0.12);
+    --toc-search-border       : rgba(255, 255, 255, 0.28);
+    --toc-search-placeholder  : rgba(255, 255, 255, 0.7);
+    
+}
+
+.dark-mode {
+
+    --chosen-science        : #E0E0E0;
+
+    --nav-font-color        : #D9DDDC;
+    --nav-bg-color          : #424242;
+
+    --toc-active-bg           : rgba(255, 209, 102, 0.16);
+    --toc-active-accent       : #ffd166;
+    --toc-current-page-bg     : rgba(255, 255, 255, 0.06);
+    --toc-current-page-border : rgba(255, 255, 255, 0.32);
+    --toc-hover-bg            : rgba(255, 255, 255, 0.08);
+    --toc-search-bg           : rgba(0, 0, 0, 0.25);
+    --toc-search-border       : rgba(255, 255, 255, 0.22);
+    --toc-search-placeholder  : rgba(217, 221, 220, 0.65);
+    
+    --body-backgound-color  : #282828;
+    --body-text-color       : #D9DDDC;
+
+    --dropdown-bg-color     : #424242;
+    
+    --toc-font-color        : #E0E0E0;
+
+    --standard-border-color : #424242;
+    --standard-border-width : 1px;
+    --standard-border-style : solid;
+
+    --code-bg-color : #1d2021;
+
+    
+    --nav-hr-color : white;
+
+    --sidenote-text-color   : gray;
+    --sidenote-bg-color     : #F5EBD8;
+    --sidenote-border-color : #75767B;
+
+    --description-list-header-font-color : #D9DDDC;
+
+    --figure-bg-color              : #E0E0E0;
+    --figcaption-content-font-color: #D9DDDC;
+    --figcaption-id-font-color: #D9DDDC;
+
+    --acronym-font-color    : #4ec9b0;    
+    --code-font-color       : #f472b6;
+    --link-font-color       : #fe8019;
+    --citation-font-color   : #b8bb26;
+    --button-text-color     : #E0E0E0;
+    --quote-font-color      : #919297;
+    --dropdown-text-color   : #E0E0E0;
+
+    --code-header-bg-color  : #55565B;
+
+    --info-body-bg-color    : #393A3F;
+    --desc-body-bg-color    : #393A3F;
+    --exer-body-bg-color    : #393A3F;
+    --theo-body-bg-color    : #393A3F;
+
+    --table-header-bg-color : #424242;
+    --table-row-bg-color    : #393A3F;
+    --table-border-width: 0.5px;
+    --table-border-color    : gray;
+    --table-border-style    : solid;
+    
+    --block-font-color      : #E0E0E0;
+    --block-upper-font-color: #E0E0E0;
+
+    --defn-block-body-bg-color: #393A3F;
+
+    --comment-block-bg-color:   #55565B;
+    --comment-block-font-color: #E0E0E0;
+    --comment-block-border-color    : #75767B;
+    
+    --block-border-color : lightgray;
+    --block-border-width : 0px;
+    --block-border-style : solid;
+
+    --knowledge-body-bg-color: #393A3F;
+    --alert-body-bg-color: #393A3F;
+    
+    
+}
+
+
+/* -------------------------------------------------------------------------- */
+
+html {
+    /* Control the overall behavior of the website */
+    overscroll-behavior : none;
+    scroll-behavior     : smooth !important;
+    height              : 100%;
+    scroll-padding-top  : 4rem;
+    overflow-x: clip;
+}
+
+
+/*
+  CODE STRUCTURE ---------------------------------------------------------------
+
+  Make sure all the tags are written in the form of
+
+  - Position modifiers,
+  - Colour and font modifiers.
+
+  ------------------------------------------------------------------------------
+*/
+
+
+body {
+    margin         : 0;
+    padding-bottom : 0px;
+    
+    font           :  var(--main-text-font);
+
+    color          :  var(--body-text-color);
+    background-color: var(--body-backgound-color);
+}
+
+p {
+    /* Add this options so the top p above body is set to contain no space */
+    margin         : 24px 0;
+    text-align     : left;
+    line-height    : var(--text-lineheight);
+}
+
+
+pagefind-modal-trigger {
+    display        : flex;
+    padding-bottom : 30px;
+}
+
+
+pre {    
+        white-space: pre-wrap;       /* Since CSS 2.1 */
+    font       : var(--code-text-font);
+    background : var(--code-bg-color);
+ 
+    code{        
+        font           : var(--code-text-font);                
+        overflow-x     :  auto;      
+        margin-right: 10px;
+       
+    }
+
+    .hljs
+    {
+        overflow-x: auto;
+    }
+
+    .hljs-copy-container {
+        padding: 5px !important;
+    }
+}
+
+
+/* TOC ELEMENTS ============================================================= */
+
+.chapterToc,
+.appendixToc,
+.sectionToc,
+.subsectionToc {
+    display     : flow-root;
+    line-height : var(--text-lineheight) !important;
+
+    .title {
+        white-space : initial;             
+        max-width   : 70% !important;
+        float       : left;
+    }
+    
+    .number {
+        float : right;
+    }
+}
+
+.addchapToc,
+.chapterToc,
+.appendixToc {
+    margin-top     : 40px;
+    font           : var(--toc-font-color);
+    font-weight    : bold;
+    padding-bottom : 5px;
+    border-bottom  : 0.5px solid gray;       
+}
+
+.sectionToc {
+    margin-bottom : 10px;
+    margin-top     : 10px;
+
+    font           : var(--toc-s-----font);
+    
+    .title {
+        padding-right : 5px;                      
+    }
+}
+
+.subsectionToc {
+    padding-top    : 0px;
+    padding-left   : 20px;        
+    padding-bottom : 0px;
+    padding-right  : 0px;;
+    
+    font           : var(--toc-ss----font);
+    
+    .title {
+        padding-right: 10px;         
+    }       
+}
+
+.project-toc,
+.code-toc,
+.main-toc,
+.toc {
+    columns        : 1;
+    position       : relative;
+    margin-left    : 10px;
+    margin-right   : 10px;
+    white-space    : pre;
+    text-wrap-mode : nowrap;
+    text-wrap      : stable;
+    color          :  var(--body-text-color) !important;
+    padding-bottom : 10px;
+
+
+    hr {
+        border     : none;
+        background : white;
+        height     : 1px;
+    }
+
+    .toc-links {
+        font            : var(--toc-font-color);
+        color           :  var(--body-text-color) !important;
+        overflow        : auto;
+        white-space     : pre;
+        display         : flex;
+        justify-content : space-between;
+        padding-top     : 0px;
+        padding-bottom  : 20px;        
+    }    
+}
+
+
+.code-toc,
+.main-toc,
+.project-toc{
+
+    line-height: 0px;
+
+    .chapterToc{
+        
+        a,
+        .number{
+            color: unset;
+            color: var(--chosen-science) !important;
+        }
+    }
+    
+    .sectionToc{
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+/* .chapter-toc:: TOC on chapter pages */
+.chapter-toc {
+    margin-top    : 40px;
+    padding-left  : 10px;
+    padding-right : 10px;
+    margin-left   : 0px;
+    margin-right  : 0px;
+   
+    .sectionToc{
+        color: var(--chosen-science) !important;
+        
+        a{
+            color: var(--chosen-science) !important;
+        }
+    }
+    
+}
+
+.toc{    
+    width       : 250px;
+    padding     : 0px;
+    white-space : pre;
+    margin      : 30px 36px;
+
+    .toc-links,
+    .title,
+    .number{
+         color: white !important;
+        
+        a{
+            color: white !important;
+            transition: color 0.2s ease, border-color 0.4s ease;
+        }
+
+        
+    }
+    
+}
+
+
+.inner {   
+    .toc {
+        width: 100%;
+
+        margin: unset;
+    }
+
+}
+
+.bib-author {
+    font-style:  italic;
+}
+
+
+.footnote-block,
+.cite-block,
+.acronym-block {
+    
+    margin-top    : 20px;
+    margin-bottom : 20px;
+    font-size     : small;
+
+    .acr-list {
+        display : block;
+
+        .acr-bottom {       
+
+            .acr-short {
+
+                text-decoration         : underline;
+                text-underline-position : under;
+                font-weight             : bold;
+            }
+
+            .acr-long {
+                
+                padding-left            : 10px;
+                
+            }
+            
+
+        }
+    }
+
+    .cite-detail {
+        display: contents;
+    }
+}
+
+
+
+.body-button {
+    /*
+       DESCRIPTION: Define how the buttons work within a body to change their
+       visibility such as showing/hiding their content.
+   */
+    
+     margin        : auto;
+     padding       : 4px;
+     border-radius : 0px;
+     border-style  : none;
+     border        : 1px solid lightgray;
+     float         : right;
+}
+
+.current-header {
+    /*
+       DESCRIPTION: Define the way the header of the page loogs
+       (i.e., Viewing | ...) 
+   */
+    
+    float         : left;
+    height        : 40px;
+    align-content : center;
+    padding-left  : 20px;
+    font          : var(--supp-text-font);
+    
+    .header-pretext {
+        /*
+       DESCRIPTION: Describe the `Viewing |' part.
+       */
+        
+        font-weight : bolder;
+        color       : white;
+    }
+
+    .header-text {
+        /*
+       DESCRIPTION: Describe the chapter/section name part og the header
+       */
+
+        color: white;
+    }
+}
+
+.eqref-block
+{
+    position: fixed;
+    top: 60px;
+    right: 50px;
+    background: var( --comment-block-bg-color);
+    border: 1px solid black;
+    box-shadow: var(--box-shadow-config);
+    padding: 15px;
+
+    figure
+    {
+        width: 300px;
+    }
+}
+    
+
+pre
+{
+    .verbatim {
+        /* Control the way output code is displayed. */
+        color:      var(--code-block);
+        background: var(--defn-block-body-bg-color);
+
+        margin-top: 1em;
+        display:    block;
+        overflow-x: auto;
+        padding:    1em;
+    }
+}
+
+.code-block {
+    /* Control how `.corg' blocks behacve */
+
+    a {
+        position: unset;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        left: -50px;
+        float: right;
+        margin: 10px;
+
+        
+    }
+}
+
+pre
+{
+    .fancyvrb {
+        /* Control the way output code is displayed. */
+
+        padding-top: 1em;
+        background: #fae8b6;
+        border: unset;
+        margin-top: 1em;
+        display: block;
+        overflow-x: auto;
+        padding-top: 1em;
+        margin-bottom: 0;
+    }
+}
+
+/* MODELINE CONFIGURATION =================================================== */
+
+.mode-line {
+
+    .core-line {
+
+        position   : fixed;
+        z-index : var(--z-index-modeline);
+        
+        width      : var(--mode-line-width);
+        height     : var(--core-line-height);
+        top        : var(--supp-line-height);
+        left       : var(--mode-line-pos-left);
+        
+        background : var(--modeline-color);
+        
+        .core-line-image {
+            
+            float        : left;
+            padding-left : 20px;
+            height       : var(--core-line-height);
+
+            img {
+                  height: var(--core-line-height);
+            }
+        }
+    }
+
+    .supp-line {
+
+        position    : fixed;
+         z-index : var(--z-index-modeline);
+
+        width       : var(--mode-line-width);                       
+        height      : var(--supp-line-height);
+
+        top         : var(--core-line-pos-top);
+        left       : var(--mode-line-pos-left);
+
+        background  : gray;
+        font        : var(--mode-text-font);
+    }
+}
+
+
+.search-box { 
+    box-shadow: var(--box-shadow-config);
+    position: fixed;
+    padding: 10px;
+    top: 10%;
+    left: 10%;
+    right: 10%;
+    bottom: 10%;
+    background: var(--chosen-science);
+    border-left: 0px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    z-index: 100;
+    line-height: var(--text-lineheight);
+}
+
+
+
+
+#hidden {
+    display: none;
+}
+
+
+/* Here we control how the pagefind is displayed by modifying defaults */
+.pf-trigger-btn {
+
+    border-radius: 0px;
+    border:        1px solid var(--chosen-science);
+
+}
+
+.button-group {
+
+    float: right;
+}
+
+
+/* Global Font Settings  ---------------------------------------------------- */
+
+.copiable-link {
+    /*
+       DESCRIPTION: Control how the alignment of the blocks look
+   */
+    
+    position      : absolute;
+    padding-left  : 5px;
+    padding-right : 5px;
+    left          : -25px;
+    background    : #ffa602;
+    color         : white !important;
+    font          : caption;
+    margin-top    : 6px;
+}
+
+.verb {
+    /*
+       DESCRIPTION: Control how a code snippet looks in text. (i.e, Use the man
+       command)
+   */
+    
+    color            : var(--code-font-color);
+    font             : var(--code-text-font);
+}
+
+kbd {
+     /*
+       DESCRIPTION: Define the keyboard notation on the webpage
+   */
+        
+    color            : #333;
+    background-color : #eee;
+    border           : 1px solid #b4b4b4;
+    border-radius    : 3px;
+    
+    display          : inline-block;
+    font-size        : 0.85em;
+    font-weight      : normal;
+    line-height      : 1;
+    padding          : 2px 4px;
+    white-space      : nowrap;
+    top              : -1px;
+    
+    &:hover {
+        box-shadow:
+            0 1px 1px rgba(0, 0, 0, 0.2),
+            0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+        top: 1px;
+    }
+}
+
+/* Make sure figure takes as much space as possible */
+
+figure {
+    
+    margin:       auto;
+    padding: var(--figure-padding);
+
+    img {
+        background-color: var(--figure-bg-color);
+    }
+}
+
+/* Make sure the captions of `figure' and `table' are field
+   in the right-hand side */
+
+
+figcaption.caption {
+
+    padding     : 20px 20px 10px 20px;
+    text-align  : left;
+    text-indent : 0px;
+    font        : var(--box--text-font);
+    line-height : var(--text-lineheight);
+
+    .id {
+        color : var(--figcaption-id-font-color);
+    }
+
+    .content{
+        color   : var(--figcaption-content-font-color);
+    }
+    
+}
+
+.author-notes {
+    /* Control how the author's notes at the end of the page is presented */
+    
+    padding-top     : 20px;
+    text-align      : left;
+    padding-bottom  : 30px;
+    font            : italic var(--box--text-font);
+    
+    .note {
+        font-weight : bold;
+    }
+
+    .text {
+        line-height : var(--text-lineheight);
+    }   
+}
+
+/* Control how lists behave. Original settings were too `clumped' which now
+   looks much better */
+ul,
+li {
+
+    list-style-type: "■ ";
+    line-height: 2;
+    
+    p {
+        padding: 0px;
+    }
+}
+
+/* Define the marker for the itemized list */
+::marker {
+    color: var(--chosen-science);
+    font-size: 1em;
+    font-weight: bold;
+}
+
+
+
+/* Change the behaviour of `description' lists */
+.org-dl,
+.description {
+    display: block;
+
+    /* Control the item behaviour */
+    dd {
+        margin-left: 20px;
+    }
+
+    p {
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+}
+
+.toggle-button {
+    float: left;
+    height: 30px;
+    margin-top:5px;
+    align-content: center;
+    background : var(--modeline-color);
+    border: none;
+    margin-right:10px;
+
+
+    i {
+        color: white;
+    }
+}
+
+.toggle-button:hover {
+    border-bottom: solid 1px #dee9ed;
+}
+
+/* Time to define all the side images should look like */
+.sidenote {
+    z-index:  2;
+    position    : absolute;
+    text-align  : left;
+    right       : -270px;
+    width       : 220px;
+    background  : var(--sidenote-bg-color);
+    color       : var(--sidenote-text-color);
+    font        : var(--side-text-font);
+    line-height : var(--text-lineheight);
+    border-radius: var(--button-radius);
+    padding     : 10px;
+    
+    figcaption {
+        font        : var(--side-text-font);
+    line-height : var(--text-lineheight);
+        position: initial;
+        padding: 0;
+        .id {
+            color : var(--figcaption-id-font-color);
+        }
+
+        .content{
+            color : var(--sidenote-text-color);
+        }
+    }
+
+    .ellipsis {
+        text-decoration: none;
+        font-size: x-small;
+        vertical-align: super;
+        font-weight: bold;
+        color: black;
+    }
+}
+
+/* All images should have a gentle curve around the image for easy visibility
+   and slight aestetics */
+img {
+    outline: none;
+    border-radius: .25rem;
+}
+
+mjx-container {
+    overflow-x: auto;
+  overflow-y: clip;
+}
+
+table {
+    overflow-x: auto;
+    margin-bottom: 15px;
+}
+
+/* Define how equations `equation' and `equation*' looks */
+table.equation-star,
+table.equation {
+    width: auto;
+    margin: auto;
+
+    tbody {
+        overflow-x: auto;
+    }
+
+    td {
+        width: 100%;
+    }
+
+    td:last-child {
+        text-align: right;
+        font-size: larger;
+        font-family: 'Latin Modern Roman';
+    }
+}
+
+/*
+   Here we have to reverse the `display: grid' as equation* does not have a
+   number
+*/
+table.equation
+{
+    display: grid;
+}
+
+.equation-star{
+    display : block;
+}
+
+ .chapter-contents {
+
+    position              : fixed;
+    display               : none;
+    
+    text-align            : left;
+    z-index               : -10;
+    top:      60px;
+    right:    20px;
+    width                 : var(--nav-width);
+    overflow-y            : scroll;
+    line-height           : 1.5;
+    max-height: 70%;
+    overscroll-behavior-y : none;
+    box-sizing            : content-box; /* So the width will be 100% + 17px */
+    padding-bottom        : 10px;
+    font : var(--box--text-font);
+
+    background-color: var(--comment-block-bg-color);
+    border-radius: var(--button-radius);
+
+    border-color : var(--standard-border-color);
+    border-width : var(--standard-border-width);
+    border-style : var(--standard-border-style);
+    box-shadow: var(--box-shadow-config);
+    
+    scrollbar-width      : none;
+
+    .toc,
+    .code-toc{
+        padding: 30px;
+        width: unset;
+    }
+
+    .title {        
+        
+        a {
+            color: var(--body-text-color) !important;
+        }
+    }
+
+    .number {
+        color: var(--body-text-color) !important;
+    }
+
+    .sectionToc {
+        margin-bottom: 0px;
+
+        .title {
+            font-weight: bold;
+        }
+        
+        
+    }
+   
+    .generic-info-header,
+    .generic-command-header,
+    {
+        margin-left: 30px;
+        margin-right: 30px;
+        width: calc(var(--nav-width) - 60px);
+        padding-top    : 20px;
+        padding-bottom : 5px;
+        
+        font           : var(--toc-ss----font);
+        
+        line-height    : var(--text-lineheight) !important;
+        display        : flow-root;
+
+        .number {
+            float: right;
+            color: var(--body-text-color);
+        } 
+        
+        .title {
+            white-space: normal;
+            float: inherit;
+            padding-right: 10px;
+            a{
+                color: var(--body-text-color);
+            }
+        }
+
+        
+        
+    }
+
+     .subsubsectionToc
+    {
+        padding-top    : 0px;
+        padding-left   : 40px;
+        padding-right  : 0px;;
+        padding-bottom : 0px;
+        
+        font           : var(--toc-ss----font);
+        
+        line-height    : var(--text-lineheight) !important;
+        display        : flow-root;
+
+        .number {
+            float: right;
+            color: black;
+        } 
+        
+        .title {
+            white-space: normal;
+            float: inherit;
+            padding-right: 10px;
+            a{
+                color: black;
+            }
+        }
+
+        
+        
+    }
+
+   
+
+    hr {     
+        height: 0.5px;
+        border: none;
+        background-color: gray;
+    }
+
+    
+    
+    .header {
+        
+        font: bold 20px/16px "Source Sans Pro", sans-serif;
+        text-wrap: auto;
+    }
+
+    p {
+        padding: 2px 10px 2px 20px;
+        font: var(--side-text-font);
+        line-height: 15px;
+        color: white;
+        line-height: 10px;
+        display: flow-root;
+        margin: 0px 0  !important;
+        word-wrap: break-word;
+        word-break: break-word;
+
+    }
+
+
+
+    .generic-header{
+        padding: 0px 0 0 20px;
+        font: normal 12px/15px "Source Sans Pro", sans-serif;
+        line-height: 15px;
+        line-height: 20px;
+        display: flow-root;
+        
+    }
+
+    .toc-contents {
+
+        padding-top: 40px;
+    }
+
+}
+
+/* Table Settings ----------------------------------------------------------- */
+
+.tabular{
+
+    overflow-x: auto;
+    
+    table {
+        width:           100%;
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+    
+    th, td {       
+        padding:       8px;
+        border-left:   var(--tblr-inner-brdr);
+        border-right:  var(--tblr-inner-brdr);
+    }
+
+    tr {
+        border-bottom: var(--tblr-inner-brdr);
+    }
+
+    /*
+      We unset this one as it is adding a line to the bottom row which is already
+      set as black
+   */
+    tr:last-child {
+        border-bottom: unset; 
+    }
+
+    tr:nth-child(odd) {
+        /* Add alternating row color to make it more visible */
+        background-color: var(--table-row-bg-color);
+    }
+    
+    /* Define the header of the table */
+    tr:first-child {
+        background  : var(--chosen-science);
+        color       : white;
+        font-weight : bold;
+        border      : none;
+    }
+
+    th {
+        border:     none;
+    }
+
+    
+    tr:not(:first-child):hover {
+        /* Finally add some hover effect to the rows */
+        transition:       all .8s ease;
+        background-color: var(--body-backgound-color);
+    }
+
+}
+
+.org-tbl{
+    /*
+      Here we we edit the `tabulararry' style tables, and here we need to use
+      some code we've used for tabular class. Some adjustments were needed to
+      be made for the adjustement of the table but it seems to be working at
+      the moment.
+   */
+    width:           100%;
+    border-collapse: collapse;
+
+    thead,
+    tbody {
+
+        border-style: var(--table-border-style);
+        border-width: var(--table-border-width);
+        border-color: var(--table-border-color);
+
+        
+ 
+    }
+    
+    th, td {
+        font:          var(--tblr-text-font);
+        line-height:   var(--tblr-lineheight);
+        padding:       8px;
+        border-left:   0.5px solid gray;
+        border-right:  0.5px solid gray;
+    }
+
+    tr {
+        border-bottom: 0.5px solid gray; 
+    }
+
+
+    th {
+        border:     none;
+    }
+
+    thead {
+        
+    tr:first-child {
+        background: var(--table-header-bg-color) !important;
+        
+        td {
+            background-color: var(--table-header-bg-color) !important;
+        }
+
+        td:nth-child(1) {  
+            background-color: none;
+        }
+        
+        color:       white;
+        font-weight: bold;
+        border:      none;
+    }
+    }
+    
+    tbody {
+        
+        tr:hover {
+            /* Finally add some hover effect to the rows */
+            transition:       all .8s ease;
+            background-color: background-color: var(--body-backgound-color);
+        }
+
+        tr:nth-child(odd) {
+            /* Add alternating row color to make it more visible */
+            background-color: var(--table-row-bg-color);
+        }
+
+    }
+    
+    td:first-child {
+        text-align: right !important;
+    }
+
+    td:last-child {
+        text-align: left !important;
+    }
+}
+
+
+#TOPIC-NAMES{
+
+    tbody{
+
+        tr {
+            
+            td:last-child {
+                word-spacing: 1000px;
+                word-break: break-word;
+            }
+        }
+        
+    }
+    
+}
+
+.tblr
+{
+    /*
+      Here we we edit the `tabulararry' style tables, and here we need to use
+      some code we've used for tabular class. Some adjustments were needed to
+      be made for the adjustement of the table but it seems to be working at
+      the moment.
+   */
+    width:           100%;
+    border-collapse: collapse;
+
+    tbody {
+
+        border-style: var(--table-border-style);
+        border-width: var(--table-border-width);
+        border-color: var(--table-border-color);
+        
+        tr
+        {
+            font-weight: bold;
+        }
+    }
+    
+    th, td {
+        font:          var(--tblr-text-font);
+        line-height:   var(--tblr-lineheight);
+        padding:       8px;
+        border-left:   0.5px solid gray;
+        border-right:  0.5px solid gray;
+    }
+
+    tr {
+        border-bottom: 0.5px solid gray; 
+    }
+
+    tr:first-child {
+        background: var(--table-header-bg-color) !important;
+        
+        td {
+            background-color: var(--table-header-bg-color) !important;
+        }
+
+        td:nth-child(1) {  
+            background-color: none;
+        }
+        
+        color:       white;
+        font-weight: bold;
+        border:      none;
+    }
+
+    th {
+        border:     none;
+    }
+
+    tr:nth-child(odd) {
+        /* Add alternating row color to make it more visible */
+        background-color: var(--table-row-bg-color);
+    }
+    
+    tr:not(:first-child):hover {
+        /* Finally add some hover effect to the rows */
+        transition:       all .8s ease;
+        background-color: background-color: var(--body-backgound-color);
+    }
+
+    td:first-child {
+        text-align: right !important;
+    }
+
+    td:last-child {
+        text-align: left !important;
+    }
+}
+
+.tablenotes {
+    color: gray;
+    p {
+        margin: 10px;
+        font: var(--box--text-font);
+
+        .textsuperscript {
+            color: black;
+        }
+    }
+}
+
+/* Navigation Settings ------------------------------------------------------ */
+
+
+nav.wide {
+    position        : fixed;
+    z-index         : 150; 
+
+    top             : var(--nav-toc-pos-top);
+
+    width           : var(--nav-width);
+   
+    height          : calc(var(--nav-toc-height) - var(--supp-line-height) - var(--core-line-height));
+    max-height      : calc(var(--nav-toc-height)) !important; 
+    
+    background      : var(--nav-bg-color);
+    font            : var(--toc-font-color);
+    line-height     : var(--text-lineheight);
+    color           : var(--nav-font-color) !important;
+    border-right    : 1px solid var(--standard-border-color);
+    
+    overflow-x      : hidden;
+    overflow-y      : scroll;
+    
+    white-space     : pre;
+    scrollbar-width : thin;
+       
+    scrollbar-color : var(--chosen-science);
+
+    
+    .header-lecture-name,
+    .header-lecture-grade {
+        font      : var(--toc-title-font);
+        text-wrap : auto;
+    }    
+        
+    hr {
+        color     : var(--nav-hr-color);
+    }    
+
+    .toc-links {
+        display         : flex;
+        justify-content : space-between;
+        
+        padding-top     : var(--nav-toc-links-padding-top);
+        padding-bottom  : var(--nav-toc-links-padding-bottom);
+    }
+
+    .nav-footer,
+    .nav-comments {
+        font          : var(--comm-text-font);
+        color         : var(--nav-font-color);
+    }
+    
+    .nav-footer {        
+        margin-bottom : var(--nav-nav-footer-padding-top);
+        margin-top    : var(--nav-nav-footer-padding-top);
+    }
+
+    .nav-comments {       
+        white-space   : normal;
+        font-style    : italic;
+    }
+
+    
+}
+
+/* Navigation Settings ------------------------------------------------------ */
+
+.crosslinks-top {
+    display   : grid;
+
+    .nav-button {
+        color      : var(--chosen-science);
+        padding    : 10px;
+        margin-top : 10px;
+
+        .nav-link {
+            padding-left: 10px;
+        }
+
+        a {
+            color: var(--chosen-science);
+        }
+    }
+
+    i {
+        font-size : large;
+        color     : var(--chosen-science);        
+    }
+
+    .nav-button:nth-last-child(1),
+    .nav-button:nth-last-child(2) {
+        padding-top: 10px !important;
+        position : absolute;
+        padding  : unset;
+        left     : var(--pdf-link-pos-left);
+    }
+
+    .nav-button:nth-last-child(1) {
+        top      : 122px;
+    }
+}
+
+.crosslinks-bottom {
+    display :none
+}
+
+
+.footer {
+
+    border-top-color : var(--standard-border-color);
+    border-top-width : var(--standard-border-width);
+    border-top-style : var(--standard-border-style);
+    padding-top     : 20px;
+    padding-bottom  : 20px;
+    font            : 12px/24px "Source Sans Pro", sans-serif;
+
+    .footer-left{
+        white-space: pre;
+    }
+  
+}
+
+
+.header {
+    
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    z-index: 100;
+    /* box-shadow: 10px 0 10px -2px #888; */
+
+    .header-left {
+        text-wrap: auto;
+        float: left;
+        margin: 18px 36px;
+
+        .header-webBook {
+            font-weight: initial;
+        }
+        
+    }
+    
+    .header-lecture-lecture {
+        font: bold 24px/20px "Source Sans Pro", sans-serif;
+    }
+
+    .header-right {
+        white-space-collapse: collapse;
+        white-space: pre-line;
+        float: left;
+        margin: 18px 36px;
+
+        .header-chapter {
+            color: color-mix(var(--chosen-science), white 50%);
+            font-style: unset;
+            display : inline-block;
+        }
+
+        .header-version {
+            color: color-mix(var(--chosen-science), white 50%);
+            font-style: unset;
+        }
+        
+    }
+
+    
+}
+
+/* .title { */
+/*     max-width: 70%; */
+/*     float: left; */
+/* } */
+
+/* BLOCK SETTINGS ----------------------------------------------------------- */
+
+.example-code {
+    background: var(--verb-color);
+    font: var(--code-text-font);
+    padding: 10px;
+    overflow-x     :  auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    border: 1px solid lightgray;
+}
+
+.doc-block {
+    /* Control how the documentation is presented on the webpage */
+    
+    padding    : 15px;
+    background : var(--docs-block);
+
+    /* Formatting of the command line */
+    .command-header {
+        padding-bottom: 10px;
+        border-bottom: solid 1px color-mix(var(--docs-block), black 10%);
+    }
+
+    /* Formatting of the string `function' , `command' etc. */
+    .command-type {
+        font: normal 13px/20px "Source Sans Pro", sans-serif;
+    }
+
+    /* Add some spacing after command-type */
+    .command-type:after {
+        content: "\A\A";
+    }
+
+    /* Formatting of the string `function' , `command' etc. */
+    .command-doc {
+        float: right;
+        font: normal 13px/20px "Source Sans Pro", sans-serif;
+
+        /* Manual Comes in two formats, there is either a hyperlink
+           reference of not */
+        .inactive-manual {
+            color: color-mix(var(--docs-block), black 10%);
+        }
+    }
+    
+    /* Formatting of how a code string looks like */
+    code {
+        background: var(--docs-block);
+        border: 0px;
+        font: var(--code-text-font);
+    }
+
+    /* Finally control the paragraph space as to not
+       take too much space */
+    p {
+        font:          normal 13px/20px "Source Sans Pro", sans-serif;
+        margin-top:    10px;
+        margin-bottom: 10px;
+        line-height:   var(--text-lineheight);
+    }    
+}
+
+.block-minor {
+    margin-top    : var(--block-minor-margin-top);
+    margin-bottom : var(--block-minor-margin-top);
+
+    font          : var(--box--text-font);
+    color         : var(--block-font-color);
+
+    border-style  : solid;
+    border-width  : 1px;
+    border-radius : var(--button-radius);
+
+    .body {
+        padding-top   : 5px;
+        padding-left  : 15px;
+        padding-right : 15px;
+        margin        : 0px !important;
+
+        p {
+            margin    : 8px 0;           
+        }
+    }
+
+    .alert {
+        font-weight   : bold;
+    }
+}
+
+.knowledge {
+    border-color      : var(--knowledge-block);
+    background        : var(--knowledge-body-bg-color);
+}
+
+.warning {   
+    border-color      : var(--alert-block);
+    background        : var(--alert-body-bg-color);
+}
+
+/* MAJOR BLOCK CONFIGURATION ------------------------------------------------ */
+
+.block-major {
+
+    color: var(--block-font-color);
+
+    hr
+    {
+        border-width  : 1px;
+        border-style  : dashed;
+    }
+    
+    .upper {
+
+        width          : 100%;
+        color          : var(--block-upper-font-color) !important;
+        line-height    : var(--text-lineheight);
+        
+        .title,
+        .header
+        {           
+            font-weight: initial;
+        }
+
+        
+    }
+    
+    .body {
+        padding-top    : 5px;
+        padding-left   : 15px;
+        padding-bottom : 10px;
+        padding-right  : 15px;
+        margin         : 0px !important;
+    }
+
+    p
+    {
+        margin         : 8px 0;
+        font           : var(--box--text-font); 
+        line-height    : var(--text-lineheight);
+    }
+
+    .equation,
+    .equation-star {
+        font-size: 15px;
+    }
+        
+    
+}
+
+
+.info-block {
+
+    .copiable-link {
+        background   : var(--info-block);     
+    }
+    
+    hr {
+        border-color : var(--info-block);
+    }
+
+    .body {
+        background   : var(--info-body-bg-color);         
+    }   
+}
+
+
+.exer-block {
+    
+    .copiable-link {
+        background  : var(--exer-block);     
+    }
+    
+    hr {
+       border-color : var(--exer-block);
+    }
+          
+    .body {
+        background  : var(--exer-body-bg-color);         
+    }   
+}
+
+.desc-block {
+
+    .copiable-link{
+        background  : var(--desc-block);     
+    }
+    
+    hr {
+       border-color : var(--desc-block);
+    }
+ 
+    .body {
+        background  : var(--desc-body-bg-color);         
+    }   
+}
+
+.theo-block {
+    
+    .copiable-link{
+        background   : var(--theo-block);     
+    }
+    
+    hr {
+        border-color : var(--theo-block);
+    }
+    
+    .body {
+        background   : var(--theo-body-bg-color);         
+    }   
+}
+
+
+
+.quote
+{
+    margin       : 20px;
+    padding-left : 10px;
+    
+    color        : var(--quote-font-color);
+    
+    line-height  : var(--text-lineheight) !important;
+    font         : var(--quot-text-font);
+
+    .quote {
+        border-left: unset;
+    }
+    
+}
+
+
+.code-header {
+    font        : var(--comm-text-font);
+    margin      : var(--margin-code-header);
+    font-weight : bold;
+
+    .copy-button {
+        position: absolute;
+        left: var(--pdf-link-pos-left);
+        background-color: var(--body-backgound-color);
+        border-color : var(--standard-border-color);
+        border-width : var(--standard-border-width);
+        border-style : var(--standard-border-style);
+        border-radius: var(--button-radius);
+        padding: 5px;
+
+        i {
+            color: var(--body-text-color);
+        }
+    }
+
+    .copy-text {
+        opacity: 0;
+        float: right;
+        font-weight: normal;
+        transition: opacity 1.5s ease;
+    }
+
+    .copy-text-is-visible {
+        opacity: 1;
+        float: right;
+        font-weight: normal;
+        transition: opacity 1.5s ease;
+    }
+
+    .copy-button:hover {
+        background-color: var(--standard-border-color);
+    }
+
+    a {
+        float   : right;
+    }    
+}
+
+/* Header & Footer Settings ------------------------------------------------- */
+
+
+/* Title Settings ----------------------------------------------------------- */
+
+.chapter-header,
+.section-header,
+.subsection-header,
+.subsubsection-header,
+.paragraph-header {
+    display             : flow-root;
+    
+    padding-bottom      : 5px;
+
+    color               : var(--chosen-science);    
+
+    border-bottom-color : var(--standard-border-color);
+    border-bottom-width : var(--standard-border-width);
+    border-bottom-style : var(--standard-border-style);
+
+    :is(h1, h2, h3, h4, h5, h6) {
+        line-height         : var(--title-linewidth);
+    }
+    
+    a {
+        position        : absolute;
+
+        left            : var(--pdf-link-pos-left);
+        
+        color           : var(--pdf-link-color);                
+        text-align      : left;        
+    }
+
+    .number {
+        float           : right;
+    }
+
+    .title {
+        float           : left;
+        
+        line-height     : var(--title-lineheight) !important;         
+        max-width       : 70%;
+    }   
+}
+
+.chapter-header {
+    margin   : var(--margin-chapter-header);
+
+    .number {       
+        font : var(--chap-head-font);        
+    }
+    
+    .title  {
+        font : var(--h2---text-font);
+    }    
+}   
+
+.section-header,
+.subsection-header,
+.paragraph-header {
+    font   : bold 24px/24px "Source Sans Pro", sans-serif;
+
+}
+
+.section-header {    
+    margin : var(--margin-section-header);    
+}   
+
+.subsection-header {
+    margin : var(--margin-subsection-header);    
+}
+
+.paragraph-header {
+    display           : inline-block;
+
+    margin            : var(--margin-paragraph-header) !important;
+    padding           : var(--padding-paragraph-header) !important;
+    
+    .title {
+        max-width     : unset;
+    }
+    
+    h6 {
+        margin-bottom : 10px;
+    }
+}
+
+
+@media only screen and (max-width: 1200px){
+
+
+    .code-wrapper {
+        width: calc(100vw);
+        background-color: var(--code-bg-color);
+        position: relative;
+        left: calc(var(--margin-article--tablet) * -1);
+        pre {
+            transform: translateX(var(--margin-article--tablet));            
+        }
+    }
+ 
+    .button-group {
+        .dropdown {
+            display: none;
+        }
+
+           .small-button {
+        padding-right: 20px;
+    }
+
+    }
+    
+    .chapter-header,
+    .section-header,
+    .subsection-header,
+    .subsubsection-header,
+    .paragraph-header {
+        a {
+            display: none;
+        }
+    }
+}
+
+
+/* Define the visual look of the chapter TOC */
+.sectionTOCS:before {
+    
+    border-bottom: 1px solid var(--dropdown-bg-color);
+    content: "Chapter Table of Contents \A\A";
+    white-space: pre;
+    font: bold 20px/30px "Source Sans Pro", sans-serif;
+}
+
+.sectionTOCS {
+    /* Control how the section title is shown within the chapter page */
+    margin-top    : 40px;
+    outline-width : 2;
+    line-height   : var(--text-lineheight);
+    border        : 2px solid lightgray;
+    background    : var(--table-row-bg-color);
+    padding       : 20px;
+
+    .subsectionToc {
+        margin-left: 50px;
+        padding-top: 10px;
+    }
+    
+    .likesubsubsectionToc {
+        margin: 70px;
+    }  
+}
+
+
+.paragraphTOCS {
+    /* We remove this TOC from main chapter page as it is unnecessary */
+    display: none;
+
+}
+
+
+@media only screen and (min-width: 1200px) {
+
+    
+    .crosslinks-top {
+
+        .nav-info {
+            display: none;
+        }
+
+    }
+
+     
+    article {
+        position : relative;
+        width    : var(--article-width);
+        margin   : var(--margin-article);
+    }
+
+    
+  
+    
+
+    /* Glossary Settings */
+
+    .acronym {
+
+        a {
+            color: var(--acronym-font-color) !important;
+        }
+
+        .acronym-short {
+            color: black;
+            text-decoration: none;
+            transition: color 0.2s ease, border-color 0.4s ease;
+        }
+
+        .acronym-short:hover {
+            color: black;
+        }
+
+        .acronym-long:before {
+            content: "Definition\A";
+            white-space: pre;
+            font: bold 12px/20px "Source Sans Pro", sans-serif;
+            
+        }
+
+        
+        .acronym-long:after {
+            content: "\A\A";
+            white-space: pre;
+            font: bold 12px/20px "Source Sans Pro", sans-serif;
+            
+        }
+
+       
+        .acronym-detail {
+
+            right: -300px;
+            text-align: left;
+            width: 250px;
+            font: normal 12px/20px "Source Sans Pro", sans-serif;
+            display: none;
+            background: var(--comment-block-bg-color);
+            border: 1px solid black;
+            font: normal 12px/20px "Source Sans Pro", sans-serif;
+            padding: 10px;
+            z-index: 999;
+
+            .acronym-long {
+                a {
+                    font-weight: bolder;
+                }
+            }
+            
+            .acronym-desc {
+                a {
+                    color: black !important; 
+                }
+            }
+        }
+
+        .acronym-short:hover~.acronym-detail  {
+            color: black !important;
+            display: block;        
+        }
+    }
+
+
+    .cite {
+
+        .cite-show {
+            color: #1481b8;
+            /* Make sure it is superscript */
+            position: relative;
+            top: -0.5em;
+            font-size: 80%;
+            text-decoration: none;
+            border-bottom: solid 1px rgba(222, 233, 237, 0);
+            transition: color 0.2s ease, border-color 0.4s ease;
+        }
+
+        .cite-show:hover {
+            color: #1481b8;
+            border-bottom: solid 1px #dee9ed;
+        }
+        
+        .cite-detail::before {
+            content:  "Reference:\A";
+            white-space: pre;
+            font: bold 12px/20px "Source Sans Pro", sans-serif;
+        }
+        
+        .cite-show:hover~.cite-detail  {
+            color: black;
+            display: block;        
+        }
+
+        .cite-show:checked~.cite-detail  {
+            color: black;
+            display: block;
+            font: italic 12px/20px "Source Sans Pro", sans-serif;
+        }
+    }
+}
+
+
+
+
+a {
+    color: var(--link-font-color);
+    text-decoration: none;
+    border-bottom: solid 1px rgba(222, 233, 237, 0);
+    transition: color 0.2s ease, border-color 0.4s ease;
+}
+
+a:hover {
+    color: var(--link-font-color);
+    border-bottom: solid 1px var(--link-font-color);
+}
+
+
+
+.mathjax-env {
+    overflow-x: auto;
+    display: block;
+}
+
+
+
+
+.math {
+    display: inline;
+    display: inline;
+    margin-right: 5px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.math-display {
+    text-align: center;
+}
+
+
+
+ img {
+     max-width: 100%;
+     outline: none;
+}
+
+/* LIST AND DESCRIPTION SETTINGS -------------------------------------------- */
+
+li
+{
+    /*
+      Control how the lists behave, we also need to overwrite some settings in
+      regards to the paragraph settings.
+   */
+    padding         : 0;
+
+    p {
+        line-height : 2 !important;
+        margin      : 10px !important;
+        text-align  : left !important;
+    }
+}
+
+
+li                  ::marker
+{
+    font-weight     : bold;
+    font-size       : 1em;
+}
+
+dl
+{
+    display                     : grid;
+    grid-template-columns       : max-content auto;
+    line-height                 : var(--text-lineheight);
+
+    dt
+    {
+        font-weight             : bold;
+        padding                 : 0 10px 0 0;
+        color: var(--description-list-header-font-color) !important;
+
+        span {
+            color: var(--description-list-header-font-color) !important;
+        }
+    }
+
+    dt.description
+    {    
+        text-decoration         : underline;
+        text-underline-position : under;
+    }
+
+    dd
+    {
+        margin                  : 0px;
+    }
+}
+
+.table {
+
+    dt {
+        text-decoration         : underline;
+        text-underline-position : under;
+
+        code {
+            text-decoration         : unset;
+            text-underline-position : unset;
+        }
+    }
+   
+}
+
+/* -------------------------------------------------------------------------- */
+
+
+.caption {
+
+    font-size: 12px;
+    color: #333333;
+
+    span.id {
+        font-weight: bold;
+    }
+}
+
+
+/* Margin Items Settings ---------------------------------------------------- */
+
+.margin {
+    .ellipsis {
+        color           : var(--link-font-color);
+        text-decoration : none;
+        transition      : color 0.2s ease, border-color 0.4s ease;
+        font-size       : x-small;
+        vertical-align  : super;
+        font-weight     : bold;
+        
+    }
+}
+
+
+/* Make sure margins are placed on the right edge of the page */
+.margin-comment {
+
+    .ellipsis {
+        color           : var(--link-font-color);
+        text-decoration : none;
+        transition      : color 0.2s ease, border-color 0.4s ease;
+        font-size       : x-small;
+        vertical-align  : super;
+        font-weight     : bold;
+    }
+
+    .ellipsis:hover {
+        border-bottom : solid 1px #dee9ed;
+    }
+    
+    .sidenote {
+        .ellipsis {
+
+            text-decoration : none;
+            transition      : color 0.2s ease, border-color 0.4s ease;
+            color           : black;
+            font-weight     : bold;
+            margin-right    : 2px;
+        }
+    }
+
+    .sidenote::before {
+        content:  "Anectode\A";
+        white-space: pre;
+        font-weight: bold;
+    }
+    
+    .ellipsis:hover~.sidenote  {
+        color: black;
+        display: block;        
+    }
+}
+
+/* Glossary Settings */
+
+.cite-detail,
+.acronym-detail {                
+    position   : fixed;
+    left       : calc(700px + 330px + 120px);
+    top        : 70px;
+    width      : calc(100vw - 700px - var(--nav-width));
+    max-height : calc(100vh - 200px);
+    overflow-y : auto;
+    max-width  : 300px;
+    display    : none;
+    font       : var(--comm-text-font);
+    background : var(--comment-block-bg-color);        
+    border     : 1px solid var(--comment-block-border-color);
+    color      : var(--comment-block-font-color) !important;
+    box-shadow : var(--box-shadow-config);
+    
+    padding    : 15px;        
+    z-index    : 999;
+}
+
+.margin{
+    .figure,
+.sidenote {
+    display: block;
+    position: absolute;
+    top: unset;
+    width: 250px;
+    left: unset;
+    right: -300px;
+    max-height: unset;
+    
+}
+}
+
+
+/* Make sure margins are placed on the right edge of the page */
+.margin-comment {
+
+    .ellipsis {
+        color           : var(--link-font-color);
+        text-decoration : none;
+        transition      : color 0.2s ease, border-color 0.4s ease;
+        font-size       : x-small;
+        vertical-align  : super;
+        font-weight     : bold;
+    }
+
+    .ellipsis:hover {
+        border-bottom : solid 1px var(--link-font-color);
+        text-decoration: underline;
+    text-underline-position: under;
+    }
+    
+    .sidenote {
+        position   : absolute; 
+        right      : -300px;
+        max-width  : var(--sidenote-max-width);
+        padding    : 10px;
+        font       : var(--side-text-font);
+        color : var(--sidenote-text-color)
+        line-height: 1.5;
+        text-align : left;
+        
+        display    : none;
+        background : var(--comment-block-bg-color);
+        border     : 1px solid var(--comment-block-border-color);
+        z-index    : 999;
+        box-shadow : var(--box-shadow-config);
+
+        .ellipsis {
+
+            text-decoration : none;
+            transition      : color 0.2s ease, border-color 0.4s ease;
+            color           : black;
+            font-weight     : bold;
+            margin-right    : 2px;
+        }
+    }
+
+    .sidenote::before {
+        content:  "Anectode\A";
+        white-space: pre;
+        font: bold 12px/20px "Source Sans Pro", sans-serif;
+    }
+    
+    .ellipsis:hover~.sidenote  {
+        color: var(--body-text-color);
+        display: block;        
+    }
+}
+
+
+.acronym {    
+    .acronym-short {
+        text-decoration: none;
+        transition: color 0.2s ease, border-color 0.4s ease;  0.4s ease;
+    }
+
+    .acronym-long:before {
+        color: var(--comment-block-font-color);
+        content: "Definition\A";
+        white-space: pre;
+        font: var(--side-text-font);
+        font-weight: bold;
+        
+    }
+    
+    .acronym-long:after {
+        content: "\A\A";
+        white-space: pre;
+        font: var(--side-text-font);
+        
+    }
+       
+    .acronym-detail {    
+     .acronym-desc {
+            a{ 
+                color      : var(--comment-block-font-color) !important;
+            }
+     }
+    }
+
+    
+    .acronym-short:hover~.acronym-detail  {
+        color: var(--comment-block-font-color); !important
+                                                display: block;
+        
+    }
+}
+
+
+.cite {
+
+    .cite-show {
+        color: var(--citation-font-color) !important;
+        /* Make sure it is superscript */
+        position: relative;
+        top: -0.5em;
+        font-size: 80%;
+        text-decoration: none;
+        border-bottom: solid 1px rgba(222, 233, 237, 0);
+        transition: color 0.2s ease, border-color 0.4s ease;
+    }
+
+    .cite-show:hover {
+        color: var(--citation-font-color);
+        border-bottom: solid 1px #dee9ed;
+    }
+
+    .cite-detail::before {
+        content:  "Reference:\A";
+        white-space: pre;
+        font: bold 12px/20px "Source Sans Pro", sans-serif;
+    }
+    
+    .cite-show:hover~.cite-detail  {
+        color: black;
+        display: block;        
+    }
+
+    .cite-show:checked~.cite-detail  {
+        color: black;
+        display: block;
+        font: italic 12px/20px "Source Sans Pro", sans-serif;
+    }
+}
+
+@media only screen and (max-width: 1420px) {
+
+
+
+
+    .margin
+    {
+        .sidenote
+        {
+            position: unset;
+            .copiable-link
+            {
+                display: none;
+            }
+        }
+    }
+}
+
+
+@media only screen and (min-width: 1420px) {
+
+
+pre {    
+    
+    code{        
+        padding : var(--padding-code-block) !important;
+        overflow-x     :  auto;
+       
+    }
+
+    .hljs
+    {
+        overflow-x: auto;
+    }
+}
+  
+    
+  
+
+
+    .margin
+    {
+        .sidenote
+        {
+           
+            .sidenote-text
+            {
+                color: black;
+                
+                .ellipsis
+                {
+                    position: absolute;
+                    right: 280px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+
+    
+    .code-wrapper {
+        width: calc(100vw);
+        background-color: var(--code-bg-color);
+        position: relative;
+        left: calc(var(--nav-width) * -1 + var(--nav-article-gap-width) * -1 +  var(--padding-chapter-left) * -1 );
+         z-index: -100;    
+        pre {
+            max-width: var(--article-width);
+            transform: translateX(calc(var(--nav-width) + var(--nav-article-gap-width) +  var(--padding-chapter-left)));
+           
+        }
+    }
+    
+
+    /* Control how the page is displayed on the current page */
+    .chapter {
+        top: var(--chapter-pos-top);
+        padding-top: var(--padding-chapter-top);
+        border-right-color : var(--standard-border-color);
+        border-right-width : var(--standard-border-width);
+        border-right-style : var(--standard-border-style);
+        padding-right: var(--padding-chapter-right);
+        padding-left: var(--padding-chapter-left);
+    }
+
+}
+
+
+/* Small PC Only Settings --------------------------------------------------- */
+
+@media (min-width: 580px) and (max-width: 1420px) {
+
+    details {
+        visibility: hidden;
+    }
+   
+    .sidenote {
+        position   : sticky;
+        float      : right;
+        width      : 200px;
+        margin     : 15px;
+        margin-top : 0px;
+        border     : 1px solid var(--sidenote-border-color);
+        padding    : 15px;
+        background : var(--sidenote-bg-color);
+        box-shadow : var(--box-shadow-config);
+        clear      : both;
+        z-index:  100;
+    }
+
+    
+    .margin-comment {
+
+        .sidenote {
+            top: 60px;
+            right: 20px;
+            left: unset;
+            margin: 10px !important;
+        }
+    }
+
+    .acronym {
+
+        .acronym-detail {
+            border-radius: var(--button-radius);
+            top      : 60px;
+            right    : 20px;
+            bottom   : unset;
+            left     : unset;
+            position : fixed;
+            width    : 6100px;
+            margin   : 10px !important;
+        }
+    }
+
+
+    .cite {
+
+        
+        .cite-detail {
+            top: 60px;
+            right: 20px;
+            bottom: unset;
+            left: unset;
+            position: fixed;
+            width: 200px;
+            margin: 10px !important;
+            
+        }
+
+    }
+
+  
+
+}
+
+/* Tablet Only Settings ----------------------------------------------------- */
+
+@media only screen and (min-width: 580px) and (max-width: 1200px) {
+    
+    body,
+    chapter{
+        margin       : 0;
+    }
+
+    nav {
+        display      : none;
+    }
+
+    article {
+        padding-top  : 120px;
+        margin-left  : var(--margin-article--tablet);
+        margin-right : var(--margin-article--tablet);             
+    }
+    
+    .page {
+        margin       : 0px;
+        width        : inherit;
+    }
+    
+    
+
+
+    .crosslinks-top {
+
+        .nav-button:nth-last-child(2),
+        .nav-button:nth-last-child(1) {
+            position: unset;
+        }        
+    }
+    
+    
+}
+
+
+.tableofcontents {
+    
+    columns     : 1;
+    position    : relative;
+    max-width   : 700px;
+    padding     : 0px;
+    white-space : pre;
+    border        : 2px solid lightgray;
+    padding       : 20px;
+    margin      : auto;
+    text-wrap   : stable;
+    background    : var(--table-row-bg-color);
+    
+    .chapterToc,
+    .appendixToc
+    {
+        margin-top: 40px;
+        font: var(--toc-font-color);
+        color: black !important;
+        
+        border-bottom: 0.1px solid lightgray;
+        display: flow-root;
+        line-height: var(--title-linewidth);
+
+        
+        .number
+        {
+            font: var(--toc-font-color);
+            float: right;
+        }
+        
+        .title
+        {
+            white-space: initial;
+            float: inherit;
+            width: 200px;
+
+            a
+            {
+                color: black  !important;
+            }
+        }
+    }
+    
+    .sectionToc
+    {
+        padding-bottom : 10px;
+        color          : black ;
+        display        : flow-root;
+        font           : var(--toc-s-----font);
+        line-height    : var(--text-lineheight) !important;
+
+        margin-top     : 30px;
+        
+        .number
+        {
+            float         : right;
+        }
+        
+        .title {
+            white-space   : normal;
+            float         : inherit;
+            padding-right : 5px;
+            
+            a{
+                color: black !important;
+            }
+        }
+    }
+
+    .subsectionToc
+    {
+        padding-top    : 0px;
+        padding-left   : 20px;
+        padding-right  : 0px;;
+        padding-bottom : 0px;
+        
+        font           : var(--toc-ss----font);
+        
+        line-height    : var(--text-lineheight) !important;
+        display        : flow-root;
+
+        .number {
+            float: right;
+            color: black;
+        } 
+        
+        .title {
+            white-space: normal;
+            float: inherit;
+            padding-right: 10px;
+            a{
+                color: black;
+            }
+        }
+        
+    }
+
+     .subsubsectionToc
+    {
+        padding-top    : 0px;
+        padding-left   : 40px;
+        padding-right  : 0px;
+        padding-bottom : 0px;                       
+        display        : flow-root;
+
+        a {
+            font           : var(--toc-sss---font);
+            color: black !important;
+            line-height    : var(--text-lineheight) !important;
+            margin: 0px;
+        }
+        
+    }
+
+}
+
+/* Mobile Only Settings ----------------------------------------------------- */
+
+dd {
+    margin-left: 30px !important;
+
+
+    p {
+        margin-top: 5px !important;
+        padding-right: 20px !important;
+    }
+}
+
+
+@media only screen and (max-width: 580px) {
+    /* Define it for small screen usage (i.e., Mobile Phones) */
+
+    
+    .code-wrapper {
+        width: calc(100vw);
+        background-color: var(--code-bg-color);
+        position: relative;
+        left: calc(var(--margin-article--mobile) * -1);
+        pre {
+            transform: translateX(var(--margin-article--mobile));
+            max-width: 80%;
+        }
+    }
+    
+    nav.wide {
+        display : none;
+        height          : calc(var(--nav-toc-height) -  var(--core-line-height));
+    }
+
+    .chapter-contents{
+        top: calc( var(--core-line-height) + 20px);
+        max-width: 80%;
+    }
+
+    .copiable-link{
+        display: none;
+    }
+
+    .subsubsection-header,
+    .subsection-header,
+    .section-header,
+    .chapter-header{
+
+        .number,
+        .title{
+            line-height:  var(--title-linewidth) !important;
+            font: var(--h4-s-text-font) !important;
+        }
+    }
+    
+    body {
+        margin             : 0px;
+        font: var(--main-stxt-font);
+        line-height        : var(--text-lineheight);
+    }
+
+    
+
+    .crosslinks-top {
+
+        padding-top: 30px;
+ 
+
+        .nav-button {
+
+                   align-items: center;
+  display: flex;
+            
+            i {
+                float:left;
+            }
+
+            a {
+                display: block;
+                padding-left: 20px ! important;
+                max-width: 80%;
+                margin-top: unset;
+            }
+        }
+
+        .nav-button:nth-last-child(1),
+        .nav-button:nth-last-child(2) {
+
+            i {
+                display: none;
+            }
+            
+            position: unset;
+        }
+
+        
+        
+        z-index: 100;
+        
+    }
+    
+    .chapter {
+        padding-top        : 40px; 
+        margin             : auto;
+        border-right       : 0px;
+        margin-left : var(--margin-article--mobile) !important;
+        margin-right: var(--margin-article--mobile) !important;
+        padding-left       : 0px;
+    }
+
+    ul {
+            padding-left: 20px;
+    }
+
+    .quote {
+        padding-left: 0px;
+    }
+
+    nav.wide {
+        top: calc(var(--nav-toc-pos-top) - var(--supp-line-height));
+    }
+
+    
+    figcaption.caption {
+        
+        text-align         : left;
+        text-indent        : 0px;
+        
+        font-size          : 15px;
+        
+    }
+
+   
+
+    .code-lang {
+        visibility         : hidden;
+    }
+
+ 
+    
+
+
+    .mode-line
+    {        
+        display            : block;
+
+        .supp-line
+        {
+            display : none;
+        }
+
+        .core-line
+        {
+            top:    0px;
+            height: 40px;
+            box-shadow: 0px 7px 9px -10px black;
+        }
+
+        .button-group
+        {
+            .dropdown {
+                display: none;
+            }
+
+            .small-button {
+                display: block;
+            }
+        }
+
+        .current-header
+        {
+            overflow-x: auto;
+            padding-top: 0px;
+            padding-left: 10px;
+            white-space: nowrap;
+
+            text-overflow: ellipsis;
+            display: block;
+            overflow: hidden;
+            max-width: 80%;
+            width: 50%;
+
+            .header-pretext{
+                display: none;
+            }
+        }
+        
+    }
+
+   
+
+    .crosslinks-bottom {
+        background: var(--chosen-science) !important;
+        width : 100% !important;
+    }
+
+
+    figure {
+
+        padding: unset;
+
+    figcaption.caption {
+        font               : var(--mode-text-font) !important;
+        line-height        : 1.8 !important;
+        word-break         : break-word;
+        padding: 0px;
+        padding-bottom: 10px;
+        
+    }
+    }
+
+    
+    .acronym {
+
+        .acronym-detail {
+            display        : none;
+        }
+        
+       
+    }
+
+    .margin-comment
+    {
+        .ellipsis
+        {
+            display: none;
+        }
+        
+        .sidenote::before
+        {
+            content:  "(";
+            font: unset;
+        }
+
+        .sidenote::after
+        {
+            content:  ")";
+        }
+        
+        .glossary,
+        .sidenote
+        {
+            
+            padding    : 0px !important;
+            position   : unset;
+            background : unset;
+            display    : inline;
+            border     : unset;
+            box-shadow : unset;
+            color      : gray !important;
+            font       : var(--main-stxt-font);
+
+            code
+            {
+                color: unset;
+                font-size: unset;
+            }
+        }
+    }
+    
+    .sidenote
+    {
+        color: var(--sidenote-text-color);
+        background-color: var(--sidenote-bg-color);
+        display        : block;
+        width          : unset;
+        border         : unset;        
+        position       : unset;
+        padding        : 10px;
+        border         : 1px solid var(--sidenote-border-color);
+        margin-top:   15px;
+        display: table;
+        margin: 0 auto;
+        margin-bottom:   15px;
+        
+
+        .sidenote-image
+        {
+            display: block;
+            width: 50% !important;
+            margin: auto;
+        }
+        
+        .sidenote-text
+        {
+            display: block;
+            border-bottom: 0px solid;
+            border-top: 0px solid;
+            color: gray;
+        }
+    }
+
+
+    dd {
+          padding-right: 0px  !important;
+          margin-left: 0px  !important;
+          
+          pre {
+              width: calc(100vw - 120px) !important;
+          }
+    }
+
+}
+
+/* Upper Navigation Menu Settings  ------------------------------------------ */
+
+.dropdown {
+    
+    position           : relative;
+    float              : right;
+
+    button {
+        bottom         : 20px;
+        width          : 80px;
+        height         : 40px;
+        background     : none;
+        color          : var(--button-text-color);
+        border         : none;
+        margin-right   : 20px;
+        font-weight    : bold;
+    }
+}
+
+.dropdown-content {
+    display            : none;
+    position           : absolute;
+    min-width          : 130px;
+    width              : 280px;
+    box-shadow         : var(--box-shadow-config);
+    padding            : 12px 16px;
+    background         : var(--dropdown-bg-color);
+    line-height        : 1.8;
+    right              : 10px;
+    z-index            : 100;
+   
+
+    font: var(--dropdown-font);
+
+    a {
+        color: var(--dropdown-text-color);
+    }
+
+    kbd {
+        float            : right;
+        margin-left      : 20px;
+    }
+
+    hr {
+        height           : 0.5px;
+        border           : none;
+        background-color : gray;
+        
+    }
+    
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Utility Classes ---------------------------------------------------------- */
+
+.blur   {
+    /* Add blurring effect when the TOC is shown in Tablet mode */
+    filter             : blur(2px);
+    -webkit-filter     : blur(2px);
+    -moz-filter        : blur(2px);
+    -o-filter          : blur(2px);
+    -ms-filter         : blur(2px);
+}
+
+#blur-transition{
+    -webkit-transition : all 0.5s ease;
+    -moz-transition    : all 0.5s ease;
+    -o-transition      : all 0.5s ease;
+    transition         : all 0.5s ease;
+}
+
+.category-def {
+    color: black;
+}
+
+.def-var-arguments {
+    font-weight: normal !important;
+}
+
+
+.def-name {
+
+        color: var(--code-font-color) !important;
+        font: var(--code-text-font);
+    }
+
+.deftypefn,
+.deffn,
+.deffnx,
+.defvr{
+    text-decoration: underline;
+    text-underline-position: under;
+
+    code {
+        text-decoration: unset;
+    }
+    
+
+    
+}
+
+.def-name
+{
+    color: var(--code-font-color) !important;
+    font: var(--code-text-font);
+}
+
+
+
+.option,
+.options,
+.command {
+    font: var(--code-text-font); 
+    color: #57109D !important;
+}
+
+
+.env {
+    font: var(--code-text-font); 
+    color: #ff6362 !important;
+}
+
+
+.dd-block {
+    display: none;
+}
+
+
+.dd-block-is-visible {
+    display: block;  
+}
+
+dl.def-block
+{
+
+    border-color: var(--block-border-color);
+    border-style: var(--block-border-style);
+    border-width: var(--block-border-width);
+    grid: unset;
+    margin-top: 10px;
+    margin-bottom: 10px;
+   
+    
+    dt.def-line
+    {
+        /* Control how function definition headers are displayed */
+        background     : var(--code-header-bg-color);
+        padding-left   : 10px;
+        padding-top    : 5px;
+        padding-bottom : 5px;
+        min-height: 24px;
+    }
+
+    dd
+    {
+        /* Control how the contents of the function definition are displayed */
+        background     : var(--defn-block-body-bg-color);
+        padding-top    : 10px;
+        padding-left   : 15px;
+        padding-right  : 15px !important;
+        margin         : 0px !important;
+
+        dd {
+            display: unset;
+        }
+    }
+    
+    dt
+    {
+        
+        em
+        {
+            font-style: initial;
+        }
+        
+        code
+        {
+            text-underline-position : under;
+            font-weight             : normal !important;
+            background-color        : transparent !important;
+            border                  : 0px !important;
+            color                   : var(--chosen-science) !important;
+            font                    : var(--code-text-font);
+        }
+    }
+}
+
+
+
+.env,
+.option,
+.options,
+.command,
+.var,
+.file,
+.verb,
+.samp {
+    font             : var(--code-text-font) !important;
+    color:            var(--code-font-color) !important;
+    background-color : transparent !important;
+    font-weight      : normal !important;
+    border           : 0px !important;
+    padding-left     : 0px !important;
+    padding-right    : 0px !important;
+}
+
+
+var.def-var-arguments {
+
+
+        color: black;
+        font: var(--code-text-font);
+
+    
+}
+
+.lwarp-center-block-image {
+    background: var(--sidenote-bg-color);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: table;
+    width: 100%;
+    table-layout: fixed;    /* For cells of equal size */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: var(--button-radius);
+
+    span {
+        display: table-cell;
+        text-align: center;
+    }
+}
+
+.table-minor {
+
+    padding: unset !important;
+    display: table;
+    width: 100%;
+    table-layout: fixed;    /* For cells of equal size */
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    display: flex;
+    align-items:center;
+
+    .block-image {
+        border-top-left-radius: var(--button-radius);
+        border-bottom-left-radius: var(--button-radius);
+        background: var(--sidenote-bg-color);
+        display: table-cell;
+        text-align: center;
+        width: 30%;
+        border-right:  1px solid var(--knowledge-block);
+
+        img {
+            display: block;
+            margin: auto;
+            width: 50%;
+            margin-top: 10px;
+            margin-bottom: 10px;           
+        }
+    }
+
+    .makebox {
+
+        padding-left:10px;
+        
+    }
+}
+
+
+
+/* Sidebar TOC Configurations */
+
+nav.wide .toc-sticky-bar {
+    clear           : both;
+    position        : sticky;
+    top             : 0;
+    z-index         : 20;
+    width           : 100%;
+    box-sizing      : border-box;
+    padding         : 10px 36px 12px 36px;
+    background      : var(--nav-bg-color);
+    border-bottom   : 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow      : 0 4px 10px -4px rgba(0, 0, 0, 0.35);
+    white-space     : normal;
+}
+
+nav.wide .toc-sticky-bar pagefind-modal-trigger {
+    padding-bottom  : 8px;
+}
+
+nav.wide .toc-sticky-bar pagefind-modal-trigger:empty {
+    display         : none;
+    padding         : 0;
+}
+
+nav.wide .toc-filter-wrap {
+    position        : relative;
+    display         : flex;
+    align-items     : center;
+    width           : 100%;
+}
+
+nav.wide .toc-filter-icon {
+    position        : absolute;
+    left            : 10px;
+    font-size       : 12px;
+    color           : var(--toc-search-placeholder);
+    pointer-events  : none;
+}
+
+nav.wide .toc-filter-input {
+    width           : 100%;
+    box-sizing      : border-box;
+    padding         : 6px 26px 6px 30px;
+    font-family     : "Roboto", sans-serif;
+    font-size       : 13px;
+    line-height     : 1.4;
+    color           : var(--nav-font-color);
+    background      : var(--toc-search-bg);
+    border          : 1px solid var(--toc-search-border);
+    border-radius   : 4px;
+    outline         : none;
+    transition      : border-color 0.15s ease, background-color 0.15s ease;
+}
+
+nav.wide .toc-filter-input::placeholder {
+    color           : var(--toc-search-placeholder);
+}
+
+nav.wide .toc-filter-input:focus {
+    border-color    : var(--toc-active-accent);
+    background      : rgba(255, 255, 255, 0.16);
+}
+
+nav.wide .toc-filter-input::-webkit-search-cancel-button {
+    -webkit-appearance : none;
+    appearance         : none;
+}
+
+nav.wide .toc-filter-clear {
+    position        : absolute;
+    right           : 6px;
+    border          : none;
+    background      : transparent;
+    color           : var(--nav-font-color);
+    font-size       : 16px;
+    line-height     : 1;
+    padding         : 2px 5px;
+    cursor          : pointer;
+    opacity         : 0.75;
+}
+
+nav.wide .toc-filter-clear:hover {
+    opacity         : 1;
+    color           : var(--toc-active-accent);
+}
+
+nav.wide .toc-filter-empty {
+    white-space     : normal;
+    text-align      : center;
+    font-size       : 13px;
+    font-style      : italic;
+    opacity         : 0.75;
+    padding         : 16px 6px;
+    color           : var(--nav-font-color);
+}
+
+nav.wide .toc .toc-chapter-group {
+    margin-top      : 14px;
+    white-space     : normal;
+}
+
+nav.wide .toc .toc-chapter-group:first-of-type {
+    margin-top      : 8px;
+}
+
+nav.wide .toc .toc-chapter-group > .chapterToc,
+nav.wide .toc .toc-chapter-group > .appendixToc,
+nav.wide .toc .toc-chapter-group > .addchapToc {
+    
+    display         : flex;
+    align-items     : baseline;
+    gap             : 6px;
+    margin-top      : 0;
+    padding         : 5px 6px 5px 4px;
+    border-left     : 3px solid transparent;
+    box-sizing      : border-box;
+    white-space     : normal;
+    transition      : background-color 0.15s ease, border-color 0.15s ease;
+    
+}
+
+nav.wide .toc .toc-chapter-toggle {
+    order           : 0;
+    flex-shrink     : 0;
+    width           : 18px;
+    height          : 18px;
+    padding         : 0;
+    margin          : 0;
+    border          : none;
+    background      : transparent;
+    color           : var(--nav-font-color);
+    cursor          : pointer;
+    display         : inline-flex;
+    align-items     : center;
+    justify-content : center;
+    opacity         : 0.8;
+    font-size       : 11px;
+    transition      : opacity 0.15s ease, color 0.15s ease;
+}
+
+nav.wide .toc .toc-chapter-toggle i {
+    transition      : transform 0.18s ease;
+}
+
+nav.wide .toc .toc-chapter-group:not(.toc-collapsed) .toc-chapter-toggle i {
+    transform       : rotate(90deg);
+}
+
+nav.wide .toc .toc-chapter-toggle:hover {
+    opacity         : 1;
+    color           : var(--toc-active-accent);
+}
+
+nav.wide .toc .toc-chapter-group.toc-collapsed > .toc-chapter-children {
+    display         : none;
+}
+
+nav.wide .toc .sectionToc,
+nav.wide .toc .subsectionToc,
+nav.wide .toc .subsubsectionToc {
+    display         : flex;
+    align-items     : baseline;
+    white-space     : normal;
+    border-left     : 3px solid transparent;
+    box-sizing      : border-box;
+    transition      : background-color 0.15s ease, border-color 0.15s ease;
+}
+
+nav.wide .toc .sectionToc {
+    margin-top      : 6px;
+    margin-bottom   : 3px;
+    padding         : 4px 6px 4px 8px;
+}
+
+nav.wide .toc .subsectionToc {
+    margin-top      : 2px;
+    margin-bottom   : 2px;
+    padding         : 3px 6px 3px 20px;
+}
+
+nav.wide .toc .subsubsectionToc {
+    margin-top      : 2px;
+    margin-bottom   : 2px;
+    padding         : 2px 6px 2px 30px;
+}
+
+nav.wide .toc .chapterToc .title,
+nav.wide .toc .appendixToc .title,
+nav.wide .toc .addchapToc .title,
+nav.wide .toc .sectionToc .title,
+nav.wide .toc .subsectionToc .title,
+nav.wide .toc .subsubsectionToc .title {
+    order           : 1;
+    flex            : 1;
+    min-width       : 0;
+    float           : none;
+    max-width       : none !important;
+    white-space     : normal;
+    padding-right   : 4px;
+}
+
+nav.wide .toc .chapterToc .number,
+nav.wide .toc .appendixToc .number,
+nav.wide .toc .addchapToc .number,
+nav.wide .toc .sectionToc .number,
+nav.wide .toc .subsectionToc .number,
+nav.wide .toc .subsubsectionToc .number {
+    order           : 2;
+    float           : none;
+    margin-left     : 8px;
+    flex-shrink     : 0;
+    opacity         : 0.85;
+}
+
+nav.wide .toc .chapterToc:hover,
+nav.wide .toc .appendixToc:hover,
+nav.wide .toc .addchapToc:hover,
+nav.wide .toc .sectionToc:hover,
+nav.wide .toc .subsectionToc:hover,
+nav.wide .toc .subsubsectionToc:hover {
+    background      : var(--toc-hover-bg);
+}
+
+nav.wide .toc .toc-current-page {
+    background        : var(--toc-current-page-bg);
+    border-left-color : var(--toc-current-page-border);
+}
+
+nav.wide .toc .toc-active {
+    background        : var(--toc-active-bg);
+    border-left-color : var(--toc-active-accent);
+    font-weight       : 600;
+}
+
+nav.wide .toc .toc-active .title,
+nav.wide .toc .toc-active .title a,
+nav.wide .toc .toc-active .number {
+    color           : var(--toc-active-accent) !important;
+    opacity         : 1;
+}
+
+nav.wide .toc .toc-filter-hidden {
+    display         : none !important;
+}
+
+
+
+/* -----------------------------------------------------------------------------
+/* flatweb.css ends here.
+/*
+/*
+
+
